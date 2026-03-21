@@ -131,6 +131,7 @@ h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px
 .coach-role { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--orange); margin-bottom: 6px; }
 .coach-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; color: var(--black); }
 .coach-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.coach-card.coach-head { background: var(--black); }
 .coach-card.coach-head h3 { color: var(--white); }
 .coach-card.coach-head p { color: rgba(255,255,255,0.65); }
 .coach-info { flex: 1; }
