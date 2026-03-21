@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talata Basketball Copenhagen</title>
+  <meta name="description" content="Copenhagen's home for basketball. Elite training, competitive teams, and summer camps for players aged 8–25." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">TALATA <span>BASKETBALL</span></a>
+      <div class="nav-links">
+        <a href="#programs">Programs</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#coaches">Coaches</a>
+        <a href="#camps">Camps</a>
+        <a href="#contact" class="nav-cta">Free Trial</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="nav-mobile">
+      <a href="#programs">Programs</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#coaches">Coaches</a>
+      <a href="#camps">Camps</a>
+      <a href="#contact">Free Trial &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">Copenhagen &middot; Est. 2015</div>
+      <h1>Where Copenhagen<br/><span>plays basketball.</span></h1>
+      <p>From first layup to competitive play — Talata is the club for players who want more than just a game. Elite coaching, real teams, and a community that shows up.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book a Free Trial</a>
+        <a href="#programs" class="btn btn-ghost">See Programs &darr;</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>100+</strong><span>Active players</span></div>
+        <div class="hero-stat"><strong>4</strong><span>Competitive teams</span></div>
+        <div class="hero-stat"><strong>10+</strong><span>Years in CPH</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section" id="programs">
+    <div class="container">
+      <div class="section-label">What we offer</div>
+      <h2>Pick your path.</h2>
+      <p class="section-sub">Three ways to play at Talata — whether you're chasing a scholarship, building a social life around the game, or just getting started.</p>
+
+      <div class="programs-grid">
+        <div class="program-card program-featured">
+          <div class="program-tag">Most popular</div>
+          <div class="program-icon">&#9650;</div>
+          <h3>Academy</h3>
+          <p>Elite-level training for players who want to go further. 5x/week sessions with shooting machines, sprint mechanics, and mental coaching. Built for U11–U19 players with scholarship ambitions.</p>
+          <ul class="program-list">
+            <li>5 sessions per week</li>
+            <li>Video analysis &amp; feedback</li>
+            <li>Scholarship pathway support</li>
+            <li>Led by Coach Deng Awak</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Apply for Academy</a>
+        </div>
+
+        <div class="program-card">
+          <div class="program-icon">&#9679;</div>
+          <h3>Teams</h3>
+          <p>2–3 practices per week blending skill work, team play, and good energy. For players who want to compete and be part of something without the elite commitment.</p>
+          <ul class="program-list">
+            <li>2–3 sessions per week</li>
+            <li>League games included</li>
+            <li>All levels welcome</li>
+            <li>Ages 10–25</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Join a Team</a>
+        </div>
+
+        <div class="program-card">
+          <div class="program-icon">&#9632;</div>
+          <h3>Development</h3>
+          <p>Private 1-on-1 sessions focused on the details — shooting form, footwork, defense, and mental game. Booked on your schedule, built around your weaknesses.</p>
+          <ul class="program-list">
+            <li>Flexible scheduling</li>
+            <li>Personalized program</li>
+            <li>Shooting, defense, footwork</li>
+            <li>All ages</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Book a Session</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE TRIAL BANNER -->
+  <section class="trial-banner">
+    <div class="container">
+      <div class="trial-inner">
+        <div>
+          <h3>Not sure yet? Come for free.</h3>
+          <p>Every Thursday, 16:15–17:30 at Svanemøllehallen. No sign-up, no commitment — just show up and play.</p>
+        </div>
+        <a href="#contact" class="btn btn-primary">Reserve Your Spot</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="section section-dark" id="schedule">
+    <div class="container">
+      <div class="section-label">What's coming up</div>
+      <h2>Schedule.</h2>
+      <p class="section-sub">Upcoming games and training. All times are Copenhagen local time.</p>
+
+      <div class="schedule-grid">
+        <div class="schedule-col">
+          <div class="schedule-header">Upcoming Games</div>
+          <div class="schedule-list" id="games-list">
+            <div class="schedule-item">
+              <div class="schedule-date">Apr 5</div>
+              <div class="schedule-info">
+                <strong>Academy U17 vs Bakken Bears U17</strong>
+                <span>14:00 &middot; Svanemøllehallen</span>
+              </div>
+              <div class="schedule-badge home">Home</div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-date">Apr 12</div>
+              <div class="schedule-info">
+                <strong>Copenhagen vs Amager Basket</strong>
+                <span>13:00 &middot; Away</span>
+              </div>
+              <div class="schedule-badge away">Away</div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-date">Apr 19</div>
+              <div class="schedule-info">
+                <strong>Mens vs Copenhagen Wolves</strong>
+                <span>15:30 &middot; Svanemøllehallen</span>
+              </div>
+              <div class="schedule-badge home">Home</div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-date">May 3</div>
+              <div class="schedule-info">
+                <strong>Academy U17 — Playoffs</strong>
+                <span>TBD</span>
+              </div>
+              <div class="schedule-badge tbd">TBD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="schedule-col">
+          <div class="schedule-header">Weekly Training</div>
+          <div class="schedule-list">
+            <div class="schedule-item">
+              <div class="schedule-day">Mon</div>
+              <div class="schedule-info">
+                <strong>Academy</strong>
+                <span>17:00–19:00 &middot; Svanemøllehallen</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-day">Tue</div>
+              <div class="schedule-info">
+                <strong>Teams + Development</strong>
+                <span>17:00–19:00 &middot; Svanemøllehallen</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-day">Thu</div>
+              <div class="schedule-info">
+                <strong>Free Trial + Teams</strong>
+                <span>16:15–17:30 &middot; Svanemøllehallen</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-day">Fri</div>
+              <div class="schedule-info">
+                <strong>Academy</strong>
+                <span>17:00–19:00 &middot; Svanemøllehallen</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-day">Sat</div>
+              <div class="schedule-info">
+                <strong>Games / Camp</strong>
+                <span>Times vary</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHES -->
+  <section class="section" id="coaches">
+    <div class="container">
+      <div class="section-label">The staff</div>
+      <h2>Your coaches.</h2>
+      <p class="section-sub">Four coaches who take the game seriously and show up every session.</p>
+      <div class="coaches-grid">
+        <div class="coach-card coach-head">
+          <div class="coach-avatar coach-avatar-deng">DA</div>
+          <div class="coach-info">
+            <div class="coach-role">Head Coach</div>
+            <h3>Deng Awak</h3>
+            <p>10+ years coaching in Copenhagen. Built Talata from the ground up. Specialises in player development, scholarship placement, and building competitive teams that actually win.</p>
+            <a href="mailto:coach@talatabasketball.dk" class="coach-contact">coach@talatabasketball.dk</a>
+          </div>
+        </div>
+        <div class="coach-card">
+          <div class="coach-avatar">GJ</div>
+          <div class="coach-info">
+            <div class="coach-role">Assistant Coach</div>
+            <h3>Georg Jespersen</h3>
+            <p>Video analysis and defensive systems. If there's game tape, Georg has already watched it twice.</p>
+          </div>
+        </div>
+        <div class="coach-card">
+          <div class="coach-avatar">AU</div>
+          <div class="coach-info">
+            <div class="coach-role">Assistant Coach</div>
+            <h3>Azeem Ul Haq</h3>
+            <p>Guard development, shooting mechanics, and player conditioning. High energy every session.</p>
+          </div>
+        </div>
+        <div class="coach-card">
+          <div class="coach-avatar">LA</div>
+          <div class="coach-info">
+            <div class="coach-role">Assistant Coach</div>
+            <h3>Lens Aboudou</h3>
+            <p>Post play, rebounding, and youth development. Great with younger players finding their feet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPS -->
+  <section class="section section-dark" id="camps">
+    <div class="container">
+      <div class="section-label">Off-season</div>
+      <h2>Camps &amp; programs.</h2>
+      <p class="section-sub">Intensive camps during school holidays and year-round school partnerships.</p>
+      <div class="camps-grid">
+        <div class="camp-card camp-featured">
+          <div class="camp-tag">Summer 2026</div>
+          <h3>Canada Basketball Camp</h3>
+          <p>An international training experience for our top players. Full week of elite coaching, exposure to North American basketball culture, and college campus visits.</p>
+          <div class="camp-details">
+            <span>Summer 2026</span>
+            <span>Registration deadline: May 15</span>
+            <span>Contact coach for details</span>
+          </div>
+          <a href="#contact" class="btn btn-primary">Get Info Pack</a>
+        </div>
+        <div class="camp-card">
+          <h3>Holiday Camps</h3>
+          <p>Full-day basketball camps during winter, spring (påskeferie), and summer breaks. Open to all levels ages 8–18.</p>
+          <div class="camp-details">
+            <span>All skill levels</span>
+            <span>Ages 8–18</span>
+          </div>
+          <a href="#contact" class="btn btn-outline">Register Interest</a>
+        </div>
+        <div class="camp-card">
+          <h3>School Partnerships</h3>
+          <p>Breakfast Club morning training and after-school programs at partner schools around Copenhagen. Bringing the game to where players already are.</p>
+          <div class="camp-details">
+            <span>Morning + after-school</span>
+            <span>Multiple locations</span>
+          </div>
+          <a href="#contact" class="btn btn-outline">Partner With Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / TRYOUT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-label">Get started</div>
+      <h2>Come play.</h2>
+      <p class="section-sub">Fill in your details and we'll get back to you within 24 hours with next steps.</p>
+      <div class="contact-grid">
+        <form class="contact-form" id="tryout-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Player name</label>
+              <input type="text" name="name" placeholder="First and last name" required />
+            </div>
+            <div class="form-group">
+              <label>Age</label>
+              <input type="number" name="age" placeholder="e.g. 14" min="6" max="50" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Parent / guardian email</label>
+            <input type="email" name="email" placeholder="email@example.com" required />
+          </div>
+          <div class="form-group">
+            <label>Phone (optional)</label>
+            <input type="tel" name="phone" placeholder="+45 ..." />
+          </div>
+          <div class="form-group">
+            <label>Interested in</label>
+            <select name="program">
+              <option value="">Select a program</option>
+              <option value="free-trial">Free Trial Thursday</option>
+              <option value="academy">Academy</option>
+              <option value="teams">Teams</option>
+              <option value="development">1-on-1 Development</option>
+              <option value="camp">Camps / Summer</option>
+              <option value="school">School Partnership</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Anything else? (optional)</label>
+            <textarea name="message" rows="3" placeholder="Experience level, questions, anything..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="submit-btn">Send &rarr;</button>
+          <div class="form-success" id="form-success">Got it! Deng will be in touch within 24 hours.</div>
+        </form>
+
+        <div class="contact-info">
+          <div class="contact-block">
+            <div class="contact-label">Home court</div>
+            <strong>Svanemøllehallen</strong>
+            <span>Østerbrogade 240, 2100 Copenhagen</span>
+          </div>
+          <div class="contact-block">
+            <div class="contact-label">Free trial</div>
+            <strong>Every Thursday</strong>
+            <span>16:15–17:30 &middot; No sign-up needed</span>
+          </div>
+          <div class="contact-block">
+            <div class="contact-label">Email</div>
+            <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a>
+          </div>
+          <div class="contact-block">
+            <div class="contact-label">Follow us</div>
+            <div class="social-links">
+              <a href="https://www.instagram.com/talatabasketball" target="_blank">Instagram</a>
+              <a href="https://www.facebook.com/talatabasketball" target="_blank">Facebook</a>
+              <a href="https://www.tiktok.com/@talatabasketball" target="_blank">TikTok</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">TALATA <span>BASKETBALL</span></div>
+          <p>Copenhagen's home for basketball.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#programs">Programs</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#coaches">Coaches</a>
+          <a href="#camps">Camps</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Talata Basketball</span>
+        <span>Copenhagen, Denmark</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+    hamburger.addEventListener('click', () => {
+      navMobile.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
+    navMobile.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navMobile.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+
+    // Contact form
+    const form = document.getElementById('tryout-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formSuccess = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      const data = Object.fromEntries(new FormData(form));
+      data.source = 'talata_website';
+
+      try {
+        await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        form.reset();
+        formSuccess.style.display = 'block';
+        submitBtn.style.display = 'none';
+      } catch {
+        submitBtn.textContent = 'Send \u2192';
+        submitBtn.disabled = false;
+        alert('Something went wrong — email coach@talatabasketball.dk directly.');
+      }
+    });
+  </script>
+</body>
+</html>
