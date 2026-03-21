@@ -16,7 +16,8 @@
   --white: #ffffff;
   --text: #f0f0f0;
   --text-muted: #888;
-  --font: 'Montserrat', system-ui, sans-serif;
+  --font: 'Inter', system-ui, sans-serif;
+  --font-brand: 'Montserrat', system-ui, sans-serif;
   --radius: 16px;
   --radius-sm: 10px;
 }
@@ -40,7 +41,7 @@ body { font-family: var(--font); background: var(--white); color: var(--black); 
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background 0.3s, box-shadow 0.3s; }
 .nav.scrolled { background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,0.06); }
 .nav-inner { max-width: 1120px; margin: 0 auto; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
-.nav-logo { font-size: 18px; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -0.5px; }
+.nav-logo { font-size: 18px; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: 1px; font-family: var(--font-brand); text-transform: uppercase; }
 .nav-logo span { color: var(--orange); }
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
@@ -168,7 +169,7 @@ h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px
 /* ── FOOTER ── */
 .footer { background: var(--black); padding: 60px 0 32px; }
 .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-bottom: 40px; }
-.footer-logo { font-size: 20px; font-weight: 900; color: #fff; letter-spacing: -0.5px; margin-bottom: 8px; }
+.footer-logo { font-size: 20px; font-weight: 900; color: #fff; letter-spacing: 1px; font-family: var(--font-brand); text-transform: uppercase; margin-bottom: 8px; }
 .footer-logo span { color: var(--orange); }
 .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.4); }
 .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
