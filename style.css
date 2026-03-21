@@ -213,10 +213,9 @@ h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px
 .marquee-track { display: flex; align-items: center; gap: 0; animation: marquee 28s linear infinite; width: max-content; }
 .marquee-track:hover { animation-play-state: paused; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee-item { display: flex; align-items: center; white-space: nowrap; }
-.partner-word { font-size: 22px; font-weight: 800; color: rgba(255,255,255,0.55); padding: 0 32px; letter-spacing: -0.3px; transition: color 0.2s; }
-.marquee-track:hover .partner-word:hover { color: var(--white); }
-.partner-dot { font-size: 22px; color: var(--orange); font-weight: 900; }
+.marquee-item { display: flex; align-items: center; white-space: nowrap; padding: 0 40px; opacity: 0.8; transition: opacity 0.2s; border-right: 1px solid rgba(255,255,255,0.08); }
+.marquee-item:last-child { border-right: none; }
+.marquee-track:hover .marquee-item:hover { opacity: 1; }
 
 /* ── FOOTER ── */
 .footer { background: var(--black); padding: 60px 0 32px; }
