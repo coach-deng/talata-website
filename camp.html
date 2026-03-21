@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talata Mini Camp — Mar 21-22</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; }
+
+    .header {
+      background: #0f172a;
+      color: #fff;
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+    .header .tag {
+      display: inline-block;
+      background: #4B9CD3;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 0.75rem;
+    }
+    .header h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .header p { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+
+    .wrap { max-width: 540px; margin: 0 auto; padding: 1.5rem; }
+
+    .day-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4B9CD3;
+      margin: 2rem 0 0.75rem;
+    }
+
+    .block {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 0.6rem;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+    .block.food {
+      border-color: #fde68a;
+      background: #fffbeb;
+    }
+    .block.evening {
+      border-color: #e0e7ff;
+      background: #f5f3ff;
+    }
+    .block-time {
+      min-width: 68px;
+      padding: 0.9rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #64748b;
+      border-right: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .food .block-time { border-color: #fde68a; color: #92400e; }
+    .evening .block-time { border-color: #e0e7ff; color: #4338ca; }
+    .block-body {
+      padding: 0.9rem 1rem;
+      flex: 1;
+    }
+    .block-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .block-note {
+      font-size: 0.82rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+    .food .block-note { color: #92400e; }
+    .food .block-title { color: #78350f; }
+    .evening .block-note { color: #4338ca; }
+    .block-emoji {
+      font-size: 1.3rem;
+      padding: 0.9rem 0.75rem 0.9rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .done-banner {
+      background: #0f172a;
+      color: #fff;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0 0.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .done-banner strong { font-size: 1rem; display: block; margin-bottom: 4px; }
+    .done-banner span { color: rgba(255,255,255,0.6); }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+    .footer a { color: #4B9CD3; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="tag">Talata Basketball</div>
+    <h1>Mini Camp</h1>
+    <p>March 21-22 &middot; 6 players &middot; Chef: Snorre</p>
+  </div>
+
+  <div class="wrap">
+
+    <!-- DAY 1 -->
+    <div class="day-label">Saturday March 21</div>
+
+    <div class="block">
+      <div class="block-time">11:00</div>
+      <div class="block-body">
+        <div class="block-title">Arrival + Team Meeting</div>
+        <div class="block-note">Set the tone. Goals for the day.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">11:20</div>
+      <div class="block-body">
+        <div class="block-title">Warm-Up</div>
+        <div class="block-note">Dynamic movement, ball handling</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">11:45</div>
+      <div class="block-body">
+        <div class="block-title">Session 1: Individual Skills</div>
+        <div class="block-note">Finishing, footwork, 1-on-1 reads</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">13:00</div>
+      <div class="block-body">
+        <div class="block-title">Session 2: Team Concepts</div>
+        <div class="block-note">Spacing, cutting, 3v3 reps</div>
+      </div>
+    </div>
+
+    <div class="block food">
+      <div class="block-time">14:00</div>
+      <div class="block-body">
+        <div class="block-title">Lunch</div>
+        <div class="block-note">Sit-down. 45-60 min. They've been working since 11.</div>
+      </div>
+      <div class="block-emoji">🍽️</div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">15:00</div>
+      <div class="block-body">
+        <div class="block-title">Session 3: Competitive 3v3</div>
+        <div class="block-note">Tournament, challenges, pressure reps</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">16:15</div>
+      <div class="block-body">
+        <div class="block-title">Film Review</div>
+        <div class="block-note">Projector. Watch back today's footage together.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">17:00</div>
+      <div class="block-body">
+        <div class="block-title">Break + Recovery</div>
+        <div class="block-note">Free time, stretch, reset</div>
+      </div>
+    </div>
+
+    <div class="block food">
+      <div class="block-time">18:30</div>
+      <div class="block-body">
+        <div class="block-title">Dinner</div>
+        <div class="block-note">Main meal. Homemade ice cream for dessert.</div>
+      </div>
+      <div class="block-emoji">🍦</div>
+    </div>
+
+    <div class="block evening">
+      <div class="block-time">20:00</div>
+      <div class="block-body">
+        <div class="block-title">Film Study</div>
+        <div class="block-note">Projector. NBA clips, one concept, open discussion.</div>
+      </div>
+    </div>
+
+    <div class="block evening">
+      <div class="block-time">21:15</div>
+      <div class="block-body">
+        <div class="block-title">Highlights Watch Party</div>
+        <div class="block-note">Best plays of the day on the big screen.</div>
+      </div>
+    </div>
+
+    <div class="block evening">
+      <div class="block-time">22:00</div>
+      <div class="block-body">
+        <div class="block-title">Movie Night</div>
+        <div class="block-note">Tournament winner picks. Ice cream if any left.</div>
+      </div>
+      <div class="block-emoji">🎬</div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-label">Sunday March 22</div>
+
+    <div class="block food">
+      <div class="block-time">08:30</div>
+      <div class="block-body">
+        <div class="block-title">Breakfast</div>
+        <div class="block-note">Relaxed start. Snorre sets it up.</div>
+      </div>
+      <div class="block-emoji">🥞</div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">09:15</div>
+      <div class="block-body">
+        <div class="block-title">Mini Morning Session</div>
+        <div class="block-note">Shooting challenge, king of the court, free throw challenge, final 3v3. Light and fun.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">10:30</div>
+      <div class="block-body">
+        <div class="block-title">Cool Down + Group Chat</div>
+        <div class="block-note">What are you taking home from this camp?</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-time">10:50</div>
+      <div class="block-body">
+        <div class="block-title">Pack up, clean up</div>
+        <div class="block-note">Everyone helps.</div>
+      </div>
+    </div>
+
+    <div class="done-banner">
+      <strong>Done by 11:00</strong>
+      <span>Good camp. See you on the court.</span>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <a href="/">talatabasketball.dk</a>
+  </div>
+
+</body>
+</html>
