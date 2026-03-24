@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talata Basketball — Lithuania Camp 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --green: #2e7d32;
+      --green-light: #e8f5e9;
+      --gold: #f9a825;
+      --dark: #111;
+      --border: #e0e0e0;
+      --radius: 12px;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 800px; margin: 0 auto; }
+
+    .hero {
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+      color: #fff;
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -15%;
+      width: 400px;
+      height: 400px;
+      background: var(--gold);
+      opacity: 0.08;
+      border-radius: 50%;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+    .hero .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+    .hero-details { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 24px; }
+    .hero-detail { text-align: center; }
+    .hero-detail .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+    .hero-detail .value { font-size: 1rem; font-weight: 600; }
+
+    .content { padding: 40px; }
+    .section { margin-bottom: 36px; }
+    .section h2 {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;
+      padding-bottom: 8px; border-bottom: 2px solid var(--green); display: inline-block;
+    }
+    .section p { color: var(--text-muted); margin-bottom: 12px; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
+    }
+    .card h3 {
+      font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--green); margin-bottom: 8px;
+    }
+    .card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px;
+      width: 2px; background: var(--border);
+    }
+    .timeline-item { margin-bottom: 20px; position: relative; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -24px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--green); border: 3px solid var(--green-light);
+    }
+    .timeline-item .date { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; }
+    .timeline-item .desc { font-size: 0.9rem; color: var(--text-muted); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    table th {
+      text-align: left; padding: 10px 12px; background: var(--green-light);
+      font-weight: 600; font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--green);
+    }
+    table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+    table tr:last-child td { border-bottom: none; }
+
+    .price-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .price-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 32px; text-align: center;
+      flex: 1; min-width: 200px;
+    }
+    .price-card.highlight { border-color: var(--green); background: var(--green-light); }
+    .price-card .tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 8px; }
+    .price-card .amount { font-size: 1.8rem; font-weight: 800; color: var(--text); }
+    .price-card .unit { font-size: 0.85rem; color: var(--text-muted); }
+    .price-card .note { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; }
+    .price-card .deadline { font-size: 0.75rem; font-weight: 600; color: var(--green); margin-top: 4px; }
+
+    .highlight-box {
+      background: var(--green-light);
+      border: 1px solid var(--green);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .highlight-box .icon { font-size: 2rem; }
+    .highlight-box .text h3 { font-size: 1rem; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+    .highlight-box .text p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+    .checklist { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .checklist li { font-size: 0.9rem; color: var(--text-muted); padding-left: 24px; position: relative; }
+    .checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+    .cta {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      color: #fff; padding: 40px; text-align: center;
+    }
+    .cta h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .cta p { color: rgba(255,255,255,0.7); margin-bottom: 20px; }
+    .cta .btn {
+      display: inline-block; background: var(--gold); color: var(--dark);
+      padding: 14px 36px; border-radius: 8px; font-weight: 700;
+      font-size: 1rem; text-decoration: none;
+    }
+
+    .footer { text-align: center; padding: 24px; font-size: 0.8rem; color: var(--text-muted); }
+
+    @media (max-width: 600px) {
+      .hero { padding: 40px 24px 36px; }
+      .hero h1 { font-size: 1.8rem; }
+      .content { padding: 24px; }
+      .grid, .checklist { grid-template-columns: 1fr; }
+    }
+    @media print { body { background: #fff; } .page { max-width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="hero">
+      <div class="badge">BasketNews × Talata</div>
+      <h1>Lithuania Camp 2026</h1>
+      <p class="subtitle">Train in the heart of European basketball — 9th year running</p>
+      <div class="hero-details">
+        <div class="hero-detail">
+          <div class="label">Dates</div>
+          <div class="value">Jul 2026 (TBC)</div>
+        </div>
+        <div class="hero-detail">
+          <div class="label">Location</div>
+          <div class="value">Karpyne / Nida, Lithuania</div>
+        </div>
+        <div class="hero-detail">
+          <div class="label">Ages</div>
+          <div class="value">U13 / U15 / U17</div>
+        </div>
+        <div class="hero-detail">
+          <div class="label">Partner</div>
+          <div class="value">BasketNews Camp</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="section">
+        <h2>About the Camp</h2>
+        <p>Basketball is basically a national sport in Lithuania. We're sending our players to train with <strong>BasketNews Camp</strong> — the biggest youth camp in the Baltics, 9 years running. Your kid trains alongside Lithuanian, Latvian, and international players. Real competition, real development.</p>
+        <div class="highlight-box">
+          <div class="icon">🏀</div>
+          <div class="text">
+            <h3>BasketNews Camp</h3>
+            <p>Top-level facilities. 200+ international players every year. Indoor gym in Karpyne, outdoor sessions on the Baltic coast in Nida. The coaching here is serious.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>What's Included</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Training</h3>
+            <p>2-3 sessions a day. Work on your position. Scrimmage against international players. Get real feedback from coaches who've been doing this for years.</p>
+          </div>
+          <div class="card">
+            <h3>Accommodation</h3>
+            <p>Stay at the camp site in Karpyne. Shared rooms. Every meal is covered — breakfast, lunch, dinner.</p>
+          </div>
+          <div class="card">
+            <h3>Travel</h3>
+            <p>We book the flights (CPH → Vilnius). All transport in Lithuania is sorted. Airport pickup included.</p>
+          </div>
+          <div class="card">
+            <h3>Experience</h3>
+            <p>Day trip to Nida on the Baltic coast. Team bonding, beach time, and your kid comes home with a BasketNews Camp certificate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Sample Daily Schedule</h2>
+        <table>
+          <thead><tr><th>Time</th><th>Activity</th></tr></thead>
+          <tbody>
+            <tr><td>07:30</td><td>Breakfast</td></tr>
+            <tr><td>08:30 – 10:30</td><td>Morning session — fundamentals & skills</td></tr>
+            <tr><td>10:30 – 11:00</td><td>Break / recovery</td></tr>
+            <tr><td>11:00 – 12:30</td><td>Position-specific clinics</td></tr>
+            <tr><td>12:30 – 14:00</td><td>Lunch + rest</td></tr>
+            <tr><td>14:00 – 15:30</td><td>Afternoon session — 5v5 games / tournaments</td></tr>
+            <tr><td>15:30 – 17:00</td><td>Free time / pool / activities</td></tr>
+            <tr><td>17:00 – 18:30</td><td>Evening session (optional — shooting lab)</td></tr>
+            <tr><td>19:00</td><td>Dinner</td></tr>
+            <tr><td>20:00 – 21:30</td><td>Team activities / film session</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>Pricing</h2>
+        <div class="price-row">
+          <div class="price-card highlight">
+            <div class="tier">Early Bird</div>
+            <div class="amount">5.950 kr</div>
+            <div class="unit">per player</div>
+            <div class="deadline">Book before Jun 1, 2026</div>
+          </div>
+          <div class="price-card">
+            <div class="tier">Standard</div>
+            <div class="amount">7.000 kr</div>
+            <div class="unit">per player</div>
+            <div class="note">After Jun 1</div>
+          </div>
+        </div>
+        <br>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Includes: flights, accommodation, all meals, camp registration, transport, insurance supplement. Spending money not included.</p>
+      </div>
+
+      <div class="section">
+        <h2>Packing List</h2>
+        <ul class="checklist">
+          <li>Valid passport or EU ID card</li>
+          <li>Sundhedskort (health card)</li>
+          <li>Basketball shoes (indoor)</li>
+          <li>Running shoes</li>
+          <li>Training gear (5+ sets)</li>
+          <li>Swimwear (beach/pool)</li>
+          <li>Light jacket / rain coat</li>
+          <li>Towels (x2)</li>
+          <li>Toiletries + sunscreen</li>
+          <li>Water bottle</li>
+          <li>Phone + charger (EU plugs work)</li>
+          <li>Spending money (EUR)</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Requirements</h2>
+        <table>
+          <thead><tr><th>Item</th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td>Passport / EU ID</td><td>Valid for travel within the EU</td></tr>
+            <tr><td>Blue EU Health Card</td><td>Free healthcare coverage in EU countries</td></tr>
+            <tr><td>Travel insurance</td><td>Recommended (covers cancellation + medical)</td></tr>
+            <tr><td>Consent form</td><td>Signed by parent/guardian before departure</td></tr>
+            <tr><td>Medical form</td><td>Allergies, medications, emergency contacts</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- REGISTRATION FORM -->
+    <div style="max-width:800px;margin:0 auto;padding:40px;border-top:2px solid #2e7d32;" id="register">
+      <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid #2e7d32;display:inline-block;">Register for Lithuania Camp 2026</h2>
+      <p style="color:#555;margin-top:16px;margin-bottom:24px;">Fill in your details below. We'll confirm your spot within 24 hours and send payment info.</p>
+
+      <form id="camp-form" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div>
+            <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Player name</label>
+            <input type="text" name="player_name" required placeholder="First and last name" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
+          </div>
+          <div>
+            <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Age</label>
+            <input type="number" name="age" required placeholder="e.g. 14" min="10" max="20" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Email (parent / player)</label>
+          <input type="email" name="email" required placeholder="email@example.com" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
+        </div>
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Phone</label>
+          <input type="tel" name="phone" placeholder="+45 ..." style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
+        </div>
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Anything we should know? (optional)</label>
+          <textarea name="message" rows="3" placeholder="Position, experience level, questions..." style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+        <button type="submit" id="submit-btn" style="background:#2e7d32;color:#fff;padding:14px 32px;border:none;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;font-family:inherit;">Send Registration →</button>
+        <div id="form-success" style="display:none;padding:16px;background:#ecfdf5;border-radius:8px;color:#065f46;font-weight:600;text-align:center;">Registration received! Deng will be in touch within 24 hours.</div>
+      </form>
+    </div>
+
+    <div class="cta">
+      <h2>Come ball in the Baltics</h2>
+      <p>Spots are limited — sign up before Jun 1 to lock in the early bird price.</p>
+      <a class="btn" href="#register">Register Now →</a>
+    </div>
+
+    <div class="footer">
+      Talata Basketball · CVR: 43599453 · Copenhagen, Denmark<br>
+      Contact: Deng Awak — coach@talatabasketball.dk<br>
+      <br>
+      <span style="font-size: 0.7rem;">In partnership with <a href="https://stovykla.basketnews.lt/" style="color: var(--green); text-decoration: underline;">BasketNews Camp</a></span>
+    </div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById('camp-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formSuccess = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      const data = Object.fromEntries(new FormData(form));
+      data.source = 'talata_lithuania_camp_2026';
+      data.camp = 'Lithuania Basketball Camp 2026';
+
+      try {
+        await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        form.reset();
+        formSuccess.style.display = 'block';
+        submitBtn.style.display = 'none';
+      } catch {
+        submitBtn.textContent = 'Send Registration →';
+        submitBtn.disabled = false;
+        alert('Something went wrong — email coach@talatabasketball.dk directly.');
+      }
+    });
+  </script>
+</body>
+</html>

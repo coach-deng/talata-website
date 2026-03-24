@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talata Basketball — Sommercamp 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --blue: #7BAFD4;
+      --blue-light: #e8f4fb;
+      --dark: #111;
+      --border: #e0e0e0;
+      --radius: 12px;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 800px; margin: 0 auto; }
+
+    .hero {
+      background: linear-gradient(135deg, #4a90b8 0%, #7BAFD4 50%, #99c5e0 100%);
+      color: #fff;
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -15%;
+      width: 500px;
+      height: 500px;
+      background: #fff;
+      opacity: 0.04;
+      border-radius: 50%;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+    .hero .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+    .hero-details { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 24px; }
+    .hero-detail { text-align: center; }
+    .hero-detail .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .hero-detail .value { font-size: 0.95rem; font-weight: 600; }
+
+    .content { padding: 40px; }
+    .section { margin-bottom: 36px; }
+    .section h2 {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;
+      padding-bottom: 8px; border-bottom: 2px solid var(--blue); display: inline-block;
+    }
+    .section p { color: var(--text-muted); margin-bottom: 12px; }
+
+    .week-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .week-card {
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+    }
+    .week-card.active { border-color: var(--blue); background: var(--blue-light); }
+    .week-card .week-label {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--blue); margin-bottom: 8px;
+    }
+    .week-card .week-dates { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .week-card .week-ages { font-size: 0.9rem; color: var(--text-muted); }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
+    }
+    .card h3 {
+      font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--blue); margin-bottom: 8px;
+    }
+    .card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    table th {
+      text-align: left; padding: 10px 12px; background: var(--blue-light);
+      font-weight: 600; font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--blue);
+    }
+    table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+    table tr:last-child td { border-bottom: none; }
+
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .price-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; text-align: center;
+    }
+    .price-card.highlight { border-color: var(--blue); background: var(--blue-light); }
+    .price-card .tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-bottom: 8px; }
+    .price-card .amount { font-size: 1.5rem; font-weight: 800; color: var(--text); }
+    .price-card .unit { font-size: 0.85rem; color: var(--text-muted); }
+    .price-card .note { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; }
+
+    .checklist { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .checklist li { font-size: 0.9rem; color: var(--text-muted); padding-left: 24px; position: relative; }
+    .checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      text-align: center;
+    }
+    .feature {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+    }
+    .feature .icon { font-size: 2rem; margin-bottom: 8px; }
+    .feature h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+    .feature p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+
+    .cta {
+      background: linear-gradient(135deg, #4a90b8, #7BAFD4);
+      color: #fff; padding: 40px; text-align: center;
+    }
+    .cta h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .cta p { color: rgba(255,255,255,0.7); margin-bottom: 20px; }
+    .cta .btn {
+      display: inline-block; background: #fff; color: var(--blue);
+      padding: 14px 36px; border-radius: 8px; font-weight: 700;
+      font-size: 1rem; text-decoration: none;
+    }
+
+    .footer { text-align: center; padding: 24px; font-size: 0.8rem; color: var(--text-muted); }
+
+    @media (max-width: 600px) {
+      .hero { padding: 40px 24px 36px; }
+      .hero h1 { font-size: 1.8rem; }
+      .content { padding: 24px; }
+      .grid, .checklist, .pricing-grid, .features { grid-template-columns: 1fr; }
+      .week-tabs { grid-template-columns: 1fr; }
+    }
+    @media print { body { background: #fff; } .page { max-width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="hero">
+      <div class="badge">Sommercamp 2026</div>
+      <h1>Talata Sommercamp</h1>
+      <p class="subtitle">Basketball hele sommeren — lige her i København</p>
+      <div class="hero-details">
+        <div class="hero-detail">
+          <div class="label">Uge 31</div>
+          <div class="value">27. jul – 1. aug</div>
+        </div>
+        <div class="hero-detail">
+          <div class="label">Uge 32</div>
+          <div class="value">3. – 7. aug</div>
+        </div>
+        <div class="hero-detail">
+          <div class="label">Sted</div>
+          <div class="value">København</div>
+        </div>
+        <div class="hero-detail">
+          <div class="label">Alder</div>
+          <div class="value">U9 – U17</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="section">
+        <h2>Vælg din uge</h2>
+        <div class="week-tabs">
+          <div class="week-card active">
+            <div class="week-label">Uge 31</div>
+            <div class="week-dates">27. jul – 1. aug</div>
+            <div class="week-ages">U13 / U15 / U17</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">5 dage · 09:00 – 15:00</p>
+          </div>
+          <div class="week-card active">
+            <div class="week-label">Uge 32</div>
+            <div class="week-dates">3. – 7. aug</div>
+            <div class="week-ages">U9 / U11</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">5 dage · 09:00 – 14:00</p>
+          </div>
+        </div>
+        <p>Dit barn kan tilmeldes én uge — eller begge, hvis alderen passer.</p>
+      </div>
+
+      <div class="section">
+        <h2>Hvad får du?</h2>
+        <div class="features">
+          <div class="feature">
+            <div class="icon">🏀</div>
+            <h3>Træning</h3>
+            <p>2-3 sessioner om dagen — dit barn bliver bedre, det er hele pointen</p>
+          </div>
+          <div class="feature">
+            <div class="icon">🎥</div>
+            <h3>Video</h3>
+            <p>Vi filmer og gennemgår kampe sammen (U13+)</p>
+          </div>
+          <div class="feature">
+            <div class="icon">🏆</div>
+            <h3>Konkurrence</h3>
+            <p>Kampe og turneringer hver dag — vi holder det sjovt og skarpt</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Dagsprogram — Uge 31 (U13+)</h2>
+        <table>
+          <thead><tr><th>Tid</th><th>Aktivitet</th></tr></thead>
+          <tbody>
+            <tr><td>08:45</td><td>Dørene åbner, check-in</td></tr>
+            <tr><td>09:00 – 10:30</td><td>Morgentræning — fundamentals og positionstræning</td></tr>
+            <tr><td>10:30 – 10:45</td><td>Pause + snack</td></tr>
+            <tr><td>10:45 – 12:00</td><td>Skill stations — skud, dribling, fodarbejde</td></tr>
+            <tr><td>12:00 – 12:45</td><td>Frokost</td></tr>
+            <tr><td>12:45 – 13:30</td><td>Video-analyse / basketball IQ</td></tr>
+            <tr><td>13:30 – 14:45</td><td>5v5 kampe og konkurrencer</td></tr>
+            <tr><td>14:45 – 15:00</td><td>Cool-down, afhentning</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>Dagsprogram — Uge 32 (U9/U11)</h2>
+        <table>
+          <thead><tr><th>Tid</th><th>Aktivitet</th></tr></thead>
+          <tbody>
+            <tr><td>08:45</td><td>Dørene åbner, check-in</td></tr>
+            <tr><td>09:00 – 10:15</td><td>Morgentræning — fundamentals gennem lege</td></tr>
+            <tr><td>10:15 – 10:30</td><td>Pause + snack</td></tr>
+            <tr><td>10:30 – 11:30</td><td>Skill challenges — dribling, pasninger, skud</td></tr>
+            <tr><td>11:30 – 12:15</td><td>Frokost</td></tr>
+            <tr><td>12:15 – 13:30</td><td>Mini-kampe og 3v3 / 5v5</td></tr>
+            <tr><td>13:30 – 14:00</td><td>Sjov konkurrence + afhentning</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>Pris</h2>
+        <div class="pricing-grid">
+          <div class="price-card highlight">
+            <div class="tier">Uge 31 — U13+</div>
+            <div class="amount">1.200 kr</div>
+            <div class="unit">5 dage</div>
+            <div class="note">Inkl. frokost + snacks</div>
+          </div>
+          <div class="price-card">
+            <div class="tier">Uge 32 — U9/U11</div>
+            <div class="amount">900 kr</div>
+            <div class="unit">5 dage</div>
+            <div class="note">Inkl. frokost + snacks</div>
+          </div>
+          <div class="price-card">
+            <div class="tier">Begge uger</div>
+            <div class="amount">1.800 kr</div>
+            <div class="unit">10 dage</div>
+            <div class="note">Spar 300 kr</div>
+          </div>
+        </div>
+        <br>
+        <p style="font-size: 0.9rem; color: var(--text-muted);"><strong>Early bird (før 1. juni):</strong> 200 kr rabat per uge. <strong>Søskenderabat:</strong> 20% på barn nr. 2.</p>
+      </div>
+
+      <div class="section">
+        <h2>Medbring</h2>
+        <ul class="checklist">
+          <li>Indendørs basketsko</li>
+          <li>Shorts og t-shirt (x2)</li>
+          <li>Vandflaske</li>
+          <li>Håndklæde</li>
+          <li>Skiftetøj</li>
+          <li>Solcreme (udendørs sessioner)</li>
+        </ul>
+        <p style="margin-top: 12px;">Vi har bolde, veste, kegler — og sørger for frokost og snacks.</p>
+      </div>
+
+      <div class="section">
+        <h2>Trænere</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Head Coach</h3>
+            <p><strong>Deng Awak</strong> — Talata U15 & U17 cheftræner og klubmanager.</p>
+          </div>
+          <div class="card">
+            <h3>Coach</h3>
+            <p><strong>Georg Jespersen</strong> — Talata træner. Alle coaches har gyldig børneattest.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Praktisk</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Betaling</h3>
+            <p>MobilePay eller bankoverførsel. Betaling bekræftes ved tilmelding. CVR: 43599453.</p>
+          </div>
+          <div class="card">
+            <h3>Afmelding</h3>
+            <p>Fuld refusion 14+ dage før. 50% ved 7-13 dage. Ingen refusion inden 7 dage.</p>
+          </div>
+          <div class="card">
+            <h3>Pladser</h3>
+            <p>Uge 31: Max 30 spillere. Uge 32: Max 24 spillere. Først til mølle.</p>
+          </div>
+          <div class="card">
+            <h3>Tilmelding</h3>
+            <p>Tilmeldingsfrist: 14. juli 2026 eller når pladserne er fyldt.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- REGISTRATION FORM -->
+    <div style="max-width:800px;margin:0 auto;padding:40px;border-top:2px solid #e8620a;" id="tilmeld">
+      <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid #e8620a;display:inline-block;">Tilmeld dig DK Summer Camp 2026</h2>
+      <p style="color:#555;margin-top:16px;margin-bottom:24px;">Udfyld formularen herunder. Vi bekræfter din plads inden for 24 timer og sender betalingsoplysninger.</p>
+
+      <form id="camp-form" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div>
+            <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Spillerens navn</label>
+            <input type="text" name="player_name" required placeholder="For- og efternavn" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
+          </div>
+          <div>
+            <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Alder</label>
+            <input type="number" name="age" required placeholder="f.eks. 12" min="8" max="18" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Email (forælder / spiller)</label>
+          <input type="email" name="email" required placeholder="email@eksempel.dk" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
+        </div>
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Telefon</label>
+          <input type="tel" name="phone" placeholder="+45 ..." style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
+        </div>
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Noget vi skal vide? (valgfrit)</label>
+          <textarea name="message" rows="3" placeholder="Niveau, spørgsmål..." style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+        <button type="submit" id="submit-btn" style="background:#e8620a;color:#fff;padding:14px 32px;border:none;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;font-family:inherit;">Send tilmelding →</button>
+        <div id="form-success" style="display:none;padding:16px;background:#ecfdf5;border-radius:8px;color:#065f46;font-weight:600;text-align:center;">Tilmelding modtaget! Du hører fra os inden for 24 timer.</div>
+      </form>
+    </div>
+
+    <div class="cta">
+      <h2>Giv dit barn en fed sommer</h2>
+      <p>Pladserne går hurtigt — tilmeld dig nu.</p>
+      <a class="btn" href="#tilmeld">Tilmeld nu →</a>
+    </div>
+
+    <div class="footer">
+      Talata Basketball · CVR: 43599453 · København<br>
+      Kontakt: Deng Awak — coach@talatabasketball.dk
+    </div>
+
+    <script>
+      const form = document.getElementById('camp-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const formSuccess = document.getElementById('form-success');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.textContent = 'Sender...';
+        submitBtn.disabled = true;
+
+        const data = Object.fromEntries(new FormData(form));
+        data.source = 'talata_dk_summer_camp_2026';
+        data.camp = 'DK Summer Camp 2026';
+
+        try {
+          await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          form.reset();
+          formSuccess.style.display = 'block';
+          submitBtn.style.display = 'none';
+        } catch {
+          submitBtn.textContent = 'Send tilmelding →';
+          submitBtn.disabled = false;
+          alert('Noget gik galt — send en email til coach@talatabasketball.dk i stedet.');
+        }
+      });
+    </script>
+
+  </div>
+</body>
+</html>

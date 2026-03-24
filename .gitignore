@@ -1,3 +1,32 @@
 .DS_Store
 .wrangler/
 node_modules/
+CLAUDE_CONTEXT.md
+
+# Raw photo dump — not for deployment
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.heic
+*.avif
+*.JPG
+*.JPEG
+*.PNG
+*.WEBP
+
+# Sub-folders not part of the site
+Photos-001
+Photos-001\ (2)
+Photos-001\ (3)
+Photos-001\ (4)
+Photos-001\ (5)
+Photos-001\ (nene)
+instagram_posts
+Talata\ Website\ Photos
+
+# Allow curated asset folders
+!images/
+!images/**
+!camps/
+!camps/**
