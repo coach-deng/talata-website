@@ -217,6 +217,20 @@ h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px
 .marquee-item:last-child { border-right: none; }
 .marquee-track:hover .marquee-item:hover { opacity: 1; }
 
+/* ── PROGRAM CARD PHOTO HEADER ── */
+.program-card-photo { width: calc(100% + 72px); margin: -36px -36px 24px -36px; height: 200px; background-size: cover; background-position: center; border-radius: var(--radius) var(--radius) 0 0; }
+.program-featured .program-card-photo { width: calc(100% + 72px); margin: -36px -36px 24px -36px; }
+
+/* ── ROSTER STRIP ── */
+.roster-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 32px; }
+.roster-card { aspect-ratio: 3/4; background-size: cover; background-position: center top; border-radius: var(--radius); }
+@media (max-width: 768px) {
+  .roster-strip { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .roster-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ── PHOTO STRIP ── */
 .photo-strip { width: 100%; }
 .photo-strip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 340px; }
