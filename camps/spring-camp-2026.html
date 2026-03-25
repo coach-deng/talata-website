@@ -299,11 +299,11 @@
         </div>
         <div class="hero-detail">
           <div class="label">Tid</div>
-          <div class="value">09:00 – 15:00</div>
+          <div class="value">Se program</div>
         </div>
         <div class="hero-detail">
           <div class="label">Sted</div>
-          <div class="value">Svanemøllehallen, CPH</div>
+          <div class="value">Svanemøllehallen + Strandvejsskolen</div>
         </div>
         <div class="hero-detail">
           <div class="label">Alder</div>
@@ -321,22 +321,43 @@
       <div class="section">
         <h2>Hvad er Spring Camp?</h2>
         <p>3 dage i hallen med Talatas trænere. Vi arbejder med skud, dribling, fodarbejde og holdspil — og slutter hver dag med kampe. Det er for alle niveauer, om du lige er startet eller spiller turnering.</p>
+        <p>Campen er opdelt i to aldersgrupper med separate hold, tider og haller.</p>
       </div>
 
       <div class="section">
         <h2>Program</h2>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+          <div class="card" style="border-top:3px solid var(--orange);">
+            <h3>Spor A — U9-U11</h3>
+            <p><strong>Strandvejsskolen</strong></p>
+            <p style="margin-top:8px;">Tors 14. maj · 09:30 – 13:00</p>
+            <p>Fre 15. maj · 09:30 – 13:00</p>
+            <p style="margin-top:8px;font-size:0.8rem;color:#888;">Lille hal, size 5 bold. Hygge, lege og basket-fundamentals.</p>
+          </div>
+          <div class="card" style="border-top:3px solid var(--orange);">
+            <h3>Spor B — U13-U17</h3>
+            <p><strong>Svanemøllehallen</strong></p>
+            <p style="margin-top:8px;">Fre 15. maj · 13:30 – 17:00</p>
+            <p>Lør 16. maj · 09:00 – 12:00</p>
+            <p style="margin-top:8px;font-size:0.8rem;color:#888;">Fuld hal. Skud, taktik, 5v5 kampe og positionstræning.</p>
+          </div>
+        </div>
+
+        <p style="font-size:0.85rem;color:var(--text-muted);">OBS: Svanemøllehallen er lukket torsdag 14. maj (helligdag). U13-U17 starter fredag.</p>
+
+        <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700;">Dagsprogram — Spor B (U13-U17)</h3>
         <table>
           <thead>
             <tr><th>Tid</th><th>Aktivitet</th></tr>
           </thead>
           <tbody>
-            <tr><td>09:00 – 10:30</td><td>Morgen session — fundamentals og positionsspecifik træning</td></tr>
-            <tr><td>10:30 – 10:45</td><td>Pause + snack</td></tr>
-            <tr><td>10:45 – 12:00</td><td>Skill stations — skud, dribling, fodarbejde</td></tr>
-            <tr><td>12:00 – 12:45</td><td>Frokost (medbring selv)</td></tr>
-            <tr><td>12:45 – 13:30</td><td>Basketball IQ — video og taktik (U13+)</td></tr>
-            <tr><td>13:30 – 14:45</td><td>5v5 kampe og konkurrencer</td></tr>
-            <tr><td>14:45 – 15:00</td><td>Cool-down + afhentning</td></tr>
+            <tr><td>Ankomst</td><td>Check-in + opvarmning</td></tr>
+            <tr><td>Session 1</td><td>Fundamentals — skud, dribling, fodarbejde</td></tr>
+            <tr><td>Pause</td><td>Snack + vand</td></tr>
+            <tr><td>Session 2</td><td>Basketball IQ — taktik og positionsspil</td></tr>
+            <tr><td>Session 3</td><td>5v5 kampe og konkurrencer</td></tr>
+            <tr><td>Slut</td><td>Cool-down + afhentning</td></tr>
           </tbody>
         </table>
       </div>
@@ -345,16 +366,22 @@
         <h2>Pris</h2>
         <div class="pricing-grid">
           <div class="price-card highlight">
-            <div class="tier">3 dage</div>
-            <div class="amount">900 kr</div>
-            <div class="unit">14 – 16. maj</div>
-            <div class="note">U13 – U17 · Anbefalet</div>
+            <div class="tier">Spor B — U13-U17</div>
+            <div class="amount">700 kr</div>
+            <div class="unit">2 sessioner (15–16. maj)</div>
+            <div class="note">Svanemøllehallen · Anbefalet</div>
           </div>
           <div class="price-card">
-            <div class="tier">1 dag</div>
-            <div class="amount">350 kr</div>
-            <div class="unit">Vælg selv dag</div>
-            <div class="note">Alle aldre 12+</div>
+            <div class="tier">Spor A — U9-U11</div>
+            <div class="amount">500 kr</div>
+            <div class="unit">2 dage (14–15. maj)</div>
+            <div class="note">Strandvejsskolen</div>
+          </div>
+          <div class="price-card">
+            <div class="tier">1 dag / session</div>
+            <div class="amount">300 kr</div>
+            <div class="unit">Vælg selv</div>
+            <div class="note">Alle aldre</div>
           </div>
         </div>
       </div>
@@ -432,8 +459,9 @@
             <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Pakke</label>
             <select name="package" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:0.95rem;font-family:inherit;background:#fff;">
               <option value="">Vælg pakke</option>
-              <option value="3dage">3 dage · 900 kr (14–16. maj)</option>
-              <option value="1dag">1 dag · 350 kr (vælg dag)</option>
+              <option value="sporB">Spor B — U13-U17 · 700 kr (15–16. maj, Svanemøllehallen)</option>
+              <option value="sporA">Spor A — U9-U11 · 500 kr (14–15. maj, Strandvejsskolen)</option>
+              <option value="1dag">1 dag / session · 300 kr</option>
             </select>
           </div>
           <div>
