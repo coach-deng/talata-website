@@ -10,15 +10,17 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #f7f7f7;
+      --bg: #f4f8fb;
       --text: #111;
       --muted: #666;
-      --border: #e0e0e0;
+      --border: #dce8f0;
       --radius: 14px;
+      --talata: #7BAFD4;
+      --talata-dark: #4a87b0;
+      --talata-light: #e4f0f8;
+      --black: #111;
+      --white: #fff;
       --orange: #e8620a;
-      --navy: #0f3460;
-      --green: #2e7d32;
-      --blue: #1976d2;
     }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
@@ -41,7 +43,7 @@
       font-weight: 800;
       letter-spacing: -0.5px;
     }
-    .site-header .logo span { color: var(--orange); }
+    .site-header .logo span { color: var(--talata); }
     .site-header a {
       color: rgba(255,255,255,0.6);
       text-decoration: none;
@@ -51,17 +53,18 @@
 
     /* HERO */
     .hero {
-      background: #111;
+      background: linear-gradient(160deg, #111 0%, #1a2a38 100%);
       color: #fff;
       padding: 64px 40px 56px;
       text-align: center;
+      border-bottom: 4px solid var(--talata);
     }
     .hero .eyebrow {
       display: inline-block;
-      background: var(--orange);
-      color: #fff;
+      background: var(--talata);
+      color: var(--black);
       font-size: 0.7rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       padding: 5px 14px;
@@ -97,12 +100,12 @@
     }
     .timeline-bar {
       position: relative;
-      height: 80px;
+      height: 110px;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 12px;
       display: flex;
-      overflow: hidden;
+      overflow: visible;
     }
     /* Month lanes */
     .month-lane {
@@ -115,28 +118,40 @@
     .month-lane:last-child { border-right: none; }
     .month-name {
       font-size: 0.65rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--muted);
-      padding: 8px 10px 4px;
+      letter-spacing: 1.5px;
+      color: var(--talata-dark);
+      padding: 10px 10px 4px;
+      border-bottom: 2px solid var(--talata-light);
     }
     /* Camp blocks on timeline */
     .camp-block {
       position: absolute;
-      top: 28px;
-      height: 36px;
+      height: 30px;
       border-radius: 6px;
       display: flex;
       align-items: center;
       padding: 0 8px;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 700;
       color: #fff;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       z-index: 2;
+      cursor: default;
+      transition: filter 0.15s;
+    }
+    .camp-block:hover { filter: brightness(1.15); z-index: 10; }
+    /* Date label under each block */
+    .camp-date-label {
+      position: absolute;
+      font-size: 0.58rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      z-index: 3;
     }
 
     /* CAMP CARDS */
@@ -235,8 +250,8 @@
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 20px;
-      background: #fff3e0;
-      color: var(--orange);
+      background: var(--talata-light);
+      color: var(--talata-dark);
     }
 
     .card-cta {
@@ -254,19 +269,15 @@
       transition: opacity 0.15s;
     }
     .btn:hover { opacity: 0.88; }
-    .btn-orange { background: var(--orange); color: #fff; }
-    .btn-navy { background: var(--navy); color: #fff; }
-    .btn-green { background: var(--green); color: #fff; }
-    .btn-blue { background: var(--blue); color: #fff; }
+    .btn-black  { background: var(--black); color: #fff; }
+    .btn-talata { background: var(--talata); color: var(--black); }
+    .btn-talata-dark { background: var(--talata-dark); color: #fff; }
 
-    /* Spring camp header */
-    .h-spring { background: linear-gradient(135deg, #bf4e0a, #e8620a); }
-    /* Canada header */
-    .h-canada { background: linear-gradient(135deg, #1a1a2e, #0f3460); }
-    /* Lithuania header */
-    .h-lithuania { background: linear-gradient(135deg, #1b5e20, #2e7d32); }
-    /* DK Summer header */
-    .h-dk { background: linear-gradient(135deg, #1565c0, #1976d2); }
+    /* Card headers — Talata brand: NC blue + black + white mix */
+    .h-spring    { background: linear-gradient(135deg, var(--black) 0%, #1a2a38 100%); border-bottom: 3px solid var(--talata); }
+    .h-canada    { background: linear-gradient(135deg, #3a7aaa 0%, var(--talata) 100%); }
+    .h-lithuania { background: linear-gradient(135deg, var(--black) 0%, #223344 100%); border-bottom: 3px solid var(--talata); }
+    .h-dk        { background: linear-gradient(135deg, var(--talata-dark) 0%, var(--talata) 100%); }
 
     /* Dual-week badge */
     .week-badges {
@@ -281,8 +292,8 @@
       border-radius: 20px;
       color: #fff;
     }
-    .week-badge.w31 { background: var(--blue); }
-    .week-badge.w32 { background: #1565c0; }
+    .week-badge.w31 { background: var(--talata); color: var(--black); }
+    .week-badge.w32 { background: var(--talata-dark); color: #fff; }
 
     /* Footer */
     .footer {
@@ -362,7 +373,7 @@
         <div class="price-badge">Spots open</div>
       </div>
       <div class="card-cta">
-        <a href="camps/spring-camp-2026.html" class="btn btn-orange">Register now →</a>
+        <a href="camps/spring-camp-2026.html" class="btn btn-black">Register now →</a>
       </div>
     </div>
 
@@ -400,7 +411,7 @@
         <div class="price-badge">Before Apr 15</div>
       </div>
       <div class="card-cta">
-        <a href="camps/canada-camp-2026.html" class="btn btn-navy">Register now →</a>
+        <a href="camps/canada-camp-2026.html" class="btn btn-talata">Register now →</a>
       </div>
     </div>
 
@@ -438,7 +449,7 @@
         <div class="price-badge">Before Jun 1</div>
       </div>
       <div class="card-cta">
-        <a href="camps/lithuania-camp-2026.html" class="btn btn-green">Register now →</a>
+        <a href="camps/lithuania-camp-2026.html" class="btn btn-black">Register now →</a>
       </div>
     </div>
 
@@ -480,7 +491,7 @@
         <div class="price-badge">Spots open</div>
       </div>
       <div class="card-cta">
-        <a href="camps/dk-summer-camp-2026.html" class="btn btn-blue">Register now →</a>
+        <a href="camps/dk-summer-camp-2026.html" class="btn btn-talata-dark">Register now →</a>
       </div>
     </div>
 
@@ -491,33 +502,42 @@
   </div>
 
   <script>
-    // Draw camp blocks on the timeline
-    // Timeline = May 1 – Aug 31 = 123 days
     const START = new Date('2026-05-01');
-    const END   = new Date('2026-08-31');
+    const END   = new Date('2026-09-01');
     const TOTAL = (END - START) / 86400000;
 
     const camps = [
-      { label: 'Spring Camp', start: '2026-05-14', end: '2026-05-16', color: '#e8620a' },
-      { label: 'Canada',      start: '2026-06-28', end: '2026-07-06', color: '#0f3460' },
-      { label: 'Lithuania',   start: '2026-07-19', end: '2026-07-25', color: '#2e7d32' },
-      { label: 'DK Camp Wk31',start: '2026-07-27', end: '2026-08-01', color: '#1976d2' },
-      { label: 'DK Camp Wk32',start: '2026-08-03', end: '2026-08-07', color: '#1565c0' },
+      { label: 'Spring Camp',  start: '2026-05-14', end: '2026-05-16', color: '#111',    dates: 'May 14–16',   row: 0 },
+      { label: 'Canada',       start: '2026-06-28', end: '2026-07-06', color: '#4a87b0', dates: 'Jun 28–Jul 6', row: 1 },
+      { label: 'Lithuania',    start: '2026-07-19', end: '2026-07-25', color: '#7BAFD4', dates: 'Jul 19–25',    row: 0 },
+      { label: 'DK Camp Wk31', start: '2026-07-27', end: '2026-08-01', color: '#2d6a93', dates: 'Jul 27–Aug 1', row: 1 },
+      { label: 'DK Camp Wk32', start: '2026-08-03', end: '2026-08-07', color: '#111',    dates: 'Aug 3–7',      row: 0 },
     ];
 
     const bar = document.getElementById('timeline');
-    const barW = bar.offsetWidth;
+    const ROW_TOP = [34, 68]; // px from top for row 0 and row 1
 
-    camps.forEach((c, i) => {
+    camps.forEach(c => {
       const s = (new Date(c.start) - START) / 86400000;
       const e = (new Date(c.end)   - START) / 86400000 + 1;
-      const left = (s / TOTAL) * 100;
+      const left  = (s / TOTAL) * 100;
       const width = ((e - s) / TOTAL) * 100;
+      const top   = ROW_TOP[c.row];
+
+      // Block
       const el = document.createElement('div');
       el.className = 'camp-block';
-      el.style.cssText = `left:${left}%;width:${width}%;background:${c.color};top:${i % 2 === 0 ? '22px' : '46px'}`;
+      el.title = `${c.label}: ${c.dates}`;
+      el.style.cssText = `left:${left}%;width:${width}%;background:${c.color};top:${top}px;`;
       el.textContent = c.label;
       bar.appendChild(el);
+
+      // Date label below block
+      const dl = document.createElement('div');
+      dl.className = 'camp-date-label';
+      dl.style.cssText = `left:${left}%;top:${top + 33}px;`;
+      dl.textContent = c.dates;
+      bar.appendChild(dl);
     });
   </script>
 
