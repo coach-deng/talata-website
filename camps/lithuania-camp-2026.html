@@ -362,13 +362,13 @@
       data.source = 'talata_lithuania_camp_2026';
       data.camp = 'Lithuania Basketball Camp 2026';
       const body = JSON.stringify(data);
-      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbxbknY8DXqL7v67j3qJlMofHfRdHGetEXq2mgecTI_sEbkZYZvLDS1LSxCBYkITyp4Q/exec';
+      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbw8UgPiY0wj2xRg_F3GInCBmuoddHYaZDnE4EYuJcZQRPj_DwlohYXt0aE2YrzyTzJ3/exec';
 
       try {
         await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
         });
-        if (GAS_MAILER !== 'https://script.google.com/macros/s/AKfycbxbknY8DXqL7v67j3qJlMofHfRdHGetEXq2mgecTI_sEbkZYZvLDS1LSxCBYkITyp4Q/exec') {
+        if (GAS_MAILER !== 'https://script.google.com/macros/s/AKfycbw8UgPiY0wj2xRg_F3GInCBmuoddHYaZDnE4EYuJcZQRPj_DwlohYXt0aE2YrzyTzJ3/exec') {
           fetch(GAS_MAILER, { method: 'POST', body }).catch(() => {});
         }
         form.reset();
