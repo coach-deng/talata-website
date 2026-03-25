@@ -487,7 +487,7 @@
     </div>
 
     <script>
-      const GAS_MAILER = 'PASTE_GAS_WEB_APP_URL_HERE';
+      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbxbknY8DXqL7v67j3qJlMofHfRdHGetEXq2mgecTI_sEbkZYZvLDS1LSxCBYkITyp4Q/exec';
 
       const form = document.getElementById('camp-form');
       const submitBtn = document.getElementById('submit-btn');
@@ -509,7 +509,7 @@
             method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
           });
           // 2. Send emails (notify Deng + auto-reply to registrant)
-          if (GAS_MAILER !== 'PASTE_GAS_WEB_APP_URL_HERE') {
+          if (GAS_MAILER !== 'https://script.google.com/macros/s/AKfycbxbknY8DXqL7v67j3qJlMofHfRdHGetEXq2mgecTI_sEbkZYZvLDS1LSxCBYkITyp4Q/exec') {
             fetch(GAS_MAILER, { method: 'POST', body }).catch(() => {});
           }
           form.reset();
