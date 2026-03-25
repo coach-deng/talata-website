@@ -373,6 +373,8 @@
     </div>
 
     <script>
+      const GAS_MAILER = 'PASTE_GAS_WEB_APP_URL_HERE';
+
       const form = document.getElementById('camp-form');
       const submitBtn = document.getElementById('submit-btn');
       const formSuccess = document.getElementById('form-success');
@@ -385,13 +387,15 @@
         const data = Object.fromEntries(new FormData(form));
         data.source = 'talata_canada_camp_2026';
         data.camp = 'Canada Basketball Camp 2026';
+        const body = JSON.stringify(data);
 
         try {
           await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
           });
+          if (GAS_MAILER !== 'PASTE_GAS_WEB_APP_URL_HERE') {
+            fetch(GAS_MAILER, { method: 'POST', body }).catch(() => {});
+          }
           form.reset();
           formSuccess.style.display = 'block';
           submitBtn.style.display = 'none';

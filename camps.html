@@ -84,74 +84,120 @@
       margin: 0 auto;
     }
 
-    /* TIMELINE */
-    .timeline-wrap {
+    /* GANTT TIMELINE */
+    .gantt-wrap {
       max-width: 960px;
       margin: 0 auto;
-      padding: 48px 24px 16px;
+      padding: 48px 24px 24px;
     }
-    .timeline-label {
+    .gantt-title {
       font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
+      font-weight: 800;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
+      color: var(--talata-dark);
+      margin-bottom: 20px;
     }
-    .timeline-bar {
-      position: relative;
-      height: 110px;
+    .gantt {
       background: #fff;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      display: flex;
-      overflow: visible;
+      border-radius: 14px;
+      overflow: hidden;
     }
-    /* Month lanes */
-    .month-lane {
-      flex: 1;
-      border-right: 1px solid var(--border);
+    /* Date axis */
+    .gantt-axis {
       display: flex;
-      flex-direction: column;
+      border-bottom: 2px solid var(--talata-light);
       position: relative;
     }
-    .month-lane:last-child { border-right: none; }
-    .month-name {
+    .gantt-row-label {
+      width: 120px;
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+    }
+    .gantt-axis-months {
+      flex: 1;
+      position: relative;
+      height: 38px;
+    }
+    .gantt-month {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
       font-size: 0.65rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: var(--talata-dark);
-      padding: 10px 10px 4px;
-      border-bottom: 2px solid var(--talata-light);
+      border-right: 1px solid var(--border);
     }
-    /* Camp blocks on timeline */
-    .camp-block {
+    /* Camp rows */
+    .gantt-row {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      min-height: 54px;
+      align-items: center;
+    }
+    .gantt-row:last-child { border-bottom: none; }
+    .gantt-label {
+      width: 120px;
+      flex-shrink: 0;
+      padding: 0 14px;
+      border-right: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .gantt-label .camp-flag {
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .gantt-track {
+      flex: 1;
+      position: relative;
+      height: 54px;
+    }
+    /* Vertical grid lines (drawn by JS) */
+    .gantt-grid-line {
       position: absolute;
-      height: 30px;
-      border-radius: 6px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+      opacity: 0.5;
+    }
+    /* Camp bar */
+    .gantt-bar {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 32px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
-      padding: 0 8px;
-      font-size: 0.62rem;
+      padding: 0 10px;
+      font-size: 0.7rem;
       font-weight: 700;
-      color: #fff;
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
-      z-index: 2;
+      transition: filter 0.15s, box-shadow 0.15s;
       cursor: default;
-      transition: filter 0.15s;
     }
-    .camp-block:hover { filter: brightness(1.15); z-index: 10; }
-    /* Date label under each block */
-    .camp-date-label {
-      position: absolute;
-      font-size: 0.58rem;
-      font-weight: 600;
-      color: var(--muted);
-      white-space: nowrap;
-      z-index: 3;
+    .gantt-bar:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      z-index: 10;
+    }
+    .gantt-bar .bar-dates {
+      font-weight: 500;
+      opacity: 0.85;
+      margin-left: 6px;
+      font-size: 0.62rem;
     }
 
     /* CAMP CARDS */
@@ -307,7 +353,7 @@
     @media (max-width: 640px) {
       .hero { padding: 48px 24px 40px; }
       .site-header { padding: 16px 20px; }
-      .timeline-wrap { display: none; }
+      .gantt-wrap { display: none; }
       .cards-wrap { grid-template-columns: 1fr; padding: 24px 16px 48px; }
     }
   </style>
@@ -325,14 +371,36 @@
     <p>Five opportunities this summer — from a local spring camp to Canada and Lithuania. Something for every player.</p>
   </div>
 
-  <!-- VISUAL TIMELINE -->
-  <div class="timeline-wrap">
-    <div class="timeline-label">May — August 2026</div>
-    <div class="timeline-bar" id="timeline">
-      <div class="month-lane"><div class="month-name">May</div></div>
-      <div class="month-lane"><div class="month-name">June</div></div>
-      <div class="month-lane"><div class="month-name">July</div></div>
-      <div class="month-lane"><div class="month-name">August</div></div>
+  <!-- GANTT TIMELINE -->
+  <div class="gantt-wrap">
+    <div class="gantt-title">Camp Calendar — May through August 2026</div>
+    <div class="gantt">
+      <!-- Month axis -->
+      <div class="gantt-axis">
+        <div class="gantt-row-label"></div>
+        <div class="gantt-axis-months" id="gantt-months"></div>
+      </div>
+      <!-- Camp rows -->
+      <div class="gantt-row">
+        <div class="gantt-label"><span class="camp-flag">🏀</span>Spring Camp</div>
+        <div class="gantt-track" data-camp="spring"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label"><span class="camp-flag">🇨🇦</span>Canada</div>
+        <div class="gantt-track" data-camp="canada"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label"><span class="camp-flag">🇱🇹</span>Lithuania</div>
+        <div class="gantt-track" data-camp="lithuania"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label"><span class="camp-flag">🏆</span>DK Camp Wk 31</div>
+        <div class="gantt-track" data-camp="dk31"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label"><span class="camp-flag">🏆</span>DK Camp Wk 32</div>
+        <div class="gantt-track" data-camp="dk32"></div>
+      </div>
     </div>
   </div>
 
@@ -480,7 +548,7 @@
         </div>
         <div class="meta-item">
           <div class="meta-label">Hours</div>
-          <div class="meta-value">09:00–15:00</div>
+          <div class="meta-value">09:30–15:00</div>
         </div>
       </div>
       <div class="card-price">
@@ -506,38 +574,62 @@
     const END   = new Date('2026-09-01');
     const TOTAL = (END - START) / 86400000;
 
-    const camps = [
-      { label: 'Spring Camp',  start: '2026-05-14', end: '2026-05-16', color: '#111',    dates: 'May 14–16',   row: 0 },
-      { label: 'Canada',       start: '2026-06-28', end: '2026-07-06', color: '#4a87b0', dates: 'Jun 28–Jul 6', row: 1 },
-      { label: 'Lithuania',    start: '2026-07-19', end: '2026-07-25', color: '#7BAFD4', dates: 'Jul 19–25',    row: 0 },
-      { label: 'DK Camp Wk31', start: '2026-07-27', end: '2026-08-01', color: '#2d6a93', dates: 'Jul 27–Aug 1', row: 1 },
-      { label: 'DK Camp Wk32', start: '2026-08-03', end: '2026-08-07', color: '#111',    dates: 'Aug 3–7',      row: 0 },
+    // --- Month axis ---
+    const MONTHS = [
+      { label: 'May',    s: '2026-05-01', e: '2026-06-01' },
+      { label: 'June',   s: '2026-06-01', e: '2026-07-01' },
+      { label: 'July',   s: '2026-07-01', e: '2026-08-01' },
+      { label: 'August', s: '2026-08-01', e: '2026-09-01' },
+    ];
+    const monthsEl = document.getElementById('gantt-months');
+    const tracks   = document.querySelectorAll('.gantt-track');
+
+    MONTHS.forEach((m, i) => {
+      const ms   = (new Date(m.s) - START) / 86400000;
+      const me   = (new Date(m.e) - START) / 86400000;
+      const left  = (ms / TOTAL) * 100;
+      const width = ((me - ms) / TOTAL) * 100;
+
+      // Month label
+      const div = document.createElement('div');
+      div.className = 'gantt-month';
+      div.style.cssText = `left:${left}%;width:${width}%;`;
+      div.textContent = m.label;
+      monthsEl.appendChild(div);
+
+      // Vertical grid line in every track (skip first)
+      if (i > 0) {
+        tracks.forEach(track => {
+          const line = document.createElement('div');
+          line.className = 'gantt-grid-line';
+          line.style.left = `${left}%`;
+          track.appendChild(line);
+        });
+      }
+    });
+
+    // --- Camp bars ---
+    const CAMPS = [
+      { id: 'spring',    s: '2026-05-14', e: '2026-05-16', color: '#111',    text: '#fff', label: 'May 14–16' },
+      { id: 'canada',    s: '2026-06-28', e: '2026-07-06', color: '#4a87b0', text: '#fff', label: 'Jun 28 – Jul 6' },
+      { id: 'lithuania', s: '2026-07-19', e: '2026-07-25', color: '#7BAFD4', text: '#111', label: 'Jul 19–25' },
+      { id: 'dk31',      s: '2026-07-27', e: '2026-08-01', color: '#2d6a93', text: '#fff', label: 'Jul 27 – Aug 1' },
+      { id: 'dk32',      s: '2026-08-03', e: '2026-08-07', color: '#111',    text: '#fff', label: 'Aug 3–7' },
     ];
 
-    const bar = document.getElementById('timeline');
-    const ROW_TOP = [34, 68]; // px from top for row 0 and row 1
-
-    camps.forEach(c => {
-      const s = (new Date(c.start) - START) / 86400000;
-      const e = (new Date(c.end)   - START) / 86400000 + 1;
+    CAMPS.forEach(c => {
+      const track = document.querySelector(`.gantt-track[data-camp="${c.id}"]`);
+      if (!track) return;
+      const s     = (new Date(c.s) - START) / 86400000;
+      const e     = (new Date(c.e) - START) / 86400000 + 1;
       const left  = (s / TOTAL) * 100;
       const width = ((e - s) / TOTAL) * 100;
-      const top   = ROW_TOP[c.row];
 
-      // Block
-      const el = document.createElement('div');
-      el.className = 'camp-block';
-      el.title = `${c.label}: ${c.dates}`;
-      el.style.cssText = `left:${left}%;width:${width}%;background:${c.color};top:${top}px;`;
-      el.textContent = c.label;
-      bar.appendChild(el);
-
-      // Date label below block
-      const dl = document.createElement('div');
-      dl.className = 'camp-date-label';
-      dl.style.cssText = `left:${left}%;top:${top + 33}px;`;
-      dl.textContent = c.dates;
-      bar.appendChild(dl);
+      const bar = document.createElement('div');
+      bar.className = 'gantt-bar';
+      bar.style.cssText = `left:${left}%;width:${width}%;background:${c.color};color:${c.text};`;
+      bar.innerHTML = `<span class="bar-dates">${c.label}</span>`;
+      track.appendChild(bar);
     });
   </script>
 
