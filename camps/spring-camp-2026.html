@@ -510,7 +510,7 @@
           });
           // 2. Send emails (notify Deng + auto-reply to registrant)
           if (GAS_MAILER !== 'https://script.google.com/macros/s/AKfycbw8UgPiY0wj2xRg_F3GInCBmuoddHYaZDnE4EYuJcZQRPj_DwlohYXt0aE2YrzyTzJ3/exec') {
-            fetch(GAS_MAILER, { method: 'POST', body }).catch(() => {});
+            fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain'}, body }).catch(() => {});
           }
           form.reset();
           formSuccess.style.display = 'block';
