@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talata Basketball — Camps 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #f7f7f7;
+      --text: #111;
+      --muted: #666;
+      --border: #e0e0e0;
+      --radius: 14px;
+      --orange: #e8620a;
+      --navy: #0f3460;
+      --green: #2e7d32;
+      --blue: #1976d2;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: #111;
+      color: #fff;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-header .logo {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .site-header .logo span { color: var(--orange); }
+    .site-header a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .site-header a:hover { color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: #111;
+      color: #fff;
+      padding: 64px 40px 56px;
+      text-align: center;
+    }
+    .hero .eyebrow {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* TIMELINE */
+    .timeline-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 16px;
+    }
+    .timeline-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .timeline-bar {
+      position: relative;
+      height: 80px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      overflow: hidden;
+    }
+    /* Month lanes */
+    .month-lane {
+      flex: 1;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .month-lane:last-child { border-right: none; }
+    .month-name {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      padding: 8px 10px 4px;
+    }
+    /* Camp blocks on timeline */
+    .camp-block {
+      position: absolute;
+      top: 28px;
+      height: 36px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      z-index: 2;
+    }
+
+    /* CAMP CARDS */
+    .cards-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .camp-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .camp-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+    }
+    .card-header {
+      padding: 24px 24px 20px;
+      color: #fff;
+      position: relative;
+    }
+    .card-header .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 10px;
+    }
+    .card-header h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+    .card-header .sub {
+      font-size: 0.85rem;
+      opacity: 0.75;
+    }
+    .card-header .flag {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .card-meta {
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-item .meta-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+    .meta-item .meta-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card-price {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-main {
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+    .price-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .price-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #fff3e0;
+      color: var(--orange);
+    }
+
+    .card-cta {
+      padding: 16px 24px;
+      margin-top: auto;
+    }
+    .btn {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn-orange { background: var(--orange); color: #fff; }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-green { background: var(--green); color: #fff; }
+    .btn-blue { background: var(--blue); color: #fff; }
+
+    /* Spring camp header */
+    .h-spring { background: linear-gradient(135deg, #bf4e0a, #e8620a); }
+    /* Canada header */
+    .h-canada { background: linear-gradient(135deg, #1a1a2e, #0f3460); }
+    /* Lithuania header */
+    .h-lithuania { background: linear-gradient(135deg, #1b5e20, #2e7d32); }
+    /* DK Summer header */
+    .h-dk { background: linear-gradient(135deg, #1565c0, #1976d2); }
+
+    /* Dual-week badge */
+    .week-badges {
+      display: flex;
+      gap: 6px;
+      padding: 12px 24px 0;
+    }
+    .week-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      color: #fff;
+    }
+    .week-badge.w31 { background: var(--blue); }
+    .week-badge.w32 { background: #1565c0; }
+
+    /* Footer */
+    .footer {
+      background: #111;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 48px 24px 40px; }
+      .site-header { padding: 16px 20px; }
+      .timeline-wrap { display: none; }
+      .cards-wrap { grid-template-columns: 1fr; padding: 24px 16px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo">Talata <span>Basketball</span></div>
+    <a href="index.html">← Back to main site</a>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow">Summer 2026</div>
+    <h1>Camps &amp; Travel</h1>
+    <p>Five opportunities this summer — from a local spring camp to Canada and Lithuania. Something for every player.</p>
+  </div>
+
+  <!-- VISUAL TIMELINE -->
+  <div class="timeline-wrap">
+    <div class="timeline-label">May — August 2026</div>
+    <div class="timeline-bar" id="timeline">
+      <div class="month-lane"><div class="month-name">May</div></div>
+      <div class="month-lane"><div class="month-name">June</div></div>
+      <div class="month-lane"><div class="month-name">July</div></div>
+      <div class="month-lane"><div class="month-name">August</div></div>
+    </div>
+  </div>
+
+  <!-- CAMP CARDS -->
+  <div class="cards-wrap">
+
+    <!-- SPRING CAMP -->
+    <div class="camp-card">
+      <div class="card-header h-spring">
+        <div class="tag">Spring Camp · Copenhagen</div>
+        <h2>Spring Camp 2026</h2>
+        <div class="sub">2 age groups · 2 venues</div>
+        <div class="flag">🏀</div>
+      </div>
+      <div class="card-meta">
+        <div class="meta-item">
+          <div class="meta-label">U9–U11</div>
+          <div class="meta-value">May 14–15</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">U13–U17</div>
+          <div class="meta-value">May 15–16</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">U9-U11 Venue</div>
+          <div class="meta-value">Strandvejsskolen</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">U13-U17 Venue</div>
+          <div class="meta-value">Svanemøllehallen</div>
+        </div>
+      </div>
+      <div class="card-price">
+        <div>
+          <div class="price-main">500–700 kr</div>
+          <div class="price-note">U9-U11: 500 kr · U13-U17: 700 kr</div>
+        </div>
+        <div class="price-badge">Spots open</div>
+      </div>
+      <div class="card-cta">
+        <a href="camps/spring-camp-2026.html" class="btn btn-orange">Register now →</a>
+      </div>
+    </div>
+
+    <!-- CANADA CAMP -->
+    <div class="camp-card">
+      <div class="card-header h-canada">
+        <div class="tag">International · Lethbridge, Alberta</div>
+        <h2>Canada Camp 2026</h2>
+        <div class="sub">University of Lethbridge Pronghorns</div>
+        <div class="flag">🇨🇦</div>
+      </div>
+      <div class="card-meta">
+        <div class="meta-item">
+          <div class="meta-label">Dates</div>
+          <div class="meta-value">Jun 28 – Jul 6</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Duration</div>
+          <div class="meta-value">9 days</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Ages</div>
+          <div class="meta-value">12–17</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Spots</div>
+          <div class="meta-value">Max 12 players</div>
+        </div>
+      </div>
+      <div class="card-price">
+        <div>
+          <div class="price-main">10,950 kr</div>
+          <div class="price-note">Early bird · +flights ~5-6k kr</div>
+        </div>
+        <div class="price-badge">Before Apr 15</div>
+      </div>
+      <div class="card-cta">
+        <a href="camps/canada-camp-2026.html" class="btn btn-navy">Register now →</a>
+      </div>
+    </div>
+
+    <!-- LITHUANIA CAMP -->
+    <div class="camp-card">
+      <div class="card-header h-lithuania">
+        <div class="tag">International · Karpynė, Lithuania</div>
+        <h2>Lithuania Camp 2026</h2>
+        <div class="sub">BasketNews Camp · 9th year running</div>
+        <div class="flag">🇱🇹</div>
+      </div>
+      <div class="card-meta">
+        <div class="meta-item">
+          <div class="meta-label">Dates</div>
+          <div class="meta-value">Jul 19–25</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Duration</div>
+          <div class="meta-value">7 days</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Ages</div>
+          <div class="meta-value">12–17</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Partner</div>
+          <div class="meta-value">BasketNews Camp</div>
+        </div>
+      </div>
+      <div class="card-price">
+        <div>
+          <div class="price-main">5,950 kr</div>
+          <div class="price-note">Early bird · flights, meals, accommodation</div>
+        </div>
+        <div class="price-badge">Before Jun 1</div>
+      </div>
+      <div class="card-cta">
+        <a href="camps/lithuania-camp-2026.html" class="btn btn-green">Register now →</a>
+      </div>
+    </div>
+
+    <!-- DK SUMMER CAMP -->
+    <div class="camp-card">
+      <div class="card-header h-dk">
+        <div class="tag">DK Summer Camp · Hafnia-Hallen, Østerbro</div>
+        <h2>Talata Sommercamp</h2>
+        <div class="sub">Two weeks · two age groups</div>
+        <div class="flag">🏆</div>
+      </div>
+      <div class="week-badges">
+        <span class="week-badge w31">Uge 31 — U13-U17</span>
+        <span class="week-badge w32">Uge 32 — U9-U11</span>
+      </div>
+      <div class="card-meta" style="padding-top:12px;">
+        <div class="meta-item">
+          <div class="meta-label">Week 31</div>
+          <div class="meta-value">Jul 27 – Aug 1</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Week 32</div>
+          <div class="meta-value">Aug 3–7</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Venue</div>
+          <div class="meta-value">Hafnia-Hallen</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Hours</div>
+          <div class="meta-value">09:00–15:00</div>
+        </div>
+      </div>
+      <div class="card-price">
+        <div>
+          <div class="price-main">900–1,200 kr</div>
+          <div class="price-note">Incl. lunch + snacks · early bird -200 kr</div>
+        </div>
+        <div class="price-badge">Spots open</div>
+      </div>
+      <div class="card-cta">
+        <a href="camps/dk-summer-camp-2026.html" class="btn btn-blue">Register now →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Talata Basketball · CVR: 43599453 · Copenhagen, Denmark · coach@talatabasketball.dk
+  </div>
+
+  <script>
+    // Draw camp blocks on the timeline
+    // Timeline = May 1 – Aug 31 = 123 days
+    const START = new Date('2026-05-01');
+    const END   = new Date('2026-08-31');
+    const TOTAL = (END - START) / 86400000;
+
+    const camps = [
+      { label: 'Spring Camp', start: '2026-05-14', end: '2026-05-16', color: '#e8620a' },
+      { label: 'Canada',      start: '2026-06-28', end: '2026-07-06', color: '#0f3460' },
+      { label: 'Lithuania',   start: '2026-07-19', end: '2026-07-25', color: '#2e7d32' },
+      { label: 'DK Camp Wk31',start: '2026-07-27', end: '2026-08-01', color: '#1976d2' },
+      { label: 'DK Camp Wk32',start: '2026-08-03', end: '2026-08-07', color: '#1565c0' },
+    ];
+
+    const bar = document.getElementById('timeline');
+    const barW = bar.offsetWidth;
+
+    camps.forEach((c, i) => {
+      const s = (new Date(c.start) - START) / 86400000;
+      const e = (new Date(c.end)   - START) / 86400000 + 1;
+      const left = (s / TOTAL) * 100;
+      const width = ((e - s) / TOTAL) * 100;
+      const el = document.createElement('div');
+      el.className = 'camp-block';
+      el.style.cssText = `left:${left}%;width:${width}%;background:${c.color};top:${i % 2 === 0 ? '22px' : '46px'}`;
+      el.textContent = c.label;
+      bar.appendChild(el);
+    });
+  </script>
+
+</body>
+</html>
