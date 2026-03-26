@@ -313,7 +313,6 @@
     </div>
 
     <!-- Camp Photo -->
-    <div style="width:100%;height:260px;background-image:url('camp-photo.jpg');background-size:cover;background-position:center 40%;"></div>
 
     <!-- Content -->
     <div class="content">
@@ -509,9 +508,8 @@
             method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
           });
           // 2. Send emails (notify Deng + auto-reply to registrant)
-          if (GAS_MAILER !== 'https://script.google.com/macros/s/AKfycbw8UgPiY0wj2xRg_F3GInCBmuoddHYaZDnE4EYuJcZQRPj_DwlohYXt0aE2YrzyTzJ3/exec') {
-            fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain'}, body }).catch(() => {});
-          }
+
+          fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain'}, body }).catch(() => {});
           form.reset();
           formSuccess.style.display = 'block';
           submitBtn.style.display = 'none';

@@ -183,7 +183,7 @@
         </div>
         <div class="hero-detail">
           <div class="label">Location</div>
-          <div class="value">Lethbridge, Canada</div>
+          <div class="value">Lethbridge, Alberta</div>
         </div>
         <div class="hero-detail">
           <div class="label">Ages</div>
@@ -196,14 +196,13 @@
       </div>
     </div>
 
-    <div style="width:100%;height:260px;background-image:url('camp-photo.jpg');background-size:cover;background-position:center 40%;"></div>
 
     <div class="content">
 
       <div class="section">
         <h2>About the Trip</h2>
         <p>We're taking 12 players to Canada to train at a real university gym, go up against Canadian teams, and get coached by college-level staff. It's 9 days of full-time basketball in a country that takes the game seriously.</p>
-        <p>We're partnering with Coach Kenny Otieno (University of Lethbridge Pronghorns) and Coach Ryan Heggie (Lethbridge College) — they'll be running sessions alongside our staff.</p>
+        <p>Coaching staff: <strong>Deng Awak</strong> (Talata Basketball), <strong>Jordan Naughton</strong>, and <strong>James Young</strong> — with more coaches to be announced. Players get direct access to multiple coaches across every session.</p>
       </div>
 
       <div class="section">
@@ -393,9 +392,8 @@
           await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
             method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
           });
-          if (GAS_MAILER !== 'https://script.google.com/macros/s/AKfycbw8UgPiY0wj2xRg_F3GInCBmuoddHYaZDnE4EYuJcZQRPj_DwlohYXt0aE2YrzyTzJ3/exec') {
-            fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain'}, body }).catch(() => {});
-          }
+
+          fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain'}, body }).catch(() => {});
           form.reset();
           formSuccess.style.display = 'block';
           submitBtn.style.display = 'none';

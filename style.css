@@ -216,6 +216,8 @@ h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px
 .marquee-item { display: flex; align-items: center; white-space: nowrap; padding: 0 40px; opacity: 0.8; transition: opacity 0.2s; border-right: 1px solid rgba(255,255,255,0.08); }
 .marquee-item:last-child { border-right: none; }
 .marquee-track:hover .marquee-item:hover { opacity: 1; }
+.marquee-rhynoflow { display:flex; align-items:center; gap:10px; border:1px solid rgba(34,197,94,0.2); border-radius:8px; padding:8px 18px; background:transparent; transition: background 0.25s, border-color 0.25s; cursor:default; }
+.marquee-rhynoflow:hover { background:rgba(34,197,94,0.1); border-color:rgba(34,197,94,0.55); }
 
 /* ── PROGRAM CARD PHOTO HEADER ── */
 .program-card-photo { width: calc(100% + 72px); margin: -36px -36px 24px -36px; height: 200px; background-size: cover; background-position: center; border-radius: var(--radius) var(--radius) 0 0; }
