@@ -3,8 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Talata Basketball Copenhagen | Youth Basketball Club</title>
-  <meta name="description" content="Talata Basketball is Copenhagen's youth basketball club. Academy training, competitive teams, and summer camps for players aged 8–25 at Svanemøllehallen. Free trial every Thursday." />
+  <title>Talata Basketball Copenhagen | Youth Club, Academy &amp; Camps</title>
+  <link rel="canonical" href="https://talatabasketball.dk/" />
+  <!-- Preload hero image for faster LCP -->
+  <link rel="preload" as="image" href="images/squad-energy.jpg" fetchpriority="high" />
+  <meta name="description" content="Talata Basketball is Copenhagen's youth basketball club. Academy training, competitive teams, and summer camps for players aged 8-25 at Svanemollehallen. Free trial every Thursday." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talatabasketball.dk/" />
+  <meta property="og:title" content="Talata Basketball Copenhagen | Youth Club, Academy &amp; Camps" />
+  <meta property="og:description" content="Youth basketball club in Copenhagen. Academy training, competitive teams and summer camps for ages 8-25. Free trial every Thursday at Svanemollehallen." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/action-game.jpg" />
+  <meta property="og:site_name" content="Talata Basketball" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Talata Basketball Copenhagen | Youth Club, Academy &amp; Camps" />
+  <meta name="twitter:description" content="Youth basketball club in Copenhagen. Free trial every Thursday at Svanemollehallen." />
+  <meta name="twitter:image" content="https://talatabasketball.dk/images/action-game.jpg" />
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["SportsOrganization", "LocalBusiness"],
+    "name": "Talata Basketball",
+    "url": "https://talatabasketball.dk",
+    "email": "coach@talatabasketball.dk",
+    "description": "Copenhagen's youth basketball club. Academy training, competitive teams and summer camps for players aged 8-25.",
+    "sport": "Basketball",
+    "foundingDate": "2024",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Osterbrogade 240",
+      "addressLocality": "Copenhagen",
+      "postalCode": "2100",
+      "addressCountry": "DK"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 55.7128,
+      "longitude": 12.5762
+    },
+    "sameAs": [
+      "https://www.instagram.com/talatabasketball",
+      "https://www.facebook.com/talatabasketball",
+      "https://www.tiktok.com/@talatabasketball"
+    ],
+    "openingHours": "Th 16:15-17:30"
+  }
+  </script>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
@@ -38,20 +88,21 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="home" style="background-image: url('images/new-huddle-hands.jpeg'); background-size: cover; background-position: center 40%;">
+  <section class="hero" id="home" style="background-image: url('images/squad-energy.jpg'); background-size: cover; background-position: center 25%;">
     <div class="hero-bg" style="background: linear-gradient(rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 100%), radial-gradient(ellipse at 70% 50%, rgba(255,107,0,0.10) 0%, transparent 60%);"></div>
     <div class="hero-inner">
       <div class="hero-badge">Copenhagen &middot; Est. 2024</div>
       <h1>Copenhagen's basketball club.<br/><span>Come play.</span></h1>
-      <p>Whether your kid just wants to try the game or is chasing a scholarship, Talata is where Copenhagen's players develop. Real coaching, real teams, free trial every Thursday.</p>
+      <p>Whether you want to try basketball for the first time or you're chasing a scholarship, Talata is where Copenhagen's players develop. Real coaching, real teams, free trial every Thursday.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Book a Free Trial</a>
         <a href="#programs" class="btn btn-ghost">See Programs &darr;</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><strong>56</strong><span>Active members</span></div>
-        <div class="hero-stat"><strong>4</strong><span>Competitive teams</span></div>
-        <div class="hero-stat"><strong>2</strong><span>Seasons strong</span></div>
+        <div class="hero-stat"><strong>1</strong><span>Elite academy placement<br/><em style="font-size:10px;opacity:0.6;font-style:normal;">International · Orangeville</em></span></div>
+        <div class="hero-stat"><strong>3</strong><span>Countries this summer<br/><em style="font-size:10px;opacity:0.6;font-style:normal;">DK · Canada · Lithuania</em></span></div>
+        <div class="hero-stat"><strong>Dr. Dish</strong><span>Pro shooting machine</span></div>
+        <div class="hero-stat"><strong>4+</strong><span>International coaches<br/><em style="font-size:10px;opacity:0.6;font-style:normal;">CPH · Canada · USA</em></span></div>
       </div>
     </div>
   </section>
@@ -66,7 +117,7 @@
       <div class="programs-grid">
         <div class="program-card program-featured">
           <div class="program-tag">Most popular</div>
-          <div class="program-card-photo" style="background-image:url('images/new-training-drill.jpeg'); background-position: center 30%;"></div>
+          <div class="program-card-photo" style="background-image:url('images/action-game.jpg'); background-position: center 40%;"></div>
           <h3>Academy</h3>
           <p>For players who are serious about the game. Five sessions a week, shooting machines, sprint work, and mental coaching. If you want to play at the next level, this is where you start.</p>
           <ul class="program-list">
@@ -79,20 +130,20 @@
         </div>
 
         <div class="program-card">
-          <div class="program-card-photo" style="background-image:url('images/new-coach-sideline.jpeg'); background-position: center 20%;"></div>
+          <div class="program-card-photo" style="background-image:url('images/action-teamplay.jpg'); background-position: center 35%;"></div>
           <h3>Teams</h3>
-          <p>Two to three practices a week. League games, real teammates, and coaches who actually show up. You don't have to be elite. You just have to want to play.</p>
+          <p>Never touched a basketball? That's fine. We start from zero. Two to three sessions a week, real games, real teammates — and coaches who actually have time for you. No tryouts. No experience needed. Just show up.</p>
           <ul class="program-list">
+            <li>No experience needed</li>
             <li>2–3 sessions per week</li>
             <li>League games included</li>
-            <li>All levels welcome</li>
-            <li>Ages 10–25</li>
+            <li>Ages 6–19</li>
           </ul>
           <a href="#contact" class="btn btn-outline">Join a Team</a>
         </div>
 
         <div class="program-card">
-          <div class="program-card-photo" style="background-image:url('images/new-training-ball.jpeg'); background-position: center 40%;"></div>
+          <div class="program-card-photo" style="background-image:url('images/new-coach-drawing.jpeg'); background-position: center 30%;"></div>
           <h3>Development</h3>
           <p>One coach, one player. We find what's holding you back and fix it. Shooting form, footwork, defense, decision-making. Fits around your schedule.</p>
           <ul class="program-list">
@@ -110,9 +161,9 @@
   <!-- ACTION PHOTO STRIP -->
   <section class="photo-strip">
     <div class="photo-strip-grid">
-      <div class="photo-strip-item" style="background-image: url('images/new-huddle-overhead.jpeg'); background-position: center 30%;"></div>
-      <div class="photo-strip-item" style="background-image: url('images/new-coach-playbook.jpeg'); background-position: center 20%;"></div>
-      <div class="photo-strip-item" style="background-image: url('images/new-player-focused.jpeg'); background-position: center 25%;"></div>
+      <div class="photo-strip-item" style="background-image: url('images/new-huddle-overhead.jpeg'); background-position: center 40%;"></div>
+      <div class="photo-strip-item" style="background-image: url('images/action-kambou.jpg'); background-position: center 25%;"></div>
+      <div class="photo-strip-item" style="background-image: url('images/action-game2.jpg'); background-position: center 30%;"></div>
     </div>
   </section>
 
@@ -122,7 +173,7 @@
       <div class="trial-inner">
         <div>
           <h3>Not sure yet? Come for free.</h3>
-          <p>Every Thursday, 16:15 to 17:30 at Svanemøllehallen. No sign-up, no commitment. Just show up and play.</p>
+          <p>Every Thursday, 16:15 to 17:30 at Svanemøllehallen. 100% free. Register below so we know you're coming.</p>
         </div>
         <a href="#contact" class="btn btn-primary">Reserve Your Spot</a>
       </div>
@@ -141,36 +192,28 @@
           <div class="schedule-header">Upcoming Games</div>
           <div class="schedule-list" id="games-list">
             <div class="schedule-item">
-              <div class="schedule-date">Apr 5</div>
+              <div class="schedule-date">Mar 26</div>
               <div class="schedule-info">
-                <strong>Academy U17 vs Bakken Bears U17</strong>
-                <span>14:00 &middot; Svanemøllehallen</span>
-              </div>
-              <div class="schedule-badge home">Home</div>
-            </div>
-            <div class="schedule-item">
-              <div class="schedule-date">Apr 12</div>
-              <div class="schedule-info">
-                <strong>Copenhagen vs Amager Basket</strong>
-                <span>13:00 &middot; Away</span>
+                <strong>Academy U17 vs HBBF</strong>
+                <span>16:30 &middot; Valby Hallen</span>
               </div>
               <div class="schedule-badge away">Away</div>
             </div>
             <div class="schedule-item">
-              <div class="schedule-date">Apr 19</div>
+              <div class="schedule-date">Apr TBD</div>
               <div class="schedule-info">
-                <strong>Mens vs Copenhagen Wolves</strong>
-                <span>15:30 &middot; Svanemøllehallen</span>
+                <strong>Aarhus Basketball Festival</strong>
+                <span>All teams &middot; Aarhus</span>
               </div>
-              <div class="schedule-badge home">Home</div>
+              <div class="schedule-badge tbd">Festival</div>
             </div>
             <div class="schedule-item">
-              <div class="schedule-date">May 3</div>
+              <div class="schedule-date">May TBD</div>
               <div class="schedule-info">
-                <strong>Academy U17 — Playoffs</strong>
-                <span>TBD</span>
+                <strong>Gothenburg Basketball Festival</strong>
+                <span>All teams &middot; Gothenburg, Sweden</span>
               </div>
-              <div class="schedule-badge tbd">TBD</div>
+              <div class="schedule-badge tbd">Festival</div>
             </div>
           </div>
         </div>
@@ -181,29 +224,50 @@
             <div class="schedule-item">
               <div class="schedule-day">Mon</div>
               <div class="schedule-info">
-                <strong>Academy</strong>
-                <span>17:00–19:00 &middot; Svanemøllehallen</span>
+                <strong>Strength + Video (Academy)</strong>
+                <span>16:00–18:00 &middot; Svanemøllehallen</span>
               </div>
             </div>
             <div class="schedule-item">
               <div class="schedule-day">Tue</div>
               <div class="schedule-info">
                 <strong>Teams + Development</strong>
-                <span>17:00–19:00 &middot; Svanemøllehallen</span>
+                <span>16:00–18:00 &middot; City Center</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-day">Wed</div>
+              <div class="schedule-info">
+                <strong>Strength + Mental Training</strong>
+                <span>16:00–18:00 &middot; Svanemøllehallen</span>
               </div>
             </div>
             <div class="schedule-item">
               <div class="schedule-day">Thu</div>
               <div class="schedule-info">
-                <strong>Free Trial + Teams</strong>
-                <span>16:15–17:30 &middot; Svanemøllehallen</span>
+                <strong>Open Training — U15 &amp; U17</strong>
+                <span>16:00–18:00 &middot; Svanemøllehallen &middot; From Apr 16</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-day">Thu</div>
+              <div class="schedule-info">
+                <strong>Open Training — U19 &amp; U23</strong>
+                <span>18:00–20:00 &middot; Svanemøllehallen &middot; From Apr 16</span>
               </div>
             </div>
             <div class="schedule-item">
               <div class="schedule-day">Fri</div>
               <div class="schedule-info">
-                <strong>Academy</strong>
-                <span>17:00–19:00 &middot; Svanemøllehallen</span>
+                <strong>Academy Training</strong>
+                <span>16:00–18:00 &middot; Svanemøllehallen</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-day">Sat</div>
+              <div class="schedule-info">
+                <strong>Skills Session + Games</strong>
+                <span>10:00–12:00 &middot; City Center</span>
               </div>
             </div>
             <div class="schedule-item">
@@ -263,20 +327,143 @@
     </div>
   </section>
 
-  <!-- PLAYER ROSTER STRIP -->
-  <section class="section section-light" style="padding-top:40px;padding-bottom:40px;">
+  <!-- TEAMS SECTION -->
+  <section class="section section-light" style="padding-top:60px;padding-bottom:60px;">
     <div class="container">
       <div class="section-label">The squad</div>
-      <h2>Meet the players.</h2>
-      <p class="section-sub">Copenhagen kids in Talata blue.</p>
-      <div class="roster-strip">
-        <div class="roster-card" style="background-image:url('images/new-player-30.jpeg'); background-position: center 15%;"></div>
-        <div class="roster-card" style="background-image:url('images/new-player-4.jpeg'); background-position: center 10%;"></div>
-        <div class="roster-card" style="background-image:url('images/new-player-smile.jpeg'); background-position: center 20%;"></div>
-        <div class="roster-card" style="background-image:url('images/new-sideline-40.jpeg'); background-position: center 15%;"></div>
-        <div class="roster-card" style="background-image:url('images/new-bench-focus.jpeg'); background-position: center 20%;"></div>
-        <div class="roster-card" style="background-image:url('images/new-nikeforov-back.jpeg'); background-position: center 20%;"></div>
+      <h2>Our teams.</h2>
+      <p class="section-sub">Competitive teams for all levels and ages. Find yours.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:40px;">
+
+        <!-- U15 -->
+        <div style="background:#fff;border-radius:16px;padding:28px 24px;border:1px solid #e8edf2;display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="background:#EBF4FB;color:#2d6a93;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;">U15</span>
+            <span style="font-size:12px;color:#22c55e;font-weight:600;">&#9679; Active</span>
+          </div>
+          <div>
+            <h3 style="font-size:20px;font-weight:800;margin:0 0 4px;">Under 15</h3>
+            <p style="font-size:14px;color:#666;margin:0;">Building competitive players. Real games, real pressure, real development.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Coaches</span><span>Deng &amp; Georg</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Training</span><span>Tue &amp; Thu</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Ages</span><span>13–15</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">League</span><span>DBBF U15</span></div>
+          </div>
+          <a href="#contact" class="btn btn-outline" style="text-align:center;margin-top:auto;">Join U15 &rarr;</a>
+        </div>
+
+        <!-- U17 Academy -->
+        <div style="background:#111;border-radius:16px;padding:28px 24px;border:2px solid #7BAFD4;display:flex;flex-direction:column;gap:16px;position:relative;">
+          <div style="position:absolute;top:-12px;left:24px;background:#7BAFD4;color:#fff;font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 12px;border-radius:20px;">ACADEMY</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+            <span style="background:rgba(123,175,212,0.15);color:#7BAFD4;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;">U17</span>
+            <span style="font-size:12px;color:#22c55e;font-weight:600;">&#9679; Active</span>
+          </div>
+          <div>
+            <h3 style="font-size:20px;font-weight:800;margin:0 0 4px;color:#fff;">Under 17 Academy</h3>
+            <p style="font-size:14px;color:rgba(255,255,255,0.6);margin:0;">Elite track. Five sessions a week, film sessions, and a direct pathway to college basketball.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:rgba(255,255,255,0.85);">
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Coaches</span><span>Deng &amp; Georg</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Training</span><span>Mon / Tue / Thu / Fri</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Ages</span><span>15–17</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">League</span><span>DBBF U17</span></div>
+          </div>
+          <a href="#contact" class="btn btn-primary" style="text-align:center;margin-top:auto;">Apply for Academy &rarr;</a>
+        </div>
+
+        <!-- U19/U23 -->
+        <div style="background:#fff;border-radius:16px;padding:28px 24px;border:1px solid #e8edf2;display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="background:#EBF4FB;color:#2d6a93;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;">U19 / U23</span>
+            <span style="font-size:12px;color:#22c55e;font-weight:600;">&#9679; Active</span>
+          </div>
+          <div>
+            <h3 style="font-size:20px;font-weight:800;margin:0 0 4px;">Under 19 &amp; 23</h3>
+            <p style="font-size:14px;color:#666;margin:0;">The bridge from youth to senior ball. For players who want to keep competing and improving after U17.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Coach</span><span>Deng Awak</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Training</span><span>Thu 18:00–20:00</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Ages</span><span>18–23</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Location</span><span>Svanemøllehallen</span></div>
+          </div>
+          <a href="#contact" class="btn btn-outline" style="text-align:center;margin-top:auto;">Join U19/U23 &rarr;</a>
+        </div>
+
+        <!-- Mens -->
+        <div style="background:#fff;border-radius:16px;padding:28px 24px;border:1px solid #e8edf2;display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="background:#f3f4f6;color:#374151;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;">SENIOR</span>
+            <span style="font-size:12px;color:#22c55e;font-weight:600;">&#9679; Active</span>
+          </div>
+          <div>
+            <h3 style="font-size:20px;font-weight:800;margin:0 0 4px;">Mens Team</h3>
+            <p style="font-size:14px;color:#666;margin:0;">Senior competitive basketball. If you can play, you're welcome to come prove it.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Coach</span><span>Deng Awak</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Training</span><span>Tue &amp; Thu</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">Ages</span><span>18+</span></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="color:#7BAFD4;font-weight:700;width:70px;">League</span><span>DBBF Senior</span></div>
+          </div>
+          <a href="#contact" class="btn btn-outline" style="text-align:center;margin-top:auto;">Join Mens &rarr;</a>
+        </div>
+
       </div>
+
+      <!-- Coming Next Season -->
+      <div style="margin-top:48px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#aaa;text-transform:uppercase;">Coming 2026/27</span>
+          <div style="flex:1;height:1px;background:#e8edf2;"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+
+          <!-- U9 -->
+          <div style="background:#f9fafb;border-radius:14px;padding:22px 20px;border:1px dashed #d1d9e0;display:flex;flex-direction:column;gap:12px;opacity:0.8;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="background:#f3f4f6;color:#6b7280;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;">U9</span>
+              <span style="font-size:11px;color:#9ca3af;font-weight:600;">Coming soon</span>
+            </div>
+            <div>
+              <h3 style="font-size:17px;font-weight:800;margin:0 0 4px;color:#374151;">Under 9</h3>
+              <p style="font-size:13px;color:#9ca3af;margin:0;">Introducing the game to the youngest players. Fun first, always.</p>
+            </div>
+            <div style="font-size:12px;color:#9ca3af;">Ages 6–9 &middot; Launching 2026/27 season</div>
+          </div>
+
+          <!-- U11 -->
+          <div style="background:#f9fafb;border-radius:14px;padding:22px 20px;border:1px dashed #d1d9e0;display:flex;flex-direction:column;gap:12px;opacity:0.8;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="background:#f3f4f6;color:#6b7280;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;">U11</span>
+              <span style="font-size:11px;color:#9ca3af;font-weight:600;">Coming soon</span>
+            </div>
+            <div>
+              <h3 style="font-size:17px;font-weight:800;margin:0 0 4px;color:#374151;">Under 11</h3>
+              <p style="font-size:13px;color:#9ca3af;margin:0;">Building the fundamentals. Where future players get their foundation.</p>
+            </div>
+            <div style="font-size:12px;color:#9ca3af;">Ages 9–11 &middot; Launching 2026/27 season</div>
+          </div>
+
+          <!-- U13 -->
+          <div style="background:#f9fafb;border-radius:14px;padding:22px 20px;border:1px dashed #d1d9e0;display:flex;flex-direction:column;gap:12px;opacity:0.8;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="background:#f3f4f6;color:#6b7280;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;">U13</span>
+              <span style="font-size:11px;color:#9ca3af;font-weight:600;">Coming soon</span>
+            </div>
+            <div>
+              <h3 style="font-size:17px;font-weight:800;margin:0 0 4px;color:#374151;">Under 13</h3>
+              <p style="font-size:13px;color:#9ca3af;margin:0;">The first step into competitive basketball. Teamwork, discipline, and the love of the game.</p>
+            </div>
+            <div style="font-size:12px;color:#9ca3af;">Ages 11–13 &middot; Launching 2026/27 season</div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -327,7 +514,7 @@
     <div class="container">
       <div class="section-label">Get started</div>
       <h2>Come play.</h2>
-      <p class="section-sub">Fill in your details and we'll get back to you within 24 hours with next steps.</p>
+      <p class="section-sub">Fill in your details. Deng will be in touch shortly.</p>
       <div class="contact-grid">
         <form class="contact-form" id="tryout-form">
           <div class="form-row">
@@ -365,7 +552,7 @@
             <textarea name="message" rows="3" placeholder="Experience level, questions, anything..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-full" id="submit-btn">Send &rarr;</button>
-          <div class="form-success" id="form-success">Got it! Deng will be in touch within 24 hours.</div>
+          <div class="form-success" id="form-success">Got it. Deng will be in touch soon.</div>
         </form>
 
         <div class="contact-info">
@@ -377,7 +564,7 @@
           <div class="contact-block">
             <div class="contact-label">Free trial</div>
             <strong>Every Thursday</strong>
-            <span>16:15–17:30 &middot; No sign-up needed</span>
+            <span>16:15–17:30 &middot; Free &middot; Register to confirm</span>
           </div>
           <div class="contact-block">
             <div class="contact-label">Email</div>
@@ -418,7 +605,7 @@
         <div class="news-card">
           <div class="news-tag">Free Trial</div>
           <h3>Open trial every Thursday at Svanemøllehallen</h3>
-          <p>Never played before? Just curious? Show up Thursday at 16:15. No sign-up, no cost, no commitment. Come see what Talata is about.</p>
+          <p>Never played before? Just curious? Register below — it's free. We just need to know you're coming. Show up Thursday at 16:15 and see what Talata is about.</p>
           <span class="news-date">Ongoing</span>
         </div>
       </div>
@@ -501,11 +688,11 @@
 
         <!-- Rhynoflow -->
         <div class="marquee-item">
-          <a href="https://rhynoflow.com" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:rgba(123,175,212,0.1);border:1px solid rgba(123,175,212,0.4);border-radius:8px;padding:8px 18px;">
+          <a href="https://rhynoflow.com" target="_blank" rel="noopener" style="text-decoration:none;" class="marquee-rhynoflow">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="4" x2="12" y2="4" stroke="#7BAFD4" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="0" y1="9" x2="18" y2="9" stroke="#7BAFD4" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="0" y1="14" x2="9" y2="14" stroke="#7BAFD4" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="4" x2="12" y2="4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="9" x2="18" y2="9" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="14" x2="9" y2="14" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
             <span style="font-family:system-ui,sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;color:#fff;">RHYNOFLOW</span>
           </a>
@@ -618,17 +805,44 @@
           </svg>
         </div>
 
+        <!-- EYBL Europe -->
+        <div class="marquee-item">
+          <svg width="140" height="44" viewBox="0 0 140 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="EYBL Europe">
+            <path d="M6 28 C14 10 22 10 26 22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="34" y="20" font-family="system-ui,sans-serif" font-weight="900" font-size="12" letter-spacing="2" fill="rgba(255,255,255,0.95)">EYBL</text>
+            <text x="34" y="32" font-family="system-ui,sans-serif" font-weight="400" font-size="8" letter-spacing="1.5" fill="rgba(255,255,255,0.5)">EUROPE</text>
+          </svg>
+        </div>
+
+        <!-- Glory -->
+        <div class="marquee-item">
+          <svg width="110" height="44" viewBox="0 0 110 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Glory">
+            <polygon points="4,14 14,10 14,34 4,30" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+            <text x="22" y="27" font-family="system-ui,sans-serif" font-weight="900" font-size="16" letter-spacing="2" fill="rgba(255,255,255,0.9)">GLORY</text>
+          </svg>
+        </div>
+
+        <!-- Zalgiris -->
+        <div class="marquee-item">
+          <svg width="125" height="44" viewBox="0 0 125 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Zalgiris">
+            <rect x="0" y="12" width="20" height="20" rx="3" fill="#006400" opacity="0.9"/>
+            <text x="3" y="26" font-family="system-ui,sans-serif" font-weight="900" font-size="11" fill="white">ZAL</text>
+            <text x="26" y="20" font-family="system-ui,sans-serif" font-weight="800" font-size="10" letter-spacing="1" fill="rgba(255,255,255,0.9)">ZALGIRIS</text>
+            <text x="26" y="32" font-family="system-ui,sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.5" fill="rgba(255,255,255,0.5)">KAUNAS</text>
+          </svg>
+        </div>
+
         <!-- ── DUPLICATE SET for seamless loop ── -->
 
         <!-- Rhynoflow -->
         <div class="marquee-item">
-          <a href="https://rhynoflow.com" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;">
-            <svg width="150" height="44" viewBox="0 0 150 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="2" y1="16" x2="16" y2="16" stroke="rgba(123,175,212,0.9)" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="2" y1="22" x2="22" y2="22" stroke="rgba(123,175,212,0.7)" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="2" y1="28" x2="12" y2="28" stroke="rgba(123,175,212,0.5)" stroke-width="2.5" stroke-linecap="round"/>
-              <text x="28" y="24" font-family="system-ui,sans-serif" font-weight="800" font-size="13" letter-spacing="0.5" fill="rgba(255,255,255,0.9)">RHYNOFLOW</text>
+          <a href="https://rhynoflow.com" target="_blank" rel="noopener" style="text-decoration:none;" class="marquee-rhynoflow">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="4" x2="12" y2="4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="9" x2="18" y2="9" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="14" x2="9" y2="14" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
+            <span style="font-family:system-ui,sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;color:#fff;">RHYNOFLOW</span>
           </a>
         </div>
 
@@ -739,6 +953,33 @@
           </svg>
         </div>
 
+        <!-- EYBL Europe -->
+        <div class="marquee-item">
+          <svg width="140" height="44" viewBox="0 0 140 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 28 C14 10 22 10 26 22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="34" y="20" font-family="system-ui,sans-serif" font-weight="900" font-size="12" letter-spacing="2" fill="rgba(255,255,255,0.95)">EYBL</text>
+            <text x="34" y="32" font-family="system-ui,sans-serif" font-weight="400" font-size="8" letter-spacing="1.5" fill="rgba(255,255,255,0.5)">EUROPE</text>
+          </svg>
+        </div>
+
+        <!-- Glory -->
+        <div class="marquee-item">
+          <svg width="110" height="44" viewBox="0 0 110 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="4,14 14,10 14,34 4,30" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+            <text x="22" y="27" font-family="system-ui,sans-serif" font-weight="900" font-size="16" letter-spacing="2" fill="rgba(255,255,255,0.9)">GLORY</text>
+          </svg>
+        </div>
+
+        <!-- Zalgiris -->
+        <div class="marquee-item">
+          <svg width="125" height="44" viewBox="0 0 125 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="12" width="20" height="20" rx="3" fill="#006400" opacity="0.9"/>
+            <text x="3" y="26" font-family="system-ui,sans-serif" font-weight="900" font-size="11" fill="white">ZAL</text>
+            <text x="26" y="20" font-family="system-ui,sans-serif" font-weight="800" font-size="10" letter-spacing="1" fill="rgba(255,255,255,0.9)">ZALGIRIS</text>
+            <text x="26" y="32" font-family="system-ui,sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.5" fill="rgba(255,255,255,0.5)">KAUNAS</text>
+          </svg>
+        </div>
+
       </div>
     </div>
   </section>
@@ -761,8 +1002,9 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 Talata Basketball</span>
-        <span>Copenhagen, Denmark</span>
+        <span>&copy; 2026 Talata Basketball &middot; CVR 43599453</span>
+        <span>Svanem&oslash;llehallen &middot; &Oslash;sterbrogade 240, 2100 Copenhagen</span>
+        <span><a href="mailto:coach@talatabasketball.dk" style="color:inherit;text-decoration:none;">coach@talatabasketball.dk</a></span>
       </div>
       <div style="text-align:center; padding: 16px 0 4px; border-top: 1px solid rgba(255,255,255,0.07); margin-top: 16px;">
         <a href="https://rhynoflow.com" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.35); font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: color 0.15s;">
