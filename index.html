@@ -91,7 +91,7 @@
   <section class="hero" id="home" style="background-image: url('images/squad-energy.jpg'); background-size: cover; background-position: center 25%;">
     <div class="hero-bg" style="background: linear-gradient(rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 100%), radial-gradient(ellipse at 70% 50%, rgba(255,107,0,0.10) 0%, transparent 60%);"></div>
     <div class="hero-inner">
-      <div class="hero-badge">Copenhagen &middot; Est. 2024</div>
+      <div class="hero-badge">Copenhagen</div>
       <h1>Copenhagen's basketball club.<br/><span>Come play.</span></h1>
       <p>Whether you want to try basketball for the first time or you're chasing a scholarship, Talata is where Copenhagen's players develop. Real coaching, real teams, free trial every Thursday.</p>
       <div class="hero-actions">
@@ -163,7 +163,7 @@
     <div class="photo-strip-grid">
       <div class="photo-strip-item" style="background-image: url('images/new-huddle-overhead.jpeg'); background-position: center 40%;"></div>
       <div class="photo-strip-item" style="background-image: url('images/action-kambou.jpg'); background-position: center 25%;"></div>
-      <div class="photo-strip-item" style="background-image: url('images/action-game2.jpg'); background-position: center 30%;"></div>
+      <div class="photo-strip-item" style="background-image: url('images/squad-playful.jpg'); background-position: center 40%;"></div>
     </div>
   </section>
 
@@ -602,9 +602,9 @@
           <div class="contact-block">
             <div class="contact-label">Follow us</div>
             <div class="social-links">
-              <a href="https://www.instagram.com/talatabasketball" target="_blank">Instagram</a>
-              <a href="https://www.facebook.com/talatabasketball" target="_blank">Facebook</a>
-              <a href="https://www.tiktok.com/@talatabasketball" target="_blank">TikTok</a>
+              <a href="https://www.instagram.com/talatabasketball" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.facebook.com/talatabasketball" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://www.tiktok.com/@talatabasketball" target="_blank" rel="noopener noreferrer">TikTok</a>
             </div>
           </div>
         </div>
@@ -1076,13 +1076,19 @@
 
       const data = Object.fromEntries(new FormData(form));
       data.source = 'talata_website';
+      data.player_name = data.name;
+      data.camp = data.program || 'Tryout Interest';
+      const body = JSON.stringify(data);
+
+      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbx7JSqMDk5vdCQPpnPTbTOPD7w4RS-SoYWtIwNyzT2ZsCa3tsvOLy_ySCtb35CIJZC3/exec';
 
       try {
         await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
+          body,
         });
+        fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body }).catch(() => {});
         form.reset();
         formSuccess.style.display = 'block';
         submitBtn.style.display = 'none';

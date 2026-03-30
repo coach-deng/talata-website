@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Talata Basketball: Lithuania Camp 2026</title>
+  <title>Lithuania Basketball Camp 2026 | Talata Basketball Copenhagen</title>
+  <link rel="canonical" href="https://talatabasketball.dk/camps/lithuania-camp-2026.html" />
+  <meta name="description" content="Talata Basketball Lithuania Camp 2026. Train in the home of European basketball. Elite coaches, world-class facilities, real competition. Summer 2026, Copenhagen departure." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talatabasketball.dk/camps/lithuania-camp-2026.html" />
+  <meta property="og:title" content="Lithuania Basketball Camp 2026 | Talata Basketball" />
+  <meta property="og:description" content="Train in the home of European basketball. Elite coaches, world-class facilities. Summer 2026, departing from Copenhagen." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/camp-group.jpg" />
+  <meta property="og:site_name" content="Talata Basketball" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lithuania Basketball Camp 2026 | Talata Basketball" />
+  <meta name="twitter:description" content="Train in the home of European basketball. Elite coaches. Summer 2026, Copenhagen departure." />
+  <meta name="twitter:image" content="https://talatabasketball.dk/images/camp-group.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -223,6 +235,10 @@
             <h3>Experience</h3>
             <p>Day trip to Nida on the Baltic coast. Team bonding, beach time, and your kid comes home with a BasketNews Camp certificate.</p>
           </div>
+          <div class="card">
+            <h3>Full Talata Kit</h3>
+            <p>Every player gets the full Talata Lithuania Camp kit: training top, shorts, shirt, and socks. Additional merch available to purchase.</p>
+          </div>
         </div>
       </div>
 
@@ -262,7 +278,7 @@
           </div>
         </div>
         <br>
-        <p style="font-size: 0.9rem; color: var(--text-muted);">Includes: flights, accommodation, all meals, camp registration, transport, insurance supplement. Spending money not included.</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Includes: flights, accommodation, all meals, camp registration, transport, insurance supplement, and full Talata camp kit. Spending money not included.</p>
       </div>
 
       <div class="section">
@@ -361,13 +377,13 @@
       data.source = 'talata_lithuania_camp_2026';
       data.camp = 'Lithuania Basketball Camp 2026';
       const body = JSON.stringify(data);
-      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbw8UgPiY0wj2xRg_F3GInCBmuoddHYaZDnE4EYuJcZQRPj_DwlohYXt0aE2YrzyTzJ3/exec';
+      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbx7JSqMDk5vdCQPpnPTbTOPD7w4RS-SoYWtIwNyzT2ZsCa3tsvOLy_ySCtb35CIJZC3/exec';
 
       try {
         await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
         });
-        if (GAS_MAILER !== 'https://script.google.com/macros/s/AKfycbw8UgPiY0wj2xRg_F3GInCBmuoddHYaZDnE4EYuJcZQRPj_DwlohYXt0aE2YrzyTzJ3/exec') {
+        if (GAS_MAILER !== 'https://script.google.com/macros/s/AKfycbx7JSqMDk5vdCQPpnPTbTOPD7w4RS-SoYWtIwNyzT2ZsCa3tsvOLy_ySCtb35CIJZC3/exec') {
           fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain'}, body }).catch(() => {});
         }
         form.reset();
