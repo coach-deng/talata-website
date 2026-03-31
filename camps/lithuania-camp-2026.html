@@ -25,9 +25,9 @@
       --bg: #fafafa;
       --text: #1a1a1a;
       --text-muted: #555;
-      --green: #2e7d32;
-      --green-light: #e8f5e9;
-      --gold: #f9a825;
+      --blue: #7BAFD4;
+      --blue-light: #EBF4FB;
+      --gold: #7BAFD4;
       --dark: #111;
       --border: #e0e0e0;
       --radius: 12px;
@@ -42,7 +42,7 @@
     .page { max-width: 800px; margin: 0 auto; }
 
     .hero {
-      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
       color: #fff;
       padding: 60px 40px 50px;
       text-align: center;
@@ -83,7 +83,7 @@
     .section { margin-bottom: 36px; }
     .section h2 {
       font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;
-      padding-bottom: 8px; border-bottom: 2px solid var(--green); display: inline-block;
+      padding-bottom: 8px; border-bottom: 2px solid var(--blue); display: inline-block;
     }
     .section p { color: var(--text-muted); margin-bottom: 12px; }
 
@@ -94,7 +94,7 @@
     }
     .card h3 {
       font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.5px; color: var(--green); margin-bottom: 8px;
+      letter-spacing: 0.5px; color: var(--blue); margin-bottom: 8px;
     }
     .card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
 
@@ -107,16 +107,16 @@
     .timeline-item::before {
       content: ''; position: absolute; left: -24px; top: 6px;
       width: 12px; height: 12px; border-radius: 50%;
-      background: var(--green); border: 3px solid var(--green-light);
+      background: var(--blue); border: 3px solid var(--blue-light);
     }
-    .timeline-item .date { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; }
+    .timeline-item .date { font-size: 0.75rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; }
     .timeline-item .desc { font-size: 0.9rem; color: var(--text-muted); }
 
     table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
     table th {
-      text-align: left; padding: 10px 12px; background: var(--green-light);
+      text-align: left; padding: 10px 12px; background: var(--blue-light);
       font-weight: 600; font-size: 0.8rem; text-transform: uppercase;
-      letter-spacing: 0.5px; color: var(--green);
+      letter-spacing: 0.5px; color: var(--blue);
     }
     table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
     table tr:last-child td { border-bottom: none; }
@@ -127,16 +127,16 @@
       border-radius: var(--radius); padding: 24px 32px; text-align: center;
       flex: 1; min-width: 200px;
     }
-    .price-card.highlight { border-color: var(--green); background: var(--green-light); }
-    .price-card .tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 8px; }
+    .price-card.highlight { border-color: var(--blue); background: var(--blue-light); }
+    .price-card .tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-bottom: 8px; }
     .price-card .amount { font-size: 1.8rem; font-weight: 800; color: var(--text); }
     .price-card .unit { font-size: 0.85rem; color: var(--text-muted); }
     .price-card .note { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; }
-    .price-card .deadline { font-size: 0.75rem; font-weight: 600; color: var(--green); margin-top: 4px; }
+    .price-card .deadline { font-size: 0.75rem; font-weight: 600; color: var(--blue); margin-top: 4px; }
 
     .highlight-box {
-      background: var(--green-light);
-      border: 1px solid var(--green);
+      background: var(--blue-light);
+      border: 1px solid var(--blue);
       border-radius: var(--radius);
       padding: 20px 24px;
       display: flex;
@@ -144,15 +144,15 @@
       align-items: flex-start;
     }
     .highlight-box .icon { font-size: 2rem; }
-    .highlight-box .text h3 { font-size: 1rem; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+    .highlight-box .text h3 { font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
     .highlight-box .text p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
 
     .checklist { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .checklist li { font-size: 0.9rem; color: var(--text-muted); padding-left: 24px; position: relative; }
-    .checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+    .checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
 
     .cta {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      background: linear-gradient(135deg, #0f3460, #7BAFD4);
       color: #fff; padding: 40px; text-align: center;
     }
     .cta h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
@@ -316,8 +316,8 @@
     </div>
 
     <!-- REGISTRATION FORM -->
-    <div style="max-width:800px;margin:0 auto;padding:40px;border-top:2px solid #2e7d32;" id="register">
-      <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid #2e7d32;display:inline-block;">Register for Lithuania Camp 2026</h2>
+    <div style="max-width:800px;margin:0 auto;padding:40px;border-top:2px solid #7BAFD4;" id="register">
+      <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid #7BAFD4;display:inline-block;">Register for Lithuania Camp 2026</h2>
       <p style="color:#555;margin-top:16px;margin-bottom:24px;">Fill in your details below. We'll confirm your spot shortly and send payment info.</p>
 
       <form id="camp-form" style="display:flex;flex-direction:column;gap:16px;">
@@ -343,7 +343,7 @@
           <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Anything we should know? (optional)</label>
           <textarea name="message" rows="3" placeholder="Position, experience level, questions..." style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;resize:vertical;"></textarea>
         </div>
-        <button type="submit" id="submit-btn" style="background:#2e7d32;color:#fff;padding:14px 32px;border:none;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;font-family:inherit;">Send Registration →</button>
+        <button type="submit" id="submit-btn" style="background:#7BAFD4;color:#fff;padding:14px 32px;border:none;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;font-family:inherit;">Send Registration →</button>
         <div id="form-success" style="display:none;padding:16px;background:#ecfdf5;border-radius:8px;color:#065f46;font-weight:600;text-align:center;">Registration received! Deng will be in touch shortly.</div>
       </form>
     </div>
@@ -358,7 +358,7 @@
       Talata Basketball · CVR: 43599453 · Copenhagen, Denmark<br>
       Contact: Deng Awak, coach@talatabasketball.dk<br>
       <br>
-      <span style="font-size: 0.7rem;">In partnership with <a href="https://stovykla.basketnews.lt/" style="color: var(--green); text-decoration: underline;">BasketNews Camp</a></span>
+      <span style="font-size: 0.7rem;">In partnership with <a href="https://stovykla.basketnews.lt/" style="color: var(--blue); text-decoration: underline;">BasketNews Camp</a></span>
     </div>
 
   </div>
