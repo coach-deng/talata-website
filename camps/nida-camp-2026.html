@@ -350,13 +350,11 @@
       <div class="section">
         <h2>Register for Nida Camp 2026</h2>
         <p>Fill in your details below. We will confirm your spot shortly and send payment info.</p>
-        <form class="reg-form" action="https://rhynoflow-api.coach-258.workers.dev/leads" method="POST">
-          <input type="hidden" name="source" value="nida-camp-2026">
-          <input type="hidden" name="camp" value="Nida Camp 2026">
+        <form id="camp-form" class="reg-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="name">Player name</label>
-              <input type="text" id="name" name="name" placeholder="First and last name" required>
+              <label for="player_name">Player name</label>
+              <input type="text" id="player_name" name="player_name" placeholder="First and last name" required>
             </div>
             <div class="form-group">
               <label for="age">Age</label>
@@ -372,10 +370,11 @@
             <input type="tel" id="phone" name="phone" placeholder="+45 ...">
           </div>
           <div class="form-group">
-            <label for="notes">Anything we should know? (optional)</label>
-            <textarea id="notes" name="notes" rows="4" placeholder="Position, experience level, questions..."></textarea>
+            <label for="message">Anything we should know? (optional)</label>
+            <textarea id="message" name="message" rows="4" placeholder="Position, experience level, questions..."></textarea>
           </div>
-          <button type="submit" class="submit-btn">Send Registration</button>
+          <button type="submit" id="submit-btn" class="submit-btn">Send Registration</button>
+          <div id="form-success" style="display:none;padding:16px;background:#ecfdf5;border-radius:8px;color:#065f46;font-weight:600;text-align:center;">Registration received! We will be in touch shortly.</div>
         </form>
       </div>
 
@@ -404,5 +403,39 @@
     </div>
 
   </div>
+
+  <script>
+    const form = document.getElementById('camp-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formSuccess = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      const data = Object.fromEntries(new FormData(form));
+      data.source = 'nida-camp-2026';
+      data.camp = 'Nida Camp 2026';
+      const body = JSON.stringify(data);
+      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbx7JSqMDk5vdCQPpnPTbTOPD7w4RS-SoYWtIwNyzT2ZsCa3tsvOLy_ySCtb35CIJZC3/exec';
+
+      try {
+        await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
+        });
+
+        fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body }).catch(() => {});
+        form.reset();
+        formSuccess.style.display = 'block';
+        submitBtn.style.display = 'none';
+      } catch {
+        submitBtn.textContent = 'Send Registration';
+        submitBtn.disabled = false;
+        alert('Something went wrong. Email us at coach@talatabasketball.dk instead.');
+      }
+    });
+  </script>
+
 </body>
 </html>
