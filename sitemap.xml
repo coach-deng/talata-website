@@ -26,7 +26,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://talatabasketball.dk/camps/nida-camp-2026.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://talatabasketball.dk/camps/dk-summer-camp-2026.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/join.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
