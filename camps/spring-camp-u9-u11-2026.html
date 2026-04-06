@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R64Y9CQ2VZ');
+  </script>
   <title>Spring Camp U9-U11 Copenhagen 2026 | Talata Basketball</title>
   <link rel="canonical" href="https://talatabasketball.dk/camps/spring-camp-u9-u11-2026.html" />
   <meta name="description" content="Talata Basketball Forårcamp 2026 for U9 og U11. 2 dage på Strandvejsskolen, 14. til 15. maj. Fundamentals, kampe og sjov basketball. Begrænsede pladser." />
@@ -358,6 +366,7 @@
           form.reset();
           formSuccess.style.display = 'block';
           submitBtn.style.display = 'none';
+          if (typeof gtag !== 'undefined') gtag('event', 'ads_conversion_Sign_up_1');
         } catch {
           submitBtn.textContent = 'Register →';
           submitBtn.disabled = false;

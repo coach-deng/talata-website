@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R64Y9CQ2VZ');
+  </script>
   <title>Basketball Sommercamp U13-U15 | Svanemøllehallen 2026 | Talata Basketball</title>
   <link rel="canonical" href="https://talatabasketball.dk/camps/dk-summer-camp-2026.html" />
   <meta name="description" content="Talata Basketball Sommercamp 2026 på Svanemøllehallen, København. 5 dage for U13 til U15. Shooting machine, frokost og camp gear inkluderet. Uge 32, 3. til 7. august. Tilmeld dig nu." />
@@ -371,6 +379,7 @@
           form.reset();
           formSuccess.style.display = 'block';
           submitBtn.style.display = 'none';
+          if (typeof gtag !== 'undefined') gtag('event', 'ads_conversion_Sign_up_1');
         } catch {
           submitBtn.textContent = 'Send tilmelding';
           submitBtn.disabled = false;

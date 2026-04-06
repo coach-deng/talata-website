@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R64Y9CQ2VZ');
+  </script>
   <title>Nida Basketball Camp 2026 | Talata Basketball Copenhagen</title>
   <link rel="canonical" href="https://talatabasketball.dk/camps/nida-camp-2026.html" />
   <meta name="description" content="Nida Basketball Camp 2026 på Kurische Nehrung, Litauen. UNESCO-kyst, Østersøen lige udenfor. Fly fra København inkluderet. Uge 31, 25. juli til 2. august. Alder 12 og op." />
@@ -413,6 +421,7 @@
         form.reset();
         formSuccess.style.display = 'block';
         submitBtn.style.display = 'none';
+        if (typeof gtag !== 'undefined') gtag('event', 'ads_conversion_Sign_up_1');
       } catch {
         submitBtn.textContent = 'Send Registration';
         submitBtn.disabled = false;
