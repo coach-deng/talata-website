@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talata Basketball | Copenhagen's Basketball Club</title>
+<meta name="description" content="Copenhagen's basketball club. Academy, teams, camps, and development programs for all ages. Real coaching, real teams, free trial every Thursday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0a0a0a;--dark2:#111;--dark3:#0f0f0f;
+  --blue:#7BAFD4;--blue-glow:rgba(123,175,212,0.3);--blue-dim:rgba(123,175,212,0.12);
+  --orange:#E8854A;--orange-glow:rgba(232,133,74,0.25);
+  --glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
+  --text:#f0f0f0;--text-dim:rgba(255,255,255,0.55);--text-mid:rgba(255,255,255,0.75);
+  --font-head:'Montserrat',sans-serif;--font-body:'Inter',sans-serif;
+  --radius:16px;--radius-sm:10px;
+}
+html{scroll-behavior:smooth;background:var(--dark)}
+body{font-family:var(--font-body);color:var(--text);background:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ============ NAV ============ */
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;transition:all .4s ease}
+nav.scrolled{background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:12px 0;border-bottom:1px solid var(--glass-border)}
+nav .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{font-family:var(--font-head);font-weight:900;font-size:1.4rem;letter-spacing:2px;text-transform:uppercase;color:#fff}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-size:.85rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-mid);transition:color .3s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:var(--dark)!important;padding:10px 22px;border-radius:50px;font-weight:700;font-size:.8rem;letter-spacing:.5px;transition:all .3s}
+.nav-cta:hover{background:#fff;transform:translateY(-1px)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+.nav-hamburger span{width:24px;height:2px;background:#fff;transition:all .3s}
+
+/* Mobile nav */
+@media(max-width:900px){
+  .nav-links{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:rgba(15,15,15,0.98);backdrop-filter:blur(30px);flex-direction:column;justify-content:center;gap:28px;padding:40px;transition:right .4s ease}
+  .nav-links.open{right:0}
+  .nav-hamburger{display:flex}
+  .nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .nav-hamburger.open span:nth-child(2){opacity:0}
+  .nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(0.35)}
+.hero-canvas{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.5) 50%,rgba(10,10,10,0.95) 100%)}
+.hero-content{position:relative;z-index:3;text-align:center;max-width:900px;padding:120px 24px 80px}
+.hero-content h1{font-family:var(--font-head);font-weight:900;font-size:clamp(2.5rem,7vw,5.5rem);line-height:1.05;letter-spacing:-1px;margin-bottom:24px;opacity:0;transform:translateY(40px)}
+.hero-content h1 .accent{color:var(--blue)}
+.hero-content p{font-size:clamp(1rem,2vw,1.2rem);line-height:1.7;color:var(--text-mid);max-width:680px;margin:0 auto 40px;opacity:0;transform:translateY(30px)}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(30px)}
+.btn-primary{background:var(--blue);color:var(--dark);padding:16px 36px;border-radius:50px;font-weight:700;font-size:.95rem;letter-spacing:.3px;transition:all .3s;border:none;cursor:pointer}
+.btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 30px rgba(123,175,212,0.3)}
+.btn-secondary{background:transparent;color:#fff;padding:16px 36px;border-radius:50px;font-weight:600;font-size:.95rem;border:1px solid rgba(255,255,255,0.2);transition:all .3s;cursor:pointer}
+.btn-secondary:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;opacity:0;transform:translateY(30px)}
+.hero-stat{text-align:center;padding:20px}
+.hero-stat .stat-value{font-family:var(--font-head);font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--blue);margin-bottom:6px}
+.hero-stat .stat-label{font-size:.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;line-height:1.4}
+@media(max-width:700px){
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}
+}
+
+/* ============ SECTION COMMON ============ */
+section{padding:100px 0}
+.section-tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;padding:6px 14px;background:var(--blue-dim);border-radius:50px}
+.section-title{font-family:var(--font-head);font-weight:900;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-0.5px;margin-bottom:16px}
+.section-sub{color:var(--text-dim);font-size:1.05rem;line-height:1.6;max-width:600px}
+.section-header{margin-bottom:60px}
+.reveal{opacity:0;transform:translateY(50px)}
+
+/* ============ PROGRAMS ============ */
+.programs{background:var(--dark)}
+.program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.program-card{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(12px);transition:all .4s ease}
+.program-card:hover{transform:translateY(-8px);border-color:rgba(123,175,212,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.program-card-img{position:relative;height:240px;overflow:hidden}
+.program-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.program-card:hover .program-card-img img{transform:scale(1.08)}
+.program-card-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(transparent,rgba(10,10,10,0.9))}
+.program-card-body{padding:28px}
+.program-card-body h3{font-family:var(--font-head);font-weight:800;font-size:1.5rem;margin-bottom:12px}
+.program-card-body p{color:var(--text-dim);font-size:.9rem;line-height:1.6;margin-bottom:20px}
+.program-tags{display:flex;flex-wrap:wrap;gap:8px}
+.program-tags span{font-size:.7rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:5px 12px;border-radius:50px;background:var(--blue-dim);color:var(--blue)}
+@media(max-width:900px){.program-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+
+/* ============ PHOTO STRIP ============ */
+.photo-strip{padding:40px 0;overflow:hidden;background:var(--dark3)}
+.marquee-track{display:flex;gap:16px;animation:marqueeScroll 40s linear infinite;width:max-content}
+.marquee-track img{height:260px;border-radius:var(--radius-sm);object-fit:cover;flex-shrink:0;filter:brightness(0.8);transition:filter .3s}
+.marquee-track img:hover{filter:brightness(1)}
+@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ============ FREE TRIAL BANNER ============ */
+.trial-banner{position:relative;padding:80px 0;background:linear-gradient(135deg,rgba(123,175,212,0.08) 0%,rgba(232,133,74,0.06) 100%);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)}
+.trial-inner{text-align:center}
+.trial-inner h2{font-family:var(--font-head);font-weight:900;font-size:clamp(1.8rem,4vw,3rem);margin-bottom:16px}
+.trial-inner h2 .accent{color:var(--blue)}
+.trial-details{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin:24px 0 32px;color:var(--text-mid);font-size:.95rem}
+.trial-details span{display:flex;align-items:center;gap:8px}
+.trial-details .dot{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+
+/* ============ SCHEDULE ============ */
+.schedule{background:var(--dark2)}
+.schedule-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.schedule-col h3{font-family:var(--font-head);font-weight:800;font-size:1.3rem;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.schedule-col h3 .icon{width:8px;height:8px;border-radius:50%;background:var(--orange)}
+.sched-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:12px;backdrop-filter:blur(8px);transition:all .3s}
+.sched-card:hover{border-color:rgba(123,175,212,0.15);background:rgba(255,255,255,0.06)}
+.sched-card .sched-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.sched-card .sched-day{font-weight:700;font-size:.9rem;color:var(--blue)}
+.sched-card .sched-time{font-size:.8rem;color:var(--text-dim);font-weight:500}
+.sched-card .sched-title{font-weight:600;font-size:.9rem;margin-bottom:4px}
+.sched-card .sched-venue{font-size:.78rem;color:var(--text-dim)}
+.sched-card .sched-badge{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:50px;margin-top:6px}
+.badge-away{background:rgba(232,133,74,0.15);color:var(--orange)}
+.badge-festival{background:var(--blue-dim);color:var(--blue)}
+.badge-note{font-size:.72rem;color:var(--text-dim);font-style:italic;margin-top:4px}
+@media(max-width:800px){.schedule-grid{grid-template-columns:1fr}}
+
+/* ============ COACHES ============ */
+.coaches{background:var(--dark)}
+.coach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.coach-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:28px 24px;text-align:center;backdrop-filter:blur(12px);transition:all .4s}
+.coach-card:hover{transform:translateY(-6px);border-color:rgba(123,175,212,0.2);box-shadow:0 16px 50px rgba(0,0,0,0.3)}
+.coach-avatar{width:90px;height:90px;border-radius:50%;margin:0 auto 18px;overflow:hidden;border:2px solid var(--glass-border);background:rgba(123,175,212,0.1);display:flex;align-items:center;justify-content:center;transition:border-color .3s}
+.coach-card:hover .coach-avatar{border-color:var(--blue)}
+.coach-avatar img{width:100%;height:100%;object-fit:cover}
+.coach-avatar .initials{font-family:var(--font-head);font-weight:800;font-size:1.4rem;color:var(--blue)}
+.coach-card h4{font-family:var(--font-head);font-weight:800;font-size:1rem;margin-bottom:4px}
+.coach-card .coach-role{font-size:.75rem;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.coach-card p{font-size:.8rem;color:var(--text-dim);line-height:1.5}
+@media(max-width:1000px){.coach-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.coach-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
+
+/* ============ TEAMS ============ */
+.teams{background:var(--dark2)}
+.teams-active{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:48px}
+.team-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:24px;backdrop-filter:blur(8px);transition:all .3s}
+.team-card:hover{border-color:rgba(123,175,212,0.15);transform:translateY(-4px)}
+.team-card h4{font-family:var(--font-head);font-weight:800;font-size:1.1rem;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.team-status{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:50px}
+.status-active{background:rgba(76,175,80,0.15);color:#66bb6a}
+.status-tryouts{background:rgba(232,133,74,0.15);color:var(--orange)}
+.team-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:.8rem;color:var(--text-dim)}
+.team-meta span{display:flex;align-items:center;gap:4px}
+.teams-coming h3{font-family:var(--font-head);font-weight:800;font-size:1.2rem;margin-bottom:20px;color:var(--text-mid)}
+.teams-coming-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.team-coming-card{background:var(--glass);border:1px dashed var(--glass-border);border-radius:var(--radius-sm);padding:20px;text-align:center}
+.team-coming-card h4{font-family:var(--font-head);font-weight:800;font-size:1rem;margin-bottom:4px}
+.team-coming-card p{font-size:.8rem;color:var(--text-dim)}
+@media(max-width:800px){.teams-active,.teams-coming-grid{grid-template-columns:1fr}}
+
+/* ============ CAMPS ============ */
+.camps{background:var(--dark)}
+.camp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.camp-card{position:relative;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:32px 28px;backdrop-filter:blur(12px);overflow:hidden;transition:all .5s ease;transform-style:preserve-3d}
+.camp-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(123,175,212,0.06) 0%,transparent 50%);pointer-events:none;transition:opacity .3s}
+.camp-card:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg);border-color:rgba(123,175,212,0.25);box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.camp-tag{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:5px 14px;border-radius:50px;margin-bottom:16px}
+.camp-tag-intl{background:rgba(232,133,74,0.15);color:var(--orange)}
+.camp-tag-local{background:var(--blue-dim);color:var(--blue)}
+.camp-card h3{font-family:var(--font-head);font-weight:800;font-size:1.3rem;margin-bottom:10px}
+.camp-card p{font-size:.88rem;color:var(--text-dim);line-height:1.6;margin-bottom:20px}
+.camp-details{font-size:.8rem;color:var(--text-mid);line-height:1.8}
+.camp-link{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:.85rem;font-weight:600;color:var(--blue);transition:gap .3s}
+.camp-link:hover{gap:12px}
+@media(max-width:900px){.camp-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--dark2)}
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.contact-form{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:40px;backdrop-filter:blur(12px)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-mid);margin-bottom:8px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:#fff;font-family:var(--font-body);font-size:.9rem;transition:border-color .3s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-group select option{background:#1a1a1a;color:#fff}
+.form-submit{width:100%;padding:16px;border:none;border-radius:50px;background:var(--blue);color:var(--dark);font-weight:700;font-size:1rem;cursor:pointer;transition:all .3s;letter-spacing:.3px}
+.form-submit:hover{background:#fff;transform:translateY(-2px)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed}
+.form-success{display:none;text-align:center;padding:40px;color:var(--blue);font-weight:600;font-size:1.1rem}
+.contact-info h3{font-family:var(--font-head);font-weight:800;font-size:1.3rem;margin-bottom:24px}
+.info-item{display:flex;gap:14px;margin-bottom:24px;align-items:flex-start}
+.info-icon{width:40px;height:40px;border-radius:10px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue);font-size:1rem}
+.info-item .info-label{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:600;margin-bottom:2px}
+.info-item .info-value{font-size:.95rem;font-weight:500}
+.info-item .info-value a{color:var(--blue);transition:color .3s}
+.info-item .info-value a:hover{color:#fff}
+.social-links{display:flex;gap:12px;margin-top:32px}
+.social-links a{width:44px;height:44px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:.85rem;font-weight:700;color:var(--text-dim)}
+.social-links a:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim)}
+@media(max-width:800px){.contact-grid{grid-template-columns:1fr}}
+
+/* ============ BOARD ============ */
+.board{background:var(--dark);border-top:1px solid var(--glass-border)}
+.board-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.board-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:28px;text-align:center;backdrop-filter:blur(8px)}
+.board-card .board-icon{width:56px;height:56px;border-radius:50%;background:var(--blue-dim);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;font-size:1.2rem;color:var(--blue)}
+.board-card h4{font-weight:700;font-size:1rem;margin-bottom:4px}
+.board-card p{font-size:.8rem;color:var(--text-dim)}
+@media(max-width:700px){.board-grid{grid-template-columns:1fr;max-width:360px;margin:0 auto}}
+
+/* ============ FOOTER ============ */
+footer{background:var(--dark3);border-top:1px solid var(--glass-border);padding:40px 0;text-align:center}
+footer p{font-size:.8rem;color:var(--text-dim)}
+footer a{color:var(--blue);transition:color .3s}
+footer a:hover{color:#fff}
+
+/* ============ COUNTER ANIMATION ============ */
+.counter{display:inline-block}
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+
+/* ============ LOADING ============ */
+.loader{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
+.loader.done{opacity:0;pointer-events:none}
+.loader-ring{width:48px;height:48px;border:3px solid var(--glass-border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader"><div class="loader-ring"></div></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">TALATA<span>.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#coaches">Coaches</a></li>
+      <li><a href="#camps">Camps</a></li>
+      <li><a href="#board">Board</a></li>
+      <li><a href="#contact" class="nav-cta">Free Trial</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="images/squad-energy.jpg" alt="Talata Basketball squad" loading="eager">
+  </div>
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 id="heroTitle">Copenhagen's basketball club.<br><span class="accent">Come play.</span></h1>
+    <p id="heroSub">Whether you want to try basketball for the first time or you're chasing a scholarship, Talata is where Copenhagen's players develop. Real coaching, real teams, free trial every Thursday.</p>
+    <div class="hero-btns" id="heroBtns">
+      <a href="#contact" class="btn-primary">Book a Free Trial</a>
+      <a href="#programs" class="btn-secondary">See Programs</a>
+    </div>
+    <div class="hero-stats" id="heroStats">
+      <div class="hero-stat">
+        <div class="stat-value"><span class="counter" data-target="1">0</span></div>
+        <div class="stat-label">Elite Academy Placement<br>Canada / Orangeville</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value"><span class="counter" data-target="3">0</span></div>
+        <div class="stat-label">Countries This Summer<br>DK / Canada / Lithuania</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value" style="font-size:clamp(1rem,2vw,1.4rem)">Dr. Dish</div>
+        <div class="stat-label">Pro Shooting Machine<br>On Site</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value"><span class="counter" data-target="5">0</span></div>
+        <div class="stat-label">International Coaches<br>CPH / Canada / USA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Programs -->
+<section class="programs" id="programs">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Programs</span>
+      <h2 class="section-title">Find your path</h2>
+      <p class="section-sub">Three tracks. One standard. Whether you want to compete at the highest level, join a team, or build your game from scratch.</p>
+    </div>
+    <div class="program-grid">
+      <div class="program-card reveal">
+        <div class="program-card-img">
+          <img src="images/action-game.jpg" alt="Academy training" loading="lazy">
+        </div>
+        <div class="program-card-body">
+          <h3>Academy</h3>
+          <p>5 sessions per week. Video analysis. Strength and conditioning. Scholarship pathway. Led by Coach Deng. For players who want to go somewhere with this.</p>
+          <div class="program-tags">
+            <span>5x / Week</span>
+            <span>Video Analysis</span>
+            <span>Scholarship Path</span>
+          </div>
+        </div>
+      </div>
+      <div class="program-card reveal">
+        <div class="program-card-img">
+          <img src="images/action-teamplay.jpg" alt="Team play" loading="lazy">
+        </div>
+        <div class="program-card-body">
+          <h3>Teams</h3>
+          <p>No experience needed. 2 to 3 sessions per week. League games every weekend. Ages 6 to 19. Just come ready to learn and compete.</p>
+          <div class="program-tags">
+            <span>2-3x / Week</span>
+            <span>League Games</span>
+            <span>Ages 6-19</span>
+          </div>
+        </div>
+      </div>
+      <div class="program-card reveal">
+        <div class="program-card-img">
+          <img src="images/new-coach-drawing.jpeg" alt="Development training" loading="lazy">
+        </div>
+        <div class="program-card-body">
+          <h3>Development</h3>
+          <p>1-on-1 with a coach. Flexible scheduling. Your own personalized program. All ages, all levels. Built around what you need.</p>
+          <div class="program-tags">
+            <span>1-on-1</span>
+            <span>Flexible</span>
+            <span>All Ages</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo Strip -->
+<div class="photo-strip">
+  <div class="marquee-track" id="marquee">
+    <img src="images/new-huddle-overhead.jpeg" alt="Team huddle overhead" loading="lazy" height="260">
+    <img src="images/action-kambou.jpg" alt="Action shot" loading="lazy" height="260">
+    <img src="images/squad-playful.jpg" alt="Squad playful" loading="lazy" height="260">
+    <img src="images/new-huddle-hands.jpeg" alt="Huddle hands" loading="lazy" height="260">
+    <img src="images/action-defense.jpg" alt="Defense" loading="lazy" height="260">
+    <img src="images/team-huddle.jpg" alt="Team huddle" loading="lazy" height="260">
+    <img src="images/new-bench-focus.jpeg" alt="Bench focus" loading="lazy" height="260">
+    <img src="images/new-player-focused.jpeg" alt="Player focused" loading="lazy" height="260">
+    <!-- Duplicate for seamless loop -->
+    <img src="images/new-huddle-overhead.jpeg" alt="Team huddle overhead" loading="lazy" height="260">
+    <img src="images/action-kambou.jpg" alt="Action shot" loading="lazy" height="260">
+    <img src="images/squad-playful.jpg" alt="Squad playful" loading="lazy" height="260">
+    <img src="images/new-huddle-hands.jpeg" alt="Huddle hands" loading="lazy" height="260">
+    <img src="images/action-defense.jpg" alt="Defense" loading="lazy" height="260">
+    <img src="images/team-huddle.jpg" alt="Team huddle" loading="lazy" height="260">
+    <img src="images/new-bench-focus.jpeg" alt="Bench focus" loading="lazy" height="260">
+    <img src="images/new-player-focused.jpeg" alt="Player focused" loading="lazy" height="260">
+  </div>
+</div>
+
+<!-- Free Trial Banner -->
+<section class="trial-banner reveal">
+  <div class="container">
+    <div class="trial-inner">
+      <h2>Not sure yet? <span class="accent">Come for free.</span></h2>
+      <div class="trial-details">
+        <span><span class="dot"></span> Every Thursday</span>
+        <span><span class="dot"></span> 16:15 to 17:30</span>
+        <span><span class="dot"></span> Svanem&oslash;llehallen</span>
+        <span><span class="dot"></span> 100% Free</span>
+      </div>
+      <a href="#contact" class="btn-primary">Register for Free Trial</a>
+    </div>
+  </div>
+</section>
+
+<!-- Schedule -->
+<section class="schedule" id="schedule">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Schedule</span>
+      <h2 class="section-title">When and where</h2>
+      <p class="section-sub">Upcoming games and weekly training sessions. All times are local (Copenhagen).</p>
+    </div>
+    <div class="schedule-grid">
+      <div class="schedule-col reveal">
+        <h3><span class="icon"></span> Upcoming Games</h3>
+        <div class="sched-card">
+          <div class="sched-top">
+            <span class="sched-day">Mar 26</span>
+            <span class="sched-time">16:30</span>
+          </div>
+          <div class="sched-title">Academy U17 vs HBBF</div>
+          <div class="sched-venue">Valby Hallen</div>
+          <span class="sched-badge badge-away">Away</span>
+        </div>
+        <div class="sched-card">
+          <div class="sched-top">
+            <span class="sched-day">Apr 1-4</span>
+            <span class="sched-time">Festival</span>
+          </div>
+          <div class="sched-title">Aarhus Basketball Festival</div>
+          <div class="sched-venue">U17 Academy, Aarhus</div>
+          <span class="sched-badge badge-festival">Festival</span>
+        </div>
+      </div>
+      <div class="schedule-col reveal">
+        <h3><span class="icon"></span> Weekly Training</h3>
+        <div class="sched-card">
+          <div class="sched-top"><span class="sched-day">Monday</span><span class="sched-time">16:00 - 18:00</span></div>
+          <div class="sched-title">Strength + Video (Academy)</div>
+          <div class="sched-venue">Svanem&oslash;llehallen</div>
+        </div>
+        <div class="sched-card">
+          <div class="sched-top"><span class="sched-day">Tuesday</span><span class="sched-time">16:00 - 18:00</span></div>
+          <div class="sched-title">Teams + Development</div>
+          <div class="sched-venue">City Center</div>
+        </div>
+        <div class="sched-card">
+          <div class="sched-top"><span class="sched-day">Wednesday</span><span class="sched-time">16:00 - 18:00</span></div>
+          <div class="sched-title">Strength + Mental Training</div>
+          <div class="sched-venue">Svanem&oslash;llehallen</div>
+        </div>
+        <div class="sched-card">
+          <div class="sched-top"><span class="sched-day">Thursday</span><span class="sched-time">16:00 - 18:00</span></div>
+          <div class="sched-title">Open Training U15 + U17</div>
+          <div class="sched-venue">Svanem&oslash;llehallen</div>
+          <div class="badge-note">From Apr 16</div>
+        </div>
+        <div class="sched-card">
+          <div class="sched-top"><span class="sched-day">Thursday</span><span class="sched-time">18:00 - 20:00</span></div>
+          <div class="sched-title">Open Training U19 + U23</div>
+          <div class="sched-venue">Svanem&oslash;llehallen</div>
+          <div class="badge-note">From Apr 16</div>
+        </div>
+        <div class="sched-card">
+          <div class="sched-top"><span class="sched-day">Friday</span><span class="sched-time">16:00 - 17:30</span></div>
+          <div class="sched-title">Academy Training</div>
+          <div class="sched-venue">N&oslash;rrebrohallen</div>
+        </div>
+        <div class="sched-card">
+          <div class="sched-top"><span class="sched-day">Saturday</span><span class="sched-time">10:00 - 12:00</span></div>
+          <div class="sched-title">Skills Session + Games</div>
+          <div class="sched-venue">City Center</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Coaches -->
+<section class="coaches" id="coaches">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Coaching Staff</span>
+      <h2 class="section-title">Who's in your corner</h2>
+      <p class="section-sub">Pro experience. International backgrounds. Coaches who played the game at the highest levels and now build the next generation.</p>
+    </div>
+    <div class="coach-grid">
+      <div class="coach-card reveal">
+        <div class="coach-avatar">
+          <img src="images/coach-deng.jpg" alt="Coach Deng Awak" loading="lazy">
+        </div>
+        <h4>Deng Awak</h4>
+        <div class="coach-role">Head Coach</div>
+        <p>Pro ball in Canada, Lithuania, Denmark including BasketLigaen with BK Amager. Captained Mount Royal University, Calgary.</p>
+      </div>
+      <div class="coach-card reveal">
+        <div class="coach-avatar">
+          <span class="initials">GJ</span>
+        </div>
+        <h4>Georg Jespersen</h4>
+        <div class="coach-role">Head of Youth Program</div>
+        <p>Film study, defensive systems, game prep. The engine behind our youth development pipeline.</p>
+      </div>
+      <div class="coach-card reveal">
+        <div class="coach-avatar">
+          <span class="initials">TZ</span>
+        </div>
+        <h4>Tobias Zahle</h4>
+        <div class="coach-role">Youth Coach U9-U13</div>
+        <p>Standards on and off the court. Building the foundation for our youngest players.</p>
+      </div>
+      <div class="coach-card reveal">
+        <div class="coach-avatar">
+          <span class="initials">JY</span>
+        </div>
+        <h4>James Young</h4>
+        <div class="coach-role">Strength & Conditioning</div>
+        <p>Pro in BasketLigaen with BC Copenhagen and BK Amager. Teammates with Deng in 2021. Head trainer at Sporting Health Club.</p>
+      </div>
+      <div class="coach-card reveal">
+        <div class="coach-avatar">
+          <span class="initials">AH</span>
+        </div>
+        <h4>Azeem Ul Haq</h4>
+        <div class="coach-role">Assistant Coach</div>
+        <p>Guard development, shooting mechanics. Specialist in backcourt skill refinement.</p>
+      </div>
+      <div class="coach-card reveal">
+        <div class="coach-avatar">
+          <span class="initials">JN</span>
+        </div>
+        <h4>Jordan Naughton</h4>
+        <div class="coach-role">International Scout & Online Coach</div>
+        <p>6'10". Division I at Wyoming. Pro with BK Amager. Pipeline from CPH to North America.</p>
+      </div>
+      <div class="coach-card reveal">
+        <div class="coach-avatar">
+          <span class="initials">JH</span>
+        </div>
+        <h4>Jacob Hoffman</h4>
+        <div class="coach-role">International Academy Coach & Scout</div>
+        <p>Danish-born. Bemidji State, 44% from three. Pro with Randers Cimbria, BC Copenhagen, Svendborg. Based in Florida.</p>
+      </div>
+      <div class="coach-card reveal">
+        <div class="coach-avatar">
+          <span class="initials">LA</span>
+        </div>
+        <h4>Lens Aboudou</h4>
+        <div class="coach-role">School Programs Coach</div>
+        <p>Currently playing pro. Back in Copenhagen running our school basketball programs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teams -->
+<section class="teams" id="teams">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Teams</span>
+      <h2 class="section-title">Our squads</h2>
+      <p class="section-sub">Active teams competing in DBBF and EYBL leagues, plus new teams launching for the 2026/27 season.</p>
+    </div>
+    <div class="teams-active">
+      <div class="team-card reveal">
+        <h4>U15 Academy <span class="team-status status-active">Active</span></h4>
+        <p style="font-size:.88rem;color:var(--text-dim);margin-bottom:8px">Coaches Deng & Georg. DBBF U15 & EYBL.</p>
+        <div class="team-meta">
+          <span>Ages 13-15</span>
+          <span>Mon-Fri + Sat</span>
+          <span>Svanem&oslash;llehallen</span>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <h4>U17 Academy <span class="team-status status-active">Active</span></h4>
+        <p style="font-size:.88rem;color:var(--text-dim);margin-bottom:8px">Coaches Deng & Georg. DBBF U17 & EYBL.</p>
+        <div class="team-meta">
+          <span>Ages 15-17</span>
+          <span>Mon-Fri + Sat</span>
+          <span>Svanem&oslash;llehallen</span>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <h4>U19 / U23 <span class="team-status status-tryouts">Tryouts Open</span></h4>
+        <p style="font-size:.88rem;color:var(--text-dim);margin-bottom:8px">Coach Deng. Tryouts Thu 18:00 to 20:00.</p>
+        <div class="team-meta">
+          <span>Ages 18-23</span>
+          <span>Svanem&oslash;llehallen</span>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <h4>Mens Team <span class="team-status status-tryouts">Tryouts Open</span></h4>
+        <p style="font-size:.88rem;color:var(--text-dim);margin-bottom:8px">Coach Deng. DBBF Senior.</p>
+        <div class="team-meta">
+          <span>Ages 18+</span>
+          <span>Tue & Thu</span>
+        </div>
+      </div>
+    </div>
+    <div class="teams-coming reveal">
+      <h3>Coming 2026/27 Season</h3>
+      <div class="teams-coming-grid">
+        <div class="team-coming-card">
+          <h4>U9</h4>
+          <p>Ages 6-9<br>Strandvejskolen &Oslash;sterbro</p>
+        </div>
+        <div class="team-coming-card">
+          <h4>U11</h4>
+          <p>Ages 9-11<br>Strandvejskolen &Oslash;sterbro</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Camps -->
+<section class="camps" id="camps">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Camps</span>
+      <h2 class="section-title">Go beyond Copenhagen</h2>
+      <p class="section-sub">International exposure, intensive training, and experiences that change how you see the game.</p>
+    </div>
+    <div class="camp-grid">
+      <div class="camp-card reveal" id="campCard0">
+        <span class="camp-tag camp-tag-intl">International</span>
+        <h3>Canada Basketball Camp</h3>
+        <p>Elite coaching in Canada. North American basketball culture. An experience your player won't forget.</p>
+        <div class="camp-details">
+          Registration deadline: May 15<br>
+        </div>
+        <a href="camps/canada-camp-2026.html" class="camp-link">Learn more &rarr;</a>
+      </div>
+      <div class="camp-card reveal" id="campCard1">
+        <span class="camp-tag camp-tag-local">Local</span>
+        <h3>Spring Camp 2026</h3>
+        <p>May 14 to 16. Two age groups, two locations, one standard.</p>
+        <div class="camp-details">
+          U9-U11 at Strandvejsskolen (May 14-15) 600 DKK<br>
+          U13-U15 at Svanem&oslash;llehallen (May 15-16) 750 DKK
+        </div>
+        <a href="camps.html" class="camp-link">Learn more &rarr;</a>
+      </div>
+      <div class="camp-card reveal" id="campCard2">
+        <span class="camp-tag camp-tag-intl">International</span>
+        <h3>Lithuania Camp 2026</h3>
+        <p>July 19 to 25. Basketball in Europe's hoops heartland. Train where the game is religion.</p>
+        <div class="camp-details">
+          7 days in Lithuania<br>
+        </div>
+        <a href="camps/lithuania-camp-2026.html" class="camp-link">Learn more &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Get Started</span>
+      <h2 class="section-title">Join Talata</h2>
+      <p class="section-sub">Register for a free trial, ask about programs, or just say hey. We'll get back to you fast.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-form reveal" id="contactForm">
+        <form id="trialForm">
+          <div class="form-group">
+            <label>Player Name</label>
+            <input type="text" name="player_name" required placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="age" required placeholder="Player's age" min="4" max="40">
+          </div>
+          <div class="form-group">
+            <label>Parent / Guardian Email</label>
+            <input type="email" name="email" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label>Phone (optional)</label>
+            <input type="tel" name="phone" placeholder="+45 ...">
+          </div>
+          <div class="form-group">
+            <label>Interested In</label>
+            <select name="interest" required>
+              <option value="">Select an option</option>
+              <option value="Free Trial Thursday">Free Trial Thursday</option>
+              <option value="Academy">Academy</option>
+              <option value="Teams">Teams</option>
+              <option value="1-on-1 Development">1-on-1 Development</option>
+              <option value="Camps">Camps</option>
+              <option value="School Partnership">School Partnership</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Anything else?</label>
+            <textarea name="message" placeholder="Tell us anything that would help us prepare"></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="formBtn">Send It</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          You're in. We'll be in touch soon.
+        </div>
+      </div>
+      <div class="contact-info reveal">
+        <h3>Find us</h3>
+        <div class="info-item">
+          <div class="info-icon">&#9962;</div>
+          <div>
+            <div class="info-label">Home Court</div>
+            <div class="info-value">Svanem&oslash;llehallen<br>&Oslash;sterbrogade 240, 2100 Copenhagen</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#9200;</div>
+          <div>
+            <div class="info-label">Free Trial</div>
+            <div class="info-value">Every Thursday, 16:15 to 17:30<br>Free. Register to confirm your spot.</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#9993;</div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-value"><a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a></div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://instagram.com/talatabasketball" target="_blank" title="Instagram">IG</a>
+          <a href="https://facebook.com/talatabasketball" target="_blank" title="Facebook">FB</a>
+          <a href="https://tiktok.com/@talatabasketball" target="_blank" title="TikTok">TT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Board -->
+<section class="board" id="board">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center">
+      <span class="section-tag">Board</span>
+      <h2 class="section-title">Club Leadership</h2>
+    </div>
+    <div class="board-grid">
+      <div class="board-card reveal">
+        <div class="board-icon">AL</div>
+        <h4>Anders Lyager Olsen</h4>
+        <p>Chairman</p>
+      </div>
+      <div class="board-card reveal">
+        <div class="board-icon">ND</div>
+        <h4>Nicoline Dahlberg</h4>
+        <p>Board Member</p>
+      </div>
+      <div class="board-card reveal">
+        <div class="board-icon">AA</div>
+        <h4>Ashfaq Abdali</h4>
+        <p>Treasurer</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>Talata Basketball &middot; CVR: 43599453 &middot; Copenhagen &middot; <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a></p>
+  </div>
+</footer>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+// ============ LOADER ============
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('done');
+    animateHero();
+  }, 400);
+});
+
+// ============ NAV ============
+const nav = document.getElementById('nav');
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+// ============ HERO CANVAS (Court Lines + Particles) ============
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let cW, cH, particles = [], lines = [];
+
+function resizeCanvas() {
+  cW = canvas.width = canvas.offsetWidth;
+  cH = canvas.height = canvas.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Create particles
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * 2000,
+    y: Math.random() * 1200,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.2,
+    r: Math.random() * 2 + 0.5,
+    alpha: Math.random() * 0.3 + 0.05
+  });
+}
+
+// Court lines
+function buildLines() {
+  lines = [];
+  const cx = cW / 2, cy = cH / 2;
+  // Half court line
+  lines.push({ x1: cx, y1: cy - 200, x2: cx, y2: cy + 200, alpha: 0 });
+  // Center circle (approximated with segments)
+  for (let a = 0; a < Math.PI * 2; a += 0.15) {
+    lines.push({
+      x1: cx + Math.cos(a) * 80,
+      y1: cy + Math.sin(a) * 80,
+      x2: cx + Math.cos(a + 0.15) * 80,
+      y2: cy + Math.sin(a + 0.15) * 80,
+      alpha: 0
+    });
+  }
+  // Three point arcs (both sides)
+  for (let side = -1; side <= 1; side += 2) {
+    const bx = cx + side * (cW * 0.35);
+    for (let a = -1.2; a < 1.2; a += 0.12) {
+      lines.push({
+        x1: bx + Math.cos(a) * 120 * -side,
+        y1: cy + Math.sin(a) * 120,
+        x2: bx + Math.cos(a + 0.12) * 120 * -side,
+        y2: cy + Math.sin(a + 0.12) * 120,
+        alpha: 0
+      });
+    }
+  }
+  // Free throw lines
+  for (let side = -1; side <= 1; side += 2) {
+    const fx = cx + side * (cW * 0.28);
+    lines.push({ x1: fx, y1: cy - 60, x2: fx, y2: cy + 60, alpha: 0 });
+    lines.push({ x1: fx, y1: cy - 60, x2: fx + side * -50, y2: cy - 60, alpha: 0 });
+    lines.push({ x1: fx, y1: cy + 60, x2: fx + side * -50, y2: cy + 60, alpha: 0 });
+  }
+}
+buildLines();
+
+let time = 0;
+function animateCanvas() {
+  ctx.clearRect(0, 0, cW, cH);
+  time += 0.005;
+
+  // Draw court lines with pulsing alpha
+  lines.forEach((l, i) => {
+    l.alpha = 0.04 + Math.sin(time + i * 0.05) * 0.03;
+    ctx.beginPath();
+    ctx.moveTo(l.x1, l.y1);
+    ctx.lineTo(l.x2, l.y2);
+    ctx.strokeStyle = `rgba(123,175,212,${l.alpha})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Draw particles
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0) p.x = cW;
+    if (p.x > cW) p.x = 0;
+    if (p.y < 0) p.y = cH;
+    if (p.y > cH) p.y = 0;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(123,175,212,${p.alpha + Math.sin(time * 2 + p.x * 0.01) * 0.05})`;
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animateCanvas);
+}
+animateCanvas();
+
+// ============ HERO ANIMATIONS ============
+function animateHero() {
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.to('#heroTitle', { opacity: 1, y: 0, duration: 1 }, 0.2)
+    .to('#heroSub', { opacity: 1, y: 0, duration: 0.8 }, 0.6)
+    .to('#heroBtns', { opacity: 1, y: 0, duration: 0.8 }, 0.9)
+    .to('#heroStats', { opacity: 1, y: 0, duration: 0.8 }, 1.2);
+}
+
+// ============ SCROLL REVEAL ============
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray('.reveal').forEach((el, i) => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1, y: 0, duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+});
+
+// ============ COUNTER ANIMATION ============
+document.querySelectorAll('.counter').forEach(counter => {
+  const target = +counter.dataset.target;
+  ScrollTrigger.create({
+    trigger: counter,
+    start: 'top 90%',
+    onEnter: () => {
+      let current = 0;
+      const step = Math.max(1, Math.ceil(target / 30));
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(interval);
+        }
+        counter.textContent = current;
+      }, 40);
+    },
+    once: true
+  });
+});
+
+// ============ CAMP CARD PARALLAX HOVER ============
+document.querySelectorAll('.camp-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    card.style.setProperty('--mouse-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+    card.style.setProperty('--mouse-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+    card.style.transform = `translateY(-8px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+// ============ CONTACT FORM ============
+document.getElementById('trialForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('formBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const fd = new FormData(this);
+  const data = Object.fromEntries(fd.entries());
+
+  const rhynoPayload = {
+    source: 'talata_trial_form',
+    player_name: data.player_name,
+    age: data.age,
+    email: data.email,
+    phone: data.phone || '',
+    interest: data.interest,
+    message: data.message || ''
+  };
+
+  const gasPayload = new URLSearchParams(data);
+
+  try {
+    await Promise.all([
+      fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(rhynoPayload)
+      }),
+      fetch('https://script.google.com/macros/s/AKfycbx7JSqMDk5vdCQPpnPTbTOPD7w4RS-SoYWtIwNyzT2ZsCa3tsvOLy_ySCtb35CIJZC3/exec', {
+        method: 'POST',
+        body: gasPayload
+      })
+    ]);
+  } catch (err) {
+    // Silent fail, still show success to user
+  }
+
+  this.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+
+// ============ SMOOTH SCROLL FOR ANCHOR LINKS ============
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const offset = 80;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
