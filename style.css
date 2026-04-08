@@ -242,6 +242,18 @@ h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px
   .photo-strip-item { height: 240px; }
 }
 
+/* ── BOARD LINKEDIN LINK ── */
+.board-linkedin {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.board-linkedin:hover { text-decoration: underline; }
+
 /* ── GALLERY SECTION ── */
 .gallery-section { background: #0a0a0a; padding: 80px 0; }
 .gallery-grid {
