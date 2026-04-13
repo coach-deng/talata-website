@@ -1,0 +1,33 @@
+name = "talata-website"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "."
+exclude = [
+  "Photos-001",
+  "Photos-001 (2)",
+  "Photos-001 (3)",
+  "Photos-001 (4)",
+  "Photos-001 (5)",
+  "Photos-001 (nene)",
+  "instagram_posts",
+  "Talata Website Photos",
+  "node_modules",
+  ".wrangler",
+  ".git",
+  "*.jpg",
+  "*.jpeg",
+  "*.png",
+  "*.webp",
+  "*.heic",
+  "*.avif",
+  "*.JPG",
+  "*.JPEG",
+  "*.PNG",
+  "*.WEBP",
+  "*.mp4",
+  "*.mov",
+  "*.MOV",
+  "*.MP4",
+  "CLAUDE_CONTEXT.md"
+]
