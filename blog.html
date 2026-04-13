@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R64Y9CQ2VZ');
+  </script>
+  <title>Blog | Talata Basketball</title>
+  <link rel="canonical" href="https://talatabasketball.dk/blog.html" />
+  <meta name="description" content="Coaching insights, game recaps, and real talk from Talata Basketball Copenhagen. Weekly posts on player development, mental toughness, and club life." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talatabasketball.dk/blog.html" />
+  <meta property="og:title" content="Blog | Talata Basketball" />
+  <meta property="og:description" content="Coaching insights, game recaps, and real talk from Talata Basketball Copenhagen." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/recovery-week-team-apr2026.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --blue: #7BAFD4;
+      --blue-light: #EBF4FB;
+      --dark: #111;
+      --border: #e8e8e8;
+      --radius: 12px;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    .nav {
+      background: #111;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 900;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: var(--dark);
+      color: #fff;
+      padding: 64px 40px 52px;
+      text-align: center;
+    }
+    .hero .tag {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* FEATURED POST */
+    .featured-wrap {
+      max-width: 1000px;
+      margin: 56px auto 0;
+      padding: 0 32px;
+    }
+    .featured-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow 0.2s;
+    }
+    .featured-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .featured-card .card-img {
+      height: 320px;
+      object-fit: cover;
+      object-position: center top;
+      width: 100%;
+      display: block;
+      background: #ddd;
+    }
+    .featured-card .card-body {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .featured-card .card-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .featured-card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .featured-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .featured-card .meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-top: auto;
+    }
+
+    /* GRID */
+    .grid-wrap {
+      max-width: 1000px;
+      margin: 48px auto 80px;
+      padding: 0 32px;
+    }
+    .grid-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .post-card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .post-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .post-card .thumb {
+      height: 180px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+      background: #e8e8e8;
+    }
+    .post-card .card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .post-card .card-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .post-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .post-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .post-card .meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--blue-light);
+      padding: 56px 32px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--dark);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .btn:hover { opacity: 0.85; }
+
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 32px;
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 48px 20px; }
+      .featured-wrap, .grid-wrap { padding: 0 20px; }
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-card .card-img { height: 220px; }
+      .posts-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 769px) and (max-width: 960px) {
+      .posts-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">Talata <span>Basketball</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/camps.html">Camps</a>
+      <a href="/blog.html" class="active">Blog</a>
+      <a href="/join.html">Join</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="tag">Talata Blog</div>
+    <h1>Real talk from the gym</h1>
+    <p>Game recaps, coaching thoughts, and free value for players, parents, and coaches in Denmark.</p>
+  </div>
+
+  <!-- FEATURED POST -->
+  <div class="featured-wrap">
+    <div class="featured-label">Latest post</div>
+    <a href="/blog/recovery-week-april-2026.html" class="featured-card">
+      <img src="/images/recovery-week-team-apr2026.jpg" alt="Talata U15 team" class="card-img" />
+      <div class="card-body">
+        <div class="card-tag">Club Update · April 2026</div>
+        <h2>Why we're calling this a recovery week</h2>
+        <p>We went 1-2 this weekend. Here's what we learned, what we're doing about it, and why this week is the most important week of the month.</p>
+        <div class="meta">April 13, 2026 · 4 min read</div>
+        <span class="read-more" style="margin-top:20px;">Read post →</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- MORE POSTS -->
+  <div class="grid-wrap">
+    <div class="grid-label">More posts</div>
+    <div class="posts-grid">
+
+      <a href="/blog/aarhus-festival-2026.html" class="post-card">
+        <img src="/images/aarhus festival.jpg" alt="Aarhus Basketball Festival 2026" class="thumb" />
+        <div class="card-body">
+          <div class="card-tag">Game Recap · January 2026</div>
+          <h3>Aarhus Basketball Festival 2026 — Talata's First Win</h3>
+          <p>Boys U17 won 70-57. Girls squad competed alongside Stevnsgade. Club history made in Aarhus.</p>
+          <div class="meta">January 2026 · 3 min read</div>
+        </div>
+      </a>
+
+      <!-- Placeholder for future posts -->
+      <div class="post-card" style="opacity:0.4; pointer-events:none;">
+        <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:#aaa;font-size:13px;font-weight:600;">Coming soon</div>
+        <div class="card-body">
+          <div class="card-tag">Next post</div>
+          <h3>More from the gym — every week</h3>
+          <p>Game recaps, coaching insights, and what we're learning in real time.</p>
+        </div>
+      </div>
+
+      <div class="post-card" style="opacity:0.4; pointer-events:none;">
+        <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:#aaa;font-size:13px;font-weight:600;">Coming soon</div>
+        <div class="card-body">
+          <div class="card-tag">Next post</div>
+          <h3>More from the gym — every week</h3>
+          <p>Game recaps, coaching insights, and what we're learning in real time.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Want your kid on the court?</h2>
+    <p>We train Monday to Friday in Copenhagen. All ages, all levels. First session is free.</p>
+    <a href="/join.html" class="btn">Join Talata Basketball</a>
+  </div>
+
+  <footer>
+    <p>© 2026 Talata Basketball · <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a></p>
+  </footer>
+
+</body>
+</html>
