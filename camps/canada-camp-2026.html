@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-R64Y9CQ2VZ');
-  </script>
+
+  <!-- Preconnects first — before any scripts — for fastest font load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Load font async (non-blocking) to avoid LCP delay -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"></noscript>
+
   <title>Canada Basketball Camp 2026 | Talata Basketball Copenhagen</title>
   <link rel="canonical" href="https://talatabasketball.dk/camps/canada-camp-2026.html" />
   <meta name="description" content="Talata Basketball Canada Camp 2026 i Lethbridge, Alberta. Træn med toptrænere og oplev nordamerikansk basketball. Alder 12 til 17 år. Tilmeldingsfrist 15. maj." />
@@ -24,9 +24,6 @@
   <meta name="twitter:title" content="Canada Basketball Camp 2026 | Talata Basketball" />
   <meta name="twitter:description" content="Train in Alberta, Canada with top coaches. Ages 12-17. Register by May 15." />
   <meta name="twitter:image" content="https://talatabasketball.dk/images/action-game.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -425,5 +422,14 @@
     </script>
 
   </div>
+
+  <!-- Google tag (gtag.js) — moved to end of body for faster LCP -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R64Y9CQ2VZ');
+  </script>
 </body>
 </html>
