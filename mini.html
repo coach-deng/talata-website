@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talata Mini — Basketball for Kids Under 10 | Copenhagen</title>
+  <link rel="canonical" href="https://talatabasketball.dk/mini.html" />
+  <meta name="description" content="Talata Mini is basketball for kids under 10 in Copenhagen. Tuesdays and Thursdays 15:00–16:00 at Strandvejsskolen, Østerbro. Free trial anytime. No experience needed." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talatabasketball.dk/mini.html" />
+  <meta property="og:title" content="Talata Mini — Basketball for Kids Under 10" />
+  <meta property="og:description" content="Movement, games, and a love for the sport. Tuesdays and Thursdays at Strandvejsskolen. Free trial anytime." />
+  <meta property="og:site_name" content="Talata Basketball" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --blue: #7BAFD4;
+      --blue-light: #EBF4FB;
+      --dark: #111;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --border: #e0e0e0;
+      --radius: 12px;
+      --bg: #fafafa;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--dark); padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      color: #fff; font-weight: 800; font-size: 1rem;
+      letter-spacing: 1px; text-decoration: none;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links .nav-cta {
+      background: var(--blue); color: #fff; padding: 8px 18px;
+      border-radius: 8px; font-weight: 700;
+    }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #111 0%, #1a2744 50%, #0f3460 100%);
+      color: #fff; padding: 72px 24px 60px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 400px; height: 400px; background: var(--blue);
+      opacity: 0.07; border-radius: 50%;
+    }
+    .hero-badge {
+      display: inline-block; background: var(--blue); color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 6px 16px; border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800;
+      letter-spacing: -1px; margin-bottom: 16px; line-height: 1.15;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero p {
+      font-size: 1.1rem; color: rgba(255,255,255,0.75);
+      max-width: 540px; margin: 0 auto 32px;
+    }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 14px 28px; border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      cursor: pointer; border: none; font-family: inherit; transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-ghost { background: rgba(255,255,255,0.1); color: #fff; }
+
+    /* INFO STRIP */
+    .info-strip {
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    }
+    .info-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.875rem; font-weight: 600; color: var(--text);
+    }
+    .info-item .label { color: var(--text-muted); font-weight: 400; }
+
+    /* SECTION */
+    .section { padding: 60px 24px; max-width: 720px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px;
+      margin-bottom: 16px; color: var(--dark);
+    }
+    .section p {
+      font-size: 1rem; color: var(--text-muted); margin-bottom: 16px;
+      line-height: 1.7;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* WHAT SECTION */
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 24px; }
+    .pillar {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px 20px;
+    }
+    .pillar-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .pillar h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .pillar p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+    /* SCHEDULE */
+    .schedule-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-top: 24px;
+    }
+    .schedule-row {
+      display: grid; grid-template-columns: 120px 1fr;
+      padding: 16px 20px; border-bottom: 1px solid var(--border);
+      align-items: center; gap: 16px;
+    }
+    .schedule-row:last-child { border-bottom: none; }
+    .schedule-day { font-weight: 700; font-size: 0.9rem; }
+    .schedule-detail { font-size: 0.875rem; color: var(--text-muted); }
+    .schedule-detail strong { color: var(--text); }
+    .sfo-note {
+      background: var(--blue-light); border-left: 3px solid var(--blue);
+      padding: 14px 20px; border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.875rem; color: var(--text); margin-top: 16px;
+    }
+
+    /* TRIAL */
+    .trial-box {
+      background: var(--dark); color: #fff; border-radius: var(--radius);
+      padding: 36px 32px; text-align: center; margin-top: 24px;
+    }
+    .trial-box h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
+    .trial-box p { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 24px; }
+
+    /* CONTACT / REGISTER FORM */
+    .form-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; margin-top: 0;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 12px 14px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 0.95rem; font-family: inherit;
+      color: var(--text); background: #fff; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--blue);
+    }
+    .form-submit {
+      width: 100%; padding: 14px; background: var(--blue); color: #fff;
+      border: none; border-radius: 8px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.88; }
+    .form-success {
+      display: none; background: #f0faf4; border: 1.5px solid #4caf7d;
+      border-radius: 8px; padding: 16px; text-align: center;
+      font-weight: 600; color: #1a6638; margin-top: 16px;
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .section { padding: 40px 20px; }
+      .pillars { grid-template-columns: 1fr; }
+      .trial-box { padding: 28px 20px; }
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center; padding: 28px 24px;
+      font-size: 0.8rem; color: var(--text-muted);
+      border-top: 1px solid var(--border); margin-top: 60px;
+    }
+    .footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">TALATA <span>BASKETBALL</span></a>
+    <div class="nav-links">
+      <a href="/#programs">Programs</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="camps.html">Camps</a>
+      <a href="#register" class="nav-cta">Join</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Ages 6 to 9 · Talata Mini</div>
+    <h1>Basketball starts<br>here. <span>And it's fun.</span></h1>
+    <p>Talata Mini is for kids under 10. We move, we play, we learn — and we keep it fun every single session.</p>
+    <div class="hero-actions">
+      <a href="#register" class="btn btn-primary">Join or Try a Session</a>
+      <a href="#schedule" class="btn btn-ghost">See Training Times</a>
+    </div>
+  </div>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-item">🗓 <span><strong>Tuesday & Thursday</strong> <span class="label">15:00–16:00</span></span></div>
+    <div class="info-item">📍 <span><strong>Strandvejsskolen</strong> <span class="label">Østerbro, Copenhagen</span></span></div>
+    <div class="info-item">🎂 <span><strong>Under 10</strong> <span class="label">No experience needed</span></span></div>
+  </div>
+
+  <!-- WHAT IS TALATA MINI -->
+  <div class="section">
+    <div class="section-title">What is Talata Mini?</div>
+    <p>We started Talata Mini because a lot of parents were asking about their younger kids. The older programs were filling up and parents wanted something for the 6, 7, 8, 9-year-olds who just want to play.</p>
+    <p>So here it is. Twice a week at Strandvejsskolen. Small group, real coaching, age-appropriate games and activities. The whole point is to get kids moving, get them comfortable with a ball, and make sure they actually enjoy it.</p>
+    <p>At this age, the most important thing is that kids want to come back next week. That's what we're building toward.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🏃</div>
+        <h3>Movement first</h3>
+        <p>Kids this age need to move. Every session is built around activity — running, jumping, games — not just standing in lines.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🤝</div>
+        <h3>Teamwork</h3>
+        <p>They learn to play with others, take turns, cheer each other on. Small things that matter a lot at this age.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🏀</div>
+        <h3>Ball control</h3>
+        <p>Dribbling, passing, shooting — all broken down to what a 7-year-old can actually do and build on over time.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">😄</div>
+        <h3>Just have fun</h3>
+        <p>We are not trying to make U9 players into pros. We want them to love the game. The rest comes later.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SCHEDULE -->
+  <div class="section" id="schedule">
+    <div class="section-title">Training schedule</div>
+    <p>We train twice a week at Strandvejsskolen. Sessions are one hour and run through the season.</p>
+
+    <div class="schedule-card">
+      <div class="schedule-row">
+        <div class="schedule-day">Tuesday</div>
+        <div class="schedule-detail"><strong>15:00 – 16:00</strong> · Strandvejsskolen, Østerbro</div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-day">Thursday</div>
+        <div class="schedule-detail"><strong>15:00 – 16:00</strong> · Strandvejsskolen, Østerbro</div>
+      </div>
+    </div>
+
+    <div class="sfo-note">
+      <strong>SFO kids:</strong> We pick up directly from Strandvejsskolen SFO before training. No extra travel for parents on those days.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FREE TRIAL -->
+  <div class="section">
+    <div class="trial-box">
+      <h3>Want to try it first?</h3>
+      <p>Your kid is welcome to come to any session and try it out for free. Same time, same place. Just show up — or register below so we know to expect them.</p>
+      <a href="#register" class="btn btn-primary">Register for a free trial</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- REGISTER / CONTACT -->
+  <div class="section" id="register">
+    <div class="section-title">Get in touch or sign up</div>
+    <p>Fill in the form and Coach Deng will get back to you. If you are ready to register properly, you can also join directly through Holdsport.</p>
+    <p><a href="https://www.holdsport.dk/team_invitation/318487/f2cdc89f63e900ca29c391d9cfbcc656ef1a8965" target="_blank" style="color: var(--blue); font-weight: 700;">Register on Holdsport →</a></p>
+
+    <div class="form-card" style="margin-top: 24px;">
+      <form id="mini-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Parent name</label>
+            <input type="text" name="parent_name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label>Child's name</label>
+            <input type="text" name="child_name" placeholder="Your child's name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Child's age</label>
+            <select name="child_age" required>
+              <option value="" disabled selected>Select age</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your email</label>
+            <input type="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Anything you want us to know?</label>
+          <textarea name="message" rows="3" placeholder="Questions, allergies, if your child goes to Strandvejsskolen SFO..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submit-btn">Send — we will be in touch</button>
+      </form>
+      <div class="form-success" id="form-success">
+        Got it! Coach Deng will be in touch shortly.
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Talata Basketball &middot; Strandvejsskolen, Østerbro, Copenhagen<br>
+    <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a> &middot; CVR: 43599453
+  </div>
+
+  <script>
+    const form = document.getElementById('mini-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formSuccess = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      const data = Object.fromEntries(new FormData(form));
+      data.source = 'talata-mini-2026';
+      data.camp = 'Talata Mini';
+      const body = JSON.stringify(data);
+      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbx7JSqMDk5vdCQPpnPTbTOPD7w4RS-SoYWtIwNyzT2ZsCa3tsvOLy_ySCtb35CIJZC3/exec';
+
+      try {
+        await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
+        });
+        fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body }).catch(() => {});
+        form.reset();
+        formSuccess.style.display = 'block';
+        submitBtn.style.display = 'none';
+      } catch {
+        submitBtn.textContent = 'Send — we will be in touch';
+        submitBtn.disabled = false;
+        alert('Something went wrong. Email us at coach@talatabasketball.dk');
+      }
+    });
+  </script>
+
+</body>
+</html>
