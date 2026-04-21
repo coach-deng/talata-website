@@ -1,0 +1,13 @@
+# Redirect base64-encoded camp URLs to canonical paths
+/camps/Y2FuYWRhLWNhbXAtMjAyNg*    /camps/canada-camp-2026.html    301
+/camps/ZGstc3VtbWVyLWNhbXAtMjAyNg*    /camps/dk-summer-camp-2026.html    301
+/camps/bm9kYS1jYW1wLTIwMjY*    /camps/nida-camp-2026.html    301
+
+# Pretty URLs (no .html)
+/camps/canada-camp-2026    /camps/canada-camp-2026.html    301
+/camps/dk-summer-camp-2026    /camps/dk-summer-camp-2026.html    301
+/camps/nida-camp-2026    /camps/nida-camp-2026.html    301
+/camps/lithuania-camp-2026    /camps/lithuania-camp-2026.html    301
+/camps/spring-camp-2026    /camps/spring-camp-2026.html    301
+/nida-camp    /camps/nida-camp-2026.html    301
+/dk-summer-camp    /camps/dk-summer-camp-2026.html    301
