@@ -11,3 +11,21 @@
 /camps/spring-camp-2026    /camps/spring-camp-2026.html    301
 /nida-camp    /camps/nida-camp-2026.html    301
 /dk-summer-camp    /camps/dk-summer-camp-2026.html    301
+
+# Catch likely 404s (old/legacy paths Google may have indexed)
+/camp    /camps.html    301
+/summer-camp    /camps/dk-summer-camp-2026.html    301
+/camps/spring    /camps/spring-camp-2026.html    301
+/spring-camp    /camps/spring-camp-2026.html    301
+/canada    /camps/canada-camp-2026.html    301
+/lithuania    /camps/lithuania-camp-2026.html    301
+/nida    /camps/nida-camp-2026.html    301
+/academy    /academy.html    301
+/join    /join.html    301
+/mini    /mini.html    301
+/camps.html/*    /camps.html    301
+/blog/*    /    301
+/blog    /    301
+
+# 410 Gone for pages that should not be indexed
+/index-new.html    /    301
