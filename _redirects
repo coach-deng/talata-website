@@ -1,29 +1,25 @@
 # Redirect base64-encoded camp URLs to canonical paths
-/camps/Y2FuYWRhLWNhbXAtMjAyNg*    /camps/canada-camp-2026.html    301
-/camps/ZGstc3VtbWVyLWNhbXAtMjAyNg*    /camps/dk-summer-camp-2026.html    301
-/camps/bm9kYS1jYW1wLTIwMjY*    /camps/nida-camp-2026.html    301
+# Cloudflare Pages strips .html automatically, so target clean URLs
+/camps/Y2FuYWRhLWNhbXAtMjAyNg*    /camps/canada-camp-2026    301
+/camps/ZGstc3VtbWVyLWNhbXAtMjAyNg*    /camps/dk-summer-camp-2026    301
+/camps/bm9kYS1jYW1wLTIwMjY*    /camps/nida-camp-2026    301
 
-# Pretty URLs (no .html)
-/camps/canada-camp-2026    /camps/canada-camp-2026.html    301
-/camps/dk-summer-camp-2026    /camps/dk-summer-camp-2026.html    301
-/camps/nida-camp-2026    /camps/nida-camp-2026.html    301
-/camps/lithuania-camp-2026    /camps/lithuania-camp-2026.html    301
-/camps/spring-camp-2026    /camps/spring-camp-2026.html    301
-/nida-camp    /camps/nida-camp-2026.html    301
-/dk-summer-camp    /camps/dk-summer-camp-2026.html    301
+# Pretty URLs — removed: Cloudflare Pages handles .html stripping natively
+/nida-camp    /camps/nida-camp-2026    301
+/dk-summer-camp    /camps/dk-summer-camp-2026    301
 
 # Catch likely 404s (old/legacy paths Google may have indexed)
-/camp    /camps.html    301
-/summer-camp    /camps/dk-summer-camp-2026.html    301
-/camps/spring    /camps/spring-camp-2026.html    301
-/spring-camp    /camps/spring-camp-2026.html    301
-/canada    /camps/canada-camp-2026.html    301
-/lithuania    /camps/lithuania-camp-2026.html    301
-/nida    /camps/nida-camp-2026.html    301
-/academy    /academy.html    301
-/join    /join.html    301
-/mini    /mini.html    301
-/camps.html/*    /camps.html    301
+/camp    /camps    301
+/summer-camp    /camps/dk-summer-camp-2026    301
+/camps/spring    /camps/spring-camp-2026    301
+/spring-camp    /camps/spring-camp-2026    301
+/canada    /camps/canada-camp-2026    301
+/lithuania    /camps/lithuania-camp-2026    301
+/nida    /camps/nida-camp-2026    301
+/academy    /academy    301
+/join    /join    301
+/mini    /mini    301
+/camps.html/*    /camps    301
 /blog/*    /    301
 /blog    /    301
 
