@@ -36,7 +36,42 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://talatabasketball.dk/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/blog/talata-mini-strandvejsskolen-2026</loc>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/blog/strandvejsskolen-partnership-2026</loc>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/blog/malthe-orangeville-2025</loc>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/blog/recovery-week-april-2026</loc>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://talatabasketball.dk/blog/aarhus-festival-2026</loc>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/blog/5-signs-ready-for-basketball-club</loc>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/blog/what-we-look-for-first-training</loc>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
