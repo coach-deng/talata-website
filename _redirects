@@ -20,8 +20,6 @@
 /join    /join    301
 /mini    /mini    301
 /camps.html/*    /camps    301
-/blog/*    /    301
-/blog    /    301
 
 # 410 Gone for pages that should not be indexed
 /index-new.html    /    301
