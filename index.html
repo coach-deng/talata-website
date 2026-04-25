@@ -98,8 +98,11 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="home" style="background-image: url('images/squad-energy.jpg'); background-size: cover; background-position: center 25%;">
-    <div class="hero-bg" style="background: linear-gradient(rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 100%), radial-gradient(ellipse at 70% 50%, rgba(255,107,0,0.10) 0%, transparent 60%);"></div>
+  <section class="hero" id="home">
+    <!-- Real <img> so browser discovers LCP image during HTML parse, not after CSSOM -->
+    <img src="images/squad-energy.jpg" alt="" fetchpriority="high" loading="eager" decoding="sync"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;z-index:0;" />
+    <div class="hero-bg" style="position:absolute;inset:0;z-index:1;background: linear-gradient(rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 100%), radial-gradient(ellipse at 70% 50%, rgba(255,107,0,0.10) 0%, transparent 60%);"></div>
     <div class="hero-inner">
       <h1>Copenhagen's basketball club.<br/><span>Come play.</span></h1>
       <p>Whether you want to try basketball for the first time or you're chasing a scholarship, Talata is where Copenhagen's players develop. Real coaching, real teams, free trial every Thursday.</p>
