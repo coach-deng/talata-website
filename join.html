@@ -368,7 +368,7 @@
   <div class="hero">
     <div class="hero-badge">Talata Basketball Copenhagen</div>
     <h1>Ready to play?<br><span>Here is how to join.</span></h1>
-    <p>Whether you have never touched a basketball or you are chasing a scholarship, there is a spot for you at Talata. Deng replies to every registration personally.</p>
+    <p>Whether you have never touched a basketball or you are chasing a scholarship, there is a spot for you at Talata. Deng replies to every registration personally with two trial dates to pick from.</p>
     <div class="hero-actions">
       <a href="#register" class="btn btn-primary">Register Now</a>
       <a href="#paths" class="btn btn-ghost">See programs below</a>
@@ -387,7 +387,7 @@
           <div class="step-num">1</div>
           <div class="step-body">
             <h3>Fill in the form below</h3>
-            <p>Takes 2 minutes. Tell us your name, age, and what you are interested in. Deng reads every submission and replies within 24 hours.</p>
+            <p>Takes 2 minutes. Deng reads every submission personally and gets back to you within a few hours with two trial dates to pick from.</p>
           </div>
         </div>
         <div class="step">
@@ -535,47 +535,79 @@
     <div class="section" id="register" style="padding-top:0;">
       <div class="form-section">
         <h2>Register now</h2>
-        <p class="sub">Fill this in and Deng will reply within 24 hours. Every message is read personally.</p>
+        <p class="sub">Two minutes. Deng reads every form personally and replies within a few hours. You will get two trial dates to pick from.</p>
         <form id="join-form" class="reg-form">
+
+          <!-- PLAYER -->
           <div class="form-row">
             <div class="form-group">
               <label for="player_name">Player name</label>
               <input type="text" id="player_name" name="player_name" placeholder="First and last name" required>
             </div>
             <div class="form-group">
-              <label for="age">Age</label>
-              <input type="number" id="age" name="age" placeholder="e.g. 14" min="5" max="50" required>
+              <label for="dob">Date of birth</label>
+              <input type="date" id="dob" name="dob" required>
             </div>
           </div>
+
+          <!-- PARENT (or player if 18+) -->
           <div class="form-group">
-            <label for="email">Email (parent or player)</label>
-            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+            <label for="parent_name">Parent name <span style="font-weight:400;color:var(--text-muted);">(or your own if you are 18+)</span></label>
+            <input type="text" id="parent_name" name="parent_name" placeholder="First and last name" required>
           </div>
-          <div class="form-group">
-            <label for="phone">Phone (optional)</label>
-            <input type="tel" id="phone" name="phone" placeholder="+45 ...">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="email@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+45 ..." required>
+            </div>
           </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="postcode">Postcode</label>
+              <input type="text" id="postcode" name="postcode" placeholder="2100" required>
+            </div>
+            <div class="form-group">
+              <label for="program">Interested in</label>
+              <select id="program" name="program" required>
+                <option value="">Select a program</option>
+                <option value="free-trial">Free trial</option>
+                <option value="mini">Talata Mini (ages 5 to 11)</option>
+                <option value="teams">Youth Teams</option>
+                <option value="academy">Academy (U15 or U17)</option>
+                <option value="u23">U23 / Mens</option>
+                <option value="development">1-on-1 Development</option>
+                <option value="camp">Summer Camps</option>
+              </select>
+            </div>
+          </div>
+
           <div class="form-group">
-            <label for="program">Interested in</label>
-            <select id="program" name="program">
-              <option value="">Select a program</option>
-              <option value="mini">Talata Mini (ages 5–11)</option>
-              <option value="u13">Talata U13 (ages 11–13)</option>
-              <option value="free-trial">Free Trial — Academy / Teams</option>
-              <option value="academy">Academy (U15 or U17)</option>
-              <option value="teams">Youth Teams</option>
-              <option value="tryout-u19">Tryout: U19 / U23</option>
-              <option value="tryout-senior">Tryout: Senior Team</option>
-              <option value="development">1-on-1 Development</option>
-              <option value="camp">Summer Camps</option>
+            <label for="how_found">How did you find us?</label>
+            <select id="how_found" name="how_found">
+              <option value="">Pick one</option>
+              <option value="google">Google search</option>
+              <option value="instagram">Instagram</option>
+              <option value="friend">Friend or teammate</option>
+              <option value="school">School</option>
+              <option value="parent">Another parent</option>
+              <option value="camp">A Talata camp</option>
+              <option value="other">Other</option>
             </select>
           </div>
+
           <div class="form-group">
-            <label for="message">Anything else? (optional)</label>
-            <textarea id="message" name="message" rows="3" placeholder="Experience level, position, questions..."></textarea>
+            <label for="message">Anything else? <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label>
+            <textarea id="message" name="message" rows="3" placeholder="Experience level, position, questions, anything else we should know..."></textarea>
           </div>
+
           <button type="submit" id="submit-btn" class="submit-btn">Send Registration</button>
-          <div id="form-success" class="form-success">Got it. Deng will be in touch within 24 hours.</div>
+          <div id="form-success" class="form-success">Got it. Deng will be in touch shortly with two trial dates to pick from.</div>
         </form>
       </div>
     </div>

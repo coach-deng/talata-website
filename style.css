@@ -340,7 +340,7 @@ h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px
   .partners-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   .nav-mobile { display: flex; }
