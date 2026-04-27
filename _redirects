@@ -16,9 +16,7 @@
 /canada    /camps/canada-camp-2026    301
 /lithuania    /camps/lithuania-camp-2026    301
 /nida    /camps/nida-camp-2026    301
-/academy    /academy    301
-/join    /join    301
-/mini    /mini    301
+# /academy, /join, /mini — handled natively by Cloudflare Pages (.html stripping)
 /camps.html/*    /camps    301
 
 # 410 Gone for pages that should not be indexed
