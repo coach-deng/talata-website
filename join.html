@@ -630,6 +630,7 @@
       submitBtn.disabled = true;
 
       const data = Object.fromEntries(new FormData(form));
+      data.name = data.player_name; // API expects 'name'
       data.source = 'talata-join-2026';
       data.camp = 'Join Talata';
       const body = JSON.stringify(data);
