@@ -4,7 +4,8 @@
 /camps/ZGstc3VtbWVyLWNhbXAtMjAyNg*    /camps/dk-summer-camp-2026    301
 /camps/bm9kYS1jYW1wLTIwMjY*    /camps/nida-camp-2026    301
 
-# Pretty URLs — removed: Cloudflare Pages handles .html stripping natively
+# Pretty URLs
+/blog    /blog.html    301
 /nida-camp    /camps/nida-camp-2026    301
 /dk-summer-camp    /camps/dk-summer-camp-2026    301
 
