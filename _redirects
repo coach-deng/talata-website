@@ -5,7 +5,7 @@
 /camps/bm9kYS1jYW1wLTIwMjY*    /camps/nida-camp-2026    301
 
 # Pretty URLs
-/blog    /blog.html    301
+# /blog redirect removed — Cloudflare Pages auto-strips .html, no redirect needed
 /nida-camp    /camps/nida-camp-2026    301
 /dk-summer-camp    /camps/dk-summer-camp-2026    301
 
