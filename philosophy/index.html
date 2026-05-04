@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Talata Way | Constraints-Led Basketball | Copenhagen</title>
+<meta name="description" content="Talata Basketball is Copenhagen's only club running a fully Constraints-Led Approach (CLA). Skill emerges through games, not drills. Built on Joy, Excellence, and Respect.">
+<meta name="keywords" content="Talata Basketball, Copenhagen basketball, CLA, Constraints-Led Approach, basketball coaching philosophy, youth basketball development, ecological dynamics">
+<meta property="og:title" content="The Talata Way — How We Develop Players">
+<meta property="og:description" content="At Talata, you will be challenged, you will fail, and you will grow. We do not provide the answers; we design the questions.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://talatabasketball.dk/philosophy">
+<meta property="og:image" content="https://talatabasketball.dk/photos/hero-training.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://talatabasketball.dk/philosophy">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'talata-black': '#0A0A0A',
+        'talata-navy': '#0B1F3A',
+        'talata-blue': '#1E40AF',
+        'talata-baby': '#7DD3FC',
+        'talata-sky': '#BAE6FD',
+        'talata-mist': '#F8FAFC',
+      },
+      fontFamily: { sans: ['Inter', 'sans-serif'] }
+    }
+  }
+}
+</script>
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+.chart-container { position: relative; width: 100%; max-width: 700px; margin: 0 auto; height: 350px; }
+@media (min-width: 768px) { .chart-container { height: 400px; } }
+.venn-circle { width: 170px; height: 170px; border-radius: 50%; position: absolute; mix-blend-mode: multiply; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700; color: white; padding: 1rem; font-size: 0.875rem; }
+.venn-container { position: relative; width: 320px; height: 320px; margin: 0 auto; }
+.hero-bg {
+  position: relative;
+  background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(11,31,58,0.85) 50%, rgba(30,64,175,0.75) 100%),
+              url('./photos/hero-training.jpg') center/cover no-repeat;
+}
+.pillar-card { transition: transform 0.2s, box-shadow 0.2s; }
+.pillar-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -10px rgba(11, 31, 58, 0.25); }
+.value-card { transition: all 0.3s; }
+.value-card:hover { transform: translateY(-4px); border-color: #7DD3FC; }
+.photo-frame { box-shadow: 0 25px 50px -12px rgba(11,31,58,0.4); border-radius: 1rem; overflow: hidden; }
+.image-quote {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.image-quote::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(11,31,58,0.85) 100%);
+}
+.image-quote > * { position: relative; z-index: 1; }
+</style>
+</head>
+
+<body class="bg-white text-talata-navy antialiased">
+
+<!-- NAV -->
+<nav class="bg-talata-black text-white sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <a href="/" class="flex-shrink-0 font-extrabold text-2xl tracking-tight">
+        <span class="text-talata-baby">TALATA</span> BASKETBALL
+      </a>
+      <div class="hidden md:flex space-x-8 text-sm font-semibold items-center">
+        <a href="#promise" class="hover:text-talata-baby transition">The Promise</a>
+        <a href="#values" class="hover:text-talata-baby transition">Values</a>
+        <a href="#what-is-cla" class="hover:text-talata-baby transition">What is CLA</a>
+        <a href="#library" class="hover:text-talata-baby transition">Constraints</a>
+        <a href="#progression" class="hover:text-talata-baby transition">Age Progression</a>
+        <a href="#session" class="hover:text-talata-baby transition">Session Design</a>
+        <a href="/" class="bg-talata-baby text-talata-navy px-4 py-2 rounded-full hover:bg-white transition">Home</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO PHILOSOPHY QUOTE -->
+<header id="promise" class="hero-bg text-white py-32 px-4 relative overflow-hidden">
+  <div class="max-w-4xl mx-auto relative z-10">
+    <p class="text-talata-baby uppercase tracking-widest font-bold mb-4 text-sm">The Talata Way</p>
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-8">
+      You will be <span class="text-talata-baby">challenged</span>.<br>
+      You will <span class="text-talata-baby">fail</span>.<br>
+      You will <span class="text-talata-baby">grow</span>.
+    </h1>
+    <p class="text-xl md:text-2xl font-light leading-relaxed text-talata-sky max-w-3xl mb-8">
+      We do not provide the answers. We design the questions. Through this process, you will discover the player you were meant to be.
+    </p>
+    <div class="inline-block bg-white text-talata-navy px-6 py-3 rounded-full font-bold shadow-xl">
+      Coach Deng Awak | Copenhagen, Denmark
+    </div>
+  </div>
+</header>
+
+<!-- THREE CORE VALUES -->
+<section id="values" class="bg-talata-black text-white py-20 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2">Who We Are</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold uppercase">Three Values. Non-Negotiable.</h2>
+      <p class="text-talata-sky max-w-2xl mx-auto mt-4 text-lg">Every Talata player, coach, and parent stands on these three pillars. They come before the basketball.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="value-card border border-white/20 rounded-2xl p-8 bg-white/5 backdrop-blur">
+        <div class="text-talata-baby text-5xl font-black mb-4">01</div>
+        <h3 class="text-3xl font-extrabold mb-3 uppercase">Joy</h3>
+        <p class="text-talata-sky leading-relaxed">We play because we love it. The session that doesn't make you smile didn't teach you anything. We celebrate the unconventional finish, the wild pass, the moment of pure flow.</p>
+      </div>
+      <div class="value-card border border-white/20 rounded-2xl p-8 bg-white/5 backdrop-blur">
+        <div class="text-talata-baby text-5xl font-black mb-4">02</div>
+        <h3 class="text-3xl font-extrabold mb-3 uppercase">Excellence</h3>
+        <p class="text-talata-sky leading-relaxed">We hold a standard, every rep. Excellence is not perfection — it is full effort, full attention, full presence. We measure ourselves against the best, not the closest.</p>
+      </div>
+      <div class="value-card border border-white/20 rounded-2xl p-8 bg-white/5 backdrop-blur">
+        <div class="text-talata-baby text-5xl font-black mb-4">03</div>
+        <h3 class="text-3xl font-extrabold mb-3 uppercase">Respect</h3>
+        <p class="text-talata-sky leading-relaxed">We respect coaches, teammates, opponents, refs, and the game itself. No exceptions. No bad days. The way you treat people is the way you play basketball.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+  <!-- INTRO -->
+  <section class="mb-20">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2" style="color:#0284C7">Our Approach</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 uppercase">Copenhagen's Constraints-Led Basketball Club</h2>
+        <p class="text-lg text-slate-700 mb-6 leading-relaxed">
+          At Talata, basketball is a game of problem-solving, not rehearsed choreography. Players do not get better by standing in lines or repeating the same move fifty times against nobody.
+        </p>
+        <p class="text-lg text-slate-700 leading-relaxed">
+          They get better by navigating chaos, reading what is in front of them, and figuring out solutions under real pressure.
+        </p>
+      </div>
+      <div class="photo-frame">
+        <img src="./photos/players-action.jpg" alt="Talata players in action" class="w-full h-96 object-cover object-top">
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      <div class="bg-talata-mist p-6 rounded-xl border-l-4 border-talata-blue">
+        <div class="text-talata-blue text-3xl font-black mb-2">01</div>
+        <h3 class="text-xl font-bold mb-3">How Players Learn</h3>
+        <p class="text-slate-700 text-sm">Skill comes from the interaction between the player, the environment, and the task. We do not coach the body. We coach the environment. By changing rules, space, and constraints, we let players find their own solutions and build skills that hold up when it matters.</p>
+      </div>
+      <div class="bg-talata-mist p-6 rounded-xl border-l-4 border-talata-baby">
+        <div class="text-talata-blue text-3xl font-black mb-2">02</div>
+        <h3 class="text-xl font-bold mb-3">How We Run Sessions</h3>
+        <p class="text-slate-700 text-sm">Our sessions look like messy, hyper-competitive streetball with specific rules. We use repetition without repetition, meaning players solve the same problem again and again but the answer is never exactly the same. No lines. No cone drills.</p>
+      </div>
+      <div class="bg-talata-mist p-6 rounded-xl border-l-4 border-talata-navy">
+        <div class="text-talata-blue text-3xl font-black mb-2">03</div>
+        <h3 class="text-xl font-bold mb-3">Our Expectations</h3>
+        <p class="text-slate-700 text-sm">From players: embrace the struggle, make mistakes at game speed, communicate. From coaches: be architects of practice, design great games, talk less. From parents: value decision-making and adaptability over picture-perfect form.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS CLA -->
+  <section id="what-is-cla" class="mb-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2" style="color:#0284C7">01 — Foundation</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 uppercase">Demystifying the CLA</h2>
+        <p class="text-slate-700 mb-6 text-lg leading-relaxed">
+          Built on ecological dynamics and Karl Newell's model from 1986, and developed further by researchers like <strong>Keith Davids</strong>, the Constraints-Led Approach rejects the idea that there is one perfect technique. Movement is a solution to a problem, and every player solves it differently.
+        </p>
+        <ul class="space-y-4 mb-6">
+          <li class="flex items-start"><span class="text-talata-blue mr-3 font-bold text-xl">→</span><div><strong>Task Constraints:</strong> Rules of the game, equipment size, number of players.</div></li>
+          <li class="flex items-start"><span class="text-talata-baby mr-3 font-bold text-xl">→</span><div><strong>Environmental Constraints:</strong> Court surface, lighting, crowd noise, defense.</div></li>
+          <li class="flex items-start"><span class="mr-3 font-bold text-xl text-talata-navy">→</span><div><strong>Individual Constraints:</strong> Height, fatigue, mental state, technical ability.</div></li>
+        </ul>
+        <div class="bg-talata-mist border-l-4 border-talata-baby p-5 rounded-r-lg">
+          <h4 class="font-bold text-talata-navy mb-2">The 30-Second Parent Pitch</h4>
+          <p class="text-sm text-slate-700 italic">"Instead of teaching your child exactly how to hold their elbow to shoot, we put them in game-like scenarios where scoring requires shooting over a defender. We change the rules of the scrimmage to reward the right behaviors. The game itself becomes the teacher — resulting in players who make faster decisions and whose skills actually work during the chaotic weekend matches, not just during warm-ups."</p>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <div class="venn-container">
+          <div class="venn-circle bg-talata-blue/85" style="top:0; left:50%; transform:translateX(-50%);">Task<br><span class="font-normal text-xs">(Rules, Goals)</span></div>
+          <div class="venn-circle" style="background:rgba(125,211,252,0.85); bottom:0; left:0; color:#0B1F3A;">Environment<br><span class="font-normal text-xs">(Court, Context)</span></div>
+          <div class="venn-circle bg-talata-navy/85" style="bottom:0; right:0;">Individual<br><span class="font-normal text-xs">(Body, Mind)</span></div>
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none mt-4 text-talata-navy font-black text-lg z-10">SKILL<br>EMERGES</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE QUOTE BREAK -->
+  <section class="mb-20">
+    <div class="image-quote text-white py-24 px-8 text-center" style="background-image: url('./photos/team-huddle.jpg');">
+      <p class="text-2xl md:text-4xl font-extrabold leading-snug max-w-4xl mx-auto">
+        "We don't coach the body. <br>We coach the <span class="text-talata-baby">environment</span>."
+      </p>
+      <p class="mt-4 text-talata-sky text-sm uppercase tracking-widest font-bold">— The Talata Coaching Staff</p>
+    </div>
+  </section>
+
+  <!-- APPLICATION + RADAR -->
+  <section id="application" class="mb-20 bg-talata-black text-white rounded-2xl p-8 md:p-12 shadow-2xl">
+    <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2 text-center">02 — Application</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-8 uppercase text-center">Basketball Application & The Vanguard</h2>
+    <p class="text-talata-sky text-center max-w-3xl mx-auto mb-12 text-lg">The basketball world is moving fast, from isolated cone drills toward small-sided games and real decision-making. Here is how the two approaches compare.</p>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div>
+        <div class="chart-container bg-white/5 rounded-xl p-4">
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4 text-talata-baby">Who is teaching this well?</h3>
+        <ul class="space-y-3 mb-8">
+          <li class="bg-white/10 p-4 rounded-lg backdrop-blur"><strong class="text-talata-baby">Alex Sarama:</strong> <span class="text-talata-sky">Director of Methodology at the Cleveland Cavaliers. Transforming Basketball. One of the leading voices in CLA for basketball globally.</span></li>
+          <li class="bg-white/10 p-4 rounded-lg backdrop-blur"><strong class="text-talata-baby">Chris Oliver:</strong> <span class="text-talata-sky">Basketball Immersion. The guy who brought decision training and zero-second decisions into everyday coaching language.</span></li>
+          <li class="bg-white/10 p-4 rounded-lg backdrop-blur"><strong class="text-talata-baby">Tyler Coston:</strong> <span class="text-talata-sky">SAVI Coaching. Brilliant at building constraints that scaffold naturally into game play.</span></li>
+          <li class="bg-white/10 p-4 rounded-lg backdrop-blur"><strong class="text-talata-baby">Brian McCormick:</strong> <span class="text-talata-sky">21st Century Basketball Practice. Pioneered the case against lines and block practice in youth development.</span></li>
+          <li class="bg-white/10 p-4 rounded-lg backdrop-blur"><strong class="text-talata-baby">San Antonio Spurs:</strong> <span class="text-talata-sky">The Spurs use team dinners and culture-building as environmental constraints — designed to foster cohesion and collective decision-making. The same principle we use on the court, they apply to the whole organisation.</span></li>
+        </ul>
+        <h3 class="text-xl font-bold mb-4 text-talata-baby">Handling Traditional "Drill" Areas</h3>
+        <div class="space-y-2 text-sm text-talata-sky">
+          <p><strong class="text-white">Shooting Form:</strong> Add variable defense. The body self-organizes the release point to avoid the block.</p>
+          <p><strong class="text-white">Ball Handling:</strong> Tag games. 1v1 tight space keep-away. No cones.</p>
+          <p><strong class="text-white">Finishing:</strong> Contact pads. 1v1 advantage/disadvantage starting from the hip.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSTRAINTS LIBRARY -->
+  <section id="library" class="mb-20">
+    <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2" style="color:#0284C7">03 — The Toolkit</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 uppercase">Practical Constraints Library</h2>
+    <p class="text-slate-600 mb-6 max-w-2xl text-lg">Use these constraints to shape behavior without micromanaging form. Pick the one that makes the skill you want to see feel natural and necessary.</p>
+    <blockquote class="border-l-4 border-talata-baby pl-6 mb-8 bg-talata-mist rounded-r-xl py-4 pr-4">
+      <p class="text-talata-navy font-semibold text-lg leading-relaxed">"Coaches must utilize a diverse library of task constraints to nudge players toward desired behaviors without using excessive instruction."</p>
+      <footer class="text-sm text-slate-500 mt-2">CLA Research — applied at Talata Basketball</footer>
+    </blockquote>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="pillar-card bg-white border-t-4 border-talata-blue p-6 shadow-md rounded-b-xl">
+        <h3 class="font-bold text-lg mb-3">A. Decision-Making Speed</h3>
+        <ul class="text-sm space-y-2 text-slate-700">
+          <li><strong>0.5 Second Rule:</strong> Must shoot, pass, or drive within 0.5s of catching.</li>
+          <li><strong>3v2 to 2v1:</strong> Whoever shoots transitions to defense.</li>
+          <li><strong>No Dribble 4v4:</strong> Forces cutting, spacing, and immediate passing decisions.</li>
+          <li><strong>Advantage Starts:</strong> 1v1 with defender facing away, touching offensive player's hip.</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card bg-white border-t-4 border-talata-baby p-6 shadow-md rounded-b-xl">
+        <h3 class="font-bold text-lg mb-3">B. Spacing & Movement</h3>
+        <ul class="text-sm space-y-2 text-slate-700">
+          <li><strong>Designated Spots:</strong> Players in both corners before any shot.</li>
+          <li><strong>Score Off a Cut:</strong> Points only count if the assister passes to a moving cutter.</li>
+          <li><strong>Post Touch Required:</strong> Ball must touch the paint before a perimeter shot.</li>
+          <li><strong>4-Out / 1-In Fill:</strong> If a player drives, someone fills behind them.</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card bg-white border-t-4 border-talata-navy p-6 shadow-md rounded-b-xl">
+        <h3 class="font-bold text-lg mb-3">C. Finishing Under Contact</h3>
+        <ul class="text-sm space-y-2 text-slate-700">
+          <li><strong>Blood 1v1:</strong> Defender uses a heavy contact pad at the rim.</li>
+          <li><strong>Weak-Hand Multiplier:</strong> Non-dominant hand counts for 3 points.</li>
+          <li><strong>No Backboard:</strong> Finishes must be swishes (touch / floaters).</li>
+          <li><strong>Trailing Defender:</strong> 1v1 break with defender starting one step behind.</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card bg-white border-t-4 border-talata-black p-6 shadow-md rounded-b-xl">
+        <h3 class="font-bold text-lg mb-3">D. Defensive Pressure</h3>
+        <ul class="text-sm space-y-2 text-slate-700">
+          <li><strong>Cone Touch Recovery:</strong> Defender sprints to baseline before defending the drive.</li>
+          <li><strong>No Jump Contests:</strong> Defenders cannot leave their feet (walling up, verticality).</li>
+          <li><strong>Switch Everything 3v3:</strong> Defense must switch every action.</li>
+          <li><strong>Trap the Box:</strong> Auto double team if ball enters the short corner.</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card bg-white border-t-4 border-talata-baby p-6 shadow-md rounded-b-xl">
+        <h3 class="font-bold text-lg mb-3">E. Shooting Authenticity</h3>
+        <ul class="text-sm space-y-2 text-slate-700">
+          <li><strong>Closeout Shooting:</strong> Passer immediately sprints to close out on shooter.</li>
+          <li><strong>Plus/Minus Shooting:</strong> Make = +1, miss = -1. Reach +5 in 2 minutes.</li>
+          <li><strong>Movement Catch:</strong> Shooter sprinting from wing to top before catching.</li>
+          <li><strong>Varying Ball Sizes:</strong> Alternate heavy ball, size 6, size 7.</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card bg-white border-t-4 border-talata-blue p-6 shadow-md rounded-b-xl">
+        <h3 class="font-bold text-lg mb-3">F. Transition & Communication</h3>
+        <ul class="text-sm space-y-2 text-slate-700">
+          <li><strong>Must Name Assister:</strong> Scorer calls out passer's name for the point to count.</li>
+          <li><strong>5v3 Fast Break:</strong> Defense has 2 waiting at half-court. Score in 6 seconds.</li>
+          <li><strong>Silent Scrimmage:</strong> No talking. Forces non-verbal pointing and eye contact.</li>
+          <li><strong>Rebounder Pushes:</strong> Defensive rebounder cannot pass until crossing half-court.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AGE PROGRESSION -->
+  <section id="progression" class="mb-20">
+    <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2" style="color:#0284C7">04 — Scaling</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-8 uppercase">Age-Appropriate Progression</h2>
+    <div class="bg-white p-8 rounded-xl shadow-md border border-slate-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-slate-600 mb-6 leading-relaxed">CLA scales perfectly across ages. The philosophy remains the same: <strong>use constraints</strong>. But the complexity of the task and environment shifts with the player's developmental stage.</p>
+          <div class="space-y-6">
+            <div>
+              <h4 class="font-bold text-lg text-talata-blue">U9 / U11 (Mini): Chaos & Discovery</h4>
+              <p class="text-sm text-slate-600">Focus on motor skills, fun, and implicit learning. Games like Tag while dribbling, Red Light Green Light, and 2v2 small hoops. Constraints target gross motor exploration. <strong>We do not correct form.</strong></p>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg" style="color:#0284C7">U13 / U15 (Youth): Skill Acquisition</h4>
+              <p class="text-sm text-slate-600">Focus on reading advantages. Introduce 3v3 and 4v4 SSGs. Constraints target spacing, cutting, and the 0.5-second decision rule. Defense becomes highly contested to force skill adaptation.</p>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg text-talata-black">U17+ / Academy / Men: Tactical & Speed</h4>
+              <p class="text-sm text-slate-600">Focus on specific tactical problems. 5v5 scenarios, playing out of ball screens, position-specific constraints (bigs must short-roll). Extreme focus on game speed and complex reads.</p>
+            </div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="stackedBarChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO ROW -->
+  <section class="mb-20 grid grid-cols-2 md:grid-cols-3 gap-4" style="min-height: 420px;">
+    <div class="photo-frame col-span-2 md:col-span-2" style="min-height: 420px;">
+      <img src="./photos/youth-game.jpg" alt="Youth game" class="w-full h-full object-cover object-top" style="min-height: 420px;">
+    </div>
+    <div class="photo-frame flex flex-col gap-4">
+      <div class="photo-frame" style="height: 200px;">
+        <img src="./photos/skill-work.jpg" alt="Skill work" class="w-full h-full object-cover object-top">
+      </div>
+      <div class="photo-frame" style="height: 200px;">
+        <img src="./photos/coach-deng.jpg" alt="Coach Deng" class="w-full h-full object-cover object-top">
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT CLA REJECTS -->
+  <section class="mb-20">
+    <div class="bg-talata-mist rounded-2xl p-8 border-l-8 border-talata-black">
+      <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2" style="color:#0284C7">05 — Common Mistakes</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-8 uppercase">What CLA Rejects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-bold text-talata-black mb-2">Block Practice Fails</h3>
+          <p class="text-slate-700 mb-6">Shooting ten unguarded shots from the same spot feels productive but it is not. The brain switches off. There is no reading, no reacting, no real decision. When game day comes, that skill is nowhere to be found.</p>
+
+          <h3 class="text-xl font-bold text-talata-black mb-2">Form Cues Do Not Work</h3>
+          <p class="text-slate-700">Telling a kid to keep their elbow in pulls their attention into their own body at exactly the wrong moment. Research is clear that focusing on the target or the flight of the ball produces better results than focusing on limbs. Form finds itself when the task demands it.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-talata-black mb-2">Lines Waste Everyone's Time</h3>
+          <p class="text-slate-700 mb-6">Twelve players, one ball, eleven standing around. In a 60-minute practice, most kids get maybe five minutes of real work. We run parallel small-sided games instead. <strong>Everyone is moving the entire time.</strong></p>
+
+          <h3 class="text-xl font-bold text-talata-black mb-2">Over-Coaching</h3>
+          <p class="text-slate-700">Stopping every 20 seconds for a lecture takes away the one thing that actually teaches players: figuring it out themselves. <strong>If the behavior is wrong, change the constraint, not the speech.</strong> Let the game do the teaching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SESSION TEMPLATE -->
+  <section id="session" class="mb-20">
+    <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2" style="color:#0284C7">06 — The Template</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 uppercase">The 75-Minute CLA Session</h2>
+    <p class="text-slate-600 mb-8 text-lg">Every session has one theme. We design games around that theme and let it run. Simple as that.</p>
+
+    <div class="flex flex-col md:flex-row gap-8 items-start">
+      <div class="md:w-1/3">
+        <div class="chart-container" style="height: 320px;">
+          <canvas id="doughnutChart"></canvas>
+        </div>
+      </div>
+      <div class="md:w-2/3 space-y-4">
+        <div class="bg-white p-5 rounded-lg shadow border-l-4 border-talata-blue">
+          <strong class="text-talata-blue uppercase text-sm">0–10 Min: Messy Warm-Up</strong>
+          <p class="text-sm text-slate-600 mt-1">No static stretching or layup lines. Immediately into movement games. Tag with basketballs, keep-away, or 2v1 continuous. Gets the nervous system firing.</p>
+        </div>
+        <div class="text-center text-slate-400 text-2xl leading-none">↓</div>
+        <div class="bg-white p-5 rounded-lg shadow border-l-4 border-talata-baby">
+          <strong class="uppercase text-sm" style="color:#0284C7">10–25 Min: Theme Introduction (SSG)</strong>
+          <p class="text-sm text-slate-600 mt-1">Example Theme: <em>Attacking Closeouts</em>. Play 2v2 where defense starts under the rim and must pass out to offense on the wing and sprint to close out. High reps.</p>
+        </div>
+        <div class="text-center text-slate-400 text-2xl leading-none">↓</div>
+        <div class="bg-white p-5 rounded-lg shadow border-l-4 border-talata-navy">
+          <strong class="text-talata-navy uppercase text-sm">25–50 Min: Constraint Progression</strong>
+          <p class="text-sm text-slate-600 mt-1">Scale the complexity. Move to 3v3 or 4v4. Add a constraint: <em>"A point only counts if scored off a drive past a closeout."</em> This heavily affords the theme.</p>
+        </div>
+        <div class="text-center text-slate-400 text-2xl leading-none">↓</div>
+        <div class="bg-white p-5 rounded-lg shadow border-l-4 border-talata-black">
+          <strong class="text-talata-black uppercase text-sm">50–70 Min: Free Scrimmage (Wash)</strong>
+          <p class="text-sm text-slate-600 mt-1">Remove the artificial constraints. Play standard 5v5. Observe if the behaviors developed in the previous blocks transfer to the raw game. Minimal stoppages.</p>
+        </div>
+        <div class="text-center text-slate-400 text-2xl leading-none">↓</div>
+        <div class="bg-white p-5 rounded-lg shadow border-l-4 border-slate-400">
+          <strong class="text-slate-600 uppercase text-sm">70–75 Min: Cool-Down & Reflection</strong>
+          <p class="text-sm text-slate-600 mt-1">Active recovery and asking players guided questions. "What was the hardest part about attacking today?" Let them speak first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSESSMENT + OBJECTIONS -->
+  <section id="assessment" class="mb-20">
+    <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2" style="color:#0284C7">07 — Assessment</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-8 uppercase">How We Measure Growth</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-2xl font-bold mb-4">How Do We Know They Are Improving?</h3>
+        <p class="text-slate-700 mb-4">We do not measure progress by how many uncontested layups a kid makes in 60 seconds. We measure game-transferable skills.</p>
+        <ul class="space-y-3">
+          <li class="bg-talata-mist p-4 rounded-lg border-l-4 border-talata-baby"><strong>Decision Speed:</strong> Are they catching and pausing, or catching and flowing?</li>
+          <li class="bg-talata-mist p-4 rounded-lg border-l-4 border-talata-blue"><strong>Spacing Quality:</strong> When a teammate drives, are they standing still or filling the open gaps?</li>
+          <li class="bg-talata-mist p-4 rounded-lg border-l-4 border-talata-navy"><strong>Adaptability:</strong> Can they finish with different hands off different feet when contested?</li>
+          <li class="bg-talata-mist p-4 rounded-lg border-l-4 border-talata-black"><strong>Communication:</strong> Are they talking through screens without coach prompting?</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold mb-4">Overcoming Objections (2-Liners)</h3>
+        <div class="space-y-4">
+          <div class="border border-slate-200 p-4 rounded-lg bg-white">
+            <strong class="text-talata-navy block mb-1">Parent: "But my kid needs to work on form shooting."</strong>
+            <p class="text-sm text-slate-600 italic">"Perfect form in an empty gym rarely survives real defense. We teach their body to organize a shot under actual game pressure."</p>
+          </div>
+          <div class="border border-slate-200 p-4 rounded-lg bg-white">
+            <strong class="text-talata-navy block mb-1">Player: "The other club drills for an hour straight."</strong>
+            <p class="text-sm text-slate-600 italic">"They are practicing how to look good in warm-ups. We are practicing how to dominate the actual game."</p>
+          </div>
+          <div class="border border-slate-200 p-4 rounded-lg bg-white">
+            <strong class="text-talata-navy block mb-1">Board: "How is this practice if you're just playing?"</strong>
+            <p class="text-sm text-slate-600 italic">"We aren't 'just playing.' We are engineering the rules of the scrimmage to scientifically force specific skill adaptations."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section id="resources" class="mb-20 bg-talata-black text-white p-8 md:p-12 rounded-2xl">
+    <p class="text-talata-baby uppercase tracking-widest font-bold text-sm mb-2 text-center">08 — Go Deeper</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-8 uppercase text-center">Resources</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="font-bold text-lg text-talata-baby mb-4 border-b border-talata-baby/40 pb-2">Books</h3>
+        <ul class="text-sm space-y-3 text-talata-sky">
+          <li><strong class="text-white">"The Constraints-Led Approach"</strong> — Renshaw, Davids, et al.</li>
+          <li><strong class="text-white">"Nonlinear Pedagogy in Skill Acquisition"</strong> — Jia Yi Chow.</li>
+          <li><strong class="text-white">"21st Century Basketball Practice"</strong> — Brian McCormick.</li>
+          <li><strong class="text-white">"Fake Fundamentals"</strong> — Brian McCormick.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg text-talata-baby mb-4 border-b border-talata-baby/40 pb-2">Podcasts</h3>
+        <ul class="text-sm space-y-3 text-talata-sky">
+          <li><strong class="text-white">Basketball Immersion:</strong> "Applying Ecological Dynamics with Alex Sarama"</li>
+          <li><strong class="text-white">The Coaching Lab:</strong> "Tyler Coston on Constraints and SAVI"</li>
+          <li><strong class="text-white">Slappin' Glass:</strong> "Small-Sided Games and Decision Making"</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg text-talata-baby mb-4 border-b border-talata-baby/40 pb-2">Follow</h3>
+        <ul class="text-sm space-y-3 text-talata-sky">
+          <li>@AlexJSarama</li>
+          <li>@tylercoston</li>
+          <li>@BBallImmersion</li>
+          <li>@coach_spinz</li>
+          <li>TransformingBasketball.com</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mb-12 text-center bg-gradient-to-br from-talata-blue to-talata-black text-white p-12 rounded-2xl shadow-2xl">
+    <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Come See It In Action</h2>
+    <p class="text-talata-sky mb-8 text-lg max-w-2xl mx-auto">Come watch a session. It will look chaotic. It is supposed to. That is exactly how players get better.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="/#programs" class="bg-talata-baby hover:bg-white text-talata-navy px-8 py-3 rounded-full font-bold transition">View Programs</a>
+      <a href="/join" class="bg-white text-talata-navy hover:bg-talata-baby px-8 py-3 rounded-full font-bold transition">Book a Free Trial</a>
+      <a href="https://wa.me/4552398508" target="_blank" rel="noopener" class="bg-transparent border-2 border-talata-baby text-talata-baby hover:bg-talata-baby hover:text-talata-navy px-8 py-3 rounded-full font-bold transition inline-flex items-center gap-2">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-talata-black text-talata-sky py-12 text-center">
+  <div class="max-w-7xl mx-auto px-4">
+    <p class="text-2xl font-bold text-white mb-2">TALATA <span class="text-talata-baby">BASKETBALL</span></p>
+    <p class="text-sm mb-4 text-talata-baby">Joy · Excellence · Respect</p>
+    <p class="text-sm mb-4">Copenhagen's constraints-led basketball club</p>
+    <div class="flex justify-center gap-6 mb-4 text-sm">
+      <a href="mailto:coach@talatabasketball.dk" class="hover:text-white transition">coach@talatabasketball.dk</a>
+      <a href="https://wa.me/4552398508" target="_blank" rel="noopener" class="hover:text-white transition">WhatsApp</a>
+    </div>
+    <p class="text-xs">&copy; 2026 Talata Basketball | Coach Deng Awak</p>
+  </div>
+</footer>
+
+<script>
+function wrapLabels(labels) {
+  return labels.map(label => {
+    if (typeof label === 'string' && label.length > 16) {
+      const words = label.split(' '); const lines = []; let currentLine = '';
+      words.forEach(word => {
+        if ((currentLine + word).length > 16) {
+          if (currentLine.trim() !== '') lines.push(currentLine.trim());
+          currentLine = word + ' ';
+        } else { currentLine += word + ' '; }
+      });
+      if (currentLine.trim() !== '') lines.push(currentLine.trim());
+      return lines;
+    }
+    return label;
+  });
+}
+const tooltipConfig = { callbacks: { title: function(items) { const item = items[0]; let label = item.chart.data.labels[item.dataIndex]; return Array.isArray(label) ? label.join(' ') : label; } } };
+
+window.onload = function() {
+  // Radar Chart — Traditional (gray) vs CLA (baby blue)
+  new Chart(document.getElementById('radarChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: wrapLabels(['Game Realism', 'Decision Making', 'Active Reps', 'Form Isolation Focus', 'Skill Adaptability', 'Coach Talking']),
+      datasets: [
+        { label: 'Traditional Drills', data: [30, 20, 40, 90, 20, 90], fill: true, backgroundColor: 'rgba(148,163,184,0.25)', borderColor: '#94A3B8', pointBackgroundColor: '#94A3B8', pointBorderColor: '#fff' },
+        { label: 'CLA / Small-Sided Games', data: [90, 90, 85, 10, 95, 30], fill: true, backgroundColor: 'rgba(125, 211, 252, 0.35)', borderColor: '#7DD3FC', pointBackgroundColor: '#7DD3FC', pointBorderColor: '#fff' }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false, responsive: true,
+      plugins: { tooltip: tooltipConfig, legend: { position: 'bottom', labels: { color: '#BAE6FD' } } },
+      scales: { r: { angleLines: { color: 'rgba(255,255,255,0.15)' }, grid: { color: 'rgba(255,255,255,0.15)' }, pointLabels: { font: { size: 11, family: 'Inter' }, color: '#BAE6FD' }, ticks: { display: false, min: 0, max: 100 } } }
+    }
+  });
+
+  // Stacked Bar — Age Progression
+  new Chart(document.getElementById('stackedBarChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ['U9/U11 (Mini)', 'U13/U15 (Youth)', 'U17+ (Academy)'],
+      datasets: [
+        { label: 'Motor Skills & Joy', data: [70, 20, 5], backgroundColor: '#7DD3FC' },
+        { label: 'Skill Discovery / SSGs', data: [25, 60, 30], backgroundColor: '#1E40AF' },
+        { label: 'Tactical Reads / Speed', data: [5, 20, 65], backgroundColor: '#0A0A0A' }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false, responsive: true,
+      plugins: { tooltip: tooltipConfig, legend: { position: 'bottom' } },
+      scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } }
+    }
+  });
+
+  // Doughnut — Session
+  new Chart(document.getElementById('doughnutChart').getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels: wrapLabels(['Warm-Up (Movement Games)', 'Theme Introduction', 'Constraint Progression', 'Free Scrimmage', 'Cool-Down & Review']),
+      datasets: [{ data: [10, 15, 25, 20, 5], backgroundColor: ['#7DD3FC', '#1E40AF', '#0B1F3A', '#0A0A0A', '#BAE6FD'], borderWidth: 2, borderColor: '#FFFFFF' }]
+    },
+    options: {
+      maintainAspectRatio: false, responsive: true, cutout: '60%',
+      plugins: { tooltip: { callbacks: { title: tooltipConfig.callbacks.title, label: ctx => ctx.parsed + ' Minutes' } }, legend: { display: false } }
+    }
+  });
+};
+</script>
+</body>
+</html>
