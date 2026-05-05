@@ -133,7 +133,7 @@
           <h3>Talata Mini</h3>
           <p>For kids ages 5 to 11 who want to play basketball. Tuesdays and Thursdays at Strandvejsskolen, Østerbro. No kit, no experience, no pressure. Just show up and play.</p>
           <ul class="program-list">
-            <li>Ages 5 to 11</li>
+            <li>Ages 5 to 10</li>
             <li>Tue + Thu at Strandvejsskolen</li>
             <li>50+ kids this season</li>
             <li>Free to try</li>
@@ -193,6 +193,7 @@
       <div class="photo-strip-item" style="background-image: url('images/IMG_4147.JPG'); background-position: center 35%;"></div>
       <div class="photo-strip-item" style="background-image: url('images/IMG_4172.JPG'); background-position: center 30%;"></div>
       <div class="photo-strip-item" style="background-image: url('974A2776.jpg'); background-position: center 40%;"></div>
+      <div class="photo-strip-item" style="background-image: url('images/squad-energy.jpg'); background-position: center 30%;"></div>
     </div>
   </section>
 
@@ -434,7 +435,7 @@
             <span style="font-size:12px;color:#16a34a;font-weight:700;">Now open</span>
           </div>
           <div>
-            <div style="font-size:11px;font-weight:700;color:#7BAFD4;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Ages 5 to 11</div>
+            <div style="font-size:11px;font-weight:700;color:#7BAFD4;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Ages 5 to 10</div>
             <h3 style="font-size:26px;font-weight:900;margin:0 0 10px;letter-spacing:-0.5px;">Talata Mini</h3>
             <p style="font-size:15px;color:#555;margin:0;line-height:1.7;">For kids who just want to play. Come once or twice a week at Strandvejsskolen. Movement, games, fundamentals. No experience needed and first timers are exactly who this is for. When they turn 11 they move up to U13.</p>
           </div>
@@ -637,7 +638,7 @@
             <label>Interested in</label>
             <select name="program">
               <option value="">Select a program</option>
-              <option value="mini">Talata Mini (ages 5–11)</option>
+              <option value="mini">Talata Mini (ages 5–10)</option>
               <option value="u13">Talata U13 (ages 11–13)</option>
               <option value="free-trial">Free Trial — Academy / Teams</option>
               <option value="academy">Academy (U15 or U17)</option>
@@ -1214,7 +1215,7 @@
       data.camp = data.program || 'Tryout Interest';
       const body = JSON.stringify(data);
 
-      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbzaK9M3N3vwa1nfz3t_X-2qg46vcNJ8P4ZRPmCoSgU32Izrg4OQuZ_ZhWl89o6C2Ghw/exec';
+      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbyzmMb0R-rlwT12Eb-spTosbNUvYFoHgS9QgBXQ6SnNkpdoloPwWapEDkKgxs7L36np/exec';
 
       try {
         await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
