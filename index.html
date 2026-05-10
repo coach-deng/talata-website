@@ -19,7 +19,7 @@
   <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/montserrat-latin-ext.woff2" type="font/woff2" crossorigin>
   <!-- Preload hero image for faster LCP -->
-  <link rel="preload" as="image" href="images/hero-optimized.jpg" type="image/jpeg" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/web/hero-800.jpg" imagesrcset="images/web/hero-800.jpg 800w, images/web/hero-1200.jpg 1200w, images/web/hero-1600.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <meta name="description" content="Talata Basketball er Københavns basketballklub. Gratis prøvetræning hver torsdag på Svanemøllehallen. Academy, ungdomshold og sommerlejre for alle niveauer." />
 
   <!-- Open Graph -->
@@ -100,7 +100,10 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <!-- Real <img> so browser discovers LCP image during HTML parse, not after CSSOM -->
-    <img src="images/hero-optimized.jpg" alt="Coach Deng with Talata Mini kids at Strandvejsskolen" fetchpriority="high" loading="eager" decoding="sync"
+    <img src="images/web/hero-1600.jpg"
+         srcset="images/web/hero-800.jpg 800w, images/web/hero-1200.jpg 1200w, images/web/hero-1600.jpg 1600w"
+         sizes="100vw"
+         alt="Coach Deng with Talata Mini kids at Strandvejsskolen" fetchpriority="high" loading="eager" decoding="sync"
          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:0;" />
     <div class="hero-bg" style="position:absolute;inset:0;z-index:1;background: linear-gradient(rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 100%), radial-gradient(ellipse at 70% 50%, rgba(255,107,0,0.10) 0%, transparent 60%);"></div>
     <div class="hero-inner">
@@ -129,7 +132,7 @@
       <div class="programs-grid">
         <div class="program-card program-featured">
           <div class="program-tag">Most popular</div>
-          <div class="program-card-photo" style="background-image:url('images/IMG_4147.JPG'); background-position: center 35%;"></div>
+          <div class="program-card-photo" style="background-image:url('images/web/IMG_4147-web.jpg'); background-position: center 35%;"></div>
           <h3>Talata Mini</h3>
           <p>For kids ages 5 to 11 who want to play basketball. Tuesdays and Thursdays at Strandvejsskolen, Østerbro. No kit, no experience, no pressure. Just show up and play.</p>
           <ul class="program-list">
@@ -728,9 +731,9 @@
       <div class="gallery-grid">
         <div class="gallery-item gallery-item-tall" style="background-image:url('images/hero-optimized.jpg'); background-position: center 38%;"></div>
         <div class="gallery-item" style="background-image:url('images/IMG_4138.JPG'); background-position: center 35%;"></div>
-        <div class="gallery-item" style="background-image:url('images/IMG_4147.JPG'); background-position: center 35%;"></div>
+        <div class="gallery-item" style="background-image:url('images/web/IMG_4147-web.jpg'); background-position: center 35%;"></div>
         <div class="gallery-item" style="background-image:url('images/IMG_4172.JPG'); background-position: center 30%;"></div>
-        <div class="gallery-item" style="background-image:url('images/IMG_4093.JPG'); background-position: center 35%;"></div>
+        <div class="gallery-item" style="background-image:url('images/web/IMG_4093-web.jpg'); background-position: center 35%;"></div>
       </div>
       <div style="text-align:center; margin-top:32px;">
         <a href="/blog/talata-mini-50-kids-strandvejsskolen-2026" style="display:inline-block; background:#7BAFD4; color:#fff; font-weight:700; font-size:0.95rem; padding:13px 28px; border-radius:8px; text-decoration:none; letter-spacing:0.02em;">Read the full story →</a>
