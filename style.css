@@ -268,7 +268,7 @@ h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px
 
 /* ── PHOTO STRIP ── */
 .photo-strip { width: 100%; }
-.photo-strip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 340px; }
+.photo-strip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; height: 480px; }
 .photo-strip-item { background-size: cover; background-position: center; }
 @media (max-width: 640px) {
   .photo-strip-grid { grid-template-columns: 1fr; height: auto; }
