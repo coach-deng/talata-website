@@ -13,12 +13,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Talata Basketball Copenhagen | Youth Club, Academy &amp; Camps</title>
   <link rel="canonical" href="https://talatabasketball.dk/" />
-  <!-- Self-hosted fonts: no cross-origin round-trip, preloaded for zero LCP delay -->
+  <!-- Self-hosted fonts: preload only critical variants (latin covers DK/EN, ext not needed) -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="/fonts/montserrat-latin-ext.woff2" type="font/woff2" crossorigin>
-  <!-- Preload hero image for faster LCP -->
+  <!-- Preload hero image — WebP first, JPEG fallback -->
+  <link rel="preload" as="image" href="images/web/hero-800.webp" imagesrcset="images/web/hero-800.webp 800w, images/web/hero-1200.webp 1200w, images/web/hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high" type="image/webp" />
   <link rel="preload" as="image" href="images/web/hero-800.jpg" imagesrcset="images/web/hero-800.jpg 800w, images/web/hero-1200.jpg 1200w, images/web/hero-1600.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <meta name="description" content="Talata Basketball er Københavns basketballklub. Gratis prøvetræning hver torsdag på Svanemøllehallen. Academy, ungdomshold og sommerlejre for alle niveauer." />
 
@@ -100,11 +99,14 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <!-- Real <img> so browser discovers LCP image during HTML parse, not after CSSOM -->
-    <img src="images/web/hero-1600.jpg"
-         srcset="images/web/hero-800.jpg 800w, images/web/hero-1200.jpg 1200w, images/web/hero-1600.jpg 1600w"
-         sizes="100vw"
-         alt="Coach Deng with Talata Mini kids at Strandvejsskolen" fetchpriority="high" loading="eager" decoding="sync"
-         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:0;" />
+    <picture>
+      <source type="image/webp" srcset="images/web/hero-800.webp 800w, images/web/hero-1200.webp 1200w, images/web/hero-1600.webp 1600w" sizes="100vw">
+      <img src="images/web/hero-1600.jpg"
+           srcset="images/web/hero-800.jpg 800w, images/web/hero-1200.jpg 1200w, images/web/hero-1600.jpg 1600w"
+           sizes="100vw"
+           alt="Coach Deng with Talata Mini kids at Strandvejsskolen" fetchpriority="high" loading="eager" decoding="sync"
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:0;" />
+    </picture>
     <div class="hero-bg" style="position:absolute;inset:0;z-index:1;background: linear-gradient(rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 100%), radial-gradient(ellipse at 70% 50%, rgba(255,107,0,0.10) 0%, transparent 60%);"></div>
     <div class="hero-inner">
       <h1>Copenhagen's basketball club.<br/><span>Come play.</span></h1>
@@ -288,7 +290,7 @@
               <div class="schedule-day">Tue</div>
               <div class="schedule-info">
                 <strong>Teams + Development</strong>
-                <span>16:00 to 18:00 &middot; Kulturhuset Indre By</span>
+                <span>16:00 to 18:00 &middot; Nørrebrohallen</span>
               </div>
             </div>
             <div class="schedule-item">
@@ -329,7 +331,7 @@
             <div class="schedule-item">
               <div class="schedule-day">Sat</div>
               <div class="schedule-info">
-                <strong>Skills Session + Games</strong>
+                <strong>Open Gym (Members)</strong>
                 <span>10:00 to 12:00 &middot; Kulturhuset Indre By</span>
               </div>
             </div>
