@@ -16,9 +16,8 @@
   <!-- Self-hosted fonts: preload only critical variants (latin covers DK/EN, ext not needed) -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
-  <!-- Preload hero image — WebP first, JPEG fallback -->
-  <link rel="preload" as="image" href="images/web/hero-800.webp" imagesrcset="images/web/hero-800.webp 800w, images/web/hero-1200.webp 1200w, images/web/hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high" type="image/webp" />
-  <link rel="preload" as="image" href="images/web/hero-800.jpg" imagesrcset="images/web/hero-800.jpg 800w, images/web/hero-1200.jpg 1200w, images/web/hero-1600.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <!-- Preload hero image — WebP only (JPEG is fallback, no need to preload both) -->
+  <link rel="preload" as="image" href="images/web/hero-1200.webp" imagesrcset="images/web/hero-800.webp 800w, images/web/hero-1200.webp 1200w, images/web/hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high" type="image/webp" />
   <meta name="description" content="Talata Basketball er Københavns basketballklub. Gratis prøvetræning hver torsdag på Svanemøllehallen. Academy, ungdomshold og sommerlejre for alle niveauer." />
 
   <!-- Open Graph -->
@@ -107,7 +106,7 @@
            alt="Coach Deng with Talata Mini kids at Strandvejsskolen" fetchpriority="high" loading="eager" decoding="sync"
            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:0;" />
     </picture>
-    <div class="hero-bg" style="position:absolute;inset:0;z-index:1;background: linear-gradient(rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 100%), radial-gradient(ellipse at 70% 50%, rgba(255,107,0,0.10) 0%, transparent 60%);"></div>
+    <div class="hero-bg" style="position:absolute;inset:0;z-index:1;background: linear-gradient(rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 100%);"></div>
     <div class="hero-inner">
       <h1>Copenhagen's basketball club.<br/><span>Come play.</span></h1>
       <p>Whether you want to try basketball for the first time or you're chasing a scholarship, Talata is where Copenhagen's players develop. Real coaching, real teams, free trial every Thursday.</p>
@@ -407,16 +406,6 @@
             <div class="coach-role">Mini Coach (U9)</div>
             <h3>Samuel De Castro</h3>
             <p>Samuel runs the Mini program at Strandvejsskolen on Tuesdays and Thursdays. He's with the youngest kids every session — focused on the fundamentals that matter before everything else. Standards on and off the court.</p>
-          </div>
-        </div>
-
-        <!-- Tobias Zahle -->
-        <div class="coach-card">
-          <div class="coach-avatar">TZ</div>
-          <div class="coach-info">
-            <div class="coach-role">Youth Coach (U9 to U13)</div>
-            <h3>Tobias Zahle</h3>
-            <p>Works with the youngest players from U9 to U13. Focused on development and the details that don't show up in the box score. Standards on and off the court.</p>
           </div>
         </div>
 
