@@ -17,8 +17,26 @@
 /canada    /camps/canada-camp-2026    301
 /lithuania    /camps/lithuania-camp-2026    301
 /nida    /camps/nida-camp-2026    301
-# /academy, /join, /mini — handled natively by Cloudflare Pages (.html stripping)
+# Explicit .html → clean URL 301s
+# Consolidates Google authority — both versions ranked separately before this
+/index.html    /    301
+/academy.html    /academy    301
+/mini.html    /mini    301
+/join.html    /join    301
+/camps.html    /camps    301
 /camps.html/*    /camps    301
+/blog.html    /blog    301
+/philosophy.html    /philosophy    301
+/reviews.html    /reviews    301
 
-# 410 Gone for pages that should not be indexed
+# Camp sub-pages
+/camps/canada-camp-2026.html    /camps/canada-camp-2026    301
+/camps/lithuania-camp-2026.html    /camps/lithuania-camp-2026    301
+/camps/nida-camp-2026.html    /camps/nida-camp-2026    301
+/camps/dk-summer-camp-2026.html    /camps/dk-summer-camp-2026    301
+/camps/spring-camp-2026.html    /camps/spring-camp-2026    301
+/camps/spring-camp-u9-u11-2026.html    /camps/spring-camp-u9-u11-2026    301
+/camps/spring-camp-u13-u15-2026.html    /camps/spring-camp-u13-u15-2026    301
+
+# Old/legacy paths
 /index-new.html    /    301
