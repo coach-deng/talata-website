@@ -17,8 +17,8 @@
   <!-- Self-hosted fonts: preload only critical variants (latin covers DK/EN, ext not needed) -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
-  <!-- Preload hero image — WebP only (JPEG is fallback, no need to preload both) -->
-  <link rel="preload" as="image" href="images/web/hero-1200.webp" imagesrcset="images/web/hero-800.webp 800w, images/web/hero-1200.webp 1200w, images/web/hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high" type="image/webp" />
+  <!-- Preload hero image — AVIF (smallest, supported by modern browsers; WebP fallback via picture element) -->
+  <link rel="preload" as="image" href="images/web/hero-1200.avif" imagesrcset="images/web/hero-800.avif 800w, images/web/hero-1200.avif 1200w, images/web/hero-1600.avif 1600w" imagesizes="100vw" fetchpriority="high" type="image/avif" />
   <meta name="description" content="Københavns basketball klub for børn, unge og voksne. Mini (5-10), Academy (U13-U19), Talata Men og Talata Fitness. Gratis prøvetræning. Camps i CPH, Canada og Litauen. Siden 2021." />
 
   <!-- Open Graph -->
@@ -131,10 +131,12 @@
   <section class="hero" id="home">
     <!-- Real <img> so browser discovers LCP image during HTML parse, not after CSSOM -->
     <picture>
+      <source type="image/avif" srcset="images/web/hero-800.avif 800w, images/web/hero-1200.avif 1200w, images/web/hero-1600.avif 1600w" sizes="100vw">
       <source type="image/webp" srcset="images/web/hero-800.webp 800w, images/web/hero-1200.webp 1200w, images/web/hero-1600.webp 1600w" sizes="100vw">
       <img src="images/web/hero-1600.jpg"
            srcset="images/web/hero-800.jpg 800w, images/web/hero-1200.jpg 1200w, images/web/hero-1600.jpg 1600w"
            sizes="100vw"
+           width="1600" height="1066"
            alt="Coach Deng with Talata Mini kids at Strandvejsskolen" fetchpriority="high" loading="eager" decoding="sync"
            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:0;" />
     </picture>
