@@ -423,7 +423,7 @@
           <a href="lithuania-camp-2026.html" style="display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:24px;">
             <div style="font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;color:#1E40AF;margin-bottom:8px;font-weight:700;">Jul 25 or Aug 2</div>
             <h3 style="font-size:1.05rem;font-weight:700;margin:0 0 8px;color:#0a0a0a;">Lithuania (Nida) Camp</h3>
-            <p style="color:#555;font-size:0.88rem;margin:0 0 12px;line-height:1.5;">BasketNews x Talata, 9th year. FIBA gym + beach. Ages 13 to 17.</p>
+            <p style="color:#555;font-size:0.88rem;margin:0 0 12px;line-height:1.5;">BasketNews x Talata, 9th year. FIBA gym + beach. Ages 12 to 17.</p>
             <div style="font-size:0.85rem;color:#1E40AF;font-weight:600;">See info →</div>
           </a>
           <a href="dk-summer-camp-2026.html" style="display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:24px;">
@@ -460,7 +460,9 @@
         submitBtn.disabled = true;
 
         const data = Object.fromEntries(new FormData(form));
-        data.source = 'talata_canada_camp_2026';
+        // Source: parent's "How did you find us?" pick wins. Form ID kept separately for traceability.
+        data.source = data.how_found || 'talata_canada_camp_2026';
+        data.form_id = 'talata_canada_camp_2026';
         data.camp = 'Canada Basketball Camp 2026';
         const body = JSON.stringify(data);
 

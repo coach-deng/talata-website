@@ -418,7 +418,8 @@
         submitBtn.disabled = true;
 
         const data = Object.fromEntries(new FormData(form));
-        data.source = 'talata_spring_camp_u13u15_2026';
+        data.source = data.how_found || 'talata_spring_camp_u13u15_2026';
+        data.form_id = 'talata_spring_camp_u13u15_2026';
         data.camp = 'Spring Camp 2026 U13-U15 - May 15-16 - Svanemøllehallen - 750 kr';
         const body = JSON.stringify(data);
 

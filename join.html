@@ -632,7 +632,10 @@
 
       const data = Object.fromEntries(new FormData(form));
       data.name = data.player_name; // API expects 'name'
-      data.source = 'talata-join-2026';
+      // Source: parent's "How did you find us?" pick wins. Fall back to the
+      // form identifier so we can still trace which form the lead came from.
+      data.source = data.how_found || 'talata-join-2026';
+      data.form_id = 'talata-join-2026'; // form identifier kept separately
       data.camp = 'Join Talata';
       const body = JSON.stringify(data);
       const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbzaK9M3N3vwa1nfz3t_X-2qg46vcNJ8P4ZRPmCoSgU32Izrg4OQuZ_ZhWl89o6C2Ghw/exec';

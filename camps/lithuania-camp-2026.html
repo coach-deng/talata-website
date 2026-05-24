@@ -17,12 +17,12 @@
   </script>
   <title>Lithuania Basketball Camp 2026 — Nida (Karpynė) | BasketNews x Talata</title>
   <link rel="canonical" href="https://talatabasketball.dk/camps/lithuania-camp-2026" />
-  <meta name="description" content="Lithuania Basketball Camp 2026 in Nida (Karpynė). BasketNews x Talata, 9th year running. FIBA gym, 3 sessions daily, beach + pool. Ages 13-17. Departs CPH July 25 or August 2. 5,950 kr early bird." />
+  <meta name="description" content="Lithuania Basketball Camp 2026 in Nida (Karpynė). BasketNews x Talata, 9th year running. FIBA gym, 3 sessions daily, beach + pool. Ages 12-17. Departs CPH July 25 or August 2. 5,950 kr early bird." />
   <meta name="keywords" content="basketball camp lithuania, basketnews camp, nida basketball camp, lithuania basketball camp 2026, european basketball camp, karpynė camp, basketball summer camp europe, baltic basketball, talata lithuania" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://talatabasketball.dk/camps/lithuania-camp-2026" />
   <meta property="og:title" content="Lithuania Basketball Camp 2026 — Nida | BasketNews x Talata" />
-  <meta property="og:description" content="Train in the heart of European basketball. BasketNews x Talata, 9th year. Nida (Karpynė), Lithuania. Ages 13-17. Departs Copenhagen July or August." />
+  <meta property="og:description" content="Train in the heart of European basketball. BasketNews x Talata, 9th year. Nida (Karpynė), Lithuania. Ages 12-17. Departs Copenhagen July or August." />
   <meta property="og:image" content="https://talatabasketball.dk/images/camp-group.jpg" />
   <meta property="og:site_name" content="Talata Basketball" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +40,7 @@
     "@context": "https://schema.org",
     "@type": "SportsEvent",
     "name": "Lithuania Basketball Camp 2026 — Talata x BasketNews",
-    "description": "9th annual basketball camp in Nida (Karpynė), Lithuania. Hosted by BasketNews Academy in partnership with Talata Basketball Copenhagen. Ages 13-17.",
+    "description": "9th annual basketball camp in Nida (Karpynė), Lithuania. Hosted by BasketNews Academy in partnership with Talata Basketball Copenhagen. Ages 12-17.",
     "sport": "Basketball",
     "startDate": "2026-07-25",
     "endDate": "2026-08-10",
@@ -499,7 +499,8 @@
       submitBtn.disabled = true;
 
       const data = Object.fromEntries(new FormData(form));
-      data.source = 'karpyne-camp-2026';
+      data.source = data.how_found || 'karpyne-camp-2026';
+      data.form_id = 'karpyne-camp-2026';
       data.camp = 'Karpyne Camp 2026';
       const body = JSON.stringify(data);
       const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbzaK9M3N3vwa1nfz3t_X-2qg46vcNJ8P4ZRPmCoSgU32Izrg4OQuZ_ZhWl89o6C2Ghw/exec';

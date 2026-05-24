@@ -417,7 +417,7 @@
           <a href="lithuania-camp-2026.html" style="display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:24px;">
             <div style="font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;color:#1E40AF;margin-bottom:8px;font-weight:700;">Jul 25 or Aug 2</div>
             <h3 style="font-size:1.05rem;font-weight:700;margin:0 0 8px;color:#0a0a0a;">Lithuania (Nida) Camp</h3>
-            <p style="color:#555;font-size:0.88rem;margin:0 0 12px;line-height:1.5;">BasketNews x Talata, 9th year. FIBA gym + beach. Ages 13 to 17.</p>
+            <p style="color:#555;font-size:0.88rem;margin:0 0 12px;line-height:1.5;">BasketNews x Talata, 9th year. FIBA gym + beach. Ages 12 to 17.</p>
             <div style="font-size:0.85rem;color:#1E40AF;font-weight:600;">See info →</div>
           </a>
         </div>
@@ -440,7 +440,8 @@
         submitBtn.disabled = true;
 
         const data = Object.fromEntries(new FormData(form));
-        data.source = 'talata_dk_mini_summer_camp_2026';
+        data.source = data.how_found || 'talata_dk_mini_summer_camp_2026';
+        data.form_id = 'talata_dk_mini_summer_camp_2026';
         data.camp = 'Summer Camp Ages 5-9 2026';
         const body = JSON.stringify(data);
         const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbzaK9M3N3vwa1nfz3t_X-2qg46vcNJ8P4ZRPmCoSgU32Izrg4OQuZ_ZhWl89o6C2Ghw/exec';
