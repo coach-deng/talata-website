@@ -429,12 +429,24 @@
         <div class="gantt-track" data-camp="canada"></div>
       </div>
       <div class="gantt-row">
-        <div class="gantt-label">Nida</div>
+        <div class="gantt-label">Nida (Lithuania)</div>
         <div class="gantt-track" data-camp="nida"></div>
       </div>
       <div class="gantt-row">
-        <div class="gantt-label">DK Sommercamp</div>
+        <div class="gantt-label">Summer Camp 11-15</div>
         <div class="gantt-track" data-camp="dk"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Summer Camp 5-10</div>
+        <div class="gantt-track" data-camp="mini"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Autumn Camp</div>
+        <div class="gantt-track" data-camp="autumn"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Christmas Hoops</div>
+        <div class="gantt-track" data-camp="christmas"></div>
       </div>
     </div>
   </div>
@@ -602,16 +614,20 @@
   </div>
 
   <script>
-    const START = new Date('2026-05-01');
-    const END   = new Date('2026-09-01');
+    const START = new Date('2026-06-01');
+    const END   = new Date('2027-02-01');
     const TOTAL = (END - START) / 86400000;
 
     // --- Month axis ---
     const MONTHS = [
-      { label: 'May',    s: '2026-05-01', e: '2026-06-01' },
-      { label: 'June',   s: '2026-06-01', e: '2026-07-01' },
-      { label: 'July',   s: '2026-07-01', e: '2026-08-01' },
-      { label: 'August', s: '2026-08-01', e: '2026-09-01' },
+      { label: 'Jun',  s: '2026-06-01', e: '2026-07-01' },
+      { label: 'Jul',  s: '2026-07-01', e: '2026-08-01' },
+      { label: 'Aug',  s: '2026-08-01', e: '2026-09-01' },
+      { label: 'Sep',  s: '2026-09-01', e: '2026-10-01' },
+      { label: 'Oct',  s: '2026-10-01', e: '2026-11-01' },
+      { label: 'Nov',  s: '2026-11-01', e: '2026-12-01' },
+      { label: 'Dec',  s: '2026-12-01', e: '2027-01-01' },
+      { label: 'Jan',  s: '2027-01-01', e: '2027-02-01' },
     ];
     const monthsEl = document.getElementById('gantt-months');
     const tracks   = document.querySelectorAll('.gantt-track');
@@ -642,11 +658,12 @@
 
     // --- Camp bars ---
     const CAMPS = [
-      { id: 'canada',  s: '2026-06-27', e: '2026-07-06', color: '#4a87b0', text: '#fff', label: 'Jun 27 - Jul 6' },
-      { id: 'karpyne', s: '2026-07-19', e: '2026-07-25', color: '#7BAFD4', text: '#111', label: 'Jul 19-25' },
-      { id: 'nida',    s: '2026-07-25', e: '2026-08-02', color: '#1a3a55', text: '#fff', label: 'Jul 25-Aug 2' },
-      { id: 'mini',    s: '2026-08-04', e: '2026-08-07', color: '#4a87b0', text: '#fff', label: 'Aug 4–7' },
-      { id: 'dk',      s: '2026-08-03', e: '2026-08-07', color: '#4a87b0', text: '#fff', label: 'Aug 3-7' },
+      { id: 'canada',    s: '2026-06-27', e: '2026-07-06', color: '#4a87b0', text: '#fff', label: 'Jun 27 - Jul 6' },
+      { id: 'nida',      s: '2026-07-25', e: '2026-08-02', color: '#1a3a55', text: '#fff', label: 'Jul 25 - Aug 2' },
+      { id: 'dk',        s: '2026-08-03', e: '2026-08-07', color: '#1E40AF', text: '#fff', label: 'Aug 3-7' },
+      { id: 'mini',      s: '2026-08-04', e: '2026-08-07', color: '#7DD3FC', text: '#0B1F3A', label: 'Aug 4-7' },
+      { id: 'autumn',    s: '2026-10-12', e: '2026-10-15', color: '#f97316', text: '#fff', label: 'Oct 12-15' },
+      { id: 'christmas', s: '2026-12-28', e: '2026-12-30', color: '#0B1F3A', text: '#fff', label: 'Dec 28-30' },
     ];
 
     CAMPS.forEach(c => {
