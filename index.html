@@ -335,7 +335,7 @@
               <div class="schedule-date">Aug 4 to 7</div>
               <div class="schedule-info">
                 <strong>Mini Sommercamp 2026</strong>
-                <span>Ages 5-9 &middot; Strandvejsskolen &middot; Register now</span>
+                <span>Ages 5-10 &middot; Strandvejsskolen &middot; Register now</span>
               </div>
               <div class="schedule-badge tbd">Camp</div>
             </div>
@@ -343,7 +343,7 @@
               <div class="schedule-date">Aug 3 to 7</div>
               <div class="schedule-info">
                 <strong>Academy Sommercamp 2026</strong>
-                <span>Ages 10-14 &middot; Svanemøllehallen &middot; All-Star Game finale</span>
+                <span>Ages 11-15 &middot; Svanemøllehallen &middot; All-Star Game finale</span>
               </div>
               <div class="schedule-badge tbd">Camp</div>
             </div>
@@ -587,10 +587,10 @@
               <span style="font-size:11px;color:#22c55e;font-weight:600;">Active</span>
             </div>
             <div>
-              <h4 style="font-size:16px;font-weight:800;margin:0 0 4px;">Talata Girls, U17/U19</h4>
+              <h4 style="font-size:16px;font-weight:800;margin:0 0 4px;">Girls, U17/U19</h4>
               <p style="font-size:13px;color:#666;margin:0;">Our older girls, in partnership with Stevnsgade. They also lead the young Sparks as Big Sisters.</p>
             </div>
-            <a href="/sparks" style="font-size:13px;font-weight:700;color:#7BAFD4;text-decoration:none;margin-top:auto;">About Talata Girls &rarr;</a>
+            <a href="/sparks" style="font-size:13px;font-weight:700;color:#7BAFD4;text-decoration:none;margin-top:auto;">About Girls &rarr;</a>
           </div>
 
           <!-- Talata Men -->
@@ -600,7 +600,7 @@
               <span style="font-size:11px;color:#f59e0b;font-weight:600;">Tryouts Open</span>
             </div>
             <div>
-              <h4 style="font-size:16px;font-weight:800;margin:0 0 4px;">Talata Men</h4>
+              <h4 style="font-size:16px;font-weight:800;margin:0 0 4px;">Men</h4>
               <p style="font-size:13px;color:#666;margin:0;">Competitive basketball in Div 3. Tryouts Thu 18:00 to 20:00.</p>
             </div>
             <a href="#contact" style="font-size:13px;font-weight:700;color:#7BAFD4;text-decoration:none;margin-top:auto;">Tryout &rarr;</a>
@@ -1312,9 +1312,10 @@
       submitBtn.disabled = true;
 
       const data = Object.fromEntries(new FormData(form));
-      data.source = 'talata_website';
       data.player_name = data.name;
       data.camp = data.program || 'Tryout Interest';
+      data.campaign = 'talata_website';
+      data.source = data.how_found || 'talata_website';  // capture the real channel, not just the campaign tag
       const body = JSON.stringify(data);
 
       const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbyzmMb0R-rlwT12Eb-spTosbNUvYFoHgS9QgBXQ6SnNkpdoloPwWapEDkKgxs7L36np/exec';
