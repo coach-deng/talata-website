@@ -7,13 +7,13 @@ Talata Basketball is a registered Danish forening (CVR 43599453) based in Copenh
 ## Programs (from August 1, 2026 for the 26/27 season)
 
 - [Mini (ages 5-7)](https://talatabasketball.dk/mini): Mon + Wed 15:00-16:00, Strandvejsskolen
-- [Rookies (ages 8-11)](https://talatabasketball.dk/mini): Tue + Thu 15:00-16:00, Strandvejsskolen
+- [Junior (ages 8-11)](https://talatabasketball.dk/mini): Tue + Thu 15:00-16:00, Strandvejsskolen
 - [Academy (ages 12-19)](https://talatabasketball.dk/academy): Tue evenings @ Nørrebrohallen, Thu evenings @ Svanemøllehallen
 - [Talata Men (competitive senior)](https://talatabasketball.dk): Thu + Fri evenings, Svanemøllehallen + Nørrebrohallen
 - [Talata Fitness (adult rec)](https://talatabasketball.dk): Thu evenings @ Svanemøllehallen
 - U17/U19 Girls: Coached by Talata in partnership with Stevnsgade, Tue @ Kulturhuset Indre By
 
-Note: through July 2026, Mini and Rookies run together Tue + Thu 15:00 at Strandvejsskolen. Split into Mon/Wed Mini + Tue/Thu Rookies from Aug 1.
+Note: through July 2026, Mini and Junior run together Tue + Thu 15:00 at Strandvejsskolen. Split into Mon/Wed Mini + Tue/Thu Junior from Aug 1.
 
 ## Camps 2026
 
@@ -27,7 +27,7 @@ Note: through July 2026, Mini and Rookies run together Tue + Thu 15:00 at Strand
 ## Pricing (from August 1, 2026)
 
 - Mini (5-7): 1,800 DKK per half-season
-- Rookies (8-11): 1,800 DKK per half-season
+- Junior (8-11): 1,800 DKK per half-season
 - Academy (12-19): 4,000 DKK per year
 - Talata Men competitive: 4,000 DKK per year
 - Talata Fitness Men (adult rec): 2,000 DKK per half-season
@@ -55,7 +55,7 @@ Google Business Profile reviews: search "Talata Basketball Copenhagen" on Google
 
 ## Locations
 
-- Strandvejsskolen, Sionsgade 1, 2100 København Ø (Mini + Rookies)
+- Strandvejsskolen, Sionsgade 1, 2100 København Ø (Mini + Junior)
 - Svanemøllehallen, Østerbrogade 240, 2100 København Ø (Academy + Men)
 - Nørrebrohallen, Nørrebrogade 208, 2200 København N (U19 + Men, Friday trials)
 - Kulturhuset Indre By, Charlotte Ammundsens Plads 3, 1359 København K (U17 Girls + open gym)
