@@ -15,7 +15,7 @@
 /camps/spring    /camps/spring-camp-2026    301
 /spring-camp    /camps/spring-camp-2026    301
 /canada    /camps/canada-camp-2026    301
-/lithuania    /camps/lithuania-camp-2026    301
+/lithuania    /camps/nida-camp-2026    301
 /nida    /camps/nida-camp-2026    301
 # Explicit .html → clean URL 301s
 # Consolidates Google authority — both versions ranked separately before this
@@ -31,7 +31,7 @@
 
 # Camp sub-pages
 /camps/canada-camp-2026.html    /camps/canada-camp-2026    301
-/camps/lithuania-camp-2026.html    /camps/lithuania-camp-2026    301
+/camps/lithuania-camp-2026.html    /camps/nida-camp-2026    301
 /camps/nida-camp-2026.html    /camps/nida-camp-2026    301
 /camps/dk-summer-camp-2026.html    /camps/dk-summer-camp-2026    301
 /camps/spring-camp-2026.html    /camps/spring-camp-2026    301
@@ -41,3 +41,4 @@
 # Old/legacy paths
 /index-new.html    /    301
 /sparks.html    /sparks    301
+/camps/lithuania-camp-2026    /camps/nida-camp-2026    301

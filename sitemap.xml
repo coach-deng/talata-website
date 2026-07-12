@@ -16,7 +16,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://talatabasketball.dk/camps/lithuania-camp-2026</loc>
+    <loc>https://talatabasketball.dk/camps/nida-camp-2026</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -49,6 +49,11 @@
     <loc>https://talatabasketball.dk/philosophy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/blog/talata-canada-camp-2026-recap</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://talatabasketball.dk/blog/talata-mini-50-kids-strandvejsskolen-2026</loc>
