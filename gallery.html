@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Self-hosted Inter: no cross-origin round-trip, preloaded for zero LCP delay -->
+  <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R64Y9CQ2VZ');
+  </script>
+  <title>Gallery | Talata Basketball Copenhagen</title>
+  <link rel="canonical" href="https://talatabasketball.dk/gallery" />
+  <meta name="description" content="Billeder fra Talata Basketball København. Kampe, træning, camps og fællesskab for børn og unge på Østerbro." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talatabasketball.dk/gallery" />
+  <meta property="og:title" content="Gallery | Talata Basketball" />
+  <meta property="og:description" content="Game days, training and club life at Talata Basketball Copenhagen." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/jun26/team-photo-tunnel-arena.jpg" />
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --blue: #7BAFD4;
+      --dark: #111;
+      --border: #e8e8e8;
+      --radius: 12px;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nav {
+      background: #111;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 900;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+
+    .hero {
+      background: var(--dark);
+      color: #fff;
+      padding: 64px 40px 52px;
+      text-align: center;
+    }
+    .hero .tag {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .gallery-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 32px 72px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 48px 0 16px;
+    }
+    .grid {
+      columns: 3 300px;
+      column-gap: 12px;
+    }
+    .grid img {
+      width: 100%;
+      display: block;
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      background: #ddd;
+    }
+
+    .cta-band {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 56px 32px;
+    }
+    .cta-band h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
+    .cta-band p { color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+    .cta-band a {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 13px 32px;
+      border-radius: 8px;
+    }
+
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .gallery-wrap { padding: 16px 16px 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">Talata <span>Basketball</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/camps">Camps</a>
+      <a href="/blog">The Playbook</a>
+      <a href="/gallery" class="active">Gallery</a>
+      <a href="/join">Join</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="tag">Gallery</div>
+    <h1>This is what we build.</h1>
+    <p>Game days, training sessions and club life at Talata Basketball Copenhagen. June 2026.</p>
+  </div>
+
+  <div class="gallery-wrap">
+
+    <div class="section-label">Game Day</div>
+    <div class="grid">
+      <img src="/images/jun26/u13-layup-contested.jpg" alt="Talata U13 player finishing a contested layup" loading="lazy">
+      <img src="/images/jun26/u13-drive-intensity.jpg" alt="Talata player attacking the basket at full speed" loading="lazy">
+      <img src="/images/jun26/u13-shot-pressure.jpg" alt="Talata player shooting under defensive pressure" loading="lazy">
+      <img src="/images/jun26/u13-fastbreak-duo.jpg" alt="Two Talata players running a fast break" loading="lazy">
+      <img src="/images/jun26/u13-pass-traffic.jpg" alt="Talata player passing through traffic" loading="lazy">
+      <img src="/images/jun26/u13-post-battle.jpg" alt="Talata player protecting the ball in the post" loading="lazy">
+      <img src="/images/jun26/u13-dribble-attack.jpg" alt="Talata player attacking off the dribble" loading="lazy">
+      <img src="/images/jun26/u13-defense-swarm.jpg" alt="Talata defenders swarming the ball" loading="lazy">
+      <img src="/images/jun26/u13-attack-gather.jpg" alt="Talata player gathering for a drive" loading="lazy">
+      <img src="/images/jun26/u13-break-run.jpg" alt="Talata player pushing the ball in transition" loading="lazy">
+    </div>
+
+    <div class="section-label">The Huddle</div>
+    <div class="grid">
+      <img src="/images/jun26/team-photo-tunnel-arena.jpg" alt="Talata team photo after a game day" loading="lazy">
+      <img src="/images/jun26/huddle-coaches-talk.jpg" alt="Talata coaches talking to the team in the huddle" loading="lazy">
+      <img src="/images/jun26/game-huddle-arena.jpg" alt="Talata team huddle on the arena court" loading="lazy">
+      <img src="/images/jun26/game-huddle-court.jpg" alt="Talata team huddle before tip-off" loading="lazy">
+      <img src="/images/jun26/huddle-bw-hands.jpg" alt="Hands in for Talata, black and white" loading="lazy">
+      <img src="/images/jun26/huddle-bw-coach.jpg" alt="Coach and players in the huddle, black and white" loading="lazy">
+      <img src="/images/jun26/coach-sideline.jpg" alt="Talata coach on the sideline" loading="lazy">
+      <img src="/images/jun26/coach-ball-closeup.jpg" alt="Talata coach with the ball at training" loading="lazy">
+    </div>
+
+    <div class="section-label">Mini &amp; School</div>
+    <div class="grid">
+      <img src="/images/jun26/mini-group-wall.jpg" alt="Talata Mini group at Strandvejsskolen" loading="lazy">
+      <img src="/images/jun26/mini-group-smiles.jpg" alt="Talata Mini kids smiling with their coach" loading="lazy">
+      <img src="/images/jun26/mini-session-group.jpg" alt="Talata Mini session group photo" loading="lazy">
+      <img src="/images/jun26/mini-group-energy.jpg" alt="Talata Mini kids full of energy after training" loading="lazy">
+      <img src="/images/jun26/school-group-gym.jpg" alt="School basketball group with Talata coach" loading="lazy">
+    </div>
+
+  </div>
+
+  <div class="cta-band">
+    <h2>Want in on the next one?</h2>
+    <p>First session is free. Every kid gets a spot.</p>
+    <a href="/join">Join Talata</a>
+  </div>
+
+  <footer>
+    <p>© 2026 Talata Basketball · <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a></p>
+  </footer>
+
+</body>
+</html>
