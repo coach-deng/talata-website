@@ -241,8 +241,10 @@ footer a:hover{color:var(--baby);}
         <div><label>Age</label><input name="age" type="number" min="4" max="60" required placeholder="e.g. 9"></div>
         <div><label>Gender</label><select name="gender"><option>Boy</option><option>Girl</option><option>Adult</option></select></div>
       </div>
-      <label>Parent email or phone</label>
-      <input name="contact" required placeholder="you@email.dk or +45...">
+      <div class="row2">
+        <div><label>Parent email</label><input name="email" type="email" required placeholder="you@email.dk"></div>
+        <div><label>Phone (optional)</label><input name="phone" placeholder="+45..."></div>
+      </div>
       <label>Where did you hear about us?</label>
       <select name="how_found">
         <option value="friend">Friend or teammate</option>
@@ -394,9 +396,6 @@ tf.addEventListener('submit', async (e) => {
   const btn = document.getElementById('trial-btn');
   btn.textContent = 'Sending...'; btn.disabled = true;
   const data = Object.fromEntries(new FormData(tf));
-  const c = (data.contact || '').trim();
-  if (c.includes('@')) { data.email = c; } else { data.phone = c; }
-  delete data.contact;
   data.name = data.player_name;
   data.source = data.how_found || 'talata-homepage-2026';
   data.form_id = 'talata-homepage-2026';
@@ -404,7 +403,8 @@ tf.addEventListener('submit', async (e) => {
   data.program = 'Free trial, route by age';
   const body = JSON.stringify(data);
   try {
-    await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
+    const res = await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
+    if (!res.ok) throw new Error('lead rejected');
     fetch('https://script.google.com/macros/s/AKfycbwBbnf12dGdPi1l_9K8dcx2czctBGnr57GMkmBe_-LgwgXtqOMR_n4luQkcH2X83l2b/exec', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body }).catch(() => {});
     tf.reset(); btn.style.display = 'none';
     document.getElementById('trial-fine').style.display = 'none';
