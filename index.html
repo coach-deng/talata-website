@@ -86,8 +86,8 @@ a{text-decoration:none;color:inherit;}
 .trial h2{font-family:var(--disp);font-weight:800;font-size:1.3rem;letter-spacing:-0.01em;}
 .trial .note{font-size:0.86rem;color:var(--ink2);margin:6px 0 18px;}
 .trial label{display:block;font-size:0.78rem;font-weight:700;margin:12px 0 5px;}
-.trial input,.trial select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:0.95rem;font-family:var(--body);background:#FBFCFE;}
-.trial input:focus,.trial select:focus{outline:2px solid var(--blue);border-color:transparent;}
+.trial input,.trial select,.trial textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:0.95rem;font-family:var(--body);background:#FBFCFE;resize:vertical;}
+.trial input:focus,.trial select:focus,.trial textarea:focus{outline:2px solid var(--blue);border-color:transparent;}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .trial button{width:100%;margin-top:18px;background:var(--blue);color:#fff;border:0;font-family:var(--disp);font-weight:800;font-size:1rem;padding:15px;border-radius:100px;cursor:pointer;transition:transform .15s;}
 .trial button:hover{transform:translateY(-1px);}
@@ -245,6 +245,13 @@ footer a:hover{color:var(--baby);}
         <div><label>Parent email</label><input name="email" type="email" required placeholder="you@email.dk"></div>
         <div><label>Phone (optional)</label><input name="phone" placeholder="+45..."></div>
       </div>
+      <label>What are you looking for?</label>
+      <select name="interest" id="trial-interest">
+        <option value="trial">Free trial session</option>
+        <option value="camp">DK Summer Camp (Aug 3 to 7)</option>
+        <option value="one-on-one">1:1 training</option>
+        <option value="other">Something else</option>
+      </select>
       <label>Where did you hear about us?</label>
       <select name="how_found">
         <option value="friend">Friend or teammate</option>
@@ -255,6 +262,8 @@ footer a:hover{color:var(--baby);}
         <option value="camp">A Talata camp</option>
         <option value="other">Other</option>
       </select>
+      <label>Anything we should know? <span style="font-weight:400;opacity:.6;">(optional)</span></label>
+      <textarea name="message" rows="2" placeholder="Experience, questions, siblings, anything"></textarea>
       <button type="submit" id="trial-btn">Claim my free session</button>
       <p class="fine" id="trial-fine">We route you by age: most kids trial Thursdays at Svanemøllehallen or Strandvejsskolen. Coach Deng confirms your exact slot.</p>
       <p class="fine" id="trial-ok" style="display:none;color:#15803D;font-weight:700;">Got it. Check your inbox, your free session details are on the way.</p>
@@ -391,26 +400,32 @@ footer a:hover{color:var(--baby);}
 
 <script>
 const tf = document.getElementById('trial');
+const trialBtn = document.getElementById('trial-btn');
+const interestSel = document.getElementById('trial-interest');
+const BTN_LABELS = { trial: 'Claim my free session', camp: 'Get camp details', 'one-on-one': 'Ask about 1:1 training', other: 'Send to Coach Deng' };
+const PROGRAM_MAP = { trial: 'Free trial', camp: 'DK Summer Camp 2026', 'one-on-one': '1:1 training', other: 'General inquiry' };
+interestSel.addEventListener('change', () => { trialBtn.textContent = BTN_LABELS[interestSel.value] || BTN_LABELS.trial; });
 tf.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const btn = document.getElementById('trial-btn');
-  btn.textContent = 'Sending...'; btn.disabled = true;
+  const label = trialBtn.textContent;
+  trialBtn.textContent = 'Sending...'; trialBtn.disabled = true;
   const data = Object.fromEntries(new FormData(tf));
   data.name = data.player_name;
   data.source = data.how_found || 'talata-homepage-2026';
   data.form_id = 'talata-homepage-2026';
-  data.camp = 'Join Talata';
-  data.program = 'Free trial, route by age';
+  data.program = PROGRAM_MAP[data.interest] || 'Free trial';
+  // Single delivery path: the Worker stores the lead in D1 and forwards to the
+  // GAS pipeline (sheet row + confirmation email). Posting to GAS directly as
+  // well would double every confirmation email.
   const body = JSON.stringify(data);
   try {
     const res = await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
     if (!res.ok) throw new Error('lead rejected');
-    fetch('https://script.google.com/macros/s/AKfycbwBbnf12dGdPi1l_9K8dcx2czctBGnr57GMkmBe_-LgwgXtqOMR_n4luQkcH2X83l2b/exec', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body }).catch(() => {});
-    tf.reset(); btn.style.display = 'none';
+    tf.reset(); trialBtn.style.display = 'none';
     document.getElementById('trial-fine').style.display = 'none';
     document.getElementById('trial-ok').style.display = 'block';
   } catch {
-    btn.textContent = 'Claim my free session'; btn.disabled = false;
+    trialBtn.textContent = label; trialBtn.disabled = false;
     alert('Something went wrong. Email coach@talatabasketball.dk and we sort it.');
   }
 });
