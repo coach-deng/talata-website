@@ -23,10 +23,10 @@
   <style>
     @font-face { font-family: 'Inter'; font-weight: 400 800; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --bg: #fafafa; --text: #1a1a1a; --muted: #555; --blue: #1E40AF; --sky: #BAE6FD; --baby: #7DD3FC; --orange: #f97316; --border: #e0e0e0; }
+    :root { --bg: #fafafa; --text: #1a1a1a; --muted: #555; --blue: #1E40AF; --sky: #BAE6FD; --baby: #7DD3FC; --navy: #0B1F3A; --border: #e0e0e0; }
     body { font-family: 'Inter', -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
     .page { max-width: 800px; margin: 0 auto; }
-    .hero { background: linear-gradient(135deg, #ea580c 0%, #f97316 50%, #fb923c 100%); color: #fff; padding: 60px 40px 50px; text-align: center; }
+    .hero { background: linear-gradient(135deg, #0B1F3A 0%, #1E40AF 50%, #4a87b0 100%); color: #fff; padding: 60px 40px 50px; text-align: center; }
     .hero .badge { display: inline-block; background: rgba(255,255,255,0.2); color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 20px; }
     .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
     .hero .sub { font-size: 1.05rem; opacity: 0.95; margin-bottom: 24px; }
@@ -38,18 +38,18 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
     .card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
     .card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--blue); }
-    .track { background: linear-gradient(135deg, #fff 0%, #fef3c7 100%); border: 2px solid var(--orange); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+    .track { background: linear-gradient(135deg, #fff 0%, #F8FAFC 100%); border: 2px solid var(--blue); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
     .track h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
     .price-row { display: flex; gap: 16px; align-items: baseline; margin-top: 12px; }
-    .price-row .price { font-size: 1.8rem; font-weight: 800; color: var(--orange); }
+    .price-row .price { font-size: 1.8rem; font-weight: 800; color: var(--blue); }
     .price-row .note { color: var(--muted); font-size: 0.9rem; }
     .waitlist-form { background: var(--bg); border: 2px solid var(--blue); border-radius: 12px; padding: 32px; margin-top: 32px; }
     .waitlist-form label { font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 6px; }
     .waitlist-form input, .waitlist-form select, .waitlist-form textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: inherit; background: #fff; }
     .waitlist-form .field { margin-bottom: 16px; }
     .waitlist-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .waitlist-form button { background: var(--orange); color: #fff; padding: 14px 32px; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: inherit; width: 100%; }
-    .waitlist-form button:hover { background: #ea580c; }
+    .waitlist-form button { background: var(--blue); color: #fff; padding: 14px 32px; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: inherit; width: 100%; }
+    .waitlist-form button:hover { background: #16305c; }
     .success { display: none; padding: 16px; background: #ecfdf5; border-radius: 8px; color: #065f46; font-weight: 600; text-align: center; margin-top: 16px; }
     .nav { background: #0A0A0A; color: #fff; padding: 16px 24px; }
     .nav a { color: #fff; text-decoration: none; font-weight: 600; }
