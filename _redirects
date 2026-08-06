@@ -1,3 +1,11 @@
+# HIDDEN Aug 6 2026: Ryparken is probably not ours on any day, so the Friday
+# slot on /ish-primary-school would confuse ISH parents. 302 (temporary) on
+# purpose — Google keeps the page indexed and we restore by deleting these two
+# lines, re-adding the nav entry in tools/apply-shared-header.py and the
+# sitemap block. The page file itself is untouched.
+/ish-primary-school    /school-partnerships    302
+/ish-primary-school.html    /school-partnerships    302
+
 # Redirect base64-encoded camp URLs to canonical paths
 # Cloudflare Pages strips .html automatically, so target clean URLs
 /camps/Y2FuYWRhLWNhbXAtMjAyNg*    /camps/canada-camp-2026    301

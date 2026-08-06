@@ -51,7 +51,9 @@ MENU = {
         ("/academy", "Academy", "ages 12 to 18"),
         ("/sparks", "Sparks", "girls only"),
         ("/join", "Talata Men", "2. Division + motion"),
-        ("/ish-primary-school", "ISH Primary School", "Fridays at Ryparken"),
+        # ISH Primary is hidden as of Aug 6 2026: the Ryparken gym is probably not
+        # ours on any day, so advertising a Friday slot confuses parents. The page
+        # file and its 302 in _redirects stay put — restore this line to unhide.
         ("/ish-high-school", "ISH High School", "Thursdays at Svanem&oslash;llehallen"),
         ("/school-partnerships", "School partnerships", "bring Talata to your school"),
     ],

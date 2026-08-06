@@ -30,12 +30,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://talatabasketball.dk/ish-primary-school</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- /ish-primary-school pulled Aug 6 2026 while the Ryparken gym is unresolved.
+       Page file and its 302 stay in place; re-add this block to unhide. -->
   <url>
     <loc>https://talatabasketball.dk/school-partnerships</loc>
     <lastmod>2026-08-06</lastmod>
