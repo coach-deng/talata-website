@@ -245,6 +245,55 @@
 /* stop the page scrolling behind an open drawer */
 html.tn-locked,body.tn-locked{overflow:hidden;}
 
+/* ---------- finished camp notice ----------
+   Camps that have run keep their page and their search rankings, but must not
+   look like they are still selling. Injected by tools/close-past-camps.py. */
+.tn-past{
+  background:linear-gradient(120deg,var(--tn-black,#0A0A0A),var(--tn-navy,#0B1F3A));
+  color:#fff;font-family:'Inter',system-ui,sans-serif;
+  border-bottom:3px solid #7DD3FC;
+}
+.tn-past-in{
+  max-width:1000px;margin:0 auto;padding:22px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+}
+.tn-past b{
+  display:block;font-family:'Montserrat',system-ui,sans-serif;
+  font-weight:800;font-size:1.05rem;letter-spacing:-0.01em;
+}
+.tn-past p{margin:4px 0 0;font-size:0.9rem;color:rgba(255,255,255,0.7);max-width:52ch;}
+.tn-past a.tn-past-cta{
+  flex:none;display:inline-flex;align-items:center;gap:8px;
+  background:#7DD3FC;color:#0B1F3A;
+  font-family:'Montserrat',system-ui,sans-serif;font-weight:800;font-size:0.88rem;
+  padding:13px 24px;border-radius:100px;text-decoration:none;
+  box-shadow:0 6px 18px rgba(125,211,252,0.26);transition:transform .15s;
+}
+.tn-past a.tn-past-cta:hover{transform:translateY(-2px);background:#a5e2fd;}
+
+/* the closed-registration card that replaces a finished camp's form */
+.tn-closed{
+  border:1.5px dashed rgba(125,211,252,0.55);border-radius:14px;
+  background:rgba(125,211,252,0.07);
+  padding:28px 24px;text-align:center;
+  font-family:'Inter',system-ui,sans-serif;margin:24px 0;
+}
+.tn-closed b{
+  display:block;font-family:'Montserrat',system-ui,sans-serif;
+  font-weight:800;font-size:1.1rem;margin-bottom:6px;
+}
+.tn-closed p{margin:0 0 16px;font-size:0.92rem;opacity:0.75;}
+.tn-closed a{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#1E40AF;color:#fff;
+  font-family:'Montserrat',system-ui,sans-serif;font-weight:800;font-size:0.9rem;
+  padding:13px 26px;border-radius:100px;text-decoration:none;
+}
+@media (max-width:640px){
+  .tn-past-in{flex-direction:column;align-items:flex-start;}
+  .tn-past a.tn-past-cta{width:100%;justify-content:center;}
+}
+
 /* Jump links land under the sticky bar without it covering the heading. */
 :target{scroll-margin-top:96px;}
 @media (max-width:900px){:target{scroll-margin-top:80px;}}

@@ -212,7 +212,7 @@
         <div class="tn-drop">
         <a href="/mini">Mini<small>ages 5 to 8</small></a>
         <a href="/mini#junior">Junior<small>ages 9 to 11</small></a>
-        <a href="/academy">Academy<small>ages 12 to 18</small></a>
+        <a href="/academy">Academy<small>ages 12 to 19</small></a>
         <a href="/sparks">Sparks<small>girls only</small></a>
         <a href="/join">Talata Men<small>2. Division + motion</small></a>
         <a href="/ish-high-school">ISH High School<small>Thursdays at Svanem&oslash;llehallen</small></a>
@@ -257,7 +257,7 @@
         <ul class="tn-drawer-list">
           <li><a href="/mini">Mini<small>ages 5 to 8</small></a></li>
           <li><a href="/mini#junior">Junior<small>ages 9 to 11</small></a></li>
-          <li><a href="/academy">Academy<small>ages 12 to 18</small></a></li>
+          <li><a href="/academy">Academy<small>ages 12 to 19</small></a></li>
           <li><a href="/sparks">Sparks<small>girls only</small></a></li>
           <li><a href="/join">Talata Men<small>2. Division + motion</small></a></li>
           <li><a href="/ish-high-school">ISH High School<small>Thursdays at Svanem&oslash;llehallen</small></a></li>
@@ -292,6 +292,18 @@
 
 <span id="tn-content" tabindex="-1"></span>
 <!-- TALATA:HEADER:END -->
+
+<!-- TALATA:PASTCAMP:START -->
+<div class="tn-past">
+  <div class="tn-past-in">
+    <div>
+      <b>This camp has finished</b>
+      <p>DK Summer Camp ran Aug 3 to 7 2026 at N&oslash;rre F&aelig;lled Skole. Registration is closed.</p>
+    </div>
+    <a class="tn-past-cta" href="/camps/autumn-camp-2026">Autumn Camp, Oct 12 to 15 <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</div>
+<!-- TALATA:PASTCAMP:END -->
 
   <div style="background:#0a0a0a;color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;font-family:'Inter',-apple-system,sans-serif;">
     <a href="/" style="color:#fff;text-decoration:none;font-weight:700;letter-spacing:0.5px;">Talata Basketball</a>
@@ -458,45 +470,13 @@
       <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid #7BAFD4;display:inline-block;">Register for DK Summer Camp 2026</h2>
       <p style="color:#555;margin-top:16px;margin-bottom:24px;">Fill in the form below. We confirm your spot and send payment details shortly after.</p>
 
-      <form id="camp-form" style="display:flex;flex-direction:column;gap:16px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-          <div>
-            <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Player name</label>
-            <input type="text" name="player_name" required placeholder="First and last name" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
-          </div>
-          <div>
-            <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Age</label>
-            <input type="number" name="age" required placeholder="e.g. 12" min="10" max="17" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
-          </div>
-        </div>
-        <div>
-          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Email (parent or player)</label>
-          <input type="email" name="email" required placeholder="email@example.com" style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
-        </div>
-        <div>
-          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Phone</label>
-          <input type="tel" name="phone" placeholder="+45 ..." style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;" />
-        </div>
-        <div>
-          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">How did you find us?</label>
-          <select name="how_found" required style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;background:#fff;">
-            <option value="">Pick one</option>
-            <option value="google">Google search</option>
-            <option value="instagram">Instagram</option>
-            <option value="friend">Friend or teammate</option>
-            <option value="school">School</option>
-            <option value="parent">Another parent</option>
-            <option value="camp">A Talata camp</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Anything we should know? (optional)</label>
-          <textarea name="message" rows="3" placeholder="Level, questions..." style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95rem;font-family:inherit;resize:vertical;"></textarea>
-        </div>
-        <button type="submit" id="submit-btn" style="background:#7BAFD4;color:#fff;padding:14px 32px;border:none;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;font-family:inherit;">Send registration</button>
-        <div id="form-success" style="display:none;padding:16px;background:#ecfdf5;border-radius:8px;color:#065f46;font-weight:600;text-align:center;">Registration received! We'll be in touch shortly.</div>
-      </form>
+      <!-- TALATA:CLOSEDFORM:START -->
+<div class="tn-closed">
+  <b>Registration closed</b>
+  <p>This camp has already run. Our next camp is open now.</p>
+  <a href="/camps/autumn-camp-2026">Autumn Camp, Oct 12 to 15 <span aria-hidden="true">&rarr;</span></a>
+</div>
+<!-- TALATA:CLOSEDFORM:END -->
     </div>
 
     <div class="cta">
