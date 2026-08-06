@@ -518,7 +518,7 @@
           <label>Anything you want us to know?</label>
           <textarea name="message" rows="3" placeholder="Questions, allergies, if your daughter goes to Strandvejsskolen SFO..."></textarea>
         </div>
-        <button type="submit" class="form-submit" id="submit-btn">Send — we will be in touch</button>
+        <button type="submit" class="form-submit" id="submit-btn">Send, we will be in touch</button>
       </form>
       <div class="form-success" id="form-success">
         Got it! Coach Deng will be in touch shortly.
@@ -580,7 +580,7 @@
         formSuccess.style.display = 'block';
         submitBtn.style.display = 'none';
       } catch {
-        submitBtn.textContent = 'Send — we will be in touch';
+        submitBtn.textContent = 'Send, we will be in touch';
         submitBtn.disabled = false;
         alert('Something went wrong. Email us at coach@talatabasketball.dk');
       }
