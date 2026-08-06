@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="/images/mini-group-fun.jpg">
+
+  <title>School Basketball Partnerships Copenhagen | Bring Talata to Your School</title>
+  <link rel="canonical" href="https://talatabasketball.dk/school-partnerships" />
+  <meta name="description" content="Talata Basketball samarbejder med skoler i København. Vi kommer ud på skolen, henter børnene og træner dem. Skolepartnerskaber med Strandvejsskolen og ISH. Skriv til os hvis din skole vil være med." />
+  <meta name="keywords" content="skole basketball københavn, school partnership basketball, SFO basketball, basketball i skolen, idræt samarbejde skole, Talata skolepartnerskab, after school basketball copenhagen" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talatabasketball.dk/school-partnerships" />
+  <meta property="og:title" content="School Basketball Partnerships | Bring Talata to Your School" />
+  <meta property="og:description" content="We come to your school, collect the children, and coach them. Real basketball, no logistics for parents. Working with Strandvejsskolen and ISH in Copenhagen." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/mini-group-fun.jpg" />
+  <meta property="og:site_name" content="Talata Basketball" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsOrganization",
+    "name": "Talata Basketball · School Partnerships",
+    "description": "Talata Basketball runs in-school and after-school basketball programmes with schools in Copenhagen, including Strandvejsskolen and ISH.",
+    "sport": "Basketball",
+    "url": "https://talatabasketball.dk/school-partnerships",
+    "areaServed": { "@type": "City", "name": "Copenhagen" },
+    "parentOrganization": {
+      "@type": "SportsOrganization",
+      "name": "Talata Basketball",
+      "url": "https://talatabasketball.dk"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "coach@talatabasketball.dk",
+      "contactType": "customer support"
+    }
+  }
+  </script>
+
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --blue: #7BAFD4;
+      --blue-light: #EBF4FB;
+      --dark: #111;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --border: #e0e0e0;
+      --radius: 12px;
+      --bg: #fafafa;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--dark); padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; letter-spacing: 1px; text-decoration: none; }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links .nav-cta {
+      background: var(--blue); color: #fff; padding: 8px 18px;
+      border-radius: 8px; font-weight: 700;
+    }
+    /* PROGRAMS DROPDOWN */
+    .nav-drop { position: relative; }
+    .nav-drop > a { display: inline-flex; align-items: center; gap: 5px; }
+    .nav-drop .car { font-size: 0.6rem; opacity: 0.7; }
+    .nav-drop .drop {
+      position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
+      background: #fff; border-radius: var(--radius); min-width: 260px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18); padding: 8px;
+      opacity: 0; visibility: hidden; transition: opacity 0.15s;
+    }
+    .nav-drop:hover .drop, .nav-drop:focus-within .drop { opacity: 1; visibility: visible; }
+    .nav-drop .drop::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 14px; }
+    .nav-drop .drop a {
+      display: block; padding: 10px 14px; border-radius: 8px;
+      color: var(--text); font-weight: 600; font-size: 0.875rem;
+    }
+    .nav-drop .drop a:hover { background: var(--blue-light); color: var(--text); }
+    .nav-drop .drop small { display: block; color: var(--text-muted); font-weight: 400; font-size: 0.75rem; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 460px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      padding: 80px 24px 72px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('/images/mini-group-fun.jpg');
+      background-size: cover;
+      background-position: center 35%;
+      z-index: 0;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(17,17,17,0.85) 0%, rgba(15,52,96,0.8) 100%);
+      z-index: 1;
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 760px; }
+    .hero-badge {
+      display: inline-block; background: var(--blue); color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 6px 16px; border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.3rem, 5.5vw, 3.5rem); font-weight: 900;
+      letter-spacing: -1.5px; margin-bottom: 18px; line-height: 1.1;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero p {
+      font-size: 1.15rem; color: rgba(255,255,255,0.85);
+      max-width: 600px; margin: 0 auto 32px; line-height: 1.6;
+    }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 14px 28px; border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      cursor: pointer; border: none; font-family: inherit; transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-ghost { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+
+    /* STATS */
+    .info-strip {
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    }
+    .info-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.875rem; font-weight: 600; color: var(--text);
+    }
+    .info-item .label { color: var(--text-muted); font-weight: 400; }
+
+    /* SECTION */
+    .section { padding: 64px 24px; max-width: 760px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px;
+      margin-bottom: 18px; color: var(--dark);
+    }
+    .section p {
+      font-size: 1rem; color: var(--text-muted); margin-bottom: 16px;
+      line-height: 1.75;
+    }
+    .section p:last-child { margin-bottom: 0; }
+    .section p strong { color: var(--text); }
+
+    /* PILLARS */
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 28px; }
+    .pillar {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px 20px;
+    }
+    .pillar h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+    .pillar p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+    /* PARTNER CARDS */
+    .partner-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 26px; margin-top: 18px;
+    }
+    .partner-card .tag {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 10px;
+    }
+    .partner-card h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.3px; }
+    .partner-card p { font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+    .partner-card p:last-child { margin-bottom: 0; }
+    .partner-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .partner-links a {
+      font-size: 0.85rem; font-weight: 700; color: var(--blue);
+      text-decoration: none; border: 1.5px solid var(--blue);
+      padding: 7px 14px; border-radius: 8px; transition: background 0.2s;
+    }
+    .partner-links a:hover { background: var(--blue-light); }
+
+    /* PROOF */
+    .proof-quote {
+      background: var(--dark); color: #fff; border-radius: var(--radius);
+      padding: 36px 32px; margin-top: 28px;
+    }
+    .proof-quote .tag {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 14px;
+    }
+    .proof-quote h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 14px; line-height: 1.3; }
+    .proof-quote p { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin: 0; line-height: 1.6; }
+
+    /* STEPS */
+    .steps { margin-top: 28px; display: grid; gap: 0; }
+    .step-row {
+      display: grid; grid-template-columns: 46px 1fr; gap: 18px;
+      padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;
+    }
+    .step-row:last-child { border-bottom: none; }
+    .step-n {
+      font-weight: 900; font-size: 1rem; color: #fff; background: var(--blue);
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-what { font-size: 0.96rem; color: var(--text); }
+    .step-what small { display: block; color: var(--text-muted); font-size: 0.87rem; margin-top: 2px; }
+
+    /* CTA */
+    .cta-box {
+      background: var(--dark); color: #fff; border-radius: var(--radius);
+      padding: 40px 32px; text-align: center; margin-top: 28px;
+    }
+    .cta-box h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 14px; letter-spacing: -0.5px; }
+    .cta-box p { color: rgba(255,255,255,0.72); font-size: 0.98rem; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 600px) {
+      .section { padding: 48px 20px; }
+      .pillars { grid-template-columns: 1fr; }
+      .cta-box, .proof-quote, .partner-card { padding: 26px 20px; }
+    }
+
+    .footer {
+      text-align: center; padding: 28px 24px;
+      font-size: 0.8rem; color: var(--text-muted);
+      border-top: 1px solid var(--border); margin-top: 60px;
+    }
+    .footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">TALATA <span>BASKETBALL</span></a>
+    <div class="nav-links">
+      <div class="nav-drop">
+        <a href="/#programs">Programs <span class="car">▼</span></a>
+        <div class="drop">
+          <a href="/mini">Mini <small>ages 5 to 8</small></a>
+          <a href="/mini#junior">Junior <small>ages 9 to 11</small></a>
+          <a href="/academy">Academy <small>ages 12 to 18</small></a>
+          <a href="/sparks">Sparks <small>girls only</small></a>
+          <a href="/ish-primary-school">ISH Primary School <small>Fridays at Ryparken</small></a>
+          <a href="/ish-high-school">ISH High School <small>Thursdays at Svanemøllehallen</small></a>
+          <a href="/school-partnerships">School partnerships <small>bring Talata to your school</small></a>
+        </div>
+      </div>
+      <a href="/camps">Camps</a>
+      <a href="/philosophy">Philosophy</a>
+      <a href="/school-partnerships">Schools</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">School Partnerships</div>
+      <h1>We bring the basketball<br><span>to your school.</span></h1>
+      <p>Coaches come to you, collect the children, and run a real session. Parents arrange nothing. Schools get a sport that actually sticks.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Talk to us</a>
+        <a href="#how" class="btn btn-ghost">How it works</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-item"><span><strong>2 schools</strong> <span class="label">In Copenhagen</span></span></div>
+    <div class="info-item"><span><strong>Pickup included</strong> <span class="label">Our coaches, not your parents</span></span></div>
+    <div class="info-item"><span><strong>All levels</strong> <span class="label">Complete beginners welcome</span></span></div>
+  </div>
+
+  <!-- WHY -->
+  <div class="section" id="why">
+    <h2 class="section-title">Why schools work with us</h2>
+    <p>Most children who would love basketball never find it. The club is across town, training starts before a parent can get off work, and nobody in the family plays. The sport quietly stays out of reach.</p>
+    <p>So we go the other way. <strong>We come to the school.</strong> Our coaches collect the children from the school door, run the session, and bring them back. There is nothing for a parent to organise and nothing for the school to staff.</p>
+    <p>What the children get is not a watered-down version. It is the same coaching our club players get, from coaches who have played the game at a serious level, in an environment built on joy, excellence and respect.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h3>We handle the logistics</h3>
+        <p>Pickup from school, session, return to school. The school does not need to staff it.</p>
+      </div>
+      <div class="pillar">
+        <h3>Real coaching</h3>
+        <p>The same coaches and the same method as our club programs. Not a babysitting hour.</p>
+      </div>
+      <div class="pillar">
+        <h3>A path onwards</h3>
+        <p>Children who catch the bug can carry straight on into our club teams and camps.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROOF -->
+  <div class="section">
+    <div class="proof-quote">
+      <div class="tag">What happened at Strandvejsskolen</div>
+      <h3>Forty children, and a waiting list.</h3>
+      <p>When we started running sessions at Strandvejsskolen in Østerbro, the program filled to forty children with five more waiting. Over the same spring our under-13 group went from a handful of players to more than thirty. That is what happens when the barrier to trying is removed.</p>
+    </div>
+  </div>
+
+  <!-- CURRENT PARTNERS -->
+  <div class="section" id="partners">
+    <h2 class="section-title">Schools we work with</h2>
+
+    <div class="partner-card">
+      <div class="tag">Since 2026 · Østerbro</div>
+      <h3>Strandvejsskolen</h3>
+      <p>Strandvejsskolen is the home of our Mini and Junior programs. Training runs in the school gym at Sionsgade 1, so the children never leave the building they already know.</p>
+      <p>We also run sessions with the school's SFO, and our coaches collect the children directly from SFO before training. It is the arrangement that proved the model works.</p>
+      <div class="partner-links">
+        <a href="/mini">Mini and Junior</a>
+        <a href="/blog/strandvejsskolen-partnership-2026">Read the story</a>
+      </div>
+    </div>
+
+    <div class="partner-card">
+      <div class="tag">From September 2026</div>
+      <h3>ISH</h3>
+      <p>Two programs, built for two very different ages. <strong>ISH Primary School</strong> runs Friday afternoons at Ryparkens idrætsanlæg, with our coaches handling pickup and return so families arrange nothing.</p>
+      <p><strong>ISH High School</strong> trains Thursday evenings at Svanemøllehallen alongside our own U17 and U19 squads. English on the floor, professional coaches, and the option to add more training days for anyone who wants them.</p>
+      <div class="partner-links">
+        <a href="/ish-primary-school">ISH Primary School</a>
+        <a href="/ish-high-school">ISH High School</a>
+      </div>
+    </div>
+
+    <div class="partner-card">
+      <div class="tag">Program partner</div>
+      <h3>DGI</h3>
+      <p>Our school trainings are run in collaboration with DGI, whose support is what lets us put qualified coaches into schools rather than asking the schools to fund it themselves.</p>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section" id="how">
+    <h2 class="section-title">How a partnership starts</h2>
+    <div class="steps">
+      <div class="step-row">
+        <div class="step-n">1</div>
+        <div class="step-what">You get in touch<small>An email is enough. Tell us the school, the ages, and roughly how many children.</small></div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">2</div>
+        <div class="step-what">We come and see the space<small>We look at the gym or hall, and work out what is realistic on your timetable.</small></div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">3</div>
+        <div class="step-what">We agree a day, a time and a coach<small>Including how pickup and return will work, so parents have nothing to arrange.</small></div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">4</div>
+        <div class="step-what">We run a taster<small>The children try it before anyone commits to a season.</small></div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">5</div>
+        <div class="step-what">The program runs<small>Weekly sessions, and a route into the club for anyone who wants to keep going.</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section" id="contact">
+    <div class="cta-box">
+      <h3>Is your school in Copenhagen?</h3>
+      <p>We are building more school partnerships for the coming year. If you want basketball at your school, write to us and we will come and talk about it.</p>
+      <a href="mailto:coach@talatabasketball.dk?subject=School%20partnership%20enquiry" class="btn btn-primary">Email Coach Deng</a>
+    </div>
+    <p style="margin-top:24px; text-align:center; font-size:0.9rem; color:var(--text-muted);">
+      Talata Basketball · <a href="mailto:coach@talatabasketball.dk" style="color:var(--blue); font-weight:600;">coach@talatabasketball.dk</a> · +45 52 39 85 08
+    </p>
+  </div>
+
+  <div class="footer">
+    Talata Basketball · Copenhagen<br>
+    <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a> · CVR: 43599453
+  </div>
+
+</body>
+</html>
