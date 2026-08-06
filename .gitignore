@@ -33,6 +33,11 @@ Talata\ Website\ Photos
 !philosophy/
 !philosophy/**
 
+# Site icons — the *.png rule above would otherwise swallow these
+!apple-touch-icon.png
+!favicon.ico
+!favicon.svg
+
 # Junk photos — NEVER deploy (must come after the !images/** negation so it wins)
 images/junk/
 images/junk/**
