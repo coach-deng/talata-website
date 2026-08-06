@@ -92,7 +92,15 @@ a{text-decoration:none;color:inherit;}
 .trial button{width:100%;margin-top:18px;background:var(--blue);color:#fff;border:0;font-family:var(--disp);font-weight:800;font-size:1rem;padding:15px;border-radius:100px;cursor:pointer;transition:transform .15s;}
 .trial button:hover{transform:translateY(-1px);}
 .trial .fine{text-align:center;font-size:0.75rem;color:#98A2B3;margin-top:10px;}
-@media(max-width:920px){.hero .wrap{grid-template-columns:1fr;padding-top:48px;}}
+@media(max-width:920px){
+  .hero .wrap{grid-template-columns:1fr;padding-top:32px;padding-bottom:48px;gap:26px;}
+  .hero-copy{display:contents;}
+  .hero-head{order:1;}
+  .hero .trial{order:2;}
+  .hero-rest{order:3;}
+  .hero h1{font-size:clamp(2rem,8.5vw,2.9rem);}
+  .hero .sub{margin:0 0 22px;font-size:1rem;}
+}
 
 /* partner strip */
 .partners-section{padding:44px 0;background:var(--black);overflow:hidden;}
@@ -296,15 +304,19 @@ footer a:hover{color:var(--baby);}
 <header class="hero">
   <div class="bg"></div><div class="shade"></div>
   <div class="wrap">
-    <div>
-      <span class="eyebrow">Copenhagen's basketball club · Østerbro</span>
-      <h1>One club.<br>Every level.<br><em>First session free.</em></h1>
+    <div class="hero-copy">
+      <div class="hero-head">
+        <span class="eyebrow">Copenhagen's basketball club · Østerbro</span>
+        <h1>One club.<br>Every level.<br><em>First session free.</em></h1>
+      </div>
+      <div class="hero-rest">
       <p class="sub">Five year olds taking their first dribble at Strandvejsskolen. A men's 2. Division roster at Svanemøllehallen. Everyone in between trains here too, four days a week. One of our players is at Orangeville Prep in Canada now, the school that produced Jamal Murray and Lu Dort.</p>
       <div class="tickers">
         <div class="tick"><b>80+</b><span>players</span></div>
         <div class="tick"><b>1</b><span>Orangeville Prep placement</span></div>
         <div class="tick"><b>3</b><span>countries of camps</span></div>
         <div class="tick"><b>2021</b><span>founded</span></div>
+      </div>
       </div>
     </div>
     <form class="trial" id="trial">
