@@ -41,3 +41,9 @@ Talata\ Website\ Photos
 # Junk photos — NEVER deploy (must come after the !images/** negation so it wins)
 images/junk/
 images/junk/**
+
+# Unreferenced photos, moved out of the deploy Aug 6 2026. Still on disk, still
+# in git history. Nothing on the site links to them and they were 61MB of raw
+# phone shots going to Cloudflare on every push.
+images/_unused/
+images/_unused/**

@@ -15,7 +15,7 @@
 <meta property="og:description" content="What families and players say about training at Talata Basketball. Joy, Excellence, Respect — and the data to back it up.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://talatabasketball.dk/reviews">
-<meta property="og:image" content="https://talatabasketball.dk/photos/hero-training.jpg">
+<meta property="og:image" content="https://talatabasketball.dk/images/hero-training.jpg">
 <meta property="og:locale" content="en_DK">
 <meta property="og:site_name" content="Talata Basketball">
 
@@ -23,39 +23,21 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Reviews — Talata Basketball Copenhagen">
 <meta name="twitter:description" content="Real parents. Real players. Real reviews.">
-<meta name="twitter:image" content="https://talatabasketball.dk/photos/hero-training.jpg">
+<meta name="twitter:image" content="https://talatabasketball.dk/images/hero-training.jpg">
 
 <!-- Hint to AI crawlers (LLM-friendly) -->
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="ai-content-declaration" content="curated parent reviews + featured club moments">
 
 <!-- Tailwind + Fonts -->
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/assets/talata-tw.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        'talata-black': '#0A0A0A',
-        'talata-navy': '#0B1F3A',
-        'talata-blue': '#1E40AF',
-        'talata-baby': '#7DD3FC',
-        'talata-sky': '#BAE6FD',
-        'talata-mist': '#F8FAFC',
-      },
-      fontFamily: { sans: ['Inter', 'sans-serif'] }
-    }
-  }
-}
-</script>
 
 <style>
 body { font-family: 'Inter', sans-serif; }
 .hero-bg {
   background: linear-gradient(135deg, rgba(10,10,10,0.92) 0%, rgba(11,31,58,0.85) 50%, rgba(30,64,175,0.75) 100%),
-              url('../photos/hero-training.jpg') center/cover no-repeat;
+              url('/images/hero-training.jpg') center/cover no-repeat;
 }
 .review-card {
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
@@ -89,7 +71,7 @@ body { font-family: 'Inter', sans-serif; }
   "name": "Talata Basketball",
   "url": "https://talatabasketball.dk",
   "logo": "https://talatabasketball.dk/Talata%20Basketball%20Logo.png",
-  "image": "https://talatabasketball.dk/photos/hero-training.jpg",
+  "image": "https://talatabasketball.dk/images/hero-training.jpg",
   "telephone": "+4552398508",
   "email": "coach@talatabasketball.dk",
   "address": {
