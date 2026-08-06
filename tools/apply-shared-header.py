@@ -66,6 +66,7 @@ MENU = {
     "Club": [
         ("/philosophy", "The Talata Way", "how we coach"),
         ("/reviews", "Reviews", "what parents say"),
+        ("/guide", "Parents' Guide", "everything for 26/27"),
         ("/blog", "The Playbook", "news + stories"),
         ("/gallery", "Gallery", "photos"),
         ("/join", "Contact", ""),
