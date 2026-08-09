@@ -312,10 +312,10 @@ footer a:hover{color:var(--baby);}
         <h1>One club.<br>Every level.<br><em>First session free.</em></h1>
       </div>
       <div class="hero-rest">
-      <p class="sub">Five year olds taking their first dribble at Strandvejsskolen. A men's 2. Division roster at Svanemøllehallen. Everyone in between trains here too, four days a week. One of our players is at Orangeville Prep in Canada now, the school that produced Jamal Murray and Lu Dort.</p>
+      <p class="sub">Five year olds taking their first dribble at Strandvejsskolen. A men's 2. Division roster at Svanemøllehallen. Everyone in between trains here too, four days a week. Coach Deng played pro in Canada, Lithuania and Denmark, and the club now runs camps in all three.</p>
       <div class="tickers">
-        <div class="tick"><b>80+</b><span>players</span></div>
-        <div class="tick"><b>1</b><span>Orangeville Prep placement</span></div>
+        <div class="tick"><b>84</b><span>players</span></div>
+        <div class="tick"><b>6</b><span>teams in DBBF leagues</span></div>
         <div class="tick"><b>3</b><span>countries of camps</span></div>
         <div class="tick"><b>2021</b><span>founded</span></div>
       </div>
@@ -665,10 +665,10 @@ footer a:hover{color:var(--baby);}
         <div class="txt"><span class="tag">Camp recap</span><h3>We took Talata to Canada</h3><p>Four academy players, ten days, one gym in Lethbridge. MVP Zachary and the All-Star Five inside.</p></div>
       </a>
       <div class="sidecards">
-        <a class="story" href="/blog/malthe-orangeville-2025">
+        <a class="story" href="/blog/5-signs-ready-for-basketball-club">
           <img src="images/action-drive.jpg" alt="Talata player driving to the basket" loading="lazy" decoding="async" width="1068" height="1600">
           <div class="grad"></div>
-          <div class="txt"><span class="tag">Player news</span><h3>Malthe commits to Orangeville Prep</h3></div>
+          <div class="txt"><span class="tag">For parents</span><h3>5 signs your kid is ready for a club</h3></div>
         </a>
         <a class="story" href="/reviews">
           <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" loading="lazy" decoding="async" width="1600" height="902">
@@ -772,13 +772,52 @@ const interestSel = document.getElementById('trial-interest');
 const BTN_LABELS = { trial: 'Claim my free session', camp: 'Get camp details', 'one-on-one': 'Ask about 1:1 training', other: 'Send to Coach Deng' };
 const PROGRAM_MAP = { trial: 'Free trial', camp: 'Autumn Camp 2026', 'one-on-one': '1:1 training', other: 'General inquiry' };
 interestSel.addEventListener('change', () => { trialBtn.textContent = BTN_LABELS[interestSel.value] || BTN_LABELS.trial; });
+
+// Attribution. "Where did you hear about us" cannot tell paid Google from organic
+// Google, so we work it out ourselves and keep it for the whole visit.
+// Stored values still contain the word "google" so any existing matching keeps working.
+const attribution = (() => {
+  const KEY = 'talata_attr';
+  try { const saved = sessionStorage.getItem(KEY); if (saved) return JSON.parse(saved); } catch {}
+  const p = new URLSearchParams(location.search);
+  const ref = document.referrer || '';
+  let channel = '';
+  if (p.get('gclid') || p.get('gbraid') || p.get('wbraid')) channel = 'google-ads';
+  else if ((p.get('utm_medium') || '').match(/cpc|ppc|paid/i)) channel = (p.get('utm_source') || 'paid') + '-ads';
+  else if (p.get('utm_source')) channel = p.get('utm_source');
+  else if (/google\./i.test(ref)) channel = 'google-organic';
+  else if (/bing\.|duckduckgo\.|ecosia\./i.test(ref)) channel = 'search-other';
+  else if (/instagram\.|facebook\.|l\.instagram/i.test(ref)) channel = 'instagram';
+  else if (ref && !ref.includes(location.host)) channel = 'referral';
+  const attr = {
+    channel,
+    gclid: p.get('gclid') || '',
+    utm_source: p.get('utm_source') || '',
+    utm_medium: p.get('utm_medium') || '',
+    utm_campaign: p.get('utm_campaign') || '',
+    landing: location.pathname,
+    referrer: ref.slice(0, 200)
+  };
+  try { sessionStorage.setItem(KEY, JSON.stringify(attr)); } catch {}
+  return attr;
+})();
 tf.addEventListener('submit', async (e) => {
   e.preventDefault();
   const label = trialBtn.textContent;
   trialBtn.textContent = 'Sending...'; trialBtn.disabled = true;
   const data = Object.fromEntries(new FormData(tf));
   data.name = data.player_name;
+  // Parent said "google"? Replace it with what actually happened, so paid and
+  // organic stop being one bucket. Everything else keeps the parent's own answer.
   data.source = data.how_found || 'talata-homepage-2026';
+  if (data.source === 'google' && attribution.channel.startsWith('google')) data.source = attribution.channel;
+  data.attribution = attribution.channel || 'direct';
+  data.gclid = attribution.gclid;
+  data.utm_source = attribution.utm_source;
+  data.utm_medium = attribution.utm_medium;
+  data.utm_campaign = attribution.utm_campaign;
+  data.landing_page = attribution.landing;
+  data.referrer = attribution.referrer;
   data.form_id = 'talata-homepage-2026';
   data.program = PROGRAM_MAP[data.interest] || 'Free trial';
   // Single delivery path: the Worker stores the lead in D1 and forwards to the
