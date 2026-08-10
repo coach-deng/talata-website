@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1NDQSBX298"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1NDQSBX298');
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
@@ -128,12 +120,53 @@
     .ig:hover { background:var(--sky); }
     @media (max-width:600px){ .grid { grid-template-columns:1fr 1fr; gap:12px; } .card { padding:14px; } .card .row { grid-template-columns:1fr; } }
     @media (max-width:400px){ .grid { grid-template-columns:1fr; } }
+  
+    /* ---- Nordic Kits supplier block ---- */
+    .nk{background:var(--navy);color:#fff;margin-top:56px;padding:56px 0;}
+    .nk-in{display:grid;grid-template-columns:1.35fr .85fr;gap:44px;align-items:start;}
+    .nk-eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+                color:var(--baby);margin-bottom:12px;}
+    .nk h2{font-size:clamp(1.5rem,3.2vw,2rem);line-height:1.1;font-weight:800;
+           letter-spacing:-.02em;margin-bottom:14px;text-wrap:balance;}
+    .nk-lede{color:rgba(255,255,255,.82);margin-bottom:18px;max-width:44ch;}
+    .nk-lede strong{color:var(--baby);}
+    .nk-list{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:7px;}
+    .nk-list li{font-size:.94rem;color:rgba(255,255,255,.72);
+                padding-left:20px;position:relative;}
+    .nk-list li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:2px;
+                        background:var(--baby);border-radius:2px;}
+    .nk-list strong{color:#fff;font-weight:700;}
+    .nk-disc{font-size:.8rem;line-height:1.5;color:rgba(255,255,255,.5);max-width:52ch;
+             border-top:1px solid rgba(255,255,255,.14);padding-top:14px;margin:0;}
+    .nk-cta{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+            border-radius:14px;padding:26px 24px;}
+    .nk-cta-t{font-size:1.1rem;font-weight:800;margin-bottom:6px;}
+    .nk-cta-s{font-size:.9rem;color:rgba(255,255,255,.7);margin-bottom:18px;}
+    .nk-btn{display:block;text-align:center;background:var(--baby);color:var(--navy);
+            font-weight:800;padding:.8em 1.4em;border-radius:9999px;text-decoration:none;
+            margin-bottom:12px;}
+    .nk-btn:hover{filter:brightness(1.06);}
+    .nk-mail{display:block;text-align:center;font-size:.85rem;color:var(--sky);
+             text-decoration:none;}
+    .nk-mail:hover{text-decoration:underline;}
+    @media(max-width:780px){
+      .nk{padding:40px 0;margin-top:40px;}
+      .nk-in{grid-template-columns:1fr;gap:26px;}
+    }
   </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R64Y9CQ2VZ');
+  </script>
 </head>
 <body>
 
@@ -166,7 +199,7 @@
       <li><a class="tn-top" href="/camps">Camps<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="tn-drop">
         <a href="/camps/autumn-camp-2026">Autumn Camp<small>Oct 12 to 15</small></a>
-        <a href="/camps/christmas-hoops-camp-2026">Christmas Hoops<small>Dec 28 to 30</small></a>
+        <a href="/camps/winter-camp-2026">Winter Camp<small>Dec 28 to 30</small></a>
         <a href="/blog/talata-canada-camp-2026-recap">Canada<small>recap &middot; back 2027</small></a>
         <a href="/camps">All camps</a>
         </div>
@@ -212,7 +245,7 @@
         <h3>Camps</h3>
         <ul class="tn-drawer-list">
           <li><a href="/camps/autumn-camp-2026">Autumn Camp<small>Oct 12 to 15</small></a></li>
-          <li><a href="/camps/christmas-hoops-camp-2026">Christmas Hoops<small>Dec 28 to 30</small></a></li>
+          <li><a href="/camps/winter-camp-2026">Winter Camp<small>Dec 28 to 30</small></a></li>
           <li><a href="/blog/talata-canada-camp-2026-recap">Canada<small>recap &middot; back 2027</small></a></li>
           <li><a href="/camps">All camps</a></li>
         </ul>
@@ -269,6 +302,32 @@
 
 <main class="wrap">
   <div class="grid" id="grid"></div>
+  <!-- Supplier credit + B2B route. Nordic Kits is a separate company from the
+       club, so the enquiry goes to them directly and the relationship is
+       disclosed in plain sight rather than buried. -->
+  <section class="nk">
+    <div class="wrap nk-in">
+      <div class="nk-copy">
+        <p class="nk-eyebrow">Kit by Nordic Kits</p>
+        <h2>Want this kit for your club?</h2>
+        <p class="nk-lede">Every piece in this shop is made by <strong>Nordic Kits</strong>. They kit us out. They'll do the same for you.</p>
+        <ul class="nk-list">
+          <li>Nordic Kits supplies <strong>Talata Academy</strong></li>
+          <li>Nordic Kits supplies <strong>Talata camps</strong></li>
+          <li>Nordic Kits supplies <strong>Espergærde</strong></li>
+          <li>Nordic Kits supplies <strong>clubs across Denmark</strong></li>
+        </ul>
+        <p class="nk-disc">Worth saying out loud: Nordic Kits is Coach Deng's company. The club's general assembly approved them as our supplier in May 2026, and Talata pays the same as everyone else.</p>
+      </div>
+      <div class="nk-cta">
+        <p class="nk-cta-t">Kit for your club</p>
+        <p class="nk-cta-s">Tracksuits, training sets, game jerseys, hoodies. Your badge, your colours.</p>
+        <a class="nk-btn" href="https://nordic-kits.com" target="_blank" rel="noopener" data-track="nordic-kits: see the range">See what they make</a>
+        <a class="nk-mail" href="mailto:sales@nordic-kits.com?subject=Kit%20enquiry%20for%20my%20club" data-track="nordic-kits: email sales">sales@nordic-kits.com</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <div class="footer">
@@ -458,5 +517,6 @@
 })();
 </script>
 <script src="/assets/talata-nav.js" defer></script>
+<script src="/assets/talata-track.js" defer></script>
 </body>
 </html>

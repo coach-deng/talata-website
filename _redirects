@@ -65,3 +65,10 @@
 /shop.html    /shop    301
 /merch    /shop    301
 /jerseys    /shop    301
+
+# Winter Camp was "Christmas Hoops Camp" until Aug 10 2026. Keep these:
+# the old slug is in Google's index and in every email sent before the rename.
+/camps/christmas-hoops-camp-2026        /camps/winter-camp-2026    301
+/camps/christmas-hoops-camp-2026.html   /camps/winter-camp-2026    301
+/camps/christmas-camp                   /camps/winter-camp-2026    301
+/winter-camp                            /camps/winter-camp-2026    301
