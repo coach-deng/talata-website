@@ -327,7 +327,7 @@ footer a:hover{color:var(--baby);}
       <label>Player's name</label>
       <input name="player_name" required placeholder="Full name">
       <div class="row2">
-        <div><label>Age</label><input name="age" type="number" min="4" max="60" required placeholder="e.g. 9"></div>
+        <div><label>Date of birth</label><input name="dob" type="date" required></div>
         <div><label>Gender</label><select name="gender"><option>Boy</option><option>Girl</option><option>Adult</option></select></div>
       </div>
       <div class="row2">
@@ -340,6 +340,13 @@ footer a:hover{color:var(--baby);}
         <option value="camp">Autumn Camp (Oct 12 to 15)</option>
         <option value="one-on-one">1:1 training</option>
         <option value="other">Something else</option>
+      </select>
+      <label>How much basketball have they played?</label>
+      <select name="experience">
+        <option value="none">Never played before</option>
+        <option value="school">A bit at school or in the park</option>
+        <option value="club-1yr">Under a year at a club</option>
+        <option value="club-experienced">A year or more at a club</option>
       </select>
       <label>Where did you hear about us?</label>
       <select name="how_found">
@@ -765,6 +772,7 @@ footer a:hover{color:var(--baby);}
   </div>
 </footer>
 
+<script src="/assets/talata-signup.js"></script>
 <script>
 const tf = document.getElementById('trial');
 const trialBtn = document.getElementById('trial-btn');
@@ -773,67 +781,14 @@ const BTN_LABELS = { trial: 'Claim my free session', camp: 'Get camp details', '
 const PROGRAM_MAP = { trial: 'Free trial', camp: 'Autumn Camp 2026', 'one-on-one': '1:1 training', other: 'General inquiry' };
 interestSel.addEventListener('change', () => { trialBtn.textContent = BTN_LABELS[interestSel.value] || BTN_LABELS.trial; });
 
-// Attribution. "Where did you hear about us" cannot tell paid Google from organic
-// Google, so we work it out ourselves and keep it for the whole visit.
-// Stored values still contain the word "google" so any existing matching keeps working.
-const attribution = (() => {
-  const KEY = 'talata_attr';
-  try { const saved = sessionStorage.getItem(KEY); if (saved) return JSON.parse(saved); } catch {}
-  const p = new URLSearchParams(location.search);
-  const ref = document.referrer || '';
-  let channel = '';
-  if (p.get('gclid') || p.get('gbraid') || p.get('wbraid')) channel = 'google-ads';
-  else if ((p.get('utm_medium') || '').match(/cpc|ppc|paid/i)) channel = (p.get('utm_source') || 'paid') + '-ads';
-  else if (p.get('utm_source')) channel = p.get('utm_source');
-  else if (/google\./i.test(ref)) channel = 'google-organic';
-  else if (/bing\.|duckduckgo\.|ecosia\./i.test(ref)) channel = 'search-other';
-  else if (/instagram\.|facebook\.|l\.instagram/i.test(ref)) channel = 'instagram';
-  else if (ref && !ref.includes(location.host)) channel = 'referral';
-  const attr = {
-    channel,
-    gclid: p.get('gclid') || '',
-    utm_source: p.get('utm_source') || '',
-    utm_medium: p.get('utm_medium') || '',
-    utm_campaign: p.get('utm_campaign') || '',
-    landing: location.pathname,
-    referrer: ref.slice(0, 200)
-  };
-  try { sessionStorage.setItem(KEY, JSON.stringify(attr)); } catch {}
-  return attr;
-})();
-tf.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const label = trialBtn.textContent;
-  trialBtn.textContent = 'Sending...'; trialBtn.disabled = true;
-  const data = Object.fromEntries(new FormData(tf));
-  data.name = data.player_name;
-  // Parent said "google"? Replace it with what actually happened, so paid and
-  // organic stop being one bucket. Everything else keeps the parent's own answer.
-  data.source = data.how_found || 'talata-homepage-2026';
-  if (data.source === 'google' && attribution.channel.startsWith('google')) data.source = attribution.channel;
-  data.attribution = attribution.channel || 'direct';
-  data.gclid = attribution.gclid;
-  data.utm_source = attribution.utm_source;
-  data.utm_medium = attribution.utm_medium;
-  data.utm_campaign = attribution.utm_campaign;
-  data.landing_page = attribution.landing;
-  data.referrer = attribution.referrer;
-  data.form_id = 'talata-homepage-2026';
-  data.program = PROGRAM_MAP[data.interest] || 'Free trial';
-  // Single delivery path: the Worker stores the lead in D1 and forwards to the
-  // GAS pipeline (sheet row + confirmation email). Posting to GAS directly as
-  // well would double every confirmation email.
-  const body = JSON.stringify(data);
-  try {
-    const res = await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
-    if (!res.ok) throw new Error('lead rejected');
-    tf.reset(); trialBtn.style.display = 'none';
-    document.getElementById('trial-fine').style.display = 'none';
-    document.getElementById('trial-ok').style.display = 'block';
-  } catch {
-    trialBtn.textContent = label; trialBtn.disabled = false;
-    alert('Something went wrong. Email coach@talatabasketball.dk and we sort it.');
-  }
+// Lead capture, attribution and the "what happens next" panel all live in
+// /assets/talata-signup.js so the Holdsport and jersey links have one home.
+TalataSignup.wire({
+  formId: 'trial',
+  buttonId: 'trial-btn',
+  formId_: 'talata-homepage-2026',
+  programMap: PROGRAM_MAP,
+  hide: ['trial-fine']
 });
 </script>
 <script src="/assets/talata-nav.js" defer></script>

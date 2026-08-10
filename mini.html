@@ -521,17 +521,8 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Child's age</label>
-            <select name="child_age" required>
-              <option value="" disabled selected>Select age</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-            </select>
+            <label>Date of birth</label>
+            <input type="date" name="dob" required>
           </div>
           <div class="form-group">
             <label>Your email</label>
@@ -551,7 +542,17 @@
             <option value="other">Other</option>
           </select>
         </div>
-        <div class="form-group">
+                  <div class="form-group">
+            <label>How much basketball have they played?</label>
+            <select name="experience" required>
+              <option value="" disabled selected>Pick one</option>
+              <option value="none">Never played before</option>
+              <option value="school">A bit at school or in the park</option>
+              <option value="club-1yr">Under a year at a club</option>
+              <option value="club-experienced">A year or more at a club</option>
+            </select>
+          </div>
+          <div class="form-group">
           <label>Anything you want us to know?</label>
           <textarea name="message" rows="3" placeholder="Questions, allergies, if your child goes to Strandvejsskolen SFO..."></textarea>
         </div>
@@ -587,41 +588,18 @@
     <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a> &middot; CVR: 43599453
   </div>
 
+  <script src="/assets/talata-signup.js"></script>
   <script>
-    const form = document.getElementById('mini-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const formSuccess = document.getElementById('form-success');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
-
-      const data = Object.fromEntries(new FormData(form));
-      // Normalize to the canonical lead schema (capture name / age / program reliably).
-      data.player_name = data.child_name || data.player_name || '';
-      data.name = data.player_name;
-      data.age = data.child_age || data.age || '';
-      data.program = 'Talata Mini';
-      data.camp = 'Talata Mini';
-      data.campaign = 'talata-mini-2026';
-      data.source = data.how_found || 'talata-mini-2026';
-      const body = JSON.stringify(data);
-      const GAS_MAILER = 'https://script.google.com/macros/s/AKfycbwBbnf12dGdPi1l_9K8dcx2czctBGnr57GMkmBe_-LgwgXtqOMR_n4luQkcH2X83l2b/exec';
-
-      try {
-        await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
-        });
-        fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body }).catch(() => {});
-        form.reset();
-        formSuccess.style.display = 'block';
-        submitBtn.style.display = 'none';
-      } catch {
-        submitBtn.textContent = 'Send, we will be in touch';
-        submitBtn.disabled = false;
-        alert('Something went wrong. Email us at coach@talatabasketball.dk');
-      }
+    // Lead capture, attribution and the next-steps panel live in
+    // /assets/talata-signup.js. Posting to GAS directly here as well was
+    // sending every parent two confirmation emails. Removed Aug 10 2026.
+    TalataSignup.wire({
+      formId: 'mini-form',
+      buttonId: 'submit-btn',
+      formId_: 'talata-mini-2026',
+      program: 'Talata Mini',
+      variant: 'mini',
+      mount: 'form-success'
     });
   </script>
 
