@@ -44,6 +44,10 @@ CTA = {
 }
 DEFAULT_CTA = ("/#trial", "Book free trial")
 
+# Resolved per page in build_header(): "#watch" on the homepage, "/#watch"
+# elsewhere. Watch is an on-page section, not a standalone URL.
+WATCH_PLACEHOLDER = "__WATCH__"
+
 MENU = {
     "Programs": [
         ("/mini", "Mini", "ages 5 to 8"),
@@ -69,7 +73,7 @@ MENU = {
         ("/guide", "Parents' Guide", "everything for 26/27"),
         ("/blog", "The Playbook", "news + stories"),
         ("/gallery", "Gallery", "photos"),
-        ("/shop", "Shop", "jerseys + kit"),
+        (WATCH_PLACEHOLDER, "Watch", "highlights + film"),
         ("/join", "Contact", ""),
     ],
 }
@@ -101,6 +105,10 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
     desktop, drawer = [], []
     for title, items in MENU.items():
         top = programs_href if title == "Programs" else TOP_HREF[title]
+        items = [
+            (watch_href if href == WATCH_PLACEHOLDER else href, label, note)
+            for href, label, note in items
+        ]
         links = "".join(
             '\n        <a href="%s">%s%s</a>'
             % (href, label, "<small>%s</small>" % note if note else "")
@@ -139,7 +147,7 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
     <nav class="tn-menu" aria-label="Main">
       <ul>
 {desktop}
-        <li><a class="tn-top" href="{watch}">Watch</a></li>
+        <li><a class="tn-top" href="/shop">Shop</a></li>
       </ul>
     </nav>
     <a class="tn-cta" href="{cta_href}">{cta_label} <span aria-hidden="true">&rarr;</span></a>
@@ -159,7 +167,7 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
 {drawer}
     <h3>More</h3>
     <ul class="tn-drawer-list">
-      <li><a href="{watch}">Watch</a></li>
+      <li><a href="/shop">Shop</a></li>
     </ul>
   </div>
   <div class="tn-drawer-foot">

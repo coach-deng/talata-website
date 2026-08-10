@@ -36,7 +36,13 @@
     a { color:inherit; }
     .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
 
-    .hero { background:linear-gradient(135deg,var(--black) 0%,var(--navy) 100%); color:#fff; padding:56px 0 40px; }
+    .hero { position:relative; color:#fff; padding:56px 0 40px; overflow:hidden;
+             background:linear-gradient(135deg,var(--black) 0%,var(--navy) 100%); }
+    .hero .shot { position:absolute; inset:0; background:url('/images/team-tunnel.jpg') center 30%/cover no-repeat; opacity:.55; }
+    .hero .veil { position:absolute; inset:0;
+                  background:linear-gradient(100deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.86) 38%,rgba(11,31,58,.55) 70%,rgba(11,31,58,.28) 100%); }
+    .hero .wrap { position:relative; z-index:2; }
+    @media (max-width:700px){ .hero .shot { background-position:center 26%; opacity:.32; } }
     .hero h1 { font-size:clamp(2rem,5vw,3.1rem); letter-spacing:-.02em; line-height:1.05; }
     .hero h1 em { font-style:normal; color:var(--baby); }
     .hero p { margin-top:14px; max-width:46em; color:rgba(255,255,255,.82); }
@@ -66,8 +72,8 @@
     .card .desc { font-size:.85rem; color:var(--muted); margin-top:2px; }
     .tag { display:inline-block; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
            padding:3px 9px; border-radius:999px; margin-bottom:9px; align-self:flex-start; }
-    .tag.in   { background:#dcfce7; color:#166534; }
     .tag.made { background:var(--sky); color:var(--navy); }
+    .tag.soon { background:#fef3c7; color:#854d0e; }
     .price { margin:12px 0 4px; font-size:1.35rem; font-weight:800; letter-spacing:-.02em; }
     .price s { font-size:.9rem; font-weight:500; color:var(--muted); margin-left:7px; }
     .price .save { font-size:.78rem; font-weight:700; color:#166534; display:block; margin-top:1px; }
@@ -75,6 +81,7 @@
     .card select, .card input { width:100%; padding:9px 10px; border:1.5px solid var(--line); border-radius:8px;
                                 font-family:inherit; font-size:.9rem; background:#fff; }
     .card .row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .card .both { margin-top:9px; font-size:.82rem; font-weight:600; color:var(--blue); }
     .add { margin-top:14px; width:100%; background:var(--navy); color:#fff; border:0; border-radius:9px;
            padding:11px; font-weight:700; font-size:.9rem; cursor:pointer; font-family:inherit; }
     .add:hover { background:var(--blue); }
@@ -116,6 +123,9 @@
     .empty { text-align:center; color:var(--muted); padding:40px 0; font-size:.92rem; }
     .note { font-size:.82rem; color:var(--muted); margin-top:10px; }
     .footer { text-align:center; padding:34px 20px 46px; color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); }
+    .ig { display:inline-flex; align-items:center; gap:8px; color:var(--blue); font-weight:700; text-decoration:none;
+          border:1.5px solid var(--sky); border-radius:999px; padding:9px 18px; background:#fff; }
+    .ig:hover { background:var(--sky); }
     @media (max-width:600px){ .grid { grid-template-columns:1fr 1fr; gap:12px; } .card { padding:14px; } .card .row { grid-template-columns:1fr; } }
     @media (max-width:400px){ .grid { grid-template-columns:1fr; } }
   </style>
@@ -168,11 +178,11 @@
         <a href="/guide">Parents' Guide<small>everything for 26/27</small></a>
         <a href="/blog">The Playbook<small>news + stories</small></a>
         <a href="/gallery">Gallery<small>photos</small></a>
-        <a href="/shop">Shop<small>jerseys + kit</small></a>
+        <a href="/#watch">Watch<small>highlights + film</small></a>
         <a href="/join">Contact</a>
         </div>
       </li>
-        <li><a class="tn-top" href="/#watch">Watch</a></li>
+        <li><a class="tn-top" href="/shop">Shop</a></li>
       </ul>
     </nav>
     <a class="tn-cta" href="/#trial">Book free trial <span aria-hidden="true">&rarr;</span></a>
@@ -213,12 +223,12 @@
           <li><a href="/guide">Parents' Guide<small>everything for 26/27</small></a></li>
           <li><a href="/blog">The Playbook<small>news + stories</small></a></li>
           <li><a href="/gallery">Gallery<small>photos</small></a></li>
-          <li><a href="/shop">Shop<small>jerseys + kit</small></a></li>
+          <li><a href="/#watch">Watch<small>highlights + film</small></a></li>
           <li><a href="/join">Contact</a></li>
         </ul>
     <h3>More</h3>
     <ul class="tn-drawer-list">
-      <li><a href="/#watch">Watch</a></li>
+      <li><a href="/shop">Shop</a></li>
     </ul>
   </div>
   <div class="tn-drawer-foot">
@@ -233,6 +243,8 @@
 
 
 <header class="hero">
+  <div class="shot" role="img" aria-label="Talata players in the baby blue game kit on court"></div>
+  <div class="veil"></div>
   <div class="wrap">
     <h1>Talata Shop.<br><em>Wear it properly.</em></h1>
     <p>Game jerseys, hoodies, tees, caps and socks. Players get member pricing. No account, no login, no card details. You pick what you want and pay with MobilePay.</p>
@@ -260,6 +272,12 @@
 </main>
 
 <div class="footer">
+  <p style="margin-bottom:12px;">
+    <a class="ig" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+      See the kit in action on Instagram
+    </a>
+  </p>
   Talata Basketball &middot; Svanem&oslash;llehallen, &Oslash;sterbrogade 240, 2100 Copenhagen<br>
   <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a> &middot; CVR: 43599453
 </div>
@@ -295,7 +313,7 @@
       var price = S.isMember ? p.member : p.pub;
       var save = p.pub - p.member;
       return '<div class="card">' +
-        '<span class="tag ' + p.stock + '">' + (p.stock === 'in' ? 'In stock' : 'Made to order') + '</span>' +
+        '<span class="tag ' + p.stock + '">' + (p.stock === 'soon' ? 'On the way' : 'Made to order') + '</span>' +
         '<h3>' + p.name + '</h3>' +
         (p.desc ? '<div class="desc">' + p.desc + '</div>' : '') +
         '<div class="price">' + kr(price) +
@@ -305,6 +323,7 @@
         '<select id="sz-' + p.id + '">' + p.sizes.map(function (s) { return '<option>' + s + '</option>'; }).join('') + '</select>' +
         (p.kit ? '<label for="kit-' + p.id + '">Home or away</label>' +
                  '<select id="kit-' + p.id + '"><option>Home</option><option>Away</option></select>' : '') +
+        (p.bothKits ? '<p class="both">Both kits included, home and away.</p>' : '') +
         (p.personalise ? '<div class="row">' +
               '<div><label for="nm-' + p.id + '">Name on back</label><input id="nm-' + p.id + '" maxlength="14" placeholder="AWAK"></div>' +
               '<div><label for="no-' + p.id + '">Number</label><input id="no-' + p.id + '" type="number" min="0" max="99" placeholder="23"></div>' +

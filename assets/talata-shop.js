@@ -23,33 +23,48 @@
   'use strict';
 
   var MOBILEPAY = '52697';
-  var LEADS_ENDPOINT = 'https://rhynoflow-api.coach-258.workers.dev/leads';
+  // Orders go to /orders, NOT /leads. Posting them to /leads made GAS send the
+  // trial-lead auto-reply ("Deng replies within a day with your training time")
+  // to someone who had just bought a hoodie. Caught Aug 10 2026 on a real order.
+  var ORDERS_ENDPOINT = 'https://rhynoflow-api.coach-258.workers.dev/orders';
   var CART_KEY = 'talata_cart_v1';
 
   var SIZES_APPAREL = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   var SIZES_KIDS = ['6-8y', '8-10y', '10-12y', '12-14y', 'XS', 'S', 'M', 'L', 'XL'];
   var SIZES_SOCK = ['31-34', '35-38', '39-42', '43-46'];
 
-  // stock: 'in'  = on the shelf, handed over at training
-  //        'made'= made to order, goes in the next batch
+  // stock (Deng, Aug 10 2026 — NOTHING is on the shelf right now):
+  //   'made' = made to order, goes in the next batch
+  //   'soon' = stock is ordered and on its way in
+  // There is deliberately no 'in' state. Re-add one only when a box actually
+  // lands, because "In stock" on a card is a delivery promise to a parent.
   var CATALOGUE = [
-    { id: 'socks',      name: 'Talata socks',            member: 75,  pub: 95,  sizes: SIZES_SOCK,    stock: 'in',   cat: 'basics' },
-    { id: 'socks3',     name: 'Talata socks, 3 pack',    member: 175, pub: 225, sizes: SIZES_SOCK,    stock: 'in',   cat: 'basics' },
-    { id: 'cap',        name: 'Talata cap',              member: 130, pub: 160, sizes: ['One size'],  stock: 'in',   cat: 'basics' },
-    { id: 'tee',        name: 'Talata t-shirt',          member: 149, pub: 189, sizes: SIZES_KIDS,    stock: 'in',   cat: 'basics' },
-    { id: 'crew',       name: 'Crewneck sweatshirt',     member: 279, pub: 349, sizes: SIZES_KIDS,    stock: 'made', cat: 'apparel' },
-    { id: 'hoodie',     name: 'Hoodie',                  member: 379, pub: 469, sizes: SIZES_KIDS,    stock: 'made', cat: 'apparel' },
-    { id: 'hoodieheavy',name: 'Heavy hoodie',            member: 479, pub: 589, sizes: SIZES_APPAREL, stock: 'made', cat: 'apparel' },
-    { id: 'pants',      name: 'Sweatpants',              member: 349, pub: 429, sizes: SIZES_KIDS,    stock: 'made', cat: 'apparel' },
-    { id: 'jersey',     name: 'Game jersey',             member: 299, pub: 369, sizes: SIZES_KIDS,    stock: 'made', cat: 'jersey', kit: true },
-    { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'made', cat: 'jersey', kit: true, personalise: true },
+    { id: 'socks',      name: 'Talata socks',            member: 75,  pub: 95,  sizes: SIZES_SOCK,    stock: 'made', cat: 'basics' },
+    { id: 'socks3',     name: 'Talata socks, 3 pack',    member: 175, pub: 225, sizes: SIZES_SOCK,    stock: 'made', cat: 'basics' },
+    { id: 'cap',        name: 'Talata cap',              member: 130, pub: 160, sizes: ['One size'],  stock: 'made', cat: 'basics' },
+    { id: 'tee',        name: 'Talata t-shirt',          member: 149, pub: 189, sizes: SIZES_KIDS,    stock: 'soon', cat: 'basics' },
+    // Crewneck was not called out either way on Aug 10. Grouped with the other
+    // apparel as incoming; move it to 'made' if that is wrong.
+    { id: 'crew',       name: 'Crewneck sweatshirt',     member: 279, pub: 349, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
+    { id: 'hoodie',     name: 'Hoodie',                  member: 379, pub: 469, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
+    { id: 'hoodieheavy',name: 'Heavy hoodie',            member: 479, pub: 589, sizes: SIZES_APPAREL, stock: 'soon', cat: 'apparel' },
+    { id: 'pants',      name: 'Sweatpants',              member: 349, pub: 429, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
+    { id: 'jersey',     name: 'Game jersey',             member: 299, pub: 369, sizes: SIZES_KIDS,    stock: 'soon', cat: 'jersey', kit: true },
+    { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'soon', cat: 'jersey', kit: true, personalise: true },
   ];
 
+  // ⚠️ BUNDLE DISCOUNTS. The four original bundles sit between 9% and 16% off
+  // the sum of their parts. b_gamepack is the one Deng specified on Aug 10 at
+  // 800 kr, which is ~40% off the member value of its contents (299 + 299 + 379
+  // + 349 = 1,326). That is far outside the pattern, and Nordic Kits unit costs
+  // are still undocumented, so it may be under cost. Flagged to Deng, left at
+  // his number until he says otherwise.
   var BUNDLES = [
-    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 199, pub: 259, stock: 'in',   cat: 'bundle' },
-    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 339, pub: 419, stock: 'made', cat: 'bundle', kit: true },
-    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479, pub: 599, stock: 'made', cat: 'bundle' },
-    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee + socks',    member: 799, pub: 989, stock: 'made', cat: 'bundle' },
+    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 199, pub: 259, stock: 'soon', cat: 'bundle' },
+    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 339, pub: 419, stock: 'soon', cat: 'bundle', kit: true },
+    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479, pub: 599, stock: 'soon', cat: 'bundle' },
+    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away jersey, hoodie + pants', member: 800, pub: 950, stock: 'soon', cat: 'bundle', bothKits: true },
+    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee + socks',    member: 799, pub: 949, stock: 'soon', cat: 'bundle' },
   ];
 
   var ALL = CATALOGUE.concat(BUNDLES.map(function (b) {
@@ -123,13 +138,15 @@
     });
 
     var payload = {
-      // The Worker requires name + email on /leads.
+      // The Worker requires name + email on /orders.
       name: buyer.buyer_name,
+      buyer_name: buyer.buyer_name,
       email: buyer.email,
       player_name: buyer.player_name || buyer.buyer_name,
       phone: buyer.phone,
       program: 'Talata Shop order',
       form_id: 'talata-shop-2026',
+      type: 'shop',
       source: 'shop',
       order_ref: ref,
       order_total: total(),
@@ -141,7 +158,7 @@
         (buyer.note ? '\nNote: ' + buyer.note : '')
     };
 
-    fetch(LEADS_ENDPOINT, {
+    fetch(ORDERS_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
