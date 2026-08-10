@@ -60,3 +60,8 @@
 # Friendly aliases
 /ish    /school-partnerships    301
 /schools    /school-partnerships    301
+
+# Shop
+/shop.html    /shop    301
+/merch    /shop    301
+/jerseys    /shop    301

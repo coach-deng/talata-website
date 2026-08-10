@@ -299,6 +299,7 @@
         <a href="/guide">Parents' Guide<small>everything for 26/27</small></a>
         <a href="/blog">The Playbook<small>news + stories</small></a>
         <a href="/gallery">Gallery<small>photos</small></a>
+        <a href="/shop">Shop<small>jerseys + kit</small></a>
         <a href="/join">Contact</a>
         </div>
       </li>
@@ -343,6 +344,7 @@
           <li><a href="/guide">Parents' Guide<small>everything for 26/27</small></a></li>
           <li><a href="/blog">The Playbook<small>news + stories</small></a></li>
           <li><a href="/gallery">Gallery<small>photos</small></a></li>
+          <li><a href="/shop">Shop<small>jerseys + kit</small></a></li>
           <li><a href="/join">Contact</a></li>
         </ul>
     <h3>More</h3>
@@ -484,8 +486,8 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Date of birth</label>
-            <input type="date" name="dob" required>
+            <label>Age</label>
+            <input type="number" name="age" min="4" max="80" required placeholder="e.g. 7">
           </div>
           <div class="form-group">
             <label>Your email</label>
@@ -506,19 +508,9 @@
             <option value="other">Other</option>
           </select>
         </div>
-                  <div class="form-group">
-            <label>How much basketball have they played?</label>
-            <select name="experience" required>
-              <option value="" disabled selected>Pick one</option>
-              <option value="none">Never played before</option>
-              <option value="school">A bit at school or in the park</option>
-              <option value="club-1yr">Under a year at a club</option>
-              <option value="club-experienced">A year or more at a club</option>
-            </select>
-          </div>
           <div class="form-group">
-          <label>Anything you want us to know?</label>
-          <textarea name="message" rows="3" placeholder="Questions, allergies, if your daughter goes to Strandvejsskolen SFO..."></textarea>
+          <label>Has she played before? Anything else?</label>
+          <textarea name="message" rows="3" placeholder="How much basketball she has played, questions, allergies, if your daughter goes to Strandvejsskolen SFO..."></textarea>
         </div>
         <button type="submit" class="form-submit" id="submit-btn">Send, we will be in touch</button>
       </form>

@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://talatabasketball.dk/images/talata-huddle.jpg" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SportsOrganization","name":"Talata Basketball","url":"https://talatabasketball.dk","sport":"Basketball","email":"coach@talatabasketball.dk","foundingDate":"2024","address":{"@type":"PostalAddress","addressLocality":"København Ø","addressCountry":"DK"},"location":[{"@type":"SportsActivityLocation","name":"Svanemøllehallen","address":"Østerbrogade 240, 2100 København Ø"},{"@type":"SportsActivityLocation","name":"Strandvejsskolen","address":"Sionsgade 1, 2100 København Ø"}]}
+{"@context":"https://schema.org","@type":"SportsOrganization","name":"Talata Basketball","url":"https://talatabasketball.dk","sport":"Basketball","email":"coach@talatabasketball.dk","foundingDate":"2021","address":{"@type":"PostalAddress","addressLocality":"København Ø","addressCountry":"DK"},"location":[{"@type":"SportsActivityLocation","name":"Svanemøllehallen","address":"Østerbrogade 240, 2100 København Ø"},{"@type":"SportsActivityLocation","name":"Strandvejsskolen","address":"Sionsgade 1, 2100 København Ø"}]}
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
 <script>
@@ -239,6 +239,7 @@ footer a:hover{color:var(--baby);}
         <a href="/guide">Parents' Guide<small>everything for 26/27</small></a>
         <a href="/blog">The Playbook<small>news + stories</small></a>
         <a href="/gallery">Gallery<small>photos</small></a>
+        <a href="/shop">Shop<small>jerseys + kit</small></a>
         <a href="/join">Contact</a>
         </div>
       </li>
@@ -283,6 +284,7 @@ footer a:hover{color:var(--baby);}
           <li><a href="/guide">Parents' Guide<small>everything for 26/27</small></a></li>
           <li><a href="/blog">The Playbook<small>news + stories</small></a></li>
           <li><a href="/gallery">Gallery<small>photos</small></a></li>
+          <li><a href="/shop">Shop<small>jerseys + kit</small></a></li>
           <li><a href="/join">Contact</a></li>
         </ul>
     <h3>More</h3>
@@ -316,8 +318,8 @@ footer a:hover{color:var(--baby);}
       <div class="tickers">
         <div class="tick"><b>82</b><span>players</span></div>
         <div class="tick"><b>6</b><span>teams in DBBF leagues</span></div>
-        <div class="tick"><b>3</b><span>countries of camps</span></div>
-        <div class="tick"><b>2024</b><span>founded</span></div>
+        <div class="tick"><b>3</b><span>countries we take kids to</span></div>
+        <div class="tick"><b>2021</b><span>first camp abroad</span></div>
       </div>
       </div>
     </div>
@@ -327,7 +329,7 @@ footer a:hover{color:var(--baby);}
       <label>Player's name</label>
       <input name="player_name" required placeholder="Full name">
       <div class="row2">
-        <div><label>Date of birth</label><input name="dob" type="date" required></div>
+        <div><label>Age</label><input name="age" type="number" min="4" max="80" required placeholder="e.g. 9"></div>
         <div><label>Gender</label><select name="gender"><option>Boy</option><option>Girl</option><option>Adult</option></select></div>
       </div>
       <div class="row2">
@@ -341,13 +343,6 @@ footer a:hover{color:var(--baby);}
         <option value="one-on-one">1:1 training</option>
         <option value="other">Something else</option>
       </select>
-      <label>How much basketball have they played?</label>
-      <select name="experience">
-        <option value="none">Never played before</option>
-        <option value="school">A bit at school or in the park</option>
-        <option value="club-1yr">Under a year at a club</option>
-        <option value="club-experienced">A year or more at a club</option>
-      </select>
       <label>Where did you hear about us?</label>
       <select name="how_found">
         <option value="friend">Friend or teammate</option>
@@ -358,8 +353,8 @@ footer a:hover{color:var(--baby);}
         <option value="camp">A Talata camp</option>
         <option value="other">Other</option>
       </select>
-      <label>Anything we should know? <span style="font-weight:400;opacity:.6;">(optional)</span></label>
-      <textarea name="message" rows="2" placeholder="Experience, questions, siblings, anything"></textarea>
+      <label>Have they played before? <span style="font-weight:400;opacity:.6;">(optional)</span></label>
+      <textarea name="message" rows="2" placeholder="How much they have played, questions, siblings, anything"></textarea>
       <button type="submit" id="trial-btn">Claim my free session</button>
       <p class="fine" id="trial-fine">We route you by age: most kids trial Thursdays at Svanemøllehallen or Strandvejsskolen. Coach Deng confirms your exact slot.</p>
       <p class="fine" id="trial-ok" style="display:none;color:#15803D;font-weight:700;">Got it. Check your inbox, your free session details are on the way.</p>
@@ -748,7 +743,7 @@ footer a:hover{color:var(--baby);}
     <div class="fgrid">
       <div>
         <h4>Talata Basketball</h4>
-        <p style="font-size:0.88rem;max-width:26em;">Copenhagen's basketball club since 2024. We coach the Talata Way, which mostly means the kids are playing small sided games and making their own decisions from the first minute of a session.</p>
+        <p style="font-size:0.88rem;max-width:26em;">Copenhagen's basketball club. Camps since 2021, competitive teams since 2024. We coach the Talata Way, which mostly means the kids are playing small sided games and making their own decisions from the first minute of a session.</p>
       </div>
       <div>
         <h4>Programs</h4>

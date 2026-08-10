@@ -69,6 +69,7 @@ MENU = {
         ("/guide", "Parents' Guide", "everything for 26/27"),
         ("/blog", "The Playbook", "news + stories"),
         ("/gallery", "Gallery", "photos"),
+        ("/shop", "Shop", "jerseys + kit"),
         ("/join", "Contact", ""),
     ],
 }

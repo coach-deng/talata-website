@@ -174,8 +174,11 @@
       // pipeline stops guessing.
       data.player_name = data.player_name || data.child_name || '';
       data.name = data.player_name;
-      // DOB is the truth. Age is derived, never stored as the source value:
-      // age rots and it breaks the DBBF brackets, which run on birth DATES.
+      // Age, not DOB, on the public forms (Deng, Aug 10 2026). A numeric keypad
+      // is two taps; a date wheel scrolled back eight years is not, and 70% of
+      // traffic is mobile. The real birth DATE is captured by Holdsport at join
+      // and the Aug 9 export had zero missing, so the DBBF brackets stay safe.
+      // Still derive age if a form ever sends dob, so nothing breaks either way.
       if (data.dob) {
         var b = new Date(data.dob);
         if (!isNaN(b.getTime())) {
@@ -204,8 +207,10 @@
       data.referrer = attribution.referrer;
 
       // Fold the extra routing answers into the note Deng actually reads.
+      // The separate "how much basketball have they played" select was removed
+      // Aug 10 2026: parents were already writing it into the free-text box
+      // unprompted, so it was a field cost for information we already had.
       var extra = [];
-      if (data.experience) extra.push('Experience: ' + data.experience);
       if (data.wants_team) extra.push('Looking for: ' + data.wants_team);
       if (extra.length) {
         data.message = (data.message ? data.message + ' | ' : '') + extra.join(' | ');

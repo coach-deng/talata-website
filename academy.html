@@ -345,6 +345,7 @@
         <a href="/guide">Parents' Guide<small>everything for 26/27</small></a>
         <a href="/blog">The Playbook<small>news + stories</small></a>
         <a href="/gallery">Gallery<small>photos</small></a>
+        <a href="/shop">Shop<small>jerseys + kit</small></a>
         <a href="/join">Contact</a>
         </div>
       </li>
@@ -389,6 +390,7 @@
           <li><a href="/guide">Parents' Guide<small>everything for 26/27</small></a></li>
           <li><a href="/blog">The Playbook<small>news + stories</small></a></li>
           <li><a href="/gallery">Gallery<small>photos</small></a></li>
+          <li><a href="/shop">Shop<small>jerseys + kit</small></a></li>
           <li><a href="/join">Contact</a></li>
         </ul>
     <h3>More</h3>
@@ -568,8 +570,8 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Date of birth</label>
-            <input type="date" name="dob" required>
+            <label>Age</label>
+            <input type="number" name="age" min="4" max="80" required placeholder="e.g. 13">
           </div>
           <div class="form-group">
             <label>Your email</label>
@@ -589,19 +591,9 @@
             <option value="other">Other</option>
           </select>
         </div>
-                  <div class="form-group">
-            <label>How much basketball have they played?</label>
-            <select name="experience" required>
-              <option value="" disabled selected>Pick one</option>
-              <option value="none">Never played before</option>
-              <option value="school">A bit at school or in the park</option>
-              <option value="club-1yr">Under a year at a club</option>
-              <option value="club-experienced">A year or more at a club</option>
-            </select>
-          </div>
           <div class="form-group">
           <label>Tell us about your player</label>
-          <textarea name="message" rows="4" placeholder="Experience so far, current club, what they want out of basketball..."></textarea>
+          <textarea name="message" rows="4" placeholder="How much they have played, current club, what they want out of basketball..."></textarea>
         </div>
         <button type="submit" class="form-submit" id="submit-btn">Apply for Academy</button>
       </form>
