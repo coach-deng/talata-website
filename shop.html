@@ -107,10 +107,18 @@
 
     .pay { background:var(--mist); border:1px solid var(--sky); border-radius:12px; padding:18px; }
     .pay .num { font-size:2.4rem; font-weight:800; letter-spacing:.02em; color:var(--blue); line-height:1.1; }
+    .paylead { font-weight:700; margin:0 0 14px; }
+    .step { display:flex; gap:12px; align-items:flex-start; }
+    .step + .step { margin-top:16px; padding-top:16px; border-top:1px solid var(--sky); }
+    .stepn { flex:0 0 28px; width:28px; height:28px; border-radius:999px; background:var(--blue); color:#fff;
+             font-weight:800; font-size:.95rem; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+    .stepb { min-width:0; }
+    .steplab { font-size:.85rem; color:var(--muted); margin:0 0 2px; }
+    .step .num + .steplab { margin-top:8px; }
     .pay .ref { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; background:#fff; border:1px dashed var(--blue);
-                padding:7px 11px; border-radius:7px; display:inline-block; font-weight:700; margin:6px 0; }
-    .pay ol { margin:12px 0 0 18px; font-size:.9rem; }
-    .pay li { margin-bottom:6px; }
+                padding:10px 14px; border-radius:7px; display:inline-block; font-weight:700; margin:4px 0 6px;
+                font-size:1.35rem; color:var(--blue); cursor:pointer; min-height:44px; }
+    .pay .ref.copied { border-style:solid; background:var(--sky); }
 
     .empty { text-align:center; color:var(--muted); padding:40px 0; font-size:.92rem; }
     .note { font-size:.82rem; color:var(--muted); margin-top:10px; }
@@ -399,20 +407,53 @@
       document.getElementById('drawer-title').textContent = 'Order placed';
       body.innerHTML =
         '<div class="pay">' +
-        '<p style="margin-bottom:6px"><b>Last step. Pay with MobilePay.</b></p>' +
-        '<div class="num">' + S.MOBILEPAY + '</div>' +
-        '<p style="margin:10px 0 2px">Amount</p><div class="num" style="font-size:1.6rem">' + kr(checkedOut.total) + '</div>' +
-        '<p style="margin:12px 0 2px">Put this in the message field:</p>' +
-        '<span class="ref">' + checkedOut.ref + '</span>' +
-        '<ol>' +
-          '<li>Open MobilePay and send <b>' + kr(checkedOut.total) + '</b> to <b>' + S.MOBILEPAY + '</b>.</li>' +
-          '<li>Write <b>' + checkedOut.ref + '</b> in the message. Without it we cannot match your payment to your order.</li>' +
-          '<li>Deng confirms by email. In stock items come to training, made to order items go in the next batch.</li>' +
-        '</ol>' +
+        '<p class="paylead">Open MobilePay. Do these two things.</p>' +
+
+        '<div class="step">' +
+          '<span class="stepn">1</span>' +
+          '<div class="stepb">' +
+            '<p class="steplab">Send</p>' +
+            '<div class="num">' + kr(checkedOut.total) + '</div>' +
+            '<p class="steplab">to</p>' +
+            '<div class="num">' + S.MOBILEPAY + '</div>' +
+          '</div>' +
         '</div>' +
-        '<p class="note">Your order is already with us. Nothing else to fill in.</p>';
+
+        '<div class="step">' +
+          '<span class="stepn">2</span>' +
+          '<div class="stepb">' +
+            '<p class="steplab">Write this in the message</p>' +
+            '<button type="button" class="ref" id="copy-ref">' + checkedOut.ref + '</button>' +
+            '<p class="steplab" id="copy-hint">Tap to copy. We need it to find your payment.</p>' +
+          '</div>' +
+        '</div>' +
+
+        '</div>' +
+        '<p class="note">That is it. Your order is already with us and Deng confirms by email.</p>';
       foot.innerHTML = '<button class="go" id="done-btn">Done</button>';
       document.getElementById('done-btn').onclick = function () { checkedOut = null; closeCart(); renderCart(); };
+
+      // Tap the reference to copy it. 70% of buyers are on a phone and retyping
+      // TAL-0810-57CU into MobilePay by hand is where the reference gets lost.
+      var refBtn = document.getElementById('copy-ref');
+      if (refBtn) {
+        refBtn.onclick = function () {
+          var txt = refBtn.textContent;
+          var hint = document.getElementById('copy-hint');
+          var ok = function () {
+            refBtn.classList.add('copied');
+            if (hint) hint.textContent = 'Copied. Paste it in the MobilePay message.';
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(txt).then(ok, function () {});
+          } else {
+            var t = document.createElement('textarea');
+            t.value = txt; document.body.appendChild(t); t.select();
+            try { document.execCommand('copy'); ok(); } catch (e) {}
+            document.body.removeChild(t);
+          }
+        };
+      }
       return;
     }
 
