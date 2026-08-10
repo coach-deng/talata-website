@@ -166,6 +166,17 @@
       body: JSON.stringify(payload)
     }).then(function (res) {
       if (!res.ok) throw new Error('order rejected');
+      // Revenue signal for GA4/Ads. Fires on a confirmed order, not on
+      // "add to cart", so the number matches what actually hits MobilePay.
+      if (typeof window.gtag === 'function') {
+        try {
+          window.gtag('event', 'purchase', {
+            transaction_id: ref,
+            currency: 'DKK',
+            value: total()
+          });
+        } catch (err) { /* analytics must never block the MobilePay panel */ }
+      }
       cb(null, { ref: ref, total: total(), lines: lines });
       cart = []; save();
     }).catch(function (e) { cb(e); });

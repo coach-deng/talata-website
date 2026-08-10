@@ -153,6 +153,54 @@
    *   hide        ids to hide once the panel renders
    *   mount       id of the element to replace with the panel (defaults to after the form)
    */
+  // Google Ads conversion ID. Empty until the account has a conversion action
+  // created; the GA4 event below works regardless, so leave it blank rather
+  // than guessing an ID. Format: 'AW-123456789/AbCdEfGhIj'.
+  var ADS_SEND_TO = '';
+
+  // What a lead is worth to the club, so Ads can bid toward the valuable ones
+  // instead of treating a Mini trial and an Academy trial as the same thing.
+  // Half-season fee from programs.md, x2 for a full year, discounted for the
+  // share of trials that never convert to a paid member.
+  var LEAD_VALUE = {
+    'Talata Mini': 1800, 'Talata Junior': 1800, 'Talata Sparks': 1800,
+    'Talata Academy': 3300, 'Talata Men': 2000, 'Free trial': 2200
+  };
+
+  function leadValue(data) {
+    var age = parseInt(data.age, 10);
+    if (age >= 5 && age <= 8) return LEAD_VALUE['Talata Mini'];
+    if (age >= 9 && age <= 11) return LEAD_VALUE['Talata Junior'];
+    if (age >= 12 && age <= 19) return LEAD_VALUE['Talata Academy'];
+    if (age >= 20) return LEAD_VALUE['Talata Men'];
+    return LEAD_VALUE[data.program] || LEAD_VALUE['Free trial'];
+  }
+
+  // Fire once, on a confirmed 2xx from the Worker. Firing on click instead
+  // would count every fat-fingered submit as a signup and quietly poison the
+  // bidding data, which is worse than having no data at all.
+  function fireConversion(data) {
+    if (typeof window.gtag !== 'function') return;
+    var value = leadValue(data);
+    try {
+      window.gtag('event', 'generate_lead', {
+        currency: 'DKK',
+        value: value,
+        program: data.program || 'Free trial',
+        age: data.age || '',
+        form_id: data.form_id || '',
+        source: data.source || ''
+      });
+      if (ADS_SEND_TO) {
+        window.gtag('event', 'conversion', {
+          send_to: ADS_SEND_TO,
+          value: value,
+          currency: 'DKK'
+        });
+      }
+    } catch (err) { /* never let analytics break the confirmation panel */ }
+  }
+
   function wire(opts) {
     var form = document.getElementById(opts.formId);
     var btn = document.getElementById(opts.buttonId);
@@ -222,6 +270,7 @@
         body: JSON.stringify(data)
       }).then(function (res) {
         if (!res.ok) throw new Error('lead rejected');
+        fireConversion(data);
         form.reset();
         (opts.hide || []).concat([opts.buttonId]).forEach(function (id) {
           var el = document.getElementById(id);
