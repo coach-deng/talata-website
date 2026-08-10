@@ -29,11 +29,9 @@
     intake: 'https://www.holdsport.dk/team_invitation/268863/e7bcc009a9ca4ac788e027199f540df83ee38c20',
     mini: 'https://www.holdsport.dk/team_invitation/318487/f2cdc89f63e900ca29c391d9cfbcc656ef1a8965'
   };
-  // "Talata Academy Player/Athlete Gear Orders" (Deng, Aug 10 2026). Same form
-  // as the older gd3NgitSp5RY6rrs7 short link, this is the current one.
-  // ⚠️ It currently REQUIRES a Google sign-in, which blocks any parent without
-  // a Google account. Turn off "collect verified email" in the form settings.
-  var JERSEY_FORM = 'https://forms.gle/CLVitGWNqiVLcEHc7';
+  // The jersey Google Form was RETIRED Aug 10 2026: it demanded a Google
+  // sign-in before a parent could see a single question. The shop replaced it.
+  var SHOP_URL = '/shop';
   var LEADS_ENDPOINT = 'https://rhynoflow-api.coach-258.workers.dev/leads';
 
   // ─── ATTRIBUTION ───────────────────────────────────────────────────────────
@@ -134,8 +132,8 @@
       '</div>',
 
       '<div class="tns-sec">',
-      '<b>Already a member? Claim your jersey number</b>',
-      '<a class="tns-btn ghost" href="' + JERSEY_FORM + '" target="_blank" rel="noopener">Jersey number and size</a>',
+      '<b>Kit, jerseys and hoodies</b>',
+      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
       '</div>',
 
       '<p class="tns-foot">Any question at all, just reply to the confirmation email. It comes straight to Deng.</p>',
@@ -254,5 +252,5 @@
     });
   }
 
-  global.TalataSignup = { wire: wire, attribution: attribution, HOLDSPORT: HOLDSPORT, JERSEY_FORM: JERSEY_FORM };
+  global.TalataSignup = { wire: wire, attribution: attribution, HOLDSPORT: HOLDSPORT, SHOP_URL: SHOP_URL };
 })(window);

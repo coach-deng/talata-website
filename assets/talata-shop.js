@@ -53,18 +53,20 @@
     { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'soon', cat: 'jersey', kit: true, personalise: true },
   ];
 
-  // ⚠️ BUNDLE DISCOUNTS. The four original bundles sit between 9% and 16% off
-  // the sum of their parts. b_gamepack is the one Deng specified on Aug 10 at
-  // 800 kr, which is ~40% off the member value of its contents (299 + 299 + 379
-  // + 349 = 1,326). That is far outside the pattern, and Nordic Kits unit costs
-  // are still undocumented, so it may be under cost. Flagged to Deng, left at
-  // his number until he says otherwise.
+  // BUNDLE DISCOUNTS. Every bundle sits between 9% and 17% off the sum of its
+  // parts. Keep new ones inside that band.
+  //
+  // b_gamepack was briefly 800 kr on Aug 10 2026, which was ~40% off its member
+  // component value (299 + 299 + 379 + 349 = 1,326) and roughly double the
+  // discount on anything else in the shop. Deng pulled it the same day. Now at
+  // 1,099 member / 1,349 public, which is 17% off both. Nordic Kits unit costs
+  // are still undocumented, so do not discount further until margin is known.
   var BUNDLES = [
-    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 199, pub: 259, stock: 'soon', cat: 'bundle' },
-    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 339, pub: 419, stock: 'soon', cat: 'bundle', kit: true },
-    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479, pub: 599, stock: 'soon', cat: 'bundle' },
-    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away jersey, hoodie + pants', member: 800, pub: 950, stock: 'soon', cat: 'bundle', bothKits: true },
-    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee + socks',    member: 799, pub: 949, stock: 'soon', cat: 'bundle' },
+    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 199,  pub: 259,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 339,  pub: 419,  stock: 'soon', cat: 'bundle', kit: true },
+    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479,  pub: 599,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee + socks',    member: 799,  pub: 949,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away jersey, hoodie + pants', member: 1099, pub: 1349, stock: 'soon', cat: 'bundle', bothKits: true },
   ];
 
   var ALL = CATALOGUE.concat(BUNDLES.map(function (b) {
