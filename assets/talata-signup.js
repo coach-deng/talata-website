@@ -235,7 +235,17 @@
           data.age = String(a);
         }
       }
-      data.program = opts.program || (opts.programMap && opts.programMap[data.interest]) || 'Free trial';
+      // The homepage select is name="interest", the /join select is
+      // name="program". Only "interest" was ever checked, so every lead from
+      // /join came through labelled "Free trial" no matter what the parent
+      // picked, including the adults who chose Talata Men. Check both, and if
+      // the value is not in the map keep the raw choice rather than throwing
+      // it away, because a slightly ugly label beats a wrong one.
+      var picked = data.interest || data.program;
+      data.program = opts.program
+        || (opts.programMap && opts.programMap[picked])
+        || picked
+        || 'Free trial';
       data.camp = data.program;
       data.form_id = opts.formId_ || 'talata-web';
       data.campaign = opts.formId_ || 'talata-web';

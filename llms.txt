@@ -1,60 +1,69 @@
 # Talata Basketball
 
-> Copenhagen's Constraints-Led Approach (CLA) basketball club. Serving ages 5 to adult since 2021. Built on three values: Joy, Excellence, Respect.
+> Basketball club in Copenhagen, Østerbro. Ages 5 to adult, since 2021. Your first session is free.
 
-Talata Basketball is a registered Danish forening (CVR 43599453) based in Copenhagen. We run year-round programs for kids and adults, plus international camps to Canada and Lithuania. We're a member of Danmarks Basketball Forbund (DBBF) and DGI.
+Talata Basketball is a registered Danish forening (CVR 43599453) on Østerbro in Copenhagen. We run year-round programs for children and adults, teams in the Danish national leagues (DBBF), and camps in the school holidays. Member of DBBF and DGI. About 82 players across the club.
 
-## Programs (from August 1, 2026 for the 26/27 season)
+Last updated: 2026-08-10. Season 26/27 started Monday 10 August 2026.
 
-- [Mini (ages 5-7)](https://talatabasketball.dk/mini): Mon + Wed 15:00-16:00, Strandvejsskolen
-- [Junior (ages 8-11)](https://talatabasketball.dk/mini): Tue + Thu 15:00-16:00, Strandvejsskolen
-- [Academy (ages 12-19)](https://talatabasketball.dk/academy): Tue evenings @ Nørrebrohallen, Thu evenings @ Svanemøllehallen
-- [Talata Men (competitive senior)](https://talatabasketball.dk): Thu + Fri evenings, Svanemøllehallen + Nørrebrohallen
-- [Talata Fitness (adult rec)](https://talatabasketball.dk): Thu evenings @ Svanemøllehallen
-- U17/U19 Girls: Coached by Talata in partnership with Stevnsgade, Tue @ Kulturhuset Indre By
+## Programs and training times (season 26/27)
 
-Note: the 2026/27 season starts Monday August 10, 2026. Mini runs Tue + Thu, Junior runs Wed + Fri, Academy and Men train evenings Mon-Fri, Saturday open gym 10:00-15:00 at Kulturhuset Indre By.
+- [Mini, ages 5 to 8](https://talatabasketball.dk/mini): Tuesday + Thursday 15:00-16:00, Strandvejsskolen. 1,800 DKK per half-season.
+- [Junior, ages 9 to 11](https://talatabasketball.dk/mini): Tuesday + Thursday 16:00-17:15, Strandvejsskolen. 1,800 DKK per half-season.
+- [Sparks, girls only, ages 5 to 11](https://talatabasketball.dk/sparks): Monday 15:00-16:00, Strandvejsskolen. 1,800 DKK per half-season.
+- [Academy U13 and U15, ages 12 to 15](https://talatabasketball.dk/academy): Monday, Thursday, Friday 16:00-18:00, Svanemøllehallen. 3,300 DKK per half-season.
+- [Academy U17 and U19, ages 16 to 19](https://talatabasketball.dk/academy): Monday, Thursday, Friday 17:00-19:00, Svanemøllehallen. 3,300 DKK per half-season.
+- Talata Men, competitive, 18+: Monday + Friday 18:30-20:15, Wednesday 18:30-20:00, Svanemøllehallen. 2,000 DKK per half-season. Plays DBBF 2. Division Øst.
+- Talata Fitness Men, recreational, 18+: same evening slots as Talata Men, no league commitment. 2,000 DKK per half-season.
+- U17/U19 Girls: coached by Talata in partnership with Stevnsgade, Tuesday at Kulturhuset Indre By. Enrolment goes through Stevnsgade.
 
-## Camps 2026
+Academy also has a Tuesday off-court day (strength, film, mental training) and Wednesday is a rest day with no session.
 
-- [Spring Camp Copenhagen](https://talatabasketball.dk/camps): May 14-16, ages 5-15 (completed)
-- [Canada Camp Lethbridge Alberta](https://talatabasketball.dk/camps/canada-camp-2026): ran June 29 - July 3 (completed, back June 2027, interest list open)
-- [Nida Camp Lithuania](https://talatabasketball.dk/camps/nida-camp-2026): July 26 - August 2, ages 12 and up, registration closed
-- [DK Summer Camp 2026, Week 32](https://talatabasketball.dk/camps/dk-summer-camp-2026): ages 13-17, Monday August 3 to Friday August 7 at Nørre Fælled Skole, 1,750 DKK, spots open
-- [DK Mini Summer Camp 2026, Week 32](https://talatabasketball.dk/camps/dk-mini-summer-camp-2026): ages 8-12, Tuesday August 4 to Friday August 7 at Nørre Fælled Skole, 1,550 DKK, spots open
+Fees are charged per half-season, not per month and not per session. One fee covers every session that group trains. Sibling discounts are available on request, and the club has routes for families where cost is the barrier.
 
-## Pricing (from August 1, 2026)
+## Camps
 
-- Mini (5-7): 1,800 DKK per half-season
-- Junior (8-11): 1,800 DKK per half-season
-- Academy (12-19): 4,000 DKK per year
-- Talata Men competitive: 4,000 DKK per year
-- Talata Fitness Men (adult rec): 2,000 DKK per half-season
-- Sibling discounts available
+Open for booking now:
+
+- [Autumn Camp](https://talatabasketball.dk/camps/autumn-camp-2026): 12-15 October 2026, Copenhagen, from 800 DKK.
+- [Winter Camp](https://talatabasketball.dk/camps/winter-camp-2026): 28-30 December 2026, Svanemøllehallen, ages 8-15, from 900 DKK.
+
+Already finished in 2026, listed for reference only, not open for booking:
+
+- Spring Camp Copenhagen, 14-16 May, ages 5-15.
+- Canada Camp, Lethbridge, Alberta, 29 June to 3 July. Returns 2027, interest list open.
+- Nida Camp, Lithuania, 26 July to 2 August, ages 12 and up, run with Vaice Rules.
+- DK Summer Camp, week 32, 3-7 August, Nørre Fælled Skole.
+
+## Joining
+
+The first session is always free, for every program and every age. No experience and no kit needed, just indoor trainers and a water bottle. Balls are provided. New players are welcome all year and the fee is prorated if you join mid-season.
+
+Book a free session: https://talatabasketball.dk/join
+Guide to basketball in Copenhagen, including other clubs: https://talatabasketball.dk/basketball-in-copenhagen
 
 ## Coaching philosophy
 
-Talata runs a fully Constraints-Led Approach (CLA) — ecological dynamics applied to basketball. Skill emerges from the interaction of Task + Environment + Individual. Every session uses small-sided games and game-like problems. No block practice. No form cues. No lines. No over-coaching.
+Talata runs a Constraints-Led Approach (CLA), which is ecological dynamics applied to basketball. Skill emerges from the interaction of Task, Environment and Individual. Sessions use small-sided games and game-like problems. No block practice, no form cues, no lines, no over-coaching.
 
-Five Pillars: Bamboo Mindset · Repetition Without Repetition · Lag-Free Excellence · Autonomy & Discovery · Representative Integrity.
+Five pillars: Bamboo Mindset, Repetition Without Repetition, Lag-Free Excellence, Autonomy and Discovery, Representative Integrity.
 
 Full philosophy: https://talatabasketball.dk/philosophy
 
-## Reviews
+## Shop
 
-Real parent and player reviews curated here: https://talatabasketball.dk/reviews
-Google Business Profile reviews: search "Talata Basketball Copenhagen" on Google Maps.
+Club kit, jerseys, hoodies and basics, with member pricing: https://talatabasketball.dk/shop
+Kit is made by Nordic Kits, who also supply other Danish clubs.
 
 ## Contact
 
-- Head Coach: Deng Awak (former Mount Royal University, Canada)
+- Head coach: Deng Awak
 - Email: coach@talatabasketball.dk
 - WhatsApp: +45 52 39 85 08
-- Free trial signup: https://talatabasketball.dk/join
+- Reviews: https://talatabasketball.dk/reviews
 
 ## Locations
 
-- Strandvejsskolen, Sionsgade 1, 2100 København Ø (Mini + Junior)
-- Svanemøllehallen, Østerbrogade 240, 2100 København Ø (Academy + Men)
-- Nørrebrohallen, Nørrebrogade 208, 2200 København N (U19 + Men, Friday trials)
-- Kulturhuset Indre By, Charlotte Ammundsens Plads 3, 1359 København K (U17 Girls + open gym)
+- Svanemøllehallen, Østerbrogade 240, 2100 København Ø. Academy and Men.
+- Strandvejsskolen, Sionsgade 1, 2100 København Ø. Mini, Junior and Sparks.
+- Kulturhuset Indre By, Charlotte Ammundsens Plads 3, 1359 København K. Open gym and the Stevnsgade girls partnership.

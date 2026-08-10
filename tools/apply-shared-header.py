@@ -30,6 +30,7 @@ SKIP = {
 
 # Per page: (cta_href, cta_label). Anchors verified against each page's form id.
 CTA = {
+    "basketball-in-copenhagen.html": ("/join", "Book free trial"),
     "index.html": ("#trial", "Book free trial"),
     "academy.html": ("#apply", "Book free trial"),
     "mini.html": ("#register", "Book free trial"),
@@ -39,7 +40,7 @@ CTA = {
     "ish-high-school.html": ("#signup", "Sign up"),
     "school-partnerships.html": ("#contact", "Get in touch"),
     "camps/autumn-camp-2026.html": ("#waitlist", "Join waitlist"),
-    "camps/christmas-hoops-camp-2026.html": ("#waitlist", "Join waitlist"),
+    "camps/winter-camp-2026.html": ("#waitlist", "Join waitlist"),
     "camps/lithuania-camp-2026.html": ("#register", "Sign up"),
 }
 DEFAULT_CTA = ("/#trial", "Book free trial")
@@ -63,7 +64,7 @@ MENU = {
     ],
     "Camps": [
         ("/camps/autumn-camp-2026", "Autumn Camp", "Oct 12 to 15"),
-        ("/camps/christmas-hoops-camp-2026", "Christmas Hoops", "Dec 28 to 30"),
+        ("/camps/winter-camp-2026", "Winter Camp", "Dec 28 to 30"),
         ("/blog/talata-canada-camp-2026-recap", "Canada", "recap &middot; back 2027"),
         ("/camps", "All camps", ""),
     ],
