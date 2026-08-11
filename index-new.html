@@ -1031,7 +1031,7 @@ document.getElementById('trialForm').addEventListener('submit', async function(e
 
   try {
     await Promise.all([
-      fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
+      fetch('https://talata-api.coach-258.workers.dev/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(rhynoPayload)

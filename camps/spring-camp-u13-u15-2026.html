@@ -510,7 +510,7 @@
         const body = JSON.stringify(data);
 
         try {
-          await fetch('https://rhynoflow-api.coach-258.workers.dev/leads', {
+          await fetch('https://talata-api.coach-258.workers.dev/leads', {
             method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
           });
           fetch(GAS_MAILER, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain'}, body }).catch(() => {});

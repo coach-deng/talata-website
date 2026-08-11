@@ -26,7 +26,7 @@
   // Orders go to /orders, NOT /leads. Posting them to /leads made GAS send the
   // trial-lead auto-reply ("Deng replies within a day with your training time")
   // to someone who had just bought a hoodie. Caught Aug 10 2026 on a real order.
-  var ORDERS_ENDPOINT = 'https://rhynoflow-api.coach-258.workers.dev/orders';
+  var ORDERS_ENDPOINT = 'https://talata-api.coach-258.workers.dev/orders';
   var CART_KEY = 'talata_cart_v1';
 
   var SIZES_APPAREL = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];

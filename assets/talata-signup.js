@@ -32,7 +32,7 @@
   // The jersey Google Form was RETIRED Aug 10 2026: it demanded a Google
   // sign-in before a parent could see a single question. The shop replaced it.
   var SHOP_URL = '/shop';
-  var LEADS_ENDPOINT = 'https://rhynoflow-api.coach-258.workers.dev/leads';
+  var LEADS_ENDPOINT = 'https://talata-api.coach-258.workers.dev/leads';
 
   // ─── ATTRIBUTION ───────────────────────────────────────────────────────────
   // "Where did you hear about us" cannot tell paid Google from organic Google.
