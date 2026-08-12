@@ -53,20 +53,40 @@
     { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'soon', cat: 'jersey', kit: true, personalise: true },
   ];
 
-  // BUNDLE DISCOUNTS. Every bundle sits between 9% and 17% off the sum of its
-  // parts. Keep new ones inside that band.
+  // BUNDLE PRICING — REBUILT 11 Aug 2026 on Deng's instruction (Game Pack at 799).
   //
-  // b_gamepack was briefly 800 kr on Aug 10 2026, which was ~40% off its member
-  // component value (299 + 299 + 379 + 349 = 1,326) and roughly double the
-  // discount on anything else in the shop. Deng pulled it the same day. Now at
-  // 1,099 member / 1,349 public, which is 17% off both. Nordic Kits unit costs
-  // are still undocumented, so do not discount further until margin is known.
+  // The old rule was "every bundle sits 9-17% off its parts". That is dead. The
+  // ladder now ESCALATES with basket size, which is standard kit-package retail
+  // (Epic Sports and similar advertise 20-40% off uniform packages) and makes
+  // the Game Pack the obvious hero rather than one option among five.
+  //
+  //   bundle        member   parts   off      public   parts   off
+  //   Starter          189     224   16%         239     284   16%
+  //   Game Day         319     374   15%         399     464   14%
+  //   Practice         449     573   22%         559     713   22%
+  //   Full Talata      649     952   32%         819   1,182   31%
+  //   Game Pack        799   1,326   40%         999   1,636   39%
+  //
+  // Full Talata HAD to move. At the old 799 it would have cost the same as the
+  // Game Pack while containing 374 kr less member value, so nobody would ever
+  // have bought it. 649 keeps the upsell honest: 150 kr more swaps tee+socks
+  // for two match jerseys.
+  //
+  // ⚠️ HISTORY, READ BEFORE CHANGING AGAIN. b_gamepack was set to 800 on
+  // Aug 10 2026 and Deng reversed it the same day because ~40% off was double
+  // the discount on everything else. Deng re-instructed 799 on Aug 11 with the
+  // rest of the ladder rebuilt around it, which resolves that inconsistency.
+  //
+  // 🔴 STILL UNRESOLVED: Nordic Kits unit costs are undocumented. Nobody has
+  // confirmed that 799 for two jerseys, a hoodie and pants clears cost. If a
+  // jersey lands near 250 and a hoodie near 300, this bundle sells at a loss on
+  // every unit. Get unit costs from Emma before pushing volume at these prices.
   var BUNDLES = [
-    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 199,  pub: 259,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 339,  pub: 419,  stock: 'soon', cat: 'bundle', kit: true },
-    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479,  pub: 599,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee + socks',    member: 799,  pub: 949,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away jersey, hoodie + pants', member: 1099, pub: 1349, stock: 'soon', cat: 'bundle', bothKits: true },
+    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 189,  pub: 239,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 319,  pub: 399,  stock: 'soon', cat: 'bundle', kit: true },
+    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 449,  pub: 559,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee + socks',    member: 649,  pub: 819,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away jersey, hoodie + pants', member: 799, pub: 999, stock: 'soon', cat: 'bundle', bothKits: true },
   ];
 
   var ALL = CATALOGUE.concat(BUNDLES.map(function (b) {
