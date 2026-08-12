@@ -45,15 +45,20 @@
   // A jersey photo on a hoodie card would sell a parent something they did not
   // see, and that comes back as a return. The strip at the top of shop.html
   // tells buyers these are the kit in action and real product shots follow.
-  // PHOTO RULE (Deng, 11 Aug 2026): a card gets a photo ONLY if you can clearly
-  // see ONE player wearing that item. No group shots, no huddles, no backs of
-  // heads, no "bunch of kids". If the garment is not visible on a person, the
-  // card ships with no photo — that is better than a picture that sells nothing.
+  // NO PHOTOS ON CARDS — decided 11 Aug 2026, and this is deliberate.
   //
-  // Consequence, stated plainly: we own game-action photos and nothing else, so
-  // ONLY the jersey products have imagery. There is no usable shot of the
-  // hoodie, pants, crewneck, tee, cap or socks on a person. Those stay bare
-  // until someone photographs the actual garments.
+  // Deng's rule was: only show a photo where you can clearly see one player
+  // wearing that item. Applied honestly that left FOUR cards with images and
+  // ELEVEN bare, because we own game-action shots and nothing else. A grid
+  // that is a quarter illustrated does not read as restraint, it reads as a
+  // half-finished website, and that costs more trust than it buys.
+  //
+  // So the cards are uniform and text-only, and the four good action shots
+  // moved to a lookbook strip at the top of shop.html where they sell the club
+  // without pretending to be product photography.
+  //
+  // When real garment shots exist, put them on EVERY card at once. Do not
+  // reintroduce a partial set.
   var CATALOGUE = [
     { id: 'socks',      name: 'Talata socks',            member: 75,  pub: 95,  sizes: SIZES_SOCK,    stock: 'made', cat: 'basics' },
     { id: 'socks3',     name: 'Talata socks, 3 pack',    member: 175, pub: 225, sizes: SIZES_SOCK,    stock: 'made', cat: 'basics' },
@@ -65,8 +70,8 @@
     { id: 'hoodie',     name: 'Hoodie',                  member: 379, pub: 469, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
     { id: 'hoodieheavy',name: 'Heavy hoodie',            member: 479, pub: 589, sizes: SIZES_APPAREL, stock: 'soon', cat: 'apparel' },
     { id: 'pants',      name: 'Sweatpants',              member: 349, pub: 429, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
-    { id: 'jersey',     name: 'Game jersey',             member: 299, pub: 369, sizes: SIZES_KIDS,    stock: 'soon', cat: 'jersey',  kit: true, img: 'jun26/u13-drive-intensity.jpg' },
-    { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'soon', cat: 'jersey',  kit: true, personalise: true, img: 'jul26/drive-vs-espergaerde.jpg' },
+    { id: 'jersey',     name: 'Game jersey',             member: 299, pub: 369, sizes: SIZES_KIDS,    stock: 'soon', cat: 'jersey',  kit: true },
+    { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'soon', cat: 'jersey',  kit: true, personalise: true },
   ];
 
   // BUNDLE PRICING — REBUILT 11 Aug 2026 on Deng's instruction (Game Pack at 799).
@@ -109,36 +114,46 @@
   // ⚠️ SOCKS ARE OUT OF THE FULL TALATA BUNDLE (Deng, 11 Aug): we do not have
   // stock and will not sell a bundle we cannot ship. Socks stay in Starter,
   // Game Day and Practice for now, and go back into Full Talata later.
-  // ESTIMATED UNIT COSTS, modelled by splitting Deng's 650 kr set across its
-  // parts on standard teamwear ratios. NOT quoted by Nordic Kits — still worth
-  // getting Emma's real per-item breakdown, but close enough to price against:
-  //   jersey 143 · hoodie 197 · pants 167 · crew 158 · heavy hoodie 240
-  //   tee 65 · cap 55 · socks 30
+  // UNIT COSTS — corrected 11 Aug 2026, second pass.
   //
-  // Singles are all healthy on this basis: 43-60% member margin, 55-68% public.
-  // Bundles were NOT. They slid to 19% on the Game Pack, so the ladder is
-  // rebuilt: Game Pack stays the one deep member deal at 799 (Deng), and every
-  // other bundle comes back to a normal 9-13% discount instead of 15-32%.
+  // Deng's 650 kr set is SIX pieces: home kit (jersey + shorts), away kit
+  // (jersey + shorts), hoodie, pants. The first model assumed four pieces and
+  // therefore overstated every unit cost by ~35%. Split across six on standard
+  // teamwear ratios:
+  //   hoodie 144 · pants 122 · crew 115 · jersey 105 · shorts 87
+  //   heavy hoodie 176 · tee 48 · cap 40 · socks 22
+  // Still modelled, not quoted. Emma's real breakdown would settle it.
   //
-  //   bundle        cost   member  margin      public  margin
-  //   Starter         95      199   +104 52%      249   +154 62%
-  //   Game Day       173      339   +166 49%      419   +246 59%
-  //   Practice       262      509   +247 49%      629   +367 58%
-  //   Full Talata    429      769   +340 44%      949   +520 55%
-  //   Game Pack      650      799   +149 19%      999   +349 35%
+  // WHY 799 STAYS. It is not a margin decision, it is a promise. 800 is what
+  // members paid last season and they expect the same deal this season. Break
+  // it and you save 149 kr a pack and spend the goodwill of every returning
+  // family. Keep it, and fund it from the public price instead — non-members
+  // never had that promise. Public goes 999 -> 1,099, still well under the
+  // 1,349 it launched at, and the 300 kr gap becomes a real reason to join.
   //
-  // ⚠️ KNOWN AND ACCEPTED: Full Talata (769) now sits only 30 kr under the Game
-  // Pack (799), which carries 449 kr more member value. Anyone comparing the
-  // two takes the Game Pack. That is the cost of making 799 the hero, and it
-  // moves buyers from a 340 kr margin bundle to a 149 kr one. Live with it
-  // while 799 is the membership hook, or raise the Game Pack PUBLIC price to
-  // ~1,149 so non-members fund it. Deng's call, flagged 11 Aug.
+  //   bundle        cost   member  margin       public  margin
+  //   Starter         70      189   +119 63%       239   +169 71%
+  //   Game Day       127      319   +192 60%       399   +272 68%
+  //   Practice       192      479   +287 60%       599   +407 68%
+  //   Full Talata    314      699   +385 55%       879   +565 64%
+  //   Game Pack      650      799   +149 19%     1,099   +449 41%
+  //
+  // The other four came DOWN from the last pass (199/339/509/769). With the
+  // corrected costs they were carrying 60%+ margins while looking expensive
+  // next to the Game Pack. Now they read as an honest 15-20% bundle discount
+  // and still clear 55-63%. Blended across the shop that is a healthy book.
+  //
+  // ⚠️ Full Talata is still structurally dominated by the Game Pack and always
+  // will be while 799 buys six pieces. Its real audience is the parent or
+  // sibling who wants club wear and no jersey. Priced for that, not for volume.
   var BUNDLES = [
-    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 199,  pub: 249,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 339,  pub: 419,  stock: 'soon', cat: 'bundle', kit: true, img: 'jun26/u13-layup-contested.jpg' },
-    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 509,  pub: 629,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee',            member: 769,  pub: 949,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away jersey, hoodie + pants', member: 799, pub: 999, stock: 'soon', cat: 'bundle', bothKits: true, img: 'jul26/smiling-drive.jpg' },
+    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 189,  pub: 239,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 319,  pub: 399,  stock: 'soon', cat: 'bundle', kit: true },
+    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479,  pub: 599,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee',            member: 699,  pub: 879,  stock: 'soon', cat: 'bundle' },
+    // Shorts were missing from this description. The pack has always included
+    // them — it is two complete kits — and leaving them out undersold it badly.
+    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away kit, hoodie + pants', member: 799, pub: 1099, stock: 'soon', cat: 'bundle', bothKits: true },
   ];
 
   var ALL = CATALOGUE.concat(BUNDLES.map(function (b) {

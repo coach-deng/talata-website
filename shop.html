@@ -60,11 +60,16 @@
     /* Grid */
     .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:18px; padding:28px 0 60px; }
     .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px; display:flex; flex-direction:column; }
-    /* Lookbook imagery, not studio product shots. Fixed ratio so a portrait
-       action photo and a landscape team photo sit on the same grid line. */
-    .card .shot { margin:-18px -18px 14px; aspect-ratio:4/3; overflow:hidden;
-                  border-radius:14px 14px 0 0; background:var(--mist); }
-    .card .shot img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* LOOKBOOK strip. Four action shots, uniform 3:4 crop. */
+    .lookbook { padding:18px 0 4px; }
+    .lb-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .lb-grid img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block;
+                   border-radius:12px; background:var(--mist); }
+    .lb-note { font-size:.82rem; color:var(--muted); margin:10px 0 0; }
+    @media (max-width:700px){
+      .lb-grid { grid-template-columns:repeat(2,1fr); }
+    }
     .card h3 { font-size:1.02rem; letter-spacing:-.01em; }
     .card .desc { font-size:.85rem; color:var(--muted); margin-top:2px; }
     .tag { display:inline-block; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
@@ -79,7 +84,13 @@
                                 font-family:inherit; font-size:.9rem; background:#fff; }
     .card .row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
     .card .both { margin-top:9px; font-size:.82rem; font-weight:600; color:var(--blue); }
-    .add { margin-top:14px; width:100%; background:var(--navy); color:#fff; border:0; border-radius:9px;
+    /* The grid stretches every card to the tallest in its row, so short cards
+       (Starter, socks) used to leave a slab of dead white space under the
+       button. addwrap takes the slack with margin-top:auto and keeps a real
+       gap above the button, instead of margin-top:auto on the button itself
+       which would pin it flush against the last field on tall cards. */
+    .addwrap { margin-top:auto; padding-top:14px; }
+    .add { width:100%; background:var(--navy); color:#fff; border:0; border-radius:9px;
            padding:11px; font-weight:700; font-size:.9rem; cursor:pointer; font-family:inherit; }
     .add:hover { background:var(--blue); }
     .add.done { background:#166534; }
@@ -313,13 +324,17 @@
   </div>
 </div>
 
-<!-- Honest framing for the imagery. These are our own players in our own kit,
-     not studio product shots, and saying so is better than a parent assuming
-     the photo is the garment and being surprised by the box. -->
-<div class="wrap" style="padding:14px 0 0;">
-  <p style="font-size:.85rem;color:var(--muted);margin:0;">
-    Jersey photos are our own players in match kit. Product shots for the rest land with the first batch.
-  </p>
+<!-- LOOKBOOK. The four usable action shots live here rather than on four of
+     fifteen cards, which read as a half-finished grid. These sell the club and
+     the kit; they are not product photography and the caption says so. -->
+<div class="wrap lookbook">
+  <div class="lb-grid">
+    <img src="/images/jun26/u13-drive-intensity.jpg" alt="Talata player driving in the home kit" loading="lazy" decoding="async">
+    <img src="/images/jul26/drive-vs-espergaerde.jpg" alt="Talata player attacking the basket in match kit" loading="lazy" decoding="async">
+    <img src="/images/jun26/u13-layup-contested.jpg" alt="Talata player finishing a contested layup" loading="lazy" decoding="async">
+    <img src="/images/jul26/smiling-drive.jpg" alt="Talata player pushing the ball up court" loading="lazy" decoding="async">
+  </div>
+  <p class="lb-note">Our own players, in the kit you are buying. Garment photos land with the first batch.</p>
 </div>
 
 <main class="wrap">
@@ -392,8 +407,6 @@
       var price = S.isMember ? p.member : p.pub;
       var save = p.pub - p.member;
       return '<div class="card">' +
-        (p.img ? '<div class="shot"><img src="/images/' + p.img + '" alt="' + p.name +
-                 ' — Talata Basketball" loading="lazy" decoding="async"></div>' : '') +
         '<span class="tag ' + p.stock + '">' + (p.stock === 'soon' ? 'On the way' : 'Made to order') + '</span>' +
         '<h3>' + p.name + '</h3>' +
         (p.desc ? '<div class="desc">' + p.desc + '</div>' : '') +
@@ -404,12 +417,12 @@
         '<select id="sz-' + p.id + '">' + p.sizes.map(function (s) { return '<option>' + s + '</option>'; }).join('') + '</select>' +
         (p.kit ? '<label for="kit-' + p.id + '">Home or away</label>' +
                  '<select id="kit-' + p.id + '"><option>Home</option><option>Away</option></select>' : '') +
-        (p.bothKits ? '<p class="both">Both kits included, home and away.</p>' : '') +
+        (p.bothKits ? '<p class="both">Two complete kits: home and away, jersey and shorts. Six pieces.</p>' : '') +
         (p.personalise ? '<div class="row">' +
               '<div><label for="nm-' + p.id + '">Name on back</label><input id="nm-' + p.id + '" maxlength="14" placeholder="AWAK"></div>' +
               '<div><label for="no-' + p.id + '">Number</label><input id="no-' + p.id + '" type="number" min="0" max="99" placeholder="23"></div>' +
             '</div>' : '') +
-        '<button class="add" data-add="' + p.id + '">Add to basket</button>' +
+        '<div class="addwrap"><button class="add" data-add="' + p.id + '">Add to basket</button></div>' +
       '</div>';
     }).join('');
   }
