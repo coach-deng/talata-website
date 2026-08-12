@@ -176,15 +176,23 @@
   // 50 are the last of that block — check before selling out of it.
   //
   // WHEN A PIECE LEAVES THE GYM, DELETE ITS LINE HERE AND IN gear-stock.md.
+  // COLOURS (Deng, 12 Aug 2026): BLACK is the away kit, BLUE is home.
+  //
+  // LOOSE SHORTS AT 249/309, not the 299/369 jersey price (Deng handed the call
+  // over, 12 Aug). Two reasons. Modelled unit cost has shorts at 87 against a
+  // jersey at 105, so 249 holds the same margin shape as the rest of the shop
+  // (+162, 65% member · +222, 72% public). And a parent will not pay jersey
+  // money for shorts — it is the cheaper half of the kit and pricing it level
+  // with the jersey reads as a mistake, which costs more trust than the 50 kr.
   var READY_NOW = [
-    { name: 'Game jersey',  detail: 'Black, number 47', size: 'L',       member: 299, pub: 369 },
-    { name: 'Game jersey',  detail: 'Black, number 49', size: 'L',       member: 299, pub: 369 },
-    { name: 'Game jersey',  detail: 'Blue, number 49',  size: 'L',       member: 299, pub: 369 },
-    { name: 'Game shorts',  detail: 'Blue, number 47',  size: 'L',       member: 299, pub: 369 },
-    { name: 'Talata t-shirt', detail: 'White',          size: 'L',       member: 149, pub: 189 },
-    // Size of the one sock pair is not recorded yet — see gear-stock.md Q1.
-    // Left blank rather than guessed; the card just says "1 only".
-    { name: 'Talata socks', detail: 'One pair',         size: '',        member: 75,  pub: 95 }
+    { name: 'Game jersey',  detail: 'Black away, number 47', size: 'L',   member: 299, pub: 369 },
+    { name: 'Game jersey',  detail: 'Black away, number 49', size: 'L',   member: 299, pub: 369 },
+    { name: 'Game jersey',  detail: 'Blue home, number 49',  size: 'L',   member: 299, pub: 369 },
+    { name: 'Game shorts',  detail: 'Blue home, number 47',  size: 'L',   member: 249, pub: 309 },
+    { name: 'Talata t-shirt', detail: 'White',               size: 'L',   member: 149, pub: 189 },
+    // Deng, 12 Aug: "not really a small sock", it stretches across two of the
+    // catalogue buckets (39-42 and 43-46). Listed as the true range it fits.
+    { name: 'Talata socks', detail: 'One pair',       size: '39-46',     member: 75,  pub: 95 }
   ];
 
   var ALL = CATALOGUE.concat(BUNDLES.map(function (b) {
