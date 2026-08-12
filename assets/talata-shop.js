@@ -38,19 +38,26 @@
   //   'soon' = stock is ordered and on its way in
   // There is deliberately no 'in' state. Re-add one only when a box actually
   // lands, because "In stock" on a card is a delivery promise to a parent.
+  // PHOTOS (added 11 Aug 2026). These are ACTION AND TEAM SHOTS, not studio
+  // product shots — we do not own a single photo of the hoodie, pants, crewneck
+  // or socks on their own. Assigned honestly: a card only gets a photo that
+  // genuinely shows that garment, or a club/team shot used as lookbook imagery.
+  // A jersey photo on a hoodie card would sell a parent something they did not
+  // see, and that comes back as a return. The strip at the top of shop.html
+  // tells buyers these are the kit in action and real product shots follow.
   var CATALOGUE = [
-    { id: 'socks',      name: 'Talata socks',            member: 75,  pub: 95,  sizes: SIZES_SOCK,    stock: 'made', cat: 'basics' },
-    { id: 'socks3',     name: 'Talata socks, 3 pack',    member: 175, pub: 225, sizes: SIZES_SOCK,    stock: 'made', cat: 'basics' },
-    { id: 'cap',        name: 'Talata cap',              member: 130, pub: 160, sizes: ['One size'],  stock: 'made', cat: 'basics' },
-    { id: 'tee',        name: 'Talata t-shirt',          member: 149, pub: 189, sizes: SIZES_KIDS,    stock: 'soon', cat: 'basics' },
+    { id: 'socks',      name: 'Talata socks',            member: 75,  pub: 95,  sizes: SIZES_SOCK,    stock: 'made', cat: 'basics',  img: 'jun26/u13-break-run.jpg' },
+    { id: 'socks3',     name: 'Talata socks, 3 pack',    member: 175, pub: 225, sizes: SIZES_SOCK,    stock: 'made', cat: 'basics',  img: 'jun26/u13-fastbreak-duo.jpg' },
+    { id: 'cap',        name: 'Talata cap',              member: 130, pub: 160, sizes: ['One size'],  stock: 'made', cat: 'basics',  img: 'jun26/team-photo-tunnel-arena.jpg' },
+    { id: 'tee',        name: 'Talata t-shirt',          member: 149, pub: 189, sizes: SIZES_KIDS,    stock: 'soon', cat: 'basics',  img: 'jul26/camp-film-session.jpg' },
     // Crewneck was not called out either way on Aug 10. Grouped with the other
     // apparel as incoming; move it to 'made' if that is wrong.
-    { id: 'crew',       name: 'Crewneck sweatshirt',     member: 279, pub: 349, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
-    { id: 'hoodie',     name: 'Hoodie',                  member: 379, pub: 469, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
-    { id: 'hoodieheavy',name: 'Heavy hoodie',            member: 479, pub: 589, sizes: SIZES_APPAREL, stock: 'soon', cat: 'apparel' },
-    { id: 'pants',      name: 'Sweatpants',              member: 349, pub: 429, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
-    { id: 'jersey',     name: 'Game jersey',             member: 299, pub: 369, sizes: SIZES_KIDS,    stock: 'soon', cat: 'jersey', kit: true },
-    { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'soon', cat: 'jersey', kit: true, personalise: true },
+    { id: 'crew',       name: 'Crewneck sweatshirt',     member: 279, pub: 349, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel', img: 'jun26/huddle-bw-coach.jpg' },
+    { id: 'hoodie',     name: 'Hoodie',                  member: 379, pub: 469, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel', img: 'jul26/game-timeout-huddle.jpg' },
+    { id: 'hoodieheavy',name: 'Heavy hoodie',            member: 479, pub: 589, sizes: SIZES_APPAREL, stock: 'soon', cat: 'apparel', img: 'jun26/huddle-bw-hands.jpg' },
+    { id: 'pants',      name: 'Sweatpants',              member: 349, pub: 429, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel', img: 'jul26/camp-conditioning.jpg' },
+    { id: 'jersey',     name: 'Game jersey',             member: 299, pub: 369, sizes: SIZES_KIDS,    stock: 'soon', cat: 'jersey',  kit: true, img: 'jun26/team-photo-tunnel-arena.jpg' },
+    { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'soon', cat: 'jersey',  kit: true, personalise: true, img: 'jun26/u13-drive-intensity.jpg' },
   ];
 
   // BUNDLE PRICING — REBUILT 11 Aug 2026 on Deng's instruction (Game Pack at 799).
@@ -77,16 +84,28 @@
   // the discount on everything else. Deng re-instructed 799 on Aug 11 with the
   // rest of the ladder rebuilt around it, which resolves that inconsistency.
   //
-  // 🔴 STILL UNRESOLVED: Nordic Kits unit costs are undocumented. Nobody has
-  // confirmed that 799 for two jerseys, a hoodie and pants clears cost. If a
-  // jersey lands near 250 and a hoodie near 300, this bundle sells at a loss on
-  // every unit. Get unit costs from Emma before pushing volume at these prices.
+  // ✅ COST BASELINE (Deng, 11 Aug 2026): a full set — home kit + away kit,
+  // hoodie and pants — lands at roughly 650 kr. That is the first real cost
+  // number we have had, and it settles the open margin question:
+  //
+  //   Game Pack   member 799  − 650 cost = +149  (19% margin)
+  //   Game Pack   public 999  − 650 cost = +349  (35% margin)
+  //
+  // So 799 clears cost, but only just on the member side. Every Game Pack sold
+  // to a member earns about 149 kr. That is fine as a flagship, and it is thin
+  // enough that it should not be discounted again without a new cost number.
+  // Still worth getting Emma's per-item breakdown so the singles can be checked
+  // the same way.
+  //
+  // ⚠️ SOCKS ARE OUT OF THE FULL TALATA BUNDLE (Deng, 11 Aug): we do not have
+  // stock and will not sell a bundle we cannot ship. Socks stay in Starter,
+  // Game Day and Practice for now, and go back into Full Talata later.
   var BUNDLES = [
-    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 189,  pub: 239,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 319,  pub: 399,  stock: 'soon', cat: 'bundle', kit: true },
-    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 449,  pub: 559,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee + socks',    member: 649,  pub: 819,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away jersey, hoodie + pants', member: 799, pub: 999, stock: 'soon', cat: 'bundle', bothKits: true },
+    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 189,  pub: 239,  stock: 'soon', cat: 'bundle', img: 'jun26/mini-group-smiles.jpg' },
+    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 319,  pub: 399,  stock: 'soon', cat: 'bundle', kit: true, img: 'jun26/u13-layup-contested.jpg' },
+    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 449,  pub: 559,  stock: 'soon', cat: 'bundle', img: 'jul26/camp-conditioning.jpg' },
+    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee',            member: 649,  pub: 819,  stock: 'soon', cat: 'bundle', img: 'jun26/game-huddle-court.jpg' },
+    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away jersey, hoodie + pants', member: 799, pub: 999, stock: 'soon', cat: 'bundle', bothKits: true, img: 'jun26/game-huddle-arena.jpg' },
   ];
 
   var ALL = CATALOGUE.concat(BUNDLES.map(function (b) {
