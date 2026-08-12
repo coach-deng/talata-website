@@ -76,6 +76,38 @@
            padding:3px 9px; border-radius:999px; margin-bottom:9px; align-self:flex-start; }
     .tag.made { background:var(--sky); color:var(--navy); }
     .tag.soon { background:#fef3c7; color:#854d0e; }
+    .tag.in   { background:var(--blue); color:#fff; }
+
+    /* READY NOW. Loose one-off pieces sitting in the gym. Deliberately outside
+       the basket: the cart has no stock decrement and every line here is qty 1,
+       so two people could buy the same jersey. Claimed by email instead.
+       Palette is the locked club one (navy / Talata blue / baby / sky). It
+       stands apart from the grid on WEIGHT, not on a new colour. */
+    .ready { border:2px solid var(--blue); background:#fff; border-radius:14px;
+             padding:22px 22px 18px; margin:26px 0 0; }
+    .ready .eyebrow { display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.16em;
+                      text-transform:uppercase; color:#fff; background:var(--blue);
+                      padding:4px 11px; border-radius:999px; margin-bottom:10px; }
+    .ready h2 { font-size:1.25rem; letter-spacing:-.02em; margin-bottom:6px; }
+    .ready .lede { font-size:.9rem; color:var(--muted); max-width:62ch; margin-bottom:16px; }
+    .ready-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px; }
+    .rn { background:var(--mist); border:1px solid var(--sky); border-radius:11px; padding:14px;
+          display:flex; flex-direction:column; gap:2px; }
+    .rn b { font-size:.95rem; }
+    .rn .meta { font-size:.82rem; color:var(--muted); }
+    .rn .sz { font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+              color:var(--blue); margin-top:4px; }
+    .rn .amt { font-weight:800; margin-top:8px; }
+    .rn .amt s { font-size:.85rem; font-weight:500; color:var(--muted); margin-left:6px; }
+    /* margin-top:auto pins the button to the bottom so a card whose name wraps
+       to two lines still lines its button up with the rest of the row. */
+    .rn .claim { margin-top:auto; display:block; text-align:center; background:var(--navy); color:#fff;
+                 font-weight:700; font-size:.85rem; padding:10px 9px; border-radius:8px;
+                 text-decoration:none; }
+    .rn .claim:hover { background:var(--blue); }
+    .ready .foot { font-size:.82rem; color:var(--muted); margin-top:14px; }
+    @media (max-width:600px){ .ready-grid { grid-template-columns:1fr 1fr; } .ready { padding:16px; } }
+    @media (max-width:400px){ .ready-grid { grid-template-columns:1fr; } }
     .price { margin:12px 0 4px; font-size:1.35rem; font-weight:800; letter-spacing:-.02em; }
     .price s { font-size:.9rem; font-weight:500; color:var(--muted); margin-left:7px; }
     .price .save { font-size:.78rem; font-weight:700; color:#166534; display:block; margin-top:1px; }
@@ -338,6 +370,16 @@
 </div>
 
 <main class="wrap">
+  <!-- Ready now: loose pieces already in the gym. Rendered from
+       TalataShop.READY_NOW so the count lives in one file. -->
+  <section class="ready" id="ready" hidden>
+    <p class="eyebrow">In the gym right now</p>
+    <h2>Ready to collect today</h2>
+    <p class="lede">A few pieces are already here. Spare squad numbers, one white tee, one pair of socks. <strong>One of each, first come first served.</strong> Pick it up at training at Svanem&oslash;llehallen, no waiting for the batch.</p>
+    <div class="ready-grid" id="ready-grid"></div>
+    <p class="foot">Email to claim a piece and Deng holds it for you. Everything else in the shop below is made to order or on the way in.</p>
+  </section>
+
   <div class="grid" id="grid"></div>
   <!-- Supplier credit + B2B route. Nordic Kits is a separate company from the
        club, so the enquiry goes to them directly and the relationship is
@@ -401,13 +443,39 @@
 
   function kr(n) { return n.toLocaleString('da-DK') + ' kr'; }
 
+  var STOCK_LABEL = { made: 'Made to order', soon: 'On the way', 'in': 'In the gym now' };
+
+  // One-off pieces already in the gym. No basket: every line is qty 1 and the
+  // cart cannot decrement stock, so these are claimed by email and Deng edits
+  // READY_NOW when a piece leaves. Section hides itself when the list empties.
+  function renderReady() {
+    var box = document.getElementById('ready');
+    var list = S.READY_NOW || [];
+    if (!list.length) { box.hidden = true; return; }
+    box.hidden = false;
+    document.getElementById('ready-grid').innerHTML = list.map(function (r) {
+      var price = S.isMember ? r.member : r.pub;
+      var subject = 'Ready now: ' + r.name + ' (' + r.detail + (r.size ? ', size ' + r.size : '') + ')';
+      return '<div class="rn">' +
+        '<b>' + r.name + '</b>' +
+        '<span class="meta">' + r.detail + '</span>' +
+        '<span class="sz">' + (r.size ? 'Size ' + r.size + ' &middot; ' : '') + '1 only</span>' +
+        '<span class="amt">' + kr(price) +
+          (S.isMember ? '<s>' + kr(r.pub) + '</s>' : '') +
+        '</span>' +
+        '<a class="claim" data-track="shop: claim ready-now" ' +
+          'href="mailto:coach@talatabasketball.dk?subject=' + encodeURIComponent(subject) + '">Claim it</a>' +
+      '</div>';
+    }).join('');
+  }
+
   function renderGrid() {
     var items = S.ALL.filter(function (p) { return filter === 'all' || p.cat === filter; });
     grid.innerHTML = items.map(function (p) {
       var price = S.isMember ? p.member : p.pub;
       var save = p.pub - p.member;
       return '<div class="card">' +
-        '<span class="tag ' + p.stock + '">' + (p.stock === 'soon' ? 'On the way' : 'Made to order') + '</span>' +
+        '<span class="tag ' + p.stock + '">' + STOCK_LABEL[p.stock] + '</span>' +
         '<h3>' + p.name + '</h3>' +
         (p.desc ? '<div class="desc">' + p.desc + '</div>' : '') +
         '<div class="price">' + kr(price) +
@@ -575,11 +643,12 @@
     };
   });
 
-  memberCheck.onchange = function () { S.setMember(memberCheck.checked); renderGrid(); renderCart(); };
+  memberCheck.onchange = function () { S.setMember(memberCheck.checked); renderGrid(); renderReady(); renderCart(); };
   document.getElementById('open-cart').onclick = openCart;
   document.getElementById('close-cart').onclick = closeCart;
   scrim.onclick = closeCart;
 
+  renderReady();
   renderGrid();
   renderCart();
 })();

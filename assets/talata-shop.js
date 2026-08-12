@@ -33,11 +33,17 @@
   var SIZES_KIDS = ['6-8y', '8-10y', '10-12y', '12-14y', 'XS', 'S', 'M', 'L', 'XL'];
   var SIZES_SOCK = ['31-34', '35-38', '39-42', '43-46'];
 
-  // stock (Deng, Aug 10 2026 — NOTHING is on the shelf right now):
+  // stock states:
   //   'made' = made to order, goes in the next batch
   //   'soon' = stock is ordered and on its way in
-  // There is deliberately no 'in' state. Re-add one only when a box actually
-  // lands, because "In stock" on a card is a delivery promise to a parent.
+  //   'in'   = boxes are physically in the gym, any size, ready today
+  //
+  // ⚠️ 'in' IS A PROMISE. A card is a whole product line across every size in
+  // its dropdown, so it only earns 'in' when we could fill any of those sizes
+  // today. On 12 Aug 2026 the count was six loose pieces — one white tee in L,
+  // one pair of socks, four numbered game pieces — which is NOT a stocked line.
+  // Those live in READY_NOW below and every card stays 'made' or 'soon'.
+  // Counts are owned by SecondBrain/Talata/_references/inventory/gear-stock.md.
   // PHOTOS (added 11 Aug 2026). These are ACTION AND TEAM SHOTS, not studio
   // product shots — we do not own a single photo of the hoodie, pants, crewneck
   // or socks on their own. Assigned honestly: a card only gets a photo that
@@ -154,6 +160,31 @@
     // Shorts were missing from this description. The pack has always included
     // them — it is two complete kits — and leaving them out undersold it badly.
     { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away kit, hoodie + pants', member: 799, pub: 1099, stock: 'soon', cat: 'bundle', bothKits: true },
+  ];
+
+  // ─── READY NOW ───────────────────────────────────────────────────────────
+  // Counted by Deng 12 Aug 2026. Leftovers and spares from the kit runs, not a
+  // stocked shelf. EVERY LINE IS QTY 1.
+  //
+  // These deliberately do NOT go through the basket. The cart has no stock
+  // decrement, so two parents adding "the L white tee" on the same evening both
+  // get a confirmation and one of them gets an apology. One-offs get claimed by
+  // email instead, and Deng takes the piece off the list by hand.
+  //
+  // 47 and 49 are spare numbers from the unnamed `TALATA 46-50 L` block on the
+  // order sheet, which is why selling them does not strip a player. 46, 48 and
+  // 50 are the last of that block — check before selling out of it.
+  //
+  // WHEN A PIECE LEAVES THE GYM, DELETE ITS LINE HERE AND IN gear-stock.md.
+  var READY_NOW = [
+    { name: 'Game jersey',  detail: 'Black, number 47', size: 'L',       member: 299, pub: 369 },
+    { name: 'Game jersey',  detail: 'Black, number 49', size: 'L',       member: 299, pub: 369 },
+    { name: 'Game jersey',  detail: 'Blue, number 49',  size: 'L',       member: 299, pub: 369 },
+    { name: 'Game shorts',  detail: 'Blue, number 47',  size: 'L',       member: 299, pub: 369 },
+    { name: 'Talata t-shirt', detail: 'White',          size: 'L',       member: 149, pub: 189 },
+    // Size of the one sock pair is not recorded yet — see gear-stock.md Q1.
+    // Left blank rather than guessed; the card just says "1 only".
+    { name: 'Talata socks', detail: 'One pair',         size: '',        member: 75,  pub: 95 }
   ];
 
   var ALL = CATALOGUE.concat(BUNDLES.map(function (b) {
@@ -274,6 +305,7 @@
   global.TalataShop = {
     CATALOGUE: CATALOGUE,
     BUNDLES: BUNDLES,
+    READY_NOW: READY_NOW,
     ALL: ALL,
     MOBILEPAY: MOBILEPAY,
     byId: byId,
