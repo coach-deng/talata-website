@@ -87,17 +87,22 @@
   // (Epic Sports and similar advertise 20-40% off uniform packages) and makes
   // the Game Pack the obvious hero rather than one option among five.
   //
-  //   bundle        member   parts   off      public   parts   off
-  //   Starter          189     224   16%         239     284   16%
-  //   Game Day         319     374   15%         399     464   14%
-  //   Practice         449     573   22%         559     713   22%
-  //   Full Talata      649     952   32%         819   1,182   31%
-  //   Game Pack        799   1,326   40%         999   1,636   39%
+  // ⚠️ Corrected 14 Aug 2026: this table had drifted off the array below on
+  // three of five rows (Practice, Full Talata, Game Pack public). The array is
+  // the source of truth; a stale comment beside live prices is how the wrong
+  // number ends up quoted to a parent.
+  //
+  //   bundle        member                public
+  //   Starter          189                   239
+  //   Game Day         319                   399
+  //   Practice         479                   599
+  //   Full Talata      699                   879
+  //   Game Pack        799                 1,099
   //
   // Full Talata HAD to move. At the old 799 it would have cost the same as the
-  // Game Pack while containing 374 kr less member value, so nobody would ever
-  // have bought it. 649 keeps the upsell honest: 150 kr more swaps tee+socks
-  // for two match jerseys.
+  // Game Pack while containing less member value, so nobody would ever have
+  // bought it. At 699 the upsell stays honest: 100 kr more swaps tee+socks for
+  // two match jerseys.
   //
   // ⚠️ HISTORY, READ BEFORE CHANGING AGAIN. b_gamepack was set to 800 on
   // Aug 10 2026 and Deng reversed it the same day because ~40% off was double
@@ -154,12 +159,18 @@
   // sibling who wants club wear and no jersey. Priced for that, not for volume.
   var BUNDLES = [
     { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 189,  pub: 239,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 319,  pub: 399,  stock: 'soon', cat: 'bundle', kit: true },
+    // personalise: a bundle containing a GAME jersey has to carry the name and
+    // number, the same as the standalone printed jersey. Griffin Hazen's Game
+    // Pack (TAL-0814-TUZ7, 14 Aug 2026) came through with a size and nothing
+    // else — two jerseys that cannot be printed and an order that cannot be
+    // filled without going back to the family. The fields existed all along;
+    // they were simply never switched on for the bundles that need them.
+    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 319,  pub: 399,  stock: 'soon', cat: 'bundle', kit: true, personalise: true },
     { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479,  pub: 599,  stock: 'soon', cat: 'bundle' },
     { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee',            member: 699,  pub: 879,  stock: 'soon', cat: 'bundle' },
     // Shorts were missing from this description. The pack has always included
     // them — it is two complete kits — and leaving them out undersold it badly.
-    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away kit, hoodie + pants', member: 799, pub: 1099, stock: 'soon', cat: 'bundle', bothKits: true },
+    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away kit, hoodie + pants', member: 799, pub: 1099, stock: 'soon', cat: 'bundle', bothKits: true, personalise: true },
   ];
 
   // ─── READY NOW ───────────────────────────────────────────────────────────
