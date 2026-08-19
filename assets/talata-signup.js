@@ -207,6 +207,11 @@
     if (!form || !btn) return;
     injectStyles();
 
+    // A date input with no max happily accepts a birth date in 2087. Pin it to
+    // today on every load rather than hardcoding a date that goes stale.
+    var dobEl = form.querySelector('input[name="dob"]');
+    if (dobEl) dobEl.max = new Date().toISOString().slice(0, 10);
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var label = btn.textContent;
@@ -220,11 +225,20 @@
       // pipeline stops guessing.
       data.player_name = data.player_name || data.child_name || '';
       data.name = data.player_name;
-      // Age, not DOB, on the public forms (Deng, Aug 10 2026). A numeric keypad
-      // is two taps; a date wheel scrolled back eight years is not, and 70% of
-      // traffic is mobile. The real birth DATE is captured by Holdsport at join
-      // and the Aug 9 export had zero missing, so the DBBF brackets stay safe.
-      // Still derive age if a form ever sends dob, so nothing breaks either way.
+      // DOB on the public forms, reversing the Aug 10 call (Deng, 18 Aug 2026).
+      //
+      // The Aug 10 reasoning was real — a numeric keypad is two taps, a date
+      // wheel is not, and 70% of traffic is mobile — but it assumed Holdsport
+      // would supply the birth date later. Routing happens BEFORE Holdsport, in
+      // the confirmation email, so it never saw one.
+      //
+      // And age cannot do this job. DBBF brackets run off age on 1 OCTOBER, so
+      // a player turning 17 after the cutoff is still U17. Born Nov 2011 you
+      // are U15, born Mar 2011 you are U17 — same age today, different team.
+      // Not even a birth year separates those two. Only the date does.
+      //
+      // age is still derived and still sent, so every downstream consumer that
+      // reads `age` keeps working untouched.
       if (data.dob) {
         var b = new Date(data.dob);
         if (!isNaN(b.getTime())) {

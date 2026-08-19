@@ -494,8 +494,9 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Age</label>
-            <input type="number" name="age" min="4" max="80" required placeholder="e.g. 7">
+            <label for="dob">Date of birth</label>
+            <input type="date" id="dob" name="dob" min="1940-01-01" required autocomplete="bday">
+            <small style="display:block;margin-top:.35rem;color:#64748B;font-size:.78rem;">Age groups run from 1 October, so the date decides the team.</small>
           </div>
           <div class="form-group">
             <label>Your email</label>

@@ -329,7 +329,7 @@ footer a:hover{color:var(--baby);}
       <label>Player's name</label>
       <input name="player_name" required placeholder="Full name">
       <div class="row2">
-        <div><label>Age</label><input name="age" type="number" min="4" max="80" required placeholder="e.g. 9"></div>
+        <div><label for="dob">Date of birth</label><input type="date" id="dob" name="dob" min="1940-01-01" required autocomplete="bday"><small style="display:block;margin-top:.35rem;color:#64748B;font-size:.78rem;">Age groups run from 1 October, so the date decides the team.</small></div>
         <div><label>Gender</label><select name="gender"><option>Boy</option><option>Girl</option><option>Adult</option></select></div>
       </div>
       <div class="row2">
