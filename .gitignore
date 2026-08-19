@@ -47,3 +47,11 @@ images/junk/**
 # phone shots going to Cloudflare on every push.
 images/_unused/
 images/_unused/**
+
+# ...but partner logos ARE deployment assets. The blanket *.png above meant the
+# EYBL logo only got committed because it was added by name; a plain `git add .`
+# would have skipped it silently and the site would 404 the image.
+!images/partners/
+!images/partners/*.png
+!images/partners/*.svg
+!images/partners/*.webp
