@@ -339,7 +339,7 @@
         <a href="/mini">Mini<small>ages 5 to 9</small></a>
         <a href="/mini#junior">Junior<small>ages 10 to 12</small></a>
         <a href="/academy">Academy<small>ages 12 to 19</small></a>
-        <a href="/sparks">Sparks<small>girls only</small></a>
+        <a href="/sparks">Sparks<small>girls 6 to 14</small></a>
         <a href="/join">Talata Men<small>2. Division + motion</small></a>
         <a href="/ish-high-school">ISH High School<small>Thursdays at Svanem&oslash;llehallen</small></a>
         <a href="/school-partnerships">School partnerships<small>bring Talata to your school</small></a>
@@ -358,6 +358,7 @@
         <a href="/philosophy">The Talata Way<small>how we coach</small></a>
         <a href="/reviews">Reviews<small>what parents say</small></a>
         <a href="/guide">Parents' Guide<small>everything for 26/27</small></a>
+        <a href="/help">Help &amp; guides<small>manuals for parents</small></a>
         <a href="/blog">The Playbook<small>news + stories</small></a>
         <a href="/gallery">Gallery<small>photos</small></a>
         <a href="/#watch">Watch<small>highlights + film</small></a>
@@ -386,7 +387,7 @@
           <li><a href="/mini">Mini<small>ages 5 to 9</small></a></li>
           <li><a href="/mini#junior">Junior<small>ages 10 to 12</small></a></li>
           <li><a href="/academy">Academy<small>ages 12 to 19</small></a></li>
-          <li><a href="/sparks">Sparks<small>girls only</small></a></li>
+          <li><a href="/sparks">Sparks<small>girls 6 to 14</small></a></li>
           <li><a href="/join">Talata Men<small>2. Division + motion</small></a></li>
           <li><a href="/ish-high-school">ISH High School<small>Thursdays at Svanem&oslash;llehallen</small></a></li>
           <li><a href="/school-partnerships">School partnerships<small>bring Talata to your school</small></a></li>
@@ -403,6 +404,7 @@
           <li><a href="/philosophy">The Talata Way<small>how we coach</small></a></li>
           <li><a href="/reviews">Reviews<small>what parents say</small></a></li>
           <li><a href="/guide">Parents' Guide<small>everything for 26/27</small></a></li>
+          <li><a href="/help">Help &amp; guides<small>manuals for parents</small></a></li>
           <li><a href="/blog">The Playbook<small>news + stories</small></a></li>
           <li><a href="/gallery">Gallery<small>photos</small></a></li>
           <li><a href="/#watch">Watch<small>highlights + film</small></a></li>
@@ -563,6 +565,44 @@
 
     </div>
   </div>
+
+  <div style="max-width:760px;margin:0 auto;padding:0 24px 8px">
+    <div style="background:#0B1F3A;color:#fff;border-radius:14px;padding:28px 26px">
+      <p style="font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7DD3FC;margin:0">The Playbook</p>
+      <h2 style="color:#fff;margin:8px 0;font-size:1.25rem;font-weight:800">One email a week, written by Deng</h2>
+      <p style="color:rgba(255,255,255,.8);margin:0">Coaching notes, what we worked on and why, what to watch for in your own kid's game. No fixture spam, no club admin.</p>
+      <form id="sub-form" style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+        <input type="email" id="sub-email" name="email" placeholder="you@example.com" required aria-label="Your email"
+               style="flex:1 1 240px;padding:13px 15px;border-radius:9px;border:0;font:inherit">
+        <button type="submit" id="sub-btn"
+                style="background:#7DD3FC;color:#0B1F3A;font-weight:800;font-size:.95rem;padding:13px 26px;border:0;border-radius:9px;cursor:pointer;font-family:inherit">Subscribe</button>
+      </form>
+      <div id="sub-ok" style="display:none;margin-top:12px;background:rgba(125,211,252,.16);border:1px solid #7DD3FC;border-radius:9px;padding:12px 14px;color:#fff;font-size:.92rem">You are on the list. First one lands next week.</div>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.55);margin:10px 0 0">Unsubscribe any time, one click. Looking for a how-to instead? <a href="/help" style="color:#7DD3FC;font-weight:700">Guides for parents</a>.</p>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var f = document.getElementById('sub-form');
+    if (!f) return;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = document.getElementById('sub-btn');
+      var email = document.getElementById('sub-email').value.trim();
+      if (!email) return;
+      btn.disabled = true; btn.textContent = 'Sending...';
+      fetch('https://talata-api.coach-258.workers.dev/subscribe', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: location.pathname })
+      }).then(function (r) {
+        if (!r.ok) throw new Error('failed');
+        f.style.display = 'none';
+        document.getElementById('sub-ok').style.display = 'block';
+      }).catch(function () { btn.disabled = false; btn.textContent = 'Try again'; });
+    });
+  })();
+  </script>
 
   <div class="cta-section">
     <h2>Want your kid on the court?</h2>

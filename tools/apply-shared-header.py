@@ -51,10 +51,10 @@ WATCH_PLACEHOLDER = "__WATCH__"
 
 MENU = {
     "Programs": [
-        ("/mini", "Mini", "ages 5 to 8"),
-        ("/mini#junior", "Junior", "ages 9 to 11"),
+        ("/mini", "Mini", "ages 5 to 9"),
+        ("/mini#junior", "Junior", "ages 10 to 12"),
         ("/academy", "Academy", "ages 12 to 19"),
-        ("/sparks", "Sparks", "girls only"),
+        ("/sparks", "Sparks", "girls 6 to 14"),
         ("/join", "Talata Men", "2. Division + motion"),
         # ISH Primary is hidden as of Aug 6 2026: the Ryparken gym is probably not
         # ours on any day, so advertising a Friday slot confuses parents. The page
@@ -72,6 +72,7 @@ MENU = {
         ("/philosophy", "The Talata Way", "how we coach"),
         ("/reviews", "Reviews", "what parents say"),
         ("/guide", "Parents' Guide", "everything for 26/27"),
+        ("/help", "Help &amp; guides", "manuals for parents"),
         ("/blog", "The Playbook", "news + stories"),
         ("/gallery", "Gallery", "photos"),
         (WATCH_PLACEHOLDER, "Watch", "highlights + film"),
