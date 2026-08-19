@@ -73,6 +73,7 @@ MENU = {
         ("/reviews", "Reviews", "what parents say"),
         ("/guide", "Parents' Guide", "everything for 26/27"),
         ("/help", "Help &amp; guides", "manuals for parents"),
+        ("/partners", "Partners", "who backs the club"),
         ("/blog", "The Playbook", "news + stories"),
         ("/gallery", "Gallery", "photos"),
         (WATCH_PLACEHOLDER, "Watch", "highlights + film"),
