@@ -95,26 +95,67 @@
       '.tns-warn ul{margin:6px 0 0;padding-left:18px}',
       '.tns-warn li{margin-bottom:4px}',
       '.tns em{font-style:normal;background:#BAE6FD;padding:1px 5px;border-radius:4px;font-weight:600}',
-      '.tns-foot{font-size:.85rem;opacity:.75;margin:14px 0 0}'
+      '.tns-foot{font-size:.85rem;opacity:.75;margin:14px 0 0}',
+      // The session block is the whole point of the panel, so it outranks
+      // everything under it visually.
+      '.tns-now{background:#0B1F3A;color:#fff;border-radius:11px;padding:14px 16px;margin-bottom:16px}',
+      '.tns-now-k{display:block;font-size:.72rem;font-weight:800;letter-spacing:.14em;',
+      'text-transform:uppercase;color:#7DD3FC}',
+      '.tns-now-v{display:block;font-size:1.32rem;font-weight:800;letter-spacing:-.02em;margin:3px 0 5px}',
+      '.tns-now-g{display:block;font-size:.92rem;font-weight:700;color:#BAE6FD}',
+      '.tns-now-w{display:block;font-size:.85rem;opacity:.8;margin-top:2px}',
+      '.tns-now-n{display:block;font-size:.8rem;color:#7DD3FC;margin-top:8px}',
+      '.tns-alt{background:#fff;border:1px dashed #BAE6FD;border-radius:9px;',
+      'padding:9px 12px;margin:-8px 0 16px;font-size:.87rem}'
     ].join('');
     document.head.appendChild(s);
   }
 
   // ─── THE PANEL ─────────────────────────────────────────────────────────────
   // `variant` picks which Holdsport team the join button points at.
-  function panelHtml(variant) {
+  function sessionBlock(route) {
+    if (!route || !route.when) return '';
+    var alt = route.alternative && route.alternative.when
+      ? '<div class="tns-alt"><b>Also open to you:</b> ' + esc(route.alternative.group) +
+        ', ' + esc(route.alternative.when) + '</div>'
+      : '';
+    return [
+      '<div class="tns-now">',
+      '<span class="tns-now-k">Your first session</span>',
+      '<b class="tns-now-v">' + esc(route.when) + '</b>',
+      '<span class="tns-now-g">' + esc(route.group) + '</span>',
+      '<span class="tns-now-w">' + esc(route.where) + '</span>',
+      route.movesLater
+        ? '<span class="tns-now-n">Note: this group moves 30 minutes later from Mon 24 August.</span>'
+        : '',
+      '</div>',
+      alt
+    ].join('');
+  }
+
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  function panelHtml(variant, route) {
     var link = variant === 'mini' ? HOLDSPORT.mini : HOLDSPORT.intake;
     var team = variant === 'mini' ? 'Talata Mini' : 'Talata Basketball';
     return [
       '<div class="tns">',
-      '<div class="tns-head"><b>Got it. You are on the list.</b>',
+      '<div class="tns-head"><b>Got it. Come and play.</b>',
       '<span>Confirmation is in your inbox. Check spam if it is not there in five minutes.</span></div>',
       '<div class="tns-body">',
 
+      sessionBlock(route),
+
       '<b style="display:block;margin-bottom:8px">What happens next</b>',
       '<ol>',
-      '<li><b>Deng emails you within a day</b> with your exact day, time and gym.</li>',
-      '<li><b>The first session is free.</b> Turn up in trainers with a water bottle. No kit, no experience, nothing to pay.</li>',
+      (route && route.when
+        ? '<li><b>Just turn up.</b> No waiting list, nothing to book, nothing to pay. Ask for Deng at the door.</li>'
+        : '<li><b>Deng emails you within a day</b> with your exact day, time and gym.</li>'),
+      '<li><b>The first session is free.</b> Trainers and a water bottle is all you need. No kit, no experience.</li>',
       '<li>If it is a fit, you join the club properly. That part is below when you are ready.</li>',
       '</ol>',
 
@@ -294,6 +335,9 @@
         body: JSON.stringify(data)
       }).then(function (res) {
         if (!res.ok) throw new Error('lead rejected');
+        return res.json().catch(function () { return {}; });
+      }).then(function (out) {
+        var route = (out && out.route) || null;
         fireConversion(data);
         form.reset();
         (opts.hide || []).concat([opts.buttonId]).forEach(function (id) {
@@ -302,7 +346,7 @@
         });
         var host = opts.mount && document.getElementById(opts.mount);
         if (host) {
-          host.innerHTML = panelHtml(opts.variant);
+          host.innerHTML = panelHtml(opts.variant, route);
           host.style.display = 'block';
         } else {
           // No dedicated mount: swap the form's own contents for the panel.
@@ -311,7 +355,7 @@
           Array.prototype.forEach.call(form.children, function (el) {
             el.style.display = 'none';
           });
-          form.insertAdjacentHTML('beforeend', panelHtml(opts.variant));
+          form.insertAdjacentHTML('beforeend', panelHtml(opts.variant, route));
         }
         var panel = (host || form).querySelector('.tns');
         if (panel && panel.scrollIntoView) {
