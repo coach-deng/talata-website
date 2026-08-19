@@ -75,6 +75,7 @@ MENU = {
         ("/help", "Help &amp; guides", "manuals for parents"),
         ("/partners", "Partners", "who backs the club"),
         ("/blog", "The Playbook", "news + stories"),
+        ("/#insider", "Insider", "one email a week"),
         ("/gallery", "Gallery", "photos"),
         (WATCH_PLACEHOLDER, "Watch", "highlights + film"),
         ("/join", "Contact", ""),
