@@ -20,6 +20,9 @@
   </url>
   <url><loc>https://talatabasketball.dk/coaches</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://talatabasketball.dk/pathway</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://talatabasketball.dk/blog/johan-lyager-joensen-ohio-2026</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://talatabasketball.dk/blog/deyan-nikiforov-stevnsgade-2026</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://talatabasketball.dk/blog/marius-wriedt-naestved-2026</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url>
     <loc>https://talatabasketball.dk/sparks</loc>
     <lastmod>2026-06-01</lastmod>
