@@ -128,6 +128,25 @@ a{text-decoration:none;color:inherit;}
 .tcard b{display:block;font-size:1.05rem;color:#0B1F3A;font-weight:900;}
 .tcard span{display:block;font-size:.83rem;color:#475467;margin-top:3px;}
 .tcard i{display:block;font-style:normal;font-size:.78rem;color:#98A2B3;margin-top:7px;}
+/* Shop band, 20 Aug 2026. The shop was one small card next to the Insider box and
+   nobody scrolled to it. Bundles are the thing worth showing: they are the only
+   place the member price visibly beats the public one. */
+.kit-band{background:#0B1F3A;padding:54px 0;}
+.kit-band .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+.kit-band .head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px;}
+.kit-band h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;letter-spacing:-.02em;color:#fff;margin:0;}
+.kit-band h2 i{font-style:normal;color:#7DD3FC;}
+.kit-band .head a{color:#7DD3FC;font-weight:700;font-size:.92rem;text-decoration:none;}
+.kit-sub{color:rgba(255,255,255,.68);font-size:.94rem;margin:0 0 22px;}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.kcard{display:block;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px;text-decoration:none;transition:.16s;}
+.kcard:hover{border-color:#7DD3FC;background:rgba(125,211,252,.1);transform:translateY(-2px);}
+.kcard .tagline{display:block;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7DD3FC;margin-bottom:8px;}
+.kcard b{display:block;font-size:1.1rem;color:#fff;font-weight:900;}
+.kcard span.what{display:block;font-size:.86rem;color:rgba(255,255,255,.68);margin-top:5px;min-height:2.4em;}
+.kcard .price{display:block;margin-top:12px;font-size:1.25rem;font-weight:900;color:#fff;}
+.kcard .price s{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.45);margin-left:7px;}
+.kcard .price em{display:block;font-style:normal;font-size:.74rem;font-weight:700;color:#7DD3FC;letter-spacing:.04em;margin-top:3px;}
 .coach-band{background:#F8FAFC;padding:54px 0;}
 .coach-band .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
 .coach-band .head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;}
@@ -151,7 +170,7 @@ a{text-decoration:none;color:inherit;}
 .fcard span{display:block;font-size:.9rem;color:#475467;margin-top:7px;}
 .fcard i{display:block;font-style:normal;color:#1E40AF;font-weight:700;font-size:.86rem;margin-top:12px;}
 .ins-band{background:#0B1F3A;padding:56px 0;}
-.ins-wrap{max-width:1100px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.45fr 1fr;gap:20px;}
+.ins-wrap{max-width:1100px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr;gap:20px;}
 .ins-card,.shop-card{background:rgba(255,255,255,.05);border:1px solid rgba(125,211,252,.22);border-radius:16px;padding:30px 30px 26px;}
 .ins-kicker{font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#7DD3FC;margin:0 0 8px;}
 .ins-band h2{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:900;letter-spacing:-.02em;color:#fff;margin:0 0 10px;line-height:1.14;}
@@ -289,8 +308,7 @@ footer a:hover{color:var(--baby);}
         <a href="/academy">Academy<small>ages 13 to 19</small></a>
         <a href="/sparks">Sparks<small>girls 6 to 14</small></a>
         <a href="/join">Talata Men<small>3. Division + motion</small></a>
-        <a href="/ish-high-school">ISH High School<small>Thursdays at Svanem&oslash;llehallen</small></a>
-        <a href="/school-partnerships">School partnerships<small>bring Talata to your school</small></a>
+        <a href="/school-partnerships">Schools<small>ISH and school programmes</small></a>
         </div>
       </li>
       <li><a class="tn-top" href="/camps">Camps<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -301,18 +319,21 @@ footer a:hover{color:var(--baby);}
         <a href="/camps">All camps</a>
         </div>
       </li>
-      <li><a class="tn-top" href="/philosophy">Club<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <li><a class="tn-top" href="/coaches">Club<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="tn-drop">
         <a href="/coaches">Coaches<small>who is on the floor</small></a>
         <a href="/pathway">Player Pathway<small>where players go next</small></a>
         <a href="/philosophy">The Talata Way<small>how we coach</small></a>
         <a href="/reviews">Reviews<small>what parents say</small></a>
-        <a href="/guide">Parents' Guide<small>everything for 26/27</small></a>
         <a href="/blog">The Playbook<small>news + stories</small></a>
         <a href="/gallery">Gallery<small>photos</small></a>
+        </div>
+      </li>
+      <li><a class="tn-top" href="/guide">Parents<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="tn-drop">
+        <a href="/guide">Parents' Guide<small>everything for 26/27</small></a>
         <a href="/help">Help &amp; guides<small>manuals for parents</small></a>
-        <a href="/partners">Partners<small>who backs the club</small></a>
-        <a href="/join">Contact</a>
+        <a href="/join">Contact<small>get in touch</small></a>
         </div>
       </li>
         <li><a class="tn-top" href="/shop">Shop</a></li>
@@ -339,8 +360,7 @@ footer a:hover{color:var(--baby);}
           <li><a href="/academy">Academy<small>ages 13 to 19</small></a></li>
           <li><a href="/sparks">Sparks<small>girls 6 to 14</small></a></li>
           <li><a href="/join">Talata Men<small>3. Division + motion</small></a></li>
-          <li><a href="/ish-high-school">ISH High School<small>Thursdays at Svanem&oslash;llehallen</small></a></li>
-          <li><a href="/school-partnerships">School partnerships<small>bring Talata to your school</small></a></li>
+          <li><a href="/school-partnerships">Schools<small>ISH and school programmes</small></a></li>
         </ul>
         <h3>Camps</h3>
         <ul class="tn-drawer-list">
@@ -355,12 +375,14 @@ footer a:hover{color:var(--baby);}
           <li><a href="/pathway">Player Pathway<small>where players go next</small></a></li>
           <li><a href="/philosophy">The Talata Way<small>how we coach</small></a></li>
           <li><a href="/reviews">Reviews<small>what parents say</small></a></li>
-          <li><a href="/guide">Parents' Guide<small>everything for 26/27</small></a></li>
           <li><a href="/blog">The Playbook<small>news + stories</small></a></li>
           <li><a href="/gallery">Gallery<small>photos</small></a></li>
+        </ul>
+        <h3>Parents</h3>
+        <ul class="tn-drawer-list">
+          <li><a href="/guide">Parents' Guide<small>everything for 26/27</small></a></li>
           <li><a href="/help">Help &amp; guides<small>manuals for parents</small></a></li>
-          <li><a href="/partners">Partners<small>who backs the club</small></a></li>
-          <li><a href="/join">Contact</a></li>
+          <li><a href="/join">Contact<small>get in touch</small></a></li>
         </ul>
     <h3>More</h3>
     <ul class="tn-drawer-list">
@@ -482,7 +504,7 @@ footer a:hover{color:var(--baby);}
       <a class="story" href="/blog/johan-lyager-joensen-ohio-2026">
         <img src="images/people/johan-ohio-card.jpg" alt="Johan Lyager Joensen in a Talata jersey, with the Danish and American flags" fetchpriority="high" decoding="async" width="1600" height="900">
         <div class="grad"></div>
-        <div class="txt"><span class="tag">Player News</span><h3>Johan is going to America</h3><p>Johan Lyager Joensen was one of the twenty players in Talata's first season. At fifteen he leaves Copenhagen for high school basketball in Martins Ferry, Ohio.</p></div>
+        <div class="txt"><span class="tag">Player News</span><h3>Johan is going to America</h3><p>Johan Lyager Joensen was one of the twenty players in Talata's first season. At fifteen he leaves Copenhagen for Martins Ferry High School in Ohio.</p></div>
       </a>
       <div class="sidecards">
         <a class="story" href="/blog/marius-wriedt-naestved-2026">
@@ -611,6 +633,35 @@ footer a:hover{color:var(--baby);}
   </div>
 </section>
 
+<section class="kit-band">
+  <div class="wrap">
+    <div class="head"><h2>Kit that looks like <i>a team</i></h2><a href="/shop">Visit the shop &rarr;</a></div>
+    <p class="kit-sub">Bundles are the cheapest way in, and members pay less on every one. No login, pay by MobilePay.</p>
+    <div class="kgrid">
+      <a class="kcard" href="/shop#bundles">
+        <span class="tagline">Most complete</span>
+        <b>Full Talata</b><span class="what">Hoodie, pants and tee</span>
+        <span class="price">699 kr <s>879 kr</s><em>Member price</em></span>
+      </a>
+      <a class="kcard" href="/shop#bundles">
+        <span class="tagline">Everything for the season</span>
+        <b>Game Pack</b><span class="what">Home and away kit, hoodie and pants</span>
+        <span class="price">799 kr <s>1.099 kr</s><em>Member price</em></span>
+      </a>
+      <a class="kcard" href="/shop#bundles">
+        <span class="tagline">Game day</span>
+        <b>Game Day bundle</b><span class="what">Jersey with name and number, plus socks</span>
+        <span class="price">319 kr <s>399 kr</s><em>Member price</em></span>
+      </a>
+      <a class="kcard" href="/shop#bundles">
+        <span class="tagline">Starting out</span>
+        <b>Starter bundle</b><span class="what">Tee and socks</span>
+        <span class="price">189 kr <s>239 kr</s><em>Member price</em></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="ins-band">
   <div class="ins-wrap">
 
@@ -626,12 +677,6 @@ footer a:hover{color:var(--baby);}
       <p class="ins-fine">Free. Unsubscribe any time, one click.</p>
     </div>
 
-    <a class="shop-card" href="/shop">
-      <p class="ins-kicker">The shop</p>
-      <h2>Kit, jerseys<br>and hoodies</h2>
-      <p class="ins-sub">Blue is home, black is away. No login needed, pay by MobilePay.</p>
-      <span class="shop-go">Visit the shop &rarr;</span>
-    </a>
 
   </div>
 </section>
@@ -695,6 +740,7 @@ TalataSignup.wire({
         <a href="/academy">Academy</a>
         <a href="/sparks">Sparks</a>
         <a href="/join">Talata Men</a>
+        <a href="/ish-high-school">ISH High School</a>
         <a href="/camps">Camps</a>
         <a href="/shop">Shop</a>
       </div>

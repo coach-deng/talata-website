@@ -69,6 +69,7 @@ COLUMNS = [
         ("/academy", "Academy"),
         ("/sparks", "Sparks"),
         ("/join", "Talata Men"),
+        ("/ish-high-school", "ISH High School"),
         ("/camps", "Camps"),
         ("/shop", "Shop"),
     ]),
