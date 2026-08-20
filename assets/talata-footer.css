@@ -1,0 +1,148 @@
+/* Shared Talata footer. Generated pair: tools/apply-shared-footer.py owns the
+   markup, this owns the layout. Do not hand-edit the markup in a page.
+
+   Written 20 Aug 2026 after an audit found six different footers across the
+   site and twenty-plus pages with none at all — every camp page, every program
+   page, and /join. A parent landing on /academy from Google hit the bottom of
+   the page with no contact, no links and no way back.
+
+   The mobile bug this also fixes: the old homepage footer used
+   `grid-template-columns:1fr 1fr` under 800px. `1fr` is `minmax(auto,1fr)`, so
+   the link column's longest item ("Basketball in Copenhagen") set its own floor
+   and stole the width. The identity cell collapsed to 116px and rendered its
+   45-word paragraph as 16 lines of 14 characters. Hence minmax(0,1fr) below,
+   plus the identity cell spanning the full row. */
+
+.tf {
+  font-family: var(--tn-body, 'Inter', system-ui, sans-serif);
+  background: #0A0A0A;
+  color: rgba(255, 255, 255, 0.62);
+  padding: 56px 0 30px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.tf-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.tf-grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(4, minmax(0, 1fr));
+  gap: 34px 28px;
+  margin-bottom: 34px;
+}
+
+.tf-id h4,
+.tf-col h4 {
+  font-family: var(--tn-disp, 'Montserrat', system-ui, sans-serif);
+  font-weight: 800;
+  color: #fff;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.tf-id p {
+  margin: 0 0 10px;
+  max-width: 30em;
+}
+
+.tf-id .tf-meta {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.44);
+}
+
+.tf-col a {
+  display: block;
+  padding: 5px 0;
+  color: rgba(255, 255, 255, 0.62);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.tf-col a:hover,
+.tf-col a:focus-visible {
+  color: #7DD3FC;
+}
+
+.tf-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 14px;
+}
+
+.tf-social a {
+  color: #7DD3FC;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 0;
+}
+
+.tf-social a:hover {
+  text-decoration: underline;
+}
+
+.tf-base {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 20px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.46);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px 24px;
+  flex-wrap: wrap;
+}
+
+.tf-base a {
+  color: rgba(255, 255, 255, 0.46);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tf-base a:hover {
+  color: #7DD3FC;
+}
+
+/* Tablet: identity takes the full row, links go two-up. minmax(0,...) so a long
+   link can wrap instead of forcing the track wider. */
+@media (max-width: 900px) {
+  .tf-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 30px 24px;
+  }
+  .tf-id {
+    grid-column: 1 / -1;
+  }
+  .tf-id p {
+    max-width: none;
+  }
+}
+
+/* Phone: stack the base line so the venue list stops fighting the copyright for
+   343px of usable width. */
+@media (max-width: 560px) {
+  .tf {
+    padding: 44px 0 26px;
+  }
+  .tf-wrap {
+    padding: 0 20px;
+  }
+  .tf-base {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Very narrow: one column of links rather than two cramped ones. */
+@media (max-width: 380px) {
+  .tf-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
