@@ -10,12 +10,12 @@
 
   <title>Player Pathway | Where Talata Players Go Next</title>
   <link rel="canonical" href="https://talatabasketball.dk/pathway" />
-  <meta name="description" content="Talata Basketball players have moved on to Orangeville Prep in Canada, high school basketball in Marysville, Ohio, and a Danish 1. division club. The pathway from a Copenhagen gym to the level above, player by player." />
+  <meta name="description" content="Talata Basketball players have moved on to Orangeville Prep in Canada, high school basketball in Martins Ferry, Ohio, and a Danish 1. division club. The pathway from a Copenhagen gym to the level above, player by player." />
   <meta name="keywords" content="basketball pathway denmark, danish player american high school basketball, orangeville prep dansk spiller, basketball scholarship denmark, talata basketball players, 1. division basketball denmark, ungdomsbasketball koebenhavn" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://talatabasketball.dk/pathway" />
   <meta property="og:title" content="Player Pathway | Where Talata Players Go Next" />
-  <meta property="og:description" content="Orangeville Prep in Canada. A high school in Marysville, Ohio. A 1. division club in Denmark. Three players, three steps up, all out of the same Copenhagen gym." />
+  <meta property="og:description" content="Orangeville Prep in Canada. A high school in Martins Ferry, Ohio. A 1. division club in Denmark. Three players, three steps up, all out of the same Copenhagen gym." />
   <meta property="og:image" content="https://talatabasketball.dk/images/people/johan-ohio-card.jpg" />
   <meta property="og:site_name" content="Talata Basketball" />
 
@@ -37,7 +37,7 @@
       "@type": "ItemList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Malthe Mikkelsen, Talata to Orangeville Prep, Canada" },
-        { "@type": "ListItem", "position": 2, "name": "Johan Lyager Joensen, Talata to high school basketball in Marysville, Ohio, USA" },
+        { "@type": "ListItem", "position": 2, "name": "Johan Lyager Joensen, Talata to Martins Ferry High School, Ohio, USA" },
         { "@type": "ListItem", "position": 3, "name": "Marius Wriedt, Talata Men to Naestved, 1. division" }
       ]
     }
@@ -277,7 +277,13 @@
       overflow: hidden; margin-top: 22px;
       display: grid; grid-template-columns: 240px 1fr;
     }
-    .person-photo { position: relative; background: #0B1F3A; min-height: 300px; }
+    /* The photo cell used to stretch to whatever height the text next to it
+       happened to be, and object-fit:cover then sliced a 4:5 portrait into a tall
+       narrow strip. Deng's word for it was "long". Pin the tile to 4:5 and let it
+       sit at the top of the card instead of stretching. */
+    .person-photo { position: relative; background: #0B1F3A; aspect-ratio: 4 / 5;
+                    align-self: start; border-radius: var(--radius) 0 0 var(--radius);
+                    overflow: hidden; }
     .person-photo img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; display: block;
@@ -311,7 +317,7 @@
     .person-facts li strong { color: var(--text); font-weight: 700; }
     @media (max-width: 720px) {
       .person { grid-template-columns: 1fr; }
-      .person-photo { min-height: 320px; }
+      .person-photo { aspect-ratio: 3 / 2; border-radius: var(--radius) var(--radius) 0 0; }
       .person-body { padding: 24px 20px; }
     }
 
@@ -457,7 +463,7 @@
     <div class="hero-inner">
       <div class="hero-badge">The pathway</div>
       <h1>Where our players<br><span>go next.</span></h1>
-      <p>A prep school in Canada. A high school in Marysville, Ohio. A Danish 1. division club. Three players who all came out of the same gym in &Oslash;sterbro.</p>
+      <p>A prep school in Canada. A high school in Martins Ferry, Ohio. A Danish 1. division club. Three players who all came out of the same gym in &Oslash;sterbro.</p>
       <div class="hero-actions">
         <a href="/academy" class="btn btn-primary">See the Academy</a>
         <a href="/#trial" class="btn btn-ghost">Book a free trial</a>
@@ -508,13 +514,13 @@
       <div class="person-body">
         <div class="role">North America</div>
         <h3>Johan Lyager Joensen</h3>
-        <div class="move">Talata <span class="arrow">&rarr;</span> Marysville, Ohio, USA</div>
+        <div class="move">Talata <span class="arrow">&rarr;</span> Martins Ferry High School, Ohio</div>
         <p>Johan is one of the originals. He was on the floor in the first season, when Talata was twenty kids and one team, and he is still here in the season the club has six teams in the Danish league.</p>
-        <p>This year he leaves for <strong>high school basketball in Marysville, Ohio</strong>. American high school ball is the single most common route into the NCAA, and Johan is taking it at fifteen off the back of four years in this gym.</p>
+        <p>This year he leaves for <strong>Martins Ferry High School</strong> in Ohio, where he will play for the <strong>Purple Riders</strong>. American high school ball is the single most common route into the NCAA, and Johan is taking it at fifteen off the back of four years in this gym.</p>
         <ul class="person-facts">
           <li>Talata since <strong>2024</strong>, one of the founding group of twenty</li>
           <li>Academy, U15 and U17</li>
-          <li>Leaves for <strong>Marysville, Ohio</strong> in the 2026/27 season</li>
+          <li>Joins the <strong>Purple Riders</strong> at <strong>Martins Ferry High School</strong>, Ohio, for 2026/27</li>
         </ul>
         <p style="margin-top:14px;"><a href="/blog/johan-lyager-joensen-ohio-2026" style="color:var(--blue);font-weight:700;text-decoration:none;">Read the full story &rarr;</a></p>
       </div>

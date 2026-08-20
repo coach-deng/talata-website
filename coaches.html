@@ -295,7 +295,13 @@
       overflow: hidden; margin-top: 22px;
       display: grid; grid-template-columns: 240px 1fr;
     }
-    .person-photo { position: relative; background: #0B1F3A; min-height: 300px; }
+    /* The photo cell used to stretch to whatever height the text next to it
+       happened to be, and object-fit:cover then sliced a 4:5 portrait into a tall
+       narrow strip. Deng's word for it was "long". Pin the tile to 4:5 and let it
+       sit at the top of the card instead of stretching. */
+    .person-photo { position: relative; background: #0B1F3A; aspect-ratio: 4 / 5;
+                    align-self: start; border-radius: var(--radius) 0 0 var(--radius);
+                    overflow: hidden; }
     .person-photo img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; display: block;
@@ -329,7 +335,7 @@
     .person-facts li strong { color: var(--text); font-weight: 700; }
     @media (max-width: 720px) {
       .person { grid-template-columns: 1fr; }
-      .person-photo { min-height: 320px; }
+      .person-photo { aspect-ratio: 3 / 2; border-radius: var(--radius) var(--radius) 0 0; }
       .person-body { padding: 24px 20px; }
     }
 
