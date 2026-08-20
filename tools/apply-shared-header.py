@@ -53,7 +53,7 @@ MENU = {
     "Programs": [
         ("/mini", "Mini", "ages 5 to 9"),
         ("/mini#junior", "Junior", "ages 10 to 12"),
-        ("/academy", "Academy", "ages 12 to 19"),
+        ("/academy", "Academy", "ages 13 to 19"),
         ("/sparks", "Sparks", "girls 6 to 14"),
         ("/join", "Talata Men", "3. Division + motion"),
         # ISH Primary is hidden as of Aug 6 2026: the Ryparken gym is probably not
