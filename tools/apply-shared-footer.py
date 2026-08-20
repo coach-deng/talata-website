@@ -89,14 +89,18 @@ COLUMNS = [
     ]),
 ]
 
+# Deng's phone number is deliberately NOT here (removed 20 Aug 2026, his call).
+# The footer went on all 46 pages, so a tel: link there published his personal
+# mobile 46 times over. Email is the contact of record; WhatsApp stays because it
+# is a channel labelled by name, not a number on display.
 CONTACT = [
     ("mailto:coach@talatabasketball.dk", "coach@talatabasketball.dk"),
     ("https://wa.me/4552398508", "WhatsApp Coach Deng"),
-    ("tel:+4552398508", "+45 52 39 85 08"),
 ]
 
 SOCIAL = [
     ("https://www.instagram.com/talatabasketball/", "Instagram"),
+    ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
 CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css">'
