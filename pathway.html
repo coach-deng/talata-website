@@ -6,42 +6,41 @@
 
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="/images/mini-group-fun.jpg">
+  <link rel="preload" as="image" href="/images/people/johan-lyager-joensen.jpg">
 
-  <title>ISH Primary School Basketball Copenhagen | Fridays at Ryparken | Talata</title>
-  <link rel="canonical" href="https://talatabasketball.dk/ish-primary-school" />
-  <meta name="description" content="Basketball for elever på ISH, International School of Hellerup. Træning fredage 15.00-16.00 på Ryparkens idrætsanlæg. Vi henter børnene på skolen kl. 14.30 og afleverer dem igen kl. 16.30. 1.800 kr/halvsæson." />
-  <meta name="keywords" content="ISH primary school basketball, international school basketball copenhagen, basketball for børn københavn, after school basketball, Ryparken basketball, Talata ISH" />
+  <title>Player Pathway | Where Talata Players Go Next</title>
+  <link rel="canonical" href="https://talatabasketball.dk/pathway" />
+  <meta name="description" content="Talata Basketball players have moved on to Orangeville Prep in Canada, high school basketball in Ohio, and Danish 1. division clubs. The pathway from a Copenhagen gym to the level above, player by player." />
+  <meta name="keywords" content="basketball pathway denmark, danish player american high school basketball, orangeville prep dansk spiller, basketball scholarship denmark, talata basketball players, 1. division basketball denmark, ungdomsbasketball koebenhavn" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://talatabasketball.dk/ish-primary-school" />
-  <meta property="og:title" content="ISH Primary School Basketball | Fridays at Ryparken | Talata" />
-  <meta property="og:description" content="An hour of basketball fun every Friday for ISH Primary School students. We pick your child up from school and bring them back. No extra logistics for you." />
-  <meta property="og:image" content="https://talatabasketball.dk/images/mini-group-fun.jpg" />
+  <meta property="og:url" content="https://talatabasketball.dk/pathway" />
+  <meta property="og:title" content="Player Pathway | Where Talata Players Go Next" />
+  <meta property="og:description" content="Orangeville Prep in Canada. A high school in Ohio. Two 1. division clubs in Denmark. Four players, four steps up, all of them out of the same Copenhagen gym." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/people/johan-lyager-joensen.jpg" />
   <meta property="og:site_name" content="Talata Basketball" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
-    "name": "Talata Basketball · ISH Primary School",
-    "alternateName": "Talata Basketball at International School of Hellerup",
-    "description": "Weekly after-school basketball for Primary School students at ISH, the International School of Hellerup, run by Talata Basketball at Ryparkens idrætsanlæg. Coaches collect children from school and return them afterwards.",
-    "sport": "Basketball",
-    "url": "https://talatabasketball.dk/ish-primary-school",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "København Ø",
-      "addressCountry": "DK"
-    },
-    "parentOrganization": {
+    "@type": "CollectionPage",
+    "name": "Player Pathway",
+    "url": "https://talatabasketball.dk/pathway",
+    "description": "Where Talata Basketball players have moved on to: prep school in Canada, high school in the USA, and 1. division clubs in Denmark.",
+    "isPartOf": { "@type": "WebSite", "name": "Talata Basketball", "url": "https://talatabasketball.dk" },
+    "about": {
       "@type": "SportsOrganization",
       "name": "Talata Basketball",
+      "sport": "Basketball",
       "url": "https://talatabasketball.dk"
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "nicoline@talatabasketball.dk",
-      "contactType": "customer support"
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Malthe Mikkelsen, Talata to Orangeville Prep, Canada" },
+        { "@type": "ListItem", "position": 2, "name": "Johan Lyager Joensen, Talata to high school basketball in Ohio, USA" },
+        { "@type": "ListItem", "position": 3, "name": "Marius Wriedt, Talata Men to Naestved, 1. division" },
+        { "@type": "ListItem", "position": 4, "name": "Deyan Nikiforov, Talata Academy to Stevnsgade, 1. division" }
+      ]
     }
   }
   </script>
@@ -124,7 +123,7 @@
     /* HERO */
     .hero {
       position: relative;
-      min-height: 480px;
+      min-height: 460px;
       display: flex; align-items: center; justify-content: center;
       color: #fff;
       padding: 80px 24px 72px;
@@ -142,7 +141,7 @@
     .hero::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(17,17,17,0.82) 0%, rgba(15,52,96,0.78) 100%);
+      background: linear-gradient(135deg, rgba(17,17,17,0.85) 0%, rgba(15,52,96,0.8) 100%);
       z-index: 1;
     }
     .hero-inner { position: relative; z-index: 2; max-width: 760px; }
@@ -153,13 +152,13 @@
       margin-bottom: 24px;
     }
     .hero h1 {
-      font-size: clamp(2.4rem, 5.5vw, 3.6rem); font-weight: 900;
+      font-size: clamp(2.3rem, 5.5vw, 3.5rem); font-weight: 900;
       letter-spacing: -1.5px; margin-bottom: 18px; line-height: 1.1;
     }
     .hero h1 span { color: var(--blue); }
     .hero p {
       font-size: 1.15rem; color: rgba(255,255,255,0.85);
-      max-width: 580px; margin: 0 auto 32px; line-height: 1.6;
+      max-width: 600px; margin: 0 auto 32px; line-height: 1.6;
     }
     .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn {
@@ -171,7 +170,7 @@
     .btn-primary { background: var(--blue); color: #fff; }
     .btn-ghost { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
 
-    /* INFO STRIP */
+    /* STATS */
     .info-strip {
       background: #fff; border-bottom: 1px solid var(--border);
       padding: 20px 24px;
@@ -205,54 +204,52 @@
     .pillar h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
     .pillar p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
-    /* PICKUP TIMELINE */
-    .timeline { margin-top: 28px; display: grid; gap: 0; }
-    .tl-row {
-      display: grid; grid-template-columns: 92px 1fr; gap: 18px;
-      padding: 16px 0; border-bottom: 1px solid var(--border); align-items: baseline;
-    }
-    .tl-row:last-child { border-bottom: none; }
-    .tl-time { font-weight: 900; font-size: 1.05rem; color: var(--blue); }
-    .tl-what { font-size: 0.95rem; color: var(--text); }
-    .tl-what small { display: block; color: var(--text-muted); font-size: 0.85rem; }
-
-    /* DETAILS TABLE */
-    .schedule-card {
+    /* PARTNER CARDS */
+    .partner-card {
       background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; margin-top: 24px;
+      padding: 28px 26px; margin-top: 18px;
     }
-    .schedule-row {
-      display: grid; grid-template-columns: 150px 1fr;
-      padding: 16px 20px; border-bottom: 1px solid var(--border);
-      align-items: baseline; gap: 16px;
+    .partner-card .tag {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 10px;
     }
-    .schedule-row:last-child { border-bottom: none; }
-    .schedule-day { font-weight: 800; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-muted); }
-    .schedule-detail { font-size: 0.95rem; color: var(--text); }
-    .schedule-detail strong { font-weight: 800; }
-    .schedule-note {
-      background: var(--blue-light); border-left: 3px solid var(--blue);
-      padding: 14px 20px; border-radius: 0 var(--radius) var(--radius) 0;
-      font-size: 0.88rem; color: var(--text); margin-top: 16px;
+    .partner-card h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.3px; }
+    .partner-card p { font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+    .partner-card p:last-child { margin-bottom: 0; }
+    .partner-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .partner-links a {
+      font-size: 0.85rem; font-weight: 700; color: var(--blue);
+      text-decoration: none; border: 1.5px solid var(--blue);
+      padding: 7px 14px; border-radius: 8px; transition: background 0.2s;
     }
+    .partner-links a:hover { background: var(--blue-light); }
 
-    /* COST */
-    .cost-card {
+    /* PROOF */
+    .proof-quote {
       background: var(--dark); color: #fff; border-radius: var(--radius);
-      padding: 32px; margin-top: 24px;
+      padding: 36px 32px; margin-top: 28px;
     }
-    .cost-card .price {
-      font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 6px;
+    .proof-quote .tag {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 14px;
     }
-    .cost-card .price-sub { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 22px; }
-    .cost-includes { display: flex; flex-direction: column; gap: 10px; }
-    .cost-includes li {
-      list-style: none; color: rgba(255,255,255,0.85); font-size: 0.92rem;
-      padding-left: 22px; position: relative;
+    .proof-quote h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 14px; line-height: 1.3; }
+    .proof-quote p { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin: 0; line-height: 1.6; }
+
+    /* STEPS */
+    .steps { margin-top: 28px; display: grid; gap: 0; }
+    .step-row {
+      display: grid; grid-template-columns: 46px 1fr; gap: 18px;
+      padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;
     }
-    .cost-includes li::before {
-      content: '✓'; position: absolute; left: 0; color: var(--blue); font-weight: 800;
+    .step-row:last-child { border-bottom: none; }
+    .step-n {
+      font-weight: 900; font-size: 1rem; color: #fff; background: var(--blue);
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
     }
+    .step-what { font-size: 0.96rem; color: var(--text); }
+    .step-what small { display: block; color: var(--text-muted); font-size: 0.87rem; margin-top: 2px; }
 
     /* CTA */
     .cta-box {
@@ -260,14 +257,12 @@
       padding: 40px 32px; text-align: center; margin-top: 28px;
     }
     .cta-box h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 14px; letter-spacing: -0.5px; }
-    .cta-box p { color: rgba(255,255,255,0.72); font-size: 0.98rem; margin-bottom: 24px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .cta-box p { color: rgba(255,255,255,0.72); font-size: 0.98rem; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; }
 
     @media (max-width: 600px) {
       .section { padding: 48px 20px; }
       .pillars { grid-template-columns: 1fr; }
-      .schedule-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 16px; }
-      .tl-row { grid-template-columns: 78px 1fr; gap: 12px; }
-      .cost-card, .cta-box { padding: 28px 22px; }
+      .cta-box, .proof-quote, .partner-card { padding: 26px 20px; }
     }
 
     .footer {
@@ -276,6 +271,59 @@
       border-top: 1px solid var(--border); margin-top: 60px;
     }
     .footer a { color: var(--blue); text-decoration: none; }
+
+    /* PEOPLE CARDS */
+    .person {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-top: 22px;
+      display: grid; grid-template-columns: 240px 1fr;
+    }
+    .person-photo { position: relative; background: #0B1F3A; min-height: 300px; }
+    .person-photo img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .person-initials {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(150deg, #0B1F3A 0%, #1E40AF 100%);
+      color: rgba(255,255,255,0.92);
+      font-size: 3rem; font-weight: 900; letter-spacing: -1px;
+    }
+    .person-body { padding: 28px 28px 26px; }
+    .person-body .role {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .person-body h3 { font-size: 1.45rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .person-body .sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; font-weight: 600; }
+    .person-body p { font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+    .person-body p:last-child { margin-bottom: 0; }
+    .person-facts { list-style: none; margin: 0 0 14px; padding: 0; }
+    .person-facts li {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;
+      padding: 6px 0 6px 20px; position: relative; border-bottom: 1px solid var(--border);
+    }
+    .person-facts li:last-child { border-bottom: none; }
+    .person-facts li::before {
+      content: ''; position: absolute; left: 4px; top: 14px;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--blue);
+    }
+    .person-facts li strong { color: var(--text); font-weight: 700; }
+    @media (max-width: 720px) {
+      .person { grid-template-columns: 1fr; }
+      .person-photo { min-height: 320px; }
+      .person-body { padding: 24px 20px; }
+    }
+
+    .hero::before { background-image: url('/images/team-tunnel.jpg') !important; background-position: center 40% !important; }
+    .move {
+      display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      font-size: 0.8rem; font-weight: 800; letter-spacing: 0.3px;
+      background: var(--blue-light); color: #0B1F3A;
+      border-radius: 999px; padding: 7px 14px; margin-bottom: 14px;
+    }
+    .move .arrow { color: var(--blue); font-weight: 900; }
   </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -344,7 +392,7 @@
         <li><a class="tn-top" href="/shop">Shop</a></li>
       </ul>
     </nav>
-    <a class="tn-cta" href="#signup">Sign up <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-cta" href="/#trial">Book free trial <span aria-hidden="true">&rarr;</span></a>
     <button class="tn-burger" id="tn-burger" type="button" aria-expanded="false" aria-controls="tn-drawer" aria-label="Open menu"><i></i></button>
   </div>
 </div>
@@ -357,7 +405,7 @@
     <button class="tn-drawer-close" id="tn-drawer-close" type="button" aria-label="Close menu">&#10005;</button>
   </div>
   <div class="tn-drawer-body">
-    <a class="tn-drawer-cta" href="#signup">Sign up <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-drawer-cta" href="/#trial">Book free trial <span aria-hidden="true">&rarr;</span></a>
         <h3>Programs</h3>
         <ul class="tn-drawer-list">
           <li><a href="/mini">Mini<small>ages 5 to 9</small></a></li>
@@ -404,139 +452,146 @@
 <!-- TALATA:HEADER:END -->
 
 
-
   <!-- HERO -->
-  <div class="hero">
+  <section class="hero">
     <div class="hero-inner">
-      <div class="hero-badge">ISH Primary School · Talata Basketball</div>
-      <h1>Basketball should be fun.<br><span>First, second, and always.</span></h1>
-      <p>An hour of real basketball every Friday for children at ISH, the International School of Hellerup. We collect your child from school and bring them back afterwards. No extra logistics for you.</p>
+      <div class="hero-badge">The pathway</div>
+      <h1>Where our players<br><span>go next.</span></h1>
+      <p>A prep school in Canada. A high school in Ohio. Two Danish 1. division clubs. Four players who all came out of the same gym in &Oslash;sterbro.</p>
       <div class="hero-actions">
-        <a href="#signup" class="btn btn-primary">Sign your child up</a>
-        <a href="#details" class="btn btn-ghost">Times and price</a>
+        <a href="/academy" class="btn btn-primary">See the Academy</a>
+        <a href="/#trial" class="btn btn-ghost">Book a free trial</a>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- INFO STRIP -->
   <div class="info-strip">
-    <div class="info-item"><span><strong>Fridays 15:30 to 16:30</strong> <span class="label">Ryparkens idrætsanlæg</span></span></div>
-    <div class="info-item"><span><strong>Pickup and return</strong> <span class="label">Handled by our coaches</span></span></div>
-    <div class="info-item"><span><strong>1,800 DKK</strong> <span class="label">Per half season</span></span></div>
+    <div class="info-item"><span class="label">To North America</span> 2 players</div>
+    <div class="info-item"><span class="label">To 1. division in Denmark</span> 2 players</div>
+    <div class="info-item"><span class="label">Club founded</span> 2021</div>
   </div>
 
-  <!-- WHAT IT IS -->
-  <div class="section" id="what">
-    <h2 class="section-title">Fun first, and it shows</h2>
-    <p>Our skilled coaches bring years of coaching experience and a genuine love for the game, and that joy is contagious. Your child will feel it from the very first practice.</p>
-    <p>Our coaches take a real interest in every single player. They learn every child's name, cheer them on, and keep the energy high with playful drills and friendly little competitions that make the kids want to come back for more.</p>
-    <p>Training is planned so both first-timers and more experienced players are challenged at just the right level. Everyone gets to grow their game, at their own pace, in a space where <strong>trying, and even missing, is part of the fun</strong>.</p>
+  <!-- INTRO -->
+  <div class="section">
+    <h2 class="section-title">A small club is not a ceiling</h2>
+    <p>Talata is four years old and runs out of two gyms in &Oslash;sterbro. That is worth saying plainly, because the thing parents quietly worry about is whether a young club can take a kid as far as a big one.</p>
+    <p>The honest answer is that we are not trying to keep anybody. <strong>The job is to get a player ready for the level above, and then help them go.</strong> Sometimes that level is a prep school in Ontario. Sometimes it is a Danish 1. division roster forty minutes down the motorway. Here is where they have actually gone.</p>
+  </div>
 
+  <!-- PLAYERS -->
+  <div class="section" id="players" style="padding-top:0;">
+
+    <div class="person">
+      <div class="person-photo">
+        <div class="person-initials">MM</div>
+      </div>
+      <div class="person-body">
+        <div class="role">North America</div>
+        <h3>Malthe Mikkelsen</h3>
+        <div class="move">Talata <span class="arrow">&rarr;</span> Orangeville Prep, Canada <span class="arrow">&rarr;</span> back in Copenhagen</div>
+        <p>Malthe was a wing in the Talata Academy through the 2024/25 season when he committed to <strong>Orangeville Prep</strong> in Ontario, one of the top prep programmes in North America and a regular feeder into NCAA Division 1. He spent 2025/26 there.</p>
+        <p>He is back in Copenhagen now, playing his basketball elsewhere in the city. We are not going to pretend otherwise, and we are not going to leave him off this page either. He went, and the year he had is his.</p>
+        <ul class="person-facts">
+          <li>Talata Academy, <strong>2024/25</strong></li>
+          <li><strong>Orangeville Prep</strong>, Ontario, Canada, <strong>2025/26</strong></li>
+          <li>Committed at <strong>15</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-photo">
+        <img src="/images/people/johan-lyager-joensen.jpg" alt="Johan Lyager Joensen in a Talata Basketball jersey" width="900" height="1200" loading="lazy" decoding="async" style="object-position:center 12%;">
+      </div>
+      <div class="person-body">
+        <div class="role">North America</div>
+        <h3>Johan Lyager Joensen</h3>
+        <div class="move">Talata <span class="arrow">&rarr;</span> high school basketball, Ohio, USA</div>
+        <p>Johan is one of the originals. He was on the floor in the first season, when Talata was twenty kids and one team, and he is still here in the season the club has six teams in the Danish league.</p>
+        <p>This year he leaves for <strong>high school basketball in Ohio</strong>. American high school ball is the single most common route into the NCAA, and Johan is taking it at fifteen off the back of four years in this gym.</p>
+        <ul class="person-facts">
+          <li>Talata since <strong>2024</strong>, one of the founding group of twenty</li>
+          <li>Academy, U15 and U17</li>
+          <li>Leaves for <strong>Ohio, USA</strong> in the 2026/27 season</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-photo">
+        <div class="person-initials">MW</div>
+      </div>
+      <div class="person-body">
+        <div class="role">1. division, Denmark</div>
+        <h3>Marius Wriedt</h3>
+        <div class="move">Talata Men, 3. division <span class="arrow">&rarr;</span> N&aelig;stved, 1. division</div>
+        <p>Marius played for the Talata Men's side and has moved up two tiers of Danish senior basketball to <strong>N&aelig;stved</strong> in the 1. division.</p>
+        <p>The senior team matters more than people assume. A club with a real men's roster gives a seventeen year old somewhere to train up into, and it gives a twenty year old a competitive season without having to leave Copenhagen first. Marius used both.</p>
+        <ul class="person-facts">
+          <li>Talata Men, <strong>3. Division Herrer &Oslash;st</strong></li>
+          <li>Now at <strong>N&aelig;stved</strong>, <strong>1. division</strong></li>
+          <li>Two tiers up in Danish senior basketball</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-photo">
+        <img src="/images/people/deyan-nikiforov.jpg" alt="Deyan Nikiforov in a Talata Basketball jersey" width="900" height="1200" loading="lazy" decoding="async" style="object-position:center 12%;">
+      </div>
+      <div class="person-body">
+        <div class="role">1. division, Denmark</div>
+        <h3>Deyan Nikiforov</h3>
+        <div class="move">Talata Academy <span class="arrow">&rarr;</span> Stevnsgade, 1. division</div>
+        <p>Deyan is the other founding player still in the story. He was one of the twenty in the first Talata season and came all the way through the Academy to the U19 group and the Men's side.</p>
+        <p>At seventeen he steps up to <strong>Stevnsgade</strong> in the <strong>1. division</strong>. Playing senior basketball two tiers above your club side at seventeen is not a normal Danish youth pathway, and it did not happen by accident.</p>
+        <ul class="person-facts">
+          <li>Talata since <strong>2024</strong>, one of the founding group of twenty</li>
+          <li>Academy U19 and Talata Men</li>
+          <li>Now at <strong>Stevnsgade</strong>, <strong>1. division</strong>, at <strong>17</strong></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WHY -->
+  <div class="section" style="padding-top:0;">
+    <h2 class="section-title">What actually moves a player</h2>
     <div class="pillars">
       <div class="pillar">
-        <h3>Every child by name</h3>
-        <p>Small enough that no one gets lost, and every player gets coached.</p>
+        <h3>Play up, early</h3>
+        <p>Nobody on this page spent a season being the best player in their own age group. They were all pushed into a gym where they were not.</p>
       </div>
       <div class="pillar">
-        <h3>Right level for everyone</h3>
-        <p>Complete beginners and kids who already play, challenged side by side.</p>
+        <h3>A senior team above you</h3>
+        <p>The Men's side is the top of the ladder inside the club. It is why a seventeen year old has somewhere to go on a Wednesday night.</p>
       </div>
       <div class="pillar">
-        <h3>No logistics for you</h3>
-        <p>We handle pickup and return. You just collect a happy, tired child at the normal time.</p>
+        <h3>Coaches who have been there</h3>
+        <p>NCAA Division 1, the Basketligaen, and pro careers on three continents. They know what the next level asks for because they were asked for it.</p>
       </div>
     </div>
+    <p style="margin-top:22px;"><a href="/coaches" style="color:var(--blue);font-weight:700;text-decoration:none;">Meet the coaches &rarr;</a></p>
   </div>
 
-  <!-- HOW THE AFTERNOON WORKS -->
-  <div class="section">
-    <h2 class="section-title">How the afternoon works</h2>
-    <p>To make things easy for busy families, your child's basketball coach handles the whole journey.</p>
-    <div class="timeline">
-      <div class="tl-row">
-        <div class="tl-time">14:30</div>
-        <div class="tl-what">Coach collects your child directly from school<small>No need for you to arrange anything</small></div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-time">15:00</div>
-        <div class="tl-what">A full hour of basketball at Ryparkens idrætsanlæg<small>Games, drills and a lot of laughing</small></div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-time">16:00</div>
-        <div class="tl-what">Training finishes</div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-time">16:30</div>
-        <div class="tl-what">Coach drops your child back at school<small>Ready for normal pickup</small></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DETAILS -->
-  <div class="section" id="details">
-    <h2 class="section-title">The details</h2>
-    <div class="schedule-card">
-      <div class="schedule-row">
-        <div class="schedule-day">Location</div>
-        <div class="schedule-detail">Ryparkens idrætsanlæg</div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-day">Day (expected)</div>
-        <div class="schedule-detail"><strong>Fridays 15:30 to 16:30.</strong> Pickup at school 14:30, back at school 16:30.</div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-day">For</div>
-        <div class="schedule-detail">Primary School students. Beginners and experienced players both welcome.</div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-day">Season starts</div>
-        <div class="schedule-detail"><strong>Friday 4 September 2026</strong></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-day">Price</div>
-        <div class="schedule-detail"><strong>1,800 DKK per half season</strong></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-day">Sign up</div>
-        <div class="schedule-detail">Send your child's name and age to <a href="mailto:nicoline@talatabasketball.dk" style="color:var(--blue); font-weight:700;">nicoline@talatabasketball.dk</a></div>
-      </div>
-    </div>
-    <div class="schedule-note"><strong>Please note:</strong> at least 12 sign-ups are needed for a team to be created.</div>
-  </div>
-
-  <!-- COST -->
-  <div class="section">
-    <h2 class="section-title">What it costs</h2>
-    <div class="cost-card">
-      <div class="price">1,800 DKK</div>
-      <div class="price-sub">Per half season · one training per week</div>
-      <ul class="cost-includes">
-        <li>Weekly coached hour of basketball</li>
-        <li>Pickup from school and return afterwards</li>
-        <li>Experienced coaches who know every child by name</li>
-        <li>All equipment provided, just bring trainers and water</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- SIGN UP -->
-  <div class="section" id="signup">
+  <!-- CTA -->
+  <div class="section" style="padding-top:0;">
     <div class="cta-box">
-      <h3>Sign your child up</h3>
-      <p>Send your child's name and age and we will take it from there. Starts Friday 4 September.</p>
-      <a href="mailto:nicoline@talatabasketball.dk?subject=ISH%20Primary%20School%20basketball&amp;body=Child%27s%20name%3A%0AAge%3A%0A" class="btn btn-primary">Email Nicoline</a>
+      <h3>Start in the same gym.</h3>
+      <p>Every player on this page had a first session once. Yours is free, and you need no kit and no experience to take it.</p>
+      <a href="/#trial" class="btn btn-primary">Book a free trial</a>
     </div>
-    <p style="margin-top:24px; text-align:center; font-size:0.9rem; color:var(--text-muted);">
-      Other questions? <a href="mailto:coach@talatabasketball.dk" style="color:var(--blue); font-weight:600;">coach@talatabasketball.dk</a>
-    </p>
   </div>
 
   <div class="footer">
-    Talata Basketball · Copenhagen<br>
-    <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a> · 
+    Talata Basketball &middot; Svanem&oslash;llehallen, &Oslash;sterbro, Copenhagen &middot;
+    <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a>
   </div>
 
-<script src="/assets/talata-nav.js" defer></script>
+
 <script src="/assets/talata-track.js" defer></script>
+<script src="/assets/talata-nav.js" defer></script>
 </body>
 </html>

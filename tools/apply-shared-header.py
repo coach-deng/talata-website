@@ -68,16 +68,21 @@ MENU = {
         ("/blog/talata-canada-camp-2026-recap", "Canada", "recap &middot; back 2027"),
         ("/camps", "All camps", ""),
     ],
+    # Club menu reshuffled 20 Aug 2026. It had grown to ten items, two of which
+    # ("Insider", "Watch") were homepage scroll anchors dressed up as pages, and
+    # Watch duplicated Gallery. Both dropped so /coaches and /pathway could go in
+    # without the menu getting any longer. Insider still has its own band on the
+    # homepage; Watch is still the #watch section there.
     "Club": [
+        ("/coaches", "Coaches", "who is on the floor"),
+        ("/pathway", "Player Pathway", "where players go next"),
         ("/philosophy", "The Talata Way", "how we coach"),
         ("/reviews", "Reviews", "what parents say"),
         ("/guide", "Parents' Guide", "everything for 26/27"),
+        ("/blog", "The Playbook", "news + stories"),
+        ("/gallery", "Gallery", "photos"),
         ("/help", "Help &amp; guides", "manuals for parents"),
         ("/partners", "Partners", "who backs the club"),
-        ("/blog", "The Playbook", "news + stories"),
-        ("/#insider", "Insider", "one email a week"),
-        ("/gallery", "Gallery", "photos"),
-        (WATCH_PLACEHOLDER, "Watch", "highlights + film"),
         ("/join", "Contact", ""),
     ],
 }

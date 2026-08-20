@@ -128,6 +128,21 @@ a{text-decoration:none;color:inherit;}
 .tcard b{display:block;font-size:1.05rem;color:#0B1F3A;font-weight:900;}
 .tcard span{display:block;font-size:.83rem;color:#475467;margin-top:3px;}
 .tcard i{display:block;font-style:normal;font-size:.78rem;color:#98A2B3;margin-top:7px;}
+.coach-band{background:#F8FAFC;padding:54px 0;}
+.coach-band .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+.coach-band .head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;}
+.coach-band h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;letter-spacing:-.02em;color:#0B1F3A;margin:0;}
+.coach-band h2 i{font-style:normal;color:#1E40AF;}
+.coach-band .head a{color:#1E40AF;font-weight:700;font-size:.92rem;text-decoration:none;}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+.ccard{display:block;background:#fff;border:1px solid #E4E9F0;border-radius:14px;overflow:hidden;text-decoration:none;transition:.16s;}
+.ccard:hover{border-color:#1E40AF;transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,31,58,.07);}
+.ccard .shot{position:relative;aspect-ratio:4/5;background:#0B1F3A;}
+.ccard .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.ccard .shot .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#0B1F3A 0%,#1E40AF 100%);color:rgba(255,255,255,.92);font-size:2rem;font-weight:900;letter-spacing:-1px;}
+.ccard .meta{padding:14px 16px 16px;}
+.ccard b{display:block;font-size:1rem;color:#0B1F3A;font-weight:900;line-height:1.25;}
+.ccard span{display:block;font-size:.82rem;color:#475467;margin-top:4px;}
 .feat-band{background:#F8FAFC;padding:54px 0;}
 .fgrid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
 .fcard{display:block;background:#fff;border:1px solid #E4E9F0;border-radius:14px;padding:22px;text-decoration:none;transition:.16s;}
@@ -287,15 +302,15 @@ footer a:hover{color:var(--baby);}
       </li>
       <li><a class="tn-top" href="/philosophy">Club<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="tn-drop">
+        <a href="/coaches">Coaches<small>who is on the floor</small></a>
+        <a href="/pathway">Player Pathway<small>where players go next</small></a>
         <a href="/philosophy">The Talata Way<small>how we coach</small></a>
         <a href="/reviews">Reviews<small>what parents say</small></a>
         <a href="/guide">Parents' Guide<small>everything for 26/27</small></a>
+        <a href="/blog">The Playbook<small>news + stories</small></a>
+        <a href="/gallery">Gallery<small>photos</small></a>
         <a href="/help">Help &amp; guides<small>manuals for parents</small></a>
         <a href="/partners">Partners<small>who backs the club</small></a>
-        <a href="/blog">The Playbook<small>news + stories</small></a>
-        <a href="/#insider">Insider<small>one email a week</small></a>
-        <a href="/gallery">Gallery<small>photos</small></a>
-        <a href="#watch">Watch<small>highlights + film</small></a>
         <a href="/join">Contact</a>
         </div>
       </li>
@@ -335,15 +350,15 @@ footer a:hover{color:var(--baby);}
         </ul>
         <h3>Club</h3>
         <ul class="tn-drawer-list">
+          <li><a href="/coaches">Coaches<small>who is on the floor</small></a></li>
+          <li><a href="/pathway">Player Pathway<small>where players go next</small></a></li>
           <li><a href="/philosophy">The Talata Way<small>how we coach</small></a></li>
           <li><a href="/reviews">Reviews<small>what parents say</small></a></li>
           <li><a href="/guide">Parents' Guide<small>everything for 26/27</small></a></li>
+          <li><a href="/blog">The Playbook<small>news + stories</small></a></li>
+          <li><a href="/gallery">Gallery<small>photos</small></a></li>
           <li><a href="/help">Help &amp; guides<small>manuals for parents</small></a></li>
           <li><a href="/partners">Partners<small>who backs the club</small></a></li>
-          <li><a href="/blog">The Playbook<small>news + stories</small></a></li>
-          <li><a href="/#insider">Insider<small>one email a week</small></a></li>
-          <li><a href="/gallery">Gallery<small>photos</small></a></li>
-          <li><a href="#watch">Watch<small>highlights + film</small></a></li>
           <li><a href="/join">Contact</a></li>
         </ul>
     <h3>More</h3>
@@ -536,7 +551,7 @@ footer a:hover{color:var(--baby);}
   <div class="wrap">
     <div class="num"><b>82</b><span>active players</span></div>
     <div class="num"><b>4x</b><span>player growth since 2024</span></div>
-    <div class="num"><b>2</b><span>players on to North America</span></div>
+    <a class="num" href="/pathway" style="text-decoration:none;color:inherit;display:block;"><b>2</b><span>players on to North America</span></a>
     <div class="num"><b>4</b><span>players got Canada experience this summer</span></div>
   </div>
 </div>
@@ -559,6 +574,33 @@ footer a:hover{color:var(--baby);}
       <a class="tcard" href="/academy"><b>U13</b><span>Drenge Mester &Oslash;st, pulje 2</span><i>Svanem&oslash;llehallen</i></a>
       <a class="tcard" href="/mini#junior"><b>U11</b><span>Grand Prix &Oslash;st</span><i>Strandvejsskolen</i></a>
       <a class="tcard" href="/mini"><b>U9</b><span>Grand Prix &Oslash;st</span><i>Strandvejsskolen</i></a>
+    </div>
+  </div>
+</section>
+
+<!-- Coaches band, 20 Aug 2026. Parents ask "who actually coaches my kid" before
+     they ask anything about fees, and the answer lived only on /academy in a
+     text-only grid. Photos where we have them, initials where we do not. -->
+<section class="coach-band">
+  <div class="wrap">
+    <div class="head"><h2>Who is <i>on the floor</i></h2><a href="/coaches">All coaches &rarr;</a></div>
+    <div class="cgrid">
+      <a class="ccard" href="/coaches">
+        <div class="shot"><img src="images/people/deng-awak.jpg" alt="Deng Awak, head coach" width="1200" height="1200" loading="lazy" decoding="async" style="object-position:center 18%;"></div>
+        <div class="meta"><b>Deng Awak</b><span>Head Coach &amp; Club Manager</span></div>
+      </a>
+      <a class="ccard" href="/coaches">
+        <div class="shot"><div class="ini">JN</div></div>
+        <div class="meta"><b>Jordan Naughton</b><span>Head of Academy &middot; NCAA D1 Wyoming</span></div>
+      </a>
+      <a class="ccard" href="/coaches">
+        <div class="shot"><div class="ini">GJ</div></div>
+        <div class="meta"><b>Georg Jespersen</b><span>Lead Coach &middot; Mini and Junior</span></div>
+      </a>
+      <a class="ccard" href="/coaches">
+        <div class="shot"><img src="images/people/james-young.jpg" alt="James Young, assistant coach" width="675" height="1200" loading="lazy" decoding="async" style="object-position:center 12%;"></div>
+        <div class="meta"><b>James Young</b><span>Assistant Coach &middot; 8 years pro in Denmark</span></div>
+      </a>
     </div>
   </div>
 </section>
