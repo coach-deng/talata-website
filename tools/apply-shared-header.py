@@ -55,7 +55,7 @@ MENU = {
         ("/mini#junior", "Junior", "ages 10 to 12"),
         ("/academy", "Academy", "ages 12 to 19"),
         ("/sparks", "Sparks", "girls 6 to 14"),
-        ("/join", "Talata Men", "2. Division + motion"),
+        ("/join", "Talata Men", "3. Division + motion"),
         # ISH Primary is hidden as of Aug 6 2026: the Ryparken gym is probably not
         # ours on any day, so advertising a Friday slot confuses parents. The page
         # file and its 302 in _redirects stay put — restore this line to unhide.
