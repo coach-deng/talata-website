@@ -1,0 +1,49 @@
+{
+  "heading": "Where we can actually pick up the phone.",
+  "intro": "A placement is only as good as who answers on the other end. Split honestly: the ones we have sent a player to, and the ones we know.",
+  "placed": [
+    { "name": "Orangeville Prep", "where": "Mono, Ontario, Canada · OSBA", "who": "Malthe Mikkelsen, 2025/26" },
+    { "name": "Martins Ferry High School", "where": "Martins Ferry, Ohio, USA · OHSAA", "who": "Johan Lyager Joensen, 2026/27" }
+  ],
+  "groups": [
+    { "label": "Canada · university, U SPORTS", "entries": [
+      { "name": "MacEwan Griffins", "where": "Edmonton, Alberta · Canada West" },
+      { "name": "Mount Royal Cougars", "where": "Calgary, Alberta · Canada West" },
+      { "name": "Lethbridge Pronghorns", "where": "Lethbridge, Alberta · Canada West" }
+    ]},
+    { "label": "Canada · college, ACAC", "entries": [
+      { "name": "NAIT Ooks", "where": "Edmonton, Alberta" },
+      { "name": "Ambrose Lions", "where": "Calgary, Alberta" },
+      { "name": "St. Mary’s Lightning", "where": "Calgary, Alberta" },
+      { "name": "Lethbridge Polytechnic Kodiaks", "where": "Lethbridge, Alberta" }
+    ]},
+    { "label": "Canada · prep", "entries": [
+      { "name": "Canada Topflight Academy", "where": "Ottawa, Ontario · OSBA" },
+      { "name": "CTA West", "where": "Calgary, Alberta · post-graduate" },
+      { "name": "Edge School", "where": "Calgary, Alberta · NPA" },
+      { "name": "Fort Erie International Academy", "where": "Fort Erie, Ontario · OSBA" }
+    ]},
+    { "label": "USA", "entries": [
+      { "name": "University of Wyoming", "where": "Laramie, Wyoming · NCAA Division 1" }
+    ]},
+    { "label": "Europe", "entries": [
+      { "name": "Norrköping Dolphins", "where": "Norrköping, Sweden · Basketligan" },
+      { "name": "BC Copenhagen", "where": "Nørrebro, Denmark · Basketligaen" },
+      { "name": "KK Raseiniai", "where": "Raseiniai, Lithuania · RKL" }
+    ]},
+    { "label": "Asia", "entries": [
+      { "name": "RANS Simba Bogor", "where": "Bogor, Indonesia · IBL" }
+    ]}
+  ],
+  "leagues": [
+    { "name": "NCAA", "file": "ncaa.svg", "url": "https://www.ncaa.org" },
+    { "name": "U SPORTS", "file": "usports.png", "url": "https://usports.ca" },
+    { "name": "Alberta Colleges Athletic Conference", "short": "ACAC", "file": "acac.png", "url": "https://www.acac.ab.ca" },
+    { "name": "Canadian Collegiate Athletic Association", "short": "CCAA", "file": "ccaa.png", "url": "https://www.ccaa.ca" },
+    { "name": "Ontario Scholastic Basketball Association", "short": "OSBA", "file": "", "url": "https://www.osbahoops.ca" },
+    { "name": "Basketligan, Sweden", "file": "basketligan-se.svg", "url": "https://basketligan.se" },
+    { "name": "Basketligaen, Denmark", "file": "basketligaen-dk.png", "url": "https://basketligaen.dk" },
+    { "name": "Indonesian Basketball League", "short": "IBL", "file": "ibl.png", "url": "https://iblindonesia.com" }
+  ],
+  "note": "These are programmes and coaches we can reach, not sponsors and not endorsements. Our Canada camp runs in Lethbridge, Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming, which is where a lot of the Alberta side of this comes from."
+}
