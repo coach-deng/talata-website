@@ -429,6 +429,17 @@
     .tick li::before { content: ''; position: absolute; left: 4px; top: 17px; width: 7px; height: 7px;
                        border-radius: 50%; background: var(--blue); }
     .tick li strong { color: var(--text); font-weight: 700; }
+    .tiers{margin-top:26px}
+    .tier-lbl{font-size:0.68rem;font-weight:800;letter-spacing:1.6px;color:var(--blue);
+      text-transform:uppercase;margin:26px 0 12px}
+    .tier-lbl:first-child{margin-top:0}
+    .dest{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+    .dest a,.dest div{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+      padding:16px 18px;text-decoration:none;display:block}
+    .dest .n{font-size:0.97rem;font-weight:800;color:var(--text);letter-spacing:-.2px}
+    .dest .l{font-size:0.82rem;color:var(--text-muted);margin-top:3px}
+    .dest .who{font-size:0.8rem;color:#0B1F3A;font-weight:700;margin-top:8px}
+    .dest .placed{border-left:3px solid var(--blue)}
   </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -664,6 +675,53 @@
         <span class="where">FIBA licensed</span>
       </div>
     </div>
+  </section>
+  </div>
+
+
+  <div class="band">
+  <section class="section section-wide">
+    <div class="kicker">The network</div>
+    <h2 class="section-title">Where we can actually pick up the phone.</h2>
+    <p>A placement is only as good as who answers on the other end. These are split honestly: the ones we have sent a player to, and the ones we know.</p>
+
+    <div class="tiers">
+      <div class="tier-lbl">Players placed here</div>
+      <div class="dest">
+        <div class="placed">
+          <div class="n">Orangeville Prep</div>
+          <div class="l">Ontario, Canada</div>
+          <div class="who">Malthe Mikkelsen, 2025/26</div>
+        </div>
+        <div class="placed">
+          <div class="n">Martins Ferry High School</div>
+          <div class="l">Ohio, USA</div>
+          <div class="who">Johan Lyager Joensen, 2026/27</div>
+        </div>
+      </div>
+
+      <div class="tier-lbl">Programmes and coaches we know</div>
+      <div class="dest">
+        <div>
+          <div class="n">University of Lethbridge</div>
+          <div class="l">Alberta, Canada &middot; Pronghorns</div>
+        </div>
+        <div>
+          <div class="n">Lethbridge Polytechnic</div>
+          <div class="l">Alberta, Canada &middot; Kodiaks</div>
+        </div>
+        <div>
+          <div class="n">Mount Royal University</div>
+          <div class="l">Calgary, Canada</div>
+        </div>
+        <div>
+          <div class="n">University of Wyoming</div>
+          <div class="l">NCAA Division 1, USA</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Our Canada camp runs in Lethbridge, Alberta, which is where a lot of this comes from. Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming.</p>
   </section>
   </div>
 
