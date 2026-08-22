@@ -40,6 +40,7 @@ CTA = {
     "ish-high-school.html": ("#signup", "Sign up"),
     "school-partnerships.html": ("#contact", "Get in touch"),
     "camps/autumn-camp-2026.html": ("#waitlist", "Join waitlist"),
+    "camps/starter-camp-2026.html": ("#waitlist", "Join waitlist"),
     "camps/winter-camp-2026.html": ("#waitlist", "Join waitlist"),
     "camps/lithuania-camp-2026.html": ("#register", "Sign up"),
 }
@@ -64,12 +65,13 @@ MENU = {
         ("/school-partnerships", "Schools", "ISH and school programmes"),
     ],
     "Pathway": [
-        ("/placement", "Placement Service", "play abroad, properly"),
-        ("/pathway", "Where players went", "named, with the school"),
-        ("/camps/autumn-camp-2026", "Pathway Camp", "ages 13 to 17, October"),
+        ("/placement", "Placement", "play abroad"),
+        ("/pathway", "Where our players went", "Canada and Ohio"),
+        ("/camps/autumn-camp-2026", "Pathway Camp", "ages 13 to 17"),
     ],
     "Camps": [
-        ("/camps/autumn-camp-2026", "Autumn Camp", "Oct 12 to 15"),
+        ("/camps/starter-camp-2026", "Starter Camp", "ages 5 to 12"),
+        ("/camps/autumn-camp-2026", "Pathway Camp", "ages 13 to 17"),
         ("/camps/winter-camp-2026", "Winter Camp", "Dec 28 to 30"),
         ("/blog/talata-canada-camp-2026-recap", "Canada", "recap &middot; back 2027"),
         ("/camps", "All camps", ""),

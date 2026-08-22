@@ -77,3 +77,8 @@
 # Redirect rather than 404 since it was live and may already be crawled.
 /blog/deyan-nikiforov-stevnsgade-2026        /pathway    301
 /blog/deyan-nikiforov-stevnsgade-2026.html   /pathway    301
+
+# Autumn week split into two camps, 22 Aug 2026
+/starter-camp    /camps/starter-camp-2026    301
+/pathway-camp    /camps/autumn-camp-2026    301
+/autumn-camp    /camps/autumn-camp-2026    301
