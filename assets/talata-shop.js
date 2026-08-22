@@ -170,7 +170,7 @@
     { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee',            member: 699,  pub: 879,  stock: 'soon', cat: 'bundle' },
     // Shorts were missing from this description. The pack has always included
     // them — it is two complete kits — and leaving them out undersold it badly.
-    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away kit, hoodie + pants', member: 799, pub: 1099, stock: 'soon', cat: 'bundle', bothKits: true, personalise: true },
+    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away gear, hoodie + pants', member: 799, pub: 1099, stock: 'soon', cat: 'bundle', bothKits: true, personalise: true },
   ];
 
   // ─── READY NOW ───────────────────────────────────────────────────────────
@@ -195,16 +195,13 @@
   // (+162, 65% member · +222, 72% public). And a parent will not pay jersey
   // money for shorts — it is the cheaper half of the kit and pricing it level
   // with the jersey reads as a mistake, which costs more trust than the 50 kr.
-  var READY_NOW = [
-    { name: 'Game jersey',  detail: 'Black away, number 47', size: 'L',   member: 299, pub: 369 },
-    { name: 'Game jersey',  detail: 'Black away, number 49', size: 'L',   member: 299, pub: 369 },
-    { name: 'Game jersey',  detail: 'Blue home, number 49',  size: 'L',   member: 299, pub: 369 },
-    { name: 'Game shorts',  detail: 'Blue home, number 47',  size: 'L',   member: 249, pub: 309 },
-    { name: 'Talata t-shirt', detail: 'White',               size: 'L',   member: 149, pub: 189 },
-    // Deng, 12 Aug: "not really a small sock", it stretches across two of the
-    // catalogue buckets (39-42 and 43-46). Listed as the true range it fits.
-    { name: 'Talata socks', detail: 'One pair',       size: '39-46',     member: 75,  pub: 95 }
-  ];
+  // ALL SOLD, 22 Aug 2026 (Deng). The six one-off pieces that were sitting in
+  // the gym are gone. Emptying this array is the whole fix: renderReady() sets
+  // the section hidden when the list has no length, so /shop stops advertising
+  // stock that does not exist without touching any markup.
+  // Counts are owned by SecondBrain/Talata/_references/inventory/gear-stock.md.
+  // Add a line back here the day a real one-off piece lands in the bag again.
+  var READY_NOW = [];
 
   var ALL = CATALOGUE.concat(BUNDLES.map(function (b) {
     return Object.assign({ sizes: SIZES_KIDS }, b);
