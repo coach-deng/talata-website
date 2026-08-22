@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="/images/2026-08/academy-team-lineup-black.jpg">
+
+  <title>Basketball Placement to the USA, Canada and Europe | Talata</title>
+  <link rel="canonical" href="https://talatabasketball.dk/placement" />
+  <meta name="description" content="Want to play high school, prep or college basketball in America? Talata Basketball in Copenhagen gets Danish players ready and handles the move. Two of our players are already in North America. Free evaluation first, and we will tell you if the answer is no." />
+  <meta name="keywords" content="spille basketball i usa, basketball high school usa dansk spiller, basketball placement danmark, basketball scholarship usa dansk, prep school basketball nordamerika, spille college basketball i usa, ncaa rekruttering dansk spiller, basketball akademi spanien, basketball agent danmark, ungdomsbasketball koebenhavn" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talatabasketball.dk/placement" />
+  <meta property="og:title" content="Basketball Placement to the USA, Canada and Europe | Talata" />
+  <meta property="og:description" content="Two kids out of one Copenhagen gym are playing in North America. We got them ready. Now we handle the whole move, start to finish." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/people/johan-ohio-card.jpg" />
+  <meta property="og:site_name" content="Talata Basketball" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Talata Player Placement",
+    "serviceType": "Basketball player placement and representation",
+    "url": "https://talatabasketball.dk/placement",
+    "description": "Placement of basketball players into high schools and prep programmes in North America, clubs and academies in Europe, and college programmes in the USA.",
+    "areaServed": ["Denmark", "United States", "Canada", "Spain", "Europe"],
+    "provider": {
+      "@type": "SportsOrganization",
+      "name": "Talata Basketball",
+      "url": "https://talatabasketball.dk",
+      "email": "coach@talatabasketball.dk",
+      "address": { "@type": "PostalAddress", "addressLocality": "Copenhagen", "addressCountry": "DK" }
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Placement routes",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High school and prep placement, USA and Canada" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "European club and academy placement" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "College placement, NCAA, NAIA and JUCO" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Representation by FIBA licensed agents" } }
+      ]
+    }
+  }
+  </script>
+
+<style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --blue: #7BAFD4;
+      --blue-light: #EBF4FB;
+      --dark: #111;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --border: #e0e0e0;
+      --radius: 12px;
+      --bg: #fafafa;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--dark); padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; letter-spacing: 1px; text-decoration: none; }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links .nav-cta {
+      background: var(--blue); color: #fff; padding: 8px 18px;
+      border-radius: 8px; font-weight: 700;
+    }
+    /* PROGRAMS DROPDOWN */
+    .nav-drop { position: relative; }
+    .nav-drop > a { display: inline-flex; align-items: center; gap: 5px; }
+    .nav-drop .car { font-size: 0.6rem; opacity: 0.7; }
+    .nav-drop .drop {
+      position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
+      background: #fff; border-radius: var(--radius); min-width: 260px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18); padding: 8px;
+      opacity: 0; visibility: hidden; transition: opacity 0.15s;
+    }
+    .nav-drop:hover .drop, .nav-drop:focus-within .drop { opacity: 1; visibility: visible; }
+    .nav-drop .drop::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 14px; }
+    .nav-drop .drop a {
+      display: block; padding: 10px 14px; border-radius: 8px;
+      color: var(--text); font-weight: 600; font-size: 0.875rem;
+    }
+    .nav-drop .drop a:hover { background: var(--blue-light); color: var(--text); }
+    .nav-drop .drop small { display: block; color: var(--text-muted); font-weight: 400; font-size: 0.75rem; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 460px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      padding: 80px 24px 72px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('/images/mini-group-fun.jpg');
+      background-size: cover;
+      background-position: center 35%;
+      z-index: 0;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(17,17,17,0.85) 0%, rgba(15,52,96,0.8) 100%);
+      z-index: 1;
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 760px; }
+    .hero-badge {
+      display: inline-block; background: var(--blue); color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 6px 16px; border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.3rem, 5.5vw, 3.5rem); font-weight: 900;
+      letter-spacing: -1.5px; margin-bottom: 18px; line-height: 1.1;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero p {
+      font-size: 1.15rem; color: rgba(255,255,255,0.85);
+      max-width: 600px; margin: 0 auto 32px; line-height: 1.6;
+    }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 14px 28px; border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      cursor: pointer; border: none; font-family: inherit; transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-ghost { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+
+    /* STATS */
+    .info-strip {
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    }
+    .info-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.875rem; font-weight: 600; color: var(--text);
+    }
+    .info-item .label { color: var(--text-muted); font-weight: 400; }
+
+    /* SECTION */
+    .section { padding: 64px 24px; max-width: 760px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px;
+      margin-bottom: 18px; color: var(--dark);
+    }
+    .section p {
+      font-size: 1rem; color: var(--text-muted); margin-bottom: 16px;
+      line-height: 1.75;
+    }
+    .section p:last-child { margin-bottom: 0; }
+    .section p strong { color: var(--text); }
+
+    /* PILLARS */
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 28px; }
+    .pillar {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px 20px;
+    }
+    .pillar h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+    .pillar p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+    /* PARTNER CARDS */
+    .partner-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 26px; margin-top: 18px;
+    }
+    .partner-card .tag {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 10px;
+    }
+    .partner-card h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.3px; }
+    .partner-card p { font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+    .partner-card p:last-child { margin-bottom: 0; }
+    .partner-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .partner-links a {
+      font-size: 0.85rem; font-weight: 700; color: var(--blue);
+      text-decoration: none; border: 1.5px solid var(--blue);
+      padding: 7px 14px; border-radius: 8px; transition: background 0.2s;
+    }
+    .partner-links a:hover { background: var(--blue-light); }
+
+    /* PROOF */
+    .proof-quote {
+      background: var(--dark); color: #fff; border-radius: var(--radius);
+      padding: 36px 32px; margin-top: 28px;
+    }
+    .proof-quote .tag {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 14px;
+    }
+    .proof-quote h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 14px; line-height: 1.3; }
+    .proof-quote p { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin: 0; line-height: 1.6; }
+
+    /* STEPS */
+    .steps { margin-top: 28px; display: grid; gap: 0; }
+    .step-row {
+      display: grid; grid-template-columns: 46px 1fr; gap: 18px;
+      padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;
+    }
+    .step-row:last-child { border-bottom: none; }
+    .step-n {
+      font-weight: 900; font-size: 1rem; color: #fff; background: var(--blue);
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-what { font-size: 0.96rem; color: var(--text); }
+    .step-what small { display: block; color: var(--text-muted); font-size: 0.87rem; margin-top: 2px; }
+
+    /* CTA */
+    .cta-box {
+      background: var(--dark); color: #fff; border-radius: var(--radius);
+      padding: 40px 32px; text-align: center; margin-top: 28px;
+    }
+    .cta-box h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 14px; letter-spacing: -0.5px; }
+    .cta-box p { color: rgba(255,255,255,0.72); font-size: 0.98rem; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 600px) {
+      .section { padding: 48px 20px; }
+      .pillars { grid-template-columns: 1fr; }
+      .cta-box, .proof-quote, .partner-card { padding: 26px 20px; }
+    }
+
+    .footer {
+      text-align: center; padding: 28px 24px;
+      font-size: 0.8rem; color: var(--text-muted);
+      border-top: 1px solid var(--border); margin-top: 60px;
+    }
+    .footer a { color: var(--blue); text-decoration: none; }
+
+    /* PEOPLE CARDS */
+    .person {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-top: 22px;
+      display: grid; grid-template-columns: 240px 1fr;
+    }
+    /* The photo cell used to stretch to whatever height the text next to it
+       happened to be, and object-fit:cover then sliced a 4:5 portrait into a tall
+       narrow strip. Deng's word for it was "long". Pin the tile to 4:5 and let it
+       sit at the top of the card instead of stretching. */
+    .person-photo { position: relative; background: #0B1F3A; aspect-ratio: 4 / 5;
+                    align-self: start; border-radius: var(--radius) 0 0 var(--radius);
+                    overflow: hidden; }
+    .person-photo img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .person-initials {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(150deg, #0B1F3A 0%, #1E40AF 100%);
+      color: rgba(255,255,255,0.92);
+      font-size: 3rem; font-weight: 900; letter-spacing: -1px;
+    }
+    .person-body { padding: 28px 28px 26px; }
+    .person-body .role {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .person-body h3 { font-size: 1.45rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .person-body .sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; font-weight: 600; }
+    .person-body p { font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+    .person-body p:last-child { margin-bottom: 0; }
+    .person-facts { list-style: none; margin: 0 0 14px; padding: 0; }
+    .person-facts li {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;
+      padding: 6px 0 6px 20px; position: relative; border-bottom: 1px solid var(--border);
+    }
+    .person-facts li:last-child { border-bottom: none; }
+    .person-facts li::before {
+      content: ''; position: absolute; left: 4px; top: 14px;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--blue);
+    }
+    .person-facts li strong { color: var(--text); font-weight: 700; }
+    @media (max-width: 720px) {
+      .person { grid-template-columns: 1fr; }
+      .person-photo { aspect-ratio: 3 / 2; border-radius: var(--radius) var(--radius) 0 0; }
+      .person-body { padding: 24px 20px; }
+    }
+
+    .hero::before { background-image: url('/images/team-tunnel.jpg') !important; background-position: center 40% !important; }
+    .move {
+      display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      font-size: 0.8rem; font-weight: 800; letter-spacing: 0.3px;
+      background: var(--blue-light); color: #0B1F3A;
+      border-radius: 999px; padding: 7px 14px; margin-bottom: 14px;
+    }
+    .move .arrow { color: var(--blue); font-weight: 900; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does a Danish player end up in an American high school?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Almost always through prep or high school first, then college. You need game tape, measured physical numbers, school grades, and a contact at the programme on the other end."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How old should a player be to go abroad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fifteen or sixteen is the usual window for high school and prep basketball. Younger than that and Talata will normally advise waiting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does basketball placement cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on the school and how much aid comes with it. Families get the full number, including flights and insurance, before committing. The first conversation and the evaluation are free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you promise a basketball scholarship?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Talata does not promise scholarships and advises families to be careful with anyone who does."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if the player is not good enough yet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Talata says so directly and tells the family what to work on. Most players who ask are not ready in the first year, which is not a permanent no."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a player come home again?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Malthe Mikkelsen spent 2025/26 at Orangeville Prep in Canada and returned to Copenhagen afterwards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the player have to be a Talata member?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Players from other clubs in Denmark can ask for an evaluation."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .hero::before { background-image: url('/images/2026-08/academy-team-lineup-black.jpg') !important; background-position: center 30% !important; }
+    .section-wide { max-width: 940px; }
+    .lede { font-size: 1.12rem; color: var(--text); line-height: 1.7; }
+    .rule { height: 1px; background: var(--border); max-width: 760px; margin: 0 auto; }
+    .band { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .kicker { font-size: 0.68rem; font-weight: 800; letter-spacing: 1.6px;
+              color: var(--blue); text-transform: uppercase; margin-bottom: 10px; }
+    .routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 26px; }
+    .route { background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--blue);
+             border-radius: var(--radius); padding: 22px 20px; }
+    .route h3 { font-size: 1.02rem; font-weight: 800; margin-bottom: 6px; }
+    .route p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+    .route .where { display: block; margin-top: 10px; font-size: 0.78rem; font-weight: 700;
+                    letter-spacing: .4px; color: #0B1F3A; text-transform: uppercase; }
+    .nolist { list-style: none; margin: 24px 0 0; padding: 0; }
+    .nolist li { position: relative; padding: 16px 0 16px 40px; border-bottom: 1px solid rgba(255,255,255,.14);
+                 color: rgba(255,255,255,.80); font-size: 0.97rem; line-height: 1.6; }
+    .nolist li:last-child { border-bottom: none; }
+    .nolist li strong { color: #fff; font-weight: 800; }
+    .nolist li::before { content: '\2715'; position: absolute; left: 6px; top: 16px;
+                         color: var(--blue); font-weight: 900; font-size: 0.95rem; }
+    .contact-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+    .note { font-size: 0.84rem; color: var(--text-muted); margin-top: 18px; line-height: 1.6; }
+    .tick { list-style: none; margin: 18px 0 0; padding: 0; }
+    .tick li { position: relative; padding: 9px 0 9px 26px; font-size: 0.94rem;
+               color: var(--text-muted); line-height: 1.6; }
+    .tick li::before { content: ''; position: absolute; left: 4px; top: 17px; width: 7px; height: 7px;
+                       border-radius: 50%; background: var(--blue); }
+    .tick li strong { color: var(--text); font-weight: 700; }
+  </style>
+<link rel="stylesheet" href="/assets/talata-nav.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="stylesheet" href="/assets/talata-footer.css">
+</head>
+<body>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Basketball Placement</div>
+      <h1>Play basketball in America.<br><span>We'll get you ready, then we'll get you there.</span></h1>
+      <p>Two kids out of this gym in &Oslash;sterbro are playing in North America right now. We coached them both for years before they went. Handling the move itself is the part we're adding now.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:coach@talatabasketball.dk?subject=Basketball%20placement%20enquiry">Email Coach Deng</a>
+        <a class="btn btn-ghost" href="https://wa.me/4552398508" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-strip">
+    <div class="info-item"><strong>2</strong><span class="label">players in North America</span></div>
+    <div class="info-item"><strong>2</strong><span class="label">in Danish 1. division</span></div>
+    <div class="info-item"><strong>NCAA D1</strong><span class="label">and Canadian college coaches on staff</span></div>
+    <div class="info-item"><strong>Free</strong><span class="label">first evaluation</span></div>
+  </div>
+
+  <section class="section">
+    <h2 class="section-title">Straight answer first: we haven't done the paperwork part before.</h2>
+    <p class="lede">Here's the thing about placement services. Most of them won't tell you where they've actually sent anybody. You'll see a ninety nine percent success rate on a site that can't name one player.</p>
+    <p>So we'll go first, and we'll be blunt about our own record. <strong>We didn't place Malthe or Johan.</strong> We coached them. We built them into players a programme abroad wanted, and their families handled the move. Both of them got there.</p>
+    <p><strong>What's new is that we now do the whole thing.</strong> The evaluation, the tape, the school matching, admissions, the visa, and staying on the phone once they land. Same club, same coaches, one more step.</p>
+    <p>Every player we help goes on this page by name, with the school and the year, and the entry stays up even when the story stops being flattering. One of the two below went to Canada, came home, and plays for a different Copenhagen club now. That year is still his and it's still up there.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="section">
+    <div class="kicker">The proof</div>
+    <h2 class="section-title">Two players out of one gym. Both named.</h2>
+    <p>This is the full list. When it grows, it grows here.</p>
+
+    <div class="person">
+      <div class="person-photo">
+        <img src="/images/people/johan-lyager-joensen.jpg" alt="Johan Lyager Joensen, Talata Basketball player now at Martins Ferry High School in Ohio" loading="lazy" width="900" height="1125">
+      </div>
+      <div class="person-body">
+        <div class="role">North America &middot; 2026/27</div>
+        <h3>Johan Lyager Joensen</h3>
+        <div class="sub">Talata &rarr; Martins Ferry High School, Ohio</div>
+        <div class="move">Copenhagen <span class="arrow">&rarr;</span> Ohio, USA</div>
+        <p>Johan's one of the originals. He was on the floor in Talata's first season, back when the club was twenty kids and one team. This year he's off to Martins Ferry High School in Ohio to play for the Purple Riders. He goes at fifteen.</p>
+        <ul class="person-facts">
+          <li><strong>Now at:</strong> Martins Ferry High School, Ohio, USA</li>
+          <li><strong>Team:</strong> the Purple Riders</li>
+          <li><strong>At Talata:</strong> since 2024, Academy, U15 and U17</li>
+          <li><strong>Our part:</strong> we coached him and got him ready. His family handled the move.</li>
+        </ul>
+        <p><a href="/pathway">Read the full story</a></p>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-photo">
+        <div class="person-initials">MM</div>
+      </div>
+      <div class="person-body">
+        <div class="role">North America &middot; 2025/26</div>
+        <h3>Malthe Mikkelsen</h3>
+        <div class="sub">Talata &rarr; Orangeville Prep, Ontario, Canada</div>
+        <div class="move">Copenhagen <span class="arrow">&rarr;</span> Ontario, Canada</div>
+        <p>Malthe was a wing in the Talata Academy when he committed to Orangeville Prep in Ontario, one of the top prep programmes in North America and a regular feeder into NCAA Division 1. He committed at fifteen and spent 2025/26 out there.</p>
+        <p><strong>He's back in Copenhagen now and plays for another club.</strong> We're not hiding that and we're not taking him off this page. He went. That year is his.</p>
+        <ul class="person-facts">
+          <li><strong>Went to:</strong> Orangeville Prep, Ontario, Canada</li>
+          <li><strong>Season:</strong> 2025/26</li>
+          <li><strong>Age at commitment:</strong> 15</li>
+          <li><strong>Our part:</strong> we coached him through the Academy. The move was his family's.</li>
+        </ul>
+        <p><a href="/pathway">Read the full story</a></p>
+      </div>
+    </div>
+
+    <p class="note">Two more players have gone from our men's side into the Danish 1. division, which is a domestic step up rather than a placement. They're on the <a href="/pathway">pathway page</a>.</p>
+  </section>
+
+  <div class="band">
+  <section class="section section-wide">
+    <div class="kicker">Where we place</div>
+    <h2 class="section-title">Four routes out. We'll tell you which one is yours.</h2>
+    <p>Most families turn up asking about one of these. Usually it isn't the right one yet. First job is working out which road the player's actually on.</p>
+
+    <div class="routes">
+      <div class="route">
+        <h3>High school and prep, USA and Canada</h3>
+        <p>The most common way into American college basketball, and the road Johan's on. School matching, admissions, host family or dorm, and the visa paperwork that comes with it.</p>
+        <span class="where">USA &middot; Canada</span>
+      </div>
+      <div class="route">
+        <h3>Clubs and academies in Europe</h3>
+        <p>Sometimes the right next level is two hours away, not eight. Spanish and other European academies take young players seriously and the basketball education is excellent.</p>
+        <span class="where">Spain &middot; Europe</span>
+      </div>
+      <div class="route">
+        <h3>College basketball in the USA</h3>
+        <p>NCAA Division 1 and 2, NAIA and JUCO. Eligibility, academics and tape, sorted early, because the academic side ends more of these than the basketball side does.</p>
+        <span class="where">USA</span>
+      </div>
+      <div class="route">
+        <h3>Representation</h3>
+        <p>When a player reaches the level that needs an agent, that goes through FIBA licensed agents rather than through the club. We stay the coach in the room.</p>
+        <span class="where">FIBA licensed</span>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <section class="section">
+    <div class="kicker">How it works</div>
+    <h2 class="section-title">Six steps. The first two cost nothing.</h2>
+    <div class="steps">
+      <div class="step-row"><div class="step-n">1</div><div class="step-what">A conversation
+        <small>You, the player and Deng. What the family wants, and what the player wants. They're not always the same thing and it's better to find that out now.</small></div></div>
+      <div class="step-row"><div class="step-n">2</div><div class="step-what">An honest evaluation
+        <small>Where this player really stands, from coaches who see them every week. Measured numbers, not opinions. If the answer's not yet, you hear it here.</small></div></div>
+      <div class="step-row"><div class="step-n">3</div><div class="step-what">A plan with the real cost on it
+        <small>Tuition, flights, insurance, all of it, before anyone commits to anything. No family should find out what this costs in month three.</small></div></div>
+      <div class="step-row"><div class="step-n">4</div><div class="step-what">Profile and tape
+        <small>Measured profile sheet, game footage and a cut highlight reel. What a coach abroad asks for before they ask anything else.</small></div></div>
+      <div class="step-row"><div class="step-n">5</div><div class="step-what">Matching and introductions
+        <small>We go to programmes we know, or ones our contacts in that market know. Fit first. The biggest name isn't the right name for most players.</small></div></div>
+      <div class="step-row"><div class="step-n">6</div><div class="step-what">Admissions, visa and landing
+        <small>Paperwork, school admissions, the visa, and staying in touch once they're out there. The first three months abroad are the hard bit.</small></div></div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="section">
+    <div class="kicker">Who does this</div>
+    <h2 class="section-title">Coaches who've made the trip themselves.</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Deng Awak</h3>
+        <p>Head coach and club manager. Founded Talata in 2021 and has sat in every one of these conversations with both families so far.</p>
+      </div>
+      <div class="pillar">
+        <h3>Jordan Naughton</h3>
+        <p>Played NCAA Division 1 at the University of Wyoming, then turned pro in Denmark with BK Amager. He coaches our Academy. When a fifteen year old asks what it actually takes, Jordan's the one who answers.</p>
+      </div>
+      <div class="pillar">
+        <h3>Danhue Lawrence</h3>
+        <p>From Scarborough, Toronto. Played four seasons for the University of Lethbridge Pronghorns and has coached for over a decade in Canada. He's our Canadian route and he coaches our camp out there.</p>
+      </div>
+      <div class="pillar">
+        <h3>FIBA licensed agents</h3>
+        <p>Representation, when a player needs it, goes through licensed agents. The club doesn't act as the agent.</p>
+      </div>
+    </div>
+    <p class="note"><strong>Coming in 2027: NIL.</strong> American college athletes can earn from their name, image and likeness now, and the rules for international athletes are moving fast. We're building that into the advice instead of pretending it isn't there.</p>
+  </section>
+
+  <section class="section">
+    <div class="proof-quote">
+      <div class="tag">The small print, up front</div>
+      <h3>Things we won't do.</h3>
+      <ul class="nolist">
+        <li><strong>We won't tell you your kid is ready when they're not.</strong> The honest no is the most useful thing on this page.</li>
+        <li><strong>We won't charge you to be looked at.</strong> The conversation and the evaluation are free. Paying to be seen is the oldest trick in this business.</li>
+        <li><strong>We won't promise a scholarship.</strong> Nobody honest can. Anyone who does is selling you something.</li>
+        <li><strong>We won't put a percentage on it.</strong> We'll put names on it instead, and you can go and check them.</li>
+        <li><strong>We won't send a young player abroad because the family can afford it.</strong> It has to be right for the player, at the right age, or it's just an expensive way to fall out of love with the game.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="band">
+  <section class="section">
+    <div class="kicker">Questions we get</div>
+    <h2 class="section-title">What parents actually ask.</h2>
+    <ul class="tick">
+      <li><strong>How does a Danish player end up in an American high school?</strong> Almost always through prep or high school first, then college. You need tape, measured numbers, school grades and someone on the other end who knows the programme. That's the whole job.</li>
+      <li><strong>How old should they be?</strong> Fifteen or sixteen is the usual window for high school and prep. Younger than that and we'll normally tell you to wait, and we'll tell you why.</li>
+      <li><strong>What does it cost?</strong> Depends entirely on the school and how much aid comes with it. You get the full number, including flights and insurance, before anyone signs anything. Our first conversation and evaluation are free.</li>
+      <li><strong>Will they get a scholarship?</strong> Maybe. We won't promise it and neither should anybody else.</li>
+      <li><strong>What if they're not good enough yet?</strong> Then we say so and we tell you what to work on. Most players who ask us aren't ready in the first year. That isn't a no forever.</li>
+      <li><strong>Can they come home?</strong> Yes, and some do. Malthe went to Canada for a year and came back. That year still counts.</li>
+      <li><strong>Do they need to be a Talata player?</strong> No. If you're at another club in Denmark and you want an honest read, get in touch.</li>
+    </ul>
+  </section>
+  </div>
+
+  <section class="section">
+    <div class="cta-box">
+      <h3>Start with the conversation.</h3>
+      <p>Send us the player's age, what they're playing now, and what you're hoping for. We'll tell you honestly whether it's a road worth walking, and it costs nothing to ask.</p>
+      <div class="contact-row">
+        <a class="btn btn-primary" href="mailto:coach@talatabasketball.dk?subject=Basketball%20placement%20enquiry">coach@talatabasketball.dk</a>
+        <a class="btn btn-ghost" href="https://wa.me/4552398508" target="_blank" rel="noopener">WhatsApp Coach Deng</a>
+      </div>
+    </div>
+    <p class="note">Not ready for that yet? The <a href="/camps/autumn-camp-2026">Pathway Camp</a> in October is three days of exactly this evaluation, with a measured profile, filmed games and a written assessment at the end. It's the honest read without committing to anything.</p>
+  </section>
+
+</main>
+
+</body>
+</html>

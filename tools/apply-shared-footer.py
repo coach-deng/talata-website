@@ -75,6 +75,7 @@ COLUMNS = [
     ]),
     ("Club", [
         ("/coaches", "Coaches"),
+        ("/placement", "Player Placement"),
         ("/pathway", "Player Pathway"),
         ("/philosophy", "The Talata Way"),
         ("/reviews", "Reviews"),
