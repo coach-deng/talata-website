@@ -69,7 +69,9 @@
   .box.stop { border-left:4px solid #C0392B; background:#FDECEA; }
   .box h3 { margin-top:0; }
   .da { background:var(--sky); color:var(--navy); padding:1px 7px; border-radius:5px; font-weight:700; font-style:normal; }
-  table { width:100%; border-collapse:collapse; margin-bottom:18px; font-size:.94rem; }
+  .tscroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-bottom:18px; }
+  table { width:100%; border-collapse:collapse; margin-bottom:0; font-size:.94rem; }
+  @media (max-width:600px){ table { min-width:460px; } }
   th { text-align:left; background:var(--navy); color:#fff; padding:9px 12px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }
   td { padding:9px 12px; border-bottom:1px solid var(--line); color:var(--ink2); }
   td b { color:var(--ink); }
@@ -229,7 +231,7 @@
 <div class="wrap last">
   <a class="back" href="/help">&larr; All guides</a>
   <h2>The groups</h2>
-  <table>
+  <div class="tscroll"><table>
     <tr><th>Group</th><th>Ages</th><th>When</th><th>Where</th></tr>
     <tr><td><b>Mini</b></td><td>5 to 9</td><td>Tue + Thu 15:30&ndash;16:30</td><td>Strandvejsskolen</td></tr>
     <tr><td><b>Junior</b></td><td>10 to 12</td><td>Tue + Thu 16:30&ndash;17:45</td><td>Strandvejsskolen</td></tr>
@@ -237,7 +239,7 @@
     <tr><td><b>Academy U13 / U15</b></td><td>13 to 14</td><td>Mon, Thu, Fri 16:00&ndash;18:00</td><td>Svanem&oslash;llehallen</td></tr>
     <tr><td><b>Academy U17 / U19</b></td><td>15 to 18</td><td>Mon, Thu, Fri 17:00&ndash;19:00</td><td>Svanem&oslash;llehallen</td></tr>
     <tr><td><b>Men</b></td><td>19 and up</td><td>Mon + Fri 18:30&ndash;20:15</td><td>Svanem&oslash;llehallen</td></tr>
-  </table>
+  </table></div>
   <p><b>Strandvejsskolen</b> is Sionsgade 1, 2100 K&oslash;benhavn &Oslash;. <b>Svanem&oslash;llehallen</b> is &Oslash;sterbrogade 240, 2100 K&oslash;benhavn &Oslash;.</p>
 
   <div class="box warn">
@@ -246,7 +248,7 @@
   </div>
 
   <h2>Fees, per half-season</h2>
-  <table>
+  <div class="tscroll"><table>
     <tr><th>Group</th><th>Fee</th></tr>
     <tr><td>Mini (5 to 9)</td><td><b>1.800 kr</b></td></tr>
     <tr><td>Junior (10 to 12)</td><td><b>1.800 kr</b></td></tr>
@@ -254,7 +256,7 @@
     <tr><td>Sparks plus one weekday</td><td><b>1.800 kr</b></td></tr>
     <tr><td>Academy (13 to 18)</td><td><b>3.300 kr</b></td></tr>
     <tr><td>Men / Fitness</td><td><b>2.000 kr</b></td></tr>
-  </table>
+  </table></div>
   <p>Your invoice lives in Holdsport under <span class="da">Betalinger</span>. Charged twice, or never got an invoice? Talk to Deng and we will sort it.</p>
   <p><b>Sibling arrangements and financial support both exist.</b> If money is the reason your child is not here, come and talk to Deng before you walk away. That conversation is private and it happens more often than you would think.</p>
 

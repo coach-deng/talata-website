@@ -23,6 +23,11 @@
 
 <style>
 body { font-family: 'Inter', sans-serif; }
+/* Grid and flex children default to min-width:auto, so a child cannot shrink
+   below its content and pushes the page sideways. This is the standard fix and
+   it is what was causing 5px of horizontal scroll at 375px. */
+.grid > *, .flex > * { min-width: 0; }
+.venn-container { max-width: 100%; }
 .chart-container { position: relative; width: 100%; max-width: 700px; margin: 0 auto; height: 350px; }
 @media (min-width: 768px) { .chart-container { height: 400px; } }
 .venn-circle { width: 170px; height: 170px; border-radius: 50%; position: absolute; mix-blend-mode: multiply; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700; color: white; padding: 1rem; font-size: 0.875rem; }
