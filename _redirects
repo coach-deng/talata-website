@@ -49,6 +49,7 @@
 
 # Old/legacy paths
 /index-new.html    /    301
+/home-classic.html    /    301
 /sparks.html    /sparks    301
 /camps/lithuania-camp-2026    /camps/nida-camp-2026    301
 /concept-one-page    /    301
