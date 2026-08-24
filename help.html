@@ -93,6 +93,13 @@
   .back { display:inline-block; margin-bottom:6px; color:var(--blue); font-weight:700; font-size:.88rem; }
   footer { background:var(--navy); color:rgba(255,255,255,.7); text-align:center; padding:32px 24px; font-size:.85rem; }
   footer a { color:var(--baby); }
+/* Holdsport is a THIRD PARTY product and this is their brand orange, used only
+   to label their thing. Talata's palette has no orange in it and must not gain
+   one, so this class is scoped to the Holdsport card alone. If orange ever shows
+   up on something that is not Holdsport, that is a bug. */
+.card--holdsport { --hs:#F26522; border-color:rgba(242,101,34,.45); }
+.card--holdsport h3, .card--holdsport .go { color:var(--hs); }
+.card--holdsport:hover { border-color:var(--hs); }
 </style>
 
 <link rel="stylesheet" href="/assets/talata-nav.css">
@@ -232,7 +239,7 @@
   <p class="lead">Most of what parents ask us is the same handful of things. Rather than answer them one email at a time, they are written out here.</p>
 
   <div class="cards">
-    <a class="card" href="/help/holdsport">
+    <a class="card card--holdsport" href="/help/holdsport">
       <h3>Holdsport, in English</h3>
       <p>The app we use for sign-ups, cancellations and payments is Danish only. Here is what every button means.</p>
       <span class="go">Read the guide &rarr;</span>
