@@ -65,7 +65,7 @@
         "name": "What age groups does Talata Basketball have?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We have programs from age 5 all the way through senior. Mini is 5 to 9, Junior is 10 to 12, and Academy runs U13 through U19 (ages 13 to 19). Talata Sparks is girls only, ages 5 to 11. Everyone 18 and up can play for Talata Men."
+          "text": "We have programs from age 5 all the way through senior. Mini is 5 to 9, Junior is 10 to 12, and Academy runs U13 through U19 (ages 13 to 19). Talata Sparks is girls only, ages 6 to 14. Everyone 18 and up can play for Talata Men."
         }
       },
       {
@@ -631,7 +631,7 @@
         </div>
         <div class="faq-item">
           <h3>What age groups do you have?</h3>
-          <p>We have programs from age 5 all the way through senior. Mini is 5 to 9, Junior is 10 to 12, and Academy runs U13 through U19 (ages 13 to 19). Talata Sparks is girls only, ages 5 to 11. Everyone 18 and up can play for Talata Men.</p>
+          <p>We have programs from age 5 all the way through senior. Mini is 5 to 9, Junior is 10 to 12, and Academy runs U13 through U19 (ages 13 to 19). Talata Sparks is girls only, ages 6 to 14. Everyone 18 and up can play for Talata Men.</p>
         </div>
         <div class="faq-item">
           <h3>When would we actually train?</h3>
@@ -693,25 +693,25 @@
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="postcode">Postcode <span style="font-weight:400;opacity:.6">(optional)</span></label>
-              <input type="text" id="postcode" name="postcode" placeholder="2100">
-            </div>
-            <div class="form-group">
-              <label for="program">Interested in</label>
-              <select id="program" name="program" required>
-                <option value="">Select a program</option>
-                <option value="free-trial">Free trial</option>
-                <option value="mini">Talata Mini (ages 5 to 9)</option>
-                <option value="junior">Talata Junior (ages 10 to 12)</option>
-                <option value="teams">Youth Teams</option>
-                <option value="academy">Academy (ages 13 to 19)</option>
-                <option value="mens">Talata Men (18+)</option>
-                <option value="development">1-on-1 Development</option>
-                <option value="camp">Camps</option>
-              </select>
-            </div>
+          <!-- Postcode removed 25 Aug 2026: the Worker never read it once, so it was a
+               field parents filled for nothing.
+
+               The program picker no longer asks a parent to choose an age band. The Worker
+               already works the group out from the date of birth via bracketAge(), using the
+               1 October rule. Asking the parent as well meant a wrong guess put a 12 year old
+               in Academy at 3.300 instead of Junior at 1.800. Now it asks about INTEREST,
+               which the date of birth cannot tell us, and it is optional. -->
+          <div class="form-group">
+            <label for="program">What are you interested in? <span style="font-weight:400;opacity:.6">(optional)</span></label>
+            <select id="program" name="program">
+              <option value="">Not sure yet, help me pick</option>
+              <option value="free-trial">A free trial session</option>
+              <option value="weekly">Weekly training</option>
+              <option value="camp">A camp</option>
+              <option value="development">1-on-1 development</option>
+              <option value="mens">Adult basketball</option>
+            </select>
+            <p style="margin:6px 0 0;font-size:.85rem;opacity:.65">We work out the right group from the date of birth. You do not need to know it.</p>
           </div>
 
           <div class="form-group">
