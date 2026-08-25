@@ -66,6 +66,7 @@ CVR = "CVR 43599453"
 COLUMNS = [
     ("Programs", [
         ("/mini", "Mini + Junior"),
+        ("/saturday", "Saturdays"),
         ("/academy", "Academy"),
         ("/sparks", "Sparks"),
         ("/join", "Talata Men"),
@@ -86,6 +87,8 @@ COLUMNS = [
     ("For parents", [
         ("/guide", "Parents' Guide"),
         ("/help", "Help &amp; guides"),
+        ("/help/age-groups", "Fees and age groups"),
+        ("/help/first-session", "Your first session"),
         ("/school-partnerships", "School partnerships"),
         ("/basketball-in-copenhagen", "Basketball in Copenhagen"),
     ]),
