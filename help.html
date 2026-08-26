@@ -46,53 +46,53 @@
     --ink:#101828; --ink2:#475467; --line:#E4E9F0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', -apple-system, sans-serif; color: var(--ink); background: var(--mist); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Inter', -apple-system, sans-serif;color:var(--td-text); background: var(--mist); line-height: 1.6; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
 
   
   .hero { background: linear-gradient(135deg, var(--navy) 0%, #173A8C 60%, var(--blue) 100%); color:#fff; padding:56px 24px 48px; text-align:center; }
-  .hero .eyebrow { font-size:.78rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--baby); margin-bottom:12px; }
+  .hero .eyebrow { font-size:.78rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase;color:var(--td-link); margin-bottom:12px; }
   .hero h1 { font-size:clamp(1.9rem,5vw,2.6rem); font-weight:900; letter-spacing:-.02em; line-height:1.12; margin-bottom:12px; }
   .hero p { font-size:1.03rem; color:rgba(255,255,255,.82); max-width:34em; margin:0 auto; }
   .wrap { max-width:760px; margin:0 auto; padding:48px 24px 8px; }
   .wrap.last { padding-bottom:56px; }
-  h2 { font-size:1.25rem; font-weight:800; color:var(--navy); margin:36px 0 14px; letter-spacing:-.01em; }
+  h2 { font-size:1.25rem; font-weight:800;color:var(--td-text); margin:36px 0 14px; letter-spacing:-.01em; }
   h2:first-child { margin-top:0; }
-  h3 { font-size:1rem; font-weight:800; color:var(--blue); margin:22px 0 6px; }
-  p { margin-bottom:14px; color:var(--ink2); }
-  p.lead { font-size:1.06rem; color:var(--ink); }
-  ul, ol { margin:0 0 16px 20px; color:var(--ink2); }
+  h3 { font-size:1rem; font-weight:800;color:var(--td-link); margin:22px 0 6px; }
+  p { margin-bottom:14px;color:var(--td-muted); }
+  p.lead { font-size:1.06rem;color:var(--td-text); }
+  ul, ol { margin:0 0 16px 20px;color:var(--td-muted); }
   li { margin-bottom:8px; }
-  b, strong { color:var(--ink); }
+  b, strong {color:var(--td-text); }
   .box {background:var(--td-surface); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin-bottom:18px; }
   .box.warn { border-left:4px solid var(--blue); }
   .box.stop { border-left:4px solid #C0392B; background:#FDECEA; }
   .box h3 { margin-top:0; }
-  .da { background:var(--sky); color:var(--navy); padding:1px 7px; border-radius:5px; font-weight:700; font-style:normal; }
+  .da { background:var(--sky);color:var(--td-text); padding:1px 7px; border-radius:5px; font-weight:700; font-style:normal; }
   table { width:100%; border-collapse:collapse; margin-bottom:18px; font-size:.94rem; }
   th { text-align:left; background:var(--navy); color:#fff; padding:9px 12px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }
-  td { padding:9px 12px; border-bottom:1px solid var(--line); color:var(--ink2); }
-  td b { color:var(--ink); }
+  td { padding:9px 12px; border-bottom:1px solid var(--line);color:var(--td-muted); }
+  td b {color:var(--td-text); }
   .cards { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:8px; }
   .card { display:block;background:var(--td-surface); border:1px solid var(--line); border-radius:12px; padding:22px; transition:.15s; }
   .card:hover { border-color:var(--blue); transform:translateY(-2px); }
   .card h3 { margin:0 0 6px; }
   .card p { font-size:.9rem; margin:0; }
-  .card .go { display:inline-block; margin-top:10px; color:var(--blue); font-weight:700; font-size:.88rem; }
+  .card .go { display:inline-block; margin-top:10px;color:var(--td-link); font-weight:700; font-size:.88rem; }
   @media (max-width:620px){ .cards { grid-template-columns:1fr; } }
   .sub { background:var(--navy); color:#fff; border-radius:14px; padding:28px 26px; margin:36px 0 0; }
-  .sub .eyebrow { font-size:.72rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--baby); }
+  .sub .eyebrow { font-size:.72rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase;color:var(--td-link); }
   .sub h2 { color:#fff; margin:8px 0 8px; }
   .sub p { color:rgba(255,255,255,.8); }
   .sub form { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
   .sub input { flex:1 1 240px; padding:13px 15px; border-radius:9px; border:0; font:inherit; }
-  .sub button { background:var(--baby); color:var(--navy); font-weight:800; font-size:.95rem; padding:13px 26px; border:0; border-radius:9px; cursor:pointer; font-family:inherit; }
+  .sub button { background:var(--baby);color:var(--td-text); font-weight:800; font-size:.95rem; padding:13px 26px; border:0; border-radius:9px; cursor:pointer; font-family:inherit; }
   .sub button:hover {background:var(--td-surface); }
   .sub .ok { display:none; margin-top:12px; background:rgba(125,211,252,.16); border:1px solid var(--baby); border-radius:9px; padding:12px 14px; color:#fff; font-size:.92rem; }
   .sub .fine { font-size:.78rem; color:rgba(255,255,255,.55); margin:10px 0 0; }
-  .back { display:inline-block; margin-bottom:6px; color:var(--blue); font-weight:700; font-size:.88rem; }
+  .back { display:inline-block; margin-bottom:6px;color:var(--td-link); font-weight:700; font-size:.88rem; }
   footer { background:var(--navy); color:rgba(255,255,255,.7); text-align:center; padding:32px 24px; font-size:.85rem; }
-  footer a { color:var(--baby); }
+  footer a {color:var(--td-link); }
 /* Holdsport is a THIRD PARTY product and this is their brand orange, used only
    to label their thing. Talata's palette has no orange in it and must not gain
    one, so this class is scoped to the Holdsport card alone. If orange ever shows
@@ -108,7 +108,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826g">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826j">
 </head>
 <body>
 
@@ -242,8 +242,8 @@
   </div>
 
   <h2>Still stuck?</h2>
-  <p>Email <a href="mailto:coach@talatabasketball.dk" style="color:var(--blue);font-weight:700">coach@talatabasketball.dk</a> and it comes straight to Deng. Girls, Sparks and school pickup go to <a href="mailto:nicoline@talatabasketball.dk" style="color:var(--blue);font-weight:700">nicoline@talatabasketball.dk</a>.</p>
-  <p>There is also the full <a href="/guide" style="color:var(--blue);font-weight:700">2026/27 Parents' Guide</a> if you want everything in one PDF.</p>
+  <p>Email <a href="mailto:coach@talatabasketball.dk" style="color:var(--td-link);font-weight:700">coach@talatabasketball.dk</a> and it comes straight to Deng. Girls, Sparks and school pickup go to <a href="mailto:nicoline@talatabasketball.dk" style="color:var(--td-link);font-weight:700">nicoline@talatabasketball.dk</a>.</p>
+  <p>There is also the full <a href="/guide" style="color:var(--td-link);font-weight:700">2026/27 Parents' Guide</a> if you want everything in one PDF.</p>
 
   <div class="sub">
   <p class="eyebrow">Talata Insider</p>

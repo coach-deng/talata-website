@@ -304,17 +304,23 @@
 
     var cards = games.slice(0, 12).map(function (g) {
       var opp = g.opponent || g.title;
-      var isNext = g.id === nextId;
-      return '<a class="tkc' + (g.home ? ' is-home' : '') + (isNext ? ' is-next' : '') + '" href="/games">' +
+      var isNext = !g.played && g.id === nextId;
+      var won = g.played && g.us > g.them;
+      return '<a class="tkc' + (g.home ? ' is-home' : '') + (isNext ? ' is-next' : '') +
+        (g.played ? ' is-done' : '') + '" href="/games">' +
         '<div class="tkc-crests">' + talataCrest(g.team) +
           '<span class="tkc-sep">' + (g.home ? 'vs' : 'at') + '</span>' +
           crestHTML(opp) + '</div>' +
         '<span class="tkc-opp">' + esc(opp) + '</span>' +
-        '<span class="tkc-date">' + esc(longDate(g.date)) + '</span>' +
-        (isNext
-          ? '<span class="tkc-cd tf-cd" data-tf-cd="' + tipOff(g) + '"></span>'
-          : '<span class="tkc-when">' + esc(timeLabel(g)) + '</span>') +
-        (isTalataNight(g) ? '<span class="tkc-tag">Talata Night</span>' : '') +
+        (g.played
+          ? '<span class="tkc-score' + (won ? ' is-won' : '') + '">' +
+              esc(String(g.us)) + ' <i>-</i> ' + esc(String(g.them)) + '</span>' +
+            '<span class="tkc-when">ENDED</span>'
+          : '<span class="tkc-date">' + esc(longDate(g.date)) + '</span>' +
+            (isNext
+              ? '<span class="tkc-cd tf-cd" data-tf-cd="' + tipOff(g) + '"></span>'
+              : '<span class="tkc-when">' + esc(timeLabel(g)) + '</span>')) +
+        (isTalataNight(g) && !g.played ? '<span class="tkc-tag">Talata Night</span>' : '') +
       '</a>';
     }).join('');
 
@@ -454,9 +460,18 @@
       fetch(API + '/tickets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        /* The match details travel with the claim so the confirmation email can
+           name the game, the night and the hall. The Worker holds only the DBBF
+           game number, and an email that says "your ticket for 40098287" is
+           useless to a parent. */
         body: JSON.stringify({
           game: gameId, date: date, email: v,
-          seats: form.querySelector('[name=seats]').value
+          seats: form.querySelector('[name=seats]').value,
+          match: (g.team || 'Talata') + ' ' + (g.opponent ? (g.home ? 'vs ' : 'at ') + g.opponent : (g.title || '')),
+          when: dayName(date).charAt(0) + dayName(date).slice(1).toLowerCase() + ' ' + longDate(date),
+          time: g.time || '',
+          venue: venueLabel(g),
+          talataNight: isTalataNight(g)
         })
       }).then(function (r) { return r.json(); }).then(function () {
         form.style.display = 'none';
@@ -547,7 +562,11 @@
   function paint(games) {
     allGames = games;
     var next = upcoming(games);
-    document.querySelectorAll('[data-talata-ticker]').forEach(function (el) { renderTicker(el, next); });
+    /* Last three results, then the next game, then the rest. Until the season
+       starts there are no results, so this is simply the upcoming list, and it
+       grows a history on its own as scoresheets are filed. */
+    var strip = results(games).slice(0, 3).reverse().concat(next);
+    document.querySelectorAll('[data-talata-ticker]').forEach(function (el) { renderTicker(el, strip); });
     document.querySelectorAll('[data-talata-feature]').forEach(function (el) { renderFeature(el, next); });
     document.querySelectorAll('[data-tf-host]').forEach(function (h) {
       if (h._tfPaint) h._tfPaint(); else wireHost(h);

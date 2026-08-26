@@ -63,21 +63,20 @@
   :root{--black:#0A0A0A;--navy:#0B1F3A;--blue:#1E40AF;--baby:#7DD3FC;--sky:#BAE6FD;--mist:#F8FAFC;
         --ink:#101828;--ink2:#475467;--line:#E4E9F0;}
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Inter',-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--td-surface);line-height:1.65;-webkit-font-smoothing:antialiased;}
-  a{color:var(--blue);}
+  body{font-family:'Inter',-apple-system,'Segoe UI',sans-serif;color:var(--td-text);background:var(--td-surface);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  a{color:var(--td-link);}
   .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
 
   .head{background:var(--navy);color:#fff;padding:64px 0 56px;}
-  .head .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
-                 color:var(--baby);margin-bottom:14px;}
+  .head .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--td-link);margin-bottom:14px;}
   .head h1{font-size:clamp(2rem,5.5vw,3rem);line-height:1.06;font-weight:800;letter-spacing:-.02em;
            text-wrap:balance;}
   .head p{margin-top:16px;font-size:1.08rem;color:rgba(255,255,255,.8);max-width:34em;}
 
   main{padding:52px 0 20px;}
-  h2{font-size:1.5rem;font-weight:800;letter-spacing:-.01em;margin:44px 0 14px;color:var(--navy);
+  h2{font-size:1.5rem;font-weight:800;letter-spacing:-.01em;margin:44px 0 14px;color:var(--td-text);
      text-wrap:balance;}
-  h3{font-size:1.05rem;font-weight:800;margin:26px 0 6px;color:var(--navy);}
+  h3{font-size:1.05rem;font-weight:800;margin:26px 0 6px;color:var(--td-text);}
   p{margin-bottom:14px;}
   ul{margin:0 0 16px 20px;}
   li{margin-bottom:7px;}
@@ -91,7 +90,7 @@
         font-variant-numeric:tabular-nums;border:1px solid var(--line);border-radius:10px;
         overflow:hidden;}
   th{background:var(--mist);text-align:left;font-size:.74rem;letter-spacing:.08em;
-     text-transform:uppercase;color:var(--ink2);padding:11px 14px;border-bottom:1px solid var(--line);}
+     text-transform:uppercase;color:var(--td-muted);padding:11px 14px;border-bottom:1px solid var(--line);}
   td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
   tr:last-child td{border-bottom:none;}
   td.r,th.r{text-align:right;white-space:nowrap;}
@@ -100,18 +99,18 @@
        text-align:center;}
   .cta h2{color:#fff;margin:0 0 8px;}
   .cta p{color:rgba(255,255,255,.78);margin-bottom:20px;}
-  .btn{display:inline-block;background:var(--baby);color:var(--navy);font-weight:800;
+  .btn{display:inline-block;background:var(--baby);color:var(--td-text);font-weight:800;
        padding:.85em 2em;border-radius:9999px;text-decoration:none;font-size:1rem;}
   .btn:hover{transform:translateY(-1px);}
 
-  .note{font-size:.88rem;color:var(--ink2);border-top:1px solid var(--line);
+  .note{font-size:.88rem;color:var(--td-muted);border-top:1px solid var(--line);
         margin-top:40px;padding-top:16px;}
   .footer{background:var(--navy);color:rgba(255,255,255,.62);text-align:center;
           padding:34px 22px;font-size:.85rem;margin-top:48px;}
-  .footer a{color:var(--baby);}
+  .footer a{color:var(--td-link);}
 </style>
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826g">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826j">
 </head>
 <body>
 

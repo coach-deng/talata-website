@@ -92,6 +92,41 @@ def map_decl(prop, value):
     return None
 
 
+# `color: var(--x)` needs its own pass, because map_decl() bails on any value
+# containing var(). That bail was the worst dark-mode bug on the site: coach
+# names on /coaches rendered at a contrast ratio of 1.1, invisible, because the
+# page sets `color: var(--navy)` and the dark sheet had remapped --navy to a
+# dark SURFACE. One variable, two jobs.
+#
+# A variable that names a surface or a brand fill is never a safe text colour on
+# dark, so any `color:` pointing at one is rewritten to a token that is.
+COLOR_VAR = {
+    # surfaces and near-black brand tokens -> body text
+    "navy": "--td-text", "black": "--td-text", "dark": "--td-text",
+    "ink": "--td-text", "text": "--td-text", "talata-dark": "--td-text",
+    "bg": "--td-text", "mist": "--td-text", "white": "--td-text",
+    # brand fills. White on #2C4FD8 is fine; #2C4FD8 as type on a dark card
+    # measures 2.67:1 and fails, so text gets the lighter link token.
+    "blue": "--td-link", "talata": "--td-link", "blue-light": "--td-link",
+    "baby": "--td-link", "sky": "--td-link", "gold": "--td-link",
+    # already secondary, leave the meaning intact
+    "ink2": "--td-muted", "text-muted": "--td-muted", "muted": "--td-muted",
+    "line": "--td-muted", "border": "--td-muted",
+}
+
+
+def map_color_var(prop, value):
+    if prop != "color":
+        return None
+    m = re.match(r"^\s*var\(--([a-z0-9-]+)\s*(?:,[^)]*)?\)\s*$", value, re.I)
+    if not m:
+        return None
+    target = COLOR_VAR.get(m.group(1).lower())
+    return f"var({target})" if target else None
+
+    return None
+
+
 DECL = re.compile(r"(^|[;{])\s*([a-z-]+)\s*:\s*([^;{}]+)", re.I)
 
 
@@ -101,6 +136,8 @@ def convert_css(css):
     def one(m):
         head, prop, value = m.group(1), m.group(2).lower(), m.group(3)
         new = map_decl(prop, value)
+        if new is None:
+            new = map_color_var(prop, value)
         if new is None or new == value.strip():
             return m.group(0)
         changes[0] += 1
@@ -121,6 +158,17 @@ def process(path, check):
         return m.group(1) + css + m.group(3)
 
     src = re.sub(r"(<style[^>]*>)(.*?)(</style>)", block, src, flags=re.S)
+
+    # Inline style="..." attributes get the same treatment. Missing them left
+    # two links on /coaches at a contrast ratio of 2.36, because the colour was
+    # written straight on the tag and never went near a <style> block.
+    def inline(m):
+        nonlocal total
+        css, n = convert_css(m.group(2))
+        total += n
+        return m.group(1) + css + m.group(3)
+
+    src = re.sub(r'(\sstyle=")([^"]*)(")', inline, src)
 
     if src != original and not check:
         path.write_text(src, encoding="utf-8")

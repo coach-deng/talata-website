@@ -69,8 +69,7 @@
       --bg: #fafafa;
     }
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;color:var(--td-text);
       background: var(--bg);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -84,7 +83,7 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; letter-spacing: 1px; text-decoration: none; }
-    .nav-logo span { color: var(--blue); }
+    .nav-logo span {color:var(--td-link); }
     .nav-links { display: flex; gap: 24px; align-items: center; }
     .nav-links a {
       color: rgba(255,255,255,0.75); text-decoration: none;
@@ -132,7 +131,7 @@
       font-size: clamp(2.4rem, 5.5vw, 3.6rem); font-weight: 900;
       letter-spacing: -1.5px; margin-bottom: 18px; line-height: 1.1;
     }
-    .hero h1 span { color: var(--blue); }
+    .hero h1 span {color:var(--td-link); }
     .hero p {
       font-size: 1.15rem; color: rgba(255,255,255,0.85);
       max-width: 580px; margin: 0 auto 32px; line-height: 1.6;
@@ -154,22 +153,22 @@
     }
     .info-item {
       display: flex; align-items: center; gap: 8px;
-      font-size: 0.875rem; font-weight: 600; color: var(--text);
+      font-size: 0.875rem; font-weight: 600;color:var(--td-text);
     }
-    .info-item .label { color: var(--text-muted); font-weight: 400; }
+    .info-item .label {color:var(--td-muted); font-weight: 400; }
 
     /* SECTION */
     .section { padding: 64px 24px; max-width: 760px; margin: 0 auto; }
     .section-title {
       font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px;
-      margin-bottom: 18px; color: var(--dark);
+      margin-bottom: 18px;color:var(--td-text);
     }
     .section p {
-      font-size: 1rem; color: var(--text-muted); margin-bottom: 16px;
+      font-size: 1rem;color:var(--td-muted); margin-bottom: 16px;
       line-height: 1.75;
     }
     .section p:last-child { margin-bottom: 0; }
-    .section p strong { color: var(--text); }
+    .section p strong {color:var(--td-text); }
 
     .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
@@ -179,7 +178,7 @@
       padding: 22px 20px;
     }
     .pillar h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
-    .pillar p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+    .pillar p { font-size: 0.9rem;color:var(--td-muted); line-height: 1.6; margin: 0; }
 
     /* PROOF */
     .proof-quote {
@@ -187,8 +186,7 @@
       padding: 36px 32px; margin-top: 28px;
     }
     .proof-quote .tag {
-      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;
-      color: var(--blue); text-transform: uppercase; margin-bottom: 14px;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;color:var(--td-link); text-transform: uppercase; margin-bottom: 14px;
     }
     .proof-quote h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 14px; line-height: 1.3; }
     .proof-quote p { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin: 0; line-height: 1.6; }
@@ -204,12 +202,12 @@
     }
     .schedule-row:last-child { border-bottom: none; }
     .schedule-day { font-weight: 800; font-size: 0.9rem; }
-    .schedule-detail { font-size: 0.88rem; color: var(--text-muted); }
-    .schedule-detail strong { color: var(--text); }
+    .schedule-detail { font-size: 0.88rem;color:var(--td-muted); }
+    .schedule-detail strong {color:var(--td-text); }
     .schedule-note {
       background: var(--blue-light); border-left: 3px solid var(--blue);
       padding: 14px 20px; border-radius: 0 var(--radius) var(--radius) 0;
-      font-size: 0.88rem; color: var(--text); margin-top: 16px;
+      font-size: 0.88rem;color:var(--td-text); margin-top: 16px;
     }
 
     /* COACHES */
@@ -218,11 +216,10 @@
       padding: 24px 22px;
     }
     .coach-card .role {
-      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;
-      color: var(--blue); text-transform: uppercase; margin-bottom: 10px;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;color:var(--td-link); text-transform: uppercase; margin-bottom: 10px;
     }
     .coach-card h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; }
-    .coach-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+    .coach-card p { font-size: 0.88rem;color:var(--td-muted); line-height: 1.65; margin: 0; }
 
     /* COST */
     .cost-card {
@@ -239,7 +236,7 @@
       padding-left: 22px; position: relative;
     }
     .cost-includes li::before {
-      content: '✓'; position: absolute; left: 0; color: var(--blue); font-weight: 800;
+      content: '✓'; position: absolute; left: 0;color:var(--td-link); font-weight: 800;
     }
 
     /* CTA */
@@ -256,11 +253,10 @@
     }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-    .form-group label { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-group label { font-size: 0.78rem; font-weight: 700;color:var(--td-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .form-group input, .form-group select, .form-group textarea {
       padding: 12px 14px; border: 1.5px solid var(--border);
-      border-radius: 8px; font-size: 0.95rem; font-family: inherit;
-      color: var(--text);background:var(--td-surface); transition: border-color 0.2s;
+      border-radius: 8px; font-size: 0.95rem; font-family: inherit;color:var(--td-text);background:var(--td-surface); transition: border-color 0.2s;
     }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       outline: none; border-color: var(--blue);
@@ -286,10 +282,10 @@
 
     .footer {
       text-align: center; padding: 28px 24px;
-      font-size: 0.8rem; color: var(--text-muted);
+      font-size: 0.8rem;color:var(--td-muted);
       border-top: 1px solid var(--border); margin-top: 60px;
     }
-    .footer a { color: var(--blue); text-decoration: none; }
+    .footer a {color:var(--td-link); text-decoration: none; }
   </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -305,7 +301,7 @@
     gtag('config', 'G-R64Y9CQ2VZ');
   </script>
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826g">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826j">
 </head>
 <body>
 
@@ -489,14 +485,14 @@
       <div class="tag">Academy Alumni</div>
       <h3>Malthe Mikkelsen committed to Orangeville Prep in Canada at 15.</h3>
       <p>One of the top prep programs in North America for players chasing a professional career. Malthe came up through Talata. Trained here, competed here, grew his game here in Copenhagen. His commitment is proof that the work done in this gym translates at the highest level.</p>
-      <p style="margin-top: 16px;"><a href="/blog/malthe-orangeville-2025" style="color: var(--blue); font-weight: 700; text-decoration: none;">Read the full story &rarr;</a></p>
+      <p style="margin-top: 16px;"><a href="/blog/malthe-orangeville-2025" style="color:var(--td-link); font-weight: 700; text-decoration: none;">Read the full story &rarr;</a></p>
     </div>
 
     <div class="proof-quote">
       <div class="tag">Academy Alumni</div>
       <h3>Johan Lyager Joensen left for Ohio at 15.</h3>
       <p>Johan is one of the originals. He was on the floor in the first season, when Talata was twenty kids and one team, and he is still ours in the season the club has six teams in the Danish league. This year he plays for the <strong>Purple Riders</strong> at <strong>Martins Ferry High School</strong>, and American high school is the most common route into the NCAA. His family ran the move. The two years in this gym are what made him ready for it.</p>
-      <p style="margin-top: 16px;"><a href="/blog/johan-lyager-joensen-ohio-2026" style="color: var(--blue); font-weight: 700; text-decoration: none;">Read the full story &rarr;</a></p>
+      <p style="margin-top: 16px;"><a href="/blog/johan-lyager-joensen-ohio-2026" style="color:var(--td-link); font-weight: 700; text-decoration: none;">Read the full story &rarr;</a></p>
     </div>
   </div>
 
@@ -589,7 +585,7 @@
           <div class="form-group">
             <label for="dob">Date of birth</label>
             <input type="date" id="dob" name="dob" min="1940-01-01" required autocomplete="bday">
-            <small style="display:block;margin-top:.35rem;color:#64748B;font-size:.78rem;">Age groups run from 1 October, so the date decides the team.</small>
+            <small style="display:block;margin-top:.35rem;color:var(--td-muted);font-size:.78rem;">Age groups run from 1 October, so the date decides the team.</small>
           </div>
           <div class="form-group">
             <label>Your email</label>

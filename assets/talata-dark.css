@@ -20,23 +20,32 @@
    these same tokens. This file is the single place the palette lives.
 
    CONTRAST
-   Body text #E6EDF7 on #0B0F17 is about 15:1. Muted #93A3BA is about 7:1.
+   Body text #F2F6FC on #121824 is about 15:1. Muted #B3C0D2 is about 9:1.
    Both clear WCAG AA comfortably, which matters more on dark than on light
    because thin type on a dark ground loses perceived weight.
+
+   Lifted on 26 Aug after Deng found the first build too dark to read. The
+   ground moved from #0B0F17 to #121824 and every surface with it, so cards now
+   separate from the page instead of merging into one black field.
    ========================================================================== */
 
 :root {
   /* ---- the dark palette ---- */
-  --td-bg:        #0B0F17;   /* page ground */
-  --td-surface:   #131A26;   /* cards, panels, anything that was #fff */
-  --td-surface-2: #1A2333;   /* raised: hovers, inputs, table stripes */
-  --td-line:      #26324A;   /* borders and rules */
-  --td-text:      #E6EDF7;   /* body copy */
-  --td-muted:     #93A3BA;   /* secondary copy */
+  --td-bg:        #121824;   /* page ground */
+  --td-surface:   #1C2534;   /* cards, panels, anything that was #fff */
+  --td-surface-2: #263148;   /* raised: hovers, inputs, table stripes */
+  --td-line:      #35435D;   /* borders and rules */
+  --td-text:      #F2F6FC;   /* body copy */
+  --td-muted:     #B3C0D2;   /* secondary copy */
+  /* Text-safe accent. The brand blue #2C4FD8 is a FILL colour: white on it is
+     fine, but as type on a dark card it measures 2.67:1, which fails. Anything
+     that used the brand blue for TEXT gets this instead. */
+  --td-link:      #8FD6FF;
   --td-accent:    #7DD3FC;   /* Talata baby blue, the accent on dark */
   --td-accent-2:  #BAE6FD;   /* sky, for hovers */
   --td-brand:     #2C4FD8;   /* filled buttons. White on this is ~7:1 */
   --td-navy:      #0B1F3A;   /* kept: the brand navy still reads on dark */
+  --td-card-hi:   #223047;   /* a card sitting on another card */
 
   /* ---- newer pages (index, games, shop) ---- */
   --black: var(--td-bg);
@@ -127,3 +136,13 @@ hr { border-color: var(--td-line); }
 .tf-crest:not(.is-talata) img { background: #FFFFFF; border-radius: 6px; }
 
 ::selection { background: var(--td-accent); color: var(--td-bg); }
+
+/* ---- text that inherited a background colour ----
+   The single worst dark-mode defect, found on /coaches on 26 Aug: coach names
+   rendered #131A26 on #0B0F17, a contrast ratio of 1.1, which is invisible.
+   The cause is one variable doing two jobs. `--navy` is correct remapped to a
+   dark surface, and catastrophic when a page uses `color: var(--navy)` for a
+   heading. tools/apply-dark-mode.py rewrites those declarations, and these
+   rules catch anything it could not reach. */
+h1, h2, h3, h4, h5, h6 { color: var(--td-text); }
+a:not([class]) { color: var(--td-link); }

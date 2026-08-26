@@ -24,7 +24,7 @@
       --baby:#7DD3FC; --sky:#BAE6FD; --mist:#F8FAFC;
       --line:#e2e8f0; --muted:#5b6b7f;
     }
-    body { font-family:'Inter',-apple-system,sans-serif; color:var(--black); background:var(--mist); line-height:1.6; -webkit-font-smoothing:antialiased; }
+    body { font-family:'Inter',-apple-system,sans-serif;color:var(--td-text); background:var(--mist); line-height:1.6; -webkit-font-smoothing:antialiased; }
     a { color:inherit; }
     .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
 
@@ -36,7 +36,7 @@
     .hero .wrap { position:relative; z-index:2; }
     @media (max-width:700px){ .hero .shot { background-position:center 26%; opacity:.32; } }
     .hero h1 { font-size:clamp(2rem,5vw,3.1rem); letter-spacing:-.02em; line-height:1.05; }
-    .hero h1 em { font-style:normal; color:var(--baby); }
+    .hero h1 em { font-style:normal;color:var(--td-link); }
     .hero p { margin-top:14px; max-width:46em; color:rgba(255,255,255,.82); }
 
     /* Member toggle */
@@ -44,14 +44,14 @@
               border-radius:12px; padding:14px 16px; display:flex; gap:14px; align-items:flex-start; max-width:48em; }
     .toggle input { width:20px; height:20px; margin-top:2px; accent-color:var(--baby); flex-shrink:0; }
     .toggle label { font-size:.92rem; }
-    .toggle b { color:var(--baby); }
+    .toggle b {color:var(--td-link); }
 
     /* Filters */
     .bar { position:sticky; top:0; z-index:30; background:rgba(248,250,252,.94); backdrop-filter:blur(8px);
            border-bottom:1px solid var(--line); padding:12px 0; }
     .bar-in { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .chip { border:1.5px solid var(--line);background:var(--td-surface); border-radius:999px; padding:7px 15px;
-            font-size:.86rem; font-weight:600; cursor:pointer; color:var(--muted); }
+            font-size:.86rem; font-weight:600; cursor:pointer;color:var(--td-muted); }
     .chip[aria-pressed="true"] { background:var(--navy); border-color:var(--navy); color:#fff; }
     .cart-btn { margin-left:auto; background:var(--blue); color:#fff; border:0; border-radius:10px;
                 padding:10px 18px; font-weight:700; font-size:.9rem; cursor:pointer; }
@@ -66,15 +66,15 @@
     .lb-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
     .lb-grid img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block;
                    border-radius:12px; background:var(--mist); }
-    .lb-note { font-size:.82rem; color:var(--muted); margin:10px 0 0; }
+    .lb-note { font-size:.82rem;color:var(--td-muted); margin:10px 0 0; }
     @media (max-width:700px){
       .lb-grid { grid-template-columns:repeat(2,1fr); }
     }
     .card h3 { font-size:1.02rem; letter-spacing:-.01em; }
-    .card .desc { font-size:.85rem; color:var(--muted); margin-top:2px; }
+    .card .desc { font-size:.85rem;color:var(--td-muted); margin-top:2px; }
     .tag { display:inline-block; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
            padding:3px 9px; border-radius:999px; margin-bottom:9px; align-self:flex-start; }
-    .tag.made { background:var(--sky); color:var(--navy); }
+    .tag.made { background:var(--sky);color:var(--td-text); }
     .tag.soon { background:#fef3c7; color:#854d0e; }
     .tag.in   { background:var(--blue); color:#fff; }
 
@@ -89,33 +89,32 @@
                       text-transform:uppercase; color:#fff; background:var(--blue);
                       padding:4px 11px; border-radius:999px; margin-bottom:10px; }
     .ready h2 { font-size:1.25rem; letter-spacing:-.02em; margin-bottom:6px; }
-    .ready .lede { font-size:.9rem; color:var(--muted); max-width:62ch; margin-bottom:16px; }
+    .ready .lede { font-size:.9rem;color:var(--td-muted); max-width:62ch; margin-bottom:16px; }
     .ready-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px; }
     .rn { background:var(--mist); border:1px solid var(--sky); border-radius:11px; padding:14px;
           display:flex; flex-direction:column; gap:2px; }
     .rn b { font-size:.95rem; }
-    .rn .meta { font-size:.82rem; color:var(--muted); }
-    .rn .sz { font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
-              color:var(--blue); margin-top:4px; }
+    .rn .meta { font-size:.82rem;color:var(--td-muted); }
+    .rn .sz { font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em;color:var(--td-link); margin-top:4px; }
     .rn .amt { font-weight:800; margin-top:8px; }
-    .rn .amt s { font-size:.85rem; font-weight:500; color:var(--muted); margin-left:6px; }
+    .rn .amt s { font-size:.85rem; font-weight:500;color:var(--td-muted); margin-left:6px; }
     /* margin-top:auto pins the button to the bottom so a card whose name wraps
        to two lines still lines its button up with the rest of the row. */
     .rn .claim { margin-top:auto; display:block; text-align:center; background:var(--navy); color:#fff;
                  font-weight:700; font-size:.85rem; padding:10px 9px; border-radius:8px;
                  text-decoration:none; }
     .rn .claim:hover { background:var(--blue); }
-    .ready .foot { font-size:.82rem; color:var(--muted); margin-top:14px; }
+    .ready .foot { font-size:.82rem;color:var(--td-muted); margin-top:14px; }
     @media (max-width:600px){ .ready-grid { grid-template-columns:1fr 1fr; } .ready { padding:16px; } }
     @media (max-width:400px){ .ready-grid { grid-template-columns:1fr; } }
     .price { margin:12px 0 4px; font-size:1.35rem; font-weight:800; letter-spacing:-.02em; }
-    .price s { font-size:.9rem; font-weight:500; color:var(--muted); margin-left:7px; }
+    .price s { font-size:.9rem; font-weight:500;color:var(--td-muted); margin-left:7px; }
     .price .save { font-size:.78rem; font-weight:700; color:#166534; display:block; margin-top:1px; }
-    .card label { display:block; font-size:.78rem; font-weight:700; margin:10px 0 4px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+    .card label { display:block; font-size:.78rem; font-weight:700; margin:10px 0 4px; text-transform:uppercase; letter-spacing:.04em;color:var(--td-muted); }
     .card select, .card input { width:100%; padding:9px 10px; border:1.5px solid var(--line); border-radius:8px;
                                 font-family:inherit; font-size:.9rem;background:var(--td-surface); }
     .card .row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-    .card .both { margin-top:9px; font-size:.82rem; font-weight:600; color:var(--blue); }
+    .card .both { margin-top:9px; font-size:.82rem; font-weight:600;color:var(--td-link); }
     /* The grid stretches every card to the tallest in its row, so short cards
        (Starter, socks) used to leave a slab of dead white space under the
        button. addwrap takes the slack with margin-top:auto and keeps a real
@@ -140,7 +139,7 @@
     .li { display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); }
     .li .info { flex:1; min-width:0; }
     .li .info b { display:block; font-size:.92rem; }
-    .li .info span { font-size:.8rem; color:var(--muted); }
+    .li .info span { font-size:.8rem;color:var(--td-muted); }
     .qty { display:flex; align-items:center; gap:7px; margin-top:6px; }
     .qty button { width:26px; height:26px; border:1.5px solid var(--line);background:var(--td-surface); border-radius:6px; cursor:pointer; font-weight:700; }
     .li .amt { font-weight:700; white-space:nowrap; }
@@ -154,24 +153,24 @@
     .go:disabled { opacity:.55; cursor:not-allowed; }
 
     .pay { background:var(--mist); border:1px solid var(--sky); border-radius:12px; padding:18px; }
-    .pay .num { font-size:2.4rem; font-weight:800; letter-spacing:.02em; color:var(--blue); line-height:1.1; }
+    .pay .num { font-size:2.4rem; font-weight:800; letter-spacing:.02em;color:var(--td-link); line-height:1.1; }
     .paylead { font-weight:700; margin:0 0 14px; }
     .step { display:flex; gap:12px; align-items:flex-start; }
     .step + .step { margin-top:16px; padding-top:16px; border-top:1px solid var(--sky); }
     .stepn { flex:0 0 28px; width:28px; height:28px; border-radius:999px; background:var(--blue); color:#fff;
              font-weight:800; font-size:.95rem; display:flex; align-items:center; justify-content:center; margin-top:2px; }
     .stepb { min-width:0; }
-    .steplab { font-size:.85rem; color:var(--muted); margin:0 0 2px; }
+    .steplab { font-size:.85rem;color:var(--td-muted); margin:0 0 2px; }
     .step .num + .steplab { margin-top:8px; }
     .pay .ref { font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--td-surface); border:1px dashed var(--blue);
                 padding:10px 14px; border-radius:7px; display:inline-block; font-weight:700; margin:4px 0 6px;
-                font-size:1.35rem; color:var(--blue); cursor:pointer; min-height:44px; }
+                font-size:1.35rem;color:var(--td-link); cursor:pointer; min-height:44px; }
     .pay .ref.copied { border-style:solid; background:var(--sky); }
 
-    .empty { text-align:center; color:var(--muted); padding:40px 0; font-size:.92rem; }
-    .note { font-size:.82rem; color:var(--muted); margin-top:10px; }
-    .footer { text-align:center; padding:34px 20px 46px; color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); }
-    .ig { display:inline-flex; align-items:center; gap:8px; color:var(--blue); font-weight:700; text-decoration:none;
+    .empty { text-align:center;color:var(--td-muted); padding:40px 0; font-size:.92rem; }
+    .note { font-size:.82rem;color:var(--td-muted); margin-top:10px; }
+    .footer { text-align:center; padding:34px 20px 46px;color:var(--td-muted); font-size:.85rem; border-top:1px solid var(--line); }
+    .ig { display:inline-flex; align-items:center; gap:8px;color:var(--td-link); font-weight:700; text-decoration:none;
           border:1.5px solid var(--sky); border-radius:999px; padding:9px 18px;background:var(--td-surface); }
     .ig:hover { background:var(--sky); }
     @media (max-width:600px){ .grid { grid-template-columns:1fr 1fr; gap:12px; } .card { padding:14px; } .card .row { grid-template-columns:1fr; } }
@@ -180,12 +179,11 @@
     /* ---- Nordic Kits supplier block ---- */
     .nk{background:var(--navy);color:#fff;margin-top:56px;padding:56px 0;}
     .nk-in{display:grid;grid-template-columns:1.35fr .85fr;gap:44px;align-items:start;}
-    .nk-eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
-                color:var(--baby);margin-bottom:12px;}
+    .nk-eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--td-link);margin-bottom:12px;}
     .nk h2{font-size:clamp(1.5rem,3.2vw,2rem);line-height:1.1;font-weight:800;
            letter-spacing:-.02em;margin-bottom:14px;text-wrap:balance;}
     .nk-lede{color:rgba(255,255,255,.82);margin-bottom:18px;max-width:44ch;}
-    .nk-lede strong{color:var(--baby);}
+    .nk-lede strong{color:var(--td-link);}
     .nk-list{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:7px;}
     .nk-list li{font-size:.94rem;color:rgba(255,255,255,.72);
                 padding-left:20px;position:relative;}
@@ -198,11 +196,11 @@
             border-radius:14px;padding:26px 24px;}
     .nk-cta-t{font-size:1.1rem;font-weight:800;margin-bottom:6px;}
     .nk-cta-s{font-size:.9rem;color:rgba(255,255,255,.7);margin-bottom:18px;}
-    .nk-btn{display:block;text-align:center;background:var(--baby);color:var(--navy);
+    .nk-btn{display:block;text-align:center;background:var(--baby);color:var(--td-text);
             font-weight:800;padding:.8em 1.4em;border-radius:9999px;text-decoration:none;
             margin-bottom:12px;}
     .nk-btn:hover{filter:brightness(1.06);}
-    .nk-mail{display:block;text-align:center;font-size:.85rem;color:var(--sky);
+    .nk-mail{display:block;text-align:center;font-size:.85rem;color:var(--td-link);
              text-decoration:none;}
     .nk-mail:hover{text-decoration:underline;}
     @media(max-width:780px){
@@ -224,7 +222,7 @@
     gtag('config', 'G-R64Y9CQ2VZ');
   </script>
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826g">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826j">
 </head>
 <body>
 

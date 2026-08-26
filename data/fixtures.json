@@ -1,12 +1,12 @@
 {
-  "generated": "2026-08-26T09:07:52Z",
-  "source": "kampe_2026-08-26.csv",
+  "generated": "2026-08-26T10:38:08Z",
+  "source": "kampe_2026-08-26 (1).csv",
   "note": "League and cup fixtures from the DBBF/MVP export. This is the federation record and it is what the site publishes. Friendlies and tournaments are added live from Holdsport by talata-api /fixtures. Where the two disagree, DBBF wins.",
   "counts": {
     "total": 40,
-    "tbc": 10,
+    "moving": 5,
     "confirmed": 29,
-    "moving": 1
+    "tbc": 6
   },
   "games": [
     {
@@ -20,7 +20,7 @@
       "venue": null,
       "court": null,
       "homeCourt": false,
-      "state": "tbc",
+      "state": "moving",
       "played": false,
       "us": null,
       "them": null,
@@ -394,7 +394,7 @@
       "venue": null,
       "court": null,
       "homeCourt": false,
-      "state": "tbc",
+      "state": "moving",
       "played": false,
       "us": null,
       "them": null,
@@ -411,7 +411,7 @@
       "venue": null,
       "court": null,
       "homeCourt": false,
-      "state": "tbc",
+      "state": "moving",
       "played": false,
       "us": null,
       "them": null,
@@ -683,7 +683,7 @@
       "venue": null,
       "court": null,
       "homeCourt": false,
-      "state": "tbc",
+      "state": "moving",
       "played": false,
       "us": null,
       "them": null,

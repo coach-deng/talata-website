@@ -84,8 +84,7 @@
       --bg: #fafafa;
     }
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;color:var(--td-text);
       background: var(--bg);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -99,7 +98,7 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; letter-spacing: 1px; text-decoration: none; }
-    .nav-logo span { color: var(--blue); }
+    .nav-logo span {color:var(--td-link); }
     .nav-links { display: flex; gap: 24px; align-items: center; }
     .nav-links a {
       color: rgba(255,255,255,0.75); text-decoration: none;
@@ -122,11 +121,10 @@
     .nav-drop:hover .drop, .nav-drop:focus-within .drop { opacity: 1; visibility: visible; }
     .nav-drop .drop::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 14px; }
     .nav-drop .drop a {
-      display: block; padding: 10px 14px; border-radius: 8px;
-      color: var(--text); font-weight: 600; font-size: 0.875rem;
+      display: block; padding: 10px 14px; border-radius: 8px;color:var(--td-text); font-weight: 600; font-size: 0.875rem;
     }
-    .nav-drop .drop a:hover { background: var(--blue-light); color: var(--text); }
-    .nav-drop .drop small { display: block; color: var(--text-muted); font-weight: 400; font-size: 0.75rem; }
+    .nav-drop .drop a:hover { background: var(--blue-light);color:var(--td-text); }
+    .nav-drop .drop small { display: block;color:var(--td-muted); font-weight: 400; font-size: 0.75rem; }
     @media (max-width: 600px) { .nav-links { display: none; } }
 
     /* HERO */
@@ -164,7 +162,7 @@
       font-size: clamp(2.3rem, 5.5vw, 3.5rem); font-weight: 900;
       letter-spacing: -1.5px; margin-bottom: 18px; line-height: 1.1;
     }
-    .hero h1 span { color: var(--blue); }
+    .hero h1 span {color:var(--td-link); }
     .hero p {
       font-size: 1.15rem; color: rgba(255,255,255,0.85);
       max-width: 600px; margin: 0 auto 32px; line-height: 1.6;
@@ -186,22 +184,22 @@
     }
     .info-item {
       display: flex; align-items: center; gap: 8px;
-      font-size: 0.875rem; font-weight: 600; color: var(--text);
+      font-size: 0.875rem; font-weight: 600;color:var(--td-text);
     }
-    .info-item .label { color: var(--text-muted); font-weight: 400; }
+    .info-item .label {color:var(--td-muted); font-weight: 400; }
 
     /* SECTION */
     .section { padding: 64px 24px; max-width: 760px; margin: 0 auto; }
     .section-title {
       font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px;
-      margin-bottom: 18px; color: var(--dark);
+      margin-bottom: 18px;color:var(--td-text);
     }
     .section p {
-      font-size: 1rem; color: var(--text-muted); margin-bottom: 16px;
+      font-size: 1rem;color:var(--td-muted); margin-bottom: 16px;
       line-height: 1.75;
     }
     .section p:last-child { margin-bottom: 0; }
-    .section p strong { color: var(--text); }
+    .section p strong {color:var(--td-text); }
 
     /* PILLARS */
     .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 28px; }
@@ -209,22 +207,21 @@
       padding: 22px 20px;
     }
     .pillar h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
-    .pillar p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+    .pillar p { font-size: 0.9rem;color:var(--td-muted); line-height: 1.6; margin: 0; }
 
     /* PARTNER CARDS */
     .partner-card {background:var(--td-surface); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 28px 26px; margin-top: 18px;
     }
     .partner-card .tag {
-      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;
-      color: var(--blue); text-transform: uppercase; margin-bottom: 10px;
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;color:var(--td-link); text-transform: uppercase; margin-bottom: 10px;
     }
     .partner-card h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.3px; }
-    .partner-card p { font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+    .partner-card p { font-size: 0.94rem;color:var(--td-muted); line-height: 1.7; margin-bottom: 12px; }
     .partner-card p:last-child { margin-bottom: 0; }
     .partner-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
     .partner-links a {
-      font-size: 0.85rem; font-weight: 700; color: var(--blue);
+      font-size: 0.85rem; font-weight: 700;color:var(--td-link);
       text-decoration: none; border: 1.5px solid var(--blue);
       padding: 7px 14px; border-radius: 8px; transition: background 0.2s;
     }
@@ -236,8 +233,7 @@
       padding: 36px 32px; margin-top: 28px;
     }
     .proof-quote .tag {
-      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;
-      color: var(--blue); text-transform: uppercase; margin-bottom: 14px;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;color:var(--td-link); text-transform: uppercase; margin-bottom: 14px;
     }
     .proof-quote h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 14px; line-height: 1.3; }
     .proof-quote p { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin: 0; line-height: 1.6; }
@@ -254,8 +250,8 @@
       width: 32px; height: 32px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
     }
-    .step-what { font-size: 0.96rem; color: var(--text); }
-    .step-what small { display: block; color: var(--text-muted); font-size: 0.87rem; margin-top: 2px; }
+    .step-what { font-size: 0.96rem;color:var(--td-text); }
+    .step-what small { display: block;color:var(--td-muted); font-size: 0.87rem; margin-top: 2px; }
 
     /* CTA */
     .cta-box {
@@ -273,10 +269,10 @@
 
     .footer {
       text-align: center; padding: 28px 24px;
-      font-size: 0.8rem; color: var(--text-muted);
+      font-size: 0.8rem;color:var(--td-muted);
       border-top: 1px solid var(--border); margin-top: 60px;
     }
-    .footer a { color: var(--blue); text-decoration: none; }
+    .footer a {color:var(--td-link); text-decoration: none; }
 
     /* PEOPLE CARDS */
     .person {background:var(--td-surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -303,16 +299,15 @@
     }
     .person-body { padding: 28px 28px 26px; }
     .person-body .role {
-      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;
-      color: var(--blue); text-transform: uppercase; margin-bottom: 8px;
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;color:var(--td-link); text-transform: uppercase; margin-bottom: 8px;
     }
     .person-body h3 { font-size: 1.45rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 6px; }
-    .person-body .sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; font-weight: 600; }
-    .person-body p { font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+    .person-body .sub { font-size: 0.9rem;color:var(--td-muted); margin-bottom: 16px; font-weight: 600; }
+    .person-body p { font-size: 0.94rem;color:var(--td-muted); line-height: 1.7; margin-bottom: 12px; }
     .person-body p:last-child { margin-bottom: 0; }
     .person-facts { list-style: none; margin: 0 0 14px; padding: 0; }
     .person-facts li {
-      font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;
+      font-size: 0.9rem;color:var(--td-muted); line-height: 1.6;
       padding: 6px 0 6px 20px; position: relative; border-bottom: 1px solid var(--border);
     }
     .person-facts li:last-child { border-bottom: none; }
@@ -320,7 +315,7 @@
       content: ''; position: absolute; left: 4px; top: 14px;
       width: 6px; height: 6px; border-radius: 50%; background: var(--blue);
     }
-    .person-facts li strong { color: var(--text); font-weight: 700; }
+    .person-facts li strong {color:var(--td-text); font-weight: 700; }
     @media (max-width: 720px) {
       .person { grid-template-columns: 1fr; }
       .person-photo { aspect-ratio: 3 / 2; border-radius: var(--radius) var(--radius) 0 0; }
@@ -334,7 +329,7 @@
       background: var(--blue-light); color: #0B1F3A;
       border-radius: 999px; padding: 7px 14px; margin-bottom: 14px;
     }
-    .move .arrow { color: var(--blue); font-weight: 900; }
+    .move .arrow {color:var(--td-link); font-weight: 900; }
   </style>
   <script type="application/ld+json">
   {
@@ -404,16 +399,15 @@
   <style>
     .hero::before { background-image: url('/images/2026-08/academy-team-lineup-black.jpg') !important; background-position: center 30% !important; }
     .section-wide { max-width: 940px; }
-    .lede { font-size: 1.12rem; color: var(--text); line-height: 1.7; }
+    .lede { font-size: 1.12rem;color:var(--td-text); line-height: 1.7; }
     .rule { height: 1px; background: var(--border); max-width: 760px; margin: 0 auto; }
     .band {background:var(--td-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .kicker { font-size: 0.68rem; font-weight: 800; letter-spacing: 1.6px;
-              color: var(--blue); text-transform: uppercase; margin-bottom: 10px; }
+    .kicker { font-size: 0.68rem; font-weight: 800; letter-spacing: 1.6px;color:var(--td-link); text-transform: uppercase; margin-bottom: 10px; }
     .routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 26px; }
     .route {background:var(--td-surface); border: 1px solid var(--border); border-left: 3px solid var(--blue);
              border-radius: var(--radius); padding: 22px 20px; }
     .route h3 { font-size: 1.02rem; font-weight: 800; margin-bottom: 6px; }
-    .route p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+    .route p { font-size: 0.9rem;color:var(--td-muted); line-height: 1.6; margin: 0; }
     .route .where { display: block; margin-top: 10px; font-size: 0.78rem; font-weight: 700;
                     letter-spacing: .4px; color: #0B1F3A; text-transform: uppercase; }
     .nolist { list-style: none; margin: 24px 0 0; padding: 0; }
@@ -421,25 +415,23 @@
                  color: rgba(255,255,255,.80); font-size: 0.97rem; line-height: 1.6; }
     .nolist li:last-child { border-bottom: none; }
     .nolist li strong { color: #fff; font-weight: 800; }
-    .nolist li::before { content: '\2715'; position: absolute; left: 6px; top: 16px;
-                         color: var(--blue); font-weight: 900; font-size: 0.95rem; }
+    .nolist li::before { content: '\2715'; position: absolute; left: 6px; top: 16px;color:var(--td-link); font-weight: 900; font-size: 0.95rem; }
     .contact-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
-    .note { font-size: 0.84rem; color: var(--text-muted); margin-top: 18px; line-height: 1.6; }
+    .note { font-size: 0.84rem;color:var(--td-muted); margin-top: 18px; line-height: 1.6; }
     .tick { list-style: none; margin: 18px 0 0; padding: 0; }
-    .tick li { position: relative; padding: 9px 0 9px 26px; font-size: 0.94rem;
-               color: var(--text-muted); line-height: 1.6; }
+    .tick li { position: relative; padding: 9px 0 9px 26px; font-size: 0.94rem;color:var(--td-muted); line-height: 1.6; }
     .tick li::before { content: ''; position: absolute; left: 4px; top: 17px; width: 7px; height: 7px;
                        border-radius: 50%; background: var(--blue); }
-    .tick li strong { color: var(--text); font-weight: 700; }
+    .tick li strong {color:var(--td-text); font-weight: 700; }
     .tiers{margin-top:26px}
-    .tier-lbl{font-size:0.68rem;font-weight:800;letter-spacing:1.6px;color:var(--blue);
+    .tier-lbl{font-size:0.68rem;font-weight:800;letter-spacing:1.6px;color:var(--td-link);
       text-transform:uppercase;margin:26px 0 12px}
     .tier-lbl:first-child{margin-top:0}
     .dest{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
     .dest a,.dest div{background:var(--td-surface);border:1px solid var(--border);border-radius:var(--radius);
       padding:16px 18px;text-decoration:none;display:block}
-    .dest .n{font-size:0.97rem;font-weight:800;color:var(--text);letter-spacing:-.2px}
-    .dest .l{font-size:0.82rem;color:var(--text-muted);margin-top:3px}
+    .dest .n{font-size:0.97rem;font-weight:800;color:var(--td-text);letter-spacing:-.2px}
+    .dest .l{font-size:0.82rem;color:var(--td-muted);margin-top:3px}
     .dest .who{font-size:0.8rem;color:#0B1F3A;font-weight:700;margin-top:8px}
     .dest .placed{border-left:3px solid var(--blue)}
     .leagues{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;margin-top:14px;background:var(--td-surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px}
@@ -450,7 +442,7 @@
       filter:grayscale(1);transition:filter .2s}
     .leagues .lg:hover img{filter:grayscale(0)}
     .leagues .lg-text{font-size:0.82rem;font-weight:800;letter-spacing:1.2px;
-      text-transform:uppercase;color:var(--text-muted)}
+      text-transform:uppercase;color:var(--td-muted)}
     @media (max-width:600px){ .leagues{gap:12px 20px;padding:18px 16px}
       .leagues .lg,.leagues .lg img{max-height:30px;height:30px} }
   </style>
@@ -460,7 +452,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826g">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826j">
 </head>
 <body>
 
@@ -677,7 +669,7 @@
   <section class="section section-wide">
     <div class="kicker">The network</div>
     <h2 class="section-title">Where we can actually pick up the phone.</h2>
-    <p>A placement is only as good as who answers on the other end. Split honestly: the ones we have sent a player to, and the ones we know.</p>
+    <p>A placement is only as good as who answers on the other end. Split two ways: the ones we have sent a player to, and the ones we know.</p>
     <div class="tiers">
       <div class="tier-lbl">Players placed here</div>
       <div class="dest">
@@ -864,7 +856,7 @@
   <section class="section">
     <div class="cta-box">
       <h3>Start with the conversation.</h3>
-      <p>Send us the player's age, what they're playing now, and what you're hoping for. We'll tell you honestly whether it's a road worth walking, and it costs nothing to ask.</p>
+      <p>Send us the player's age, what they're playing now, and what you're hoping for. We'll tell you whether it's a road worth walking, and it costs nothing to ask.</p>
       <div class="contact-row">
         <a class="btn btn-primary" href="mailto:coach@talatabasketball.dk?subject=Basketball%20placement%20enquiry">coach@talatabasketball.dk</a>
         <a class="btn btn-ghost" href="https://wa.me/4552398508" target="_blank" rel="noopener">WhatsApp Coach Deng</a>

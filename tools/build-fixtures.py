@@ -111,9 +111,13 @@ def newest_export() -> str:
     # fresh mtime and would otherwise beat a newer file. The 23 Aug export had
     # 34 rows against the 22 Aug export's 40 because it silently dropped every
     # row with a confirmed time; picking by mtime is how that trap gets sprung.
+    # Two exports can carry the SAME date in the name — a re-download lands as
+    # "kampe_2026-08-26 (1).csv" — and on 26 Aug that second file held four
+    # games the first did not have as "Flytning igang". Date first, then mtime
+    # to break the tie, so a same-day re-export always wins.
     def key(p):
         m = re.search(r"kampe_(\d{4}-\d{2}-\d{2})", os.path.basename(p))
-        return m.group(1) if m else "0000-00-00"
+        return (m.group(1) if m else "0000-00-00", os.path.getmtime(p))
 
     return max(files, key=key)
 

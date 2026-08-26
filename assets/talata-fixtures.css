@@ -263,6 +263,14 @@
   padding:2px 7px;border-radius:999px;margin-top:2px;
 }
 .tkc.is-next{background:rgba(44,79,216,.16);}
+/* A played game shows its score where an upcoming one shows its date. */
+.tkc.is-done{opacity:.72;}
+.tkc-score{
+  font-family:var(--f-disp);font-weight:900;font-size:1.05rem;color:var(--f-text);
+  font-variant-numeric:tabular-nums;letter-spacing:.01em;
+}
+.tkc-score.is-won{color:var(--f-win);}
+.tkc-score i{font-style:normal;opacity:.45;margin:0 2px;}
 
 /* A strip of moving text is a genuine accessibility problem for some readers.
    Stop it dead and let them scroll it by hand instead. */
