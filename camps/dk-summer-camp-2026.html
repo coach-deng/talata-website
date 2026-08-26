@@ -79,8 +79,7 @@
       bottom: -40%;
       left: -15%;
       width: 500px;
-      height: 500px;
-      background: #fff;
+      height: 500px;background:var(--td-surface);
       opacity: 0.04;
       border-radius: 50%;
     }
@@ -113,8 +112,7 @@
     .section p { color: var(--text-muted); margin-bottom: 12px; }
 
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .card {
-      background: #fff; border: 1px solid var(--border);
+    .card {background:var(--td-surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 20px;
     }
     .card h3 {
@@ -133,8 +131,7 @@
     table tr:last-child td { border-bottom: none; }
 
     .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .price-card {
-      background: #fff; border: 1px solid var(--border);
+    .price-card {background:var(--td-surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 20px; text-align: center;
     }
     .price-card.highlight { border-color: var(--blue); background: var(--blue-light); }
@@ -153,8 +150,7 @@
       gap: 16px;
       text-align: center;
     }
-    .feature {
-      background: #fff;
+    .feature {background:var(--td-surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 24px 16px;
@@ -170,7 +166,7 @@
     .cta h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
     .cta p { color: rgba(255,255,255,0.7); margin-bottom: 20px; }
     .cta .btn {
-      display: inline-block; background: #fff; color: var(--blue);
+      display: inline-block;background:var(--td-surface); color: var(--blue);
       padding: 14px 36px; border-radius: 8px; font-weight: 700;
       font-size: 1rem; text-decoration: none;
     }
@@ -183,7 +179,7 @@
       .content { padding: 24px; }
       .grid, .checklist, .pricing-grid, .features { grid-template-columns: 1fr; }
     }
-    @media print { body { background: #fff; } .page { max-width: 100%; } }
+    @media print { body {background:var(--td-surface); } .page { max-width: 100%; } }
   </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -191,6 +187,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826b">
 </head>
 <body>
 

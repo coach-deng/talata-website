@@ -1,0 +1,43 @@
+{
+  "names": {
+    "ALBA": "alba",
+    "BK Amager": "bk-amager",
+    "BMS Herlev": "bms-herlev",
+    "Brønshøj": "bronshoj",
+    "DTU": "dtu",
+    "Espergærde": "espergaerde",
+    "Falcon": "falcon",
+    "Fredensborg": "fredensborg",
+    "Gladsaxe": "gladsaxe",
+    "Hovedstadens BBF": "hovedstadens-bbf",
+    "Hørsholm": "horsholm",
+    "Køge Bugt": "koge-bugt",
+    "NSBU": "nsbu",
+    "Næstved": "naestved",
+    "Roskilde": "roskilde",
+    "SISU": "sisu",
+    "Solrød": "solrod",
+    "Stevnsgade": "stevnsgade",
+    "Værløse": "vaerlose"
+  },
+  "files": {
+    "alba": "/images/clubs/alba.png",
+    "bk-amager": "/images/clubs/bk-amager.png",
+    "bms-herlev": "/images/clubs/bms-herlev.png",
+    "bronshoj": "/images/clubs/bronshoj.png",
+    "dtu": "/images/clubs/dtu.png",
+    "espergaerde": "/images/clubs/espergaerde.png",
+    "falcon": "/images/clubs/falcon.png",
+    "fredensborg": "/images/clubs/fredensborg.png",
+    "gladsaxe": "/images/clubs/gladsaxe.png",
+    "horsholm": "/images/clubs/horsholm.png",
+    "hovedstadens-bbf": "/images/clubs/hovedstadens-bbf.png",
+    "koge-bugt": "/images/clubs/koge-bugt.jpg",
+    "naestved": "/images/clubs/naestved.png",
+    "roskilde": "/images/clubs/roskilde.png",
+    "sisu": "/images/clubs/sisu.png",
+    "solrod": "/images/clubs/solrod.png",
+    "stevnsgade": "/images/clubs/stevnsgade.png",
+    "vaerlose": "/images/clubs/vaerlose.png"
+  }
+}

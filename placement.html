@@ -115,8 +115,7 @@
     .nav-drop > a { display: inline-flex; align-items: center; gap: 5px; }
     .nav-drop .car { font-size: 0.6rem; opacity: 0.7; }
     .nav-drop .drop {
-      position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
-      background: #fff; border-radius: var(--radius); min-width: 260px;
+      position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);background:var(--td-surface); border-radius: var(--radius); min-width: 260px;
       box-shadow: 0 12px 32px rgba(0,0,0,0.18); padding: 8px;
       opacity: 0; visibility: hidden; transition: opacity 0.15s;
     }
@@ -181,8 +180,7 @@
     .btn-ghost { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
 
     /* STATS */
-    .info-strip {
-      background: #fff; border-bottom: 1px solid var(--border);
+    .info-strip {background:var(--td-surface); border-bottom: 1px solid var(--border);
       padding: 20px 24px;
       display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
     }
@@ -207,16 +205,14 @@
 
     /* PILLARS */
     .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 28px; }
-    .pillar {
-      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    .pillar {background:var(--td-surface); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 22px 20px;
     }
     .pillar h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
     .pillar p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
     /* PARTNER CARDS */
-    .partner-card {
-      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    .partner-card {background:var(--td-surface); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 28px 26px; margin-top: 18px;
     }
     .partner-card .tag {
@@ -283,8 +279,7 @@
     .footer a { color: var(--blue); text-decoration: none; }
 
     /* PEOPLE CARDS */
-    .person {
-      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    .person {background:var(--td-surface); border: 1px solid var(--border); border-radius: var(--radius);
       overflow: hidden; margin-top: 22px;
       display: grid; grid-template-columns: 240px 1fr;
     }
@@ -411,11 +406,11 @@
     .section-wide { max-width: 940px; }
     .lede { font-size: 1.12rem; color: var(--text); line-height: 1.7; }
     .rule { height: 1px; background: var(--border); max-width: 760px; margin: 0 auto; }
-    .band { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .band {background:var(--td-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .kicker { font-size: 0.68rem; font-weight: 800; letter-spacing: 1.6px;
               color: var(--blue); text-transform: uppercase; margin-bottom: 10px; }
     .routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 26px; }
-    .route { background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--blue);
+    .route {background:var(--td-surface); border: 1px solid var(--border); border-left: 3px solid var(--blue);
              border-radius: var(--radius); padding: 22px 20px; }
     .route h3 { font-size: 1.02rem; font-weight: 800; margin-bottom: 6px; }
     .route p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
@@ -441,14 +436,13 @@
       text-transform:uppercase;margin:26px 0 12px}
     .tier-lbl:first-child{margin-top:0}
     .dest{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-    .dest a,.dest div{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+    .dest a,.dest div{background:var(--td-surface);border:1px solid var(--border);border-radius:var(--radius);
       padding:16px 18px;text-decoration:none;display:block}
     .dest .n{font-size:0.97rem;font-weight:800;color:var(--text);letter-spacing:-.2px}
     .dest .l{font-size:0.82rem;color:var(--text-muted);margin-top:3px}
     .dest .who{font-size:0.8rem;color:#0B1F3A;font-weight:700;margin-top:8px}
     .dest .placed{border-left:3px solid var(--blue)}
-    .leagues{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;margin-top:14px;
-      background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px}
+    .leagues{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;margin-top:14px;background:var(--td-surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px}
     .leagues .lg{display:flex;align-items:center;justify-content:center;height:38px;
       opacity:.72;transition:opacity .2s;text-decoration:none}
     .leagues .lg:hover{opacity:1}
@@ -466,6 +460,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826b">
 </head>
 <body>
 

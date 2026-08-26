@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Talata dark mode. Loaded LAST on all 50 pages by tools/apply-shared-header.py.
+
+   WHY THIS FILE AND NOT 50 EDITS
+   ------------------------------
+   Deng, 26 Aug 2026: "make the whole website dark, the white hurts the eyes."
+
+   46 pages each carry their own inline <style> with their own :root block, and
+   they do not agree on names. Two families grew up side by side:
+
+     older pages   --bg --text --text-muted --border --dark --blue --blue-light
+     newer pages   --black --navy --blue --baby --sky --mist --ink --ink2 --line
+
+   Redefining both families here, after every page's own style block, flips the
+   whole site from one file. Editing 46 :root blocks by hand would be 46 chances
+   to miss one, and the next new page would be born light again.
+
+   Literal colours that never went through a variable (`background:#fff` appears
+   136 times) are handled by tools/apply-dark-mode.py, which rewrites them to
+   these same tokens. This file is the single place the palette lives.
+
+   CONTRAST
+   Body text #E6EDF7 on #0B0F17 is about 15:1. Muted #93A3BA is about 7:1.
+   Both clear WCAG AA comfortably, which matters more on dark than on light
+   because thin type on a dark ground loses perceived weight.
+   ========================================================================== */
+
+:root {
+  /* ---- the dark palette ---- */
+  --td-bg:        #0B0F17;   /* page ground */
+  --td-surface:   #131A26;   /* cards, panels, anything that was #fff */
+  --td-surface-2: #1A2333;   /* raised: hovers, inputs, table stripes */
+  --td-line:      #26324A;   /* borders and rules */
+  --td-text:      #E6EDF7;   /* body copy */
+  --td-muted:     #93A3BA;   /* secondary copy */
+  --td-accent:    #7DD3FC;   /* Talata baby blue, the accent on dark */
+  --td-accent-2:  #BAE6FD;   /* sky, for hovers */
+  --td-brand:     #2C4FD8;   /* filled buttons. White on this is ~7:1 */
+  --td-navy:      #0B1F3A;   /* kept: the brand navy still reads on dark */
+
+  /* ---- newer pages (index, games, shop) ---- */
+  --black: var(--td-bg);
+  --navy:  var(--td-surface);
+  --blue:  var(--td-brand);
+  --baby:  var(--td-accent);
+  --sky:   var(--td-accent-2);
+  --mist:  var(--td-bg);
+  --ink:   var(--td-text);
+  --ink2:  var(--td-muted);
+  --line:  var(--td-line);
+  --white: var(--td-surface);
+
+  /* ---- older pages (blog, camps, help) ---- */
+  --bg:          var(--td-bg);
+  --text:        var(--td-text);
+  --text-muted:  var(--td-muted);
+  --muted:       var(--td-muted);
+  --border:      var(--td-line);
+  --dark:        var(--td-surface);
+  --blue-light:  var(--td-accent);
+  --talata:      var(--td-brand);
+  --talata-dark: var(--td-surface);
+  --talata-light:var(--td-accent);
+  --gold:        var(--td-accent-2);
+}
+
+html { color-scheme: dark; }
+
+body {
+  background: var(--td-bg);
+  color: var(--td-text);
+}
+
+/* Form controls do not inherit, and a white input on a dark page is the single
+   most jarring thing left once the rest is dark.
+   The selector is doubled on purpose. Pages style their own fields through a
+   class (`.trial input`, `.form input`), which outranks a bare `input` no
+   matter how late this sheet loads, and the result was a near-white box
+   holding near-white text. `:where()` adds no specificity of its own, so
+   `input:where(...)` still loses; repeating the element does win. */
+input, select, textarea,
+input:not([type=submit]):not([type=button]),
+select:not([multiple]),
+textarea:not([readonly]) {
+  background: var(--td-surface-2) !important;
+  color: var(--td-text) !important;
+  border-color: var(--td-line) !important;
+}
+/* Buttons are excluded above so a brand-coloured submit keeps its fill. */
+button, input[type=submit], input[type=button] { color: inherit; }
+input::placeholder, textarea::placeholder { color: var(--td-muted); }
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--td-accent);
+  outline-offset: 1px;
+}
+
+/* A logo drawn in navy or black is invisible on a dark ground. The partner
+   strip was rebuilt on a LIGHT background on 19 Aug precisely so brands could
+   keep their own colours, so it keeps its light card rather than being
+   inverted, which would recolour every mark a second time. */
+.partners, .partner-strip, .logos, .logo-strip {
+  background: #F1F5F9;
+  border-radius: 14px;
+}
+
+/* Anything still painting itself white after the token pass. Kept narrow on
+   purpose: a blanket `* { background: dark }` would flatten the gradients and
+   photo overlays the hero sections depend on. */
+[style*="background:#fff"],
+[style*="background: #fff"],
+[style*="background-color:#fff"],
+[style*="background-color: #fff"] {
+  background: var(--td-surface) !important;
+}
+
+/* Tables and code blocks are the usual stragglers in long-form pages. */
+table { background: var(--td-surface); color: var(--td-text); }
+th, td { border-color: var(--td-line); }
+thead th { background: var(--td-surface-2); }
+pre, code { background: var(--td-surface-2); color: var(--td-text); }
+hr { border-color: var(--td-line); }
+
+/* Opponent crests are drawn for a light page: several are navy or black line
+   art on transparency and vanish on dark, so each sits on its own light chip.
+   Talata's own lockups are the opposite — white on transparency — so they are
+   excluded here, or the club logo would be white on white. */
+.tf-crest:not(.is-talata) img { background: #FFFFFF; border-radius: 6px; }
+
+::selection { background: var(--td-accent); color: var(--td-bg); }

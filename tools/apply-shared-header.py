@@ -107,11 +107,17 @@ CARET = (
     'stroke-linecap="round" stroke-linejoin="round"/></svg>'
 )
 
+# talata-dark.css is deliberately LAST in this block, and this block is
+# injected AFTER every page's own inline <style>. That ordering is the whole
+# mechanism: a later stylesheet of equal specificity wins, so redefining the
+# :root tokens here flips all 50 pages without touching their own CSS.
 HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#0B1F3A">"""
+<meta name="theme-color" content="#0B0F17">"""
+
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826b">'
 
 SCRIPT_TAG = '<script src="/assets/talata-nav.js" defer></script>'
 
@@ -281,6 +287,17 @@ def process(path: Path, check: bool):
         if head:
             src = src[: head.start()] + HEAD_TAGS + "\n" + src[head.start():]
             notes.append("head tags")
+    # Dark mode, 26 Aug 2026. Re-stamped on EVERY run, not just a page's first,
+    # and always immediately before </head> so it stays the last stylesheet on
+    # the page. That position is what lets it redefine the :root tokens each
+    # page sets in its own inline <style>. Removing any previous copy first is
+    # what makes a ?v= bump actually reach the pages.
+    src = re.sub(r'[ \t]*<link rel="stylesheet" href="/assets/talata-dark\.css[^"]*">\n?', "", src)
+    head = re.search(r"</head>", src)
+    if head:
+        src = src[: head.start()] + DARK_TAG + "\n" + src[head.start():]
+        notes.append("dark css")
+
     if "/assets/talata-nav.js" not in src:
         body_end = src.rfind("</body>")
         if body_end != -1:

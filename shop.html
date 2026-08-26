@@ -50,7 +50,7 @@
     .bar { position:sticky; top:0; z-index:30; background:rgba(248,250,252,.94); backdrop-filter:blur(8px);
            border-bottom:1px solid var(--line); padding:12px 0; }
     .bar-in { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-    .chip { border:1.5px solid var(--line); background:#fff; border-radius:999px; padding:7px 15px;
+    .chip { border:1.5px solid var(--line);background:var(--td-surface); border-radius:999px; padding:7px 15px;
             font-size:.86rem; font-weight:600; cursor:pointer; color:var(--muted); }
     .chip[aria-pressed="true"] { background:var(--navy); border-color:var(--navy); color:#fff; }
     .cart-btn { margin-left:auto; background:var(--blue); color:#fff; border:0; border-radius:10px;
@@ -59,7 +59,7 @@
 
     /* Grid */
     .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:18px; padding:28px 0 60px; }
-    .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px; display:flex; flex-direction:column; }
+    .card {background:var(--td-surface); border:1px solid var(--line); border-radius:14px; padding:18px; display:flex; flex-direction:column; }
 
     /* LOOKBOOK strip. Four action shots, uniform 3:4 crop. */
     .lookbook { padding:18px 0 4px; }
@@ -83,7 +83,7 @@
        so two people could buy the same jersey. Claimed by email instead.
        Palette is the locked club one (navy / Talata blue / baby / sky). It
        stands apart from the grid on WEIGHT, not on a new colour. */
-    .ready { border:2px solid var(--blue); background:#fff; border-radius:14px;
+    .ready { border:2px solid var(--blue);background:var(--td-surface); border-radius:14px;
              padding:22px 22px 18px; margin:26px 0 0; }
     .ready .eyebrow { display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.16em;
                       text-transform:uppercase; color:#fff; background:var(--blue);
@@ -113,7 +113,7 @@
     .price .save { font-size:.78rem; font-weight:700; color:#166534; display:block; margin-top:1px; }
     .card label { display:block; font-size:.78rem; font-weight:700; margin:10px 0 4px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
     .card select, .card input { width:100%; padding:9px 10px; border:1.5px solid var(--line); border-radius:8px;
-                                font-family:inherit; font-size:.9rem; background:#fff; }
+                                font-family:inherit; font-size:.9rem;background:var(--td-surface); }
     .card .row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
     .card .both { margin-top:9px; font-size:.82rem; font-weight:600; color:var(--blue); }
     /* The grid stretches every card to the tallest in its row, so short cards
@@ -130,7 +130,7 @@
     /* Drawer */
     .scrim { position:fixed; inset:0; background:rgba(10,10,10,.5); z-index:960; display:none; }
     .scrim.open { display:block; }
-    .drawer { position:fixed; top:0; right:0; bottom:0; width:min(430px,100%); background:#fff; z-index:961;
+    .drawer { position:fixed; top:0; right:0; bottom:0; width:min(430px,100%);background:var(--td-surface); z-index:961;
               transform:translateX(100%); transition:transform .22s ease; display:flex; flex-direction:column; }
     .drawer.open { transform:translateX(0); }
     .drawer header { background:var(--navy); color:#fff; padding:18px 20px; display:flex; justify-content:space-between; align-items:center; }
@@ -142,7 +142,7 @@
     .li .info b { display:block; font-size:.92rem; }
     .li .info span { font-size:.8rem; color:var(--muted); }
     .qty { display:flex; align-items:center; gap:7px; margin-top:6px; }
-    .qty button { width:26px; height:26px; border:1.5px solid var(--line); background:#fff; border-radius:6px; cursor:pointer; font-weight:700; }
+    .qty button { width:26px; height:26px; border:1.5px solid var(--line);background:var(--td-surface); border-radius:6px; cursor:pointer; font-weight:700; }
     .li .amt { font-weight:700; white-space:nowrap; }
     .sum { display:flex; justify-content:space-between; font-size:1.25rem; font-weight:800; padding:16px 0 4px; }
     .drawer footer { border-top:1px solid var(--line); padding:16px 20px 22px; }
@@ -163,7 +163,7 @@
     .stepb { min-width:0; }
     .steplab { font-size:.85rem; color:var(--muted); margin:0 0 2px; }
     .step .num + .steplab { margin-top:8px; }
-    .pay .ref { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; background:#fff; border:1px dashed var(--blue);
+    .pay .ref { font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--td-surface); border:1px dashed var(--blue);
                 padding:10px 14px; border-radius:7px; display:inline-block; font-weight:700; margin:4px 0 6px;
                 font-size:1.35rem; color:var(--blue); cursor:pointer; min-height:44px; }
     .pay .ref.copied { border-style:solid; background:var(--sky); }
@@ -172,7 +172,7 @@
     .note { font-size:.82rem; color:var(--muted); margin-top:10px; }
     .footer { text-align:center; padding:34px 20px 46px; color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); }
     .ig { display:inline-flex; align-items:center; gap:8px; color:var(--blue); font-weight:700; text-decoration:none;
-          border:1.5px solid var(--sky); border-radius:999px; padding:9px 18px; background:#fff; }
+          border:1.5px solid var(--sky); border-radius:999px; padding:9px 18px;background:var(--td-surface); }
     .ig:hover { background:var(--sky); }
     @media (max-width:600px){ .grid { grid-template-columns:1fr 1fr; gap:12px; } .card { padding:14px; } .card .row { grid-template-columns:1fr; } }
     @media (max-width:400px){ .grid { grid-template-columns:1fr; } }
@@ -224,6 +224,7 @@
     gtag('config', 'G-R64Y9CQ2VZ');
   </script>
 <link rel="stylesheet" href="/assets/talata-footer.css">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826b">
 </head>
 <body>
 

@@ -105,8 +105,7 @@
     .section p { color: var(--text-muted); margin-bottom: 12px; }
 
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .card {
-      background: #fff; border: 1px solid var(--border);
+    .card {background:var(--td-surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 20px;
     }
     .card h3 {
@@ -144,8 +143,7 @@
     .price-row {
       display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
     }
-    .price-card {
-      background: #fff; border: 1px solid var(--border);
+    .price-card {background:var(--td-surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 24px 32px; text-align: center;
       flex: 1; min-width: 200px;
     }
@@ -194,7 +192,7 @@
       .hero-details { gap: 20px; }
     }
     @media print {
-      body { background: #fff; }
+      body {background:var(--td-surface); }
       .page { max-width: 100%; }
     }
   </style>
@@ -204,6 +202,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826b">
 </head>
 <body>
 

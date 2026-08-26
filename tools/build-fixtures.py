@@ -145,6 +145,12 @@ def build(path: str) -> dict:
         time = clean(r.get("time"))
         status = clean(r.get("status"))
 
+        # The export already carries homescore/awayscore. They are empty until a
+        # game is played and the scoresheet is filed, so a Results view built on
+        # them starts empty and fills itself with no extra work.
+        hs, as_ = clean(r.get("homescore")), clean(r.get("awayscore"))
+        played = hs.isdigit() and as_.isdigit()
+
         # 'Mangler Tid' means missing TIME, not missing date. The date is already
         # set by the federation. 'Flytning igang' means a move is in progress, so
         # BOTH the date and the time can still change under us.
@@ -168,6 +174,9 @@ def build(path: str) -> dict:
                 "court": court or None,
                 "homeCourt": bool(venue) and venue in HOME_VENUES,
                 "state": state,
+                "played": played,
+                "us": int(hs if is_home else as_) if played else None,
+                "them": int(as_ if is_home else hs) if played else None,
                 "source": "dbbf",
             }
         )

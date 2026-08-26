@@ -13,7 +13,7 @@
   </script>
   <title>Talata Games 2026/27 | Fixtures, Home Games, Free Entry | Copenhagen</title>
   <link rel="canonical" href="https://talatabasketball.dk/games" />
-  <meta name="description" content="Every Talata Basketball game this season, league, cup and friendlies, updated from the federation and the club calendar. Home games are free to attend, and Talata Night runs Friday evenings at Nørre Fælled Skole." />
+  <meta name="description" content="Every Talata Basketball game this season, league, cup and friendlies. Home games are free to attend. Talata Night runs Friday evenings at Nørre Fælled Skole, 19:30." />
   <meta name="keywords" content="basketball kampe københavn, talata kampprogram, basketball østerbro kamp, se basketball gratis københavn, nørre fælled basketball" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://talatabasketball.dk/games" />
@@ -21,58 +21,45 @@
   <meta property="og:description" content="League, cup and friendlies. Talata Night runs Fridays at Nørre Fælled Skole, 19:30, free entry." />
   <meta property="og:image" content="https://talatabasketball.dk/images/og/talata-huddle-og.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260826">
+  <link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260826b">
   <style>
     @font-face { font-family: 'Inter'; font-weight: 400 800; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
     @font-face { font-family: 'Montserrat'; font-weight: 400 900; font-display: swap; src: url('/fonts/montserrat-latin.woff2') format('woff2'); }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --black:#0A0A0A; --navy:#0B1F3A; --blue:#1E40AF; --baby:#7DD3FC; --sky:#BAE6FD; --mist:#F8FAFC;
-            --ink:#101828; --ink2:#475467; --line:#E4E9F0;
+    :root { --bg:#0B0F17; --card:#131A26; --line:#26324A; --text:#E6EDF7; --muted:#93A3BA;
+            --accent:#7DD3FC; --brand:#2C4FD8;
             --disp:'Montserrat',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; }
-    body { font-family: var(--body); color: var(--ink); background: var(--mist); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--body); color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
-    .g-hero { background: linear-gradient(135deg, #0B1F3A 0%, #14306b 55%, #1E40AF 100%); color: #fff; padding: 58px 0 52px; }
-    .g-hero .eyebrow { font-family: var(--disp); font-size: .68rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--baby); }
-    .g-hero h1 { font-family: var(--disp); font-weight: 900; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.05; margin: 12px 0 16px; }
-    .g-hero p { max-width: 640px; color: rgba(255,255,255,.86); font-size: 1.03rem; }
-    .g-stats { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 28px; }
-    .g-stats div b { display: block; font-family: var(--disp); font-weight: 900; font-size: 1.7rem; color: var(--baby); line-height: 1; }
-    .g-stats div span { font-size: .82rem; color: rgba(255,255,255,.72); }
+    .g-hero { padding: 44px 0 40px; background: linear-gradient(180deg, #101828 0%, var(--bg) 100%); }
+    .g-hero .eyebrow { font-family: var(--disp); font-size: .68rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+    .g-hero h1 { font-family: var(--disp); font-weight: 900; font-size: clamp(1.9rem, 4.6vw, 2.9rem); line-height: 1.05; margin: 12px 0 26px; color: #fff; }
 
-    .sec { padding: 46px 0; }
-    .sec h2 { font-family: var(--disp); font-weight: 900; font-size: 1.55rem; margin: 0 0 6px; color: var(--navy); }
-    .sec .lede { color: var(--ink2); max-width: 680px; margin: 0 0 26px; }
+    .sec { padding: 40px 0; }
+    .sec h2 { font-family: var(--disp); font-weight: 900; font-size: 1.5rem; margin: 0 0 18px; color: var(--text); }
 
-    .g-split { display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; align-items: start; }
+    .g-split { display: grid; grid-template-columns: 1.25fr 1fr; gap: 22px; align-items: stretch; }
     @media (max-width: 900px) { .g-split { grid-template-columns: 1fr; } }
 
-    .g-friday { background: var(--black); color: #fff; border-radius: 16px; padding: 30px; }
-    .g-friday .kick { font-family: var(--disp); font-size: .66rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--baby); }
-    .g-friday h3 { font-family: var(--disp); font-weight: 900; font-size: 1.5rem; margin: 8px 0 12px; }
-    .g-friday p { color: rgba(255,255,255,.78); font-size: .94rem; margin-bottom: 14px; }
+    .g-friday { background: #080B12; border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+    .g-friday .kick { font-family: var(--disp); font-size: .64rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+    .g-friday h3 { font-family: var(--disp); font-weight: 900; font-size: 1.45rem; margin: 8px 0 12px; color: #fff; }
+    .g-friday p { color: var(--muted); font-size: .93rem; margin-bottom: 14px; }
     .g-friday ul { list-style: none; display: grid; gap: 8px; margin: 16px 0 0; }
-    .g-friday li { display: flex; gap: 10px; font-size: .9rem; color: rgba(255,255,255,.88); }
-    .g-friday li::before { content: "→"; color: var(--baby); font-weight: 700; }
+    .g-friday li { display: flex; gap: 10px; font-size: .89rem; color: var(--text); }
+    .g-friday li::before { content: "\2192"; color: var(--accent); font-weight: 700; }
 
-    .g-win { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
-    .g-win h3 { font-family: var(--disp); font-weight: 900; font-size: 1.25rem; color: var(--navy); margin-bottom: 8px; }
-    .g-win p { color: var(--ink2); font-size: .93rem; margin-bottom: 14px; }
-    .g-win form { display: flex; gap: 8px; flex-wrap: wrap; }
-    .g-win input { flex: 1 1 200px; font-family: var(--body); font-size: .95rem; padding: 11px 14px; border: 1px solid var(--line); border-radius: 9px; }
-    .g-win input:focus { outline: 2px solid var(--baby); border-color: var(--blue); }
-    .g-win button { font-family: var(--disp); font-weight: 800; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; background: var(--blue); color: #fff; border: 0; padding: 12px 22px; border-radius: 9px; cursor: pointer; }
-    .g-win button:hover { background: var(--navy); }
-    .g-win .fine { font-size: .78rem; color: var(--ink2); margin: 12px 0 0; }
-    .g-win .ok { display: none; color: #15803D; font-weight: 700; margin-top: 12px; }
-    .g-prizes { list-style: none; display: grid; gap: 7px; margin: 0 0 16px; }
-    .g-prizes li { font-size: .9rem; display: flex; gap: 9px; color: var(--ink); }
-    .g-prizes li::before { content: "★"; color: var(--blue); }
-
-    .g-note { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--baby); border-radius: 10px; padding: 16px 20px; font-size: .87rem; color: var(--ink2); margin-top: 26px; }
-    .g-note b { color: var(--navy); }
+    .g-win { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+    .g-win h3 { font-family: var(--disp); font-weight: 900; font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
+    .g-win p { color: var(--muted); font-size: .91rem; margin-bottom: 14px; }
+    .g-prizes { list-style: none; display: grid; gap: 7px; margin: 0 0 14px; }
+    .g-prizes li { font-size: .89rem; display: flex; gap: 9px; color: var(--text); }
+    .g-prizes li::before { content: "\2605"; color: var(--accent); }
+    .g-win .fine { font-size: .8rem; color: var(--muted); margin: 0; }
+    .g-win .fine b { color: var(--text); }
   </style>
 <!-- TALATA:HEADER:START — generated by tools/apply-shared-header.py, do not hand-edit -->
 <a class="tn-skip" href="#tn-content">Skip to content</a>
@@ -175,71 +162,57 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826b">
 </head>
 <body>
-
-<div data-talata-ticker></div>
 
 <header class="g-hero">
   <div class="wrap">
     <span class="eyebrow">Season 2026/27</span>
     <h1>Come and watch.<br>Every home game is free.</h1>
-    <p>Talata plays in the Danish federation leagues from U13 up to the men's 3. Division, plus friendlies and tournaments at home and abroad. You do not need a ticket, a membership or a reason. Turn up.</p>
-    <div class="g-stats">
-      <div><b>20</b><span>at home</span></div>
-      <div><b>10</b><span>Talata Nights at Nørre Fælled</span></div>
-      <div><b>0 kr</b><span>to get in</span></div>
-    </div>
+    <div data-talata-feature></div>
   </div>
 </header>
+
+<!-- Fixture strip sits under the feature game, scrolls by hand, parked on the
+     next fixture. Nothing moves on its own (Deng, 26 Aug). -->
+<div data-talata-ticker></div>
 
 <section class="sec">
   <div class="wrap">
     <div class="g-split">
-
       <div class="g-friday">
         <span class="kick">The home night</span>
         <h3>Talata Night</h3>
-        <p>Ten Fridays this season, one hall, one tip-off time. Nørre Fælled Skole, 19:30, from September to March. Men's 3. Division and U19 1. Division.</p>
-        <p>Same night every time, so you do not have to check a schedule to know where the club is.</p>
+        <p>Friday evenings at N&oslash;rre F&aelig;lled Skole, 19:30. Same hall, same time, all season. Men&rsquo;s 3. Division, U19 and U15.</p>
         <ul>
           <li>Doors from 19:00, tip-off 19:30</li>
-          <li>Nørre Fælled Skole, 2200 København N</li>
-          <li>Free entry, no ticket, bring whoever you like</li>
-          <li>First one: Fri 18 September, U19 vs Værløse</li>
+          <li>N&oslash;rre F&aelig;lled Skole, 2200 K&oslash;benhavn N</li>
+          <li>Free entry, bring whoever you like</li>
+          <li>First one: Fri 18 September, U19 vs V&aelig;rl&oslash;se</li>
         </ul>
       </div>
 
       <div class="g-win">
-        <h3>Turn up, get in the draw</h3>
-        <p>Every home game you come to puts you in that month's draw. We pull a name on the last Friday of the month and hand it over at the next game.</p>
+        <h3>Claim a ticket, get in the draw</h3>
+        <p>Tickets are free. Claiming one tells us how many to expect and puts you in that month&rsquo;s draw. We pull a name on the last Friday of the month and hand it over at the next game.</p>
         <ul class="g-prizes">
           <li>Talata game jerseys, shooting shirts and training gear</li>
           <li>A free place at a Talata camp</li>
           <li>A month of sessions for a new player</li>
         </ul>
-        <form id="fanForm" novalidate>
-          <input type="email" id="fanEmail" name="email" placeholder="you@email.dk" required aria-label="Your email">
-          <button type="submit">Enter the draw</button>
-        </form>
-        <p class="ok" id="fanOk">You are in. See you at the next home game.</p>
-        <p class="fine">One entry per person per month. Over 18s only, or a parent enters on a family's behalf. We use your email for game reminders and the draw, nothing else, and every mail has an unsubscribe link.</p>
+        <p class="fine"><b>Anyone can enter.</b> Under 13s, ask a parent to use their email. Claim a ticket on any home game below.</p>
       </div>
-
     </div>
   </div>
 </section>
 
-<section class="sec" style="padding-top:0;" data-tf-host>
+<section class="sec" style="padding-top:0;" id="season" data-tf-host>
   <div class="wrap">
     <h2>The whole season</h2>
-    <p class="lede">League and cup fixtures come from the Danish federation. Friendlies and tournaments come from the club calendar and update on their own. Where a game has no time yet, it says so rather than guessing.</p>
+    <div class="tf-tabs" data-tf-tabs></div>
     <div class="tf-bar" data-tf-filters></div>
     <div class="tf-scope" data-talata-fixtures data-scope="season"></div>
-
-    <div class="g-note">
-      <b>Why some games say Time TBC.</b> The federation sets the date first and the time later, once both clubs and the hall agree. A date with no time is a real date. We publish it as soon as it is set rather than putting a guess in front of you and moving it later.
-    </div>
   </div>
 </section>
 
@@ -299,7 +272,7 @@
 </footer>
 <!-- TALATA:FOOTER:END -->
 
-<script src="/assets/talata-fixtures.js?v=20260826" defer></script>
+<script src="/assets/talata-fixtures.js?v=20260826b" defer></script>
 <script>
 /* Reuses the Worker's existing /subscribe route. `source` records which game
    the entry came from, so a draw can be run per month from the same table
