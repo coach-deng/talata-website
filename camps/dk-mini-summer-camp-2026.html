@@ -26,7 +26,7 @@
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--td-bg);color:var(--td-text);line-height:1.6;}
     .page{max-width:900px;margin:0 auto;padding:0 24px 80px;}
     .hero{background:#0B1F3A;color:#fff;padding:56px 24px;border-radius:0 0 24px 24px;text-align:center;margin-bottom:32px;}
-    .badge{display:inline-block;background:#7DD3FC;color:#0B1F3A;font-weight:700;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:16px;}
+    .badge{display:inline-block;background:#7DD3FC;color:var(--td-bg);font-weight:700;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:16px;}
     h1{font-size:2.6rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:6px;}
     .subtitle{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:4px;}
     .hero-details{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:28px;}
@@ -34,25 +34,25 @@
     .hero-detail .label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:#BAE6FD;margin-bottom:4px;}
     .hero-detail .value{font-size:1.05rem;font-weight:700;}
     .section{background:var(--td-surface);border:1px solid #e2e8f0;border-radius:14px;padding:28px;margin-bottom:20px;}
-    .section h2{font-size:1.3rem;font-weight:800;color:#0B1F3A;margin-bottom:14px;}
+    .section h2{font-size:1.3rem;font-weight:800;color:var(--td-text);margin-bottom:14px;}
     table{width:100%;border-collapse:collapse;}
     th,td{text-align:left;padding:8px 10px;font-size:0.92rem;border-bottom:1px solid #e2e8f0;}
     th{color:#5A6B85;text-transform:uppercase;font-size:0.72rem;letter-spacing:0.08em;}
-    .price-card{background:#7DD3FC;border-radius:12px;padding:24px;text-align:center;}
-    .price-card .amount{font-size:2.2rem;font-weight:900;color:#0B1F3A;}
-    .price-card .unit{font-size:0.95rem;color:#0B1F3A;opacity:0.8;}
+    .price-card{background:#7DD3FC;border-radius:12px;padding:24px;text-align:center;color:var(--td-bg)}
+    .price-card .amount{font-size:2.2rem;font-weight:900;color:var(--td-text);}
+    .price-card .unit{font-size:0.95rem;color:var(--td-text);opacity:0.8;}
     .checklist{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
     .checklist li{font-size:0.92rem;padding-left:20px;position:relative;}
-    .checklist li::before{content:'-';position:absolute;left:0;color:#1E40AF;font-weight:700;}
+    .checklist li::before{content:'-';position:absolute;left:0;color:var(--td-link);font-weight:700;}
     .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
     .btn{display:inline-block;padding:14px 28px;border-radius:99px;font-weight:700;text-decoration:none;font-size:1rem;}
     .btn-primary{background:#1E40AF;color:#fff;}
-    .btn-ghost{background:transparent;color:#0B1F3A;border:1.5px solid #0B1F3A;}
+    .btn-ghost{background:transparent;color:var(--td-text);border:1.5px solid #0B1F3A;}
     .nav{padding:20px 24px;border-bottom:1px solid #e2e8f0;background:var(--td-surface);}
     .nav-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
     .nav-logo{font-weight:800;font-size:0.95rem;color:var(--td-text);text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;}
-    .nav-logo span{display:block;font-weight:600;font-size:0.55rem;letter-spacing:0.24em;color:#1E40AF;margin-top:1px;}
-    .nav a{color:#0B1F3A;text-decoration:none;font-weight:600;font-size:0.95rem;}
+    .nav-logo span{display:block;font-weight:600;font-size:0.55rem;letter-spacing:0.24em;color:var(--td-link);margin-top:1px;}
+    .nav a{color:var(--td-text);text-decoration:none;font-weight:600;font-size:0.95rem;}
     @media(max-width:600px){h1{font-size:2rem;}.checklist{grid-template-columns:1fr;}}
   </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
@@ -61,7 +61,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826j">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826q">
 </head>
 <body>
 
@@ -238,7 +238,7 @@
           <tr><td>11:00 to 12:00</td><td>Skill challenges: dribbling, passing, shooting</td></tr>
           <tr><td>12:00 to 13:00</td><td>Afternoon session: mini-games, 3v3 / 5v5</td></tr>
           <tr><td>13:00 to 14:00</td><td>Fun competition, cool-down, pickup</td></tr>
-          <tr><td colspan="2" style="background:#e8efff;font-weight:600;color:#1E40AF;">Friday Aug 7: day ends with the All-Star Game. All parents welcome.</td></tr>
+          <tr><td colspan="2" style="background:#e8efff;font-weight:600;color:var(--td-link);">Friday Aug 7: day ends with the All-Star Game. All parents welcome.</td></tr>
         </tbody>
       </table>
     </div>
@@ -257,7 +257,7 @@
       <a href="/camps/dk-summer-camp-2026" class="btn btn-ghost">See the Ages 13-17 camp &rarr;</a>
     </div>
 
-    <p style="margin-top:24px;color:var(--td-muted);font-size:0.9rem;">Questions: <a href="mailto:coach@talatabasketball.dk" style="color:#1E40AF;font-weight:600;">coach@talatabasketball.dk</a></p>
+    <p style="margin-top:24px;color:var(--td-muted);font-size:0.9rem;">Questions: <a href="mailto:coach@talatabasketball.dk" style="color:var(--td-link);font-weight:600;">coach@talatabasketball.dk</a></p>
   </div>
 <script src="/assets/talata-nav.js" defer></script>
 <script src="/assets/talata-track.js" defer></script>

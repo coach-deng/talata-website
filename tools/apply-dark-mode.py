@@ -51,9 +51,14 @@ GROUND  = {"#fafafa", "#FAFAFA", "#f8fafc", "#F8FAFC", "#f9fafb", "#F9FAFB"}
 LINE    = {"#e0e0e0", "#E0E0E0", "#e4e9f0", "#E4E9F0", "#eee", "#EEE",
            "#e5e7eb", "#E5E7EB", "#ddd", "#DDD", "#f0f0f0", "#F0F0F0"}
 INK     = {"#1a1a1a", "#1A1A1A", "#101828", "#111", "#000", "#000000",
-           "#0a0a0a", "#0A0A0A", "#222", "#333"}
+           "#0a0a0a", "#0A0A0A", "#222", "#333",
+           # The brand navy and blue. Correct as a FILL, invisible as type on
+           # dark: #0B1F3A on #121824 measures 1.07:1.
+           "#0b1f3a", "#0B1F3A", "#0b2545", "#0B2545"}
+BRAND   = {"#1e40af", "#1E40AF", "#2c4fd8", "#2C4FD8", "#1d4ed8", "#1D4ED8"}
 MUTED   = {"#555", "#666", "#475467", "#64748b", "#64748B", "#6b7280",
-           "#6B7280", "#777", "#888"}
+           "#6B7280", "#777", "#888", "#444", "#4a4a4a", "#4A4A4A",
+           "#333333", "#3f3f46", "#3F3F46", "#52525b", "#52525B"}
 
 BG_PROPS   = ("background", "background-color")
 LINE_PROPS = ("border", "border-top", "border-bottom", "border-left",
@@ -87,6 +92,9 @@ def map_decl(prop, value):
         for lit in sorted(MUTED, key=len, reverse=True):
             if low == lit.lower():
                 return "var(--td-muted)"
+        for lit in sorted(BRAND, key=len, reverse=True):
+            if low == lit.lower():
+                return "var(--td-link)"
         return None
 
     return None
@@ -129,6 +137,40 @@ def map_color_var(prop, value):
 
 DECL = re.compile(r"(^|[;{])\s*([a-z-]+)\s*:\s*([^;{}]+)", re.I)
 
+# Backgrounds that stay light on a dark page: the two Talata accents. Text on
+# them has to go dark, not light.
+LIGHT_FILL = re.compile(
+    r"background(?:-color)?\s*:\s*[^;{}]*"
+    r"(#7dd3fc|#bae6fd|var\(--baby\)|var\(--sky\)|var\(--td-accent\)|var\(--td-accent-2\))",
+    re.I,
+)
+COLOR_IN_RULE = re.compile(r"(^|[;{])(\s*color\s*:\s*)([^;{}]+)", re.I)
+
+
+def fix_light_fill_rules(css):
+    """Give any rule with a light accent fill dark text."""
+    changed = [0]
+
+    def one(m):
+        body = m.group(2)
+        if not LIGHT_FILL.search(body):
+            return m.group(0)
+
+        def recolor(c):
+            val = c.group(3).strip().lower()
+            if val in ("var(--td-bg)", "var(--td-navy)", "#0b0f17", "#121824"):
+                return c.group(0)
+            changed[0] += 1
+            return f"{c.group(1)}{c.group(2)}var(--td-bg)"
+
+        fixed = COLOR_IN_RULE.sub(recolor, body)
+        if not COLOR_IN_RULE.search(fixed):
+            fixed = fixed.rstrip().rstrip(";") + ";color:var(--td-bg)"
+            changed[0] += 1
+        return m.group(1) + fixed + m.group(3)
+
+    return re.sub(r"(\{)([^{}]*)(\})", one, css), changed[0]
+
 
 def convert_css(css):
     changes = [0]
@@ -143,7 +185,9 @@ def convert_css(css):
         changes[0] += 1
         return f"{head}{prop}:{new}"
 
-    return DECL.sub(one, css), changes[0]
+    css, n = DECL.sub(one, css), changes[0]
+    css, n2 = fix_light_fill_rules(css)
+    return css, n + n2
 
 
 def process(path, check):
@@ -165,8 +209,11 @@ def process(path, check):
     def inline(m):
         nonlocal total
         css, n = convert_css(m.group(2))
-        total += n
-        return m.group(1) + css + m.group(3)
+        # An inline style is a rule body with no braces, so wrap it before the
+        # light-fill check and unwrap after.
+        wrapped, n2 = fix_light_fill_rules("{" + css + "}")
+        total += n + n2
+        return m.group(1) + wrapped[1:-1] + m.group(3)
 
     src = re.sub(r'(\sstyle=")([^"]*)(")', inline, src)
 

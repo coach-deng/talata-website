@@ -258,7 +258,11 @@ def main() -> None:
         f"{c.get('moving', 0)} being moved)"
     )
     if skipped:
-        print(f"Skipped  {len(skipped)} row(s) with no Talata side: {skipped}")
+        # A full-federation export carries every club's games, over 2,300 rows.
+        # Printing all of their numbers buries the part that matters.
+        shown = ", ".join(skipped[:6])
+        more = f" and {len(skipped) - 6} more" if len(skipped) > 6 else ""
+        print(f"Skipped  {len(skipped)} row(s) with no Talata side ({shown}{more})")
 
     tbc = [g for g in payload["games"] if g["state"] != "confirmed"]
     if tbc:

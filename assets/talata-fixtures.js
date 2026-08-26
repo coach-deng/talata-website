@@ -48,6 +48,7 @@
   function parseISO(d) { var a = d.split('-'); return new Date(+a[0], +a[1] - 1, +a[2]); }
 
   var DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  var DAYS_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'];
 
@@ -86,6 +87,17 @@
     if (!g.venue) return 'Venue to confirm';
     return g.venue + (g.court && g.court !== 'Hallen' ? ' · ' + g.court : '');
   }
+
+
+  /* The fixture list needs short team labels to stay scannable. A ticket needs
+     the real name of the squad. Deng, 26 Aug 2026. */
+  var TEAM_FULL = {
+    Men: 'Talata Men', U19: 'Talata Academy U19', U18: 'Talata Academy U19',
+    U17: 'Talata Academy U17', U15: 'Talata Academy U15', U14: 'Talata Academy U15',
+    U13: 'Talata Academy U13', U11: 'Talata Junior', Junior: 'Talata Junior',
+    Mini: 'Talata Mini', Sparks: 'Talata Sparks'
+  };
+  function teamFull(t) { return TEAM_FULL[t] || ('Talata ' + (t || '')).trim(); }
 
   function isTalataNight(g) {
     return g.home && g.venue && g.venue.indexOf('Nørre Fælled') === 0;
@@ -467,10 +479,13 @@
         body: JSON.stringify({
           game: gameId, date: date, email: v,
           seats: form.querySelector('[name=seats]').value,
-          match: (g.team || 'Talata') + ' ' + (g.opponent ? (g.home ? 'vs ' : 'at ') + g.opponent : (g.title || '')),
-          when: dayName(date).charAt(0) + dayName(date).slice(1).toLowerCase() + ' ' + longDate(date),
+          team: teamFull(g.team),
+          opponent: g.opponent || g.title || '',
+          home: !!g.home,
+          when: DAYS_LONG[parseISO(date).getDay()] + ' ' + longDate(date),
           time: g.time || '',
           venue: venueLabel(g),
+          competition: g.competition || 'Talata Basketball',
           talataNight: isTalataNight(g)
         })
       }).then(function (r) { return r.json(); }).then(function () {
