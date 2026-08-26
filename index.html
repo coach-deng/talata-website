@@ -324,15 +324,27 @@ footer a:hover{color:var(--baby);}
   .gs-card{aspect-ratio:16/9;}
   .gs-label{font-size:1.6rem;right:20px;}
 }
+
+/* Product cards carry a photo where an honest one exists. There is no shot of
+   the club's own hoodie or pants yet, so those cards stay text-led rather than
+   borrowing an unrelated image. Added 26 Aug 2026. */
+.kcard.has-shot{position:relative;overflow:hidden;isolation:isolate;}
+.kcard .kshot{position:absolute;inset:0;z-index:-1;}
+.kcard .kshot img{width:100%;height:100%;object-fit:cover;object-position:center 38%;opacity:.34;}
+.kcard.has-shot::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,rgba(11,31,58,.94) 30%,rgba(11,31,58,.55) 100%);
+}
+.kcard.has-shot:hover .kshot img{opacity:.46;}
 </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
-<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260826f">
+<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260826g">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826f">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826g">
 </head>
 <body>
 
@@ -589,12 +601,14 @@ footer a:hover{color:var(--baby);}
           <b>Full Talata</b><span class="what">Hoodie, pants and tee</span>
           <span class="price">699 kr <s>879 kr</s><em>Member price</em></span>
         </a>
-        <a class="kcard" href="/shop#bundles">
+        <a class="kcard has-shot" href="/shop#bundles">
+          <span class="kshot"><img src="/images/2026-08/academy-team-lineup-black.jpg" alt="Talata Academy squad in black game jerseys" loading="lazy" decoding="async"></span>
           <span class="tagline">Game day</span>
           <b>Game Day bundle</b><span class="what">Jersey with name and number, plus socks</span>
           <span class="price">319 kr <s>399 kr</s><em>Member price</em></span>
         </a>
-        <a class="kcard" href="/shop#bundles">
+        <a class="kcard has-shot" href="/shop#bundles">
+          <span class="kshot"><img src="/images/2026-08/mini-team-blue-with-coach.jpg" alt="Talata Mini players in blue club jerseys" loading="lazy" decoding="async"></span>
           <span class="tagline">Starting out</span>
           <b>Starter bundle</b><span class="what">Tee and socks</span>
           <span class="price">189 kr <s>239 kr</s><em>Member price</em></span>
@@ -810,6 +824,6 @@ TalataSignup.wire({
 </footer>
 <!-- TALATA:FOOTER:END -->
 
-<script src="/assets/talata-fixtures.js?v=20260826f" defer></script>
+<script src="/assets/talata-fixtures.js?v=20260826g" defer></script>
 </body>
 </html>
