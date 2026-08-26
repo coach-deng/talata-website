@@ -273,7 +273,7 @@
     var list = limit > 0 ? games.slice(0, limit) : games;
 
     if (!list.length) {
-      el.innerHTML = '<p class="tf-empty">Nothing here yet. <a href="/games">See the full season</a></p>';
+      el.innerHTML = '<p class="tf-empty">Try another filter, or <a href="/games">see the full season</a>.</p>';
       return;
     }
 
@@ -412,8 +412,8 @@
             '<button type="submit" class="tf-btn is-primary">Claim ticket</button>' +
           '</form>' +
           '<p class="tf-fine">Entry is free. This tells us how many to expect and puts you in ' +
-            'the monthly draw. Anyone can enter. If you are under 13, ask a parent to put ' +
-            'their email in. One email, nothing else, and every mail has an unsubscribe link.</p>' +
+            'the monthly draw. Anyone can enter, and under 13s should ask a parent to use ' +
+            'their email. Every mail we send has an unsubscribe link.</p>' +
           '<p class="tf-ok"></p>' +
         '</div>' +
       '</div>';
@@ -446,8 +446,8 @@
       }).then(function (r) { return r.json(); }).then(function () {
         form.style.display = 'none';
         var ok = wrap.querySelector('.tf-ok');
-        ok.innerHTML = '<b>You are on the list.</b><br>See you at the game. ' +
-          'You are in this month’s draw too.';
+        ok.innerHTML = '<b>You are on the list.</b><br>See you at the game, and you are in ' +
+          'this month’s draw.';
         ok.style.display = 'block';
         if (window.gtag) gtag('event', 'ticket_claim', { game: gameId });
         if (btn) { btn.textContent = 'Ticket claimed'; btn.disabled = true; }
@@ -499,8 +499,8 @@
         list = base.filter(function (g) { return g.team === t; });
       }
       if (state.tab === 'results' && !list.length) {
-        out.innerHTML = '<p class="tf-empty">No results yet. The season starts in September, ' +
-          'and scores land here as soon as the federation files each scoresheet.</p>';
+        out.innerHTML = '<p class="tf-empty">Scores land here as soon as the federation files ' +
+          'each scoresheet. The season starts in September.</p>';
         return;
       }
       renderRows(out, list);
@@ -564,8 +564,9 @@
       })
       .catch(function () {
         document.querySelectorAll('[data-talata-fixtures]').forEach(function (el) {
-          el.innerHTML = '<p class="tf-empty">Fixtures are not loading right now. ' +
-            'Mail <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a>.</p>';
+          el.innerHTML = '<p class="tf-empty">Something went wrong loading the fixtures. ' +
+            'Mail <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a> ' +
+            'and I will send them over.</p>';
         });
       });
   }
