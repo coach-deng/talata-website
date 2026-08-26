@@ -325,21 +325,36 @@
     el.innerHTML =
       '<div class="tk" role="region" aria-label="Upcoming Talata games">' +
         '<button class="tk-arw is-l" aria-label="Scroll back">&#8249;</button>' +
-        '<div class="tk-viewport" tabindex="0"><div class="tk-set">' + cards + '</div></div>' +
+        '<div class="tk-viewport"><div class="tk-set">' + cards + '</div></div>' +
         '<button class="tk-arw is-r" aria-label="Scroll forward">&#8250;</button>' +
       '</div>';
 
     var vp = el.querySelector('.tk-viewport');
-    var step = function (dir) {
-      vp.scrollBy({ left: dir * Math.max(200, vp.clientWidth * 0.7), behavior: 'smooth' });
-    };
-    el.querySelector('.tk-arw.is-l').addEventListener('click', function () { step(-1); });
-    el.querySelector('.tk-arw.is-r').addEventListener('click', function () { step(1); });
+    var back = el.querySelector('.tk-arw.is-l');
+    var fwd = el.querySelector('.tk-arw.is-r');
 
-    /* Park on the next game rather than the left edge, so the first thing in
+    /* Arrows only, no dragging or wheel-scrolling (Deng, 26 Aug). The viewport
+       is overflow:hidden in CSS, which still permits programmatic scrollLeft,
+       so the buttons remain the only way to move the strip. They are real
+       <button>s, so this stays reachable by keyboard. */
+    var sync = function () {
+      var max = vp.scrollWidth - vp.clientWidth - 1;
+      back.disabled = vp.scrollLeft <= 0;
+      fwd.disabled = vp.scrollLeft >= max;
+    };
+    var step = function (dir) {
+      vp.scrollBy({ left: dir * Math.max(200, vp.clientWidth * 0.8), behavior: 'smooth' });
+      setTimeout(sync, 420);
+    };
+    back.addEventListener('click', function () { step(-1); });
+    fwd.addEventListener('click', function () { step(1); });
+
+    /* Park on the next game rather than the left edge, so the first card in
        view is the fixture that actually matters. */
     var nextCard = el.querySelector('.tkc.is-next');
     if (nextCard) vp.scrollLeft = Math.max(0, nextCard.offsetLeft - 8);
+    sync();
+    window.addEventListener('resize', sync);
 
     startCountdowns(el);
   }

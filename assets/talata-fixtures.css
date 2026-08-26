@@ -220,24 +220,24 @@
 .tk-set{
   display:flex;align-items:stretch;
 }
+/* overflow:hidden, not auto. The strip moves only when an arrow is pressed
+   (Deng, 26 Aug), and scrollLeft set from script still works on a hidden
+   overflow, so the buttons keep full control. */
 .tk-viewport{
-  scroll-behavior:smooth;scroll-snap-type:x proximity;
-  overflow-x:auto;overflow-y:hidden;
-  scrollbar-width:thin;scrollbar-color:var(--f-line) transparent;
+  scroll-behavior:smooth;
+  overflow:hidden;
 }
-.tk-viewport::-webkit-scrollbar{height:6px;}
-.tk-viewport::-webkit-scrollbar-thumb{background:var(--f-line);border-radius:3px;}
-.tk-viewport:focus-visible{outline:2px solid var(--f-accent);outline-offset:-2px;}
 
 .tk-arw{
   flex:0 0 auto;z-index:3;cursor:pointer;border:0;
   background:#080B12;color:var(--f-muted);
   font-size:1.5rem;line-height:1;padding:0 12px;
 }
-.tk-arw:hover{color:var(--f-accent);}
+.tk-arw:hover:not(:disabled){color:var(--f-accent);}
+.tk-arw:disabled{opacity:.25;cursor:default;}
+.tk-arw:focus-visible{outline:2px solid var(--f-accent);outline-offset:-3px;}
 
 .tkc{
-  scroll-snap-align:start;
   display:flex;flex-direction:column;align-items:center;gap:3px;
   padding:10px 20px;border-right:1px solid rgba(255,255,255,.06);
   min-width:186px;text-align:center;

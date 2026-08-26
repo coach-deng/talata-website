@@ -293,15 +293,46 @@ footer a:hover{color:var(--baby);}
 .gh-all{display:inline-block;margin-top:18px;font-family:var(--disp);font-weight:800;font-size:.82rem;letter-spacing:.04em;color:var(--blue);}
 .gh-all:hover{color:var(--navy);}
 @media(max-width:900px){.gh-grid{grid-template-columns:1fr;gap:26px;}}
+
+/* Games + Shop cards, 26 Aug 2026. */
+.gs-cards{padding:34px 0 10px;}
+.gs-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.gs-card{
+  position:relative;display:block;overflow:hidden;border-radius:16px;
+  aspect-ratio:16/8;border:1px solid var(--line);isolation:isolate;
+}
+.gs-card img{
+  width:100%;height:100%;object-fit:cover;object-position:center 32%;
+  transition:transform .5s ease;
+}
+.gs-card:hover img{transform:scale(1.045);}
+.gs-shade{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(8,11,18,.20) 0%,rgba(8,11,18,.86) 72%);
+}
+.gs-label{
+  position:absolute;right:26px;top:50%;transform:translateY(-50%);
+  text-align:right;font-family:var(--disp);font-weight:900;font-size:2rem;
+  color:#fff;line-height:1.05;letter-spacing:-.01em;
+}
+.gs-label small{
+  display:block;font-family:var(--body);font-weight:500;font-size:.82rem;
+  color:var(--baby);letter-spacing:0;margin-top:6px;
+}
+@media(max-width:820px){
+  .gs-grid{grid-template-columns:1fr;}
+  .gs-card{aspect-ratio:16/9;}
+  .gs-label{font-size:1.6rem;right:20px;}
+}
 </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
-<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260826c">
+<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260826d">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826c">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826d">
 </head>
 <body>
 
@@ -470,6 +501,27 @@ footer a:hover{color:var(--baby);}
      Renders nothing at all if both are empty, so a failed fetch leaves a clean
      page rather than an empty black bar. -->
 <div data-talata-ticker></div>
+
+<!-- Games and Shop, the two things a visitor most often arrives looking for.
+     Modelled on the pair of cards on zalgiris.lt (Deng, 26 Aug). Photos are
+     the club's own: the U19 celebration for Games, the Academy line-up in kit
+     for Shop, because a shop card should show the thing being sold. -->
+<section class="gs-cards">
+  <div class="wrap">
+    <div class="gs-grid">
+      <a class="gs-card" href="/games">
+        <img src="/images/2026-08/team-celebration-jump.jpg" alt="Talata players celebrating a win" loading="lazy">
+        <span class="gs-shade"></span>
+        <span class="gs-label">Games<small>Free to watch, all season</small></span>
+      </a>
+      <a class="gs-card" href="/shop">
+        <img src="/images/2026-08/academy-team-lineup-black.jpg" alt="Talata Academy squad in club kit" loading="lazy">
+        <span class="gs-shade"></span>
+        <span class="gs-label">Shop<small>Kit, jerseys and training gear</small></span>
+      </a>
+    </div>
+  </div>
+</section>
 
 
 <!-- What is on, by week. Added 26 Aug 2026: the club had 40 fixtures this
@@ -825,6 +877,6 @@ TalataSignup.wire({
 </footer>
 <!-- TALATA:FOOTER:END -->
 
-<script src="/assets/talata-fixtures.js?v=20260826c" defer></script>
+<script src="/assets/talata-fixtures.js?v=20260826d" defer></script>
 </body>
 </html>
