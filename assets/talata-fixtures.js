@@ -197,24 +197,16 @@
 
   /* ---------- feature (next game) ---------- */
 
-  function renderFeature(el, games) {
-    /* Lead with a game somebody can actually turn up to. The very next fixture
-       may have neither an agreed time nor a venue, and two TBCs at the top of
-       the page is a poor first thing to see. It still appears in the list
-       below, in date order, so nothing is hidden. */
-    var g = games.filter(function (x) { return x.home && x.state === 'confirmed' && x.venue; })[0]
-         || games.filter(function (x) { return x.state === 'confirmed'; })[0]
-         || games[0];
-    if (!g) { el.innerHTML = ''; return; }
-
+  /* The detail panel. One markup for the feature game at the top of the page
+     and for the panel a fixture row opens, so a game looks the same wherever
+     you meet it. Modelled on zalgiris.lt (Deng, 26 Aug). */
+  function detailHTML(g) {
     var opp = g.opponent || g.title;
     var t = tipOff(g);
     var row = function (k, v) {
       return '<div class="tf-row"><span>' + k + '</span><b>' + v + '</b></div>';
     };
-
-    el.innerHTML =
-      '<div class="tf-feat">' +
+    return '<div class="tf-feat">' +
         '<div class="tf-feat-main">' +
           '<div class="tf-feat-side">' + talataCrest(g.team) + '<span>Talata</span></div>' +
           '<div class="tf-feat-mid">' +
@@ -230,10 +222,15 @@
           row('Home or away', g.home
             ? (isTalataNight(g) ? '<b class="tf-hl">Talata Night</b>' : 'Home')
             : 'Away') +
-          (t ? '<div class="tf-row"><span>Time left</span>' +
-               '<div class="tf-cd" data-tf-cd="' + t + '"></div></div>' : '') +
+          (g.played
+            ? row('Result', esc(String(g.us)) + ' - ' + esc(String(g.them)))
+            : (t ? '<div class="tf-row"><span>Time left</span>' +
+                   '<div class="tf-cd" data-tf-cd="' + t + '"></div></div>'
+                 : row('Tip-off', g.state === 'moving'
+                     ? 'Being moved, date can change'
+                     : 'The federation has not set one yet'))) +
           '<div class="tf-feat-cta">' +
-            (g.home
+            (g.home && !g.played
               ? '<button class="tf-btn is-primary" data-tf-claim="' + esc(g.id) +
                 '" data-tf-date="' + esc(g.date) + '">Claim free ticket</button>'
               : '') +
@@ -241,9 +238,52 @@
           '</div>' +
         '</div>' +
       '</div>';
+  }
 
+  function renderFeature(el, games) {
+    /* Lead with a game somebody can actually turn up to. The very next fixture
+       may have neither an agreed time nor a venue, and two TBCs at the top of
+       the page is a poor first thing to see. It still appears in the list
+       below, in date order, so nothing is hidden. */
+    var g = games.filter(function (x) { return x.home && x.state === 'confirmed' && x.venue; })[0]
+         || games.filter(function (x) { return x.state === 'confirmed'; })[0]
+         || games[0];
+    if (!g) { el.innerHTML = ''; return; }
+    el.innerHTML = detailHTML(g);
     startCountdowns(el);
     wireClaims(el);
+  }
+
+  /* A fixture row opens the same panel in a dialog. Zalgiris puts a DETAILS
+     button on every row; here the whole row is the target, which is a bigger
+     tap area on a phone and needs no extra column. */
+  function openDetails(gameId) {
+    var g = allGames.filter(function (x) { return String(x.id) === String(gameId); })[0];
+    if (!g) return;
+    var wrap = document.getElementById('tf-detail');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.id = 'tf-detail';
+      document.body.appendChild(wrap);
+    }
+    wrap.innerHTML =
+      '<div class="tf-modal" role="dialog" aria-modal="true" aria-label="Game details">' +
+        '<div class="tf-detail-box">' +
+          '<button class="tf-x" aria-label="Close">&times;</button>' +
+          detailHTML(g) +
+        '</div>' +
+      '</div>';
+    var close = function () { wrap.innerHTML = ''; };
+    wrap.querySelector('.tf-x').addEventListener('click', close);
+    wrap.querySelector('.tf-modal').addEventListener('click', function (e) {
+      if (e.target === e.currentTarget) close();
+    });
+    document.addEventListener('keydown', function onEsc(e) {
+      if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onEsc); }
+    });
+    startCountdowns(wrap);
+    wireClaims(wrap);
+    wrap.querySelector('.tf-x').focus();
   }
 
   /* ---------- fixture rows, split by month ---------- */
@@ -259,7 +299,8 @@
     var sRight = g.played ? (home ? g.them : g.us) : '–';
     var won = g.played && g.us > g.them;
 
-    return '<article class="tf-r' + (home ? ' is-home' : '') +
+    return '<article data-tf-open="' + esc(g.id) + '" tabindex="0" role="button"' +
+      ' class="tf-r' + (home ? ' is-home' : '') +
         (g.state !== 'confirmed' ? ' is-tbc' : '') +
         (g.played ? (won ? ' is-won' : ' is-lost') : '') + '">' +
       '<div class="tf-r-comp"><span>' + esc(g.competition) + '</span><b>' + esc(timeLabel(g)) + '</b></div>' +
@@ -276,6 +317,7 @@
           ? '<button class="tf-r-tix" data-tf-claim="' + esc(g.id) +
             '" data-tf-date="' + esc(g.date) + '">Free ticket</button>'
           : (g.played ? '' : '<span class="tf-r-free">Free entry</span>')) +
+        '<span class="tf-r-more">Details &rsaquo;</span>' +
       '</div>' +
     '</article>';
   }
@@ -306,6 +348,22 @@
     }
     el.innerHTML = html;
     wireClaims(el);
+
+    if (!el._tfRowsWired) {
+      el._tfRowsWired = true;
+      /* Delegated, because the list is re-rendered on every filter and tab
+         change and per-row listeners would be lost each time. */
+      el.addEventListener('click', function (e) {
+        if (e.target.closest('[data-tf-claim]')) return;   /* the ticket button owns its click */
+        var row = e.target.closest('[data-tf-open]');
+        if (row) openDetails(row.getAttribute('data-tf-open'));
+      });
+      el.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var row = e.target.closest('[data-tf-open]');
+        if (row) { e.preventDefault(); openDetails(row.getAttribute('data-tf-open')); }
+      });
+    }
   }
 
   /* ---------- ticker ---------- */
