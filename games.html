@@ -13,12 +13,12 @@
   </script>
   <title>Talata Games 2026/27 | Fixtures, Home Games, Free Entry | Copenhagen</title>
   <link rel="canonical" href="https://talatabasketball.dk/games" />
-  <meta name="description" content="Every Talata Basketball game this season. 40 league and cup fixtures plus friendlies, updated from the federation and the club calendar. Home games are free to attend, ten of them on Friday nights at Nørre Fælled Skole." />
+  <meta name="description" content="Every Talata Basketball game this season, league, cup and friendlies, updated from the federation and the club calendar. Home games are free to attend, and Talata Night runs Friday evenings at Nørre Fælled Skole." />
   <meta name="keywords" content="basketball kampe københavn, talata kampprogram, basketball østerbro kamp, se basketball gratis københavn, nørre fælled basketball" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://talatabasketball.dk/games" />
   <meta property="og:title" content="Talata Games 2026/27. Free to watch, every home game." />
-  <meta property="og:description" content="40 league and cup fixtures plus friendlies. Ten Friday nights at Nørre Fælled Skole, 19:30, free entry." />
+  <meta property="og:description" content="League, cup and friendlies. Talata Night runs Fridays at Nørre Fælled Skole, 19:30, free entry." />
   <meta property="og:image" content="https://talatabasketball.dk/images/og/talata-huddle-og.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="/assets/talata-fixtures.css">
@@ -186,9 +186,8 @@
     <h1>Come and watch.<br>Every home game is free.</h1>
     <p>Talata plays in the Danish federation leagues from U13 up to the men's 3. Division, plus friendlies and tournaments at home and abroad. You do not need a ticket, a membership or a reason. Turn up.</p>
     <div class="g-stats">
-      <div><b data-tf-count>40</b><span>games this season</span></div>
       <div><b>20</b><span>at home</span></div>
-      <div><b>10</b><span>Friday nights at Nørre Fælled</span></div>
+      <div><b>10</b><span>Talata Nights at Nørre Fælled</span></div>
       <div><b>0 kr</b><span>to get in</span></div>
     </div>
   </div>
@@ -200,7 +199,7 @@
 
       <div class="g-friday">
         <span class="kick">The home night</span>
-        <h3>Friday Night Talata</h3>
+        <h3>Talata Night</h3>
         <p>Ten Fridays this season, one hall, one tip-off time. Nørre Fælled Skole, 19:30, from September to March. Men's 3. Division and U19 1. Division.</p>
         <p>Same night every time, so you do not have to check a schedule to know where the club is.</p>
         <ul>
@@ -318,7 +317,7 @@
     fetch('https://talata-api.coach-258.workers.dev/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, source: 'friday-night-draw' })
+      body: JSON.stringify({ email: email, source: 'talata-night-draw' })
     }).then(function () {
       f.style.display = 'none';
       document.getElementById('fanOk').style.display = 'block';

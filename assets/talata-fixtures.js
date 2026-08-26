@@ -16,7 +16,7 @@
 
    The static file loads first and renders on its own. If the Worker is slow or
    down, all 40 league fixtures are still on the page. An empty ticker on a club
-   with 40 games would read as "no games this season".
+   with a full season of fixtures would read as "no games this season".
 
    USAGE
      <div data-talata-ticker></div>
@@ -130,7 +130,7 @@
       '<div class="tf-who">' +
         '<div class="tf-line"><span class="tf-team">' + esc(g.team) + '</span>' +
           '<span class="tf-ha">' + (g.home ? 'Home' : 'Away') + '</span>' +
-          (friday ? '<span class="tf-fri">Friday Night Talata</span>' : '') + '</div>' +
+          (friday ? '<span class="tf-fri">Talata Night</span>' : '') + '</div>' +
         '<h4>' + matchup(g) + '</h4>' +
         '<p class="tf-meta">' + esc(g.competition) + ' · ' + esc(venueLabel(g)) + '</p>' +
       '</div>' +
@@ -168,7 +168,7 @@
 
     if (scope !== 'season' && limit > 0 && games.length > limit) {
       html += '<p class="tf-more"><a href="/games.html">' +
-        'All ' + games.length + ' games this season</a></p>';
+        'See the full season</a></p>';
     }
     el.innerHTML = html;
   }
@@ -186,7 +186,7 @@
         (g.opponent ? '<span class="tk-vs">' + (g.home ? 'vs' : 'at') + ' </span>' : '') +
         '<span class="tk-opp">' + esc(g.opponent || g.title) + ' </span>' +
         '<span class="tk-time">' + esc(timeLabel(g)) + ' </span>' +
-        (friday ? '<span class="tk-flag">Friday Night</span>' :
+        (friday ? '<span class="tk-flag">Talata Night</span>' :
           (g.home ? '<span class="tk-flag">Home</span>' : '')) +
       '</a>';
     }).join('<span class="tk-dot" aria-hidden="true">•</span>');
@@ -285,9 +285,6 @@
     });
     document.querySelectorAll('[data-tf-host]').forEach(function (host) {
       wireFilters(host, games);
-    });
-    document.querySelectorAll('[data-tf-count]').forEach(function (el) {
-      el.textContent = String(games.length);
     });
   }
 
