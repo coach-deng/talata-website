@@ -30,6 +30,14 @@
 .tn-util,.tn-bar,.tn-drawer{
   --tn-black:#0A0A0A; --tn-navy:#0B1F3A; --tn-blue:#1E40AF;
   --tn-baby:#7DD3FC; --tn-sky:#BAE6FD; --tn-ink:#101828; --tn-ink2:#475467;
+  /* Dropdown panel, 26 Aug 2026. It used to be #fff hanging off a navy bar,
+     which was the last light surface on a site that went dark that morning.
+     Two things were wrong with it: it looked bolted on, and talata-dark.css
+     paints every unclassed link --td-link (#8FD6FF), so the rows rendered at
+     1.59:1 on white. Both go away when the panel matches the bar it hangs off.
+     A touch lighter than --tn-navy so it reads as lifted, not as a hole. */
+  --tn-drop-bg:#10233F; --tn-drop-ink:#F2F6FC; --tn-drop-ink2:#9FB2CC;
+  --tn-drop-hi:#1B3760;
   --tn-disp:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
   --tn-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
   --tn-h:74px;
@@ -112,8 +120,9 @@
 /* ---------- dropdowns ---------- */
 .tn-drop{
   position:absolute;top:100%;left:0;min-width:268px;
-  background:#fff;border-radius:0 0 14px 14px;
-  box-shadow:0 26px 52px rgba(10,10,10,0.22);
+  background:var(--tn-drop-bg);border-radius:0 0 14px 14px;
+  border:1px solid rgba(125,211,252,0.14);border-top:0;
+  box-shadow:0 26px 52px rgba(5,10,20,0.55);
   padding:8px;
   opacity:0;visibility:hidden;transform:translateY(8px);
   transition:opacity .18s ease,transform .18s ease,visibility .18s;
@@ -121,16 +130,22 @@
 .tn-menu li:hover>.tn-drop,
 .tn-menu li:focus-within>.tn-drop,
 .tn-menu li.tn-drop-open>.tn-drop{opacity:1;visibility:visible;transform:translateY(0);}
-.tn-drop a{
+/* Scoped through .tn-bar on purpose. `.tn-drop a` is (0,1,1) and so is
+   talata-dark.css's `a:not([class])`, so a tie was decided by load order --
+   and the dark sheet loads second. The nav ships its own palette; it does not
+   get to be repainted by a stylesheet that cannot see what it sits on. */
+.tn-bar .tn-drop a,.tn-drawer .tn-drop a{
   display:flex;justify-content:space-between;align-items:baseline;gap:14px;
   padding:11px 14px;border-radius:9px;
-  font-size:0.9rem;font-weight:600;color:var(--tn-ink);text-decoration:none;
+  font-size:0.9rem;font-weight:600;color:var(--tn-drop-ink);text-decoration:none;
   transition:background .12s,color .12s;
 }
-.tn-drop a small{font-weight:500;font-size:0.75rem;color:var(--tn-ink2);white-space:nowrap;}
-.tn-drop a:hover,.tn-drop a:focus-visible{background:var(--tn-sky);color:var(--tn-navy);}
-.tn-drop a:hover small,.tn-drop a:focus-visible small{color:var(--tn-blue);}
-.tn-drop a[aria-current="page"]{background:var(--tn-sky);color:var(--tn-navy);}
+.tn-bar .tn-drop a small,.tn-drawer .tn-drop a small{
+  font-weight:500;font-size:0.75rem;color:var(--tn-drop-ink2);white-space:nowrap;}
+.tn-bar .tn-drop a:hover,.tn-bar .tn-drop a:focus-visible{
+  background:var(--tn-drop-hi);color:var(--tn-baby);}
+.tn-bar .tn-drop a:hover small,.tn-bar .tn-drop a:focus-visible small{color:var(--tn-sky);}
+.tn-bar .tn-drop a[aria-current="page"]{background:var(--tn-drop-hi);color:var(--tn-baby);}
 
 /* ---------- primary CTA ---------- */
 .tn-cta{

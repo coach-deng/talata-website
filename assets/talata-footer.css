@@ -51,9 +51,12 @@
   max-width: 30em;
 }
 
+/* 0.44 measured 4.35:1 on the footer's #0A0A0A, just under the 4.5 floor.
+   This line carries the venue addresses and the CVR, so it is the last thing
+   that should be hard to read. 0.48 clears it at 4.8:1. */
 .tf-id .tf-meta {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.44);
+  color: rgba(255, 255, 255, 0.48);
 }
 
 .tf-col a {

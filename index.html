@@ -152,7 +152,10 @@ a{text-decoration:none;color:inherit;}
 .kfeat b,.kcard b{display:block;font-size:1.1rem;color:#fff;font-weight:900;}
 .kfeat span.what,.kcard span.what{display:block;font-size:.86rem;color:rgba(255,255,255,.68);margin-top:5px;min-height:2.4em;}
 .kfeat .price,.kcard .price{display:block;margin-top:12px;font-size:1.25rem;font-weight:900;color:#fff;}
-.kfeat .price s,.kcard .price s{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.45);margin-left:7px;}
+/* .45 measured 4.34:1 on the navy card. A struck-out price is meant to be
+   quieter than the live one, not below the readable floor -- a parent has to be
+   able to see what the saving is. .52 reads as secondary and clears at 5.3:1. */
+.kfeat .price s,.kcard .price s{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.52);margin-left:7px;}
 .kfeat .price em,.kcard .price em{display:block;font-style:normal;font-size:.74rem;font-weight:700;color:#7DD3FC;letter-spacing:.04em;margin-top:3px;}
 .coach-band{background:var(--td-bg);padding:54px 0;}
 .coach-band .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
@@ -265,7 +268,14 @@ section{padding:72px 0;}
 .wcard img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:transform .4s;}
 .wcard:hover img{transform:scale(1.05);}
 .wcard .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
-.wcard .play i{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;font-style:normal;color:var(--td-text);font-size:1.1rem;padding-left:4px;}
+/* Was color:var(--td-text) on a white disc. Dark mode remapped --td-text to
+   #F2F6FC, so from 26 Aug the play arrow rendered near-white on near-white at
+   1.08:1 and the cards showed three blank circles. An SVG rather than the U+25B6
+   glyph, which some platforms substitute with a colour emoji that ignores
+   `color` entirely. */
+.wcard .play i{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(10,10,10,0.35);transition:transform .2s;}
+.wcard:hover .play i{transform:scale(1.08);}
+.wcard .play svg{width:17px;height:19px;margin-left:3px;fill:var(--td-bg);display:block;}
 .wcard .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(to top,rgba(10,10,10,0.85),transparent);color:#fff;font-weight:700;font-size:0.9rem;}
 
 /* numbers */
@@ -374,15 +384,11 @@ footer a:hover{color:var(--td-link);}
       </li>
       <li><a class="tn-top" href="/camps">Camps</a></li>
       <li><a class="tn-top" href="/games">Games</a></li>
-      <li><a class="tn-top" href="/help/age-groups">Prices &amp; Times<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <li><a class="tn-top" href="/help/age-groups">Club<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="tn-drop">
-        <a href="/help/age-groups">What it costs<small>fees and age groups</small></a>
+        <a href="/help/age-groups">Prices<small>fees and age groups</small></a>
         <a href="/help/first-session">Your first session<small>what to bring</small></a>
         <a href="/help/holdsport">Holdsport<small>signing up, in English</small></a>
-        </div>
-      </li>
-      <li><a class="tn-top" href="/coaches">Club<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div class="tn-drop">
         <a href="/coaches">Coaches<small>who is on the floor</small></a>
         <a href="/pathway">Player Pathway<small>where players go next</small></a>
         <a href="/reviews">Reviews<small>what parents say</small></a>
@@ -416,14 +422,11 @@ footer a:hover{color:var(--td-link);}
         </ul>
         <h3><a href="/camps">Camps</a></h3>
         <h3><a href="/games">Games</a></h3>
-        <h3>Prices &amp; Times</h3>
-        <ul class="tn-drawer-list">
-          <li><a href="/help/age-groups">What it costs<small>fees and age groups</small></a></li>
-          <li><a href="/help/first-session">Your first session<small>what to bring</small></a></li>
-          <li><a href="/help/holdsport">Holdsport<small>signing up, in English</small></a></li>
-        </ul>
         <h3>Club</h3>
         <ul class="tn-drawer-list">
+          <li><a href="/help/age-groups">Prices<small>fees and age groups</small></a></li>
+          <li><a href="/help/first-session">Your first session<small>what to bring</small></a></li>
+          <li><a href="/help/holdsport">Holdsport<small>signing up, in English</small></a></li>
           <li><a href="/coaches">Coaches<small>who is on the floor</small></a></li>
           <li><a href="/pathway">Player Pathway<small>where players go next</small></a></li>
           <li><a href="/reviews">Reviews<small>what parents say</small></a></li>
@@ -678,9 +681,9 @@ footer a:hover{color:var(--td-link);}
   <div class="wrap">
     <div class="head"><h2>Watch <i>Talata</i></h2><a href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">@talatabasketball →</a></div>
     <div class="wgrid">
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="images/action-fastbreak.jpg" alt="Fast break at Talata training" decoding="async" width="1068" height="1600"><div class="play"><i>▶</i></div><div class="cap">Academy runs at Svanemøllehallen</div></a>
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="images/2026-08/u15-win-vs-vikings-75-69.jpg" alt="Talata team under the scoreboard after a 75 to 69 win" decoding="async" width="1600" height="1200"><div class="play"><i>▶</i></div><div class="cap">75 to 69. Game day at Talata</div></a>
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="images/2026-08/coach-with-mini-group-indoor.jpg" alt="Talata coach with the Mini group" decoding="async" width="1600" height="1200"><div class="play"><i>▶</i></div><div class="cap">Inside a Mini session</div></a>
+      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="images/action-fastbreak.jpg" alt="Fast break at Talata training" decoding="async" width="1068" height="1600"><div class="play"><i><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0l12 7-12 7z"/></svg></i></div><div class="cap">Academy runs at Svanemøllehallen</div></a>
+      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="images/2026-08/u15-win-vs-vikings-75-69.jpg" alt="Talata team under the scoreboard after a 75 to 69 win" decoding="async" width="1600" height="1200"><div class="play"><i><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0l12 7-12 7z"/></svg></i></div><div class="cap">75 to 69. Game day at Talata</div></a>
+      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="images/2026-08/coach-with-mini-group-indoor.jpg" alt="Talata coach with the Mini group" decoding="async" width="1600" height="1200"><div class="play"><i><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0l12 7-12 7z"/></svg></i></div><div class="cap">Inside a Mini session</div></a>
     </div>
   </div>
 </section>

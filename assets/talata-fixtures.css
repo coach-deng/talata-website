@@ -112,6 +112,25 @@
   .tf-feat-side .tf-crest{width:52px;height:52px;}
 }
 
+/* The feature card had a hard floor of 310px and .tf-feat sets overflow:hidden,
+   so under that width it did not scroll and it did not wrap. It silently cut.
+   Measured 26 Aug: 360px viewport fits at exactly 0px spare, 320px loses 40px
+   off the card, and a long opponent ("Stevnsgade Div 2", "Helsingborg BBK
+   Blue") raises the floor and starts biting at 360 too.
+   The floor was .tf-feat-mid at flex:0 0 auto, which could not shrink below the
+   106px of "SEPTEMBER 13", plus two fixed crests and 72px of padding and gaps.
+   Everything here exists to lower that floor to ~216px. */
+@media (max-width:400px){
+  .tf-feat-main{padding:26px 12px;gap:8px;min-width:0;}
+  .tf-feat-mid{flex:0 1 auto;min-width:0;}
+  .tf-feat-date{font-size:.62rem;letter-spacing:.10em;}
+  .tf-feat-time{font-size:1.7rem;}
+  .tf-feat-side .tf-crest{width:44px;height:44px;}
+  .tf-feat-side .tf-crest.is-talata img{max-height:32px;}
+  .tf-feat-side span{max-width:96px;}
+  .tf-feat-info{padding:18px 16px;}
+}
+
 /* ---------- month groups + fixture rows ---------- */
 
 .tf-month{margin:0 0 26px;padding:0;}
