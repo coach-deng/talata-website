@@ -326,13 +326,13 @@ footer a:hover{color:var(--baby);}
 }
 </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
-<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260826e">
+<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260826f">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826e">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826f">
 </head>
 <body>
 
@@ -506,6 +506,7 @@ footer a:hover{color:var(--baby);}
      Modelled on the pair of cards on zalgiris.lt (Deng, 26 Aug). Photos are
      the club's own: a drive to the basket for Games, the Academy line-up in gear
      for Shop, because a shop card should show the thing being sold. -->
+
 <section class="gs-cards">
   <div class="wrap">
     <div class="gs-grid">
@@ -520,64 +521,6 @@ footer a:hover{color:var(--baby);}
         <span class="gs-label">Shop</span>
       </a>
     </div>
-  </div>
-</section>
-
-
-<!-- What is on, by week. Added 26 Aug 2026: the club had 40 fixtures this
-     season and the website mentioned none of them. -->
-<section class="games-home" id="games">
-  <div class="wrap">
-    <div class="gh-grid">
-      <div class="gh-lead">
-        <span class="gh-kick">Season 2026/27</span>
-        <h2>Come and watch</h2>
-        <p>Every home game is free. Turn up. <b>Talata Night</b> runs Friday evenings at N&oslash;rre F&aelig;lled Skole, 19:30.</p>
-        <div class="tf-next" data-talata-next></div>
-        <a class="gh-all" href="/games">See the full season &rarr;</a>
-      </div>
-      <div class="gh-list">
-        <div class="tf-scope" data-talata-fixtures data-limit="5"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Partners split into honest groups, 19 Aug 2026. One marquee headed
-     "Partners & sponsors" put DBBF, DIF, DGI and Københavns Kommune under a
-     word none of them agreed to: we are a member of the federations and we
-     rent gyms from the kommune. Neither is sponsorship.
-     Logos here are still our own placeholder marks. Real logos go in only
-     once each org has sent an official pack and said yes. -->
-<!-- Real logos, taken from each organisation's own published assets:
-     EYBL from eybl.lv/documents, DIF and DGI from their own sites, DBBF from
-     basket.dk, Københavns Kommune from kk.dk, Dr. Dish from drdishbasketball.com.
-     DGI and KK were recoloured to white because an <img> cannot inherit
-     currentColor and KK ships navy, which is invisible on this background.
-     Heights are set per mark: DIF and DBBF are portrait and disappear at a
-     height that suits a wide wordmark.
-     The venues came out entirely (Deng, 19 Aug) - a school and a culture house
-     have no logo worth showing.
-     Remaining drawn placeholders: Nordic Kits, Glory Sports, Elite Euro Talent,
-     -->
-<!-- Partners, rebuilt on a LIGHT background 19 Aug 2026 after studying
-     it pops: brands supply colour logos, and a dark strip forces every one of
-     them to be recoloured white, which is what we were doing. On light each
-     keeps a handful here with the rest on a dedicated page. Both copied. -->
-<section class="partners-section" id="partners">
-  <div class="phead">
-    <h2>Our <em>partners</em></h2>
-    <a class="pall" href="/partners">All partners</a>
-  </div>
-  <div class="prow">
-    <a class="pitem" href="https://www.drdishbasketball.com" target="_blank" rel="noopener" aria-label="Dr. Dish Basketball"><img src="/images/partners/drdish.png?v=3" alt="Dr. Dish Basketball" style="height:34px" decoding="async"></a>
-    <a class="pitem" href="https://eybl.lv" target="_blank" rel="noopener" aria-label="EYBL, European Youth Basketball League"><img src="/images/partners/eybl.png?v=3" alt="EYBL, European Youth Basketball League" style="height:30px" decoding="async"></a>
-    <a class="pitem" href="https://eliteurotalent.com" target="_blank" rel="noopener" aria-label="Elite Euro Talent"><img src="/images/partners/eet.png?v=3" alt="Elite Euro Talent" style="height:38px" decoding="async"></a>
-    <a class="pitem" href="https://basket.dk" target="_blank" rel="noopener" aria-label="Danmarks Basketball-Forbund"><img src="/images/partners/dbbf.png?v=3" alt="Danmarks Basketball-Forbund" style="height:42px" decoding="async"></a>
-    <a class="pitem" href="https://www.dif.dk" target="_blank" rel="noopener" aria-label="Danmarks Idrætsforbund"><img src="/images/partners/dif.svg?v=3" alt="Danmarks Idrætsforbund" style="height:44px" decoding="async"></a>
-    <a class="pitem" href="https://www.dgi.dk" target="_blank" rel="noopener" aria-label="DGI"><img src="/images/partners/dgi.svg?v=3" alt="DGI" style="height:28px" decoding="async"></a>
-    <a class="pitem" href="https://www.kk.dk" target="_blank" rel="noopener" aria-label="Københavns Kommune"><img src="/images/partners/kk.svg?v=3" alt="Københavns Kommune" style="height:36px" decoding="async"></a>
   </div>
 </section>
 
@@ -605,6 +548,73 @@ footer a:hover{color:var(--baby);}
       </div>
     </div>
 <!-- TALATA:LATEST:END -->
+  </div>
+</section>
+
+<section class="ins-band">
+  <div class="ins-wrap">
+
+    <div class="ins-card" id="insider">
+      <p class="ins-kicker">Talata Insider</p>
+      <h2>Be closer to the team</h2>
+      <p class="ins-sub">One email a week, written by Deng. What we worked on and why, what to look for in your own kid's game, and what's coming up. No fixture spam, no club admin.</p>
+      <form id="ins-form">
+        <input type="email" id="ins-email" name="email" placeholder="you@example.com" required aria-label="Your email">
+        <button type="submit" id="ins-btn">Join Insider</button>
+      </form>
+      <div class="ins-ok" id="ins-ok">You are in. The first one lands next week.</div>
+      <p class="ins-fine">Free. Unsubscribe any time, one click.</p>
+    </div>
+
+
+  </div>
+</section>
+
+<section class="kit-band">
+  <div class="wrap">
+    <div class="head"><h2>Gear that looks like <i>a team</i></h2><a href="/shop">Visit the shop &rarr;</a></div>
+    <p class="kit-sub">Bundles are the cheapest way in, and members pay less on every one. No login, pay by MobilePay.</p>
+    <div class="kgrid">
+      <a class="kfeat" href="/shop#bundles">
+        <div class="shot"><img src="images/2026-08/team-celebration-jump.jpg" alt="Talata squad celebrating on court in club gear" loading="lazy" decoding="async" width="1600" height="1200" style="object-position:center 42%;"></div>
+        <div class="body">
+          <span class="tagline">The full season</span>
+          <b>Game Pack</b><span class="what">Home and away gear with name and number, hoodie and pants. Everything a player needs for the year, in one go.</span>
+          <span class="price">799 kr <s>1.099 kr</s><em>Member price</em></span>
+        </div>
+      </a>
+      <div class="krest">
+        <a class="kcard" href="/shop#bundles">
+          <span class="tagline">Most complete</span>
+          <b>Full Talata</b><span class="what">Hoodie, pants and tee</span>
+          <span class="price">699 kr <s>879 kr</s><em>Member price</em></span>
+        </a>
+        <a class="kcard" href="/shop#bundles">
+          <span class="tagline">Game day</span>
+          <b>Game Day bundle</b><span class="what">Jersey with name and number, plus socks</span>
+          <span class="price">319 kr <s>399 kr</s><em>Member price</em></span>
+        </a>
+        <a class="kcard" href="/shop#bundles">
+          <span class="tagline">Starting out</span>
+          <b>Starter bundle</b><span class="what">Tee and socks</span>
+          <span class="price">189 kr <s>239 kr</s><em>Member price</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="teams-band">
+  <div class="wrap">
+    <div class="head"><h2>Six teams in the <i>Danish league</i></h2><a href="/academy">All programs &rarr;</a></div>
+    <div class="tgrid">
+      <a class="tcard" href="/join"><b>Talata Men</b><span>3. Division Herrer &Oslash;st</span><i>Svanem&oslash;llehallen</i></a>
+      <a class="tcard" href="/academy"><b>U19</b><span>HU19 1. division &Oslash;st</span><i>Svanem&oslash;llehallen</i></a>
+      <a class="tcard" href="/academy"><b>U15</b><span>Drenge Mester &Oslash;st, pulje 2</span><i>Svanem&oslash;llehallen</i></a>
+      <a class="tcard" href="/academy"><b>U13</b><span>Drenge Mester &Oslash;st, pulje 2</span><i>Svanem&oslash;llehallen</i></a>
+      <a class="tcard" href="/mini#junior"><b>U11</b><span>Grand Prix &Oslash;st</span><i>Strandvejsskolen</i></a>
+      <a class="tcard" href="/mini"><b>U9</b><span>Grand Prix &Oslash;st</span><i>Strandvejsskolen</i></a>
+    </div>
   </div>
 </section>
 
@@ -662,32 +672,6 @@ footer a:hover{color:var(--baby);}
   </div>
 </section>
 
-<div class="numbers">
-  <div class="wrap">
-    <div class="num"><b>82</b><span>active players</span></div>
-    <div class="num"><b>4x</b><span>player growth since 2024</span></div>
-    <a class="num" href="/pathway" style="text-decoration:none;color:inherit;display:block;"><b>2</b><span>players on to North America</span></a>
-    <div class="num"><b>4</b><span>players got Canada experience this summer</span></div>
-  </div>
-</div>
-
-<section class="teams-band">
-  <div class="wrap">
-    <div class="head"><h2>Six teams in the <i>Danish league</i></h2><a href="/academy">All programs &rarr;</a></div>
-    <div class="tgrid">
-      <a class="tcard" href="/join"><b>Talata Men</b><span>3. Division Herrer &Oslash;st</span><i>Svanem&oslash;llehallen</i></a>
-      <a class="tcard" href="/academy"><b>U19</b><span>HU19 1. division &Oslash;st</span><i>Svanem&oslash;llehallen</i></a>
-      <a class="tcard" href="/academy"><b>U15</b><span>Drenge Mester &Oslash;st, pulje 2</span><i>Svanem&oslash;llehallen</i></a>
-      <a class="tcard" href="/academy"><b>U13</b><span>Drenge Mester &Oslash;st, pulje 2</span><i>Svanem&oslash;llehallen</i></a>
-      <a class="tcard" href="/mini#junior"><b>U11</b><span>Grand Prix &Oslash;st</span><i>Strandvejsskolen</i></a>
-      <a class="tcard" href="/mini"><b>U9</b><span>Grand Prix &Oslash;st</span><i>Strandvejsskolen</i></a>
-    </div>
-  </div>
-</section>
-
-<!-- Coaches band, 20 Aug 2026. Parents ask "who actually coaches my kid" before
-     they ask anything about fees, and the answer lived only on /academy in a
-     text-only grid. Photos where we have them, initials where we do not. -->
 <section class="coach-band">
   <div class="wrap">
     <div class="head"><h2>Who is <i>on the floor</i></h2><a href="/coaches">All coaches &rarr;</a></div>
@@ -712,71 +696,22 @@ footer a:hover{color:var(--baby);}
   </div>
 </section>
 
-<section class="feat-band">
-  <div class="wrap">
-<!-- TALATA:PLAYBOOK:START — generated by tools/apply-blog-index.py, do not hand-edit -->
-    <div class="head"><h2>From <i>The Playbook</i></h2><a href="/blog">All posts &rarr;</a></div>
-    <div class="fgrid2">
-      <a class="fcard" href="/blog/defence-and-rebounding-2026-27"><b>Why we bet the season on defence and rebounding</b><span>Two things, not ten. We guard you close enough to be uncomfortable and we take every rebound. Same two things from U9 to Men.</span><i>Read &rarr;</i></a>
-      <a class="fcard" href="/blog/season-3-starts-2026-27"><b>Season 3 Starts: What Is New at Talata This Year</b><span>82 players, teams from U9 to Men, a girls-only programme, and a return to the European Youth Basketball League.</span><i>Read &rarr;</i></a>
-      <a class="fcard" href="/blog/summer-2026-three-camps"><b>Three Camps, One Summer: Canada, Nida and Copenhagen</b><span>Three camps, two continents. Lethbridge in Canada, Nida on the Baltic coast, and a full week at home in Copenhagen.</span><i>Read &rarr;</i></a>
-    </div>
-<!-- TALATA:PLAYBOOK:END -->
+<section class="partners-section" id="partners">
+  <div class="phead">
+    <h2>Our <em>partners</em></h2>
+    <a class="pall" href="/partners">All partners</a>
+  </div>
+  <div class="prow">
+    <a class="pitem" href="https://www.drdishbasketball.com" target="_blank" rel="noopener" aria-label="Dr. Dish Basketball"><img src="/images/partners/drdish.png?v=3" alt="Dr. Dish Basketball" style="height:34px" decoding="async"></a>
+    <a class="pitem" href="https://eybl.lv" target="_blank" rel="noopener" aria-label="EYBL, European Youth Basketball League"><img src="/images/partners/eybl.png?v=3" alt="EYBL, European Youth Basketball League" style="height:30px" decoding="async"></a>
+    <a class="pitem" href="https://eliteurotalent.com" target="_blank" rel="noopener" aria-label="Elite Euro Talent"><img src="/images/partners/eet.png?v=3" alt="Elite Euro Talent" style="height:38px" decoding="async"></a>
+    <a class="pitem" href="https://basket.dk" target="_blank" rel="noopener" aria-label="Danmarks Basketball-Forbund"><img src="/images/partners/dbbf.png?v=3" alt="Danmarks Basketball-Forbund" style="height:42px" decoding="async"></a>
+    <a class="pitem" href="https://www.dif.dk" target="_blank" rel="noopener" aria-label="Danmarks Idrætsforbund"><img src="/images/partners/dif.svg?v=3" alt="Danmarks Idrætsforbund" style="height:44px" decoding="async"></a>
+    <a class="pitem" href="https://www.dgi.dk" target="_blank" rel="noopener" aria-label="DGI"><img src="/images/partners/dgi.svg?v=3" alt="DGI" style="height:28px" decoding="async"></a>
+    <a class="pitem" href="https://www.kk.dk" target="_blank" rel="noopener" aria-label="Københavns Kommune"><img src="/images/partners/kk.svg?v=3" alt="Københavns Kommune" style="height:36px" decoding="async"></a>
   </div>
 </section>
 
-<section class="kit-band">
-  <div class="wrap">
-    <div class="head"><h2>Gear that looks like <i>a team</i></h2><a href="/shop">Visit the shop &rarr;</a></div>
-    <p class="kit-sub">Bundles are the cheapest way in, and members pay less on every one. No login, pay by MobilePay.</p>
-    <div class="kgrid">
-      <a class="kfeat" href="/shop#bundles">
-        <div class="shot"><img src="images/2026-08/team-celebration-jump.jpg" alt="Talata squad celebrating on court in club gear" loading="lazy" decoding="async" width="1600" height="1200" style="object-position:center 42%;"></div>
-        <div class="body">
-          <span class="tagline">The full season</span>
-          <b>Game Pack</b><span class="what">Home and away gear with name and number, hoodie and pants. Everything a player needs for the year, in one go.</span>
-          <span class="price">799 kr <s>1.099 kr</s><em>Member price</em></span>
-        </div>
-      </a>
-      <div class="krest">
-        <a class="kcard" href="/shop#bundles">
-          <span class="tagline">Most complete</span>
-          <b>Full Talata</b><span class="what">Hoodie, pants and tee</span>
-          <span class="price">699 kr <s>879 kr</s><em>Member price</em></span>
-        </a>
-        <a class="kcard" href="/shop#bundles">
-          <span class="tagline">Game day</span>
-          <b>Game Day bundle</b><span class="what">Jersey with name and number, plus socks</span>
-          <span class="price">319 kr <s>399 kr</s><em>Member price</em></span>
-        </a>
-        <a class="kcard" href="/shop#bundles">
-          <span class="tagline">Starting out</span>
-          <b>Starter bundle</b><span class="what">Tee and socks</span>
-          <span class="price">189 kr <s>239 kr</s><em>Member price</em></span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ins-band">
-  <div class="ins-wrap">
-
-    <div class="ins-card" id="insider">
-      <p class="ins-kicker">Talata Insider</p>
-      <h2>Be closer to the team</h2>
-      <p class="ins-sub">One email a week, written by Deng. What we worked on and why, what to look for in your own kid's game, and what's coming up. No fixture spam, no club admin.</p>
-      <form id="ins-form">
-        <input type="email" id="ins-email" name="email" placeholder="you@example.com" required aria-label="Your email">
-        <button type="submit" id="ins-btn">Join Insider</button>
-      </form>
-      <div class="ins-ok" id="ins-ok">You are in. The first one lands next week.</div>
-      <p class="ins-fine">Free. Unsubscribe any time, one click.</p>
-    </div>
-
-
-  </div>
-</section>
 
 <script>
 (function () {
@@ -832,35 +767,33 @@ TalataSignup.wire({
         <div class="tf-social"><a href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/talatabasketball" target="_blank" rel="noopener">Facebook</a></div>
       </div>
       <div class="tf-col">
-        <h4>Programs</h4>
+        <h4>Play</h4>
         <a href="/mini">Mini + Junior</a>
-        <a href="/saturday">Saturdays</a>
         <a href="/academy">Academy</a>
         <a href="/sparks">Sparks</a>
         <a href="/join">Talata Men</a>
-        <a href="/ish-high-school">ISH High School</a>
         <a href="/camps">Camps</a>
-        <a href="/shop">Shop</a>
+      </div>
+      <div class="tf-col">
+        <h4>Watch</h4>
+        <a href="/games">Games</a>
+        <a href="/games#season">Fixtures</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/blog">The Playbook</a>
       </div>
       <div class="tf-col">
         <h4>Club</h4>
         <a href="/coaches">Coaches</a>
-        <a href="/placement">Player Placement</a>
         <a href="/pathway">Player Pathway</a>
-        <a href="/philosophy">The Talata Way</a>
-        <a href="/reviews">Reviews</a>
-        <a href="/blog">The Playbook</a>
-        <a href="/gallery">Gallery</a>
+        <a href="/help/age-groups">Prices and times</a>
+        <a href="/help">Help &amp; guides</a>
         <a href="/partners">Partners</a>
       </div>
       <div class="tf-col">
-        <h4>For parents</h4>
-        <a href="/guide">Parents' Guide</a>
-        <a href="/help">Help &amp; guides</a>
-        <a href="/help/age-groups">Fees and age groups</a>
-        <a href="/help/first-session">Your first session</a>
-        <a href="/school-partnerships">School partnerships</a>
-        <a href="/basketball-in-copenhagen">Basketball in Copenhagen</a>
+        <h4>Shop</h4>
+        <a href="/shop">Gear</a>
+        <a href="/shop#bundles">Bundles</a>
+        <a href="/shop#jerseys">Game jerseys</a>
       </div>
       <div class="tf-col">
         <h4>Contact</h4>
@@ -877,6 +810,6 @@ TalataSignup.wire({
 </footer>
 <!-- TALATA:FOOTER:END -->
 
-<script src="/assets/talata-fixtures.js?v=20260826e" defer></script>
+<script src="/assets/talata-fixtures.js?v=20260826f" defer></script>
 </body>
 </html>

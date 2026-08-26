@@ -63,34 +63,40 @@ CVR = "CVR 43599453"
 
 # Every destination the nav does not have room for lives here. Nothing on this
 # site should be reachable only from the nav.
+# Cut to four short columns on 26 Aug 2026, following zalgiris.lt/en (Deng).
+# It was a 22-link sitemap in three columns, which is a site map rather than a
+# footer: everything present, nothing findable. A footer answers "where do I go
+# next", and the nav already carries the full structure.
+#
+# Talata's columns are NOT Zalgiris's. They have Tickets because they sell them
+# and a Men/Women/Kids shop split because they have one. Entry to a Talata game
+# is free and the shop is one page, so those become Play and Watch: the two
+# things a visitor is actually here to do.
 COLUMNS = [
-    ("Programs", [
+    ("Play", [
         ("/mini", "Mini + Junior"),
-        ("/saturday", "Saturdays"),
         ("/academy", "Academy"),
         ("/sparks", "Sparks"),
         ("/join", "Talata Men"),
-        ("/ish-high-school", "ISH High School"),
         ("/camps", "Camps"),
-        ("/shop", "Shop"),
+    ]),
+    ("Watch", [
+        ("/games", "Games"),
+        ("/games#season", "Fixtures"),
+        ("/gallery", "Gallery"),
+        ("/blog", "The Playbook"),
     ]),
     ("Club", [
         ("/coaches", "Coaches"),
-        ("/placement", "Player Placement"),
         ("/pathway", "Player Pathway"),
-        ("/philosophy", "The Talata Way"),
-        ("/reviews", "Reviews"),
-        ("/blog", "The Playbook"),
-        ("/gallery", "Gallery"),
+        ("/help/age-groups", "Prices and times"),
+        ("/help", "Help &amp; guides"),
         ("/partners", "Partners"),
     ]),
-    ("For parents", [
-        ("/guide", "Parents' Guide"),
-        ("/help", "Help &amp; guides"),
-        ("/help/age-groups", "Fees and age groups"),
-        ("/help/first-session", "Your first session"),
-        ("/school-partnerships", "School partnerships"),
-        ("/basketball-in-copenhagen", "Basketball in Copenhagen"),
+    ("Shop", [
+        ("/shop", "Gear"),
+        ("/shop#bundles", "Bundles"),
+        ("/shop#jerseys", "Game jerseys"),
     ]),
 ]
 

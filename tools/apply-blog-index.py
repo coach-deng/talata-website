@@ -239,7 +239,10 @@ def render_sitemap_blog(posts):
 BLOCKS = [
     ("blog.html", "POSTS", render_blog_list),
     ("index.html", "LATEST", render_home_latest),
-    ("index.html", "PLAYBOOK", render_home_playbook),
+    # The homepage's second "From The Playbook" row came out on 26 Aug when the
+    # page was reordered to follow zalgiris.lt. With 14 posts, two rows showed
+    # the same posts twice. render_home_playbook is kept below in case a
+    # dedicated featured row comes back once there is enough to fill it.
     ("sitemap.xml", "BLOG", render_sitemap_blog),
 ]
 
