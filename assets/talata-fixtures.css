@@ -25,8 +25,18 @@
   background:#fff;
 }
 .tf-crest img{width:100%;height:100%;object-fit:contain;padding:4px;display:block;}
-.tf-crest.is-talata{background:transparent;width:auto;min-width:86px;border-radius:0;overflow:visible;}
-.tf-crest.is-talata img{width:auto;max-width:none;height:auto;max-height:30px;padding:0;object-fit:contain;}
+/* Talata's mark is a WORDMARK, not a square crest, so its slot is wide and
+   flexible. It has to be free to shrink: pinning it to a minimum width made it
+   overflow the panel in the narrower detail dialog and collide with the
+   tip-off time. Scales down to fit, never clips, never overflows. */
+.tf-crest.is-talata{
+  background:transparent;border-radius:0;overflow:visible;
+  width:auto;max-width:100%;min-width:0;flex:0 1 auto;
+}
+.tf-crest.is-talata img{
+  width:auto;max-width:100%;height:auto;max-height:30px;
+  padding:0;object-fit:contain;
+}
 .tf-crest.is-mono{
   background:var(--f-card2);color:var(--f-accent);font-family:var(--f-disp);
   font-weight:800;font-size:.8rem;letter-spacing:.03em;
@@ -44,10 +54,10 @@
   padding:34px 22px;
   background:radial-gradient(120% 140% at 50% 0%,#1B2740 0%,#0B0F17 70%);
 }
-.tf-feat-side{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;min-width:0;flex:1;}
+.tf-feat-side{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;min-width:0;flex:1 1 0;overflow:hidden;padding:0 6px;}
 .tf-feat-side .tf-crest{width:64px;height:64px;border-radius:12px;}
-.tf-feat-side .tf-crest.is-talata{width:auto;height:auto;min-width:120px;}
-.tf-feat-side .tf-crest.is-talata img{max-height:46px;}
+.tf-feat-side .tf-crest.is-talata{width:100%;height:auto;}
+.tf-feat-side .tf-crest.is-talata img{max-height:42px;max-width:100%;}
 .tf-feat-side span{
   font-size:.86rem;font-weight:700;color:var(--f-text);
   max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
@@ -143,7 +153,7 @@
 .tf-r-team.is-l{text-align:right;}
 .tf-r-team.is-r{text-align:left;}
 .tf-r-match .tf-crest{width:36px;height:36px;border-radius:8px;}
-.tf-r-match .tf-crest.is-talata{width:auto;height:auto;min-width:84px;}
+.tf-r-match .tf-crest.is-talata{width:auto;height:auto;min-width:76px;max-width:110px;}
 .tf-r-match .tf-crest.is-talata img{max-height:26px;}
 .tf-r-score{
   font-family:var(--f-disp);font-weight:900;font-size:1.05rem;color:var(--f-muted);
@@ -249,7 +259,7 @@
 }
 .tkc-crests{display:flex;align-items:center;gap:7px;}
 .tkc-crests .tf-crest{width:26px;height:26px;border-radius:6px;}
-.tkc-crests .tf-crest.is-talata{width:auto;height:auto;min-width:52px;}
+.tkc-crests .tf-crest.is-talata{width:auto;height:auto;min-width:48px;max-width:70px;}
 .tkc-crests .tf-crest.is-talata img{max-height:16px;}
 .tkc-sep{font-size:.62rem;color:var(--f-muted);text-transform:uppercase;letter-spacing:.08em;}
 .tkc-opp{
