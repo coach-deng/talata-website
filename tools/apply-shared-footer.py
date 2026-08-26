@@ -170,7 +170,7 @@ def build_footer(rel: str, year: int = 2026) -> str:
     </div>
     <div class="tf-base">
       <span>&copy; {year} Talata Basketball &middot; Copenhagen &Oslash;</span>
-      <span>First session is always free. No kit needed, just indoor shoes.</span>
+      <span>First session is always free. You need indoor shoes, nothing else.</span>
     </div>
   </div>
 </footer>
