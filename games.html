@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R64Y9CQ2VZ');
+  </script>
+  <title>Talata Games 2026/27 | Fixtures, Home Games, Free Entry | Copenhagen</title>
+  <link rel="canonical" href="https://talatabasketball.dk/games" />
+  <meta name="description" content="Every Talata Basketball game this season. 40 league and cup fixtures plus friendlies, updated from the federation and the club calendar. Home games are free to attend, ten of them on Friday nights at Nørre Fælled Skole." />
+  <meta name="keywords" content="basketball kampe københavn, talata kampprogram, basketball østerbro kamp, se basketball gratis københavn, nørre fælled basketball" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://talatabasketball.dk/games" />
+  <meta property="og:title" content="Talata Games 2026/27. Free to watch, every home game." />
+  <meta property="og:description" content="40 league and cup fixtures plus friendlies. Ten Friday nights at Nørre Fælled Skole, 19:30, free entry." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/og/talata-huddle-og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="/assets/talata-fixtures.css">
+  <style>
+    @font-face { font-family: 'Inter'; font-weight: 400 800; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
+    @font-face { font-family: 'Montserrat'; font-weight: 400 900; font-display: swap; src: url('/fonts/montserrat-latin.woff2') format('woff2'); }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --black:#0A0A0A; --navy:#0B1F3A; --blue:#1E40AF; --baby:#7DD3FC; --sky:#BAE6FD; --mist:#F8FAFC;
+            --ink:#101828; --ink2:#475467; --line:#E4E9F0;
+            --disp:'Montserrat',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; }
+    body { font-family: var(--body); color: var(--ink); background: var(--mist); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    .g-hero { background: linear-gradient(135deg, #0B1F3A 0%, #14306b 55%, #1E40AF 100%); color: #fff; padding: 58px 0 52px; }
+    .g-hero .eyebrow { font-family: var(--disp); font-size: .68rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--baby); }
+    .g-hero h1 { font-family: var(--disp); font-weight: 900; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.05; margin: 12px 0 16px; }
+    .g-hero p { max-width: 640px; color: rgba(255,255,255,.86); font-size: 1.03rem; }
+    .g-stats { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 28px; }
+    .g-stats div b { display: block; font-family: var(--disp); font-weight: 900; font-size: 1.7rem; color: var(--baby); line-height: 1; }
+    .g-stats div span { font-size: .82rem; color: rgba(255,255,255,.72); }
+
+    .sec { padding: 46px 0; }
+    .sec h2 { font-family: var(--disp); font-weight: 900; font-size: 1.55rem; margin: 0 0 6px; color: var(--navy); }
+    .sec .lede { color: var(--ink2); max-width: 680px; margin: 0 0 26px; }
+
+    .g-split { display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; align-items: start; }
+    @media (max-width: 900px) { .g-split { grid-template-columns: 1fr; } }
+
+    .g-friday { background: var(--black); color: #fff; border-radius: 16px; padding: 30px; }
+    .g-friday .kick { font-family: var(--disp); font-size: .66rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--baby); }
+    .g-friday h3 { font-family: var(--disp); font-weight: 900; font-size: 1.5rem; margin: 8px 0 12px; }
+    .g-friday p { color: rgba(255,255,255,.78); font-size: .94rem; margin-bottom: 14px; }
+    .g-friday ul { list-style: none; display: grid; gap: 8px; margin: 16px 0 0; }
+    .g-friday li { display: flex; gap: 10px; font-size: .9rem; color: rgba(255,255,255,.88); }
+    .g-friday li::before { content: "→"; color: var(--baby); font-weight: 700; }
+
+    .g-win { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+    .g-win h3 { font-family: var(--disp); font-weight: 900; font-size: 1.25rem; color: var(--navy); margin-bottom: 8px; }
+    .g-win p { color: var(--ink2); font-size: .93rem; margin-bottom: 14px; }
+    .g-win form { display: flex; gap: 8px; flex-wrap: wrap; }
+    .g-win input { flex: 1 1 200px; font-family: var(--body); font-size: .95rem; padding: 11px 14px; border: 1px solid var(--line); border-radius: 9px; }
+    .g-win input:focus { outline: 2px solid var(--baby); border-color: var(--blue); }
+    .g-win button { font-family: var(--disp); font-weight: 800; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; background: var(--blue); color: #fff; border: 0; padding: 12px 22px; border-radius: 9px; cursor: pointer; }
+    .g-win button:hover { background: var(--navy); }
+    .g-win .fine { font-size: .78rem; color: var(--ink2); margin: 12px 0 0; }
+    .g-win .ok { display: none; color: #15803D; font-weight: 700; margin-top: 12px; }
+    .g-prizes { list-style: none; display: grid; gap: 7px; margin: 0 0 16px; }
+    .g-prizes li { font-size: .9rem; display: flex; gap: 9px; color: var(--ink); }
+    .g-prizes li::before { content: "★"; color: var(--blue); }
+
+    .g-note { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--baby); border-radius: 10px; padding: 16px 20px; font-size: .87rem; color: var(--ink2); margin-top: 26px; }
+    .g-note b { color: var(--navy); }
+  </style>
+<!-- TALATA:HEADER:START — generated by tools/apply-shared-header.py, do not hand-edit -->
+<a class="tn-skip" href="#tn-content">Skip to content</a>
+
+<div class="tn-util">
+  <div class="tn-util-in">
+    <p><b>First session free</b><span class="tn-util-x"> &middot; Home court: Svanem&oslash;llehallen, &Oslash;sterbro</span></p>
+    <p class="tn-util-links"><a href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">Instagram</a><span>&middot;</span><a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a></p>
+  </div>
+</div>
+
+<div class="tn-bar" id="tn-bar">
+  <div class="tn-bar-in">
+    <a class="tn-logo" href="/">Talata<span>Basketball</span></a>
+    <nav class="tn-menu" aria-label="Main">
+      <ul>
+      <li><a class="tn-top" href="/#programs">Programs<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="tn-drop">
+        <a href="/mini">Mini + Junior<small>ages 5 to 12</small></a>
+        <a href="/saturday">Saturdays<small>ages 5 to 12, from autumn</small></a>
+        <a href="/academy">Academy<small>ages 13 to 19</small></a>
+        <a href="/sparks">Sparks<small>girls 6 to 14</small></a>
+        <a href="/join">Adults<small>Men 3. Division + fitness</small></a>
+        <a href="/school-partnerships">Schools<small>ISH and school programmes</small></a>
+        </div>
+      </li>
+      <li><a class="tn-top" href="/camps">Camps</a></li>
+      <li><a class="tn-top" href="/games">Games</a></li>
+      <li><a class="tn-top" href="/help/age-groups">Prices &amp; Times<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="tn-drop">
+        <a href="/help/age-groups">What it costs<small>fees and age groups</small></a>
+        <a href="/help/first-session">Your first session<small>what to bring</small></a>
+        <a href="/help/holdsport">Holdsport<small>signing up, in English</small></a>
+        </div>
+      </li>
+      <li><a class="tn-top" href="/coaches">Club<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="tn-drop">
+        <a href="/coaches">Coaches<small>who is on the floor</small></a>
+        <a href="/pathway">Player Pathway<small>where players go next</small></a>
+        <a href="/reviews">Reviews<small>what parents say</small></a>
+        </div>
+      </li>
+        <li><a class="tn-top" href="/shop">Shop</a></li>
+      </ul>
+    </nav>
+    <a class="tn-cta" href="/#trial">Book free trial <span aria-hidden="true">&rarr;</span></a>
+    <button class="tn-burger" id="tn-burger" type="button" aria-expanded="false" aria-controls="tn-drawer" aria-label="Open menu"><i></i></button>
+  </div>
+</div>
+
+<div class="tn-scrim" id="tn-scrim" hidden></div>
+
+<aside class="tn-drawer" id="tn-drawer" aria-label="Menu" hidden>
+  <div class="tn-drawer-top">
+    <a class="tn-logo" href="/">Talata<span>Basketball</span></a>
+    <button class="tn-drawer-close" id="tn-drawer-close" type="button" aria-label="Close menu">&#10005;</button>
+  </div>
+  <div class="tn-drawer-body">
+    <a class="tn-drawer-cta" href="/#trial">Book free trial <span aria-hidden="true">&rarr;</span></a>
+        <h3>Programs</h3>
+        <ul class="tn-drawer-list">
+          <li><a href="/mini">Mini + Junior<small>ages 5 to 12</small></a></li>
+          <li><a href="/saturday">Saturdays<small>ages 5 to 12, from autumn</small></a></li>
+          <li><a href="/academy">Academy<small>ages 13 to 19</small></a></li>
+          <li><a href="/sparks">Sparks<small>girls 6 to 14</small></a></li>
+          <li><a href="/join">Adults<small>Men 3. Division + fitness</small></a></li>
+          <li><a href="/school-partnerships">Schools<small>ISH and school programmes</small></a></li>
+        </ul>
+        <h3><a href="/camps">Camps</a></h3>
+        <h3><a href="/games">Games</a></h3>
+        <h3>Prices &amp; Times</h3>
+        <ul class="tn-drawer-list">
+          <li><a href="/help/age-groups">What it costs<small>fees and age groups</small></a></li>
+          <li><a href="/help/first-session">Your first session<small>what to bring</small></a></li>
+          <li><a href="/help/holdsport">Holdsport<small>signing up, in English</small></a></li>
+        </ul>
+        <h3>Club</h3>
+        <ul class="tn-drawer-list">
+          <li><a href="/coaches">Coaches<small>who is on the floor</small></a></li>
+          <li><a href="/pathway">Player Pathway<small>where players go next</small></a></li>
+          <li><a href="/reviews">Reviews<small>what parents say</small></a></li>
+        </ul>
+    <h3>More</h3>
+    <ul class="tn-drawer-list">
+      <li><a href="/shop">Shop</a></li>
+    </ul>
+  </div>
+  <div class="tn-drawer-foot">
+    <a href="https://wa.me/4552398508" target="_blank" rel="noopener">WhatsApp Coach Deng</a>
+    <a href="mailto:coach@talatabasketball.dk">Email</a>
+    <a href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</aside>
+
+<span id="tn-content" tabindex="-1"></span>
+<!-- TALATA:HEADER:END -->
+<link rel="stylesheet" href="/assets/talata-nav.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="stylesheet" href="/assets/talata-footer.css">
+</head>
+<body>
+
+<div data-talata-ticker></div>
+
+<header class="g-hero">
+  <div class="wrap">
+    <span class="eyebrow">Season 2026/27</span>
+    <h1>Come and watch.<br>Every home game is free.</h1>
+    <p>Talata plays in the Danish federation leagues from U13 up to the men's 3. Division, plus friendlies and tournaments at home and abroad. You do not need a ticket, a membership or a reason. Turn up.</p>
+    <div class="g-stats">
+      <div><b data-tf-count>40</b><span>games this season</span></div>
+      <div><b>20</b><span>at home</span></div>
+      <div><b>10</b><span>Friday nights at Nørre Fælled</span></div>
+      <div><b>0 kr</b><span>to get in</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="g-split">
+
+      <div class="g-friday">
+        <span class="kick">The home night</span>
+        <h3>Friday Night Talata</h3>
+        <p>Ten Fridays this season, one hall, one tip-off time. Nørre Fælled Skole, 19:30, from September to March. Men's 3. Division and U19 1. Division.</p>
+        <p>Same night every time, so you do not have to check a schedule to know where the club is.</p>
+        <ul>
+          <li>Doors from 19:00, tip-off 19:30</li>
+          <li>Nørre Fælled Skole, 2200 København N</li>
+          <li>Free entry, no ticket, bring whoever you like</li>
+          <li>First one: Fri 18 September, U19 vs Værløse</li>
+        </ul>
+      </div>
+
+      <div class="g-win">
+        <h3>Turn up, get in the draw</h3>
+        <p>Every home game you come to puts you in that month's draw. We pull a name on the last Friday of the month and hand it over at the next game.</p>
+        <ul class="g-prizes">
+          <li>Talata game jerseys, shooting shirts and training gear</li>
+          <li>A free place at a Talata camp</li>
+          <li>A month of sessions for a new player</li>
+        </ul>
+        <form id="fanForm" novalidate>
+          <input type="email" id="fanEmail" name="email" placeholder="you@email.dk" required aria-label="Your email">
+          <button type="submit">Enter the draw</button>
+        </form>
+        <p class="ok" id="fanOk">You are in. See you at the next home game.</p>
+        <p class="fine">One entry per person per month. Over 18s only, or a parent enters on a family's behalf. We use your email for game reminders and the draw, nothing else, and every mail has an unsubscribe link.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0;" data-tf-host>
+  <div class="wrap">
+    <h2>The whole season</h2>
+    <p class="lede">League and cup fixtures come from the Danish federation. Friendlies and tournaments come from the club calendar and update on their own. Where a game has no time yet, it says so rather than guessing.</p>
+    <div class="tf-bar" data-tf-filters></div>
+    <div class="tf-scope" data-talata-fixtures data-scope="season"></div>
+
+    <div class="g-note">
+      <b>Why some games say Time TBC.</b> The federation sets the date first and the time later, once both clubs and the hall agree. A date with no time is a real date. We publish it as soon as it is set rather than putting a guess in front of you and moving it later.
+    </div>
+  </div>
+</section>
+
+<!-- TALATA:FOOTER:START — generated by tools/apply-shared-footer.py, do not hand-edit -->
+<footer class="tf">
+  <div class="tf-wrap">
+    <div class="tf-grid">
+      <div class="tf-id">
+        <h4>Talata Basketball</h4>
+        <p>Copenhagen's basketball club. Camps since 2021, competitive teams since 2024.</p>
+        <p class="tf-meta">Svanem&oslash;llehallen, &Oslash;sterbro &middot; Strandvejsskolen, Sionsgade 1, 2100 K&oslash;benhavn &Oslash;<br>CVR 43599453</p>
+        <div class="tf-social"><a href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/talatabasketball" target="_blank" rel="noopener">Facebook</a></div>
+      </div>
+      <div class="tf-col">
+        <h4>Programs</h4>
+        <a href="/mini">Mini + Junior</a>
+        <a href="/saturday">Saturdays</a>
+        <a href="/academy">Academy</a>
+        <a href="/sparks">Sparks</a>
+        <a href="/join">Talata Men</a>
+        <a href="/ish-high-school">ISH High School</a>
+        <a href="/camps">Camps</a>
+        <a href="/shop">Shop</a>
+      </div>
+      <div class="tf-col">
+        <h4>Club</h4>
+        <a href="/coaches">Coaches</a>
+        <a href="/placement">Player Placement</a>
+        <a href="/pathway">Player Pathway</a>
+        <a href="/philosophy">The Talata Way</a>
+        <a href="/reviews">Reviews</a>
+        <a href="/blog">The Playbook</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/partners">Partners</a>
+      </div>
+      <div class="tf-col">
+        <h4>For parents</h4>
+        <a href="/guide">Parents' Guide</a>
+        <a href="/help">Help &amp; guides</a>
+        <a href="/help/age-groups">Fees and age groups</a>
+        <a href="/help/first-session">Your first session</a>
+        <a href="/school-partnerships">School partnerships</a>
+        <a href="/basketball-in-copenhagen">Basketball in Copenhagen</a>
+      </div>
+      <div class="tf-col">
+        <h4>Contact</h4>
+        <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a>
+        <a href="https://wa.me/4552398508">WhatsApp Coach Deng</a>
+        <a href="/join"><b>Book a free trial &rarr;</b></a>
+      </div>
+    </div>
+    <div class="tf-base">
+      <span>&copy; 2026 Talata Basketball &middot; Copenhagen &Oslash;</span>
+      <span>First session is always free. No kit needed, just indoor shoes.</span>
+    </div>
+  </div>
+</footer>
+<!-- TALATA:FOOTER:END -->
+
+<script src="/assets/talata-fixtures.js" defer></script>
+<script>
+/* Reuses the Worker's existing /subscribe route. `source` records which game
+   the entry came from, so a draw can be run per month from the same table
+   without inventing a second backend for it. */
+(function () {
+  var f = document.getElementById('fanForm');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = document.getElementById('fanEmail');
+    var email = (input.value || '').trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { input.focus(); return; }
+    var btn = f.querySelector('button');
+    btn.disabled = true; btn.textContent = 'Entering...';
+    fetch('https://talata-api.coach-258.workers.dev/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, source: 'friday-night-draw' })
+    }).then(function () {
+      f.style.display = 'none';
+      document.getElementById('fanOk').style.display = 'block';
+      if (window.gtag) gtag('event', 'fan_draw_entry');
+    }).catch(function () {
+      btn.disabled = false; btn.textContent = 'Try again';
+    });
+  });
+})();
+</script>
+<script src="/assets/talata-nav.js" defer></script>
+</body>
+</html>

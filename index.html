@@ -283,8 +283,19 @@ footer h4{font-family:var(--disp);color:#fff;font-size:0.85rem;letter-spacing:0.
 footer a{display:block;font-size:0.88rem;padding:4px 0;color:rgba(255,255,255,0.6);}
 footer a:hover{color:var(--baby);}
 .fbase{border-top:1px solid rgba(255,255,255,0.12);padding-top:22px;font-size:0.78rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+
+/* Homepage games block, 26 Aug 2026. */
+.games-home{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:52px 0;}
+.gh-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;align-items:start;}
+.gh-kick{font-family:var(--disp);font-size:.68rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);}
+.games-home h2{font-family:var(--disp);font-weight:900;font-size:1.9rem;color:var(--navy);margin:10px 0 10px;line-height:1.1;}
+.gh-lead>p{color:var(--ink2);margin-bottom:20px;}
+.gh-all{display:inline-block;margin-top:18px;font-family:var(--disp);font-weight:800;font-size:.82rem;letter-spacing:.04em;color:var(--blue);}
+.gh-all:hover{color:var(--navy);}
+@media(max-width:900px){.gh-grid{grid-template-columns:1fr;gap:26px;}}
 </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
+<link rel="stylesheet" href="/assets/talata-fixtures.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -319,6 +330,7 @@ footer a:hover{color:var(--baby);}
         </div>
       </li>
       <li><a class="tn-top" href="/camps">Camps</a></li>
+      <li><a class="tn-top" href="/games">Games</a></li>
       <li><a class="tn-top" href="/help/age-groups">Prices &amp; Times<svg class="tn-car" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="tn-drop">
         <a href="/help/age-groups">What it costs<small>fees and age groups</small></a>
@@ -360,6 +372,7 @@ footer a:hover{color:var(--baby);}
           <li><a href="/school-partnerships">Schools<small>ISH and school programmes</small></a></li>
         </ul>
         <h3><a href="/camps">Camps</a></h3>
+        <h3><a href="/games">Games</a></h3>
         <h3>Prices &amp; Times</h3>
         <ul class="tn-drawer-list">
           <li><a href="/help/age-groups">What it costs<small>fees and age groups</small></a></li>
@@ -386,6 +399,12 @@ footer a:hover{color:var(--baby);}
 
 <span id="tn-content" tabindex="-1"></span>
 <!-- TALATA:HEADER:END -->
+
+<!-- Live fixture ticker. Fed by assets/talata-fixtures.js: league games from
+     /data/fixtures.json (the DBBF record), friendlies live from Holdsport via
+     talata-api /fixtures. Renders nothing at all if both are empty, so a bad
+     fetch leaves a clean page rather than an empty black bar. -->
+<div data-talata-ticker></div>
 
 
 
@@ -446,6 +465,26 @@ footer a:hover{color:var(--baby);}
     </form>
   </div>
 </header>
+
+<!-- What is on, by week. Added 26 Aug 2026: the club had 40 fixtures this
+     season and the website mentioned none of them. -->
+<section class="games-home" id="games">
+  <div class="wrap">
+    <div class="gh-grid">
+      <div class="gh-lead">
+        <span class="gh-kick">Season 2026/27</span>
+        <h2>Come and watch</h2>
+        <p>Every home game is free. No ticket, no membership, turn up. Ten of them are Friday nights at N&oslash;rre F&aelig;lled Skole, 19:30, same hall every time.</p>
+        <div class="tf-next" data-talata-next></div>
+        <a class="gh-all" href="/games">All <span data-tf-count>40</span> games this season &rarr;</a>
+      </div>
+      <div class="gh-list">
+        <div class="tf-scope" data-talata-fixtures data-limit="5"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- Partners split into honest groups, 19 Aug 2026. One marquee headed
      "Partners & sponsors" put DBBF, DIF, DGI and Københavns Kommune under a
@@ -780,5 +819,6 @@ TalataSignup.wire({
 </footer>
 <!-- TALATA:FOOTER:END -->
 
+<script src="/assets/talata-fixtures.js" defer></script>
 </body>
 </html>

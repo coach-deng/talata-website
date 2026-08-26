@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Talata fixtures — ticker, week cards, next-game block.
+   Every class is tf- or tk- prefixed so it never collides with a page's CSS,
+   same rule as the shared header. Paired with assets/talata-fixtures.js.
+   Brand: black #0A0A0A, navy #0B1F3A, blue #1E40AF, baby #7DD3FC, sky #BAE6FD,
+   mist #F8FAFC. No orange, no cream.
+   ========================================================================== */
+
+.tf-scope,.tk,.tf-week,.tf-next,.tf-bar{
+  --tf-black:#0A0A0A; --tf-navy:#0B1F3A; --tf-blue:#1E40AF;
+  --tf-baby:#7DD3FC; --tf-sky:#BAE6FD; --tf-mist:#F8FAFC;
+  --tf-ink:#101828; --tf-ink2:#475467; --tf-line:#E4E9F0;
+  --tf-disp:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --tf-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+
+/* ---------- the ticker ---------- */
+
+.tk{
+  display:flex;align-items:stretch;background:var(--tf-black);color:#fff;
+  font-family:var(--tf-body);overflow:hidden;position:relative;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.tk-label{
+  flex:0 0 auto;display:flex;align-items:center;gap:8px;
+  background:var(--tf-blue);color:#fff;font-family:var(--tf-disp);font-weight:800;
+  font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:0 16px;z-index:2;white-space:nowrap;
+}
+.tk-label::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--tf-baby);
+  box-shadow:0 0 0 0 rgba(125,211,252,.7);animation:tk-pulse 2.4s infinite;
+}
+@keyframes tk-pulse{
+  70%{box-shadow:0 0 0 9px rgba(125,211,252,0);}
+  100%{box-shadow:0 0 0 0 rgba(125,211,252,0);}
+}
+
+.tk-viewport{flex:1 1 auto;overflow:hidden;position:relative;}
+/* Fade the edges so items enter and leave instead of being chopped. */
+.tk-viewport::before,.tk-viewport::after{
+  content:"";position:absolute;top:0;bottom:0;width:44px;z-index:2;pointer-events:none;
+}
+.tk-viewport::before{left:0;background:linear-gradient(90deg,var(--tf-black),transparent);}
+.tk-viewport::after{right:0;background:linear-gradient(270deg,var(--tf-black),transparent);}
+
+.tk-track{display:flex;width:max-content;animation:tk-roll var(--tk-dur,40s) linear infinite;}
+.tk-set{display:flex;align-items:center;}
+@keyframes tk-roll{from{transform:translate3d(0,0,0);} to{transform:translate3d(-50%,0,0);}}
+
+.tk:hover .tk-track,.tk:focus-within .tk-track{animation-play-state:paused;}
+
+.tk-item{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 4px;
+  font-size:.82rem;white-space:nowrap;color:rgba(255,255,255,.9);
+}
+.tk-item:hover{color:#fff;}
+.tk-day{color:var(--tf-baby);font-weight:700;}
+.tk-team{
+  font-family:var(--tf-disp);font-weight:800;font-size:.7rem;letter-spacing:.06em;
+  background:rgba(255,255,255,.1);padding:2px 7px;border-radius:4px;
+}
+.tk-item.is-home .tk-team{background:var(--tf-blue);}
+.tk-vs{opacity:.5;font-size:.74rem;}
+.tk-opp{font-weight:600;}
+.tk-time{opacity:.62;font-variant-numeric:tabular-nums;}
+.tk-flag{
+  font-family:var(--tf-disp);font-size:.58rem;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--tf-black);background:var(--tf-baby);
+  padding:2px 7px;border-radius:999px;
+}
+.tk-dot{opacity:.25;padding:0 10px;}
+
+/* A moving strip of text is a real accessibility problem for some readers.
+   Stop it dead and let them scroll it by hand instead. */
+@media (prefers-reduced-motion:reduce){
+  .tk-track{animation:none;}
+  .tk-viewport{overflow-x:auto;}
+  .tk-set:nth-child(2){display:none;}
+}
+@media (max-width:640px){
+  .tk-label{padding:0 11px;font-size:.6rem;}
+  .tk-item{font-size:.78rem;gap:7px;}
+}
+
+/* ---------- week groups ---------- */
+
+/* .tf-week is a <section>, and host pages style bare `section` — index.html
+   sets `section{padding:72px 0}`, which inflated every week group by 144px.
+   Reset explicitly rather than relying on the page not to have such a rule. */
+.tf-week{margin:0 0 30px;padding:0;}
+.tf-wk{
+  font-family:var(--tf-disp);font-weight:800;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tf-ink2);
+  display:flex;align-items:center;gap:12px;margin:0 0 14px;
+}
+.tf-wk::after{content:"";flex:1;height:1px;background:var(--tf-line);}
+.tf-wk span{
+  order:3;font-size:.68rem;letter-spacing:.06em;color:var(--tf-ink2);
+  background:var(--tf-mist);border:1px solid var(--tf-line);
+  padding:2px 9px;border-radius:999px;
+}
+.tf-week.is-now .tf-wk{color:var(--tf-blue);}
+.tf-week.is-now .tf-wk span{background:var(--tf-sky);border-color:var(--tf-baby);color:var(--tf-navy);}
+
+.tf-cards{display:grid;gap:12px;}
+
+.tf-card{
+  display:grid;grid-template-columns:104px 1fr auto;align-items:center;gap:18px;
+  background:#fff;border:1px solid var(--tf-line);border-left:4px solid var(--tf-line);
+  border-radius:12px;padding:15px 18px;font-family:var(--tf-body);
+}
+.tf-card.is-home{border-left-color:var(--tf-blue);}
+.tf-card.is-tbc{background:var(--tf-mist);}
+
+.tf-when{text-align:left;}
+.tf-when b{
+  display:block;font-family:var(--tf-disp);font-weight:800;font-size:.95rem;
+  color:var(--tf-navy);letter-spacing:.01em;
+}
+.tf-when span{display:block;font-size:.82rem;color:var(--tf-ink2);font-variant-numeric:tabular-nums;}
+.tf-card.is-tbc .tf-when span{color:#B54708;font-weight:600;}
+
+.tf-line{display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap;}
+.tf-team{
+  font-family:var(--tf-disp);font-weight:800;font-size:.64rem;letter-spacing:.1em;
+  color:#fff;background:var(--tf-navy);padding:2px 8px;border-radius:4px;
+}
+.tf-card.is-home .tf-team{background:var(--tf-blue);}
+.tf-ha{
+  font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--tf-ink2);
+}
+.tf-card.is-home .tf-ha{color:var(--tf-blue);}
+.tf-fri{
+  font-family:var(--tf-disp);font-size:.58rem;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--tf-navy);background:var(--tf-sky);
+  padding:2px 8px;border-radius:999px;
+}
+.tf-who h4{
+  font-family:var(--tf-disp);font-weight:800;font-size:1.02rem;color:var(--tf-ink);
+  margin:0 0 2px;line-height:1.25;
+}
+.tf-meta{font-size:.8rem;color:var(--tf-ink2);margin:0;}
+.tf-cta{
+  font-family:var(--tf-disp);font-size:.62rem;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--tf-blue);white-space:nowrap;
+}
+
+@media (max-width:700px){
+  .tf-card{grid-template-columns:1fr;gap:8px;padding:14px;}
+  .tf-when{display:flex;align-items:baseline;gap:10px;}
+  .tf-cta{text-align:left;}
+}
+
+.tf-empty,.tf-more{font-family:var(--tf-body);color:var(--tf-ink2);font-size:.92rem;}
+.tf-more{margin-top:6px;}
+.tf-more a,.tf-empty a{color:var(--tf-blue);font-weight:700;}
+
+/* ---------- filter chips ---------- */
+
+.tf-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;}
+.tf-chip{
+  font-family:var(--tf-body);font-size:.82rem;font-weight:600;cursor:pointer;
+  background:#fff;color:var(--tf-ink2);border:1px solid var(--tf-line);
+  padding:7px 15px;border-radius:999px;transition:all .15s ease;
+}
+.tf-chip:hover{border-color:var(--tf-baby);color:var(--tf-navy);}
+.tf-chip.is-on{background:var(--tf-navy);border-color:var(--tf-navy);color:#fff;}
+
+/* ---------- next game block ---------- */
+
+.tf-next{
+  background:var(--tf-navy);color:#fff;border-radius:14px;padding:24px 26px;
+  font-family:var(--tf-body);
+}
+.tf-nx-k{
+  font-family:var(--tf-disp);font-size:.64rem;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tf-baby);margin:0 0 6px;
+}
+.tf-next h3{font-family:var(--tf-disp);font-weight:900;font-size:1.35rem;margin:0 0 8px;line-height:1.2;}
+.tf-nx-w{font-weight:700;margin:0 0 2px;}
+.tf-nx-v{color:rgba(255,255,255,.72);font-size:.9rem;margin:0;}
+.tf-nx-free{
+  margin:12px 0 0;font-size:.8rem;font-weight:700;color:var(--tf-navy);
+  background:var(--tf-baby);display:inline-block;padding:5px 12px;border-radius:999px;
+}
