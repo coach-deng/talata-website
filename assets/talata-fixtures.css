@@ -376,3 +376,51 @@
   opacity:.55;transition:opacity .15s ease,color .15s ease;
 }
 .tf-r:hover .tf-r-more{opacity:1;color:var(--f-accent);}
+
+/* ==========================================================================
+   COMPETITION COLOUR (Deng, 27 Aug 2026)
+   "Regular season can just be the black. Cup a gold or a Denmark. The other
+    ones, different places, whatever their colours."
+
+   League is the baseline and carries no bar, so the colour only ever appears
+   when a game is NOT an ordinary league fixture. A trip carries the colour of
+   where it goes, which is why Malmö is Swedish gold and Spain is its own.
+   The bar sits on the row's left edge and the competition label matches it, so
+   the same key reads at a glance and up close.
+
+   Kinds come from compKind() in talata-fixtures.js. To add a destination, add
+   one test there and one rule here.
+   ========================================================================== */
+.tf-r{ border-left-width:3px; border-left-style:solid; border-left-color:var(--f-line); }
+
+.tf-r.tf-k-cup{ border-left-color:#E5484D; }   /* Danish Cup, Divisionspokal */
+.tf-r.tf-k-inv{ border-left-color:#30A46C; }   /* BMS Herlev and other domestic stævner */
+.tf-r.tf-k-se { border-left-color:#FFCD00; }   /* Sweden: Malbas Madness, Malmö */
+.tf-r.tf-k-es { border-left-color:#8E4EC6; }   /* Spain: Girona, EYBL Alicante */
+.tf-r.tf-k-fr { border-left-color:#8595AD; }   /* friendly, deliberately quiet */
+
+.tf-r.tf-k-cup .tf-r-comp span{ color:#F2777A; }
+.tf-r.tf-k-inv .tf-r-comp span{ color:#4CC38A; }
+.tf-r.tf-k-se  .tf-r-comp span{ color:#F5D547; }
+.tf-r.tf-k-es  .tf-r-comp span{ color:#BF7AF0; }
+.tf-r.tf-k-fr  .tf-r-comp span{ color:#9AA8BF; }
+
+/* The feature panel at the top of /games carries the same key, as a top edge
+   rather than a left one, because it is a wide card and not a row. */
+.tf-feat{ border-top:3px solid transparent; }
+.tf-feat.tf-k-cup{ border-top-color:#E5484D; }
+.tf-feat.tf-k-inv{ border-top-color:#30A46C; }
+.tf-feat.tf-k-se { border-top-color:#FFCD00; }
+.tf-feat.tf-k-es { border-top-color:#8E4EC6; }
+.tf-feat.tf-k-fr { border-top-color:#8595AD; }
+
+/* Legend under the season tabs. Hidden on phones, where the bars still work
+   but a five-item key costs more room than it earns. */
+.tf-key{ display:flex; flex-wrap:wrap; gap:14px; margin:0 0 14px; font-family:var(--f-body); }
+.tf-key span{ display:inline-flex; align-items:center; gap:7px;
+  font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--f-muted); }
+.tf-key i{ width:12px; height:3px; border-radius:2px; background:currentColor; font-style:normal; }
+.tf-key .k-cup{ color:#F2777A; } .tf-key .k-inv{ color:#4CC38A; }
+.tf-key .k-se { color:#F5D547; } .tf-key .k-es { color:#BF7AF0; }
+.tf-key .k-lg { color:var(--f-muted); }
+@media (max-width:640px){ .tf-key{ display:none; } }

@@ -195,6 +195,21 @@
     return games.filter(function (g) { return g.played; }).reverse();
   }
 
+
+  /* The key is built from the season actually loaded, so it never advertises a
+     Spain colour in a year with no Spain trip. League is listed last and named
+     plainly, because it is the thing every other colour is defined against. */
+  var KIND_LABEL = { cup:'Cup', inv:'Tournament', se:'Sweden', es:'Spain', fr:'Friendly', lg:'League' };
+  function renderKey(el, games) {
+    var seen = {};
+    games.forEach(function (g) { seen[compKind(g)] = true; });
+    var order = ['cup', 'inv', 'se', 'es', 'fr', 'lg'].filter(function (k) { return seen[k]; });
+    if (order.length < 2) { el.innerHTML = ''; return; }
+    el.innerHTML = order.map(function (k) {
+      return '<span class="k-' + k + '"><i></i>' + KIND_LABEL[k] + '</span>';
+    }).join('');
+  }
+
   /* ---------- feature (next game) ---------- */
 
   /* The detail panel. One markup for the feature game at the top of the page
@@ -206,7 +221,7 @@
     var row = function (k, v) {
       return '<div class="tf-row"><span>' + k + '</span><b>' + v + '</b></div>';
     };
-    return '<div class="tf-feat">' +
+    return '<div class="tf-feat tf-k-' + compKind(g) + '">' +
         '<div class="tf-feat-main">' +
           '<div class="tf-feat-side">' + talataCrest(g.team) + '<span>Talata</span></div>' +
           '<div class="tf-feat-mid">' +
@@ -288,6 +303,31 @@
 
   /* ---------- fixture rows, split by month ---------- */
 
+
+  /* ---------- competition colour ----------
+     Deng, 27 Aug: the league is the baseline and everything else should announce
+     itself, with a trip carrying the colour of where it goes.
+     Destination is read from competition + venue + title, because Holdsport puts
+     the useful word in a different field depending on how the event was created.
+     To add a destination, add one test here and one rule in talata-fixtures.css.
+       lg  league        no bar, the baseline
+       cup Danish Cup    Dannebrog red
+       inv invitational  green   (BMS Herlev and other domestic stævner)
+       se  Sweden        Swedish gold   (Malbas Madness, Malmö)
+       es  Spain         purple         (Girona, EYBL Alicante/Tenerife)
+       fr  friendly      muted slate */
+  function compKind(g) {
+    var hay = ((g.competition || '') + ' ' + (g.venue || '') + ' ' + (g.title || '')).toLowerCase();
+    var comp = (g.competition || '').toLowerCase();
+    if (/malbas|malm/.test(hay)) return 'se';
+    if (/girona|spain|alicante|tenerife|eybl|barcelona/.test(hay)) return 'es';
+    if (/friendly|venskab/.test(comp)) return 'fr';
+    if (/herlev|bms|invitational/.test(hay)) return 'inv';
+    if (/pokal|\bcup\b/.test(comp)) return 'cup';
+    if (/tournament|st\u00e6vne/.test(comp)) return 'inv';
+    return 'lg';
+  }
+
   function fixtureRow(g) {
     var opp = g.opponent || g.title;
     var home = g.home;
@@ -300,7 +340,7 @@
     var won = g.played && g.us > g.them;
 
     return '<article data-tf-open="' + esc(g.id) + '" tabindex="0" role="button"' +
-      ' class="tf-r' + (home ? ' is-home' : '') +
+      ' class="tf-r tf-k-' + compKind(g) + (home ? ' is-home' : '') +
         (g.state !== 'confirmed' ? ' is-tbc' : '') +
         (g.played ? (won ? ' is-won' : ' is-lost') : '') + '">' +
       '<div class="tf-r-comp"><span>' + esc(g.competition) + '</span><b>' + esc(timeLabel(g)) + '</b></div>' +
@@ -641,6 +681,7 @@
     var strip = results(games).slice(0, 3).reverse().concat(next);
     document.querySelectorAll('[data-talata-ticker]').forEach(function (el) { renderTicker(el, strip); });
     document.querySelectorAll('[data-talata-feature]').forEach(function (el) { renderFeature(el, next); });
+    document.querySelectorAll('[data-tf-key]').forEach(function (el) { renderKey(el, games); });
     document.querySelectorAll('[data-tf-host]').forEach(function (h) {
       if (h._tfPaint) h._tfPaint(); else wireHost(h);
     });
