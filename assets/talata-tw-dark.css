@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Dark mode for the two Tailwind-literal pages: /reviews and /philosophy.
+
+   WHY THIS FILE EXISTS
+   --------------------
+   The 26 Aug dark mode works by remapping CSS custom properties, so every page
+   built on var(--navy) / var(--ink) converted for free. These two pages are
+   built on Tailwind utility literals instead — bg-white, text-talata-navy — and
+   a variable remap has nothing to grab. `apply-dark-mode.py` still injected the
+   stylesheet link, so both pages LOOKED converted and stayed fully light: a
+   white island in a dark site. Found 27 Aug when Deng said the reviews page
+   "doesn't look right".
+
+   Load AFTER talata-dark.css. Scoped to body.tw-dark so nothing here can reach
+   the other 48 pages.
+
+   THE TRAP, and it is the same one that shipped on 26 Aug
+   ------------------------------------------------------
+   A light chip keeps its light fill. `bg-talata-sky` + `text-talata-navy` is a
+   pale blue pill with dark type and it is CORRECT already. Flipping
+   text-talata-navy to near-white globally would make every category pill
+   light-on-light, which is exactly how the play arrows ended up at 1.08:1.
+   So every light fill that survives gets its dark text restored below, at a
+   higher specificity than the blanket rule. Fills first, restores last.
+   ========================================================================== */
+
+body.tw-dark {
+  background-color: var(--td-bg);
+  color: var(--td-text);
+}
+
+/* ---------- surfaces that were light and must go dark ---------- */
+body.tw-dark .bg-white       { background-color: var(--td-surface); }
+body.tw-dark .bg-talata-mist { background-color: var(--td-bg); }
+
+/* ---------- body copy ---------- */
+body.tw-dark .text-talata-navy,
+body.tw-dark .text-talata-black { color: var(--td-text); }
+
+body.tw-dark .text-slate-700,
+body.tw-dark .text-slate-600,
+body.tw-dark .text-slate-500,
+body.tw-dark .text-slate-400,
+body.tw-dark .text-gray-600,
+body.tw-dark .text-gray-500  { color: var(--td-muted); }
+
+/* The brand blue #1E40AF is a FILL colour. As type on a dark card it measures
+   about 2.3:1 and fails, so text use gets the text-safe accent instead. This is
+   the same substitution talata-dark.css makes for --td-link. */
+body.tw-dark .text-talata-blue { color: var(--td-link); }
+
+/* talata-tw.css compiles `talata-baby` to #0284C7, a mid sky blue, NOT the
+   brand baby #7DD3FC. As type it measures 4.34:1 on the page ground and 3.76:1
+   on a card, so it fails both. Pull it to the real accent, which is light. */
+body.tw-dark .text-talata-baby { color: var(--td-accent); }
+
+/* ---------- rules and hairlines ---------- */
+body.tw-dark .border-talata-sky,
+body.tw-dark .border-talata-mist,
+body.tw-dark .border-slate-100,
+body.tw-dark .border-slate-200,
+body.tw-dark .border-slate-400 { border-color: var(--td-line); }
+
+/* ---------- RESTORES: light fills keep dark type ----------
+   Higher specificity than the blanket rules above, and last in the file, so a
+   pill cannot end up light-on-light no matter which utility it also carries. */
+body.tw-dark .bg-talata-sky,
+body.tw-dark .bg-talata-baby,
+body.tw-dark .bg-talata-sky.text-talata-navy,
+body.tw-dark .bg-talata-baby.text-talata-navy,
+body.tw-dark .bg-talata-sky .text-talata-navy,
+body.tw-dark .bg-talata-baby .text-talata-navy,
+body.tw-dark .bg-talata-sky .text-talata-blue,
+body.tw-dark .bg-talata-baby .text-talata-blue { color: var(--td-navy); }
+
+/* THE VENN NEEDS A LIGHT GROUND, and not for taste.
+   `.venn-circle` uses `mix-blend-mode: multiply`, which is a light-background
+   technique: multiplying a colour against #121824 drives it to near black, so
+   on the dark page the three discs collapse into invisible blobs. Give the
+   container back the light ground the blend was designed against and the whole
+   diagram behaves exactly as it always did.
+   Its two saturated discs keep the white type from the page's own CSS. The
+   third disc is pale blue and had white type at 2.05:1 — that failed on the
+   light page too, long before dark mode, and is fixed inline in the markup. */
+body.tw-dark .venn-container {
+  background: #F8FAFC;
+  border-radius: 20px;
+  padding: 8px;
+  box-sizing: content-box;
+  color: var(--td-navy);
+}
+/* The SKILL EMERGES label sits over that light ground and carries
+   .text-talata-navy, so the blanket rule above would have made it near-white on
+   near-white. Anything inside the light island keeps dark type. */
+body.tw-dark .venn-container .text-talata-navy,
+body.tw-dark .venn-container .text-talata-black,
+body.tw-dark .venn-container .text-talata-baby { color: var(--td-navy); }
+
+/* The filter chips: the active one is a blue fill with white type and is fine.
+   The inactive ones were white fill + navy type, so they follow .bg-white above
+   and need their border and type pulled back to the dark palette. */
+body.tw-dark .filter-chip:not(.active) {
+  background-color: var(--td-surface);
+  border-color: var(--td-line);
+  color: var(--td-text);
+}
+body.tw-dark .filter-chip:not(.active):hover {
+  background-color: var(--td-accent-2);
+  color: var(--td-navy);
+}

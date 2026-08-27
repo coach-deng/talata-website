@@ -1,0 +1,64 @@
+<!doctype html><meta charset="utf-8"><title>Talata contrast runner</title>
+<!--
+  RENDERED CONTRAST CHECK — the half of QA that tools/qa-check.py cannot do.
+
+  qa-check.py reads CSS. It cannot resolve an inherited colour, a CSS variable
+  three ancestors up, an inline style, or an !important from another stylesheet,
+  so it reported "Clean" on 26 and 27 Aug while text sat at 1.01:1 on 34 pages.
+  This page renders every page in a same-origin iframe and measures the real
+  composited colours, alpha included.
+
+  HOW TO RUN
+    1. npx serve . -p 3000
+    2. open http://localhost:3000/tools/contrast-runner.html
+    3. wait for DONE, then read window.__RESULTS__ in the console
+
+  Thresholds are WCAG AA: 4.5:1 for body text, 3:1 for large or bold-large.
+  The nav drawer and utility bar are skipped: they are position-fixed and
+  measure against whatever is behind them rather than their own ground.
+
+  The page list is baked in below. Regenerate it when pages are added:
+    python3 tools/rebuild-contrast-list.py
+-->
+<body style="font:13px monospace;padding:10px">
+<div id="s">idle</div><pre id="o"></pre>
+<iframe id="f" style="width:1280px;height:900px;border:1px solid #ccc" src="about:blank"></iframe>
+<script>
+const PAGES = ["academy.html", "basketball-in-copenhagen.html", "blog.html", "blog/5-signs-ready-for-basketball-club.html", "blog/aarhus-festival-2026.html", "blog/defence-and-rebounding-2026-27.html", "blog/johan-lyager-joensen-ohio-2026.html", "blog/malthe-orangeville-2025.html", "blog/marius-wriedt-naestved-2026.html", "blog/recovery-week-april-2026.html", "blog/season-3-starts-2026-27.html", "blog/strandvejsskolen-partnership-2026.html", "blog/summer-2026-three-camps.html", "blog/talata-canada-camp-2026-recap.html", "blog/talata-mini-50-kids-strandvejsskolen-2026.html", "blog/talata-mini-strandvejsskolen-2026.html", "blog/what-we-look-for-first-training.html", "camps.html", "camps/autumn-camp-2026.html", "camps/canada-camp-2026.html", "camps/dk-mini-summer-camp-2026.html", "camps/dk-summer-camp-2026.html", "camps/nida-camp-2026.html", "camps/spring-camp-2026.html", "camps/spring-camp-u13-u15-2026.html", "camps/spring-camp-u9-u11-2026.html", "camps/starter-camp-2026.html", "camps/winter-camp-2026.html", "coaches.html", "gallery.html", "games.html", "guide.html", "help.html", "help/age-groups.html", "help/first-session.html", "help/holdsport.html", "index.html", "ish-high-school.html", "ish-primary-school.html", "join.html", "mini.html", "partners.html", "pathway.html", "philosophy/index.html", "placement.html", "reviews/index.html", "saturday.html", "school-partnerships.html", "shop.html", "sparks.html"];
+const CHECK = function(doc, win){
+  const px=c=>{const m=c.match(/[\d.]+/g).map(Number);return {r:m[0],g:m[1],b:m[2],a:m.length>3?m[3]:1}};
+  const over=(f,b)=>({r:f.r*f.a+b.r*(1-f.a),g:f.g*f.a+b.g*(1-f.a),b:f.b*f.a+b.b*(1-f.a),a:1});
+  function effBg(el){const s=[];let e=el;while(e){const c=px(win.getComputedStyle(e).backgroundColor);if(c.a>0)s.push(c);e=e.parentElement}
+    let a={r:255,g:255,b:255,a:1};for(let i=s.length-1;i>=0;i--)a=over(s[i],a);return a}
+  const lum=c=>{const f=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(c.r)+0.7152*f(c.g)+0.0722*f(c.b)};
+  const ratio=(a,b)=>{const l1=lum(a),l2=lum(b);return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05)};
+  const out=[];const seen=new Set();
+  doc.querySelectorAll('body *').forEach(el=>{
+    if(el.closest('.tn-drawer,.tn-util'))return;
+    const own=[...el.childNodes].some(n=>n.nodeType===3&&n.textContent.trim());if(!own)return;
+    const cs=win.getComputedStyle(el);
+    if(cs.display==='none'||cs.visibility==='hidden'||cs.opacity==='0')return;
+    const rect=el.getBoundingClientRect(); if(!rect.width||!rect.height)return;
+    const b=effBg(el);const r=ratio(over(px(cs.color),b),b);
+    const size=parseFloat(cs.fontSize),bold=(parseInt(cs.fontWeight)||400)>=700;
+    const floor=(size>=24||(size>=18.66&&bold))?3:4.5;
+    const k=cs.color+'|'+Math.round(b.r)+','+Math.round(b.g)+','+Math.round(b.b)+'|'+el.className;
+    if(seen.has(k))return;seen.add(k);
+    if(r<floor)out.push({r:+r.toFixed(2),need:floor,txt:el.textContent.trim().slice(0,30),cls:(el.className||el.tagName).toString().slice(0,30)});
+  });
+  return out.sort((a,b)=>a.r-b.r);
+};
+const f=document.getElementById('f'),s=document.getElementById('s'),o=document.getElementById('o');
+const results={};
+let i=0;
+function next(){
+  if(i>=PAGES.length){s.textContent='DONE';window.__RESULTS__=results;return}
+  const p=PAGES[i];s.textContent='['+(i+1)+'/'+PAGES.length+'] '+p;
+  f.onload=()=>{setTimeout(()=>{
+    try{results[p]=CHECK(f.contentDocument,f.contentWindow)}catch(e){results[p]=[{err:String(e)}]}
+    i++;next();
+  },260)};
+  f.src='/'+p+'?cb='+Date.now();
+}
+next();
+</script>

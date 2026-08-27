@@ -42,7 +42,10 @@ ROOT = Path(__file__).resolve().parent.parent
 # posters/ holds standalone print artwork. It carries no site nav, is linked
 # from no page, and is not meant to be read on screen, so the dark-mode and
 # structure checks do not apply to it.
-SKIP = {"node_modules", "images", "fonts", "downloads", "junk", "posters"}
+# "tools" added 27 Aug: contrast-runner.html lives there and is an internal
+# harness, not a page. It has no nav and no dark stylesheet on purpose, and
+# without this it fails three structural checks that do not apply to it.
+SKIP = {"node_modules", "images", "fonts", "downloads", "junk", "posters", "tools"}
 
 RED, YEL, GRN, DIM, OFF = "\033[31m", "\033[33m", "\033[32m", "\033[2m", "\033[0m"
 

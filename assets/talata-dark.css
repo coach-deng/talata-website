@@ -123,9 +123,27 @@ input:focus, select:focus, textarea:focus {
 /* Buttons filled with a light accent need dark type. The page CSS sets the
    fill and the colour in two different rules, so the rule-aware pass in
    apply-dark-mode.py cannot see them together. Found on the homepage camp
-   cards: "Get the details" was #8FD6FF on #7DD3FC, a ratio of 1.05. */
-[style*="7DD3FC"], [style*="7dd3fc"],
-[style*="BAE6FD"], [style*="bae6fd"] { color: var(--td-bg) !important; }
+   cards: "Get the details" was #8FD6FF on #7DD3FC, a ratio of 1.05.
+
+   🔴 TIGHTENED 27 Aug. This matched the bare SUBSTRING "7DD3FC", so it could
+   not tell `background:#7DD3FC` (a fill, wants dark type) from `color:#7DD3FC`
+   (baby-blue TYPE, wants to stay baby blue). Every element using the accent as
+   a text colour inline was forced to the page background and went invisible:
+   academy/mini/sparks eyebrows, the blog eyebrow and a bold run, and the
+   eyebrow plus underlined link on both camp pages. Measured on academy.html,
+   "The Talata Way" was 1.08:1 against its navy ground.
+   It was also redundant for the case it was written for: every inline fill on
+   the site already declares `color:var(--td-bg)` next to it, so the buttons
+   were never relying on this. Now it only fires on an actual background. */
+[style*="background:#7DD3FC"],  [style*="background: #7DD3FC"],
+[style*="background:#7dd3fc"],  [style*="background: #7dd3fc"],
+[style*="background:#BAE6FD"],  [style*="background: #BAE6FD"],
+[style*="background:#bae6fd"],  [style*="background: #bae6fd"],
+[style*="background-color:#7DD3FC"], [style*="background-color: #7DD3FC"],
+[style*="background-color:#7dd3fc"], [style*="background-color: #7dd3fc"],
+[style*="background-color:#BAE6FD"], [style*="background-color: #BAE6FD"],
+[style*="background-color:#bae6fd"], [style*="background-color: #bae6fd"]
+  { color: var(--td-bg) !important; }
 
 /* The camp cards fill their button with the baby accent in one rule and colour
    the text in another, so neither the declaration pass nor the rule-aware pass
