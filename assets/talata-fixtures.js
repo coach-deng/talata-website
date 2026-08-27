@@ -47,6 +47,12 @@
 
   function parseISO(d) { var a = d.split('-'); return new Date(+a[0], +a[1] - 1, +a[2]); }
 
+  /* Whole days from Copenhagen-today to a fixture. Used to keep the feature
+     game inside a window a supporter can act on. */
+  function daysAway(g) {
+    return Math.round((parseISO(g.date) - parseISO(todayISO())) / 86400000);
+  }
+
   var DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   var DAYS_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -255,12 +261,36 @@
       '</div>';
   }
 
+  /* How much an upcoming game wants a crowd. Lower is more important.
+     Deng, 27 Aug: "the cup game I would like up there, because we really want
+     everybody to show up. Those kind of important ones." So the feature stops
+     being "the next home game" and becomes "the home game most worth turning
+     up to", inside a window near enough that it is still actionable. */
+  function featureRank(g) {
+    if (/pokal|cup/i.test(g.competition || '')) return 0;   /* knockout, one shot */
+    if (isTalataNight(g)) return 1;                          /* our own Friday night */
+    if (g.team === 'Men') return 2;
+    return 3;
+  }
+
   function renderFeature(el, games) {
     /* Lead with a game somebody can actually turn up to. The very next fixture
        may have neither an agreed time nor a venue, and two TBCs at the top of
        the page is a poor first thing to see. It still appears in the list
        below, in date order, so nothing is hidden. */
-    var g = games.filter(function (x) { return x.home && x.state === 'confirmed' && x.venue; })[0]
+    var showable = games.filter(function (x) {
+      return x.home && x.state === 'confirmed' && x.venue;
+    });
+    /* 60 days keeps this honest. Without a window, a cup tie in March would sit
+       at the top of the page all winter while the game next Friday scrolled by
+       underneath it. */
+    var soon = showable.filter(function (x) { return daysAway(x) <= 60; });
+    var pool = soon.length ? soon : showable;
+    pool = pool.slice().sort(function (a, b) {
+      var ra = featureRank(a), rb = featureRank(b);
+      return ra !== rb ? ra - rb : a.date.localeCompare(b.date);
+    });
+    var g = pool[0]
          || games.filter(function (x) { return x.state === 'confirmed'; })[0]
          || games[0];
     if (!g) { el.innerHTML = ''; return; }
@@ -448,6 +478,19 @@
     var vp = el.querySelector('.tk-viewport');
     var back = el.querySelector('.tk-arw.is-l');
     var fwd = el.querySelector('.tk-arw.is-r');
+
+    /* Park the strip ON the next game rather than at its left edge, so results
+       sit behind it and the rest of the season runs ahead of it. Zalgiris does
+       this and Deng asked for the same on 27 Aug: last three results first, the
+       next game in the middle. Still no animation, this is a one-off position,
+       so the "nothing moves on its own" rule from 26 Aug holds. */
+    var nextCard = el.querySelector('.tkc.is-next');
+    if (nextCard) {
+      requestAnimationFrame(function () {
+        var want = nextCard.offsetLeft - (vp.clientWidth - nextCard.offsetWidth) / 2;
+        vp.scrollLeft = Math.max(0, want);
+      });
+    }
 
     /* Arrows only, no dragging or wheel-scrolling (Deng, 26 Aug). The viewport
        is overflow:hidden in CSS, which still permits programmatic scrollLeft,
