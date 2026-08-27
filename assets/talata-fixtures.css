@@ -424,3 +424,28 @@
 .tf-key .k-se { color:#F5D547; } .tf-key .k-es { color:#BF7AF0; }
 .tf-key .k-lg { color:var(--f-muted); }
 @media (max-width:640px){ .tf-key{ display:none; } }
+
+/* ==========================================================================
+   RESERVED SPACE FOR THE JS MOUNTS (27 Aug 2026)
+
+   Cloudflare Core Web Vitals for 28 Jul to 27 Aug showed CLS 0.508 on
+   `main.wrap` and 0.459 on `footer.tf`. The good threshold is 0.1, so both were
+   about five times over.
+
+   Cause, and it was self-inflicted on 26 Aug: `[data-talata-ticker]` and
+   `[data-talata-feature]` ship as EMPTY divs and are filled by JS after two
+   network round trips (the static file, then the Worker). Everything below them
+   jumped down the page on arrival, which is the whole of that CLS and why the
+   footer moved too.
+
+   Heights measured from the rendered strip rather than guessed: ticker 134px at
+   1440 and 132px at 375, feature 322px at 1440 and 494px at 375. Mobile is
+   taller because the feature panel stacks.
+
+   min-height, not height, so a longer opponent name can still grow the card.
+   ========================================================================== */
+[data-talata-ticker] { min-height: 134px; }
+[data-talata-feature] { min-height: 494px; }
+@media (min-width: 768px) {
+  [data-talata-feature] { min-height: 322px; }
+}
