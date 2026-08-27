@@ -66,7 +66,16 @@
   --muted:       var(--td-muted);
   --border:      var(--td-line);
   --dark:        var(--td-surface);
-  --blue-light:  var(--td-accent);
+  /* 🔴 27 Aug: this pointed at --td-accent, a LIGHT baby blue, and the older
+     pages use it as a FILL 31 times and as a text colour zero times. So every
+     .price-card.highlight, table th and .highlight-box became a pale slab
+     carrying --td-text / --td-link / --td-muted, all of which are light.
+     That is the whole camp-price-card cluster: "7.500 kr" at 1.54:1,
+     "Registration closed" at 1.11:1, "Standard" at 1.05:1.
+     A raised dark surface keeps the "this one is highlighted" meaning and lets
+     the light type on top of it work. The two places that used it as a BORDER
+     ring now name --td-accent directly. */
+  --blue-light:  var(--td-surface-2);
   --talata:      var(--td-brand);
   --talata-dark: var(--td-surface);
   --talata-light:var(--td-accent);
@@ -168,7 +177,15 @@ input:focus, select:focus, textarea:focus {
 [style*="background:#fff"],
 [style*="background: #fff"],
 [style*="background-color:#fff"],
-[style*="background-color: #fff"] {
+[style*="background-color: #fff"],
+/* Added 27 Aug. The three long camp pages close with an "Other Talata camps"
+   band hardcoded to #f5f5f5, a light grey the #fff patterns above never
+   matched, while its heading carries color:var(--td-text). That heading
+   measured 1.01:1 — the worst reading anywhere on the site. */
+[style*="background:#f5f5f5"],
+[style*="background: #f5f5f5"],
+[style*="background:#F5F5F5"],
+[style*="background: #F5F5F5"] {
   background: var(--td-surface) !important;
 }
 

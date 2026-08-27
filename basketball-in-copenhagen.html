@@ -66,6 +66,18 @@
   body{font-family:'Inter',-apple-system,'Segoe UI',sans-serif;color:var(--td-text);background:var(--td-surface);line-height:1.65;-webkit-font-smoothing:antialiased;}
   a{color:var(--td-link);}
   .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+  /* Photos added 27 Aug. These guide pages carried 400-870 words and not one
+     image. width/height are set so the picture reserves its space and the text
+     below never jumps while it loads. */
+  .photo { margin: 28px 0 8px; }
+  .photo img {
+    width: 100%; height: auto; display: block;
+    border-radius: 14px; border: 1px solid var(--td-line);
+  }
+  .photo figcaption {
+    font-size: 0.82rem; color: var(--td-muted); margin-top: 10px; line-height: 1.5;
+  }
+
 
   .head{background:var(--navy);color:#fff;padding:64px 0 56px;}
   .head .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--td-link);margin-bottom:14px;}
@@ -217,6 +229,11 @@
   <div class="answer">
     <p><strong>The short version.</strong> Basketball in Copenhagen is run by clubs, not by drop-in classes, and you pay per half-season rather than per session. Almost every club will let you train once for free before you decide. If you are on Østerbro or can get there, Talata trains at Svanemøllehallen and Strandvejsskolen with groups from age 5 to adult, and your first session is free.</p>
   </div>
+
+  <figure class="photo">
+    <img src="/images/2026-08/academy-group-gym-wide.jpg" alt="A Talata Academy group training in the gym at Svanemøllehallen" width="1500" height="844" loading="lazy" decoding="async">
+    <figcaption>Academy training at Svanemøllehallen. Clubs sort by age band, so beginners and experienced players of the same age train together.</figcaption>
+  </figure>
 
   <h2>Find the group you belong in</h2>
   <p>Danish clubs sort by age, and the age band matters more than how good you are. A complete beginner and an experienced player of the same age train together. The coaching adjusts, the group doesn't.</p>

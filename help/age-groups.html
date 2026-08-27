@@ -55,6 +55,18 @@
   .hero h1 { font-size:clamp(1.9rem,5vw,2.6rem); font-weight:900; letter-spacing:-.02em; line-height:1.12; margin-bottom:12px; }
   .hero p { font-size:1.03rem; color:rgba(255,255,255,.82); max-width:34em; margin:0 auto; }
   .wrap { max-width:760px; margin:0 auto; padding:48px 24px 8px; }
+  /* Photos added 27 Aug. These guide pages carried 400-870 words and not one
+     image. width/height are set so the picture reserves its space and the text
+     below never jumps while it loads. */
+  .photo { margin: 28px 0 8px; }
+  .photo img {
+    width: 100%; height: auto; display: block;
+    border-radius: 14px; border: 1px solid var(--td-line);
+  }
+  .photo figcaption {
+    font-size: 0.82rem; color: var(--td-muted); margin-top: 10px; line-height: 1.5;
+  }
+
   .wrap.last { padding-bottom:56px; }
   h2 { font-size:1.25rem; font-weight:800;color:var(--td-text); margin:36px 0 14px; letter-spacing:-.01em; }
   h2:first-child { margin-top:0; }
@@ -205,6 +217,10 @@
 
 <div class="wrap last">
   <a class="back" href="/help">&larr; All guides</a>
+  <figure class="photo">
+    <img src="/images/2026-08/mini-team-blue-with-coach.jpg" alt="The Talata Mini group in blue with their coach" width="1600" height="1200" loading="lazy" decoding="async">
+    <figcaption>Mini, ages 5 to 9. Groups are set by age, not by how good you are.</figcaption>
+  </figure>
   <h2>The groups</h2>
   <div class="tscroll"><table>
     <tr><th>Group</th><th>Ages</th><th>When</th><th>Where</th></tr>

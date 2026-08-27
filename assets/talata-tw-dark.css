@@ -108,3 +108,13 @@ body.tw-dark .filter-chip:not(.active):hover {
   background-color: var(--td-accent-2);
   color: var(--td-navy);
 }
+
+/* Reviews pull-quotes. The page's own `.review-card.is-pull` scores (0,2,0),
+   exactly the same as `body.tw-dark .bg-white` above, and this stylesheet loads
+   after the page's <style> block — so the plain card surface was winning and
+   every pull-quote rendered identical to a normal card. Same specificity trap
+   as the nav dropdown on 26 Aug. Scoping through body.tw-dark settles it. */
+body.tw-dark .review-card.is-pull {
+  background: var(--td-card-hi);
+  border-color: var(--td-accent);
+}

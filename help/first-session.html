@@ -55,6 +55,18 @@
   .hero h1 { font-size:clamp(1.9rem,5vw,2.6rem); font-weight:900; letter-spacing:-.02em; line-height:1.12; margin-bottom:12px; }
   .hero p { font-size:1.03rem; color:rgba(255,255,255,.82); max-width:34em; margin:0 auto; }
   .wrap { max-width:760px; margin:0 auto; padding:48px 24px 8px; }
+  /* Photos added 27 Aug. These guide pages carried 400-870 words and not one
+     image. Fixed aspect box plus width/height so the picture reserves its space
+     and the text below it never jumps while the photo loads. */
+  .photo { margin: 28px 0 8px; }
+  .photo img {
+    width: 100%; height: auto; display: block;
+    border-radius: 14px; border: 1px solid var(--td-line);
+  }
+  .photo figcaption {
+    font-size: 0.82rem; color: var(--td-muted); margin-top: 10px; line-height: 1.5;
+  }
+
   .wrap.last { padding-bottom:56px; }
   h2 { font-size:1.25rem; font-weight:800;color:var(--td-text); margin:36px 0 14px; letter-spacing:-.01em; }
   h2:first-child { margin-top:0; }
@@ -202,6 +214,10 @@
 </div>
 
 <div class="wrap last">
+  <figure class="photo">
+    <img src="/images/2026-08/coach-with-mini-group-indoor.jpg" alt="A Talata coach with the Mini group in the gym at Strandvejsskolen" width="1600" height="1200" loading="lazy" decoding="async">
+    <figcaption>A Mini session at Strandvejsskolen. This is what turning up for the first time looks like.</figcaption>
+  </figure>
   <a class="back" href="/help">&larr; All guides</a>
 
   <p class="lead">There is no waiting list and nothing to book. If your child wants to try basketball, come to the next session that fits their age and play.</p>

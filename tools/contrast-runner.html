@@ -52,13 +52,34 @@ const f=document.getElementById('f'),s=document.getElementById('s'),o=document.g
 const results={};
 let i=0;
 function next(){
-  if(i>=PAGES.length){s.textContent='DONE';window.__RESULTS__=results;return}
+  if(i>=PAGES.length){s.textContent='DONE';window.__RESULTS__=results;
+    const bad=Object.entries(results).filter(([k,v])=>v.length);
+    o.textContent=JSON.stringify({checked:PAGES.length,clean:PAGES.length-bad.length,
+      failing:bad.length,total:bad.reduce((a,[k,v])=>a+v.length,0)},null,1);return}
   const p=PAGES[i];s.textContent='['+(i+1)+'/'+PAGES.length+'] '+p;
-  f.onload=()=>{setTimeout(()=>{
-    try{results[p]=CHECK(f.contentDocument,f.contentWindow)}catch(e){results[p]=[{err:String(e)}]}
+  /* serve rewrites /x.html to /x, and the redirect made contentDocument null on
+     26 of 49 pages in the first run. Those came back as one error entry each and
+     were counted as failures, which inflated the totals. Request the clean URL
+     and retry on a null document rather than trusting a single onload. */
+  const clean='/'+p.replace(/(^|\/)index\.html$/,'$1').replace(/\.html$/,'');
+  let tries=0;
+  const grab=()=>{
+    let d=null;
+    try{d=f.contentDocument}catch(e){d=null}
+    if((!d||d.readyState!=='complete'||!d.body)&&tries<12){tries++;return setTimeout(grab,220)}
+    if(!d||!d.body){results[p]=[{err:'document unavailable after '+tries+' tries'}];i++;return next()}
+    try{results[p]=CHECK(d,f.contentWindow)}catch(e){results[p]=[{err:String(e)}]}
     i++;next();
-  },260)};
-  f.src='/'+p+'?cb='+Date.now();
+  };
+  /* A page whose load event never fires (a hanging subresource, a redirect
+     loop) used to stall the whole run: grab() was only ever started by onload,
+     so the runner sat on page 28 of 50 forever. The watchdog guarantees every
+     page is either measured or recorded as unreachable, and the run always ends. */
+  let started=false;
+  const start=()=>{ if(started)return; started=true; grab(); };
+  f.onload=()=>setTimeout(start,200);
+  setTimeout(start,6000);
+  f.src=clean+'?cb='+Date.now();
 }
 next();
 </script>
