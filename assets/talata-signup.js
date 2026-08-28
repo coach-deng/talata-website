@@ -139,19 +139,32 @@
     });
   }
 
-  function panelHtml(variant, route) {
+  /* `pending` is true when the Worker parked the signup for email verification
+     (double opt-in, added 28 Aug 2026). The old copy promised a confirmation was
+     already in the inbox, which stopped being true: what arrives now is a
+     one-click confirm, and nothing happens at our end until it is clicked. The
+     session block still shows, because the person reading this is the person who
+     typed the form. */
+  function panelHtml(variant, route, pending) {
     var link = variant === 'mini' ? HOLDSPORT.mini : HOLDSPORT.intake;
     var team = variant === 'mini' ? 'Talata Mini' : 'Talata Basketball';
     return [
       '<div class="tns">',
-      '<div class="tns-head"><b>Got it. Come and play.</b>',
-      '<span>Confirmation is in your inbox. Check spam if it is not there in five minutes.</span></div>',
+      pending
+        ? '<div class="tns-head"><b>One quick thing: check your email.</b>' +
+          '<span>We have sent you a link to confirm your address. Click it and you are in. ' +
+          'Check spam if it is not there in five minutes.</span></div>'
+        : '<div class="tns-head"><b>Got it. Come and play.</b>' +
+          '<span>Confirmation is in your inbox. Check spam if it is not there in five minutes.</span></div>',
       '<div class="tns-body">',
 
       sessionBlock(route),
 
       '<b style="display:block;margin-bottom:8px">What happens next</b>',
       '<ol>',
+      (pending
+        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
+        : ''),
       (route && route.when
         ? '<li><b>Just turn up.</b> No waiting list, nothing to book, nothing to pay. Ask for Deng at the door.</li>'
         : '<li><b>Deng emails you within a day</b> with your exact day, time and gym.</li>'),
@@ -337,6 +350,7 @@
         return res.json().catch(function () { return {}; });
       }).then(function (out) {
         var route = (out && out.route) || null;
+        var pending = !!(out && out.pending);
         fireConversion(data);
         form.reset();
         (opts.hide || []).concat([opts.buttonId]).forEach(function (id) {
@@ -345,7 +359,7 @@
         });
         var host = opts.mount && document.getElementById(opts.mount);
         if (host) {
-          host.innerHTML = panelHtml(opts.variant, route);
+          host.innerHTML = panelHtml(opts.variant, route, pending);
           host.style.display = 'block';
         } else {
           // No dedicated mount: swap the form's own contents for the panel.
@@ -354,7 +368,7 @@
           Array.prototype.forEach.call(form.children, function (el) {
             el.style.display = 'none';
           });
-          form.insertAdjacentHTML('beforeend', panelHtml(opts.variant, route));
+          form.insertAdjacentHTML('beforeend', panelHtml(opts.variant, route, pending));
         }
         var panel = (host || form).querySelector('.tns');
         if (panel && panel.scrollIntoView) {
