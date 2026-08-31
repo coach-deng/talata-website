@@ -402,7 +402,7 @@
   <footer id="drawer-foot"></footer>
 </aside>
 
-<script src="/assets/talata-shop.js?v=20260831b"></script>
+<script src="/assets/talata-shop.js?v=20260831c"></script>
 <script>
 (function () {
   var S = window.TalataShop;
@@ -433,7 +433,11 @@
       return '<div class="rn">' +
         '<b>' + r.name + '</b>' +
         '<span class="meta">' + r.detail + '</span>' +
-        '<span class="sz">' + (r.size ? 'Size ' + r.size + ' &middot; ' : '') + '1 only</span>' +
+        /* A range row is one set per number, so it is not always "1 only".
+           Say how many are left, because "4 left" is the thing that makes a
+           parent claim one this week rather than next month. */
+        '<span class="sz">' + (r.size ? 'Size ' + r.size + ' &middot; ' : '') +
+          (r.qty > 1 ? r.qty + ' left' : '1 only') + '</span>' +
         '<span class="amt">' + kr(price) +
           (S.isMember ? '<s>' + kr(r.pub) + '</s>' : '') +
         '</span>' +

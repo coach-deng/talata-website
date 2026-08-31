@@ -1,7 +1,7 @@
 {
   "counted": "2026-08-31",
   "source": "N-K Order Form — FINAL 27 Jul 2026",
-  "note": "Physical units in the gym. THE SHOP READS THIS AT RUNTIME. A size with 0 left is not offered, which is the whole mechanism: if the size is not in the dropdown, it is sold out. When every size of a line reaches 0 the card falls back to made-to-order rather than disappearing, so the product still sells, it just stops promising same-day collection. NOTHING DECREMENTS BY ITSELF: shop orders land in the D1 leads table as a JSON blob with no size column, so this file is only as right as the last person to edit it. Edit it the day gear leaves the gym, and edit SecondBrain/Talata/_references/inventory/gear-stock.md in the same sitting.",
+  "note": "Physical units in the gym. THE SHOP READS THIS AT RUNTIME. A size with 0 left is not offered, which is the whole mechanism: if the size is not in the dropdown, it is sold out. When every size of a line reaches 0 the card falls back to made-to-order rather than disappearing, so the product still sells, it just stops promising same-day collection. NOTHING DECREMENTS BY ITSELF: shop orders land in the D1 leads table as a JSON blob with no size column, so this file is only as right as the last person to edit it. Edit it the day gear leaves the gym, and edit SecondBrain/Talata/_references/inventory/gear-stock.md in the same sitting. ONE-OFFS CARRY A qty: a number range is one set per number, which is how the identical 46-50 L row on the previous order produced five jerseys. They are claimed by email, not added to the basket, so Deng confirms the number is free before any money moves and there is no oversell risk.",
   "collection": "Svanemøllehallen, Østerbrogade 240, at training. No shipping on stock pieces.",
   "lines": {
     "tee": {
@@ -38,7 +38,8 @@
       "member": 299,
       "pub": 369,
       "numbersFrom": "46-50",
-      "detail": "Jersey + shorts + tracksuit. Number chosen from 46 to 50 at print."
+      "detail": "Jersey + shorts + tracksuit. Pick any free number from 46 to 50, printed to order.",
+      "qty": 5
     },
     {
       "id": "set-71-80",
@@ -47,7 +48,8 @@
       "member": 299,
       "pub": 369,
       "numbersFrom": "71-80",
-      "detail": "Jersey + shorts + tracksuit. Number chosen from 71 to 80 at print."
+      "detail": "Jersey + shorts + tracksuit. Pick any free number from 71 to 80, printed to order.",
+      "qty": 10
     },
     {
       "id": "set-81-90",
@@ -56,7 +58,8 @@
       "member": 299,
       "pub": 369,
       "numbersFrom": "81-90",
-      "detail": "Jersey + shorts + tracksuit. Number chosen from 81 to 90 at print."
+      "detail": "Jersey + shorts + tracksuit. Pick any free number from 81 to 90, printed to order.",
+      "qty": 10
     },
     {
       "id": "set-91-99",
@@ -65,7 +68,8 @@
       "member": 299,
       "pub": 369,
       "numbersFrom": "91-99",
-      "detail": "Jersey + shorts + tracksuit. Number chosen from 91 to 99 at print."
+      "detail": "Jersey + shorts + tracksuit. Pick any free number from 91 to 99, printed to order.",
+      "qty": 9
     }
   ]
 }
