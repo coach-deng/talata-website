@@ -143,7 +143,11 @@
     }
     .cta-band h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
     .cta-band p { color: rgba(255,255,255,0.55); margin-bottom: 24px; }
-    .cta-band a {
+    /* `body` prefix on purpose. `.cta-band a` is (0,1,1) and so is
+       talata-dark.css's `a:not([class])`, so the declared #fff lost the tie on
+       load order and the button rendered #8FD6FF on #2C4FD8, 4.11:1.
+       Same shape as the nav dropdown on 26 Aug. Win on specificity, not order. */
+    body .cta-band a {
       display: inline-block;
       background: var(--blue);
       color: #fff;
@@ -174,7 +178,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826s">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260831a">
 </head>
 <body>
 

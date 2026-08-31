@@ -121,7 +121,7 @@ HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0F17">"""
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260826s">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260831a">'
 
 SCRIPT_TAG = '<script src="/assets/talata-nav.js" defer></script>'
 

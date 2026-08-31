@@ -30,6 +30,15 @@
   var STATIC = '/data/fixtures.json';
   var CRESTS = '/data/crests.json';
 
+  /* Tournament results, entered by hand.
+     There is no automatic path for one. League and cup come from the DBBF export,
+     which carries scores. Friendlies and tournaments come live from Holdsport,
+     which has NO score field at all, so a tournament result can reach this page
+     only through this file. It is kept out of fixtures.json because
+     build-fixtures.py rewrites that file from the CSV on every run and would
+     drop these on the next export. */
+  var TOURN = '/data/tournaments.json';
+
   var crests = { names: {}, files: {} };
   var allGames = [];
 
@@ -740,10 +749,19 @@
       .then(function (c) { if (c) crests = c; })
       .catch(function () { /* monograms everywhere, still readable */ })
       .then(function () {
-        return fetch(STATIC, { cache: 'no-cache' })
-          .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (d) {
-            var league = (d && d.games) || [];
+        return Promise.all([
+          fetch(STATIC, { cache: 'no-cache' })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .catch(function () { return null; }),
+          /* A missing or broken tournaments file must never cost the season its
+             league fixtures, so it resolves to an empty list rather than reject. */
+          fetch(TOURN, { cache: 'no-cache' })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .catch(function () { return null; })
+        ])
+          .then(function (both) {
+            var d = both[0], t = both[1];
+            var league = ((d && d.games) || []).concat((t && t.games) || []);
             paint(merge(league, []));       /* federation fixtures, immediately */
             return fetch(API + '/fixtures', { cache: 'no-cache' })
               .then(function (r) { return r.ok ? r.json() : null; })

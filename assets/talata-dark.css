@@ -46,6 +46,20 @@
   --td-brand:     #2C4FD8;   /* filled buttons. White on this is ~7:1 */
   --td-navy:      #0B1F3A;   /* kept: the brand navy still reads on dark */
   --td-card-hi:   #223047;   /* a card sitting on another card */
+  /* 🔴 31 Aug: the "stop" callout on the four help pages was a literal
+     `background:#FDECEA`, a pale pink, and the pink never went through a
+     variable so nothing in the token remap could reach it. Its heading and its
+     bold runs carry --td-text and its body carries --td-muted, so the box
+     rendered #F2F6FC on #FDECEA at 1.05:1 and #B3C0D2 on #FDECEA at 1.61:1.
+     A parent could not read "Read this before you click join".
+     A red-TINTED dark surface keeps the "this one is louder than the blue
+     warn box" meaning and lets the light type on top of it work:
+     text 13.91:1, muted 8.18:1, and it separates from the page ground at
+     1.18:1, marginally more than --td-surface does at 1.15:1.
+     --td-stop-line is the same red talata-fixtures.css already uses for a
+     loss, so the site keeps one red rather than growing a second. */
+  --td-stop:      #33212A;   /* danger / stop callout fill */
+  --td-stop-line: #F2777A;   /* its accent bar. 5.53:1 on --td-stop */
 
   /* ---- newer pages (index, games, shop) ---- */
   --black: var(--td-bg);
@@ -213,3 +227,19 @@ hr { border-color: var(--td-line); }
    rules catch anything it could not reach. */
 h1, h2, h3, h4, h5, h6 { color: var(--td-text); }
 a:not([class]) { color: var(--td-link); }
+
+/* ---- the stop callout, defensively ----
+   The page rules are fixed at source, so this should never have to fire. It is
+   here for the next page that copies the old help-page <style> block wholesale
+   and brings the pink literal back with it.
+   `body .box.stop` is (0,2,1) and the page's `.box.stop` is (0,2,0), so this
+   wins on SPECIFICITY, not on load order. That distinction is the whole point:
+   the nav dropdown broke on 26 Aug because `.tn-drop a` and `a:not([class])`
+   were both (0,1,1) and a tie is only ever settled by which file loaded last.
+   Do not lower this to a bare `.box.stop`. */
+body .box.stop,
+body .callout.stop,
+body .note.stop {
+  background: var(--td-stop);
+  border-left-color: var(--td-stop-line);
+}
