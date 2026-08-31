@@ -402,7 +402,7 @@
   <footer id="drawer-foot"></footer>
 </aside>
 
-<script src="/assets/talata-shop.js?v=20260831c"></script>
+<script src="/assets/talata-shop.js?v=20260831d"></script>
 <script>
 (function () {
   var S = window.TalataShop;
@@ -447,8 +447,23 @@
     }).join('');
   }
 
+  /* Group by what a buyer can actually have, soonest first.
+     Deng, 31 Aug: the tee and the heavy hoodie were both in the gym and sat in
+     different rows with made-to-order cards between them, so the one thing the
+     page had to say — this is here today — was scattered. Sorting on stock
+     state keeps every stocked line together with no hand-ordering, and a line
+     that sells out drops back down the grid on its own.
+     Ties hold the catalogue order, because sort() is stable in every browser
+     this site supports, so basics stay before apparel inside each band. */
+  var STOCK_ORDER = { in: 0, made: 1, soon: 2 };
+
   function renderGrid() {
-    var items = S.ALL.filter(function (p) { return filter === 'all' || p.cat === filter; });
+    var items = S.ALL.filter(function (p) { return filter === 'all' || p.cat === filter; })
+      .slice()
+      .sort(function (a, b) {
+        function rank(p) { return p.stock in STOCK_ORDER ? STOCK_ORDER[p.stock] : 9; }
+        return rank(a) - rank(b);
+      });
     grid.innerHTML = items.map(function (p) {
       var price = S.isMember ? p.member : p.pub;
       var save = p.pub - p.member;
