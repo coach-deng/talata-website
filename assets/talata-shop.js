@@ -207,6 +207,91 @@
     return Object.assign({ sizes: SIZES_KIDS }, b);
   }));
 
+  /* ─── PHYSICAL STOCK ──────────────────────────────────────────────────────
+   *
+   * Deng, 31 Aug 2026: "if the size is not there, then it's sold out."
+   *
+   * That is the whole mechanism and it is better than an "out of stock" label,
+   * because a greyed-out option still invites the click that ends in
+   * disappointment. A size we cannot fill simply is not offered.
+   *
+   * Counts come from /data/stock.json at runtime, NOT from this file, so a
+   * handover is a one-line edit to a JSON file and never a code change.
+   *
+   * 🔴 NOTHING DECREMENTS BY ITSELF. Shop orders are written to the D1 `leads`
+   * table as a JSON blob with `org='talata-shop'`. There is no size column and
+   * no order-lines table, so the Worker cannot compute what is left. The count
+   * is only as right as the last person to edit the file. That is exactly how
+   * /shop spent ten days in August advertising six pieces that had gone.
+   *
+   * WHEN A LINE RUNS OUT it falls back to its previous made/soon state rather
+   * than vanishing. The product still sells, it just stops promising same-day
+   * collection. A card that disappears looks like a broken site; a card that
+   * says "made to order" is the truth.
+   */
+  function applyStock(data) {
+    if (!data || !data.lines) return;
+
+    Object.keys(data.lines).forEach(function (id) {
+      var line = data.lines[id];
+      var p = byId(id);
+      if (!p) return;
+
+      /* Snapshot the made-to-order state the first time we touch this line, then
+         restore it before every re-apply. Without this, applying counts twice in
+         one page session left a sold-out line still badged "In the gym now" with
+         the sizes it had before it ran out, because the sold-out branch simply
+         returned and changed nothing. Caught by test, not by reading. */
+      if (!p._base) p._base = { sizes: p.sizes, stock: p.stock };
+      p.sizes = p._base.sizes;
+      p.stock = p._base.stock;
+      delete p.variant;
+      delete p.stockByVariant;
+      delete p.stockSizes;
+
+      if (line.variants) {
+        /* Sizes depend on the variant, so the card has to repopulate its size
+           list when the variant changes. Both halves are kept here so the
+           renderer never has to know the shape. */
+        var opts = Object.keys(line.variants).filter(function (v) {
+          return sizesLeft(line.variants[v]).length > 0;
+        });
+        if (!opts.length) return;                    // nothing left, stay 'soon'
+        p.variant = { label: line.variantLabel || 'Option', options: opts };
+        p.stockByVariant = line.variants;
+        p.sizes = sizesLeft(line.variants[opts[0]]);
+        p.stock = 'in';
+      } else if (line.sizes) {
+        var left = sizesLeft(line.sizes);
+        if (!left.length) return;                    // nothing left, stay 'soon'
+        p.sizes = left;
+        p.stockSizes = line.sizes;
+        p.stock = 'in';
+      }
+      if (line.note) p.stockNote = line.note;
+    });
+
+    /* One-off pieces keep their own panel. They are single items with a number
+       chosen at print, so they are a claim-by-email flow and never a cart line:
+       two people adding the same jersey to a basket is the one failure this
+       shop must not have. */
+    if (Array.isArray(data.oneOffs)) {
+      READY_NOW.length = 0;
+      data.oneOffs.forEach(function (o) { READY_NOW.push(o); });
+    }
+  }
+
+  /** Sizes with at least one unit left, in the order the file lists them. */
+  function sizesLeft(sizeMap) {
+    return Object.keys(sizeMap || {}).filter(function (s) { return sizeMap[s] > 0; });
+  }
+
+  /** Sizes left for one variant of a line, e.g. the Blue tee. */
+  function sizesForVariant(p, variantValue) {
+    if (!p || !p.stockByVariant) return p ? p.sizes : [];
+    return sizesLeft(p.stockByVariant[variantValue]);
+  }
+
   function byId(id) {
     for (var i = 0; i < ALL.length; i++) if (ALL[i].id === id) return ALL[i];
     return null;
@@ -328,6 +413,8 @@
     get cart() { return cart; },
     get isMember() { return isMember; },
     setMember: function (v) { isMember = !!v; save(); },
+    applyStock: applyStock,
+    sizesForVariant: sizesForVariant,
     priceOf: priceOf,
     total: total,
     count: count,

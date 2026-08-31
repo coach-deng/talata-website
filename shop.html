@@ -402,7 +402,7 @@
   <footer id="drawer-foot"></footer>
 </aside>
 
-<script src="/assets/talata-shop.js"></script>
+<script src="/assets/talata-shop.js?v=20260831b"></script>
 <script>
 (function () {
   var S = window.TalataShop;
@@ -455,8 +455,16 @@
         '<div class="price">' + kr(price) +
           (S.isMember ? '<s>' + kr(p.pub) + '</s><span class="save">You save ' + kr(save) + '</span>' : '') +
         '</div>' +
+        /* Variant first, then size. Sizes depend on the variant for anything
+           stocked, so asking for the colour before the size is the only order
+           that can tell the truth. */
+        (p.variant ? '<label for="var-' + p.id + '">' + p.variant.label + '</label>' +
+                 '<select id="var-' + p.id + '" data-variant="' + p.id + '">' +
+                 p.variant.options.map(function (v) { return '<option>' + v + '</option>'; }).join('') +
+                 '</select>' : '') +
         '<label for="sz-' + p.id + '">Size</label>' +
         '<select id="sz-' + p.id + '">' + p.sizes.map(function (s) { return '<option>' + s + '</option>'; }).join('') + '</select>' +
+        (p.stock === 'in' ? '<p class="both">In the gym now. Only the sizes we can actually hand you are listed.</p>' : '') +
         (p.kit ? '<label for="kit-' + p.id + '">Home or away</label>' +
                  '<select id="kit-' + p.id + '"><option>Home</option><option>Away</option></select>' : '') +
         (p.bothKits ? '<p class="both">Two complete gear sets: home and away, jersey and shorts. Six pieces.</p>' : '') +
@@ -581,12 +589,31 @@
   function openCart() { drawer.classList.add('open'); scrim.classList.add('open'); }
   function closeCart() { drawer.classList.remove('open'); scrim.classList.remove('open'); }
 
+  /* Changing the colour rewrites the size list, because the Blue tee and the
+     Black tee do not run out at the same time. Delegated, because the grid is
+     re-rendered on every filter change and on the member toggle. */
+  grid.addEventListener('change', function (e) {
+    var id = e.target.getAttribute && e.target.getAttribute('data-variant');
+    if (!id) return;
+    var szEl = document.getElementById('sz-' + id);
+    var was = szEl.value;
+    var left = S.sizesForVariant(S.byId(id), e.target.value);
+    szEl.innerHTML = left.map(function (s) { return '<option>' + s + '</option>'; }).join('');
+    /* Keep their size if this colour still has it, so switching colour to
+       compare does not silently reset the choice. */
+    if (left.indexOf(was) >= 0) szEl.value = was;
+  });
+
   grid.addEventListener('click', function (e) {
     var id = e.target.getAttribute && e.target.getAttribute('data-add');
     if (!id) return;
     var p = S.byId(id);
     var sz = document.getElementById('sz-' + id).value;
-    var kit = p.kit ? document.getElementById('kit-' + id).value : '';
+    /* The variant rides in the `kit` slot. It is already carried through the
+       cart, the order payload and the confirmation email, so a stocked colour
+       reaches Deng the same way Home/Away does without a second field. */
+    var kit = p.kit ? document.getElementById('kit-' + id).value
+            : (p.variant ? document.getElementById('var-' + id).value : '');
     var nm = p.personalise ? document.getElementById('nm-' + id).value.trim().toUpperCase() : '';
     var no = p.personalise ? document.getElementById('no-' + id).value.trim() : '';
     if (p.personalise && (!nm || !no)) { alert('This one is printed, so we need the name and the number.'); return; }
@@ -644,8 +671,23 @@
   document.getElementById('close-cart').onclick = closeCart;
   scrim.onclick = closeCart;
 
+  /* Paint the catalogue immediately from the built-in list, then repaint once
+     the counts land. A shop that waits on a fetch to show anything is a blank
+     page on a slow phone in a gym, and every line is orderable either way:
+     the counts only decide which sizes promise same-day collection. A missing
+     or broken stock file therefore costs nothing but the stock badges. */
   renderReady();
   renderGrid();
+
+  fetch('/data/stock.json', { cache: 'no-cache' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d) return;
+      S.applyStock(d);
+      renderReady();
+      renderGrid();
+    })
+    .catch(function () { /* catalogue is already on the page */ });
   renderCart();
 })();
 </script>
