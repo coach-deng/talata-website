@@ -660,7 +660,12 @@
     var barEl = host.querySelector('[data-tf-filters]');
     if (!out) return;
 
-    var state = { tab: 'upcoming', filter: 'all' };
+    /* One list, no tabs.
+       Deng, 31 Aug 2026: played games and their scores belong in the season list,
+       not behind a second tab. A parent looking for "how did Malmö go" should not
+       have to know a Results tab exists. So the season runs in date order,
+       finished games carry their score and the rest carry a dash. */
+    var state = { filter: 'all' };
 
     var teams = [];
     allGames.forEach(function (g) { if (teams.indexOf(g.team) < 0) teams.push(g.team); });
@@ -670,11 +675,9 @@
       return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
     });
 
-    if (tabsEl) {
-      tabsEl.innerHTML =
-        '<button class="tf-tab is-on" data-t="upcoming">Upcoming</button>' +
-        '<button class="tf-tab" data-t="results">Results</button>';
-    }
+    /* The tabs mount stays in the markup and stays empty, so a page that still
+       has the div does not grow a stray gap. */
+    if (tabsEl) { tabsEl.innerHTML = ''; tabsEl.hidden = true; }
     if (barEl) {
       barEl.innerHTML = ['<button class="tf-chip is-on" data-f="all">All games</button>',
         '<button class="tf-chip" data-f="home">Home</button>',
@@ -685,7 +688,9 @@
     }
 
     function paintList() {
-      var base = state.tab === 'results' ? results(allGames) : upcoming(allGames);
+      /* Whole season in date order. merge() already sorted it, so a played game
+         sits under its own month above the fixtures still to come. */
+      var base = allGames;
       var list = base;
       if (state.filter === 'home') list = base.filter(function (g) { return g.home; });
       else if (state.filter === 'away') list = base.filter(function (g) { return !g.home; });
@@ -693,22 +698,8 @@
         var t = state.filter.slice(5);
         list = base.filter(function (g) { return g.team === t; });
       }
-      if (state.tab === 'results' && !list.length) {
-        out.innerHTML = '<p class="tf-empty">Scores land here as soon as the federation files ' +
-          'each scoresheet. The season starts in September.</p>';
-        return;
-      }
       renderRows(out, list);
     }
-
-    if (tabsEl) tabsEl.addEventListener('click', function (e) {
-      var b = e.target.closest('.tf-tab'); if (!b) return;
-      Array.prototype.forEach.call(tabsEl.querySelectorAll('.tf-tab'), function (x) {
-        x.classList.toggle('is-on', x === b);
-      });
-      state.tab = b.getAttribute('data-t');
-      paintList();
-    });
     if (barEl) barEl.addEventListener('click', function (e) {
       var b = e.target.closest('.tf-chip'); if (!b) return;
       Array.prototype.forEach.call(barEl.querySelectorAll('.tf-chip'), function (x) {
