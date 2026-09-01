@@ -385,13 +385,23 @@
   function fixtureRow(g) {
     var opp = g.opponent || g.title;
     var home = g.home;
-    var left = home ? 'Talata' : esc(opp);
-    var right = home ? esc(opp) : 'Talata';
+    /* 🔴 The Talata side prints NO name (Deng, 1 Sep 2026). The club crest is
+       the wordmark "TALATA ACADEMY", so printing the word "Talata" beside it
+       read as "TALATA ACADEMY Talata" on every away row. The empty span stays
+       so the two sides still balance on flex. The opponent keeps its name,
+       because a two-letter monogram is not a name. */
+    var left = home ? '' : esc(opp);
+    var right = home ? esc(opp) : '';
     var leftCrest = home ? talataCrest(g.team) : crestHTML(opp);
     var rightCrest = home ? crestHTML(opp) : talataCrest(g.team);
     var sLeft = g.played ? (home ? g.us : g.them) : '–';
     var sRight = g.played ? (home ? g.them : g.us) : '–';
     var won = g.played && g.us > g.them;
+    /* Mark the side that actually won, not both numbers. `.tf-r.is-won
+       .tf-r-score` used to paint the pair green, so a 41-59 win showed the
+       opponent's 41 in the win colour too. */
+    var lWon = g.played && sLeft > sRight;
+    var rWon = g.played && sRight > sLeft;
 
     return '<article data-tf-open="' + esc(g.id) + '" tabindex="0" role="button"' +
       ' class="tf-r tf-k-' + compKind(g) + (home ? ' is-home' : '') +
@@ -401,8 +411,13 @@
       '<div class="tf-r-venue"><span>' + (home ? 'Home' : 'Away') + '</span><b>' + esc(venueLabel(g)) + '</b></div>' +
       '<div class="tf-r-match">' +
         '<span class="tf-r-team is-l">' + left + '</span>' + leftCrest +
-        '<span class="tf-r-score">' + sLeft + '</span>' +
-        '<span class="tf-r-score">' + sRight + '</span>' +
+        /* One scoreline, not two pills. Two boxes read as two unrelated
+           numbers; a scoreline reads as a result. */
+        '<span class="tf-r-score' + (g.played ? ' is-done' : '') + '">' +
+          '<b' + (lWon ? ' class="is-w"' : '') + '>' + sLeft + '</b>' +
+          '<i>' + (g.played ? '–' : 'v') + '</i>' +
+          '<b' + (rWon ? ' class="is-w"' : '') + '>' + sRight + '</b>' +
+        '</span>' +
         rightCrest + '<span class="tf-r-team is-r">' + right + '</span>' +
       '</div>' +
       '<div class="tf-r-act">' +

@@ -172,15 +172,28 @@
 .tf-r-team.is-l{text-align:right;}
 .tf-r-team.is-r{text-align:left;}
 .tf-r-match .tf-crest{width:36px;height:36px;border-radius:8px;}
-.tf-r-match .tf-crest.is-talata{width:auto;height:auto;min-width:76px;max-width:110px;}
-.tf-r-match .tf-crest.is-talata img{max-height:26px;}
+/* The Talata lockup ran 76-110px wide against a 36px opponent badge, so every
+   row leaned. Closer to the badge now, and it carries the name on its own since
+   the redundant "Talata" text is gone. */
+.tf-r-match .tf-crest.is-talata{width:auto;height:auto;min-width:64px;max-width:84px;background:none;border:0;}
+.tf-r-match .tf-crest.is-talata img{max-height:22px;}
+/* ONE scoreline, not two pills (1 Sep 2026). Two separate boxes read as two
+   unrelated numbers; a scoreline reads as a result. And only the side that
+   actually won is coloured — `.tf-r.is-won .tf-r-score` used to paint BOTH,
+   so a 41-59 win showed the opponent's 41 in the win colour too. */
 .tf-r-score{
-  font-family:var(--f-disp);font-weight:900;font-size:1.05rem;color:var(--f-muted);
-  background:var(--f-card2);border-radius:7px;padding:5px 11px;min-width:40px;
-  text-align:center;font-variant-numeric:tabular-nums;flex:0 0 auto;
+  display:inline-flex;align-items:baseline;gap:8px;flex:0 0 auto;
+  background:var(--f-card2);border-radius:8px;padding:5px 12px;
+  font-variant-numeric:tabular-nums;
 }
-.tf-r.is-won .tf-r-score{color:var(--f-win);}
-.tf-r.is-lost .tf-r-score{color:var(--f-text);}
+.tf-r-score b{
+  font-family:var(--f-disp);font-weight:900;font-size:1.05rem;color:var(--f-text);
+  min-width:22px;text-align:center;
+}
+.tf-r-score i{font-style:normal;font-size:.72rem;color:var(--f-muted);opacity:.7;}
+/* An unplayed row is a fixture, not a result. Keep it quiet. */
+.tf-r-score:not(.is-done) b{color:var(--f-muted);font-weight:800;}
+.tf-r-score b.is-w{color:var(--f-win);}
 
 .tf-r-act{align-items:flex-end!important;gap:6px;}
 .tf-r-tag{
