@@ -7,23 +7,23 @@
   <!-- Self-hosted Inter: no cross-origin round-trip, preloaded for zero LCP delay -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
-  <title>Basketball for børn i København | 5 til 12 år | Talata</title>
-  <link rel="canonical" href="https://talatabasketball.dk/mini" />
-  <meta name="description" content="Basketballtræning for børn på Østerbro i København. Mini 5 til 9 år og Junior 10 til 12 år, tirsdag og torsdag på Strandvejsskolen. Første træning er gratis." />
-  <meta name="keywords" content="basketball børn københavn, basketball for børn, basketballtræning børn, basketbold børn, basketball østerbro, børnebasketball københavn, basketball klub børn, basketball 5 år, basketball 10 år, basketball træning til børn, Talata Mini, Talata Junior" />
+  <title>Talata Men | Adult Basketball in Copenhagen</title>
+  <link rel="canonical" href="https://talatabasketball.dk/men" />
+  <meta name="description" content="Voksenbasketball i København, 18+. Talata Men spiller 3. Division Herrer Øst. Træning mandag og fredag 18:30-20:15 i Svanemøllehallen, Østerbro. Konkurrence eller motion, 2.000 kr per halvsæson." />
+  <meta name="keywords" content="pigebasketball københavn, basketball piger, girls basketball copenhagen, Talata Sparks, Talata Girls, pigebasketball Østerbro, basketball piger 6-14, pigehold basketball" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://talatabasketball.dk/mini" />
-  <meta property="og:title" content="Mini & Junior Basketball København | 5-12 år | Strandvejsskolen | Talata" />
-  <meta property="og:description" content="Basketball for børn 5-12 år. Mini 15:30-16:30, Junior 16:30-17:45. Tirs + tors på Strandvejsskolen Østerbro. Gratis prøvetræning. 1.800 kr/halvsæson." />
+  <meta property="og:url" content="https://talatabasketball.dk/men" />
+  <meta property="og:title" content="Talata Men | Adult Basketball in Copenhagen" />
+  <meta property="og:description" content="Adults 18 and up. 3. Division Herrer Øst, or fitness basketball with no league commitment. Monday and Friday at Svanemøllehallen." />
   <meta property="og:site_name" content="Talata Basketball" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SportsOrganization",
-    "name": "Talata Mini & Junior",
-    "description": "Basketball for børn 5-12 år i København. Mini (5-9) tirsdag og torsdag 15:30-16:30, Junior (10-12) 16:30-17:45, begge på Strandvejsskolen, Østerbro.",
+    "name": "Talata Sparks",
+    "description": "Adult basketball in Copenhagen for ages 18 and up. Talata Men play DBBF 3. Division Herrer Øst. Training Monday and Friday 18:30-20:15 at Svanemøllehallen, Østerbro.",
     "sport": "Basketball",
-    "url": "https://talatabasketball.dk/mini",
+    "url": "https://talatabasketball.dk/sparks",
     "parentOrganization": {
       "@type": "SportsOrganization",
       "name": "Talata Basketball",
@@ -35,7 +35,7 @@
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Sionsgade 1",
-        "addressLocality": "Østerbro",
+        "addressLocality": "København Ø",
         "addressRegion": "København",
         "postalCode": "2100",
         "addressCountry": "DK"
@@ -108,8 +108,7 @@
 
     /* HERO */
     .hero {
-      background: linear-gradient(135deg, rgba(17,17,17,0.78) 0%, rgba(26,39,68,0.72) 50%, rgba(15,52,96,0.80) 100%), url('/images/mini-deng-group.jpg');
-      background-size: cover; background-position: center 30%;
+      background: linear-gradient(135deg, #111 0%, #1a2744 50%, #0f3460 100%);
       color: #fff; padding: 72px 24px 60px; text-align: center;
       position: relative; overflow: hidden;
     }
@@ -245,7 +244,8 @@
     }
     .footer a {color:var(--td-link); text-decoration: none; }
   </style>
-<link rel="stylesheet" href="/assets/talata-nav.css?v=20260901b">
+<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260901b">
+  <link rel="stylesheet" href="/assets/talata-nav.css?v=20260901b">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -259,10 +259,6 @@
     gtag('config', 'G-R64Y9CQ2VZ');
   </script>
 <link rel="stylesheet" href="/assets/talata-footer.css?v=20260901b">
-<!-- LCP hero. It is a CSS background, which the preload scanner cannot see,
-     so it was discovered late: Cloudflare measured this element at 10,490ms
-     over 28 Jul to 27 Aug 2026. This hint makes it discoverable in the head. -->
-<link rel="preload" as="image" href="/images/mini-deng-group.jpg" fetchpriority="high">
 <link rel="stylesheet" href="/assets/talata-dark.css?v=20260901b">
 </head>
 <body>
@@ -307,7 +303,7 @@
         <li><a class="tn-top" href="/shop">Shop</a></li>
       </ul>
     </nav>
-    <a class="tn-cta" href="#register">Book free trial <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-cta" href="#join">Come and train <span aria-hidden="true">&rarr;</span></a>
     <button class="tn-burger" id="tn-burger" type="button" aria-expanded="false" aria-controls="tn-drawer" aria-label="Open menu"><i></i></button>
   </div>
 </div>
@@ -320,7 +316,7 @@
     <button class="tn-drawer-close" id="tn-drawer-close" type="button" aria-label="Close menu">&#10005;</button>
   </div>
   <div class="tn-drawer-body">
-    <a class="tn-drawer-cta" href="#register">Book free trial <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-drawer-cta" href="#join">Come and train <span aria-hidden="true">&rarr;</span></a>
         <h3>Programs</h3>
         <ul class="tn-drawer-list">
           <li><a href="/mini">Mini + Junior<small>ages 5 to 12</small></a></li>
@@ -360,230 +356,87 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">Ages 5 to 12 · Mini & Junior</div>
-    <h1>Basketball starts<br>here. <span>And it's fun.</span></h1>
-    <p>Talata Mini (ages 5 to 9) and Talata Junior (ages 10 to 12) train back to back in the same gym with the same coaches. The kids are moving the whole hour. If they are not having fun they will not come back, and we know it.</p>
+    <div class="hero-badge">Adults 18+ &middot; Talata Men</div>
+    <h1>Grown men's basketball,<br>on a real team. <span>Two nights a week.</span></h1>
+    <p>Talata Men is the club's adult side. One group plays <strong>3. Division Herrer &Oslash;st</strong> in the Danish federation. The other trains alongside them with no league commitment at all. Same hall, same nights, same coaches.</p>
     <div class="hero-actions">
-      <a href="#register" class="btn btn-primary">Join or Try a Session</a>
-      <a href="#schedule" class="btn btn-ghost">See Training Times</a>
+      <a href="#join" class="btn btn-primary">Come and train with us</a>
+      <a href="#fixtures" class="btn btn-ghost">See the fixtures</a>
     </div>
   </div>
 
   <!-- INFO STRIP -->
   <div class="info-strip">
-    <div class="info-item"><span><strong>Mini 5-9</strong> <span class="label">Tue + Thu 15:30-16:30</span></span></div>
-    <div class="info-item"><span><strong>Junior 10-12</strong> <span class="label">Tue + Thu 16:30-17:45</span></span></div>
-    <div class="info-item"><span><strong>Strandvejsskolen</strong> <span class="label">Østerbro, Copenhagen</span></span></div>
+    <div class="info-item"><span><strong>Mon + Fri</strong> <span class="label">18:30-20:15</span></span></div>
+    <div class="info-item"><span><strong>Svanem&oslash;llehallen</strong> <span class="label">&Oslash;sterbrogade 240, &Oslash;sterbro</span></span></div>
+    <div class="info-item"><span><strong>2.000 kr</strong> <span class="label">per half-season</span></span></div>
   </div>
 
-  <!-- PHOTO STRIP -->
-  <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; height: 280px; gap: 3px; overflow:hidden;">
-    <div style="background-image:url('/images/jul26/smiling-drive.jpg'); background-size:cover; background-position:center 35%;"></div>
-    <div style="background-image:url('/images/mini-strandvejsskolen-drill-2026.jpg'); background-size:cover; background-position:center 35%;"></div>
-    <div style="background-image:url('/images/jun26/mini-group-wall.jpg'); background-size:cover; background-position:center 40%;"></div>
-  </div>
-
-  <!-- WHAT IS TALATA MINI -->
+  <!-- TWO WAYS IN -->
   <div class="section">
-    <div class="section-title">What is Talata Mini?</div>
-    <p>For 5 to 9 year olds who just want to play. Come once a week or twice, whatever suits your family. Small group, proper coaching, games built for how young they are.</p>
-    <p>The only thing that matters at this age is that your kid wants to come back next week. That's what we build toward.</p>
-
+    <div class="section-title">Two ways to play</div>
+    <p>Both train in the same slot at Svanem&oslash;llehallen, split into two zones. You pick the one that matches how much you want to commit, and you can move between them.</p>
     <div class="pillars">
       <div class="pillar">
-        <h3>Movement first</h3>
-        <p>Your kid will be moving almost the whole hour. We do not run lines where nine kids stand and watch one.</p>
+        <h3>Competitive</h3>
+        <p>The registered team. We play <strong>3. Division Herrer &Oslash;st</strong> in the DBBF league, plus the Danish Cup. There is a promotion route up to 2. Division through the Final Four. Expect league games most weekends and a tryout to get on the roster.</p>
       </div>
       <div class="pillar">
-        <h3>Teamwork</h3>
-        <p>Taking turns and backing each other up. Sounds small. At this age it is most of the job.</p>
-      </div>
-      <div class="pillar">
-        <h3>Ball control</h3>
-        <p>The basics, pitched at what a 7 year old can actually manage rather than what looks good on a drill sheet.</p>
-      </div>
-      <div class="pillar">
-        <h3>Just have fun</h3>
-        <p>We want your kid to love the game. Everything else comes later.</p>
-      </div>
-      <div class="pillar">
-        <h3>First time? Perfect.</h3>
-        <p>Most kids who join have never played before. That's exactly who this is for.</p>
-      </div>
-      <div class="pillar">
-        <h3>We know your kid's name</h3>
-        <p>Small group, so the coaches know every kid by name and know how each one learns.</p>
+        <h3>Fitness</h3>
+        <p>Recreational adult basketball, no DBBF commitment and no weekend games. Turn up, train, play. This is the one for people coming back to the game after a few years off, or starting properly for the first time.</p>
       </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- SCHEDULE -->
+  <!-- WHEN -->
   <div class="section" id="schedule">
-    <div class="section-title">Training schedule</div>
-    <p>We train Tuesday and Thursday at Strandvejsskolen. Come once or twice a week, whichever works for you. Each session is one hour and we run through the whole season.</p>
-
+    <div class="section-title">When we train</div>
     <div class="schedule-card">
       <div class="schedule-row">
-        <div class="schedule-day">Tuesday</div>
-        <div class="schedule-detail"><strong>15:30-16:30</strong> · Strandvejsskolen, Østerbro</div>
+        <div class="schedule-day">Monday</div>
+        <div class="schedule-detail">18:30 &ndash; 20:15 &middot; Svanem&oslash;llehallen</div>
       </div>
       <div class="schedule-row">
-        <div class="schedule-day">Thursday</div>
-        <div class="schedule-detail"><strong>15:30-16:30</strong> · Strandvejsskolen, Østerbro</div>
+        <div class="schedule-day">Friday</div>
+        <div class="schedule-detail">18:30 &ndash; 20:15 &middot; Svanem&oslash;llehallen</div>
       </div>
     </div>
-
-    <div class="sfo-note">
-      <strong>Pickup:</strong> Training ends at 16:00. Parents pick up at Strandvejsskolen.
-    </div>
-    <div class="sfo-note" style="margin-top: 10px;">
-      <strong>SFO kids:</strong> We pick up directly from Strandvejsskolen SFO before training. No extra travel for parents on those days.
-    </div>
+    <div class="sfo-note"><strong>There is no Wednesday session this season.</strong> Two nights a week, Monday and Friday, and nothing else. If you have been told otherwise, this page is right.</div>
   </div>
 
   <hr class="divider">
 
-  <!-- JUNIOR -->
-  <div class="section" id="junior">
-    <div class="section-title">Talata Junior, ages 10 to 12</div>
-    <p>Junior comes next, once the basics are there. Proper foundations and real decisions in games, and it leads straight into Academy when they are ready for it.</p>
-
-    <div class="schedule-card">
-      <div class="schedule-row">
-        <div class="schedule-day">Tuesday</div>
-        <div class="schedule-detail"><strong>16:30-17:45</strong> · Strandvejsskolen, Østerbro</div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-day">Thursday</div>
-        <div class="schedule-detail"><strong>16:30-17:45</strong> · Strandvejsskolen, Østerbro</div>
-      </div>
-    </div>
-
-    <div class="sfo-note" style="margin-top: 10px;">
-      <strong>Same gym, right after Mini:</strong> an easy pickup if you've got kids in both age groups. 1,800 kr / half-season.
-    </div>
-
-    <div style="margin-top: 20px;">
-      <a href="#register" class="btn btn-primary">Register for Junior</a>
-    </div>
+  <!-- FIXTURES -->
+  <div class="section" id="fixtures">
+    <div class="section-title">Our games</div>
+    <p>League, cup and friendlies. Entry is free at every home game and anyone is welcome to come and watch before they decide.</p>
+    <div data-talata-fixtures data-limit="6" data-team="Men"></div>
+    <p style="margin-top:18px"><a href="/games?team=Men">All Talata Men fixtures &rarr;</a></p>
   </div>
 
   <hr class="divider">
 
-  <!-- SUMMER CAMP -->
+  <!-- COST -->
   <div class="section">
-    <div class="section-title">A good place to start: Autumn Camp</div>
-    <p>If your kid has never touched a basketball before, a camp is an easier way in than a regular session. Two full days with other kids at the same level and nobody watching to see how good they are.</p>
-    <p>Starter Camp runs <strong>Mon 12 and Tue 13 October</strong> over efterårsferie, <strong>09:30 to 14:30</strong> at Strandvejsskolen. Snacks and fruit included, bring a packed lunch. <strong>695 kr if you book before 21 September, 795 kr after that.</strong> 25 places.</p>
-    <p>A lot of kids who come to a camp end up in the weekly sessions afterwards. The coaches already know them by then, so turning up on a Tuesday is not the same leap.</p>
-    <div style="margin-top: 20px;">
-      <a href="/camps/starter-camp-2026" class="btn btn-primary" style="display:inline-block;">Starter Camp details &rarr;</a>
-    </div>
+    <div class="section-title">What it costs</div>
+    <p><strong>2.000 kr per half-season</strong>, the same for Competitive and Fitness. That covers the hall, the coaching and your league registration. Pay with MobilePay to <strong>52697</strong> or by bank transfer once you are on the team.</p>
+    <p>Full price list and the other age groups are on the <a href="/help/age-groups">prices and times</a> page.</p>
   </div>
 
   <hr class="divider">
 
-  <!-- FREE TRIAL -->
-  <div class="section">
+  <!-- COME TRY -->
+  <div class="section" id="join">
     <div class="trial-box">
-      <h3>Want to try it first?</h3>
-      <p>Your kid is welcome to come to any session for free. Same time, same place. Just show up. Or register below so we know to expect them.</p>
-      <a href="#register" class="btn btn-primary">Register for a free trial</a>
+      <h3>Come and train, free</h3>
+      <p>Turn up on a Monday or a Friday at 18:30 with indoor shoes. Email us first so we know to look out for you and can tell you which zone to join.</p>
+      <a href="mailto:coach@talatabasketball.dk?subject=Talata%20Men" class="btn btn-primary">coach@talatabasketball.dk</a>
     </div>
   </div>
 
-  <hr class="divider">
-
-  <!-- REGISTER / CONTACT -->
-  <div class="section" id="register">
-    <div class="section-title">Get in touch or sign up</div>
-    <p>Fill in the form and I'll get back to you with your day, time and gym. The first session is free and there is nothing to pay to come and try.</p>
-    <p>Once your child has been in the gym and it is a fit, I send you the Holdsport link and get them on the team properly. Already decided? Say so in the form and I'll send it straight away.</p>
-
-    <div class="form-card" style="margin-top: 24px;">
-      <form id="mini-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Parent name</label>
-            <input type="text" name="parent_name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label>Child's name</label>
-            <input type="text" name="child_name" placeholder="Your child's name" required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="dob">Date of birth</label>
-            <input type="date" id="dob" name="dob" min="1940-01-01" required autocomplete="bday">
-            <small style="display:block;margin-top:.35rem;color:var(--td-muted);font-size:.78rem;">Age groups run from 1 October, so the date decides the team.</small>
-          </div>
-          <div class="form-group">
-            <label>Your email</label>
-            <input type="email" name="email" placeholder="you@example.com" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>How did you find us?</label>
-          <select name="how_found" required>
-            <option value="">Pick one</option>
-            <option value="google">Google search</option>
-            <option value="instagram">Instagram</option>
-            <option value="friend">Friend or teammate</option>
-            <option value="school">School</option>
-            <option value="parent">Another parent</option>
-            <option value="camp">A Talata camp</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-          <div class="form-group">
-          <label>Have they played before? Anything else?</label>
-          <textarea name="message" rows="3" placeholder="How much basketball they have played, questions, allergies, if your child goes to Strandvejsskolen SFO..."></textarea>
-        </div>
-        <button type="submit" class="form-submit" id="submit-btn">Send, we will be in touch</button>
-      </form>
-      <div class="form-success" id="form-success">
-        Got it! We will be in touch shortly.
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- WHAT'S NEXT -->
-  <div class="section">
-    <div class="section-title">What's next?</div>
-    <p>At <strong>9</strong>, kids move from Mini into <strong>Talata Junior</strong>. Same gym, straight after Mini, with proper fundamentals and real decisions in games.</p>
-    <p>At <strong>12</strong> they move up to <strong>Talata Academy</strong>, where it turns into competitive basketball with league games and video review. Kids who came up through Mini and Junior already know the coaches, so the jump is not a shock.</p>
-    <div class="sfo-note" style="margin-top: 20px;">
-      <strong>Mini → Junior → Academy:</strong> when your child is ready to move up, we'll reach out and get them set up on the next team.
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div style="background:#0B1F3A;padding:2.5rem 2rem;text-align:center;">
-    <p style="color:#7DD3FC;font-size:0.75rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">The Talata Way</p>
-    <p style="color:white;font-size:1.1rem;font-weight:700;margin-bottom:1rem;">Curious why our sessions look nothing like a normal practice?</p>
-    <a href="/philosophy" style="background:#7DD3FC;color:var(--td-bg);padding:0.6em 1.6em;border-radius:9999px;font-weight:800;text-decoration:none;font-size:0.9rem;">Read our coaching philosophy</a>
-  </div>
-
-<script src="/assets/talata-signup.js?v=20260901b"></script>
-  <script>
-    // Lead capture, attribution and the next-steps panel live in
-    // /assets/talata-signup.js. Posting to GAS directly here as well was
-    // sending every parent two confirmation emails. Removed Aug 10 2026.
-    TalataSignup.wire({
-      formId: 'mini-form',
-      buttonId: 'submit-btn',
-      formId_: 'talata-mini-2026',
-      program: 'Talata Mini',
-      variant: 'mini',
-      mount: 'form-success'
-    });
-  </script>
-
+<script src="/assets/talata-fixtures.js?v=20260901b" defer></script>
 <script src="/assets/talata-nav.js?v=20260901b" defer></script>
 <script src="/assets/talata-track.js?v=20260901b" defer></script>
 <!-- TALATA:FOOTER:START — generated by tools/apply-shared-footer.py, do not hand-edit -->
@@ -629,7 +482,7 @@
         <h4>Contact</h4>
         <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a>
         <a href="https://wa.me/4552398508">WhatsApp Coach Deng</a>
-        <a href="#register"><b>Book a free trial &rarr;</b></a>
+        <a href="/join"><b>Book a free trial &rarr;</b></a>
       </div>
     </div>
     <div class="tf-base">
