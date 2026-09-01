@@ -407,9 +407,10 @@
       ' class="tf-r tf-k-' + compKind(g) + (home ? ' is-home' : '') +
         (g.state !== 'confirmed' ? ' is-tbc' : '') +
         (g.played ? (won ? ' is-won' : ' is-lost') : '') + '">' +
-      '<div class="tf-r-comp"><span>' + esc(g.competition) +
+      '<div class="tf-r-comp"><span>' + esc(g.competition) + '</span>' +
+        '<b>' + esc(timeLabel(g)) +
         (isTalataNight(g) ? ' <i class="tf-r-tag">Talata Night</i>' : '') +
-        '</span><b>' + esc(timeLabel(g)) + '</b></div>' +
+        '</b></div>' +
       '<div class="tf-r-venue"><span>' + (home ? 'Home' : 'Away') + '</span><b>' + esc(venueLabel(g)) + '</b></div>' +
       '<div class="tf-r-match">' +
         '<span class="tf-r-team is-l">' + left + '</span>' + leftCrest +

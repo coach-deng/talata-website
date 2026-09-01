@@ -70,13 +70,41 @@ TOURNAMENT_TO_TEAM = [
 
 # Public-facing competition names. The DBBF strings are Danish admin labels and
 # the site is English everywhere except SEO meta (standing rule).
-TOURNAMENT_LABEL = {
-    "3. Division Herrer - Øst": "3. Division East",
-    "Divisionspokal - Herrer": "Danish Cup",
-    "HU19 1. division Øst": "U19 1st Division East",
-    "U15 Drenge Mester Øst - Pulje 2": "U15 Championship East",
-    "U13 Drenge Mester Øst - Pulje 2": "U13 Championship East",
-}
+#
+# 🔴 THIS WAS AN EXACT-STRING DICT UNTIL 1 SEP 2026 AND IT FAILED SILENTLY.
+# The 31 Aug export reworded every single key: "3. Division Herrer - Øst" became
+# "3. Division Herrer Øst Pulje 3", "HU19 1. division Øst" became "HU19
+# 1. Division Øst - 1. halvdel Puljer 1", and so on. Every lookup missed, every
+# label fell through to the raw admin string, and the site published
+# "HU19 1. Division Øst - 1. halvdel Puljer 1" to parents. It needed 372px in a
+# 167px column, so 40 of 51 rows showed a truncated label nobody could read.
+#
+# Matched on ORDERED SUBSTRINGS now, so a re-worded pulje or halvdel cannot
+# break it, and an unmatched competition is REPORTED rather than published raw.
+COMPETITION_RULES = [
+    (("divisionspokal",),            "Danish Cup"),
+    (("3. division", "herrer"),      "3. Division East"),
+    (("hu19", "1. division"),        "U19 1st Division East"),
+    (("u15", "mester"),              "U15 Championship East"),
+    (("u13", "mester"),              "U13 Championship East"),
+]
+
+
+UNMAPPED_COMPETITIONS = set()
+
+
+def competition_label(raw: str) -> str:
+    """Public label for a DBBF competition string, or the raw string if unknown.
+
+    Records the miss, because publishing the raw string is the failure mode and
+    it is invisible from the output alone.
+    """
+    low = (raw or "").lower()
+    for needles, label in COMPETITION_RULES:
+        if all(n in low for n in needles):
+            return label
+    UNMAPPED_COMPETITIONS.add(raw)
+    return raw
 
 # Holdsport calls it "Nørre Fælled Hallen", DBBF calls it "Nørre Fælled Skole",
 # the Kommune booking (BKN-265621) calls it "Idrætshal 14.0.021". One place.
@@ -173,7 +201,7 @@ def build(path: str) -> dict:
                 "team": team_for(tournament),
                 "opponent": opponent,
                 "home": is_home,
-                "competition": TOURNAMENT_LABEL.get(tournament, tournament),
+                "competition": competition_label(tournament),
                 "venue": venue or None,
                 "court": court or None,
                 "homeCourt": bool(venue) and venue in HOME_VENUES,
@@ -257,6 +285,15 @@ def main() -> None:
         f"{c.get('tbc', 0)} time TBC, "
         f"{c.get('moving', 0)} being moved)"
     )
+    # 🔴 An unmapped competition publishes the raw DBBF admin string to parents.
+    # That is exactly what happened on the 31 Aug export and nothing said a word.
+    unmapped = sorted(UNMAPPED_COMPETITIONS)
+    if unmapped:
+        print("\n🔴 UNMAPPED COMPETITION NAMES — these publish RAW to the site:")
+        for u in unmapped:
+            print(f"     {u}")
+        print("     Add a rule to COMPETITION_RULES near the top of this file.")
+
     if skipped:
         # A full-federation export carries every club's games, over 2,300 rows.
         # Printing all of their numbers buries the part that matters.
