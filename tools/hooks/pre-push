@@ -1,0 +1,16 @@
+#!/bin/sh
+# Talata pre-push gate. Installed by tools/install-hooks.sh
+#
+# WHY: on 1 Sep 2026 two broken things reached production in one day, both
+# because a step was forgotten rather than because code was wrong. A checklist
+# a human has to remember is not a process.
+#
+# Bypass with:  git push --no-verify   (say why in the commit message)
+echo "→ running tools/ship.py before push"
+python3 "$(git rev-parse --show-toplevel)/tools/ship.py" || {
+  echo ""
+  echo "✗ push blocked by tools/ship.py"
+  echo "  Fix the items above, or bypass deliberately with: git push --no-verify"
+  exit 1
+}
+exit 0
