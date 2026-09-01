@@ -407,7 +407,9 @@
       ' class="tf-r tf-k-' + compKind(g) + (home ? ' is-home' : '') +
         (g.state !== 'confirmed' ? ' is-tbc' : '') +
         (g.played ? (won ? ' is-won' : ' is-lost') : '') + '">' +
-      '<div class="tf-r-comp"><span>' + esc(g.competition) + '</span><b>' + esc(timeLabel(g)) + '</b></div>' +
+      '<div class="tf-r-comp"><span>' + esc(g.competition) +
+        (isTalataNight(g) ? ' <i class="tf-r-tag">Talata Night</i>' : '') +
+        '</span><b>' + esc(timeLabel(g)) + '</b></div>' +
       '<div class="tf-r-venue"><span>' + (home ? 'Home' : 'Away') + '</span><b>' + esc(venueLabel(g)) + '</b></div>' +
       '<div class="tf-r-match">' +
         '<span class="tf-r-team is-l">' + left + '</span>' + leftCrest +
@@ -421,7 +423,6 @@
         rightCrest + '<span class="tf-r-team is-r">' + right + '</span>' +
       '</div>' +
       '<div class="tf-r-act">' +
-        (isTalataNight(g) ? '<span class="tf-r-tag">Talata Night</span>' : '') +
         (home && !g.played
           ? '<button class="tf-r-tix" data-tf-claim="' + esc(g.id) +
             '" data-tf-date="' + esc(g.date) + '">Free ticket</button>'
