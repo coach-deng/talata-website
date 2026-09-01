@@ -347,13 +347,13 @@ footer a:hover{color:var(--td-link);}
 .kcard.has-shot:hover .kshot img{opacity:.46;}
 </style>
 <link rel="stylesheet" href="/assets/talata-nav.css">
-<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260831b">
+<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260831e">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260831b">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260831e">
 <!-- LCP hero. It is a CSS background, which the preload scanner cannot see,
      so it was discovered late: Cloudflare measured this element at 4,176ms
      over 28 Jul to 27 Aug 2026. This hint makes it discoverable in the head. -->
@@ -519,6 +519,10 @@ footer a:hover{color:var(--td-link);}
      Renders nothing at all if both are empty, so a failed fetch leaves a clean
      page rather than an empty black bar. -->
 <div data-talata-ticker></div>
+<!-- Cup popup mount. HOMEPAGE ONLY, on purpose: it is the one page where
+     interrupting a reader is defensible, and the one page whose main job
+     (free-trial signups) it must not outrank. No mount = no popup. -->
+<div data-talata-cup></div>
 
 <!-- Games and Shop, the two things a visitor most often arrives looking for.
      Modelled on the pair of cards on zalgiris.lt (Deng, 26 Aug). Photos are
@@ -830,6 +834,6 @@ TalataSignup.wire({
 </footer>
 <!-- TALATA:FOOTER:END -->
 
-<script src="/assets/talata-fixtures.js?v=20260831b" defer></script>
+<script src="/assets/talata-fixtures.js?v=20260831e" defer></script>
 </body>
 </html>

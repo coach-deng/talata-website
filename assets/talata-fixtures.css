@@ -449,3 +449,87 @@
 @media (min-width: 768px) {
   [data-talata-feature] { min-height: 322px; }
 }
+
+/* ═══ TICKER: squad name, next game, cup game (31 Aug 2026) ═══════════════
+   Deng: highlight the next game more, put the age group on, and make a CUP
+   game loud. Tournaments deliberately stay plain — he corrected himself on
+   that mid-sentence, so only compKind()==='cup' gets this. */
+
+.tkc{position:relative;}
+
+/* The squad, named like the match ticket names it. */
+.tkc-squad{
+  font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--f-muted);max-width:170px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+/* Two small caps labels, same shape, different jobs. */
+.tkc-nx,.tkc-cup{
+  font-family:var(--f-disp);font-size:.5rem;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-bottom:1px;
+}
+.tkc-nx{color:#0B0F17;background:var(--f-accent);}
+/* #F2777A is the red the fixtures key already uses for a cup, and the same one
+   the help-page stop callout got on 31 Aug. One red on this site, not three. */
+.tkc-cup{color:#0B0F17;background:#F2777A;}
+
+/* NEXT GAME. Was a faint blue wash you had to hunt for. Now it is the card that
+   is obviously the point: brighter ground, a full-height accent edge, and it
+   sits a touch proud of the strip. */
+.tkc.is-next{
+  background:linear-gradient(180deg,rgba(44,79,216,.34) 0%,rgba(44,79,216,.14) 100%);
+  box-shadow:inset 3px 0 0 var(--f-accent),inset -3px 0 0 var(--f-accent);
+}
+.tkc.is-next .tkc-opp{color:#fff;}
+
+/* CUP GAME. Beats the next-game styling when a card is both, which is exactly
+   what happens on 7 September. */
+.tkc.is-cup{
+  background:linear-gradient(180deg,rgba(242,119,122,.26) 0%,rgba(242,119,122,.09) 100%);
+  box-shadow:inset 3px 0 0 #F2777A,inset -3px 0 0 #F2777A;
+}
+.tkc.is-cup .tkc-opp{color:#fff;}
+.tkc.is-cup .tkc-date{color:#F2777A;}
+.tkc.is-cup .tkc-cd b{color:#F2777A;}
+
+/* ═══ CUP POPUP, homepage only ════════════════════════════════════════════
+   Bottom-left on desktop so it never covers the hero headline or the trial
+   button, which are the things the page is actually for. Full width at the
+   bottom on a phone, where a corner card would cover half the screen. */
+.cup-pop{
+  position:fixed;left:20px;bottom:20px;z-index:80;width:330px;max-width:calc(100vw - 40px);
+  background:#0F1626;border:1px solid rgba(242,119,122,.55);border-left:4px solid #F2777A;
+  border-radius:14px;padding:18px 20px 20px;
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+  opacity:0;transform:translateY(14px);
+  transition:opacity .28s ease,transform .28s ease;
+}
+.cup-pop.is-in{opacity:1;transform:translateY(0);}
+.cup-x{
+  position:absolute;top:8px;right:10px;background:none;border:0;cursor:pointer;
+  color:var(--f-muted);font-size:1.35rem;line-height:1;padding:4px 6px;
+}
+.cup-x:hover{color:#fff;}
+.cup-x:focus-visible{outline:2px solid #F2777A;outline-offset:2px;border-radius:6px;}
+.cup-kick{
+  font-family:var(--f-disp);font-size:.6rem;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:#F2777A;margin:0 0 6px;
+}
+.cup-h{font-family:var(--f-disp);font-weight:900;font-size:1.08rem;line-height:1.2;color:#fff;margin:0 0 8px;}
+.cup-when{font-size:.85rem;color:var(--f-text);margin:0 0 8px;line-height:1.45;}
+.cup-when b{color:var(--f-accent);}
+.cup-sub{font-size:.8rem;color:var(--f-muted);margin:0 0 14px;line-height:1.45;}
+.cup-cta{
+  display:block;text-align:center;background:#F2777A;color:#0B0F17;
+  font-weight:800;font-size:.88rem;padding:11px;border-radius:9px;text-decoration:none;
+}
+.cup-cta:hover{background:#fff;}
+
+@media (max-width:600px){
+  .cup-pop{left:10px;right:10px;bottom:10px;width:auto;max-width:none;padding:16px;}
+}
+/* Somebody who asked for less motion still gets the popup, it just arrives. */
+@media (prefers-reduced-motion:reduce){
+  .cup-pop{transition:none;}
+}

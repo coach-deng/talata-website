@@ -189,6 +189,21 @@
       '" alt="Talata" loading="lazy"></span>';
   }
 
+  /* The squad, named the way the match ticket names it (Deng, 31 Aug 2026).
+     "U19" tells a parent nothing about whose child is playing; "Talata Academy
+     U19" does. Same wording as sendTicketConfirmation so the strip, the ticket
+     and the calendar all say one thing. */
+  function squadName(team) {
+    if (!team) return 'Talata';
+    if (team === 'Men') return 'Talata Men';
+    if (ACADEMY_TEAMS.indexOf(team) >= 0) return 'Talata Academy ' + team;
+    return 'Talata ' + team;
+  }
+
+  /* A cup tie is the one fixture worth interrupting somebody for. Deng, 31 Aug:
+     highlight the cup, not tournaments. compKind already separates them. */
+  function isCup(g) { return compKind(g) === 'cup'; }
+
   /* ---------- merge ---------- */
 
   function merge(staticGames, liveGames) {
@@ -449,18 +464,31 @@
 
   function renderTicker(el, games) {
     if (!games.length) { el.innerHTML = ''; return; }
-    var nextId = (games.filter(function (g) { return tipOff(g) !== null; })[0] || {}).id;
+    /* 🔴 `!g.played` is load-bearing. tipOff() returns a timestamp for ANY game
+       carrying a time, finished ones included, so the moment the Malmö results
+       went into this strip on 31 Aug the "next" id locked onto a game that had
+       already been played. isNext then never matched, which silently killed the
+       highlight, the countdown AND the scroll-park that centres the strip on the
+       next game. It looked like a styling preference and it was a broken filter. */
+    var nextId = (games.filter(function (g) {
+      return !g.played && tipOff(g) !== null;
+    })[0] || {}).id;
 
     var cards = games.slice(0, 12).map(function (g) {
       var opp = g.opponent || g.title;
       var isNext = !g.played && g.id === nextId;
       var won = g.played && g.us > g.them;
+      var cup = isCup(g) && !g.played;
       return '<a class="tkc' + (g.home ? ' is-home' : '') + (isNext ? ' is-next' : '') +
+        (cup ? ' is-cup' : '') +
         (g.played ? ' is-done' : '') + '" href="/games">' +
+        (cup ? '<span class="tkc-cup">Cup</span>' : '') +
+        (isNext && !cup ? '<span class="tkc-nx">Next up</span>' : '') +
         '<div class="tkc-crests">' + talataCrest(g.team) +
           '<span class="tkc-sep">' + (g.home ? 'vs' : 'at') + '</span>' +
           crestHTML(opp) + '</div>' +
         '<span class="tkc-opp">' + esc(opp) + '</span>' +
+        '<span class="tkc-squad">' + esc(squadName(g.team)) + '</span>' +
         (g.played
           ? '<span class="tkc-score' + (won ? ' is-won' : '') + '">' +
               esc(String(g.us)) + ' <i>-</i> ' + esc(String(g.them)) + '</span>' +
@@ -713,6 +741,75 @@
     paintList();
   }
 
+  /* ---------- cup popup ----------
+   *
+   * Deng, 31 Aug 2026: "you jump on website and, hey, boom, cup game, get
+   * yourself a ticket."
+   *
+   * 🔴 THE THING THIS HAS TO NOT DO. The homepage's job is turning a parent into
+   * a free trial, and Google search is about 46% of signups. A popup that lands
+   * on top of the hero competes with the one conversion the club actually lives
+   * on. So it is deliberately restrained, and every one of these is a decision
+   * rather than a default:
+   *   - HOMEPAGE ONLY. It renders into [data-talata-cup], which exists on index
+   *     and nowhere else. No mount, no popup.
+   *   - DELAYED. Six seconds, so the hero and the trial CTA are read first.
+   *   - ONCE PER GAME. Dismissal is stored against the game id, so closing it
+   *     keeps it closed for that tie and a NEW cup game can still speak up.
+   *   - CUP ONLY. Not tournaments, not Talata Night. Deng corrected himself on
+   *     exactly this point.
+   *   - 14 DAY WINDOW, so it cannot become wallpaper.
+   * If localStorage throws (private window, blocked site data) it just shows,
+   * which is the safe direction to fail.
+   */
+  var CUP_WINDOW_DAYS = 14;
+  var CUP_DELAY_MS = 6000;
+  var CUP_KEY = 'talata_cup_seen_v1';
+
+  function cupSeen(id) {
+    try { return (localStorage.getItem(CUP_KEY) || '') === String(id); } catch (e) { return false; }
+  }
+  function markCupSeen(id) {
+    try { localStorage.setItem(CUP_KEY, String(id)); } catch (e) { /* fine */ }
+  }
+
+  function renderCupPopup(games) {
+    var host = document.querySelector('[data-talata-cup]');
+    if (!host) return;                          /* not the homepage */
+
+    var t = todayISO();
+    var cup = games.filter(function (g) {
+      return !g.played && isCup(g) && g.date >= t && daysAway(g) <= CUP_WINDOW_DAYS;
+    })[0];
+    if (!cup || cupSeen(cup.id)) return;
+
+    var when = longDate(cup.date) + (cup.time ? ', ' + cup.time : '');
+    var opp = cup.opponent || cup.title || 'TBC';
+
+    host.innerHTML =
+      '<div class="cup-pop" role="dialog" aria-modal="false" aria-label="Cup game">' +
+        '<button class="cup-x" aria-label="Close">&times;</button>' +
+        '<p class="cup-kick">Danish Cup</p>' +
+        '<p class="cup-h">' + esc(squadName(cup.team)) + ' vs ' + esc(opp) + '</p>' +
+        '<p class="cup-when"><b>' + esc(when) + '</b><br>' + esc(venueLabel(cup)) + '</p>' +
+        '<p class="cup-sub">Free entry, like every home game. Claim a ticket so we know how many are coming.</p>' +
+        '<a class="cup-cta" href="/games#season">Claim a free ticket</a>' +
+      '</div>';
+
+    /* Mark it seen on dismiss AND on the click through, so somebody who claims
+       a ticket is not asked again for the same game. */
+    host.querySelector('.cup-x').addEventListener('click', function () {
+      markCupSeen(cup.id); host.innerHTML = '';
+    });
+    host.querySelector('.cup-cta').addEventListener('click', function () {
+      markCupSeen(cup.id);
+    });
+    requestAnimationFrame(function () {
+      var box = host.querySelector('.cup-pop');
+      if (box) box.classList.add('is-in');
+    });
+  }
+
   /* ---------- boot ---------- */
 
   function paint(games) {
@@ -732,6 +829,13 @@
       if (el.closest('[data-tf-host]')) return;   /* the host paints its own list */
       renderRows(el, next);
     });
+
+    /* Armed once. paint() runs twice, static then live, and a second timer
+       would fire a second popup over the first. */
+    if (!paint._cupArmed) {
+      paint._cupArmed = true;
+      setTimeout(function () { renderCupPopup(allGames); }, CUP_DELAY_MS);
+    }
   }
 
   function boot() {
