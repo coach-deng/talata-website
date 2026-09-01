@@ -26,6 +26,7 @@ A redirect is not a destination.
 """
 import argparse
 import collections
+import subprocess
 import glob
 import html
 import io
@@ -93,6 +94,19 @@ def servable(path, red):
             or os.path.isfile(os.path.join(ROOT, rel, "index.html")))
 
 
+def tracked_files():
+    """Cloudflare Pages deploys what git tracks. An image that exists on disk but
+    is untracked works locally and 404s in production, which is invisible from a
+    local check alone. The repo carries ~800 untracked photos (images/junk,
+    images/_unused, Photos-001, Talata Website Photos), so this is a live trap."""
+    try:
+        out = subprocess.run(["git", "ls-files"], cwd=ROOT,
+                             capture_output=True, text=True, timeout=30)
+        return set(out.stdout.splitlines())
+    except Exception:
+        return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strict", action="store_true",
@@ -101,6 +115,7 @@ def main():
 
     red = redirects()
     ps = pages()
+    tracked = tracked_files()
     sitemap = ""
     sm = os.path.join(ROOT, "sitemap.xml")
     if os.path.isfile(sm):
@@ -159,6 +174,10 @@ def main():
                     else os.path.join(ROOT, os.path.dirname(f), s))
             if not os.path.isfile(full):
                 fails.append((f, "missing image", s))
+            elif tracked is not None:
+                rel = os.path.relpath(full, ROOT).replace(os.sep, "/")
+                if rel not in tracked:
+                    fails.append((f, "image not in git, 404s in production", s))
 
         m = re.search(r"<title>(.*?)</title>", src, re.S)
         if not m:
