@@ -199,6 +199,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
+      min-width: 12px;
       height: 32px;
       border-radius: 8px;
       display: flex;
@@ -216,6 +217,17 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.18);
       z-index: 10;
     }
+    .gantt-lab {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+      color: var(--td-text);
+      pointer-events: none;
+    }
+    .gantt-lab.is-left { text-align: right; }
     .gantt-bar .bar-dates {
       font-weight: 500;
       opacity: 0.85;
@@ -417,7 +429,7 @@
         <a href="/saturday">Saturdays<small>ages 5 to 12, from autumn</small></a>
         <a href="/academy">Academy<small>ages 13 to 19</small></a>
         <a href="/sparks">Sparks<small>girls 6 to 14</small></a>
-        <a href="/join">Adults<small>Men 3. Division + fitness</small></a>
+        <a href="/join#adults">Adults<small>Men 3. Division + fitness</small></a>
         <a href="/school-partnerships">Schools<small>ISH and school programmes</small></a>
         </div>
       </li>
@@ -456,7 +468,7 @@
           <li><a href="/saturday">Saturdays<small>ages 5 to 12, from autumn</small></a></li>
           <li><a href="/academy">Academy<small>ages 13 to 19</small></a></li>
           <li><a href="/sparks">Sparks<small>girls 6 to 14</small></a></li>
-          <li><a href="/join">Adults<small>Men 3. Division + fitness</small></a></li>
+          <li><a href="/join#adults">Adults<small>Men 3. Division + fitness</small></a></li>
           <li><a href="/school-partnerships">Schools<small>ISH and school programmes</small></a></li>
         </ul>
         <h3><a href="/camps">Camps</a></h3>
@@ -838,9 +850,20 @@
 
       const bar = document.createElement('div');
       bar.className = 'gantt-bar';
-      bar.style.cssText = `left:${left}%;width:${width}%;background:${c.color};color:${c.text};`;
-      bar.innerHTML = `<span class="bar-dates">${c.label}</span>`;
+      bar.style.cssText = `left:${left}%;width:${width}%;background:${c.color};`;
+      bar.title = c.label;
       track.appendChild(bar);
+
+      /* The label sits BESIDE the bar, never inside it. The axis runs Jun to Jan,
+         so a five day camp is under 2% of the track — about 24px — and "Aug 3-7"
+         needs ninety. Every label was clipped to a single letter. Past the
+         two-thirds mark it hangs on the left so December stays inside the box. */
+      const lab = document.createElement('span');
+      lab.className = 'gantt-lab';
+      lab.textContent = c.label;
+      if (left > 62) { lab.classList.add('is-left'); lab.style.cssText = `right:${100 - left}%;margin-right:10px;`; }
+      else           { lab.style.cssText = `left:${left + width}%;margin-left:10px;`; }
+      track.appendChild(lab);
     });
   </script>
 

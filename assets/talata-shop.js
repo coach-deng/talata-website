@@ -31,7 +31,10 @@
 
   var SIZES_APPAREL = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   var SIZES_KIDS = ['6-8y', '8-10y', '10-12y', '12-14y', 'XS', 'S', 'M', 'L', 'XL'];
-  var SIZES_SOCK = ['31-34', '35-38', '39-42', '43-46'];
+  // EU band with the US equivalent, because half the Academy buys shoes in US sizes
+  // and the old list stopped at EU 46 (US 12), which is under-sized for the Men.
+  var SIZES_SOCK = ['EU 31-34 / US 1-3', 'EU 35-38 / US 4-6', 'EU 39-42 / US 6.5-9',
+                    'EU 43-46 / US 9.5-12', 'EU 47-50 / US 12.5-15'];
 
   // stock states:
   //   'made' = made to order, goes in the next batch

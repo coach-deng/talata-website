@@ -166,8 +166,8 @@
         ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
         : ''),
       (route && route.when
-        ? '<li><b>Just turn up.</b> No waiting list, nothing to book, nothing to pay. Ask for Deng at the door.</li>'
-        : '<li><b>Deng emails you within a day</b> with your exact day, time and gym.</li>'),
+        ? '<li><b>Just turn up.</b> No waiting list, nothing to book, nothing to pay. Ask for a coach at the door.</li>'
+        : '<li><b>We email you within a day</b> with your exact day, time and gym.</li>'),
       '<li><b>The first session is free.</b> Trainers and a water bottle is all you need. No kit, no experience.</li>',
       '<li>If it is a fit, you join the club properly. That part is below when you are ready.</li>',
       '</ol>',
@@ -177,9 +177,9 @@
       '<div class="tns-warn">',
       '<b>Come to the free session first.</b> There is nothing to sign and nothing to pay to try us.',
       '<ul>',
-      '<li>If it is a fit, Deng sends you the Holdsport link afterwards and gets your child on the right team.</li>',
+      '<li>If it is a fit, we send you the Holdsport link afterwards and get your child on the right team.</li>',
       '<li><b>Membership starts the moment you join a team on Holdsport</b>, so we hold that back until you have actually been in the gym.</li>',
-      '<li><b>Already decided?</b> Reply to your confirmation email and Deng will send the link today.</li>',
+      '<li><b>Already decided?</b> Reply to your confirmation email and we will send the link today.</li>',
       '</ul>',
       '</div>',
       '</div>',
@@ -189,7 +189,7 @@
       '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
       '</div>',
 
-      '<p class="tns-foot">Any question at all, just reply to the confirmation email. It comes straight to Deng.</p>',
+      '<p class="tns-foot">Any question at all, just reply to the confirmation email. It comes straight to us.</p>',
       '</div></div>'
     ].join('');
   }

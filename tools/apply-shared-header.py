@@ -73,7 +73,7 @@ MENU = {
         ("/saturday", "Saturdays", "ages 5 to 12, from autumn"),
         ("/academy", "Academy", "ages 13 to 19"),
         ("/sparks", "Sparks", "girls 6 to 14"),
-        ("/join", "Adults", "Men 3. Division + fitness"),
+        ("/join#adults", "Adults", "Men 3. Division + fitness"),
         ("/school-partnerships", "Schools", "ISH and school programmes"),
     ],
     # No dropdown. /camps already lists Starter, Pathway, Winter and the archive,

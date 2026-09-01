@@ -431,6 +431,14 @@
     '</article>';
   }
 
+  /* "U19,U15" -> only those teams. Empty or missing means every team. */
+  function filterTeams(games, spec) {
+    if (!spec) return games;
+    var want = spec.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+    if (!want.length) return games;
+    return games.filter(function (g) { return want.indexOf(g.team) >= 0; });
+  }
+
   function renderRows(el, games) {
     var limit = parseInt(el.getAttribute('data-limit') || '0', 10);
     var list = limit > 0 ? games.slice(0, limit) : games;
@@ -752,6 +760,20 @@
       paintList();
     });
 
+    /* Deep link. /games?team=Men lands with that chip already on, which is what
+       the Programmes menu points at: a group's page sends you to its own season
+       rather than to the top of a list of forty games. */
+    var want = (new URLSearchParams(location.search).get('team') || '').trim();
+    if (want && barEl) {
+      var chip = barEl.querySelector('[data-f="team:' + want.replace(/"/g, '') + '"]');
+      if (chip) {
+        Array.prototype.forEach.call(barEl.querySelectorAll('.tf-chip'), function (x) {
+          x.classList.toggle('is-on', x === chip);
+        });
+        state.filter = 'team:' + want;
+      }
+    }
+
     host._tfPaint = paintList;
     paintList();
   }
@@ -842,7 +864,10 @@
     });
     document.querySelectorAll('[data-talata-fixtures]').forEach(function (el) {
       if (el.closest('[data-tf-host]')) return;   /* the host paints its own list */
-      renderRows(el, next);
+      /* data-team="Men" or data-team="U19,U15,U13" so a programme page can show
+         its own group's games. Mini, Junior and Sparks have NO fixtures at all,
+         so they get no mount rather than an empty list. */
+      renderRows(el, filterTeams(next, el.getAttribute('data-team')));
     });
 
     /* Armed once. paint() runs twice, static then live, and a second timer
