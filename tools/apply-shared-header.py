@@ -116,6 +116,8 @@ CARET = (
 # injected AFTER every page's own inline <style>. That ordering is the whole
 # mechanism: a later stylesheet of equal specificity wins, so redefining the
 # :root tokens here flips all 50 pages without touching their own CSS.
+# The one exception is /reviews and /philosophy, which carry talata-tw-dark.css
+# after it; see the dark-mode block in process() for why.
 HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260902a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -293,14 +295,25 @@ def process(path: Path, check: bool):
             src = src[: head.start()] + HEAD_TAGS + "\n" + src[head.start():]
             notes.append("head tags")
     # Dark mode, 26 Aug 2026. Re-stamped on EVERY run, not just a page's first,
-    # and always immediately before </head> so it stays the last stylesheet on
-    # the page. That position is what lets it redefine the :root tokens each
-    # page sets in its own inline <style>. Removing any previous copy first is
-    # what makes a ?v= bump actually reach the pages.
+    # and placed as late as it can go so it redefines the :root tokens each page
+    # sets in its own inline <style>. Removing any previous copy first is what
+    # makes a ?v= bump actually reach the pages.
+    #
+    # 2 Sep 2026: "as late as it can go" is not always </head>. /reviews and
+    # /philosophy are Tailwind-literal pages and carry talata-tw-dark.css, whose
+    # own header reads "Load AFTER talata-dark.css" — a variable remap has
+    # nothing to grab on bg-white, so those two need utility-level overrides
+    # with the last word. Anchoring on </head> there put dark.css last and undid
+    # them, which is the 27 Aug white-island bug. Those two pages then drifted
+    # from the generator permanently, because regenerating would have reproduced
+    # it. So the anchor is tw-dark when present, </head> otherwise.
     src = re.sub(r'[ \t]*<link rel="stylesheet" href="/assets/talata-dark\.css[^"]*">\n?', "", src)
-    head = re.search(r"</head>", src)
-    if head:
-        src = src[: head.start()] + DARK_TAG + "\n" + src[head.start():]
+    anchor = re.search(
+        r'[ \t]*<link rel="stylesheet" href="/assets/talata-tw-dark\.css[^"]*">', src)
+    if anchor is None:
+        anchor = re.search(r"</head>", src)
+    if anchor:
+        src = src[: anchor.start()] + DARK_TAG + "\n" + src[anchor.start():]
         notes.append("dark css")
 
     if "/assets/talata-nav.js?v=20260902a" not in src:
