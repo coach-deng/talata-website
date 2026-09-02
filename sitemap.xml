@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://talatabasketball.dk/</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://talatabasketball.dk/mini</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -19,8 +19,8 @@
     <priority>0.9</priority>
   </url>
   <url><loc>https://talatabasketball.dk/coaches</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://talatabasketball.dk/saturday</loc><lastmod>2026-08-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://talatabasketball.dk/placement</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://talatabasketball.dk/saturday</loc><lastmod>2026-09-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://talatabasketball.dk/placement</loc><lastmod>2026-09-02</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://talatabasketball.dk/pathway</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url>
     <loc>https://talatabasketball.dk/games</loc>
@@ -56,25 +56,25 @@
   </url>
   <url>
     <loc>https://talatabasketball.dk/camps</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://talatabasketball.dk/camps/canada-camp-2026</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://talatabasketball.dk/camps/nida-camp-2026</loc>
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://talatabasketball.dk/camps/dk-summer-camp-2026</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -86,19 +86,19 @@
   </url>
   <url>
     <loc>https://talatabasketball.dk/camps/starter-camp-2026</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 <url>
     <loc>https://talatabasketball.dk/camps/autumn-camp-2026</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://talatabasketball.dk/camps/winter-camp-2026</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -181,13 +181,13 @@
   </url>
   <url>
     <loc>https://talatabasketball.dk/blog/summer-2026-three-camps</loc>
-    <lastmod>2026-08-11</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://talatabasketball.dk/blog/talata-canada-camp-2026-recap</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -205,7 +205,7 @@
   </url>
   <url>
     <loc>https://talatabasketball.dk/blog/what-we-look-for-first-training</loc>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
