@@ -20,8 +20,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-NEXT_HREF = "/camps/autumn-camp-2026"
-NEXT_LABEL = "Autumn Camp, Oct 12 to 15"
+# Two camps run side by side in week 42, so this points at the index rather
+# than at one of them. /camps/autumn-camp-2026 is the 13-15 page now, and a
+# parent coming off the U9-U11 recap should not land there.
+NEXT_HREF = "/camps"
+NEXT_LABEL = "Autumn Camps, Oct 12, 14 and 15"
 
 # page -> the line under the banner headline
 PAST = {
