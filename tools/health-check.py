@@ -104,10 +104,15 @@ def main():
     else:
         lines.append("worker         health ok")
 
-    # 6. the ads conversion id, still the one thing blocking the campaign
+    # 6. the conversion signal. Deng chose the GA4 route on 2 Sep 2026: Google Ads
+    #    imports the GA4 `generate_lead` event instead of firing its own AW- tag,
+    #    so ADS_SEND_TO stays empty on purpose and is no longer worth flagging.
+    #    What CAN break silently now is that event going missing from the shipped
+    #    file, which would stop conversions with nothing else looking wrong.
     code, sj = get(SITE + "/assets/talata-signup.js")
-    if code == 200 and re.search(r"ADS_SEND_TO\s*=\s*''", sj):
-        notes.append("ADS_SEND_TO is still empty, so any Google Ads spend is bidding blind")
+    if code == 200 and "generate_lead" not in sj:
+        problems.append("the live signup.js has no generate_lead event, so Ads is "
+                        "recording no conversions at all")
 
     ok = not problems
     if args.quiet and ok and not notes:

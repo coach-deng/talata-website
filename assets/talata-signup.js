@@ -206,9 +206,13 @@
    *   hide        ids to hide once the panel renders
    *   mount       id of the element to replace with the panel (defaults to after the form)
    */
-  // Google Ads conversion ID. Empty until the account has a conversion action
-  // created; the GA4 event below works regardless, so leave it blank rather
-  // than guessing an ID. Format: 'AW-123456789/AbCdEfGhIj'.
+  // Google Ads conversion ID. LEAVE THIS EMPTY. Deng chose the GA4 route on
+  // 2 Sep 2026: Google Ads imports the `generate_lead` event below as its
+  // conversion action, so no AW- tag is needed and none is installed. The site
+  // carries GA4 (G-R64Y9CQ2VZ) on all 54 pages and no Ads tag, so filling this
+  // in would fire a conversion event at a tag that is not on the page and
+  // record nothing. If the Ads/GA4 link is ever dropped, install the Ads global
+  // tag in tools/apply-shared-header.py FIRST, then set this.
   var ADS_SEND_TO = '';
 
   // What a lead is worth to the club, so Ads can bid toward the valuable ones
