@@ -527,9 +527,10 @@
     }).join('');
 
     /* No auto-scroll (Deng, 26 Aug 2026): it was a moving target you had to
-       wait for. One strip, scrolled by hand or by the arrows, parked on the
-       next game. Also removes the duplicated set the marquee needed, so a
-       screen reader hears each fixture once with no aria-hidden clone. */
+       wait for. One strip, parked on the next game, moved by the arrows and,
+       since 2 Sep 2026, by a finger on a touch screen. Also removes the
+       duplicated set the marquee needed, so a screen reader hears each fixture
+       once with no aria-hidden clone. */
     el.innerHTML =
       '<div class="tk" role="region" aria-label="Upcoming Talata games">' +
         '<button class="tk-arw is-l" aria-label="Scroll back">&#8249;</button>' +
@@ -541,23 +542,16 @@
     var back = el.querySelector('.tk-arw.is-l');
     var fwd = el.querySelector('.tk-arw.is-r');
 
-    /* Park the strip ON the next game rather than at its left edge, so results
-       sit behind it and the rest of the season runs ahead of it. Zalgiris does
-       this and Deng asked for the same on 27 Aug: last three results first, the
-       next game in the middle. Still no animation, this is a one-off position,
-       so the "nothing moves on its own" rule from 26 Aug holds. */
-    var nextCard = el.querySelector('.tkc.is-next');
-    if (nextCard) {
-      requestAnimationFrame(function () {
-        var want = nextCard.offsetLeft - (vp.clientWidth - nextCard.offsetWidth) / 2;
-        vp.scrollLeft = Math.max(0, want);
-      });
-    }
-
-    /* Arrows only, no dragging or wheel-scrolling (Deng, 26 Aug). The viewport
-       is overflow:hidden in CSS, which still permits programmatic scrollLeft,
-       so the buttons remain the only way to move the strip. They are real
-       <button>s, so this stays reachable by keyboard. */
+    /* HOW THE STRIP MOVES
+       26 Aug 2026 (Deng): arrows only, no drag and no wheel. The viewport was
+       overflow:hidden on every device and programmatic scrollLeft was the only
+       thing that could shift it.
+       2 Sep 2026 (Deng): a finger glides the strip on a phone. The CSS turns
+       .tk-viewport into overflow-x:auto inside
+       @media (hover:none) and (pointer:coarse); desktop is untouched and keeps
+       overflow:hidden. The arrows stay visible and keep working everywhere,
+       they are real <button>s so the strip is still reachable by keyboard.
+       No momentum and no auto-scroll: nothing here moves on its own. */
     var sync = function () {
       var max = vp.scrollWidth - vp.clientWidth - 1;
       back.disabled = vp.scrollLeft <= 0;
@@ -570,12 +564,38 @@
     back.addEventListener('click', function () { step(-1); });
     fwd.addEventListener('click', function () { step(1); });
 
-    /* Park on the next game rather than the left edge, so the first card in
-       view is the fixture that actually matters. */
-    var nextCard = el.querySelector('.tkc.is-next');
-    if (nextCard) vp.scrollLeft = Math.max(0, nextCard.offsetLeft - 8);
-    sync();
+    /* A swipe moves the strip with no click behind it, so the disabled state
+       has to follow the scroll as well as the buttons. Passive because this
+       listener never calls preventDefault, and a non-passive one would make
+       the browser wait on it before it lets the strip move. */
+    vp.addEventListener('scroll', sync, { passive: true });
     window.addEventListener('resize', sync);
+    sync();
+
+    /* Park the strip ON the next game rather than at its left edge, so results
+       sit behind it and the rest of the season runs ahead of it. Zalgiris does
+       this and Deng asked for the same on 27 Aug: last three results first, the
+       next game in the middle. A one-off position, not an animation, so the
+       "nothing moves on its own" rule from 26 Aug still holds.
+
+       Snapping and smoothing come off for the single assignment. A proximity
+       snap on a touch viewport will otherwise tug the strip to the nearest card
+       edge, and scroll-behavior:smooth would animate a position that is meant
+       to be where the strip starts. Park first, hand both back a frame later. */
+    var nextCard = el.querySelector('.tkc.is-next');
+    if (nextCard) {
+      requestAnimationFrame(function () {
+        var want = nextCard.offsetLeft - (vp.clientWidth - nextCard.offsetWidth) / 2;
+        vp.style.scrollSnapType = 'none';
+        vp.style.scrollBehavior = 'auto';
+        vp.scrollLeft = Math.max(0, want);
+        requestAnimationFrame(function () {
+          vp.style.scrollSnapType = '';
+          vp.style.scrollBehavior = '';
+          sync();
+        });
+      });
+    }
 
     startCountdowns(el);
   }

@@ -293,8 +293,6 @@
   font-family:var(--f-body);overflow:hidden;position:relative;
   border-bottom:1px solid var(--f-line);
 }
-  100%{box-shadow:0 0 0 0 rgba(125,211,252,0);}
-}
 .tk-viewport{flex:1 1 auto;overflow:hidden;position:relative;}
 .tk-viewport::before,.tk-viewport::after{
   content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;
@@ -304,9 +302,16 @@
 .tk-set{
   display:flex;align-items:stretch;
 }
-/* overflow:hidden, not auto. The strip moves only when an arrow is pressed
-   (Deng, 26 Aug), and scrollLeft set from script still works on a hidden
-   overflow, so the buttons keep full control. */
+/* How the strip moves, and it is not the same on every device.
+
+   26 Aug 2026 (Deng): arrows only, everywhere. overflow:hidden, so the strip
+   moved when a button was pressed and at no other time. scrollLeft set from
+   script still works on a hidden overflow, so the buttons kept full control.
+
+   2 Sep 2026 (Deng): on a phone you glide the strip with a finger. Touch
+   pointers get overflow-x:auto in the swipe block below. Desktop keeps
+   overflow:hidden and the arrows exactly as they were. The arrows stay on
+   phones as well, they have stopped being the only way through. */
 .tk-viewport{
   scroll-behavior:smooth;
   overflow:hidden;
@@ -355,6 +360,32 @@
 }
 .tkc-score.is-won{color:var(--f-win);}
 .tkc-score i{font-style:normal;opacity:.45;margin:0 2px;}
+
+/* SWIPE ON TOUCH (Deng, 2 Sep 2026). hover:none and pointer:coarse together
+   mean a finger is driving, so a laptop with a touchscreen keeps the desktop
+   behaviour and its arrows.
+
+   proximity, not mandatory: a half-swipe rests where the finger left it, and
+   the load-time park onto the next game does not get yanked to a card edge.
+   overscroll-behavior-x:contain stops a swipe that runs out of strip from
+   turning into a browser back-gesture. The scrollbar is hidden because 40px of
+   chrome under a 132px band eats the cards.
+
+   pointer-events:none on the fades is restated here on purpose. Without it the
+   two 40px gradients sit over the ends of the strip and swallow every touch
+   that starts there, which is most of them. */
+@media (hover:none) and (pointer:coarse){
+  .tk-viewport{
+    overflow-x:auto;overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    overscroll-behavior-x:contain;
+    scrollbar-width:none;
+  }
+  .tk-viewport::-webkit-scrollbar{display:none;}
+  .tk-viewport::before,.tk-viewport::after{pointer-events:none;}
+  .tkc{scroll-snap-align:center;}
+}
 
 /* A strip of moving text is a genuine accessibility problem for some readers.
    Stop it dead and let them scroll it by hand instead. */
