@@ -9,7 +9,7 @@
   <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
   <title>Basketballcamp i København | Efterår og vinter 2026 | Talata</title>
   <link rel="canonical" href="https://talatabasketball.dk/camps" />
-  <meta name="description" content="Basketballcamps i skoleferien i København. Efterårsferie 12., 14. og 15. oktober fra 1.095 kr i Hafnia-Hallen, juleferie 28.-30. december fra 1.295 kr. Alle niveauer, også helt nye spillere." />
+  <meta name="description" content="Basketballcamps i skoleferien i København. Efterårsferie 12., 14. og 15. oktober fra 890 kr i Hafnia-Hallen, juleferie 28.-30. december fra 1.295 kr. Alle niveauer, også helt nye spillere." />
   <meta name="keywords" content="basketball camp, basketball camps, basketball summer camps, basketball camps 2026, basketball sommercamp, basketball camp københavn, basketball camp lithuania, basketball camp canada, basket camp" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://talatabasketball.dk/camps" />
@@ -111,135 +111,11 @@
       margin: 0 auto;
     }
 
-    /* GANTT TIMELINE */
-    .gantt-wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 48px 24px 24px;
-    }
-    .gantt-title {
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;color:var(--td-text);
-      margin-bottom: 20px;
-    }
-    .gantt {background:var(--td-surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-    /* Date axis */
-    .gantt-axis {
-      display: flex;
-      border-bottom: 2px solid var(--talata-light);
-      position: relative;
-    }
-    .gantt-row-label {
-      width: 120px;
-      flex-shrink: 0;
-      border-right: 1px solid var(--border);
-    }
-    .gantt-axis-months {
-      flex: 1;
-      position: relative;
-      height: 38px;
-    }
-    .gantt-month {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      padding: 0 8px;
-      font-size: 0.65rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;color:var(--td-text);
-      border-right: 1px solid var(--border);
-    }
-    /* Camp rows */
-    .gantt-row {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      min-height: 54px;
-      align-items: center;
-    }
-    .gantt-row:last-child { border-bottom: none; }
-    .gantt-label {
-      width: 120px;
-      flex-shrink: 0;
-      padding: 0 14px;
-      border-right: 1px solid var(--border);
-      font-size: 0.75rem;
-      font-weight: 700;color:var(--td-text);
-      line-height: 1.3;
-    }
-    .gantt-label .camp-flag {
-      font-size: 1rem;
-      display: block;
-      margin-bottom: 2px;
-    }
-    .gantt-track {
-      flex: 1;
-      position: relative;
-      height: 54px;
-    }
-    /* Vertical grid lines (drawn by JS) */
-    .gantt-grid-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: var(--border);
-      opacity: 0.5;
-    }
-    /* Camp bar */
-    .gantt-bar {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      min-width: 12px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      transition: filter 0.15s, box-shadow 0.15s;
-      cursor: default;
-    }
-    .gantt-bar:hover {
-      filter: brightness(1.08);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-      z-index: 10;
-    }
-    .gantt-lab {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.72rem;
-      font-weight: 700;
-      white-space: nowrap;
-      color: var(--td-text);
-      pointer-events: none;
-    }
-    .gantt-lab.is-left { text-align: right; }
-    .gantt-bar .bar-dates {
-      font-weight: 500;
-      opacity: 0.85;
-      margin-left: 6px;
-      font-size: 0.62rem;
-    }
-
     /* CAMP CARDS */
     .cards-wrap {
       max-width: 960px;
       margin: 0 auto;
-      padding: 32px 24px 64px;
+      padding: 32px 24px 40px;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
@@ -288,47 +164,37 @@
       line-height: 1;
     }
 
-    .card-meta {
-      padding: 20px 24px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    /* THE FACT BLOCK — same six rows, same order, on every camp card.
+       Parents compare two camps by reading straight down the same column.
+       Ages, dates, time, venue, places, price. Nothing else lives here. */
+    .facts {
+      padding: 6px 24px 14px;
       border-bottom: 1px solid var(--border);
     }
-    .meta-item .meta-label {
-      font-size: 0.65rem;
-      font-weight: 700;
+    .fact {
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .fact:last-child { border-bottom: none; }
+    .fact dt {
+      flex: 0 0 52px;
+      font-size: 0.68rem;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;color:var(--td-muted);
-      margin-bottom: 3px;
     }
-    .meta-item .meta-value {
+    .fact dd {
       font-size: 0.9rem;
       font-weight: 600;color:var(--td-text);
+      text-align: right;
+      min-width: 0;
+      overflow-wrap: break-word;
     }
-
-    .card-price {
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-    }
-    .price-main {
-      font-size: 1.4rem;
-      font-weight: 800;
-    }
-    .price-note {
-      font-size: 0.75rem;color:var(--td-muted);
-      margin-top: 2px;
-    }
-    .price-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: var(--talata-light); color: var(--td-bg);
-    }
+    .fact-price dd { font-size: 1rem; }
 
     .card-cta {
       padding: 16px 24px;
@@ -347,7 +213,6 @@
     .btn:hover { opacity: 0.88; }
     .btn-black  { background: var(--black); color: #fff; }
     .btn-talata { background: var(--talata);color:var(--td-text); }
-    .btn-talata-dark { background: var(--talata-dark); color: #fff; }
 
     /* Card headers - Talata brand: NC blue + black + white mix */
     .h-spring    { background: linear-gradient(135deg, var(--black) 0%, #1a2a38 100%); border-bottom: 3px solid var(--talata); }
@@ -358,21 +223,34 @@
     .h-autumn    { background: linear-gradient(135deg, var(--talata-dark) 0%, #2c5f82 100%); border-bottom: 3px solid var(--talata); }
     .h-winter { background: linear-gradient(135deg, var(--black) 0%, #16324a 100%); border-bottom: 3px solid var(--talata); }
 
-    /* Dual-week badge */
-    .week-badges {
-      display: flex;
-      gap: 6px;
-      padding: 12px 24px 0;
+    /* The Tuesday line. Parents book childcare around this, so it sits above
+       the cards where it cannot be missed, and it is said once. */
+    .note {
+      max-width: 960px;
+      margin: 32px auto 0;
+      padding: 16px 20px;
+      border-left: 4px solid var(--talata-dark);background:var(--td-surface);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.95rem;color:var(--td-text);
+      line-height: 1.6;
     }
-    .week-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-      color: #fff;
+    .note-wrap { padding: 0 24px; }
+
+    /* Past camps: a list, not six more cards to scroll past. */
+    .past { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
+    .past h2 { font-size: 1.2rem; font-weight: 800;color:var(--td-text); margin-bottom: 6px; }
+    .past p { font-size: 0.9rem;color:var(--td-muted); margin-bottom: 14px; }
+    .past ul { list-style: none; }
+    .past li { border-top: 1px solid var(--border); }
+    .past li a {
+      display: block;
+      padding: 13px 2px;
+      font-size: 0.92rem;
+      font-weight: 600;color:var(--td-link);
+      text-decoration: none;
     }
-    .week-badge.w31 { background: var(--talata);color:var(--td-text); }
-    .week-badge.w32 { background: var(--talata-dark); color: #fff; }
+    .past li a:hover { text-decoration: underline; }
+    .past li span { font-weight: 400;color:var(--td-muted); }
 
     /* Footer */
     .footer {
@@ -386,8 +264,15 @@
     @media (max-width: 640px) {
       .hero { padding: 48px 24px 40px; }
       .site-header { padding: 16px 20px; }
-      .gantt-wrap { display: none; }
-      .cards-wrap { grid-template-columns: 1fr; padding: 24px 16px 48px; }
+      .cards-wrap { grid-template-columns: 1fr; padding: 24px 16px 40px; }
+      .note-wrap { padding: 0 16px; }
+      .past { padding: 0 16px 48px; }
+      /* A flex item will not shrink below its content, so on a phone every
+         date and the venue ran off the right edge and took the page with
+         them. Label on its own line, value under it. */
+      .fact { display: block; padding: 8px 0; }
+      .fact dt { margin-bottom: 3px; }
+      .fact dd { text-align: left; }
     }
   </style>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20260903b">
@@ -500,372 +385,91 @@
 
 
   <div class="hero">
-    <div class="eyebrow">Copenhagen · Next up Oct 12</div>
+    <div class="eyebrow">Copenhagen &middot; Next camp 12 October</div>
     <h1>Talata Basketball Camps</h1>
-    <p>School holidays with somewhere to be. Autumn break and winter break, with the same coaches your kid sees all season.</p>
+    <p>School holiday camps for ages 5 to 17, run by the same coaches your kid sees all season.</p>
   </div>
 
-  <!-- GANTT TIMELINE -->
-  <div class="gantt-wrap">
-    <div class="gantt-title">Camp Calendar 2026</div>
-    <div class="gantt">
-      <!-- Month axis -->
-      <div class="gantt-axis">
-        <div class="gantt-row-label"></div>
-        <div class="gantt-axis-months" id="gantt-months"></div>
-      </div>
-      <!-- Camp rows -->
-      <div class="gantt-row">
-        <div class="gantt-label">Canada</div>
-        <div class="gantt-track" data-camp="canada"></div>
-      </div>
-      <div class="gantt-row">
-        <div class="gantt-label">Nida (Lithuania)</div>
-        <div class="gantt-track" data-camp="nida"></div>
-      </div>
-      <div class="gantt-row">
-        <div class="gantt-label">Summer Camp 13-17</div>
-        <div class="gantt-track" data-camp="dk"></div>
-      </div>
-      <div class="gantt-row">
-        <div class="gantt-label">Summer Camp 5-12</div>
-        <div class="gantt-track" data-camp="mini"></div>
-      </div>
-      <div class="gantt-row">
-        <div class="gantt-label">Autumn Camps 5-12 + 13-15</div>
-        <div class="gantt-track" data-camp="autumn"></div>
-      </div>
-      <div class="gantt-row">
-        <div class="gantt-label">Pathway Camp 13-17</div>
-        <div class="gantt-track" data-camp="winter"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SEO INTRO -->
-  <div style="max-width:720px;margin:0 auto;padding:40px 24px 0;text-align:center;">
-    <p style="font-size:1.05rem;color:var(--td-muted);line-height:1.8;">Talata Basketball runs basketball camps in Copenhagen and abroad for players aged 5 to 17. Summer Camp runs week 32 at Nørre Fælled Skole in two tracks: ages 5-12 (Tue-Fri, Aug 4 to 7) and ages 13-17 (Mon-Fri, Aug 3 to 7), both closing with a joint All-Star Game on Friday Aug 7 with all parents invited. The autumn break (week 42) is open for booking as two camps in one hall: Starter Camp for ages 5-12 and Academy Camp for ages 13-15. We run both on Monday 12, Wednesday 14 and Thursday 15 October at Hafnia-Hallen, Julius Andersensvej 6 in København SV, 09:00 to 14:30. Tuesday is a day off. Pathway Camp for ages 13-17 is Monday 28 to Wednesday 30 December, also at Hafnia-Hallen, 09:00 to 14:00, and that is where players get measured, filmed and evaluated in writing. International options include a travel camp to Canada (June, Lethbridge). Every camp is led by Talata coaches with real competitive experience. Registration is open now.</p>
+  <div class="note-wrap">
+    <p class="note"><strong>Autumn break, week 42.</strong> We have Hafnia-Hallen on Monday 12, Wednesday 14 and Thursday 15 October. <strong>Tuesday 13 October is a day off.</strong></p>
   </div>
 
   <!-- CAMP CARDS -->
   <div class="cards-wrap">
 
-    <!-- AUTUMN: STARTER 5-12 -->
+    <!-- AUTUMN: STARTER 5-11 -->
     <div class="camp-card">
       <div class="card-header h-autumn">
-        <div class="tag">Efter&aring;rsferie &middot; Uge 42</div>
+        <div class="tag">Autumn break &middot; week 42</div>
         <h2>Starter Camp 2026</h2>
-        <div class="sub">Three days of basketball in the autumn break, ages 5 to 12</div>
+        <div class="sub">Fundamentals and small sided games</div>
       </div>
-      <div class="card-meta">
-        <div class="meta-item"><div class="meta-label">Dates</div><div class="meta-value">Oct 12, 14 and 15</div></div>
-        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">3 days &middot; 09:00 to 14:30</div></div>
-        <div class="meta-item"><div class="meta-label">Ages</div><div class="meta-value">5 to 12</div></div>
-        <div class="meta-item"><div class="meta-label">Venue</div><div class="meta-value">Hafnia-Hallen, Julius Andersensvej 6</div></div>
-      </div>
-      <div class="card-price">
-        <div>
-          <div class="price-main">1.095 kr</div>
-          <div class="price-note">early bird to 21 Sep, then 1.295 kr</div>
-        </div>
-        <div class="price-badge">Booking open &middot; 35 places</div>
-      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Ages</dt><dd>5 to 11</dd></div>
+        <div class="fact"><dt>Days</dt><dd>Two days. Monday 12 and Wednesday 14 October</dd></div>
+        <div class="fact"><dt>Time</dt><dd>09:00 to 14:30, doors 08:45</dd></div>
+        <div class="fact"><dt>Where</dt><dd>Hafnia-Hallen, Julius Andersensvej 6, 2450 K&oslash;benhavn SV</dd></div>
+        <div class="fact"><dt>Places</dt><dd>35</dd></div>
+        <div class="fact fact-price"><dt>Price</dt><dd>890 kr to Monday 21 September, then 990 kr</dd></div>
+      </dl>
       <div class="card-cta">
-        <a href="/camps/starter-camp-2026" class="btn btn-talata">Get on the early list &rarr;</a>
+        <a href="/camps/starter-camp-2026" class="btn btn-talata">Sign up for Starter Camp &rarr;</a>
       </div>
     </div>
 
-    <!-- AUTUMN: ACADEMY 13-15 -->
+    <!-- AUTUMN: ACADEMY 12-16 -->
     <div class="camp-card">
       <div class="card-header h-autumn">
-        <div class="tag">Efter&aring;rsferie &middot; Uge 42</div>
+        <div class="tag">Autumn break &middot; week 42</div>
         <h2>Academy Camp 2026</h2>
-        <div class="sub">Three days of basketball in the autumn break, ages 13 to 15</div>
+        <div class="sub">Skill work and live play at game pace</div>
       </div>
-      <div class="card-meta">
-        <div class="meta-item"><div class="meta-label">Dates</div><div class="meta-value">Oct 12, 14 and 15</div></div>
-        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">3 days &middot; 09:00 to 14:30</div></div>
-        <div class="meta-item"><div class="meta-label">Ages</div><div class="meta-value">13 to 15</div></div>
-        <div class="meta-item"><div class="meta-label">Venue</div><div class="meta-value">Hafnia-Hallen, Julius Andersensvej 6</div></div>
-      </div>
-      <div class="card-price">
-        <div>
-          <div class="price-main">1.295 kr</div>
-          <div class="price-note">early bird to 21 Sep, then 1.495 kr</div>
-        </div>
-        <div class="price-badge">Booking open &middot; 25 places</div>
-      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Ages</dt><dd>12 to 16</dd></div>
+        <div class="fact"><dt>Days</dt><dd>Three days. Monday 12, Wednesday 14 and Thursday 15 October</dd></div>
+        <div class="fact"><dt>Time</dt><dd>09:00 to 14:30, doors 08:45</dd></div>
+        <div class="fact"><dt>Where</dt><dd>Hafnia-Hallen, Julius Andersensvej 6, 2450 K&oslash;benhavn SV</dd></div>
+        <div class="fact"><dt>Places</dt><dd>25</dd></div>
+        <div class="fact fact-price"><dt>Price</dt><dd>1.095 kr to Monday 21 September, then 1.295 kr</dd></div>
+      </dl>
       <div class="card-cta">
-        <a href="/camps/autumn-camp-2026" class="btn btn-talata">Get on the early list &rarr;</a>
+        <a href="/camps/autumn-camp-2026" class="btn btn-talata">Sign up for Academy Camp &rarr;</a>
       </div>
     </div>
 
     <!-- WINTER: PATHWAY 13-17 -->
     <div class="camp-card">
       <div class="card-header h-winter">
-        <div class="tag">Juleferie · Hafnia-Hallen</div>
+        <div class="tag">Winter break &middot; December</div>
         <h2>Pathway Camp 2026</h2>
-        <div class="sub">Three days on what playing in America actually takes, ages 13 to 17</div>
+        <div class="sub">Measured, filmed and evaluated in writing</div>
       </div>
-      <div class="card-meta">
-        <div class="meta-item">
-          <div class="meta-label">Dates</div>
-          <div class="meta-value">Dec 28-30</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Duration</div>
-          <div class="meta-value">3 days · 09:00 to 14:00</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Ages</div>
-          <div class="meta-value">13 to 17</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Venue</div>
-          <div class="meta-value">Hafnia-Hallen, Julius Andersensvej 6</div>
-        </div>
-      </div>
-      <div class="card-price">
-        <div>
-          <div class="price-main">1.295 kr</div>
-          <div class="price-note">early bird to 1 Nov, then 1.495 kr</div>
-        </div>
-        <div class="price-badge">Booking open · 16 places</div>
-      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Ages</dt><dd>13 to 17</dd></div>
+        <div class="fact"><dt>Days</dt><dd>Three days. Monday 28 to Wednesday 30 December</dd></div>
+        <div class="fact"><dt>Time</dt><dd>09:00 to 14:00, doors 08:45</dd></div>
+        <div class="fact"><dt>Where</dt><dd>Hafnia-Hallen, Julius Andersensvej 6, 2450 K&oslash;benhavn SV</dd></div>
+        <div class="fact"><dt>Places</dt><dd>16</dd></div>
+        <div class="fact fact-price"><dt>Price</dt><dd>1.295 kr to Sunday 1 November, then 1.495 kr</dd></div>
+      </dl>
       <div class="card-cta">
-        <a href="/camps/winter-camp-2026" class="btn btn-talata-dark">Get on the early list →</a>
+        <a href="/camps/winter-camp-2026" class="btn btn-talata">Sign up for Pathway Camp &rarr;</a>
       </div>
     </div>
-    <h2 style="max-width:1000px;margin:64px auto 8px;padding:0 24px;font-size:1.5rem;font-weight:800;color:var(--td-text);">Camps we have already run in 2026</h2>
-    <p style="max-width:1000px;margin:0 auto 24px;padding:0 24px;color:var(--td-muted);font-size:0.95rem;">These are done. They are here so you can see what a Talata camp actually looks like before you book the next one.</p>
-<div class="camp-card">
-      <div class="card-header h-canada">
-        <div class="tag">International · Lethbridge, Alberta</div>
-        <h2>Canada Camp 2026</h2>
-        <div class="sub">University of Lethbridge Pronghorns</div>
-      </div>
-      <div class="card-meta">
-        <div class="meta-item">
-          <div class="meta-label">Dates</div>
-          <div class="meta-value">Jun 27 - Jul 6</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Duration</div>
-          <div class="meta-value">9 days</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Ages</div>
-          <div class="meta-value">12-17</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Spots</div>
-          <div class="meta-value">Max 12 players</div>
-        </div>
-      </div>
-      <div class="card-price">
-        <div>
-          <div class="price-main">Ran Jun 29 - Jul 3, 2026</div>
-          <div class="price-note">Back June 2027</div>
-        </div>
-        <div class="price-badge">Completed</div>
-      </div>
-      <div class="card-cta">
-        <a href="/blog/talata-canada-camp-2026-recap" class="btn btn-talata">See the recap →</a>
-      </div>
-    </div>
-
-    <!-- NIDA CAMP -->
-    <div class="camp-card">
-      <div class="card-header h-nida">
-        <div class="tag">International · Nida, Lithuania</div>
-        <h2>Nida Camp 2026</h2>
-        <div class="sub">Curonian Spit · Baltic coast · Week 31</div>
-      </div>
-      <div class="card-meta">
-        <div class="meta-item">
-          <div class="meta-label">Dates</div>
-          <div class="meta-value">Jul 26 - Aug 2</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Duration</div>
-          <div class="meta-value">8 days</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Ages</div>
-          <div class="meta-value">12 and up</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Transport</div>
-          <div class="meta-value">Bus from Kaunas</div>
-        </div>
-      </div>
-      <div class="card-price">
-        <div>
-          <div class="price-main">7,500 kr</div>
-          <div class="price-note">Flights, meals, bus transport included</div>
-        </div>
-        <div class="price-badge">Closed</div>
-      </div>
-      <div class="card-cta">
-        <a href="/camps/nida-camp-2026" class="btn btn-black">See details →</a>
-      </div>
-    </div>
-
-    <!-- NIDA CAMP -->
-    <div class="camp-card">
-      <div class="card-header h-dk">
-        <div class="tag">Academy Sommercamp · Nørre Fælled Skole</div>
-        <h2>Academy Sommercamp</h2>
-        <div class="sub">Week 32 Mon-Fri · Ages 13-17 · skill work + All-Star Game finale</div>
-      </div>
-      <div class="card-meta">
-        <div class="meta-item">
-          <div class="meta-label">Dates</div>
-          <div class="meta-value">Aug 3-7</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Duration</div>
-          <div class="meta-value">5 days</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Ages</div>
-          <div class="meta-value">13-17</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Venue</div>
-          <div class="meta-value">Nørre Fælled Skole</div>
-        </div>
-      </div>
-      <div class="card-price">
-        <div>
-          <div class="price-main">1,750 kr</div>
-          <div class="price-note">5 full days · incl. lunch + camp t-shirt</div>
-        </div>
-        <div class="price-badge">Completed · Week 32</div>
-      </div>
-      <div class="card-cta">
-        <a href="/camps/dk-summer-camp-2026" class="btn btn-talata-dark">See what we did →</a>
-      </div>
-    </div>
-
-    <!-- NIDA CAMP -->
-    <div class="camp-card">
-      <div class="card-header h-dk">
-        <div class="tag">Mini Sommercamp · Nørre Fælled Skole</div>
-        <h2>Mini Sommercamp</h2>
-        <div class="sub">Week 32 Tue-Fri · Ages 5-12 · fundamentals + All-Star Game finale</div>
-      </div>
-      <div class="card-meta">
-        <div class="meta-item">
-          <div class="meta-label">Dates</div>
-          <div class="meta-value">Aug 4-7</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Duration</div>
-          <div class="meta-value">4 days</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Ages</div>
-          <div class="meta-value">5-12</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Venue</div>
-          <div class="meta-value">Nørre Fælled Skole</div>
-        </div>
-      </div>
-      <div class="card-price">
-        <div>
-          <div class="price-main">1,550 kr</div>
-          <div class="price-note">4 days · incl. snack</div>
-        </div>
-        <div class="price-badge">Completed · Week 32</div>
-      </div>
-      <div class="card-cta">
-        <a href="/camps/dk-mini-summer-camp-2026" class="btn btn-talata">See what we did →</a>
-      </div>
-    </div>
-
   </div>
 
-<script>
-    const START = new Date('2026-06-01');
-    const END   = new Date('2027-02-01');
-    const TOTAL = (END - START) / 86400000;
+  <section class="past">
+    <h2>Camps we ran in 2026</h2>
+    <p>Done and dusted. Here so you can see what a Talata camp looks like.</p>
+    <ul>
+      <li><a href="/blog/talata-canada-camp-2026-recap">Canada Camp, Lethbridge <span>&middot; June &middot; read the recap</span></a></li>
+      <li><a href="/camps/nida-camp-2026">Nida Camp, Lithuania <span>&middot; July &middot; see the details</span></a></li>
+      <li><a href="/camps/dk-summer-camp-2026">Academy Sommercamp, ages 13 to 17 <span>&middot; August &middot; see what we did</span></a></li>
+      <li><a href="/camps/dk-mini-summer-camp-2026">Mini Sommercamp, ages 5 to 12 <span>&middot; August &middot; see what we did</span></a></li>
+    </ul>
+  </section>
 
-    // --- Month axis ---
-    const MONTHS = [
-      { label: 'Jun',  s: '2026-06-01', e: '2026-07-01' },
-      { label: 'Jul',  s: '2026-07-01', e: '2026-08-01' },
-      { label: 'Aug',  s: '2026-08-01', e: '2026-09-01' },
-      { label: 'Sep',  s: '2026-09-01', e: '2026-10-01' },
-      { label: 'Oct',  s: '2026-10-01', e: '2026-11-01' },
-      { label: 'Nov',  s: '2026-11-01', e: '2026-12-01' },
-      { label: 'Dec',  s: '2026-12-01', e: '2027-01-01' },
-      { label: 'Jan',  s: '2027-01-01', e: '2027-02-01' },
-    ];
-    const monthsEl = document.getElementById('gantt-months');
-    const tracks   = document.querySelectorAll('.gantt-track');
 
-    MONTHS.forEach((m, i) => {
-      const ms   = (new Date(m.s) - START) / 86400000;
-      const me   = (new Date(m.e) - START) / 86400000;
-      const left  = (ms / TOTAL) * 100;
-      const width = ((me - ms) / TOTAL) * 100;
-
-      // Month label
-      const div = document.createElement('div');
-      div.className = 'gantt-month';
-      div.style.cssText = `left:${left}%;width:${width}%;`;
-      div.textContent = m.label;
-      monthsEl.appendChild(div);
-
-      // Vertical grid line in every track (skip first)
-      if (i > 0) {
-        tracks.forEach(track => {
-          const line = document.createElement('div');
-          line.className = 'gantt-grid-line';
-          line.style.left = `${left}%`;
-          track.appendChild(line);
-        });
-      }
-    });
-
-    // --- Camp bars ---
-    const CAMPS = [
-      { id: 'canada',    s: '2026-06-27', e: '2026-07-06', color: '#36688C', text: '#fff', label: 'Jun 27 - Jul 6' }, // was #4a87b0: white on it is 3.90:1, and .bar-dates at 85% opacity is 3.29:1
-      { id: 'nida',      s: '2026-07-26', e: '2026-08-02', color: '#1a3a55', text: '#fff', label: 'Jul 26 - Aug 2' },
-      { id: 'dk',        s: '2026-08-03', e: '2026-08-07', color: '#1E40AF', text: '#fff', label: 'Aug 3-7' },
-      { id: 'mini',      s: '2026-08-04', e: '2026-08-07', color: '#7BAFD4', text: '#0B1F3A', label: 'Aug 4-7' },
-      { id: 'autumn',    s: '2026-10-12', e: '2026-10-15', color: '#BAE6FD', text: '#0B1F3A', label: 'Oct 12-15' },
-      { id: 'winter', s: '2026-12-28', e: '2026-12-30', color: '#0B1F3A', text: '#fff', label: 'Dec 28-30' },
-    ];
-
-    CAMPS.forEach(c => {
-      const track = document.querySelector(`.gantt-track[data-camp="${c.id}"]`);
-      if (!track) return;
-      const s     = (new Date(c.s) - START) / 86400000;
-      const e     = (new Date(c.e) - START) / 86400000 + 1;
-      const left  = (s / TOTAL) * 100;
-      const width = ((e - s) / TOTAL) * 100;
-
-      const bar = document.createElement('div');
-      bar.className = 'gantt-bar';
-      bar.style.cssText = `left:${left}%;width:${width}%;background:${c.color};`;
-      bar.title = c.label;
-      track.appendChild(bar);
-
-      /* The label sits BESIDE the bar, never inside it. The axis runs Jun to Jan,
-         so a five day camp is under 2% of the track — about 24px — and "Aug 3-7"
-         needs ninety. Every label was clipped to a single letter. Past the
-         two-thirds mark it hangs on the left so December stays inside the box. */
-      const lab = document.createElement('span');
-      lab.className = 'gantt-lab';
-      lab.textContent = c.label;
-      if (left > 62) { lab.classList.add('is-left'); lab.style.cssText = `right:${100 - left}%;margin-right:10px;`; }
-      else           { lab.style.cssText = `left:${left + width}%;margin-left:10px;`; }
-      track.appendChild(lab);
-    });
-  </script>
 
 <script src="/assets/talata-nav.js?v=20260903b" defer></script>
 <script src="/assets/talata-track.js?v=20260903b" defer></script>

@@ -40,9 +40,11 @@ CTA = {
     "ish-primary-school.html": ("#signup", "Sign up"),
     "ish-high-school.html": ("#signup", "Sign up"),
     "school-partnerships.html": ("#contact", "Get in touch"),
-    "camps/autumn-camp-2026.html": ("#waitlist", "Join waitlist"),
-    "camps/starter-camp-2026.html": ("#waitlist", "Join waitlist"),
-    "camps/winter-camp-2026.html": ("#waitlist", "Join waitlist"),
+    # "Join waitlist" rode the sticky bar on every camp page, so the one button
+    # a parent could always see said the camp was full. Places are open.
+    "camps/autumn-camp-2026.html": ("#waitlist", "Sign up"),
+    "camps/starter-camp-2026.html": ("#waitlist", "Sign up"),
+    "camps/winter-camp-2026.html": ("#waitlist", "Sign up"),
     "camps/lithuania-camp-2026.html": ("#register", "Sign up"),
 }
 DEFAULT_CTA = ("/#trial", "Book free trial")

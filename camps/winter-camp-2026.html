@@ -40,11 +40,29 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
     .card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
     .card h3 { font-size: 1.1rem; margin-bottom: 8px;color:var(--td-link); }
-    .price-box { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: #fff; border-radius: 12px; padding: 32px; text-align: center; }
-    .price-box .price { font-size: 2.4rem; font-weight: 800; margin: 8px 0; }
-    .price-box .price-note {color:var(--td-link); font-size: 0.95rem; }
+    /* THE FACT BLOCK — the same six rows in the same order on every camp
+       page, so a parent comparing two camps compares like with like. */
+    .facts { border: 1px solid var(--border); border-radius: 12px; padding: 4px 20px; background: var(--bg); }
+    .fact { display: flex; gap: 14px; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .fact:last-child { border-bottom: none; }
+    .fact dt { flex: 0 0 74px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;color:var(--td-muted); }
+    .fact dd { font-size: 0.98rem; font-weight: 600;color:var(--td-text); text-align: right; min-width: 0; overflow-wrap: break-word; }
+    .fact-price dd { font-size: 1.15rem; font-weight: 800; }
+    /* On a phone the value has no room beside its label, and a flex item
+       will not shrink below its content, so every date and the venue ran
+       off the right edge and took the whole page with them. Stack them. */
+    @media (max-width: 620px) {
+      .fact { display: block; padding: 11px 0; }
+      .fact dt { margin-bottom: 3px; }
+      .fact dd { text-align: left; }
+    }
     .schedule { background: var(--bg); border-left: 4px solid var(--blue); padding: 16px 20px; margin: 12px 0; }
     .schedule-time { font-weight: 700;color:var(--td-link); }
+    /* One call to action, and it sits where the facts finish. A parent who
+       has read the six rows has decided, and the form is a long way down. */
+    .cta { display: block; text-align: center; background: var(--blue); color: #fff; text-decoration: none; font-weight: 700; font-size: 1.05rem; padding: 16px; border-radius: 10px; margin-top: 16px; }
+    .cta:hover { background: #16305c; }
+    .cta:focus-visible { outline: 3px solid var(--baby); outline-offset: 3px; }
     .waitlist-form { background: var(--bg); border: 2px solid var(--blue); border-radius: 12px; padding: 32px; margin-top: 32px; }
     .waitlist-form label { font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 6px; }
     .waitlist-form input, .waitlist-form select, .waitlist-form textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: inherit;background:var(--td-surface); }
@@ -62,6 +80,46 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
 <link rel="stylesheet" href="/assets/talata-footer.css?v=20260903b">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": "Talata Pathway Camp 2026",
+  "description": "Three days for players aged 13 to 17 in the Copenhagen winter break. Monday 28 to Wednesday 30 December, 09:00 to 14:00 at Hafnia-Hallen. Measured, filmed and evaluated in writing.",
+  "startDate": "2026-12-28T09:00:00+01:00",
+  "endDate": "2026-12-30T14:00:00+01:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "url": "https://talatabasketball.dk/camps/winter-camp-2026",
+  "image": "https://talatabasketball.dk/images/mini-strandvejsskolen-court-2026.jpg",
+  "maximumAttendeeCapacity": 16,
+  "location": {
+    "@type": "Place",
+    "name": "Hafnia-Hallen",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Julius Andersensvej 6",
+      "postalCode": "2450",
+      "addressLocality": "København SV",
+      "addressCountry": "DK"
+    }
+  },
+  "organizer": {
+    "@type": "SportsOrganization",
+    "name": "Talata Basketball",
+    "url": "https://talatabasketball.dk"
+  },
+  "offers": {
+    "@type": "Offer",
+    "name": "Early bird",
+    "price": "1295",
+    "priceCurrency": "DKK",
+    "availability": "https://schema.org/InStock",
+    "validThrough": "2026-11-01T23:59:00+01:00",
+    "url": "https://talatabasketball.dk/camps/winter-camp-2026#waitlist"
+  }
+}
+</script>
 <link rel="stylesheet" href="/assets/talata-dark.css?v=20260903b">
 </head>
 <body>
@@ -106,7 +164,7 @@
         <li><a class="tn-top" href="/shop">Shop</a></li>
       </ul>
     </nav>
-    <a class="tn-cta" href="#waitlist">Join waitlist <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-cta" href="#waitlist">Sign up <span aria-hidden="true">&rarr;</span></a>
     <button class="tn-burger" id="tn-burger" type="button" aria-expanded="false" aria-controls="tn-drawer" aria-label="Open menu"><i></i></button>
   </div>
 </div>
@@ -119,7 +177,7 @@
     <button class="tn-drawer-close" id="tn-drawer-close" type="button" aria-label="Close menu">&#10005;</button>
   </div>
   <div class="tn-drawer-body">
-    <a class="tn-drawer-cta" href="#waitlist">Join waitlist <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-drawer-cta" href="#waitlist">Sign up <span aria-hidden="true">&rarr;</span></a>
         <h3>Programs</h3>
         <ul class="tn-drawer-list">
           <li><a href="/mini">Mini + Junior<small>ages 5 to 12</small></a></li>
@@ -158,109 +216,81 @@
 
 
 <section class="hero">
-  <div class="badge">Juleferie · Dec 28-30</div>
+  <div class="badge">Winter break &middot; December</div>
   <h1>Pathway Camp 2026</h1>
-  <div class="sub">Three days on what playing in America actually takes</div>
-  <div class="hero-details">
-    <div><strong>Dec 28-30</strong> · Mon-Wed</div>
-    <div><strong>Ages 13 to 17</strong></div>
-    <div><strong>Hafnia-Hallen</strong> · København SV</div>
-    <div><strong>09:00 to 14:00</strong> · 16 places</div>
-  </div>
+  <div class="sub">Three days on what playing in America actually takes, ages 13 to 17</div>
 </section>
 
 <div class="page">
 <div class="content">
 
   <div class="section">
-    <h2>What it is</h2>
-    <p>Three days for players who want to know what playing in America actually takes. You get measured, you get filmed, and you get told the truth about where you stand.</p>
-    <p><strong>Doors open 08:45 on the Monday</strong> and we start at 09:00. Lunch and snacks each day.</p>
-    <p><strong>Here is what it is not.</strong> There are no NCAA coaches in the gym. Nobody is scouting you. Any camp that tells you otherwise is selling you something.</p>
+    <dl class="facts">
+      <div class="fact"><dt>Ages</dt><dd>13 to 17</dd></div>
+      <div class="fact"><dt>Days</dt><dd>Three days. Monday 28 to Wednesday 30 December</dd></div>
+      <div class="fact"><dt>Time</dt><dd>09:00 to 14:00, doors 08:45</dd></div>
+      <div class="fact"><dt>Where</dt><dd>Hafnia-Hallen, Julius Andersensvej 6, 2450 K&oslash;benhavn SV</dd></div>
+      <div class="fact"><dt>Places</dt><dd>16</dd></div>
+      <div class="fact fact-price"><dt>Price</dt><dd>1.295 kr to Sunday 1 November, then 1.495 kr</dd></div>
+    </dl>
+    <a class="cta" href="#waitlist">Sign up for Pathway Camp &rarr;</a>
   </div>
 
   <div class="section">
-    <h2>Pricing</h2>
-    <div class="price-box">
-      <div style="font-size: 0.75rem; letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.8;">Early bird</div>
-      <div class="price">1.295 kr</div>
-      <div class="price-note">Per player · book before Sunday 1 November</div>
-      <div style="margin-top: 12px; font-size: 0.85rem;">1.495 kr from 2 November onwards</div>
-    </div>
-    <p style="text-align: center;color:var(--td-muted); margin-top: 12px; font-size: 0.9rem;">Includes: 3 days of coaching, lunch + snacks each day, camp t-shirt</p>
+    <h2>What you do</h2>
+    <p>You get measured, you get filmed, and you get a written evaluation on the last day.</p>
   </div>
 
   <div class="section">
-    <h2>What a day looks like</h2>
+    <h2>A day at camp</h2>
     <div class="schedule">
-      <div class="schedule-time">09:00, 09:30</div>
-      <div>Drop off and warm up at Hafnia-Hallen</div>
-    </div>
-    <div class="schedule">
-      <div class="schedule-time">09:30, 11:30</div>
+      <div class="schedule-time">09:00 to 11:30</div>
       <div>Testing and skills. Height, wingspan, standing reach, vertical, lane agility and timed shooting</div>
     </div>
     <div class="schedule">
-      <div class="schedule-time">11:30, 12:30</div>
-      <div>Lunch, then film. Your own footage, not somebody else's highlights</div>
+      <div class="schedule-time">11:30 to 12:30</div>
+      <div>Lunch, then film. Your own footage from the morning</div>
     </div>
     <div class="schedule">
-      <div class="schedule-time">12:30, 14:00</div>
-      <div>Live play, filmed properly, from a fixed camera</div>
-    </div>
-    <div class="schedule">
-      <div class="schedule-time">14:00</div>
-      <div>Pick up. Thursday finishes with the written evaluation for each player</div>
+      <div class="schedule-time">12:30 to 14:00</div>
+      <div>Live play, filmed from a fixed camera. Wednesday closes with each player's written evaluation</div>
     </div>
   </div>
 
   <div class="section">
-    <h2>Why it works</h2>
+    <h2>Questions parents ask</h2>
     <div class="grid">
-      <div class="card">
-        <h3>The whole hall</h3>
-        <p>Hafnia-Hallen has eight hoops and it is ours for the three days. Nobody waits for a basket.</p>
-      </div>
-      <div class="card">
-        <h3>Skill jump in 3 days</h3>
-        <p>Intensive small-group coaching. Kids walk out shooting differently than they walked in.</p>
-      </div>
-      <div class="card">
-        <h3>Energy outlet</h3>
-        <p>Holiday boredom is real. Send them home tired. Parents thank us later.</p>
-      </div>
-      <div class="card">
-        <h3>Coach Deng + crew</h3>
-        <p>Same coaches as the season. Not seasonal hires. CLA-based, evidence-based.</p>
-      </div>
+      <div class="card"><h3>What do they bring?</h3><p>Indoor shoes and a water bottle. Lunch, snacks and the camp t-shirt come from us.</p></div>
+      <div class="card"><h3>Drop off and pick up?</h3><p>Doors 08:45, start 09:00, pick up 14:00, all three days.</p></div>
+      <div class="card"><h3>Who is it for?</h3><p>Players aged 13 to 17 who are already in a club and want to know where they actually stand.</p></div>
     </div>
   </div>
 
   <div class="waitlist-form" id="waitlist">
-    <h2 style="margin-bottom: 8px;">Get on the early list</h2>
-    <p style="color:var(--td-muted); margin-bottom: 20px;"><strong>Booking is open.</strong> Early bird closes <strong>Sunday 1 November</strong>, after which it goes to 1.495 kr. 16 places.</p>
+    <h2 style="margin-bottom: 8px;">Sign up</h2>
+    <p style="color:var(--td-muted); margin-bottom: 20px;">16 places. We confirm by email and send the payment details.</p>
     <form id="camp-form">
       <div class="row">
         <div class="field">
-          <label>Player name</label>
-          <input type="text" name="player_name" required placeholder="First and last name" />
+          <label for="f-name">Player name</label>
+          <input id="f-name" type="text" name="player_name" required placeholder="First and last name" />
         </div>
         <div class="field">
-          <label>Age</label>
-          <input type="number" name="age" required placeholder="e.g. 11" min="8" max="15" />
+          <label for="f-age">Age</label>
+          <input id="f-age" type="number" name="age" required placeholder="e.g. 15" min="13" max="17" />
         </div>
       </div>
       <div class="field">
-        <label>Email (parent)</label>
-        <input type="email" name="email" required placeholder="email@example.com" />
+        <label for="f-email">Email (parent)</label>
+        <input id="f-email" type="email" name="email" required placeholder="email@example.com" />
       </div>
       <div class="field">
-        <label>Phone</label>
-        <input type="tel" name="phone" placeholder="+45 ..." />
+        <label for="f-phone">Phone</label>
+        <input id="f-phone" type="tel" name="phone" placeholder="+45 ..." />
       </div>
       <div class="field">
-        <label>How did you find us?</label>
-        <select name="how_found">
+        <label for="f-found">How did you find us?</label>
+        <select id="f-found" name="how_found">
           <option value="">Pick one</option>
           <option value="google">Google search</option>
           <option value="instagram">Instagram</option>
@@ -272,10 +302,10 @@
         </select>
       </div>
       <div class="field">
-        <label>Anything we should know? (optional)</label>
-        <textarea name="message" rows="3" placeholder="Level, allergies, sibling on another camp..."></textarea>
+        <label for="f-msg">Anything we should know? (optional)</label>
+        <textarea id="f-msg" name="message" rows="3" placeholder="Allergies, current club..."></textarea>
       </div>
-      <button type="submit" id="submit-btn">Add me to the early list</button>
+      <button type="submit" id="submit-btn">Sign up for Pathway Camp</button>
       <div class="success" id="form-success" style="display:none"></div>
     </form>
   </div>
