@@ -527,10 +527,10 @@
     }).join('');
 
     /* No auto-scroll (Deng, 26 Aug 2026): it was a moving target you had to
-       wait for. One strip, parked on the next game, moved by the arrows and,
-       since 2 Sep 2026, by a finger on a touch screen. Also removes the
-       duplicated set the marquee needed, so a screen reader hears each fixture
-       once with no aria-hidden clone. */
+       wait for. One strip, parked on the next game, moved by the arrows, by a
+       finger, and since 3 Sep 2026 by a mouse drag. Also removes the duplicated
+       set the marquee needed, so a screen reader hears each fixture once with no
+       aria-hidden clone. */
     el.innerHTML =
       '<div class="tk" role="region" aria-label="Upcoming Talata games">' +
         '<button class="tk-arw is-l" aria-label="Scroll back">&#8249;</button>' +
@@ -546,31 +546,113 @@
        26 Aug 2026 (Deng): arrows only, no drag and no wheel. The viewport was
        overflow:hidden on every device and programmatic scrollLeft was the only
        thing that could shift it.
-       2 Sep 2026 (Deng): a finger glides the strip on a phone. The CSS turns
-       .tk-viewport into overflow-x:auto inside
-       @media (hover:none) and (pointer:coarse); desktop is untouched and keeps
-       overflow:hidden. The arrows stay visible and keep working everywhere,
-       they are real <button>s so the strip is still reachable by keyboard.
-       No momentum and no auto-scroll: nothing here moves on its own. */
+       2 Sep 2026 (Deng): a finger glides the strip on a phone. The CSS opened
+       .tk-viewport to overflow-x:auto inside @media (hover:none) and
+       (pointer:coarse), with a proximity scroll snap. Desktop kept
+       overflow:hidden and the arrows.
+       3 Sep 2026 (Deng): "I should be able to slide it with my fingers or the
+       mouse, instead of it being sticky." Two answers. The scroll snap came out
+       of the CSS entirely, because settling onto a card was the sticky. And the
+       media query came out with it, so every pointer type scrolls the strip
+       freely. Touch is the browser's own scrolling and stays untouched. A mouse
+       gets the drag handler below. The arrows still work, they are real
+       <button>s, and the strip is still reachable by keyboard. */
     var sync = function () {
       var max = vp.scrollWidth - vp.clientWidth - 1;
       back.disabled = vp.scrollLeft <= 0;
       fwd.disabled = vp.scrollLeft >= max;
     };
+    /* Smooth is asked for here rather than set in CSS. A container carrying
+       scroll-behavior:smooth animates every scrollLeft it is handed, and the
+       drag hands it one per pointermove, which comes out as lag. Reduced motion
+       gets an instant jump, which is what the CSS media query used to do. */
+    var easy = !(window.matchMedia &&
+                 window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     var step = function (dir) {
-      vp.scrollBy({ left: dir * Math.max(200, vp.clientWidth * 0.8), behavior: 'smooth' });
+      vp.scrollBy({
+        left: dir * Math.max(200, vp.clientWidth * 0.8),
+        behavior: easy ? 'smooth' : 'auto'
+      });
       setTimeout(sync, 420);
     };
     back.addEventListener('click', function () { step(-1); });
     fwd.addEventListener('click', function () { step(1); });
 
-    /* A swipe moves the strip with no click behind it, so the disabled state
-       has to follow the scroll as well as the buttons. Passive because this
-       listener never calls preventDefault, and a non-passive one would make
-       the browser wait on it before it lets the strip move. */
+    /* A swipe or a drag moves the strip with no button click behind it, so the
+       disabled state has to follow the scroll as well as the buttons. Passive
+       because this listener never calls preventDefault, and a non-passive one
+       would make the browser wait on it before it lets the strip move. */
     vp.addEventListener('scroll', sync, { passive: true });
+
+    /* renderTicker runs twice on every page load, once on the static
+       fixtures.json and once when the Worker answers, and the second run
+       replaces the whole strip. A resize listener from the first run would sit
+       on window forever, syncing arrows on a viewport that left the document.
+       Stash the handler on the host and take the old one off before adding. */
+    if (el._tkResize) window.removeEventListener('resize', el._tkResize);
+    el._tkResize = sync;
     window.addEventListener('resize', sync);
     sync();
+
+    /* MOUSE DRAG (Deng, 3 Sep 2026). Pointer Events, mouse only.
+       A finger already scrolls this natively and intercepting it means fighting
+       the browser for the same gesture, so any non-mouse pointer falls straight
+       through. Left button only, so a right-click stays a right-click. */
+    var drag = null;
+
+    /* A drag that ends on a card is followed by a real click on that card, and
+       the card is an <a href="/games">. Swallow exactly one click in the
+       capture phase, then disarm. Three ways off, because a click that never
+       arrives must not leave this armed to eat the next one: the click itself,
+       the next pointerdown, and a timer well past when the click would fire. */
+    var eating = false, eatTimer = null;
+    var disarmEat = function () {
+      if (!eating) return;
+      eating = false;
+      vp.removeEventListener('click', eatClick, true);
+      if (eatTimer) { clearTimeout(eatTimer); eatTimer = null; }
+    };
+    function eatClick(e) { e.preventDefault(); e.stopPropagation(); disarmEat(); }
+    var armEat = function () {
+      if (eating) return;
+      eating = true;
+      vp.addEventListener('click', eatClick, true);
+      eatTimer = setTimeout(disarmEat, 400);
+    };
+
+    vp.addEventListener('pointerdown', function (e) {
+      disarmEat();
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      drag = { id: e.pointerId, x: e.clientX, left: vp.scrollLeft, moved: false };
+      /* No preventDefault on pointerdown. It would eat the focus the card is
+         about to take and put the strip off the keyboard. */
+      try { vp.setPointerCapture(e.pointerId); } catch (err) { /* capture is a nicety */ }
+    });
+
+    vp.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var dx = e.clientX - drag.x;
+      /* 5px of slack before it counts as a drag, so a plain click on a card
+         still opens the game instead of nudging the strip by a pixel. */
+      if (!drag.moved) {
+        if (Math.abs(dx) < 5) return;
+        drag.moved = true;
+        vp.classList.add('is-drag');
+      }
+      /* The assignment fires a scroll event, and sync() rides that. */
+      vp.scrollLeft = drag.left - dx;
+    });
+
+    var endDrag = function (e) {
+      if (!drag || (e && e.pointerId !== drag.id)) return;
+      var moved = drag.moved, id = drag.id;
+      drag = null;
+      vp.classList.remove('is-drag');
+      try { vp.releasePointerCapture(id); } catch (err) { /* already released */ }
+      if (moved) armEat();
+    };
+    vp.addEventListener('pointerup', endDrag);
+    vp.addEventListener('pointercancel', endDrag);
 
     /* Park the strip ON the next game rather than at its left edge, so results
        sit behind it and the rest of the season runs ahead of it. Zalgiris does
@@ -578,22 +660,15 @@
        next game in the middle. A one-off position, not an animation, so the
        "nothing moves on its own" rule from 26 Aug still holds.
 
-       Snapping and smoothing come off for the single assignment. A proximity
-       snap on a touch viewport will otherwise tug the strip to the nearest card
-       edge, and scroll-behavior:smooth would animate a position that is meant
-       to be where the strip starts. Park first, hand both back a frame later. */
+       The snap-off / smooth-off dance that used to wrap this assignment is
+       gone with the snap (3 Sep 2026). Nothing tugs the strip to a card edge
+       any more and nothing animates a scrollLeft, so one assignment lands it. */
     var nextCard = el.querySelector('.tkc.is-next');
     if (nextCard) {
       requestAnimationFrame(function () {
         var want = nextCard.offsetLeft - (vp.clientWidth - nextCard.offsetWidth) / 2;
-        vp.style.scrollSnapType = 'none';
-        vp.style.scrollBehavior = 'auto';
         vp.scrollLeft = Math.max(0, want);
-        requestAnimationFrame(function () {
-          vp.style.scrollSnapType = '';
-          vp.style.scrollBehavior = '';
-          sync();
-        });
+        sync();
       });
     }
 
