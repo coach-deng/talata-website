@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Self-hosted Inter: no cross-origin round-trip, preloaded for zero LCP delay -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="/images/mini-strandvejsskolen-training.jpeg">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,27 +14,27 @@
     gtag('js', new Date());
     gtag('config', 'G-R64Y9CQ2VZ');
   </script>
-  <title>What We're Building at Strandvejsskolen | Talata Basketball</title>
-  <link rel="canonical" href="https://talatabasketball.dk/blog/talata-mini-strandvejsskolen-2026" />
-  <meta name="description" content="Talata Mini has been running at Strandvejsskolen for a while now. Here's what it looks like, who it's for, and why we think this is the most important thing Talata does." />
+  <title>Pokalkamp: Talata mod H&oslash;rsholm mandag 7. september | Talata Basketball</title>
+  <link rel="canonical" href="https://talatabasketball.dk/blog/cup-night-horsholm-2026" />
+  <meta name="description" content="Divisionspokalen 1/16-finale: Talata Men mod H&oslash;rsholm mandag 7. september 2026 kl. 18.15 i Svanem&oslash;llehallen, &Oslash;sterbrogade 240. Gratis entr&eacute;, d&oslash;rene &aring;bner kl. 17.00." />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://talatabasketball.dk/blog/talata-mini-strandvejsskolen-2026" />
-  <meta property="og:title" content="What We're Building at Strandvejsskolen" />
-  <meta property="og:description" content="Talata Mini at Strandvejsskolen. What it looks like, who it's for, and why we think this is the most important thing Talata does." />
-  <meta property="og:image" content="https://talatabasketball.dk/images/jun26/mini-group-energy.jpg" />
+  <meta property="og:url" content="https://talatabasketball.dk/blog/cup-night-horsholm-2026" />
+  <meta property="og:title" content="Cup night. Talata vs H&oslash;rsholm, Monday 7 September." />
+  <meta property="og:description" content="3. Division meets 1. Division in the Danish Cup 1/16 final. 18:15 at Svanem&oslash;llehallen, free entry." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/og/horsholm-cup-2026-09-07-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Talata Basketball" />
   <!-- card metadata, owned by tools/apply-blog-index.py. Edit here, not in blog.html. -->
-  <meta name="talata:kicker" content="Club Update">
-  <meta name="talata:event" content="April 2026">
-  <meta name="talata:card-image" content="/images/jun26/mini-group-energy.jpg">
-  <meta name="talata:card-alt" content="Talata Mini group full of energy at Strandvejsskolen">
-  <meta name="talata:card-w" content="1600">
-  <meta name="talata:card-h" content="1067">
-  <meta name="talata:read" content="4">
+  <meta name="talata:kicker" content="Cup">
+  <meta name="talata:event" content="September 2026">
+  <meta name="talata:card-image" content="/images/games/horsholm-cup-2026-09-07.jpg">
+  <meta name="talata:card-alt" content="Cup night poster. Talata vs H&oslash;rsholm, Monday 7 September, 18:15, Svanem&oslash;llehallen. Free entry.">
+  <meta name="talata:card-w" content="1080">
+  <meta name="talata:card-h" content="1350">
+  <meta name="talata:read" content="3">
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://talatabasketball.dk/images/mini-strandvejsskolen-training.jpeg" />
-
-  <style>
+  <meta name="twitter:image" content="https://talatabasketball.dk/images/og/horsholm-cup-2026-09-07-og.jpg" />  <style>
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -72,6 +73,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .nav-logo {
       font-size: 16px;
@@ -84,8 +88,10 @@
     .nav-logo span {color:var(--td-link); }
     .nav-back {
       font-size: 13px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.7);
       text-decoration: none;
+      padding: 10px 0 10px 4px;
+      display: inline-block;
     }
     .nav-back:hover { color: #fff; }
 
@@ -108,7 +114,7 @@
       margin-bottom: 20px;
     }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 800;
       line-height: 1.15;
       max-width: 700px;
@@ -122,7 +128,7 @@
 
     .hero-image {
       width: 100%;
-      max-height: 520px;
+      max-height: 480px;
       object-fit: cover;
       object-position: center 30%;
       display: block;
@@ -138,45 +144,46 @@
       margin-bottom: 24px;
     }
     .article h2 {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 800;
-      margin: 44px 0 16px;color:var(--td-text);
+      margin: 40px 0 16px;
     }
-    .article blockquote {
-      border-left: 3px solid var(--blue);
-      padding: 4px 0 4px 20px;
-      margin: 32px 0;
-      font-size: 1.15rem;
-      font-weight: 600;color:var(--td-text);
-      line-height: 1.5;
+    .score {
+      font-size: 3.5rem;
+      font-weight: 900;color:var(--td-text);
+      line-height: 1;
+      margin-bottom: 8px;
     }
-    .photo-caption {
-      text-align: center;
-      font-size: 0.8rem;color:var(--td-muted);
-      margin-top: 10px;
-      font-style: italic;
+    .score-label {
+      font-size: 0.85rem;color:var(--td-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 32px;
     }
-    .question-block {
-      background: var(--blue);
-      color: #fff;
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 40px 0;
       border-radius: var(--radius);
-      padding: 32px 28px;
-      margin: 44px 0;
-      text-align: center;
+      overflow: hidden;
     }
-    .question-block p {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0;
-      line-height: 1.4;
+    .photo-grid img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-grid img.wide {
+      grid-column: 1 / -1;
+      height: 300px;
     }
     .cta-box {
       background: #111;
       color: #fff;
       border-radius: var(--radius);
       padding: 40px 36px;
-      margin-top: 52px;
+      margin-top: 48px;
       text-align: center;
     }
     .cta-box h3 {
@@ -200,34 +207,49 @@
       font-size: 0.95rem;
     }
     .btn:hover { opacity: 0.9; }
-    .author {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-    .author-avatar {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: var(--blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 800;
-      color: #fff;
-      flex-shrink: 0;
-    }
-    .author-name { font-weight: 700; font-size: 0.9rem; }
-    .author-role { font-size: 0.8rem;color:var(--td-muted); }
 
-    @media (max-width: 600px) {
-      .article { padding: 40px 20px 60px; }
-      .hero { padding: 44px 20px 38px; }
+    .footer {
+      background: #111;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 32px;
+      font-size: 13px;
     }
+    .footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .article { padding: 40px 20px 60px; }
+      .hero { padding: 40px 20px; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-grid img.wide { height: 220px; }
+      .photo-grid img { height: 200px; }
+    }
+
+    .article .tscroll { overflow-x:auto; margin:24px 0 8px; }
+    .article .tscroll table { width:100%; border-collapse:collapse; font-size:0.97rem; }
+    .article .tscroll th { text-align:left; white-space:nowrap; padding:10px 14px 10px 0; font-weight:700;
+      color:var(--td-muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:.6px; vertical-align:middle; }
+    .article .tscroll td { padding:10px 0; border-bottom:1px solid var(--td-line,#e8e8e8); color:var(--td-text); }
+    .article .tscroll tr:last-child td { border-bottom:0; }
+    .article .credit { margin-top:28px; color:var(--td-muted); }
+    .article .credit a { color:inherit; }
+
+    /* Cup night poster. Portrait 4:5, so it sits inside the column instead of
+       being cropped into the wide hero slot. Tokens carry a light fallback so
+       the block reads with or without talata-dark.css. */
+    .article .poster { margin: 0 auto 40px; max-width: 520px; }
+    .article .poster a { display:block; border-radius: var(--radius); overflow:hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+    .article .poster img { width:100%; height:auto; display:block; }
+    .article .poster figcaption { font-size:0.85rem; color:var(--td-muted,#666);
+      margin-top:12px; text-align:center; }
+
+    /* The practical box. Gold is the cup accent, one bar, nothing else. */
+    .article .facts { background: var(--td-surface,#ffffff); border:1px solid var(--td-line,#e8e8e8);
+      border-left:4px solid #E8C15A; border-radius: var(--radius); padding: 22px 24px 8px; margin: 8px 0 28px; }
+    .article .facts p { margin-bottom:16px; }
+    .article .facts .btn { margin: 4px 0 16px; }
+    .article .final-note { color:var(--td-muted,#666); font-size:0.95rem; }
   </style>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20260906d">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -238,12 +260,37 @@
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "What We're Building at Strandvejsskolen",
-    "description": "Talata Mini has been running at Strandvejsskolen for a while now. Here's what it looks like, who it's for, and why we think this is the most important thing Talata does.",
-    "image": "https://talatabasketball.dk/images/jun26/mini-group-energy.jpg",
-    "datePublished": "2026-04-19",
-    "dateModified": "2026-08-11",
+    "headline": "Cup night. Talata vs Hørsholm, Monday 7 September.",
+    "description": "Talata Men meet Hørsholm in the Danish Cup 1/16 final on Monday 7 September 2026, 18:15 at Svanemøllehallen. First home game of the season. Free entry.",
+    "image": "https://talatabasketball.dk/images/og/horsholm-cup-2026-09-07-og.jpg",
+    "datePublished": "2026-09-06",
+    "dateModified": "2026-09-06",
     "inLanguage": "en",
+    "about": {
+      "@type": "SportsEvent",
+      "name": "Divisionspokalen 1/16 final: Talata Men vs Hørsholm",
+      "identifier": "40099294",
+      "startDate": "2026-09-07T18:15:00+02:00",
+      "doorTime": "2026-09-07T17:00:00+02:00",
+      "sport": "Basketball",
+      "isAccessibleForFree": true,
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "url": "https://talatabasketball.dk/games#season",
+      "homeTeam": {"@type":"SportsTeam","name":"Talata Men"},
+      "awayTeam": {"@type":"SportsTeam","name":"Hørsholm"},
+      "location": {
+        "@type": "Place",
+        "name": "Svanemøllehallen",
+        "address": {"@type":"PostalAddress","streetAddress":"Østerbrogade 240","postalCode":"2100","addressLocality":"København Ø","addressCountry":"DK"}
+      },
+      "organizer": {"@type":"SportsOrganization","name":"Talata Basketball","url":"https://talatabasketball.dk"}
+    },
+    "mentions": [
+      {"@type":"SportsTeam","name":"Hørsholm"},
+      {"@type":"Person","name":"Jordan Naughton","jobTitle":"Coach"},
+      {"@type":"Person","name":"Deng Awak","jobTitle":"Head Coach"}
+    ],
     "author": {
       "@type": "Person",
       "name": "Deng Awak",
@@ -261,7 +308,7 @@
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://talatabasketball.dk/blog/talata-mini-strandvejsskolen-2026"
+      "@id": "https://talatabasketball.dk/blog/cup-night-horsholm-2026"
     }
   }
   </script>
@@ -361,68 +408,65 @@
 <span id="tn-content" tabindex="-1"></span>
 <!-- TALATA:HEADER:END -->
 
+  <section class="hero">
+    <div class="tag">Cup</div>
+    <h1>Cup night. Talata vs H&oslash;rsholm, Monday 7 September.</h1>
+    <div class="meta">September 2026 &middot; Coach Deng, Talata Basketball</div>
+  </section>
 
+  <article class="article">
 
-  <div class="hero">
-    <div class="tag">Club Update · April 2026</div>
-    <h1>What we're building at Strandvejsskolen</h1>
-    <p style="color:rgba(255,255,255,0.6);max-width:560px;margin:0 auto;">Talata Mini has been running for a while now. Here is what it actually looks like on the court, and why we think it is the most important thing Talata does.</p>
-    <div class="meta">April 19, 2026 · 4 min read</div>
-  </div>
+    <p>Our first home game of the season is a cup game. <b>Talata Men</b> play <b>H&oslash;rsholm</b> in the 1/16 final of the Danish Cup on <b>Monday 7 September</b>, tip-off <b>18:15</b>, at <b>Svanem&oslash;llehallen</b>. Free entry, like every Talata home game.</p>
 
-  <img src="/images/mini-strandvejsskolen-training.jpeg" alt="Kids training at Strandvejsskolen gym with Talata Mini" class="hero-image" fetchpriority="high" decoding="async" width="902" height="1600">
+    <figure class="poster">
+      <a href="/images/games/horsholm-cup-2026-09-07.jpg">
+        <img src="/images/games/horsholm-cup-2026-09-07.jpg" srcset="/images/games/horsholm-cup-2026-09-07-540.jpg 540w, /images/games/horsholm-cup-2026-09-07.jpg 1080w" sizes="(max-width: 640px) 100vw, 520px" alt="Cup night poster. Talata vs H&oslash;rsholm, Monday 7 September, 18:15, Svanem&oslash;llehallen. Free entry." fetchpriority="high" decoding="async" width="1080" height="1350" />
+      </a>
+      <figcaption>Coach Jordan Naughton and one of our players on the cup night poster. Tap for the full size.</figcaption>
+    </figure>
 
-  <div class="article">
+    <h2>What the Danish Cup is</h2>
 
-    <p>Tuesday and Thursday afternoons at Strandvejsskolen, there's a gym full of kids aged 6 to 11 who are learning basketball for the first time. Some of them have never touched a ball before. That's fine. That's the point.</p>
+    <p>The Danish Cup is Divisionspokalen. Knockout, one game per round. We play 3. Division Herrer &Oslash;st in the league, and the cup draw can put a 3. Division club in its first season in the league system up against a 1. Division side.</p>
 
-    <p>Talata Mini started because we kept getting the same question from parents: my kid is 8, where do they go? The answer used to be "come try Academy" which doesn't work, or "come to the open session" which isn't designed for a first-timer. So we built the right thing for that age.</p>
+    <p>That is what happened to us. Win and we are in the 1/8 final. Lose and the cup is done for the year.</p>
 
-    <h2>What actually happens in a session</h2>
+    <h2>Who we are playing</h2>
 
-    <p>We start moving from the moment they walk in. No long explanations, no standing in lines. The first 15 minutes are pure movement games. Dribbling relays, passing drills framed as games, anything that gets them active and comfortable with the ball.</p>
+    <p>H&oslash;rsholm. Their men play 1. Division, two divisions above us, and we are glad they are coming to &Oslash;sterbro.</p>
 
-    <p>Then we slow it down a little. Work on one or two fundamentals. Ball handling, footwork, how to set a screen without running your teammate over. We keep groups small so every kid gets actual reps, not just a turn every 10 minutes.</p>
+    <p>We have plenty of respect and zero predictions. Monday we find out where we stand, in our own hall, in front of our own crowd.</p>
 
-    <p>The last part of every session is a scrimmage. Small sided, 3-on-3 or 4-on-4, with modified rules that make sense for this age. Kids play. Kids score. Kids celebrate. That's how they come back next week.</p>
+    <h2>Why this game matters to us</h2>
 
-    <blockquote>"The only thing that matters at this age is that your kid wants to come back next week."</blockquote>
+    <p>Talata Men run on a budget of zero. Every player on the roster plays for free. They train for the love of it, and on Monday they share a court with a club that pays its players.</p>
 
-    <p>That's the whole philosophy. It sounds simple because it is. But you'd be surprised how many youth programs lose kids at 9 or 10 because sessions feel like school. Standing in line, waiting your turn, getting corrected constantly. We don't do that here.</p>
+    <p>We are proud of that. It is also our first home game in the Danish league system, in our first season in it. Monday the other club comes to us.</p>
 
-    <h2>The Strandvejsskolen setup</h2>
+    <p>The night is run by the club itself. Thirty-three club members in five groups take care of it, from the U13 Academy kids to the Men not selected for this one. One group on the scorers&rsquo; table, one on the floor, one on the camera, one on the Instagram stories, one on the cafe door. When the ball goes up, most of the club is in the building and working.</p>
 
-    <p>We train in the school gym which is a great space for this age. The court is scaled right, the hoops are lower, and it's familiar to the kids who go to school there. For a lot of them it's the same gym where they have PE. That comfort matters.</p>
+    <h2>Come and watch</h2>
 
-    <p>SFO kids get picked up directly from the afterschool program before training. Parents don't need to sort out transport on those days. It just runs.</p>
+    <p>Come early if you can. The crew is in the hall from 17:00 setting up the table, the camera and the cafe, and the ball goes up at 18:15. Bring the kids, bring a friend, bring anyone who has never seen us play.</p>
 
-    <div class="question-block">
-      <p>First session is always free. Come any Tuesday or Thursday at 15:00. Just contact us so we know to expect you.</p>
+    <div class="facts">
+      <p><b>Monday 7 September</b>, tip-off <b>18:15</b>. Doors and crew from <b>17:00</b>.</p>
+      <p><b>Svanem&oslash;llehallen, &Oslash;sterbrogade 240, 2100 K&oslash;benhavn &Oslash;</b>. Next to Svanem&oslash;llen station.</p>
+      <p><b>Free entry.</b> Claim a free ticket below. It tells us how many to expect and puts you in the monthly prize draw.</p>
+      <a href="/games#season" class="btn">Claim a free ticket</a>
     </div>
 
-    <h2>What comes after Mini</h2>
+    <p>Want to know the team before you come? The <a href="/men">Men programme</a> has the who and the when. Want to be on the court next season? <a href="/join">Your first session is free</a>, at every age.</p>
 
-    <p>When a kid turns 11, they're ready to move up. That's where Talata U13 comes in. Same club and the same coaches, but now a proper team with a schedule and real games. Kids who come up from Mini already know the system and know the coaches, so the jump is easy.</p>
-
-    <p>The ones who keep going move up through U15 Academy and U17 after that. Malthe Mikkelsen started somewhere. Every player in our Academy did. The gym at Strandvejsskolen is where that pipeline starts.</p>
-
-    <p>We're not promising every 8-year-old becomes a pro. Most of them want to play, see their mates, and enjoy two hours a week. That's enough. That's what we're here for.</p>
+    <p class="final-note">If we win, the 1/8 final is played between 22 and 24 September. The final is on 31 October or 1 November. See you Monday.</p>
 
     <div class="cta-box">
-      <h3>Want to bring your kid in?</h3>
-      <p>First session is free. Just fill in the form and we'll sort the rest.</p>
-      <a href="/mini#register" class="btn">Register for Talata Mini</a>
+      <h3>First session is free.</h3>
+      <p>No trial fee, no waiting list, nothing to sign first. You need indoor shoes and nothing else.</p>
+      <a href="/join" class="btn">Book a free trial</a>
     </div>
 
-    <div class="author">
-      <div class="author-avatar">D</div>
-      <div>
-        <div class="author-name">Deng Awak</div>
-        <div class="author-role">Head Coach, Talata Basketball</div>
-      </div>
-    </div>
-
-  </div>
+  </article>
 
 <script src="/assets/talata-nav.js?v=20260906d" defer></script>
 <script src="/assets/talata-track.js?v=20260906d" defer></script>

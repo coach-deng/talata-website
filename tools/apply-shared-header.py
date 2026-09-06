@@ -26,6 +26,7 @@ SKIP = {
     "hero-carousel-preview.html",
     "posters/spring-camp-u13-u15-poster.html",
     "posters/spring-camp-u9-u11-poster.html",
+    "tools/og-horsholm-cup.html",  # static share card generator, rendered by hand
 }
 
 # Per page: (cta_href, cta_label). Anchors verified against each page's form id.
@@ -134,15 +135,15 @@ CARET = (
 # :root tokens here flips all 50 pages without touching their own CSS.
 # The one exception is /reviews and /philosophy, which carry talata-tw-dark.css
 # after it; see the dark-mode block in process() for why.
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260906c">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260906d">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0F17">"""
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260906c">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260906d">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260906c" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260906d" defer></script>'
 
 
 def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
@@ -309,7 +310,7 @@ def process(path: Path, check: bool):
         src = src[: body.end()] + "\n\n" + header + "\n" + src[body.end():]
         notes.append("injected")
 
-    if "/assets/talata-nav.css?v=20260906c" not in src:
+    if "/assets/talata-nav.css?v=20260906d" not in src:
         head = re.search(r"</head>", src)
         if head:
             src = src[: head.start()] + HEAD_TAGS + "\n" + src[head.start():]
@@ -336,7 +337,7 @@ def process(path: Path, check: bool):
         src = src[: anchor.start()] + DARK_TAG + "\n" + src[anchor.start():]
         notes.append("dark css")
 
-    if "/assets/talata-nav.js?v=20260906c" not in src:
+    if "/assets/talata-nav.js?v=20260906d" not in src:
         body_end = src.rfind("</body>")
         if body_end != -1:
             src = src[:body_end] + SCRIPT_TAG + "\n" + src[body_end:]

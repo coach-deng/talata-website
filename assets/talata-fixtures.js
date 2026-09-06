@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Talata fixtures — feature game, month-split fixture rows, ticker, tickets.
+   Talata fixtures. Feature game, month-split fixture rows, ticker, tickets.
    Paired with assets/talata-fixtures.css.
 
    TWO SOURCES, ON PURPOSE
@@ -39,8 +39,15 @@
      drop these on the next export. */
   var TOURN = '/data/tournaments.json';
 
+  /* Game posters, keyed by DBBF game id. Same reason as tournaments.json: a
+     hand-kept file that build-fixtures.py never rewrites. Fetched beside the
+     fixtures and resolved to null on any failure, so a missing or broken
+     posters file can never cost the page its season. */
+  var POSTERS = '/data/posters.json';
+
   var crests = { names: {}, files: {} };
   var allGames = [];
+  var posters = {};
 
   /* ---------- dates ---------- */
 
@@ -122,7 +129,7 @@
 
   /* Real club crests, taken from each club's own public site (policy set by
      Deng, 26 Aug 2026). NSBU has no website at all, so it falls back to a
-     monogram — which is why a manifest is consulted instead of a filename
+     monogram, which is why a manifest is consulted instead of a filename
      being guessed at. */
   var crestIndex = null;
   function crestFor(name) {
@@ -240,6 +247,73 @@
     }).join('');
   }
 
+  /* ---------- posters ---------- */
+
+  /* The poster for a game, or null. Read from /data/posters.json, so nothing
+     here depends on it: no file, no entry, no img means no poster, and every
+     caller renders the plain version it rendered before. */
+  /* A path from posters.json is dropped into href, src and srcset as-is, so it
+     is only accepted when it is one of ours: a site-relative path ("/images/..."
+     but never "//host", which is a different site) or a full https URL. A
+     javascript: or data: string, a number, an object, all read as no path. */
+  function safePath(u) {
+    if (typeof u !== 'string') return '';
+    u = u.trim();
+    if (u.charAt(0) === '/' && u.charAt(1) !== '/') return u;
+    if (u.indexOf('https://') === 0 && u.length > 8) return u;
+    return '';
+  }
+
+  function posterFor(g) {
+    if (!g) return null;
+    /* Keyed on the DBBF number. A Holdsport copy of the same game carries it
+       as dbbfId, so the poster follows the game whichever source won. Own
+       keys only, so an id that happens to spell an Object method reads as
+       no entry. */
+    var own = function (k) {
+      return k != null && Object.prototype.hasOwnProperty.call(posters, String(k))
+        ? posters[String(k)] : null;
+    };
+    var p = own(g.id) || own(g.dbbfId);
+    if (!p || typeof p !== 'object') return null;
+    var img = safePath(p.img);
+    if (!img) return null;
+    /* Hand back a copy with the paths already checked, so no caller has to
+       remember to. A thumb that fails the check falls back to the full file,
+       an article that fails simply loses its link. */
+    return {
+      img: img,
+      thumb: safePath(p.thumb) || img,
+      article: safePath(p.article),
+      alt: p.alt, label: p.label, w: p.w, h: p.h, og: p.og
+    };
+  }
+
+  /* The -540 thumb is the poster at half size, so its box comes from w and h
+     rather than being typed twice. 1080x1350 is the Instagram portrait every
+     poster is exported at. */
+  function posterThumb(p) {
+    var w = parseInt(p.w, 10), h = parseInt(p.h, 10);
+    if (!(w > 0)) w = 1080;
+    if (!(h > 0)) h = 1350;
+    return { src: p.thumb || p.img, w: Math.round(w / 2), h: Math.round(h / 2) };
+  }
+
+  /* The compact block the detail panel carries when a game has a poster: the
+     thumb and one line that goes to the story. A column beside the panel on
+     desktop, a strip under it on a phone, so the countdown and the ticket
+     button never move down more than the thumb is tall. */
+  function posterHTML(g) {
+    var p = posterFor(g);
+    if (!p || !p.article) return '';
+    var th = posterThumb(p);
+    return '<a class="tf-poster" href="' + esc(p.article) + '">' +
+        '<img src="' + esc(th.src) + '" width="' + th.w + '" height="' + th.h + '"' +
+          ' alt="' + esc(p.alt || '') + '" loading="lazy" decoding="async">' +
+        '<span><b>' + esc(p.label || 'Cup night') + '.</b> Read the story</span>' +
+      '</a>';
+  }
+
   /* ---------- feature (next game) ---------- */
 
   /* The detail panel. One markup for the feature game at the top of the page
@@ -248,10 +322,11 @@
   function detailHTML(g) {
     var opp = g.opponent || g.title;
     var t = tipOff(g);
+    var poster = posterHTML(g);
     var row = function (k, v) {
       return '<div class="tf-row"><span>' + k + '</span><b>' + v + '</b></div>';
     };
-    return '<div class="tf-feat tf-k-' + compKind(g) + '">' +
+    return '<div class="tf-feat tf-k-' + compKind(g) + (poster ? ' has-poster' : '') + '">' +
         '<div class="tf-feat-main">' +
           '<div class="tf-feat-side">' + talataCrest(g.team) + '<span>Talata</span></div>' +
           '<div class="tf-feat-mid">' +
@@ -282,6 +357,7 @@
             '<a class="tf-btn" href="#season">All games</a>' +
           '</div>' +
         '</div>' +
+        poster +
       '</div>';
   }
 
@@ -919,24 +995,56 @@
 
     var when = longDate(cup.date) + (cup.time ? ', ' + cup.time : '');
     var opp = cup.opponent || cup.title || 'TBC';
+    var poster = posterFor(cup);
 
-    host.innerHTML =
-      '<div class="cup-pop" role="dialog" aria-modal="false" aria-label="Cup game">' +
-        '<button class="cup-x" aria-label="Close">&times;</button>' +
-        '<p class="cup-kick">Danish Cup</p>' +
-        '<p class="cup-h">' + esc(squadName(cup.team)) + ' vs ' + esc(opp) + '</p>' +
-        '<p class="cup-when"><b>' + esc(when) + '</b><br>' + esc(venueLabel(cup)) + '</p>' +
-        '<p class="cup-sub">Free entry, like every home game. Claim a ticket so we know how many are coming.</p>' +
-        '<a class="cup-cta" href="/games#season">Claim a free ticket</a>' +
-      '</div>';
+    /* The three lines both versions share. */
+    var lines =
+      '<p class="cup-kick">Danish Cup</p>' +
+      '<p class="cup-h">' + esc(squadName(cup.team)) + ' vs ' + esc(opp) + '</p>' +
+      '<p class="cup-when"><b>' + esc(when) + '</b><br>' + esc(venueLabel(cup)) + '</p>';
 
-    /* Mark it seen on dismiss AND on the click through, so somebody who claims
-       a ticket is not asked again for the same game. */
+    if (poster) {
+      /* POSTER VERSION (6 Sep 2026). The graphic does the talking: poster on
+         the left, the facts and two doors on the right. The poster opens the
+         full size file in a new tab. Every restraint above still holds, this
+         only changes what the popup looks like once it has earned its slot. */
+      var th = posterThumb(poster);
+      host.innerHTML =
+        '<div class="cup-pop has-poster" role="dialog" aria-modal="false" aria-label="Cup game">' +
+          '<button class="cup-x" aria-label="Close">&times;</button>' +
+          '<a class="cup-poster" href="' + esc(poster.img) + '" target="_blank" rel="noopener">' +
+            '<img src="' + esc(th.src) + '"' +
+              ' srcset="' + esc(th.src) + ' ' + th.w + 'w, ' + esc(poster.img) + ' ' + (th.w * 2) + 'w"' +
+              ' sizes="(max-width:600px) 33vw, 176px"' +
+              ' width="' + th.w + '" height="' + th.h + '"' +
+              ' alt="' + esc(poster.alt || '') + '" loading="lazy" decoding="async">' +
+          '</a>' +
+          '<div class="cup-body">' + lines + '</div>' +
+          '<div class="cup-acts">' +
+            '<a class="cup-cta" href="/games#season">Game details and free ticket</a>' +
+            (poster.article
+              ? '<a class="cup-cta cup-cta-ghost" href="' + esc(poster.article) + '">Read the story</a>'
+              : '') +
+          '</div>' +
+        '</div>';
+    } else {
+      host.innerHTML =
+        '<div class="cup-pop" role="dialog" aria-modal="false" aria-label="Cup game">' +
+          '<button class="cup-x" aria-label="Close">&times;</button>' +
+          lines +
+          '<p class="cup-sub">Free entry, like every home game. Claim a ticket so we know how many are coming.</p>' +
+          '<a class="cup-cta" href="/games#season">Claim a free ticket</a>' +
+        '</div>';
+    }
+
+    /* Mark it seen on dismiss AND on every click through (the ticket link, the
+       story, the poster itself), so somebody who claims a ticket is not asked
+       again for the same game. */
     host.querySelector('.cup-x').addEventListener('click', function () {
       markCupSeen(cup.id); host.innerHTML = '';
     });
-    host.querySelector('.cup-cta').addEventListener('click', function () {
-      markCupSeen(cup.id);
+    Array.prototype.forEach.call(host.querySelectorAll('.cup-cta, .cup-poster'), function (a) {
+      a.addEventListener('click', function () { markCupSeen(cup.id); });
     });
     requestAnimationFrame(function () {
       var box = host.querySelector('.cup-pop');
@@ -989,10 +1097,16 @@
              league fixtures, so it resolves to an empty list rather than reject. */
           fetch(TOURN, { cache: 'no-cache' })
             .then(function (r) { return r.ok ? r.json() : null; })
+            .catch(function () { return null; }),
+          /* Posters ride along on the same terms as tournaments: null on any
+             failure, so a missing or broken file changes nothing below. */
+          fetch(POSTERS, { cache: 'no-cache' })
+            .then(function (r) { return r.ok ? r.json() : null; })
             .catch(function () { return null; })
         ])
-          .then(function (both) {
-            var d = both[0], t = both[1];
+          .then(function (all) {
+            var d = all[0], t = all[1], p = all[2];
+            posters = (p && p.posters && typeof p.posters === 'object') ? p.posters : {};
             var league = ((d && d.games) || []).concat((t && t.games) || []);
             paint(merge(league, []));       /* federation fixtures, immediately */
             return fetch(API + '/fixtures', { cache: 'no-cache' })

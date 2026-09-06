@@ -1,0 +1,15 @@
+{
+  "note": "Game posters, keyed by the DBBF game id. Entered by hand. tools/build-fixtures.py rewrites fixtures.json from the CSV on every run and never touches this file, so a poster survives a fixture rebuild. talata-fixtures.js fetches this beside fixtures.json; if it is missing or broken the fixtures still render and the cup popup falls back to text. To add the next poster: export the graphic at 1080x1350 into /images/games/, save a half size copy with a -540 suffix, then add one entry below under the game id from fixtures.json with img, thumb, w, h, alt, article and label. The thumb is read as half of w and h. The og key is the 1200x630 share card for the article and is optional.",
+  "posters": {
+    "40099294": {
+      "img": "/images/games/horsholm-cup-2026-09-07.jpg",
+      "thumb": "/images/games/horsholm-cup-2026-09-07-540.jpg",
+      "w": 1080,
+      "h": 1350,
+      "alt": "Cup night poster. Talata vs Hørsholm, Monday 7 September, 18:15, Svanemøllehallen. Free entry.",
+      "article": "/blog/cup-night-horsholm-2026",
+      "label": "Cup night",
+      "og": "/images/og/horsholm-cup-2026-09-07-og.jpg"
+    }
+  }
+}

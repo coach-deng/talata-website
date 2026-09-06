@@ -236,6 +236,37 @@
       .trial-box { padding: 28px 20px; }
     }
 
+    /* CUP NIGHT callout, Danish Cup 1/16 final, federation game 40099294 (added 6 Sep 2026).
+       Remove together with the .cup-card block in #fixtures after 7 Sep 2026. Brand navy panel,
+       white type, the gold top rule is the only cup accent. Literal colours on purpose so the
+       panel reads the same in light and dark. */
+    .cup-card {
+      display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: center;
+      background: #0B1F3A; color: #fff; border-radius: var(--radius);
+      border-top: 3px solid #E8C15A; padding: 24px; margin: 8px 0 28px;
+    }
+    .cup-poster { display: block; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .cup-poster img { width: 100%; height: auto; display: block; }
+    .cup-kick {
+      display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #7DD3FC; margin-bottom: 6px;
+    }
+    .cup-card h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.3px; line-height: 1.2; color: #fff; margin-bottom: 8px; }
+    .cup-card p { font-size: 0.9rem; color: rgba(255,255,255,0.78); line-height: 1.55; margin-bottom: 12px; }
+    .cup-lines { list-style: none; display: grid; gap: 6px; margin: 0 0 16px; font-size: 0.9rem; color: rgba(255,255,255,0.78); }
+    .cup-lines strong { color: #fff; }
+    .cup-actions { display: flex; gap: 10px 20px; align-items: center; flex-wrap: wrap; }
+    .cup-btn {
+      display: inline-block; background: #1E40AF; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; font-size: 0.9rem; text-decoration: none;
+    }
+    .cup-link { color: #7DD3FC; font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+    .cup-btn:hover, .cup-link:hover { opacity: 0.88; }
+    @media (max-width: 600px) {
+      .cup-card { grid-template-columns: 1fr; padding: 20px; }
+      .cup-poster { max-width: 220px; }
+    }
+
     /* FOOTER */
     .footer {
       text-align: center; padding: 28px 24px;
@@ -244,8 +275,8 @@
     }
     .footer a {color:var(--td-link); text-decoration: none; }
   </style>
-<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260906c">
-  <link rel="stylesheet" href="/assets/talata-nav.css?v=20260906c">
+<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260906d">
+  <link rel="stylesheet" href="/assets/talata-nav.css?v=20260906d">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -258,8 +289,8 @@
     gtag('js', new Date());
     gtag('config', 'G-R64Y9CQ2VZ');
   </script>
-<link rel="stylesheet" href="/assets/talata-footer.css?v=20260906c">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260906c">
+<link rel="stylesheet" href="/assets/talata-footer.css?v=20260906d">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260906d">
 </head>
 <body>
 
@@ -414,6 +445,30 @@
   <div class="section" id="fixtures">
     <div class="section-title">Our games</div>
     <p>League, cup and friendlies. Entry is free at every home game and anyone is welcome to come and watch before they decide.</p>
+    <!-- CUP NIGHT callout. Added 6 Sep 2026 for the Danish Cup 1/16 final, federation game
+         40099294: Talata Men vs Hørsholm, Monday 7 September 2026, 18:15, Svanemøllehallen.
+         Delete this block (and the .cup-* rules in the style block above) after 7 Sep 2026,
+         or turn it into a results note. -->
+    <section class="cup-card" aria-labelledby="cup-title">
+      <a class="cup-poster" href="/images/games/horsholm-cup-2026-09-07.jpg" target="_blank" rel="noopener">
+        <img src="/images/games/horsholm-cup-2026-09-07-540.jpg" width="540" height="675" alt="Cup night poster. Talata vs H&oslash;rsholm, Monday 7 September, 18:15, Svanem&oslash;llehallen. Free entry." decoding="async" fetchpriority="high">
+      </a>
+      <div class="cup-body">
+        <span class="cup-kick">Danish Cup, 1/16 final</span>
+        <h3 id="cup-title">Cup night, Monday 7 September</h3>
+        <p>Our first home game in the Danish league system, against a side two divisions up. Come and make some noise.</p>
+        <ul class="cup-lines">
+          <li><strong>Talata Men vs H&oslash;rsholm</strong>. One game, winner goes through.</li>
+          <li><strong>Monday 7 September, 18:15</strong>. Doors open 17:00.</li>
+          <li><strong>Svanem&oslash;llehallen</strong>, &Oslash;sterbrogade 240, next to Svanem&oslash;llen station.</li>
+          <li><strong>Free entry</strong>, like every Talata home game.</li>
+        </ul>
+        <div class="cup-actions">
+          <a class="cup-btn" href="/games#season">Claim a free ticket</a>
+          <a class="cup-link" href="/blog/cup-night-horsholm-2026">Read the story &rarr;</a>
+        </div>
+      </div>
+    </section>
     <div data-talata-fixtures data-limit="6" data-team="Men"></div>
     <p style="margin-top:18px"><a href="/games?team=Men">All Talata Men fixtures &rarr;</a></p>
   </div>
@@ -438,9 +493,9 @@
     </div>
   </div>
 
-<script src="/assets/talata-fixtures.js?v=20260906c" defer></script>
-<script src="/assets/talata-nav.js?v=20260906c" defer></script>
-<script src="/assets/talata-track.js?v=20260906c" defer></script>
+<script src="/assets/talata-fixtures.js?v=20260906d" defer></script>
+<script src="/assets/talata-nav.js?v=20260906d" defer></script>
+<script src="/assets/talata-track.js?v=20260906d" defer></script>
 <!-- TALATA:FOOTER:START — generated by tools/apply-shared-footer.py, do not hand-edit -->
 <footer class="tf">
   <div class="tf-wrap">

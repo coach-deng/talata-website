@@ -170,7 +170,7 @@ def render_home_latest(posts):
     for p in side:
         side_html.append(
             """        <a class="story" href="/blog/{slug}">
-          <img src="{image}" alt="{alt}" decoding="async" width="{w}" height="{h}">
+          <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}">
           <div class="grad"></div>
           <div class="txt"><span class="tag">{kicker}</span><h3>{title}</h3></div>
         </a>""".format(
@@ -180,7 +180,7 @@ def render_home_latest(posts):
         )
     side_html.append(
         """        <a class="story" href="/reviews">
-          <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" decoding="async" width="1600" height="902">
+          <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" loading="lazy" decoding="async" width="1600" height="902">
           <div class="grad"></div>
           <div class="txt"><span class="tag">Parents</span><h3>What families say about us</h3></div>
         </a>"""
@@ -189,7 +189,7 @@ def render_home_latest(posts):
     return """    <div class="head"><h2>Latest from <i>the club</i></h2><a href="/blog">All stories &rarr;</a></div>
     <div class="latest">
       <a class="story" href="/blog/{slug}">
-        <img src="{image}" alt="{alt}" fetchpriority="high" decoding="async" width="{w}" height="{h}">
+        <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}">
         <div class="grad"></div>
         <div class="txt"><span class="tag">{kicker}</span><h3>{title}</h3><p>{desc}</p></div>
       </a>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OG card generator. Talata vs Hørsholm, cup 1/16 final, 7 Sep 2026</title>
+<!--
+  Static generator for images/og/horsholm-cup-2026-09-07-og.jpg (1200x630).
+  No build hooks. Render by hand:
+
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu \
+    --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 \
+    --screenshot=/tmp/og.png "file:///Users/dengawak/Created Apps/Talata/Talata-Website/tools/og-horsholm-cup.html"
+
+  then convert the PNG to JPEG quality 86 with PIL into images/og/horsholm-cup-2026-09-07-og.jpg.
+
+  Poster and Inter resolve relative to this file. Anton lives outside the repo
+  and is referenced by absolute file:// path. Colours are brand only, gold is the
+  cup accent.
+-->
+<style>
+  @font-face{
+    font-family:'Inter';font-style:normal;font-weight:400 800;
+    src:url('../fonts/inter-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F;
+  }
+  @font-face{
+    font-family:'Inter';font-style:normal;font-weight:400 800;
+    src:url('../fonts/inter-latin-ext.woff2') format('woff2');
+    unicode-range:U+0100-02BA,U+1E00-1E9F;
+  }
+  @font-face{
+    font-family:'Anton';font-style:normal;font-weight:400;
+    src:url('file:///Users/dengawak/Documents/Talata IG Posts/gameday-poster/Anton.ttf') format('truetype');
+  }
+  html,body{
+    margin:0;padding:0;width:1200px;height:630px;overflow:hidden;
+    background:#0A0A0A;
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .card{
+    position:relative;width:1200px;height:630px;display:flex;background:#0A0A0A;
+  }
+  .poster{
+    position:relative;flex:0 0 504px;width:504px;height:630px;overflow:hidden;
+    border-right:1px solid #E8C15A;box-sizing:border-box;
+  }
+  .poster img{display:block;width:504px;height:630px;object-fit:contain;object-position:left top;}
+  .panel{
+    position:relative;flex:1 1 auto;height:630px;box-sizing:border-box;
+    padding:54px 56px 52px 60px;
+    background:
+      radial-gradient(ellipse 560px 420px at 78% 30%, rgba(11,31,58,1) 0%, rgba(11,31,58,.6) 40%, rgba(10,10,10,0) 75%),
+      #0A0A0A;
+    display:flex;flex-direction:column;
+  }
+  .eyebrow{
+    color:#7DD3FC;font-weight:700;font-size:20px;letter-spacing:.20em;text-transform:uppercase;
+    line-height:1;margin:0 0 22px 0;
+  }
+  .headline{margin:0;padding:0;font-family:'Anton','Impact','Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase;}
+  .h1{display:block;color:#E8C15A;font-size:176px;line-height:.86;letter-spacing:.01em;}
+  .h2{display:block;color:#F8FAFC;font-size:97px;line-height:.92;letter-spacing:.01em;margin-top:12px;}
+  .when{
+    margin:30px 0 0 0;color:#F8FAFC;font-weight:800;font-size:38px;line-height:1;letter-spacing:.02em;text-transform:uppercase;
+  }
+  .where{
+    margin:12px 0 0 0;color:#BAE6FD;font-weight:500;font-size:23px;line-height:1.25;letter-spacing:.01em;
+  }
+  .pill{
+    display:inline-block;margin-top:26px;align-self:flex-start;
+    border:2px solid #E8C15A;color:#E8C15A;border-radius:999px;
+    padding:11px 24px;font-weight:800;font-size:19px;letter-spacing:.16em;line-height:1;text-transform:uppercase;
+  }
+  .url{
+    position:absolute;left:60px;bottom:44px;
+    color:#BAE6FD;opacity:.85;font-weight:600;font-size:18px;letter-spacing:.14em;line-height:1;text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="poster">
+    <img src="../images/games/horsholm-cup-2026-09-07.jpg" width="504" height="630" alt="Cup night poster. Talata vs Hørsholm, Monday 7 September, 18:15, Svanemøllehallen. Free entry." fetchpriority="high" decoding="async">
+  </div>
+  <div class="panel">
+    <p class="eyebrow">Divisionspokalen 1/16 final</p>
+    <h1 class="headline"><span class="h1">Talata</span><span class="h2">vs Hørsholm</span></h1>
+    <p class="when">Mon 7 Sep, 18:15</p>
+    <p class="where">Svanemøllehallen, Østerbrogade 240</p>
+    <span class="pill">Free entry</span>
+    <span class="url">talatabasketball.dk</span>
+  </div>
+</div>
+</body>
+</html>

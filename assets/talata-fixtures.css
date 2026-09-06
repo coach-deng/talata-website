@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Talata fixtures — feature game, month-split rows, ticker, ticket modal.
+   Talata fixtures. Feature game, month-split rows, ticker, ticket modal.
    Every class is tf- or tk- prefixed so it never collides with a page's own
    CSS, the same rule the shared header follows.
 
@@ -9,7 +9,9 @@
    Talata's, not theirs: navy #0B1F3A, baby #7DD3FC, sky #BAE6FD.
    ========================================================================== */
 
-.tf-scope,.tk,.tf-feat,.tf-month,.tf-bar,.tf-tabs,.tf-modal{
+/* .cup-pop is in the list because it mounts straight into body, outside every
+   other scope here, and its rules read these tokens. */
+.tf-scope,.tk,.tf-feat,.tf-month,.tf-bar,.tf-tabs,.tf-modal,.cup-pop{
   --f-bg:#0B0F17; --f-card:#131A26; --f-card2:#1A2333; --f-line:#26324A;
   --f-text:#E6EDF7; --f-muted:#93A3BA; --f-accent:#7DD3FC; --f-sky:#BAE6FD;
   --f-brand:#2C4FD8; --f-win:#4ADE80; --f-warn:#FBBF24;
@@ -199,7 +201,7 @@
 .tf-r-match .tf-crest.is-talata img{max-height:22px;}
 /* ONE scoreline, not two pills (1 Sep 2026). Two separate boxes read as two
    unrelated numbers; a scoreline reads as a result. And only the side that
-   actually won is coloured — `.tf-r.is-won .tf-r-score` used to paint BOTH,
+   actually won is coloured. `.tf-r.is-won .tf-r-score` used to paint BOTH,
    so a 41-59 win showed the opponent's 41 in the win colour too. */
 .tf-r-score{
   display:inline-flex;align-items:baseline;gap:8px;flex:0 0 auto;
@@ -462,6 +464,44 @@
   .tf-detail-box .tf-feat{grid-template-columns:1fr;}
 }
 
+/* ---------- the poster block on the detail panel (6 Sep 2026) ----------
+   Painted by posterHTML() when /data/posters.json has an entry for the game.
+   Base rule is the STRIP: thumb and one line, under the panel. That is what a
+   phone gets and what the row dialog gets at every width, because the dialog
+   is 720px wide and already stacks. Desktop turns it into a third column
+   beside the info panel, so the countdown and the ticket button do not move.
+   The thumb keeps the poster's own aspect through its width and height
+   attributes; only the width is set here. */
+.tf-poster{
+  grid-column:1/-1;display:flex;align-items:center;gap:14px;
+  padding:12px 18px;border-top:1px solid var(--f-line);background:var(--f-bg);
+  text-decoration:none;color:var(--f-text);min-width:0;
+}
+.tf-poster img{
+  flex:0 0 auto;display:block;width:54px;height:auto;
+  border-radius:8px;border:1px solid #E8C15A;   /* the cup accent, once */
+}
+.tf-poster span{font-family:var(--f-body);font-size:.86rem;font-weight:600;line-height:1.35;color:var(--f-text);}
+.tf-poster span b{color:var(--f-accent);}
+.tf-poster:hover span{color:var(--f-accent);}
+.tf-poster:focus-visible{outline:2px solid var(--f-accent);outline-offset:-2px;}
+
+@media (min-width:881px){
+  .tf-feat.has-poster{grid-template-columns:1.15fr 1fr 180px;}
+  .tf-feat.has-poster .tf-poster{
+    grid-column:auto;flex-direction:column;justify-content:center;gap:12px;
+    padding:16px;border-top:0;border-left:1px solid var(--f-line);text-align:center;
+  }
+  .tf-feat.has-poster .tf-poster img{width:100%;border-radius:10px;}
+  /* The row dialog keeps the strip. */
+  .tf-detail-box .tf-feat.has-poster{grid-template-columns:1.15fr 1fr;}
+  .tf-detail-box .tf-feat.has-poster .tf-poster{
+    grid-column:1/-1;flex-direction:row;justify-content:flex-start;gap:14px;
+    padding:12px 18px;border-left:0;border-top:1px solid var(--f-line);text-align:left;
+  }
+  .tf-detail-box .tf-feat.has-poster .tf-poster img{width:54px;border-radius:8px;}
+}
+
 /* "Details ›" is the affordance that says the row is a door. It sits under the
    ticket button and fades in on hover, so it never competes with the price of
    admission being free. */
@@ -547,7 +587,7 @@
 
 /* ═══ TICKER: squad name, next game, cup game (31 Aug 2026) ═══════════════
    Deng: highlight the next game more, put the age group on, and make a CUP
-   game loud. Tournaments deliberately stay plain — he corrected himself on
+   game loud. Tournaments deliberately stay plain. He corrected himself on
    that mid-sentence, so only compKind()==='cup' gets this. */
 
 .tkc{position:relative;}
@@ -623,6 +663,59 @@
 
 @media (max-width:600px){
   .cup-pop{left:10px;right:10px;bottom:10px;width:auto;max-width:none;padding:16px;}
+}
+
+/* ═══ CUP POPUP WITH A POSTER (6 Sep 2026) ═══════════════════════════════
+   Same popup, same restraints (homepage only, six seconds, once per game,
+   cup only, 14 days), painted with the game poster when posters.json has one.
+   Desktop: a two column card in the same bottom-left corner, poster left,
+   facts and two doors right. Phone: a bottom sheet. The poster is capped at
+   38vh and the sheet at 70vh, so the hero and the free trial button above it
+   stay reachable, which is the one thing this popup must never break.
+   Gold appears exactly once, as the 1px edge on the poster. */
+.cup-pop.has-poster{
+  width:510px;display:grid;grid-template-columns:176px minmax(0,1fr);
+  grid-template-rows:auto auto;column-gap:16px;row-gap:12px;
+  align-items:center;padding:14px 16px 14px 14px;
+  /* A phone held sideways is 375px tall and misses the sheet rule below, so
+     the card gets a ceiling of its own and scrolls inside it. */
+  max-height:calc(100vh - 40px);overflow-y:auto;
+}
+.cup-pop.has-poster .cup-poster{grid-column:1;grid-row:1/span 2;}
+.cup-pop.has-poster .cup-body{grid-column:2;grid-row:1;align-self:end;}
+.cup-pop.has-poster .cup-acts{grid-column:2;grid-row:2;align-self:start;}
+.cup-poster{display:block;line-height:0;border-radius:10px;}
+.cup-poster:focus-visible{outline:2px solid var(--f-accent,#7DD3FC);outline-offset:3px;}
+.cup-poster img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid #E8C15A;}
+.cup-body{min-width:0;padding-right:16px;}   /* keeps the heading clear of the close button */
+.has-poster .cup-when{margin-bottom:0;}
+.cup-acts{min-width:0;}
+.has-poster .cup-cta+.cup-cta{margin-top:8px;}
+.cup-cta-ghost{
+  background:transparent;color:var(--f-text,#E6EDF7);
+  border:1px solid rgba(255,255,255,.28);padding:10px;
+}
+.cup-cta-ghost:hover{background:transparent;color:var(--f-accent,#7DD3FC);border-color:var(--f-accent,#7DD3FC);}
+
+/* Phone: a bottom sheet, and a SHORT one. Measured 6 Sep at 375x667: poster on
+   top with the text under it ran to 70vh and still clipped the second button.
+   Poster beside the facts instead, a third of the width, and the two doors
+   underneath. That lands around 45vh on a small phone, so "FIRST SESSION
+   FREE" and the trial form above it stay on screen. The 38vh cap on the
+   poster and the 70vh cap on the sheet stay as hard ceilings. */
+@media (max-width:600px){
+  .cup-pop.has-poster{
+    left:0;right:0;bottom:0;width:auto;
+    grid-template-columns:minmax(0,33vw) minmax(0,1fr);column-gap:14px;row-gap:12px;
+    border-radius:16px 16px 0 0;border-left:1px solid rgba(242,119,122,.55);
+    border-top:4px solid #F2777A;
+    padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));
+    max-height:70vh;overflow-y:auto;
+  }
+  .cup-pop.has-poster .cup-poster{grid-row:1;align-self:center;}
+  .cup-pop.has-poster .cup-poster img{width:100%;max-height:38vh;object-fit:contain;}
+  .cup-pop.has-poster .cup-body{align-self:center;padding-right:22px;}
+  .cup-pop.has-poster .cup-acts{grid-column:1/-1;grid-row:2;}
 }
 /* Somebody who asked for less motion still gets the popup, it just arrives. */
 @media (prefers-reduced-motion:reduce){
