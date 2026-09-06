@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # than at one of them. /camps/autumn-camp-2026 is the 13-15 page now, and a
 # parent coming off the U9-U11 recap should not land there.
 NEXT_HREF = "/camps"
-NEXT_LABEL = "Autumn Camps, Oct 12, 14 and 15"
+NEXT_LABEL = "Autumn Camps, Oct 12 to 15"
 
 # page -> the line under the banner headline
 PAST = {
