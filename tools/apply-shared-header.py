@@ -49,6 +49,20 @@ CTA = {
 }
 DEFAULT_CTA = ("/#trial", "Book free trial")
 
+# The primary CTA became "Become a member" on 6 Sep 2026 (Deng). Trial demoted to
+# secondary, kept because it is still how a cold parent starts.
+#
+# It points at /join#member and NOT straight at Holdsport, on purpose. Joining a
+# Holdsport team bills kontingent the moment you join, and the general intake
+# bucket (268863) bills the Academy 3.300. A Mini parent sent straight there is
+# overcharged 1.500 before anyone sees it. /join#member shows the price for their
+# band first, then hands them to the right team.
+#
+# Orange is Holdsport's colour, not Talata's, and the brand rule is otherwise no
+# orange. It is scoped to this one button through --tn-member so it stays
+# reversible: change the token, the exception disappears.
+MEMBER_CTA = ("/join#member", "Become a member")
+
 # Resolved per page in build_header(): "#watch" on the homepage, "/#watch"
 # elsewhere. Watch is an on-page section, not a standalone URL.
 WATCH_PLACEHOLDER = "__WATCH__"
@@ -120,15 +134,15 @@ CARET = (
 # :root tokens here flips all 50 pages without touching their own CSS.
 # The one exception is /reviews and /philosophy, which carry talata-tw-dark.css
 # after it; see the dark-mode block in process() for why.
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260903b">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260906c">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0F17">"""
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260903b">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260906c">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260903b" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260906c" defer></script>'
 
 
 def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
@@ -192,7 +206,8 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
         <li><a class="tn-top" href="/shop">Shop</a></li>
       </ul>
     </nav>
-    <a class="tn-cta" href="{cta_href}">{cta_label} <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-cta-alt" href="{cta_href}">{cta_label}</a>
+    <a class="tn-cta tn-cta--member" href="{member_href}">{member_label} <span aria-hidden="true">&rarr;</span></a>
     <button class="tn-burger" id="tn-burger" type="button" aria-expanded="false" aria-controls="tn-drawer" aria-label="Open menu"><i></i></button>
   </div>
 </div>
@@ -205,7 +220,8 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
     <button class="tn-drawer-close" id="tn-drawer-close" type="button" aria-label="Close menu">&#10005;</button>
   </div>
   <div class="tn-drawer-body">
-    <a class="tn-drawer-cta" href="{cta_href}">{cta_label} <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-drawer-cta tn-drawer-cta--member" href="{member_href}">{member_label} <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-drawer-cta tn-drawer-cta--ghost" href="{cta_href}">{cta_label} <span aria-hidden="true">&rarr;</span></a>
 {drawer}
     <h3>More</h3>
     <ul class="tn-drawer-list">
@@ -227,6 +243,8 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
         drawer="\n".join(drawer),
         watch=watch_href,
         cta_href=cta_href,
+        member_href=MEMBER_CTA[0],
+        member_label=MEMBER_CTA[1],
         cta_label=cta_label,
     )
 
@@ -291,7 +309,7 @@ def process(path: Path, check: bool):
         src = src[: body.end()] + "\n\n" + header + "\n" + src[body.end():]
         notes.append("injected")
 
-    if "/assets/talata-nav.css?v=20260903b" not in src:
+    if "/assets/talata-nav.css?v=20260906c" not in src:
         head = re.search(r"</head>", src)
         if head:
             src = src[: head.start()] + HEAD_TAGS + "\n" + src[head.start():]
@@ -318,7 +336,7 @@ def process(path: Path, check: bool):
         src = src[: anchor.start()] + DARK_TAG + "\n" + src[anchor.start():]
         notes.append("dark css")
 
-    if "/assets/talata-nav.js?v=20260903b" not in src:
+    if "/assets/talata-nav.js?v=20260906c" not in src:
         body_end = src.rfind("</body>")
         if body_end != -1:
             src = src[:body_end] + SCRIPT_TAG + "\n" + src[body_end:]

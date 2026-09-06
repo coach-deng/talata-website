@@ -337,7 +337,7 @@
       .section { padding: 48px 0; }
     }
   </style>
-<link rel="stylesheet" href="/assets/talata-nav.css?v=20260903b">
+<link rel="stylesheet" href="/assets/talata-nav.css?v=20260906c">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -350,8 +350,8 @@
     gtag('js', new Date());
     gtag('config', 'G-R64Y9CQ2VZ');
   </script>
-<link rel="stylesheet" href="/assets/talata-footer.css?v=20260903b">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260903b">
+<link rel="stylesheet" href="/assets/talata-footer.css?v=20260906c">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260906c">
 </head>
 <body>
 
@@ -395,7 +395,8 @@
         <li><a class="tn-top" href="/shop">Shop</a></li>
       </ul>
     </nav>
-    <a class="tn-cta" href="#register">Book free trial <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-cta-alt" href="#register">Book free trial</a>
+    <a class="tn-cta tn-cta--member" href="/join#member">Become a member <span aria-hidden="true">&rarr;</span></a>
     <button class="tn-burger" id="tn-burger" type="button" aria-expanded="false" aria-controls="tn-drawer" aria-label="Open menu"><i></i></button>
   </div>
 </div>
@@ -408,7 +409,8 @@
     <button class="tn-drawer-close" id="tn-drawer-close" type="button" aria-label="Close menu">&#10005;</button>
   </div>
   <div class="tn-drawer-body">
-    <a class="tn-drawer-cta" href="#register">Book free trial <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-drawer-cta tn-drawer-cta--member" href="/join#member">Become a member <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-drawer-cta tn-drawer-cta--ghost" href="#register">Book free trial <span aria-hidden="true">&rarr;</span></a>
         <h3>Programs</h3>
         <ul class="tn-drawer-list">
           <li><a href="/mini">Mini + Junior<small>ages 5 to 12</small></a></li>
@@ -625,6 +627,79 @@
       </div>
     </div>
 
+    <!-- BECOME A MEMBER (6 Sep 2026) ------------------------------------------
+         The nav CTA lands here, not on Holdsport. Joining a Holdsport team bills
+         the half-season fee immediately, and the only general link we have is the
+         "Talata Basketball" intake bucket (268863) which bills the Academy 3.300.
+         Send a Mini or Junior parent straight there and they are overcharged 1.500
+         before anyone notices. That already happened to three families in August.
+
+         So: Mini has its own team (318487) and gets a real join button. Every other
+         band asks us for their link until per-team invitations exist in Holdsport.
+         Create those four teams and this page becomes one click for everyone.
+    -->
+
+    <div class="section" id="member">
+      <div class="mb-wrap">
+        <h2>Become a member</h2>
+        <p class="sub">The first session is free and stays free. When you are ready to join for the season, here is the fee and where the link takes you.</p>
+
+        <div class="mb-warn">
+          <b>Joining a team on Holdsport starts your membership.</b>
+          <p>Holdsport is where we run the club. Teams, attendance, payments, all of it. The half-season fee below is charged the moment you join a team there. If you have never been in the gym with us, come to a free session first.</p>
+        </div>
+
+        <div class="mb-grid">
+
+          <div class="mb-card">
+            <span class="mb-age">Ages 5 to 9</span>
+            <h3>Talata Mini</h3>
+            <div class="mb-fee">1.800 kr <small>/ half-season</small></div>
+            <p class="mb-when">Tuesday and Thursday, 15:30 to 16:30. Strandvejsskolen, Sionsgade 1.</p>
+            <a class="mb-btn" href="https://www.holdsport.dk/team_invitation/318487/f2cdc89f63e900ca29c391d9cfbcc656ef1a8965">Join Mini on Holdsport</a>
+          </div>
+
+          <div class="mb-card">
+            <span class="mb-age">Ages 10 to 12</span>
+            <h3>Talata Junior</h3>
+            <div class="mb-fee">1.800 kr <small>/ half-season</small></div>
+            <p class="mb-when">Tuesday and Thursday, 16:30 to 17:45. Strandvejsskolen, Sionsgade 1.</p>
+            <a class="mb-btn ghost" href="#register">Ask us for your Junior link</a>
+          </div>
+
+          <div class="mb-card">
+            <span class="mb-age">Girls, ages 6 to 14</span>
+            <h3>Talata Sparks</h3>
+            <div class="mb-fee">1.200 kr <small>/ half-season, Monday only</small></div>
+            <p class="mb-when">Monday 15:30 to 16:30, Strandvejsskolen. Add a Tuesday or Thursday session and it is 1.800.</p>
+            <a class="mb-btn ghost" href="#register">Ask us for your Sparks link</a>
+          </div>
+
+          <div class="mb-card">
+            <span class="mb-age">Ages 13 to 19</span>
+            <h3>Talata Academy</h3>
+            <div class="mb-fee">3.300 kr <small>/ half-season</small></div>
+            <p class="mb-when">Four sessions a week at Svanem&oslash;llehallen. Three court days plus the Tuesday off-court day.</p>
+            <a class="mb-btn ghost" href="#register">Ask us for your Academy link</a>
+          </div>
+
+          <div class="mb-card">
+            <span class="mb-age">Ages 18 and up</span>
+            <h3>Talata Men</h3>
+            <div class="mb-fee">2.000 kr <small>/ half-season</small></div>
+            <p class="mb-when">Monday and Friday at Svanem&oslash;llehallen. 3. Division plus recreational.</p>
+            <a class="mb-btn ghost" href="#register">Ask us for your Men link</a>
+          </div>
+
+        </div>
+
+        <p class="mb-foot">
+          Age groups run on your age on <b>1 October</b>, so the date of birth decides the team. A 12 year old is Junior at 1.800 unless you ask us for Academy.
+          Paying is separate from joining and we send the details after. Any question at all, use the form below or email <a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a>.
+        </p>
+      </div>
+    </div>
+
     <!-- REGISTER FORM -->
     <div class="section" id="register" style="padding-top:0;">
       <div class="form-section">
@@ -723,7 +798,7 @@
 
   </div>
 
-<script src="/assets/talata-signup.js?v=20260903b"></script>
+<script src="/assets/talata-signup.js?v=20260906c"></script>
   <script>
     // Lead capture, attribution and the next-steps panel live in
     // /assets/talata-signup.js. This page used to post to the Worker AND to GAS
@@ -742,8 +817,8 @@
     });
   </script>
 
-<script src="/assets/talata-nav.js?v=20260903b" defer></script>
-<script src="/assets/talata-track.js?v=20260903b" defer></script>
+<script src="/assets/talata-nav.js?v=20260906c" defer></script>
+<script src="/assets/talata-track.js?v=20260906c" defer></script>
 <!-- TALATA:FOOTER:START — generated by tools/apply-shared-footer.py, do not hand-edit -->
 <footer class="tf">
   <div class="tf-wrap">
