@@ -220,8 +220,16 @@
   function merge(staticGames, liveGames) {
     var known = {};
     staticGames.forEach(function (g) { known[g.id] = true; });
+    /* A tournament typed into tournaments.json also exists in Holdsport as one
+       loose activity per day ("BMS Herlev cup", U19, no opponent). Drop the
+       Holdsport copy when a typed game already sits on that date for that
+       team, otherwise the strip shows a blank row next to the real ones. */
+    var typed = {};
+    staticGames.forEach(function (g) { if (g.source === 'tournament') typed[g.date + '|' + g.team] = true; });
     var live = (liveGames || []).filter(function (g) {
-      return !(g.dbbfId && known[g.dbbfId]);   /* the federation copy wins */
+      if (g.dbbfId && known[g.dbbfId]) return false;   /* the federation copy wins */
+      if (!g.dbbfId && typed[g.date + '|' + g.team]) return false;
+      return true;
     });
     return staticGames.concat(live).sort(function (a, b) {
       return (a.date + (a.time || '99:99')).localeCompare(b.date + (b.time || '99:99'));
@@ -942,7 +950,7 @@
 
     var teams = [];
     allGames.forEach(function (g) { if (teams.indexOf(g.team) < 0) teams.push(g.team); });
-    var order = ['Men', 'U19', 'U18', 'U17', 'U15', 'U14', 'U13', 'U11'];
+    var order = ['Men', 'U19', 'U18', 'U17', 'Girls U17', 'U15', 'U14', 'U13', 'U11'];
     teams.sort(function (a, b) {
       var ia = order.indexOf(a), ib = order.indexOf(b);
       return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
