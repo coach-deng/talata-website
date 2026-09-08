@@ -215,6 +215,17 @@
      highlight the cup, not tournaments. compKind already separates them. */
   function isCup(g) { return compKind(g) === 'cup'; }
 
+  /* A tournament is a st\u00e6vne or a trip: several teams, several games, one
+     weekend. compKind already separates the destinations, so this is inv (BMS
+     Herlev and other domestic st\u00e6vner), se (Malm\u00f6) and es (Girona, EYBL).
+     source==='tournament' catches a hand-typed row whose competition name does
+     not carry a word compKind knows. The Danish Cup is not one of these. */
+  function isTournament(g) {
+    if (g.source === 'tournament') return true;
+    var k = compKind(g);
+    return k === 'inv' || k === 'se' || k === 'es';
+  }
+
   /* ---------- merge ---------- */
 
   function merge(staticGames, liveGames) {
@@ -950,6 +961,7 @@
 
     var teams = [];
     allGames.forEach(function (g) { if (teams.indexOf(g.team) < 0) teams.push(g.team); });
+    var hasTournament = allGames.some(isTournament);
     var order = ['Men', 'U19', 'U18', 'U17', 'Girls U17', 'U15', 'U14', 'U13', 'U11'];
     teams.sort(function (a, b) {
       var ia = order.indexOf(a), ib = order.indexOf(b);
@@ -963,6 +975,13 @@
       barEl.innerHTML = ['<button class="tf-chip is-on" data-f="all">All games</button>',
         '<button class="tf-chip" data-f="home">Home</button>',
         '<button class="tf-chip" data-f="away">Away</button>']
+        /* Deng, 8 Sep 2026: "add a tournament thing so you can just see
+           tournaments". A st\u00e6vne is a weekend away with several teams and
+           several games, which is the thing a parent plans around. The Danish
+           Cup is deliberately NOT in here: it is one knockout tie at a time and
+           it already carries its own red bar. Only shown when the season
+           actually holds one. */
+        .concat(hasTournament ? ['<button class="tf-chip" data-f="tournament">Tournaments</button>'] : [])
         .concat(teams.map(function (t) {
           return '<button class="tf-chip" data-f="team:' + esc(t) + '">' + esc(t) + '</button>';
         })).join('');
@@ -975,6 +994,7 @@
       var list = base;
       if (state.filter === 'home') list = base.filter(function (g) { return g.home; });
       else if (state.filter === 'away') list = base.filter(function (g) { return !g.home; });
+      else if (state.filter === 'tournament') list = base.filter(isTournament);
       else if (state.filter.indexOf('team:') === 0) {
         var t = state.filter.slice(5);
         list = base.filter(function (g) { return g.team === t; });
@@ -993,7 +1013,17 @@
     /* Deep link. /games?team=Men lands with that chip already on, which is what
        the Programmes menu points at: a group's page sends you to its own season
        rather than to the top of a list of forty games. */
-    var want = (new URLSearchParams(location.search).get('team') || '').trim();
+    var qs = new URLSearchParams(location.search);
+    if (barEl && qs.get('filter') === 'tournament' && hasTournament) {
+      var tchip = barEl.querySelector('[data-f="tournament"]');
+      if (tchip) {
+        Array.prototype.forEach.call(barEl.querySelectorAll('.tf-chip'), function (x) {
+          x.classList.toggle('is-on', x === tchip);
+        });
+        state.filter = 'tournament';
+      }
+    }
+    var want = (qs.get('team') || '').trim();
     if (want && barEl) {
       var chip = barEl.querySelector('[data-f="team:' + want.replace(/"/g, '') + '"]');
       if (chip) {
