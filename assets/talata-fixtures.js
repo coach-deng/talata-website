@@ -215,15 +215,14 @@
      highlight the cup, not tournaments. compKind already separates them. */
   function isCup(g) { return compKind(g) === 'cup'; }
 
-  /* A tournament is a st\u00e6vne or a trip: several teams, several games, one
-     weekend. compKind already separates the destinations, so this is inv (BMS
-     Herlev and other domestic st\u00e6vner), se (Malm\u00f6) and es (Girona, EYBL).
-     source==='tournament' catches a hand-typed row whose competition name does
-     not carry a word compKind knows. The Danish Cup is not one of these. */
+  /* Everything that is not the league. St\u00e6vner and trips (inv, se, es), plus
+     the Danish Cup (Deng, 8 Sep 2026: "add the danish cup to tournaments too").
+     compKind already separates the destinations; source==='tournament' catches
+     a hand-typed row whose competition name carries no word compKind knows. */
   function isTournament(g) {
     if (g.source === 'tournament') return true;
     var k = compKind(g);
-    return k === 'inv' || k === 'se' || k === 'es';
+    return k === 'inv' || k === 'se' || k === 'es' || k === 'cup';
   }
 
   /* ---------- merge ---------- */
@@ -976,11 +975,9 @@
         '<button class="tf-chip" data-f="home">Home</button>',
         '<button class="tf-chip" data-f="away">Away</button>']
         /* Deng, 8 Sep 2026: "add a tournament thing so you can just see
-           tournaments". A st\u00e6vne is a weekend away with several teams and
-           several games, which is the thing a parent plans around. The Danish
-           Cup is deliberately NOT in here: it is one knockout tie at a time and
-           it already carries its own red bar. Only shown when the season
-           actually holds one. */
+           tournaments", and the Danish Cup belongs in it. Everything that is
+           not the league: st\u00e6vner, trips and the cup. Only shown when the
+           season actually holds one. */
         .concat(hasTournament ? ['<button class="tf-chip" data-f="tournament">Tournaments</button>'] : [])
         .concat(teams.map(function (t) {
           return '<button class="tf-chip" data-f="team:' + esc(t) + '">' + esc(t) + '</button>';
