@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-01T10:36:58Z",
+  "generated": "2026-09-08T11:36:24Z",
   "source": "kampe_2026-08-31.csv",
   "note": "League and cup fixtures from the DBBF/MVP export. This is the federation record and it is what the site publishes. Friendlies and tournaments are added live from Holdsport by talata-api /fixtures. Where the two disagree, DBBF wins.",
   "counts": {
@@ -21,9 +21,9 @@
       "court": "Hallen",
       "homeCourt": true,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 78,
+      "them": 67,
       "source": "dbbf"
     },
     {

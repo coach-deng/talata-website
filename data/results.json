@@ -1,0 +1,8 @@
+{
+  "note": "Scores typed by hand before the DBBF export carries them, keyed by DBBF game id, always as us/them. build-fixtures.py reads this and marks the game played; the export wins as soon as it has its own score, and a row here can be deleted after that.",
+  "40099294": {
+    "us": 78,
+    "them": 67,
+    "source": "MVP box score, 7 Sep 2026"
+  }
+}

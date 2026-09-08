@@ -150,6 +150,14 @@ def newest_export() -> str:
     return max(files, key=key)
 
 
+RESULTS_PATH = os.path.join(os.path.dirname(OUT), "results.json")
+try:
+    with io.open(RESULTS_PATH, encoding="utf-8") as _fh:
+        RESULTS = {k: v for k, v in json.load(_fh).items() if isinstance(v, dict)}
+except FileNotFoundError:
+    RESULTS = {}
+
+
 def build(path: str) -> dict:
     with io.open(path, encoding="utf-8-sig") as fh:
         rows = list(csv.DictReader(fh, delimiter=";"))
@@ -181,6 +189,13 @@ def build(path: str) -> dict:
         # game is played and the scoresheet is filed, so a Results view built on
         # them starts empty and fills itself with no extra work.
         hs, as_ = clean(r.get("homescore")), clean(r.get("awayscore"))
+        # data/results.json holds a score we know before the federation files
+        # it (typed from the MVP box score the morning after). The export wins
+        # the moment it carries a score of its own.
+        if not (hs.isdigit() and as_.isdigit()):
+            ov = RESULTS.get(clean(r.get("number")))
+            if ov:
+                hs, as_ = (str(ov["us"]), str(ov["them"])) if is_home else (str(ov["them"]), str(ov["us"]))
         played = hs.isdigit() and as_.isdigit()
 
         # 'Mangler Tid' means missing TIME, not missing date. The date is already
