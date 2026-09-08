@@ -44,10 +44,14 @@
      fixtures and resolved to null on any failure, so a missing or broken
      posters file can never cost the page its season. */
   var POSTERS = '/data/posters.json';
+  /* Hand-typed results and the Men's box scores, keyed by DBBF game id.
+     Same terms as posters: null on any failure, nothing else changes. */
+  var RESULTS = '/data/results.json';
 
   var crests = { names: {}, files: {} };
   var allGames = [];
   var posters = {};
+  var stats = {};
 
   /* ---------- dates ---------- */
 
@@ -314,6 +318,40 @@
       '</a>';
   }
 
+  /* ---------- box score ----------
+     Deng, 8 Sep 2026: the Men get a full box score behind the details click.
+     Youth games carry the score and nothing else, which keeps the 31 Aug rule
+     (results public, the reading of them internal) for every child on a team
+     sheet. The data is typed into data/results.json from the MVP sheet. */
+  function boxFor(g) {
+    var st = stats[String(g.id)];
+    if (!g.played || !st || !st.box || !st.box.length) return null;
+    if (g.team !== 'Men') return null;
+    return st;
+  }
+  function boxHTML(g) {
+    var st = boxFor(g);
+    if (!st) return '';
+    var num = function (v) { return v === null || v === undefined ? '' : esc(String(v)); };
+    var rows = st.box.map(function (p) {
+      return '<tr><td class="n">' + num(p.num) + '</td><td class="p">' + esc(p.name || '') + '</td>' +
+        '<td>' + esc(p.min || '') + '</td><td class="pts">' + num(p.pts) + '</td>' +
+        '<td>' + esc(p.ft || '') + '</td><td>' + num(p.fg) + '</td><td>' + num(p.pf) + '</td></tr>';
+    }).join('');
+    var t = st.totals || {};
+    var tot = t.pts === undefined ? '' :
+      '<tr class="tot"><td></td><td class="p">Talata</td><td></td><td class="pts">' + num(t.pts) + '</td>' +
+      '<td>' + esc(t.ft || '') + '</td><td>' + num(t.fg) + '</td><td>' + num(t.pf) + '</td></tr>';
+    return '<div class="tf-box">' +
+        '<div class="tf-box-h"><b>Box score</b><span>Talata ' + num(g.us) + ', ' +
+          esc(g.opponent || g.title || '') + ' ' + num(g.them) + '</span></div>' +
+        '<div class="tf-box-scroll"><table>' +
+          '<thead><tr><th>#</th><th>Player</th><th>Min</th><th>Pts</th><th>FT</th><th>FG</th><th>PF</th></tr></thead>' +
+          '<tbody>' + rows + tot + '</tbody></table></div>' +
+        '<p class="tf-box-src">FG is made field goals. From the official scoresheet.</p>' +
+      '</div>';
+  }
+
   /* ---------- feature (next game) ---------- */
 
   /* The detail panel. One markup for the feature game at the top of the page
@@ -358,6 +396,7 @@
           '</div>' +
         '</div>' +
         poster +
+        boxHTML(g) +
       '</div>';
   }
 
@@ -418,7 +457,15 @@
           detailHTML(g) +
         '</div>' +
       '</div>';
-    var close = function () { wrap.innerHTML = ''; };
+    var close = function () {
+      wrap.innerHTML = '';
+      /* The card that opened this wrote #g-<id>. Drop it without a scroll jump,
+         so tapping the same card again is a fresh hashchange, and so a reload
+         lands on the list rather than back inside the panel. */
+      if (/^#g-/.test(location.hash || '')) {
+        try { history.replaceState(null, '', location.pathname + location.search); } catch (err) { /* old browser */ }
+      }
+    };
     wrap.querySelector('.tf-x').addEventListener('click', close);
     wrap.querySelector('.tf-modal').addEventListener('click', function (e) {
       if (e.target === e.currentTarget) close();
@@ -503,7 +550,9 @@
         (home && !g.played
           ? '<button class="tf-r-tix" data-tf-claim="' + esc(g.id) +
             '" data-tf-date="' + esc(g.date) + '">Free ticket</button>'
-          : (g.played ? '' : '<span class="tf-r-free">Free entry</span>')) +
+          : (g.played
+              ? (boxFor(g) ? '<span class="tf-r-free">Box score</span>' : '')
+              : '<span class="tf-r-free">Free entry</span>')) +
         '<span class="tf-r-more">Details &rsaquo;</span>' +
       '</div>' +
     '</article>';
@@ -582,7 +631,7 @@
       var cup = isCup(g) && !g.played;
       return '<a class="tkc' + (g.home ? ' is-home' : '') + (isNext ? ' is-next' : '') +
         (cup ? ' is-cup' : '') +
-        (g.played ? ' is-done' : '') + '" href="/games">' +
+        (g.played ? ' is-done' : '') + '" href="/games#g-' + encodeURIComponent(String(g.id)) + '">' +
         (cup ? '<span class="tkc-cup">Cup</span>' : '') +
         (isNext && !cup ? '<span class="tkc-nx">Next up</span>' : '') +
         '<div class="tkc-crests">' + talataCrest(g.team) +
@@ -1054,6 +1103,24 @@
 
   /* ---------- boot ---------- */
 
+  /* A ticker card links to /games#g-<id> (8 Sep 2026). Before that every card
+     went to plain /games, which on a phone landed on the feature panel for a
+     different game and read as "I tapped a game and got nothing". Open the
+     game the hash names once the list holds it: paint runs twice, static then
+     live, and a Holdsport game only exists on the second run. */
+  function openFromHash() {
+    var m = /^#g-(.+)$/.exec(location.hash || '');
+    if (!m) return false;
+    var id;
+    try { id = decodeURIComponent(m[1]); } catch (err) { id = m[1]; }
+    var known = allGames.some(function (x) { return String(x.id) === String(id); });
+    if (!known) return false;
+    var row = document.querySelector('[data-tf-open="' + id.replace(/["\\]/g, '') + '"]');
+    if (row && row.scrollIntoView) row.scrollIntoView({ block: 'center' });
+    openDetails(id);
+    return true;
+  }
+
   function paint(games) {
     allGames = games;
     var next = upcoming(games);
@@ -1074,6 +1141,12 @@
          so they get no mount rather than an empty list. */
       renderRows(el, filterTeams(next, el.getAttribute('data-team')));
     });
+
+    if (!paint._hashOpened) paint._hashOpened = openFromHash();
+    if (!paint._hashWired) {
+      paint._hashWired = true;
+      window.addEventListener('hashchange', function () { openFromHash(); });
+    }
 
     /* Armed once. paint() runs twice, static then live, and a second timer
        would fire a second popup over the first. */
@@ -1102,11 +1175,15 @@
              failure, so a missing or broken file changes nothing below. */
           fetch(POSTERS, { cache: 'no-cache' })
             .then(function (r) { return r.ok ? r.json() : null; })
+            .catch(function () { return null; }),
+          fetch(RESULTS, { cache: 'no-cache' })
+            .then(function (r) { return r.ok ? r.json() : null; })
             .catch(function () { return null; })
         ])
           .then(function (all) {
-            var d = all[0], t = all[1], p = all[2];
+            var d = all[0], t = all[1], p = all[2], st = all[3];
             posters = (p && p.posters && typeof p.posters === 'object') ? p.posters : {};
+            stats = (st && typeof st === 'object') ? st : {};
             var league = ((d && d.games) || []).concat((t && t.games) || []);
             paint(merge(league, []));       /* federation fixtures, immediately */
             return fetch(API + '/fixtures', { cache: 'no-cache' })

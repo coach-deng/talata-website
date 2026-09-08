@@ -1,8 +1,89 @@
 {
-  "note": "Scores typed by hand before the DBBF export carries them, keyed by DBBF game id, always as us/them. build-fixtures.py reads this and marks the game played; the export wins as soon as it has its own score, and a row here can be deleted after that.",
+  "note": "Scores typed by hand before the DBBF export carries them, keyed by DBBF game id, always as us/them. build-fixtures.py reads us/them and marks the game played; the export wins as soon as it has its own score. A box entry is the Men's box score for the details panel on /games (Deng, 8 Sep 2026: Men only, full box score; youth games carry a score and nothing else). Columns: num, name, min, pts, ft, fg (made field goals), pf.",
   "40099294": {
     "us": 78,
     "them": 67,
-    "source": "MVP box score, 7 Sep 2026"
+    "source": "MVP box score, 7 Sep 2026. Eight players; the sheet's 1:00 for #83 is a table error, Deng 8 Sep.",
+    "team": "Men",
+    "box": [
+      {
+        "num": 0,
+        "name": "AJ Drammeh",
+        "min": "16:38",
+        "pts": 3,
+        "ft": "0/0",
+        "fg": 1,
+        "pf": 2
+      },
+      {
+        "num": 1,
+        "name": "Valdemar Scharfe",
+        "min": "31:03",
+        "pts": 13,
+        "ft": "1/1",
+        "fg": 6,
+        "pf": 2
+      },
+      {
+        "num": 5,
+        "name": "Deyan Nikiforov",
+        "min": "39:59",
+        "pts": 11,
+        "ft": "0/0",
+        "fg": 5,
+        "pf": 1
+      },
+      {
+        "num": 8,
+        "name": "Milan Mortensen",
+        "min": "2:14",
+        "pts": 0,
+        "ft": "0/0",
+        "fg": 0,
+        "pf": 0
+      },
+      {
+        "num": 21,
+        "name": "Jordan Naughton",
+        "min": "26:44",
+        "pts": 26,
+        "ft": "4/4",
+        "fg": 11,
+        "pf": 5
+      },
+      {
+        "num": 35,
+        "name": "Lewis Gouadjio",
+        "min": "26:47",
+        "pts": 2,
+        "ft": "0/0",
+        "fg": 1,
+        "pf": 2
+      },
+      {
+        "num": 92,
+        "name": "Shih-Hsueh Lee",
+        "min": "17:51",
+        "pts": 4,
+        "ft": "0/0",
+        "fg": 2,
+        "pf": 3
+      },
+      {
+        "num": 99,
+        "name": "Deng Awak",
+        "min": "39:59",
+        "pts": 19,
+        "ft": "5/6",
+        "fg": 7,
+        "pf": 2
+      }
+    ],
+    "totals": {
+      "pts": 78,
+      "ft": "10/11",
+      "fg": 33,
+      "pf": 17
+    }
   }
 }
