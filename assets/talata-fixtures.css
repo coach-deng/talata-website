@@ -579,6 +579,7 @@
 
    min-height, not height, so a longer opponent name can still grow the card.
    ========================================================================== */
+.tf-scope[data-talata-fixtures]:empty { min-height: 100vh; }
 [data-talata-ticker] { min-height: 158px; }
 @media (max-width: 640px) { [data-talata-ticker] { min-height: 156px; } }
 [data-talata-feature] { min-height: 494px; }

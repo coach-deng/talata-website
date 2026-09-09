@@ -115,7 +115,7 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260909b">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260909c">'
 
 # Per page trial CTA, mirroring apply-shared-header.py's CTA map. A footer that
 # says "Book a free trial" must land on that page's own form, not scroll-to-top
@@ -166,7 +166,7 @@ def build_footer(rel: str, year: int = 2026) -> str:
     return """{start}
 <footer class="tf">
   <div class="tf-wrap">
-    <div class="tf-grid">
+    <div class="tf-grid" style="--tf-cols:{tfcols}">
       <div class="tf-id">
         <h4>Talata Basketball</h4>
         <p>{blurb}</p>
@@ -189,6 +189,8 @@ def build_footer(rel: str, year: int = 2026) -> str:
         cvr=CVR,
         social=social,
         cols="\n".join(cols),
+        # .tf-id gets its own track, then one per COLUMNS entry, then Contact.
+        tfcols=len(COLUMNS) + 1,
         year=year,
     )
 
@@ -315,7 +317,7 @@ def process(path: Path, check: bool):
         src = src[:body_end] + footer + "\n\n" + src[body_end:]
         notes.append("injected")
 
-    if "/assets/talata-footer.css?v=20260909b" not in src:
+    if "/assets/talata-footer.css?v=20260909c" not in src:
         head = src.find("</head>")
         if head != -1:
             src = src[:head] + CSS_TAG + "\n" + src[head:]

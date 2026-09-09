@@ -30,7 +30,11 @@
 
 .tf-grid {
   display: grid;
-  grid-template-columns: 1.6fr repeat(4, minmax(0, 1fr));
+  /* One track for .tf-id, then one per COLUMNS entry in
+     tools/apply-shared-footer.py, then one for the Contact column it appends.
+     The generator sets --tf-cols to len(COLUMNS) + 1, so adding a column to
+     that list cannot silently wrap the last one under the identity block. */
+  grid-template-columns: 1.6fr repeat(var(--tf-cols, 5), minmax(0, 1fr));
   gap: 34px 28px;
   margin-bottom: 34px;
 }
@@ -65,6 +69,7 @@
   color: rgba(255, 255, 255, 0.62);
   text-decoration: none;
   transition: color 0.15s;
+  overflow-wrap: anywhere;
 }
 
 .tf-col a:hover,
