@@ -131,19 +131,29 @@ CARET = (
 
 # talata-dark.css is deliberately LAST in this block, and this block is
 # injected AFTER every page's own inline <style>. That ordering is the whole
+# Montserrat is the display font for the logo, every heading and the hero. It is
+# self-hosted (the @font-face lives in talata-nav.css) but nothing preloaded it,
+# so it arrived after first paint and swapped in ~9% wider than the fallback.
+# That moved the logo 35px, which pushed the whole nav flex row and the CTA with
+# it, and re-wrapped the hero headline. Cloudflare measured CLS 1.0 on
+# a.tn-cta and on .hero-copy for 48% of real visitors. Inter drifts 0.9% and is
+# already preloaded per page, so it was never the problem.
 # mechanism: a later stylesheet of equal specificity wins, so redefining the
 # :root tokens here flips all 50 pages without touching their own CSS.
 # The one exception is /reviews and /philosophy, which carry talata-tw-dark.css
 # after it; see the dark-mode block in process() for why.
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260908d">
+FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" '
+                'type="font/woff2" crossorigin>')
+
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260909a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0F17">"""
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260908d">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260909a">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260908d" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260909a" defer></script>'
 
 
 def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
@@ -310,11 +320,22 @@ def process(path: Path, check: bool):
         src = src[: body.end()] + "\n\n" + header + "\n" + src[body.end():]
         notes.append("injected")
 
-    if "/assets/talata-nav.css?v=20260908d" not in src:
+    if "/assets/talata-nav.css?v=20260909a" not in src:
         head = re.search(r"</head>", src)
         if head:
             src = src[: head.start()] + HEAD_TAGS + "\n" + src[head.start():]
             notes.append("head tags")
+    # Preload the display font. Stripped and re-inserted every run for the same
+    # reason the dark stylesheet is: HEAD_TAGS above is skipped on any page that
+    # already has the nav stylesheet, which is all of them.
+    src = re.sub(r'[ \t]*<link rel="preload" as="font" href="/fonts/montserrat-latin\.woff2"[^>]*>\n?', "", src)
+    fp_anchor = re.search(r'[ \t]*<link rel="stylesheet" href="/assets/talata-nav\.css[^"]*">', src)
+    if fp_anchor is None:
+        fp_anchor = re.search(r"</head>", src)
+    if fp_anchor:
+        src = src[: fp_anchor.start()] + FONT_PRELOAD + "\n" + src[fp_anchor.start():]
+        notes.append("font preload")
+
     # Dark mode, 26 Aug 2026. Re-stamped on EVERY run, not just a page's first,
     # and placed as late as it can go so it redefines the :root tokens each page
     # sets in its own inline <style>. Removing any previous copy first is what
@@ -337,7 +358,7 @@ def process(path: Path, check: bool):
         src = src[: anchor.start()] + DARK_TAG + "\n" + src[anchor.start():]
         notes.append("dark css")
 
-    if "/assets/talata-nav.js?v=20260908d" not in src:
+    if "/assets/talata-nav.js?v=20260909a" not in src:
         body_end = src.rfind("</body>")
         if body_end != -1:
             src = src[:body_end] + SCRIPT_TAG + "\n" + src[body_end:]

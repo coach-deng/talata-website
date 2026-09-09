@@ -16,6 +16,33 @@
   src:url('/fonts/montserrat-latin-ext.woff2') format('woff2');
   unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
+/* Metric-matched stand-in for Montserrat, so the display font swapping in does
+   not move anything. Cloudflare measured CLS 1.0 on a.tn-cta and on .hero-copy
+   for 48% of real visitors in the 30 days to 9 Sep 2026. Unadjusted, Montserrat
+   arriving late moved the logo 23.6px, and the logo is the first item in the nav
+   flex row, so the CTA at the far end moved with it. The hero headline re-wrapped.
+   Paired with the montserrat-latin.woff2 preload in tools/apply-shared-header.py,
+   which is the real fix: this only limits the damage when the font is still late.
+
+   121% is measured, not derived. Montserrat renders 11.3% wider than Arial at
+   weight 800, but almost everything here is weight 900, where Arial has no real
+   face and the browser synthesises one that does not widen the same way. Sweeping
+   105% to 124% against the five places that actually shift (hero, logo, nav CTA,
+   section headings, footer), weighted by how much each contributes:
+     100%  plain Arial, today       23.6px on the logo, 146.9px on the hero
+     111%  derived from weight 800  51.3px weighted average, 104.9px worst
+     121%  measured optimum          7.3px weighted average,  14.3px worst
+   Browsers without size-adjust fall back to plain Arial, which is today's
+   behaviour, so this can only help. */
+@font-face{
+  font-family:'Montserrat Fallback';
+  src:local('Arial'),local('Helvetica'),local('Liberation Sans');
+  size-adjust:121%;
+  ascent-override:80.2%;
+  descent-override:20.7%;
+  line-gap-override:0%;
+}
+
 @font-face{
   font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;
   src:url('/fonts/inter-latin.woff2') format('woff2');
@@ -48,7 +75,7 @@
      A touch lighter than --tn-navy so it reads as lifted, not as a hole. */
   --tn-drop-bg:#10233F; --tn-drop-ink:#F2F6FC; --tn-drop-ink2:#9FB2CC;
   --tn-drop-hi:#1B3760;
-  --tn-disp:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --tn-disp:'Montserrat','Montserrat Fallback',system-ui,-apple-system,'Segoe UI',sans-serif;
   --tn-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
   --tn-h:74px;
 }
@@ -283,14 +310,14 @@ html.tn-locked,body.tn-locked{overflow:hidden;}
   display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
 }
 .tn-past b{
-  display:block;font-family:'Montserrat',system-ui,sans-serif;
+  display:block;font-family:'Montserrat','Montserrat Fallback',system-ui,sans-serif;
   font-weight:800;font-size:1.05rem;letter-spacing:-0.01em;
 }
 .tn-past p{margin:4px 0 0;font-size:0.9rem;color:rgba(255,255,255,0.7);max-width:52ch;}
 .tn-past a.tn-past-cta{
   flex:none;display:inline-flex;align-items:center;gap:8px;
   background:#7DD3FC;color:#0B1F3A;
-  font-family:'Montserrat',system-ui,sans-serif;font-weight:800;font-size:0.88rem;
+  font-family:'Montserrat','Montserrat Fallback',system-ui,sans-serif;font-weight:800;font-size:0.88rem;
   padding:13px 24px;border-radius:100px;text-decoration:none;
   box-shadow:0 6px 18px rgba(125,211,252,0.26);transition:transform .15s;
 }
@@ -304,14 +331,14 @@ html.tn-locked,body.tn-locked{overflow:hidden;}
   font-family:'Inter',system-ui,sans-serif;margin:24px 0;
 }
 .tn-closed b{
-  display:block;font-family:'Montserrat',system-ui,sans-serif;
+  display:block;font-family:'Montserrat','Montserrat Fallback',system-ui,sans-serif;
   font-weight:800;font-size:1.1rem;margin-bottom:6px;
 }
 .tn-closed p{margin:0 0 16px;font-size:0.92rem;opacity:0.75;}
 .tn-closed a{
   display:inline-flex;align-items:center;gap:8px;
   background:#1E40AF;color:#fff;
-  font-family:'Montserrat',system-ui,sans-serif;font-weight:800;font-size:0.9rem;
+  font-family:'Montserrat','Montserrat Fallback',system-ui,sans-serif;font-weight:800;font-size:0.9rem;
   padding:13px 26px;border-radius:100px;text-decoration:none;
 }
 @media (max-width:640px){

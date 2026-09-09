@@ -24,14 +24,11 @@
   gtag('js', new Date());
   gtag('config', 'G-R64Y9CQ2VZ');
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --black:#0A0A0A; --navy:#0B1F3A; --blue:#1E40AF; --baby:#7DD3FC; --sky:#BAE6FD; --mist:#F8FAFC;
   --ink:#101828; --ink2:#475467; --line:#E4E9F0;
-  --disp:'Montserrat',sans-serif; --body:'Inter',sans-serif;
+  --disp:'Montserrat','Montserrat Fallback',sans-serif; --body:'Inter',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -144,7 +141,7 @@ a{text-decoration:none;color:inherit;}
 .kfeat{display:block;background:rgba(255,255,255,.05);border:1px solid rgba(125,211,252,.45);border-radius:14px;overflow:hidden;text-decoration:none;transition:.16s;}
 .kfeat:hover{border-color:#7DD3FC;transform:translateY(-2px);}
 .kfeat .shot{position:relative;aspect-ratio:16/9;background:#0B1F3A;}
-.kfeat .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.kfeat .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 31%;display:block;}
 .kfeat .body{padding:22px;}
 .kcard{display:block;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px;text-decoration:none;transition:.16s;}
 .kcard:hover{border-color:#7DD3FC;background:rgba(125,211,252,.1);transform:translateY(-2px);}
@@ -167,7 +164,7 @@ a{text-decoration:none;color:inherit;}
 .stcard{display:block;background:var(--td-surface);border:1px solid var(--td-line);border-radius:14px;overflow:hidden;text-decoration:none;transition:.16s;}
 .stcard:hover{border-color:#1E40AF;transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,31,58,.07);}
 .stcard .shot{position:relative;aspect-ratio:4/5;background:#0B1F3A;}
-.stcard .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.stcard .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
 .stcard .shot .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#0B1F3A 0%,#1E40AF 100%);color:rgba(255,255,255,.92);font-size:2rem;font-weight:900;letter-spacing:-1px;}
 .stcard .meta{padding:14px 16px 16px;}
 .stcard b{display:block;font-size:1rem;color:var(--td-text);font-weight:900;line-height:1.25;}
@@ -226,7 +223,7 @@ section{padding:72px 0;}
 .latest{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;}
 @media(max-width:900px){.latest{grid-template-columns:1fr;}}
 .story{position:relative;border-radius:16px;overflow:hidden;background:var(--navy);min-height:300px;display:flex;align-items:flex-end;color:#fff;}
-.story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.75;transition:transform .4s;}
+.story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 31%;opacity:0.75;transition:transform .4s;}
 .story:hover img{transform:scale(1.04);}
 .story .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.88) 15%,transparent 60%);}
 .story .txt{position:relative;padding:24px;}
@@ -265,7 +262,7 @@ section{padding:72px 0;}
 .watch .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
 @media(max-width:880px){.watch .wgrid{grid-template-columns:1fr;}}
 .wcard{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:var(--navy);}
-.wcard img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:transform .4s;}
+.wcard img{width:100%;height:100%;object-fit:cover;object-position:center 31%;opacity:0.85;transition:transform .4s;}
 .wcard:hover img{transform:scale(1.05);}
 .wcard .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
 /* Was color:var(--td-text) on a white disc. Dark mode remapped --td-text to
@@ -346,18 +343,19 @@ footer a:hover{color:var(--td-link);}
 }
 .kcard.has-shot:hover .kshot img{opacity:.46;}
 </style>
-<link rel="stylesheet" href="/assets/talata-nav.css?v=20260908d">
-<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260908d">
+<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/talata-nav.css?v=20260909a">
+<link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260909a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
-<link rel="stylesheet" href="/assets/talata-footer.css?v=20260908d">
+<link rel="stylesheet" href="/assets/talata-footer.css?v=20260909a">
 <!-- LCP hero. It is a CSS background, which the preload scanner cannot see,
      so it was discovered late: Cloudflare measured this element at 4,176ms
      over 28 Jul to 27 Aug 2026. This hint makes it discoverable in the head. -->
 <link rel="preload" as="image" href="/images/talata-huddle.jpg" fetchpriority="high">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260908d">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260909a">
 </head>
 <body>
 
@@ -553,18 +551,18 @@ footer a:hover{color:var(--td-link);}
     <div class="head"><h2>Latest from <i>the club</i></h2><a href="/blog">All stories &rarr;</a></div>
     <div class="latest">
       <a class="story" href="/blog/cup-1-8-final-who-talata-play-next-2026">
-        <img src="images/games/men-roster-cup-2026-09.jpg" alt="Talata Men cup roster 2026. Nine names, seven countries." loading="lazy" decoding="async" width="1080" height="1350">
+        <img src="images/games/men-roster-cup-2026-09.jpg" alt="Talata Men cup roster 2026. Nine names, seven countries." loading="lazy" decoding="async" width="1080" height="1350" style="object-position:50% 30%">
         <div class="grad"></div>
         <div class="txt"><span class="tag">Cup</span><h3>Who Talata play next in the cup, and when.</h3><p>The 1/8 final is away, 22 to 24 September, against NSBU or BK Amager. The draw, the dates and the road to the final on 31 October. Everyone is welcome.</p></div>
       </a>
       <div class="sidecards">
         <a class="story" href="/blog/preseason-seniors-academy-2026">
-          <img src="images/2026-09/preseason-seniors-academy-2026-09-04.jpg" alt="Nineteen Talata players together after the in-house pre-season game at N&oslash;rre F&aelig;lled, 4 September 2026." loading="lazy" decoding="async" width="1080" height="1440">
+          <img src="images/2026-09/preseason-seniors-academy-2026-09-04.jpg" alt="Nineteen Talata players together after the in-house pre-season game at N&oslash;rre F&aelig;lled, 4 September 2026." loading="lazy" decoding="async" width="1080" height="1440" style="object-position:50% 30%">
           <div class="grad"></div>
           <div class="txt"><span class="tag">Club Update</span><h3>Talata played Talata. Seniors 60, Academy 37.</h3></div>
         </a>
         <a class="story" href="/reviews">
-          <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" loading="lazy" decoding="async" width="1600" height="902">
+          <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" loading="lazy" decoding="async" width="1600" height="902" style="object-position:50% 42%">
           <div class="grad"></div>
           <div class="txt"><span class="tag">Parents</span><h3>What families say about us</h3></div>
         </a>
@@ -759,7 +757,7 @@ footer a:hover{color:var(--td-link);}
 })();
 </script>
 
-<script src="/assets/talata-signup.js?v=20260908d"></script>
+<script src="/assets/talata-signup.js?v=20260909a"></script>
 <script>
 const tf = document.getElementById('trial');
 const trialBtn = document.getElementById('trial-btn');
@@ -778,8 +776,8 @@ TalataSignup.wire({
   hide: ['trial-fine']
 });
 </script>
-<script src="/assets/talata-nav.js?v=20260908d" defer></script>
-<script src="/assets/talata-track.js?v=20260908d" defer></script>
+<script src="/assets/talata-nav.js?v=20260909a" defer></script>
+<script src="/assets/talata-track.js?v=20260909a" defer></script>
 <!-- TALATA:FOOTER:START — generated by tools/apply-shared-footer.py, do not hand-edit -->
 <footer class="tf">
   <div class="tf-wrap">
@@ -834,6 +832,6 @@ TalataSignup.wire({
 </footer>
 <!-- TALATA:FOOTER:END -->
 
-<script src="/assets/talata-fixtures.js?v=20260908d" defer></script>
+<script src="/assets/talata-fixtures.js?v=20260909a" defer></script>
 </body>
 </html>

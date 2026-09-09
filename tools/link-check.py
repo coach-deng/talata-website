@@ -44,6 +44,7 @@ DELIBERATE_ORPHANS = {
     "camps/spring-camp-2026.html":   "past camp, kept for its URL, canonical points at /camps",
     "ish-primary-school.html":       "HIDDEN since 6 Aug 2026, 302s to /school-partnerships while Ryparken is unconfirmed",
     "index.html":                    "the homepage is /, nothing links to /index",
+    "404.html":                      "Cloudflare Pages serves it for unmatched routes. Linking to it, or listing it in the sitemap, would be the bug",
 }
 
 SKIP_DIR_PARTS = ("/junk/", "/_unused/", "/Photos-", "/Basketball 2013",

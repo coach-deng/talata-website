@@ -21,14 +21,14 @@
   <meta property="og:description" content="League, cup and friendlies. Talata Night runs Fridays at Nørre Fælled Skole, 19:30, free entry." />
   <meta property="og:image" content="https://talatabasketball.dk/images/og/talata-huddle-og.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260908d">
+  <link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260909a">
   <style>
     @font-face { font-family: 'Inter'; font-weight: 400 800; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
     @font-face { font-family: 'Montserrat'; font-weight: 400 900; font-display: swap; src: url('/fonts/montserrat-latin.woff2') format('woff2'); }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg:#0B0F17; --card:#131A26; --line:#26324A; --text:#E6EDF7; --muted:#93A3BA;
             --accent:#7DD3FC; --brand:#2C4FD8;
-            --disp:'Montserrat',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; }
+            --disp:'Montserrat','Montserrat Fallback',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; }
     body { font-family: var(--body);color:var(--td-text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
@@ -177,13 +177,14 @@
 
 <span id="tn-content" tabindex="-1"></span>
 <!-- TALATA:HEADER:END -->
-<link rel="stylesheet" href="/assets/talata-nav.css?v=20260908d">
+<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/talata-nav.css?v=20260909a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
-<link rel="stylesheet" href="/assets/talata-footer.css?v=20260908d">
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260908d">
+<link rel="stylesheet" href="/assets/talata-footer.css?v=20260909a">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260909a">
 </head>
 <body>
 
@@ -308,7 +309,7 @@
 </footer>
 <!-- TALATA:FOOTER:END -->
 
-<script src="/assets/talata-fixtures.js?v=20260908d" defer></script>
+<script src="/assets/talata-fixtures.js?v=20260909a" defer></script>
 <script>
 /* Reuses the Worker's existing /subscribe route. `source` records which game
    the entry came from, so a draw can be run per month from the same table
@@ -337,6 +338,6 @@
   });
 })();
 </script>
-<script src="/assets/talata-nav.js?v=20260908d" defer></script>
+<script src="/assets/talata-nav.js?v=20260909a" defer></script>
 </body>
 </html>

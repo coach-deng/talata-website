@@ -37,7 +37,7 @@
 
 .tf-id h4,
 .tf-col h4 {
-  font-family: var(--tn-disp, 'Montserrat', system-ui, sans-serif);
+  font-family: var(--tn-disp, 'Montserrat','Montserrat Fallback', system-ui, sans-serif);
   font-weight: 800;
   color: #fff;
   font-size: 0.82rem;

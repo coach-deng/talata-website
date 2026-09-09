@@ -34,6 +34,15 @@ WHAT A POST MUST CARRY
     <meta name="talata:card-w/-h">    intrinsic size, so cards never shift layout
     <meta name="talata:read">         minutes, an integer
 
+OPTIONAL
+    <meta name="talata:card-focus">   object-position for the card crop, e.g.
+                                      "50% 30%". Card slots are wide and short,
+                                      so a tall photo gets cover-cropped around
+                                      its middle, which on a team photo is the
+                                      shins. Faces usually sit in the top third,
+                                      hence the default below. Set this per post
+                                      when the subject sits somewhere else.
+
 A post missing any of these is reported and skipped rather than half-rendered.
 
     python3 tools/apply-blog-index.py            # apply
@@ -56,6 +65,11 @@ MONTHS = ("January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December")
 
 REQUIRED = ("date", "title", "desc", "kicker", "event", "image", "alt", "w", "h", "read")
+
+# Where to hold the crop when a post does not say. Faces sit in the top third of
+# almost every team and action photo, and the card slots are much wider than
+# they are tall, so the browser default of "50% 50%" lands on legs and floor.
+DEFAULT_FOCUS = "50% 30%"
 
 
 def meta(src: str, name: str):
@@ -80,6 +94,7 @@ def read_post(path: Path):
         "w": meta(src, "talata:card-w"),
         "h": meta(src, "talata:card-h"),
         "read": meta(src, "talata:read"),
+        "focus": meta(src, "talata:card-focus") or DEFAULT_FOCUS,
     }
     post["missing"] = [k for k in REQUIRED if not post[k]]
     return post
@@ -116,7 +131,7 @@ def render_blog_list(posts):
         cards.append(
             """
       <a href="/blog/{slug}" class="post-card">
-        <img src="{image}" alt="{alt}" class="thumb" loading="lazy" decoding="async" width="{w}" height="{h}" />
+        <img src="{image}" alt="{alt}" class="thumb" loading="lazy" decoding="async" width="{w}" height="{h}" style="object-position:{focus}" />
         <div class="card-body">
           <div class="card-tag">{kicker}</div>
           <h3>{title}</h3>
@@ -125,6 +140,7 @@ def render_blog_list(posts):
         </div>
       </a>""".format(
                 slug=p["slug"], image=p["image"], alt=p["alt"], w=p["w"], h=p["h"],
+                focus=p["focus"],
                 kicker=kicker_line(p), title=p["title"], desc=p["desc"], meta=meta_line(p)
             )
         )
@@ -133,7 +149,7 @@ def render_blog_list(posts):
   <div class="featured-wrap">
     <div class="featured-label">Latest post</div>
     <a href="/blog/{slug}" class="featured-card">
-      <img src="{image}" alt="{alt}" class="card-img" fetchpriority="high" decoding="async" width="{w}" height="{h}" />
+      <img src="{image}" alt="{alt}" class="card-img" fetchpriority="high" decoding="async" width="{w}" height="{h}" style="object-position:{focus}" />
       <div class="card-body">
         <div class="card-tag">{kicker}</div>
         <h2>{title}</h2>
@@ -153,6 +169,7 @@ def render_blog_list(posts):
     </div>
   </div>""".format(
         slug=lead["slug"], image=lead["image"], alt=lead["alt"], w=lead["w"], h=lead["h"],
+        focus=lead["focus"],
         kicker=kicker_line(lead), title=lead["title"], desc=lead["desc"],
         meta=meta_line(lead), cards="\n".join(cards)
     )
@@ -170,17 +187,18 @@ def render_home_latest(posts):
     for p in side:
         side_html.append(
             """        <a class="story" href="/blog/{slug}">
-          <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}">
+          <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}" style="object-position:{focus}">
           <div class="grad"></div>
           <div class="txt"><span class="tag">{kicker}</span><h3>{title}</h3></div>
         </a>""".format(
                 slug=p["slug"], image=p["image"].lstrip("/"), alt=p["alt"],
-                w=p["w"], h=p["h"], kicker=p["kicker"], title=p["title"]
+                w=p["w"], h=p["h"], focus=p["focus"],
+                kicker=p["kicker"], title=p["title"]
             )
         )
     side_html.append(
         """        <a class="story" href="/reviews">
-          <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" loading="lazy" decoding="async" width="1600" height="902">
+          <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" loading="lazy" decoding="async" width="1600" height="902" style="object-position:50% 42%">
           <div class="grad"></div>
           <div class="txt"><span class="tag">Parents</span><h3>What families say about us</h3></div>
         </a>"""
@@ -189,7 +207,7 @@ def render_home_latest(posts):
     return """    <div class="head"><h2>Latest from <i>the club</i></h2><a href="/blog">All stories &rarr;</a></div>
     <div class="latest">
       <a class="story" href="/blog/{slug}">
-        <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}">
+        <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}" style="object-position:{focus}">
         <div class="grad"></div>
         <div class="txt"><span class="tag">{kicker}</span><h3>{title}</h3><p>{desc}</p></div>
       </a>
@@ -198,7 +216,8 @@ def render_home_latest(posts):
       </div>
     </div>""".format(
         slug=lead["slug"], image=lead["image"].lstrip("/"), alt=lead["alt"],
-        w=lead["w"], h=lead["h"], kicker=lead["kicker"], title=lead["title"],
+        w=lead["w"], h=lead["h"], focus=lead["focus"],
+        kicker=lead["kicker"], title=lead["title"],
         desc=lead["desc"], side="\n".join(side_html)
     )
 

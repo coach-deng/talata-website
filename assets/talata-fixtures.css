@@ -15,7 +15,7 @@
   --f-bg:#0B0F17; --f-card:#131A26; --f-card2:#1A2333; --f-line:#26324A;
   --f-text:#E6EDF7; --f-muted:#93A3BA; --f-accent:#7DD3FC; --f-sky:#BAE6FD;
   --f-brand:#2C4FD8; --f-win:#4ADE80; --f-warn:#FBBF24;
-  --f-disp:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-disp:'Montserrat','Montserrat Fallback',system-ui,-apple-system,'Segoe UI',sans-serif;
   --f-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 
