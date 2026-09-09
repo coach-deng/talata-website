@@ -103,6 +103,24 @@ def main():
     else:
         print("  nav drift    ok")
 
+    # 2b. generated schema blocks. Both are built from a source of truth
+    #     elsewhere (data/fixtures.json, assets/talata-shop.js), so a stale
+    #     block means the markup and the page disagree, which is worse for a
+    #     crawler than having no markup at all.
+    stale = []
+    for label, tool in (("games", "tools/apply-games-schema.py"),
+                        ("shop", "tools/apply-shop-schema.py")):
+        ok, out, code = run(label, [tool, "--check"], expect_zero=False)
+        if "would update" in out:
+            stale.append((label, tool))
+    if stale:
+        blocking.append("schema block(s) stale: %s\n        Run: %s"
+                        % (", ".join(l for l, _ in stale),
+                           "; ".join("python3 " + t for _, t in stale)))
+        print("  schema       ✗  %s stale" % ", ".join(l for l, _ in stale))
+    else:
+        print("  schema       ok")
+
     # 3. voice, contrast, structure
     ok, out, code = run("qa", ["tools/qa-check.py"], expect_zero=False)
     fail = re.search(r"(\d+) problem", out)
