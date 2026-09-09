@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="script" href="/assets/talata-shop.js?v=20260909c">
   <title>Talata Shop | Jerseys, Hoodies and Gear | Copenhagen</title>
   <link rel="canonical" href="https://talatabasketball.dk/shop" />
   <meta name="description" content="Talata Basketball fanshop og spillershop. Trøjer, hoodies, t-shirts, kasketter, sweatpants og strømper. Medlemspriser. Betal med MobilePay, ingen login." />
@@ -48,8 +49,12 @@
     .toggle b {color:var(--td-link); }
 
     /* Filters */
-    .bar { position:sticky; top:0; z-index:30; background:rgba(248,250,252,.94); backdrop-filter:blur(8px);
+    .bar { position:sticky; top:60px; z-index:30; background:var(--mist);
            border-bottom:1px solid var(--line); padding:12px 0; }
+    @media (max-width:900px){ .bar { top:58px; } }
+    /* Three wrapped chip rows plus the nav hold 205px of a 740px phone
+       viewport permanently, and this is a filter you touch once. */
+    @media (max-width:700px){ .bar { position:static; } }
     .bar-in { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .chip { border:1.5px solid var(--line);background:var(--td-surface); border-radius:999px; padding:7px 15px;
             font-size:.86rem; font-weight:600; cursor:pointer;color:var(--td-muted); }
