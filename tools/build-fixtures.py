@@ -325,5 +325,16 @@ def main() -> None:
                   f"vs {g['opponent']:<22} {g['state']}")
 
 
+def refresh_games_schema() -> None:
+    """The SportsEvent block on /games is generated from the file this script
+    just wrote, so it is regenerated here rather than left to drift. A schedule
+    in the markup that disagrees with the page is worse than none at all."""
+    import subprocess
+    r = subprocess.run([sys.executable, os.path.join(ROOT, "tools", "apply-games-schema.py")],
+                       capture_output=True, text=True)
+    print(r.stdout.strip() or r.stderr.strip())
+
+
 if __name__ == "__main__":
     main()
+    refresh_games_schema()
