@@ -11,6 +11,7 @@
   <meta property="og:url" content="https://talatabasketball.dk/shop" />
   <meta property="og:title" content="Talata Shop | Jerseys, Hoodies and Gear" />
   <meta property="og:description" content="Game jerseys, hoodies, tees, caps and socks. Member prices for players. No login needed." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/og/team-photo-tunnel-arena-og.jpg" />
   <meta property="og:site_name" content="Talata Basketball" />
   <style>
     @font-face {
@@ -109,7 +110,7 @@
     @media (max-width:400px){ .ready-grid { grid-template-columns:1fr; } }
     .price { margin:12px 0 4px; font-size:1.35rem; font-weight:800; letter-spacing:-.02em; }
     .price s { font-size:.9rem; font-weight:500;color:var(--td-muted); margin-left:7px; }
-    .price .save { font-size:.78rem; font-weight:700; color:#166534; display:block; margin-top:1px; }
+    .price .save { font-size:.78rem; font-weight:700; color:#4ADE80; display:block; margin-top:1px; }
     .card label { display:block; font-size:.78rem; font-weight:700; margin:10px 0 4px; text-transform:uppercase; letter-spacing:.04em;color:var(--td-muted); }
     .card select, .card input { width:100%; padding:9px 10px; border:1.5px solid var(--line); border-radius:8px;
                                 font-family:inherit; font-size:.9rem;background:var(--td-surface); }
@@ -580,10 +581,10 @@
                   : '<p class="note">Ticking the member box at the top drops this total.</p>');
 
     foot.innerHTML =
-      '<input id="b-name" placeholder="Your name" autocomplete="name">' +
-      '<input id="b-player" placeholder="Player name (if different)">' +
-      '<input id="b-email" type="email" placeholder="Email" autocomplete="email">' +
-      '<input id="b-phone" placeholder="Phone" autocomplete="tel">' +
+      '<input id="b-name" aria-label="Your name" placeholder="Your name" autocomplete="name">' +
+      '<input id="b-player" aria-label="Player name, if different" placeholder="Player name (if different)">' +
+      '<input id="b-email" type="email" aria-label="Email" placeholder="Email" autocomplete="email">' +
+      '<input id="b-phone" aria-label="Phone" placeholder="Phone" autocomplete="tel">' +
       '<button class="go" id="place">Place order &middot; ' + kr(S.total()) + '</button>' +
       '<p class="note">No payment here. You get a MobilePay number and a reference on the next screen.</p>';
 

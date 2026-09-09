@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://talatabasketball.dk/images/og/talata-huddle-og.jpg" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SportsOrganization","name":"Talata Basketball","url":"https://talatabasketball.dk","sport":"Basketball","email":"coach@talatabasketball.dk","foundingDate":"2021","address":{"@type":"PostalAddress","streetAddress":"Østerbrogade 240","addressLocality":"København Ø","postalCode":"2100","addressCountry":"DK"},"location":[{"@type":"SportsActivityLocation","name":"Svanemøllehallen","address":"Østerbrogade 240, 2100 København Ø"},{"@type":"SportsActivityLocation","name":"Strandvejsskolen","address":"Sionsgade 1, 2100 København Ø"}],"areaServed":{"@type":"City","name":"København"},"image":"https://talatabasketball.dk/images/og/team-photo-tunnel-arena-og.jpg","logo":"https://talatabasketball.dk/apple-touch-icon.png","sameAs":["https://www.instagram.com/talatabasketball/","https://www.facebook.com/talatabasketball"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Thursday","Friday"],"opens":"16:00","closes":"20:15"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday"],"opens":"15:30","closes":"17:45"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"10:00","closes":"12:00"}],"knowsLanguage":["da","en"]}
+{"@context":"https://schema.org","@type":"SportsOrganization","name":"Talata Basketball","url":"https://talatabasketball.dk","sport":"Basketball","email":"coach@talatabasketball.dk","telephone":"+4552398508","foundingDate":"2021","address":{"@type":"PostalAddress","streetAddress":"Østerbrogade 240","addressLocality":"København Ø","postalCode":"2100","addressCountry":"DK"},"location":[{"@type":"SportsActivityLocation","name":"Svanemøllehallen","address":"Østerbrogade 240, 2100 København Ø"},{"@type":"SportsActivityLocation","name":"Strandvejsskolen","address":"Sionsgade 1, 2100 København Ø"}],"areaServed":{"@type":"City","name":"København"},"image":"https://talatabasketball.dk/images/og/team-photo-tunnel-arena-og.jpg","logo":"https://talatabasketball.dk/apple-touch-icon.png","sameAs":["https://www.instagram.com/talatabasketball/","https://www.facebook.com/talatabasketball"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Thursday","Friday"],"opens":"16:00","closes":"20:15"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday"],"opens":"15:30","closes":"17:45"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"10:00","closes":"12:00"}],"knowsLanguage":["da","en"]}
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R64Y9CQ2VZ"></script>
 <script>
@@ -475,25 +475,25 @@ footer a:hover{color:var(--td-link);}
     <form class="trial" id="trial">
       <h2>Book a free trial</h2>
       <p class="note">You need nothing. No gear, no experience. Fill this in and we tell you your first session, right here on this page.</p>
-      <label>Player's name</label>
-      <input name="player_name" required placeholder="Full name">
+      <label for="player_name">Player's name</label>
+      <input id="player_name" name="player_name" required placeholder="Full name">
       <div class="row2">
         <div><label for="dob">Date of birth</label><input type="date" id="dob" name="dob" min="1940-01-01" required autocomplete="bday"><small style="display:block;margin-top:.35rem;color:var(--td-muted);font-size:.78rem;">Age groups run from 1 October, so the date decides the team.</small></div>
-        <div><label>Gender</label><select name="gender"><option>Boy</option><option>Girl</option><option>Adult</option></select></div>
+        <div><label for="gender">Gender</label><select id="gender" name="gender"><option>Boy</option><option>Girl</option><option>Adult</option></select></div>
       </div>
       <div class="row2">
-        <div><label>Parent email</label><input name="email" type="email" required placeholder="you@email.dk"></div>
-        <div><label>Phone (optional)</label><input name="phone" placeholder="+45..."></div>
+        <div><label for="email">Parent email</label><input id="email" name="email" type="email" required placeholder="you@email.dk"></div>
+        <div><label for="phone">Phone (optional)</label><input id="phone" name="phone" placeholder="+45..."></div>
       </div>
-      <label>What are you looking for?</label>
+      <label for="trial-interest">What are you looking for?</label>
       <select name="interest" id="trial-interest">
         <option value="trial">Free trial session</option>
         <option value="camp">Autumn Camp (Oct 12 to 15)</option>
         <option value="one-on-one">1:1 training</option>
         <option value="other">Something else</option>
       </select>
-      <label>Where did you hear about us?</label>
-      <select name="how_found">
+      <label for="how_found">Where did you hear about us?</label>
+      <select id="how_found" name="how_found">
         <option value="friend">Friend or teammate</option>
         <option value="google">Google search</option>
         <option value="instagram">Instagram</option>
@@ -502,8 +502,8 @@ footer a:hover{color:var(--td-link);}
         <option value="camp">A Talata camp</option>
         <option value="other">Other</option>
       </select>
-      <label>Have they played before? <span style="font-weight:400;opacity:.6;">(optional)</span></label>
-      <textarea name="message" rows="2" placeholder="How much they have played, questions, siblings, anything"></textarea>
+      <label for="message">Have they played before? <span style="font-weight:400;opacity:.6;">(optional)</span></label>
+      <textarea id="message" name="message" rows="2" placeholder="How much they have played, questions, siblings, anything"></textarea>
       <button type="submit" id="trial-btn">Claim my free session</button>
       <p class="fine" id="trial-fine">We work out the group from the date of birth and show you the next session straight away. No waiting list, nothing to book.</p>
       <p class="fine" id="trial-ok" style="display:none;color:#15803D;font-weight:700;">Got it. Check your inbox, your free session details are on the way.</p>
