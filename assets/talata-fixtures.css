@@ -168,6 +168,15 @@
   font-size:.86rem;color:var(--f-text);font-weight:700;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 }
+/* The date moved into this line on 11 Sep 2026, so "FRI SEP 18, 19:30" plus a
+   Talata Night pill no longer fits one line on a phone. Wrap instead of
+   ellipsis: the tag drops to its own line and the date always survives. The
+   date is the thing a parent came for. */
+.tf-r-comp b{
+  white-space:normal;text-overflow:clip;line-height:1.3;
+  display:flex;flex-wrap:wrap;align-items:center;gap:5px;
+  font-variant-numeric:tabular-nums;
+}
 .tf-r-venue b{
   font-weight:500;color:var(--f-muted);
   white-space:normal;line-height:1.25;

@@ -78,8 +78,15 @@
   var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'];
 
+  var MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+    'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
   function dayName(d) { return DAYS[parseISO(d).getDay()]; }
   function longDate(d) { var x = parseISO(d); return MONTHS[x.getMonth()] + ' ' + x.getDate(); }
+  /* 'SEP 18' rather than 'September 18', because this one sits in the narrowest
+     column of the fixture row next to the tip-off. Month first to match
+     longDate, so /games never shows two date orders on one screen. */
+  function shortDate(d) { var x = parseISO(d); return MONTHS_SHORT[x.getMonth()] + ' ' + x.getDate(); }
   function monthKey(d) { return d.slice(0, 7); }
   function monthLabel(k) {
     var a = k.split('-');
@@ -103,10 +110,22 @@
 
   /* 'Mangler Tid' means missing TIME, not missing date. Saying TBC against a
      real date is honest; inventing a tip-off is not. */
-  function timeLabel(g) {
+
+  /* Just the clock. For the ticker card and the ticket modal, which already
+     print the date on their own line right above this. */
+  function timeOnly(g) {
     if (g.state === 'moving') return 'BEING MOVED';
-    if (g.time) return dayName(g.date) + ', ' + g.time;
-    return dayName(g.date) + ', TIME TBC';
+    return g.time || 'TIME TBC';
+  }
+
+  /* 🔴 The DATE, not just the weekday (Deng, 11 Sep 2026). This read 'FRI, 19:40'
+     and the month only existed as a section heading, so once you had scrolled or
+     filtered, every row was some Friday and you could not tell which. A season
+     list carries four or five Fridays a month. */
+  function timeLabel(g) {
+    if (g.state === 'moving') return dayName(g.date) + ' ' + shortDate(g.date).toUpperCase() + ', BEING MOVED';
+    if (g.time) return dayName(g.date) + ' ' + shortDate(g.date).toUpperCase() + ', ' + g.time;
+    return dayName(g.date) + ' ' + shortDate(g.date).toUpperCase() + ', TIME TBC';
   }
 
   function venueLabel(g) {
@@ -664,7 +683,7 @@
           : '<span class="tkc-date">' + esc(longDate(g.date)) + '</span>' +
             (isNext
               ? '<span class="tkc-cd tf-cd" data-tf-cd="' + tipOff(g) + '"></span>'
-              : '<span class="tkc-when">' + esc(timeLabel(g)) + '</span>')) +
+              : '<span class="tkc-when">' + esc(timeOnly(g)) + '</span>')) +
         (isTalataNight(g) && !g.played ? '<span class="tkc-tag">Talata Night</span>' : '') +
       '</a>';
     }).join('');
@@ -874,7 +893,7 @@
           '<button class="tf-x" aria-label="Close">&times;</button>' +
           '<p class="tf-k">Free ticket</p>' +
           '<h3>' + esc(g.team || 'Talata') + ' vs ' + esc(g.opponent || g.title || '') + '</h3>' +
-          '<p class="tf-mwhen">' + esc(longDate(date)) + ' · ' + esc(timeLabel(g)) +
+          '<p class="tf-mwhen">' + esc(longDate(date)) + ' · ' + esc(timeOnly(g)) +
             '<br>' + esc(venueLabel(g)) + '</p>' +
           '<form>' +
             '<label>Your email<input type="email" name="email" required placeholder="you@email.dk"></label>' +
