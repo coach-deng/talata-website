@@ -82,11 +82,18 @@
     'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   function dayName(d) { return DAYS[parseISO(d).getDay()]; }
-  function longDate(d) { var x = parseISO(d); return MONTHS[x.getMonth()] + ' ' + x.getDate(); }
+  /* DAY FIRST (Deng, 11 Sep 2026). "18 September", not "September 18".
+     Two reasons. The families are Danish and read 18. september, and the
+     Worker's ticket email already documents this field as day-first:
+     talata-email.ts:882 annotates it "Friday 18 September" while the page was
+     sending "Friday September 18" into a subject line a parent reads. The
+     hand-written dates in the page copy were day-first all along, so the site
+     was running two orders against each other. */
+  function longDate(d) { var x = parseISO(d); return x.getDate() + ' ' + MONTHS[x.getMonth()]; }
   /* 'SEP 18' rather than 'September 18', because this one sits in the narrowest
      column of the fixture row next to the tip-off. Month first to match
      longDate, so /games never shows two date orders on one screen. */
-  function shortDate(d) { var x = parseISO(d); return MONTHS_SHORT[x.getMonth()] + ' ' + x.getDate(); }
+  function shortDate(d) { var x = parseISO(d); return x.getDate() + ' ' + MONTHS_SHORT[x.getMonth()]; }
   function monthKey(d) { return d.slice(0, 7); }
   function monthLabel(k) {
     var a = k.split('-');
@@ -405,7 +412,7 @@
         '<div class="tf-feat-main">' +
           '<div class="tf-feat-side">' + talataCrest(g.team) + '<span>Talata</span></div>' +
           '<div class="tf-feat-mid">' +
-            '<p class="tf-feat-date">' + esc(longDate(g.date).toUpperCase()) + '</p>' +
+            '<p class="tf-feat-date">' + esc(dayName(g.date) + ' ' + longDate(g.date).toUpperCase()) + '</p>' +
             '<p class="tf-feat-time">' + esc(g.time || 'TBC') + '</p>' +
             '<span class="tf-feat-badge">' + esc(g.team) + '</span>' +
           '</div>' +
@@ -680,7 +687,7 @@
           ? '<span class="tkc-score' + (won ? ' is-won' : '') + '">' +
               esc(String(g.us)) + ' <i>-</i> ' + esc(String(g.them)) + '</span>' +
             '<span class="tkc-when">ENDED</span>'
-          : '<span class="tkc-date">' + esc(longDate(g.date)) + '</span>' +
+          : '<span class="tkc-date">' + esc(dayName(g.date) + ' ' + shortDate(g.date).toUpperCase()) + '</span>' +
             (isNext
               ? '<span class="tkc-cd tf-cd" data-tf-cd="' + tipOff(g) + '"></span>'
               : '<span class="tkc-when">' + esc(timeOnly(g)) + '</span>')) +
@@ -893,7 +900,7 @@
           '<button class="tf-x" aria-label="Close">&times;</button>' +
           '<p class="tf-k">Free ticket</p>' +
           '<h3>' + esc(g.team || 'Talata') + ' vs ' + esc(g.opponent || g.title || '') + '</h3>' +
-          '<p class="tf-mwhen">' + esc(longDate(date)) + ' · ' + esc(timeOnly(g)) +
+          '<p class="tf-mwhen">' + esc(DAYS_LONG[parseISO(date).getDay()] + ' ' + longDate(date)) + ' · ' + esc(timeOnly(g)) +
             '<br>' + esc(venueLabel(g)) + '</p>' +
           '<form>' +
             '<label>Your email<input type="email" name="email" required placeholder="you@email.dk"></label>' +
@@ -1096,7 +1103,7 @@
     })[0];
     if (!cup || cupSeen(cup.id)) return;
 
-    var when = longDate(cup.date) + (cup.time ? ', ' + cup.time : '');
+    var when = DAYS_LONG[parseISO(cup.date).getDay()] + ' ' + longDate(cup.date) + (cup.time ? ', ' + cup.time : '');
     var opp = cup.opponent || cup.title || 'TBC';
     var poster = posterFor(cup);
 
