@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-08",
+  "generated": "2026-09-13",
   "source": "https://malbasmadness.cupmanager.net/2026,en/result/games",
-  "note": "Tournament results, entered by hand. This file exists because there is no automatic path for one. /games pulls league and cup from the DBBF export, which carries scores, and pulls friendlies and tournaments live from Holdsport, which has NO score field at all. So a tournament result can reach the site only through here. Deng's rule, 27 Aug 2026: tournaments publish, friendlies do not. build-fixtures.py never touches this file, which is the point of keeping it separate from fixtures.json. Every game is home:false on purpose: the tournament is on neutral courts in Malmö, so a row must never render as a home fixture. BMS Herlev Cup 11 to 13 Sep 2026 added 8 Sep from the cupmanager export (16 group games, Sunday playoffs follow). The girls play under the Stevnsgade Basketball name in Girls U17.",
+  "note": "Tournament results, entered by hand. This file exists because there is no automatic path for one. /games pulls league and cup from the DBBF export, which carries scores, and pulls friendlies and tournaments live from Holdsport, which has NO score field at all. So a tournament result can reach the site only through here. Deng's rule, 27 Aug 2026: tournaments publish, friendlies do not. build-fixtures.py never touches this file, which is the point of keeping it separate from fixtures.json. Every game is home:false on purpose: the tournament is on neutral courts in Malmö, so a row must never render as a home fixture. BMS Herlev Cup 11 to 13 Sep 2026 added 8 Sep from the cupmanager export (16 group games, Sunday playoffs follow). The girls play under the Stevnsgade Basketball name in Girls U17. All results entered 13 Sep 2026 from the cup result page (340 rows read). Friday six games, none won. Saturday ten group games; U13 Mester went 2-1 in the group, then lost the A quarter final 32-56 to Hørsholm 79ers at 20:00. Girls U17 played a placement game Sunday 12:15, 46-50 to Skovbakken Bears. Eighteen games, two wins.",
   "games": [
     {
       "id": "malbas-28082502",
@@ -178,9 +178,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 12,
+      "them": 63,
       "source": "tournament"
     },
     {
@@ -196,9 +196,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 28,
+      "them": 89,
       "source": "tournament"
     },
     {
@@ -214,9 +214,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 32,
+      "them": 96,
       "source": "tournament"
     },
     {
@@ -232,9 +232,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 4,
+      "them": 68,
       "source": "tournament"
     },
     {
@@ -250,9 +250,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 26,
+      "them": 55,
       "source": "tournament"
     },
     {
@@ -268,9 +268,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 22,
+      "them": 64,
       "source": "tournament"
     },
     {
@@ -286,9 +286,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 30,
+      "them": 50,
       "source": "tournament"
     },
     {
@@ -304,9 +304,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 6,
+      "them": 75,
       "source": "tournament"
     },
     {
@@ -322,9 +322,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 2,
+      "them": 81,
       "source": "tournament"
     },
     {
@@ -340,9 +340,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 40,
+      "them": 25,
       "source": "tournament"
     },
     {
@@ -358,9 +358,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 9,
+      "them": 104,
       "source": "tournament"
     },
     {
@@ -376,9 +376,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 31,
+      "them": 68,
       "source": "tournament"
     },
     {
@@ -394,9 +394,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 3,
+      "them": 40,
       "source": "tournament"
     },
     {
@@ -412,9 +412,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 4,
+      "them": 50,
       "source": "tournament"
     },
     {
@@ -430,9 +430,9 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 38,
+      "them": 37,
       "source": "tournament"
     },
     {
@@ -448,9 +448,45 @@
       "homeCourt": false,
       "stage": "Group stage",
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 53,
+      "them": 97,
+      "source": "tournament"
+    },
+    {
+      "id": "herlev-12090516",
+      "date": "2026-09-12",
+      "time": "20:00",
+      "team": "U13",
+      "opponent": "Hørsholm 79ers",
+      "home": false,
+      "competition": "BMS Herlev Cup · U13 M",
+      "venue": "Herlev hallen 1, Tvedvangen 198, Herlev",
+      "court": "",
+      "homeCourt": false,
+      "stage": "Quarter final",
+      "state": "confirmed",
+      "played": true,
+      "us": 32,
+      "them": 56,
+      "source": "tournament"
+    },
+    {
+      "id": "herlev-13090104",
+      "date": "2026-09-13",
+      "time": "12:15",
+      "team": "Girls U17",
+      "opponent": "Skovbakken Bears",
+      "home": false,
+      "competition": "BMS Herlev Cup · Girls U17",
+      "venue": "Ny hal, Ejbyvej 47, Skovlunde",
+      "court": "",
+      "homeCourt": false,
+      "stage": "Placement game",
+      "state": "confirmed",
+      "played": true,
+      "us": 46,
+      "them": 50,
       "source": "tournament"
     }
   ]
