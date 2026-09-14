@@ -240,7 +240,6 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
     </ul>
   </div>
   <div class="tn-drawer-foot">
-    <a href="https://wa.me/4552398508" target="_blank" rel="noopener">WhatsApp Coach Deng</a>
     <a href="mailto:coach@talatabasketball.dk">Email</a>
     <a href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">Instagram</a>
   </div>

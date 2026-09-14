@@ -101,13 +101,12 @@ COLUMNS = [
     ]),
 ]
 
-# Deng's phone number is deliberately NOT here (removed 20 Aug 2026, his call).
-# The footer went on all 46 pages, so a tel: link there published his personal
-# mobile 46 times over. Email is the contact of record; WhatsApp stays because it
-# is a channel labelled by name, not a number on display.
+# Deng's phone number is deliberately NOT here (removed 20 Aug 2026, his call),
+# and the WhatsApp link went the same way on 14 Sep 2026 (his call again): a
+# wa.me link on every page is still his personal number, and it was pulling in
+# cold messages from abroad. Email is the only contact of record.
 CONTACT = [
     ("mailto:coach@talatabasketball.dk", "coach@talatabasketball.dk"),
-    ("https://wa.me/4552398508", "WhatsApp Coach Deng"),
 ]
 
 SOCIAL = [
