@@ -262,12 +262,12 @@
         if (!opts.length) return;                    // nothing left, stay 'soon'
         p.variant = { label: line.variantLabel || 'Option', options: opts };
         p.stockByVariant = line.variants;
-        p.sizes = sizesLeft(line.variants[opts[0]]);
+        p.sizes = orderable(p._base.sizes, line.variants[opts[0]]);
         p.stock = 'in';
       } else if (line.sizes) {
         var left = sizesLeft(line.sizes);
         if (!left.length) return;                    // nothing left, stay 'soon'
-        p.sizes = left;
+        p.sizes = orderable(p._base.sizes, line.sizes);
         p.stockSizes = line.sizes;
         p.stock = 'in';
       }
@@ -289,10 +289,32 @@
     return Object.keys(sizeMap || {}).filter(function (s) { return sizeMap[s] > 0; });
   }
 
-  /** Sizes left for one variant of a line, e.g. the Blue tee. */
+  /* 🔴 14 Sep 2026. The 149 tee was unbuyable for every child. stock.json
+     counts the tee in M, L and XL, and this used to REPLACE the catalogue size
+     list with the counted sizes, so 6-8y to 12-14y, XS and S vanished from the
+     dropdown. Those sizes were never in the gym, so they were never sold out.
+     Deng's rule still holds exactly: a size counted down to 0 is sold out and
+     is not offered. A catalogue size the count never mentions stays on sale at
+     the line's made/soon state, the same as before the box landed. */
+  function orderable(baseSizes, sizeMap) {
+    var map = sizeMap || {};
+    var has = function (s) { return Object.prototype.hasOwnProperty.call(map, s); };
+    var list = (baseSizes || []).filter(function (s) { return !has(s) || map[s] > 0; });
+    sizesLeft(map).forEach(function (s) { if (list.indexOf(s) < 0) list.push(s); });
+    return list;
+  }
+
+  /** True when this size, in this variant, is physically in the gym. */
+  function inGym(p, size, variantValue) {
+    if (!p) return false;
+    var map = p.stockByVariant ? p.stockByVariant[variantValue] : p.stockSizes;
+    return !!(map && map[size] > 0);
+  }
+
+  /** Sizes a buyer can order for one variant of a line, e.g. the Blue tee. */
   function sizesForVariant(p, variantValue) {
     if (!p || !p.stockByVariant) return p ? p.sizes : [];
-    return sizesLeft(p.stockByVariant[variantValue]);
+    return orderable(p._base ? p._base.sizes : p.sizes, p.stockByVariant[variantValue]);
   }
 
   function byId(id) {
@@ -418,6 +440,7 @@
     setMember: function (v) { isMember = !!v; save(); },
     applyStock: applyStock,
     sizesForVariant: sizesForVariant,
+    inGym: inGym,
     priceOf: priceOf,
     total: total,
     count: count,
