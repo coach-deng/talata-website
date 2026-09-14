@@ -40,7 +40,6 @@ TITLE_MAX = 65
 # Pages nothing links to ON PURPOSE. An orphan here is expected, not a finding.
 # Say why, so the next person does not "fix" it like I did.
 DELIBERATE_ORPHANS = {
-    "basketball-in-copenhagen.html": "SEO landing page, reached from search, not from the nav",
     "camps/spring-camp-2026.html":   "past camp, kept for its URL, canonical points at /camps",
     "ish-primary-school.html":       "HIDDEN since 6 Aug 2026, 302s to /school-partnerships while Ryparken is unconfirmed",
     "index.html":                    "the homepage is /, nothing links to /index",

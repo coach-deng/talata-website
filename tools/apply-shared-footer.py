@@ -92,6 +92,7 @@ COLUMNS = [
         ("/pathway", "Player Pathway"),
         ("/help/age-groups", "Prices and times"),
         ("/help", "Help &amp; guides"),
+        ("/basketball-in-copenhagen", "Basketball in Copenhagen"),
         ("/partners", "Partners"),
     ]),
     ("Shop", [
