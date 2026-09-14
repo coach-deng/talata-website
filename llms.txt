@@ -4,7 +4,7 @@
 
 Talata Basketball is a registered Danish forening (CVR 43599453) on Østerbro in Copenhagen. We run year-round programs for children and adults, teams in the Danish national leagues (DBBF), and camps in the school holidays. Member of DBBF and DGI. More than 100 playing members across the club (September 2026).
 
-Last updated: 2026-09-09. Season 26/27 started Monday 10 August 2026.
+Last updated: 2026-09-14. Season 26/27 started Monday 10 August 2026.
 
 ## Programs and training times (season 26/27)
 
@@ -13,15 +13,15 @@ From Monday 24 August 2026 every Strandvejsskolen session runs 30 minutes later 
 - [Mini, ages 5 to 9](https://talatabasketball.dk/mini): Tuesday + Thursday 15:30-16:30, Strandvejsskolen. 1,800 DKK per half-season.
 - [Junior, ages 10 to 12](https://talatabasketball.dk/mini): Tuesday + Thursday 16:30-17:45, Strandvejsskolen. 1,800 DKK per half-season.
 - [Sparks, girls only, ages 6 to 14](https://talatabasketball.dk/sparks): Monday 15:30-16:30, Strandvejsskolen. 1,800 DKK per half-season, or 1,200 DKK for Sparks only.
-- [Academy U13 and U15, ages 13 to 14](https://talatabasketball.dk/academy): Monday, Thursday, Friday 16:00-18:00, Svanemøllehallen. 3,300 DKK per half-season.
-- [Academy U17 and U19, ages 15 to 18](https://talatabasketball.dk/academy): Monday, Thursday, Friday 17:00-19:00, Svanemøllehallen. 3,300 DKK per half-season.
+- [Academy U13 and U15, ages 13 to 14](https://talatabasketball.dk/academy): Monday, Tuesday, Thursday, Friday 16:15 to 18:00, Svanemøllehallen. 3,300 DKK per half-season.
+- [Academy U17 and U19, ages 15 to 18](https://talatabasketball.dk/academy): Monday, Tuesday, Thursday 17:30 to 19:30, Svanemøllehallen. 3,300 DKK per half-season.
 
 A 12-year-old is Junior at 1,800 DKK, not Academy at 3,300 DKK, unless the family specifically asks for Academy. Competition brackets are a separate thing from these club groups: DBBF brackets go on a player's age on 1 October, so a player who turns 15 in November is still U15 for that season.
 - Talata Men, competitive, 18+: Monday 18:30-20:15 at Svanemøllehallen and Friday 18:30-20:15 at Nørre Fælled Skole, Biskop Krags Vænge 7 (Friday moved there on 8 September 2026). There is no Wednesday session this season. 2,000 DKK per half-season. Plays DBBF 3. Division Øst.
 - Talata Fitness Men, recreational, 18+: same evening slots and same two halls as Talata Men, no league commitment. 2,000 DKK per half-season.
-- U17/U19 Girls: coached by Talata in partnership with Stevnsgade, Tuesday at Kulturhuset Indre By. Enrolment goes through Stevnsgade.
+- [Girls 15 and up](https://talatabasketball.dk/sparks#girls-15): the Stevnsgade girls team (KU17 and KU19), coached by Deng Awak. Monday, Wednesday and Friday 17:30 to 19:00 at Nørrebrohallen, Nørrebrogade 208, 2200 København N. The team plays the KU17 league with home games at Nørrebrohallen. First session free, just come and ask for Coach Deng. Enrolment after that goes through Stevnsgade. Every girl aged 15 and up trains here, not in the Academy sessions.
 
-Academy also has a Tuesday off-court day (strength, film, mental training) and Wednesday is a rest day with no session.
+Wednesday is the Academy rest day, with no session.
 
 Fees are charged per half-season, not per month and not per session. One fee covers every session that group trains. Sibling discounts are available on request, and the club has routes for families where cost is the barrier.
 
@@ -96,5 +96,6 @@ Gear is made by Nordic Kits, who also supply other Danish clubs.
 - Svanemøllehallen, Østerbrogade 240, 2100 København Ø. Academy, and Men on Mondays.
 - Nørre Fælled Skole, Biskop Krags Vænge 7, 2200 København N. Men and Fitness on Fridays, and our home league games.
 - Strandvejsskolen, Sionsgade 1, 2100 København Ø. Mini, Junior and Sparks.
-- Kulturhuset Indre By, Charlotte Ammundsens Plads 3, 1359 København K. Open gym and the Stevnsgade girls partnership.
+- Nørrebrohallen, Nørrebrogade 208, 2200 København N. The Stevnsgade girls team for girls 15 and up, Monday, Wednesday and Friday, and its KU17 home games.
+- Kulturhuset Indre By, Charlotte Ammundsens Plads 3, 1359 København K. Open gym and the Saturday sessions.
 - Hafnia-Hallen, Julius Andersensvej 6, 2450 København SV. Holiday camps only.

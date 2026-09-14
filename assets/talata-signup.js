@@ -96,6 +96,10 @@
       '.tns-warn li{margin-bottom:4px}',
       '.tns em{font-style:normal;background:#BAE6FD;padding:1px 5px;border-radius:4px;font-weight:600}',
       '.tns-foot{font-size:.85rem;opacity:.75;margin:14px 0 0}',
+      // 14 Sep 2026: a page rule like `.section p{color:var(--td-muted)}` (sparks,
+      // academy) repainted this line pale grey on the light panel, 1.76:1. Two
+      // classes outrank it, so the panel keeps its own dark type.
+      '.tns .tns-foot{color:#0A0A0A}',
       // The session block is the whole point of the panel, so it outranks
       // everything under it visually.
       '.tns-now{background:#0B1F3A;color:#fff;border-radius:11px;padding:14px 16px;margin-bottom:16px}',
@@ -145,7 +149,138 @@
      one-click confirm, and nothing happens at our end until it is clicked. The
      session block still shows, because the person reading this is the person who
      typed the form. */
-  function panelHtml(variant, route, pending) {
+  // ─── WHAT THE SIGNUP WAS FOR ───────────────────────────────────────────────
+  // 14 Sep 2026. A parent booked Academy Camp on 13 Sep and this panel told him
+  // "The first session is free" and "Come to the free session first", because
+  // it only ever knew one kind of signup. The Worker now sends `kind` back from
+  // POST /leads ("trial", "camp", "camp_enquiry", "one_to_one").
+  //
+  // An older Worker sends no `kind`. Then we read the program label the same
+  // way the Worker's verifyKind() does (1:1 first, then a named camp, then any
+  // other "camp", else trial), so a camp page still gets camp wording while a
+  // new Worker is not yet deployed.
+  var KINDS = { trial: 1, camp: 1, camp_enquiry: 1, one_to_one: 1 };
+
+  function kindOf(out, data) {
+    var k = out && out.kind;
+    if (k && KINDS.hasOwnProperty(k)) return k;
+    var label = String((data && (data.program || data.camp)) || '').toLowerCase();
+    if (/1[:\s]?(on|to)?[:\s]?1|one.on.one|private/.test(label)) return 'one_to_one';
+    if (/(starter|academy|pathway)\s*camp/.test(label)) return 'camp';
+    if (/camp/.test(label)) return 'camp_enquiry';
+    return 'trial';
+  }
+
+  // Girls 15 and up train with the Stevnsgade girls team, never the boys'
+  // Academy session (Deng, 14 Sep 2026, programs.md "Girls 15 and up").
+  // The Worker's route still sends a 15+ girl to Academy U17/U19 at
+  // Svanemøllehallen, so the page answers for itself until the Worker is fixed.
+  // No price and no Holdsport link: Stevnsgade holds the membership.
+  var GIRLS_15 = {
+    group: 'Stevnsgade girls team, coached by Deng',
+    when: 'Monday, Wednesday or Friday, 17:30 to 19:00',
+    where: 'Nørrebrohallen, Nørrebrogade 208, 2200 København N'
+  };
+
+  function isGirl15(data) {
+    var age = parseInt(data && data.age, 10);
+    var girl = /girl|female|pige/i.test((data && data.gender) || '') ||
+      /sparks|pige|\bgirls?\b/i.test((data && data.program) || '');
+    return girl && age >= 15 && age <= 19;
+  }
+
+  var OTHER_KIND = {
+    camp: {
+      title: 'Your camp registration is in.',
+      pending: 'Check your inbox to confirm your email, then we send the camp details.',
+      done: 'The camp details are on their way to your inbox.',
+      steps: [
+        '<li><b>Read the camp email.</b> It has the dates, the hours, the hall and what to bring.</li>',
+        '<li><b>Payment details follow in a separate email.</b> There is nothing to pay today.</li>'
+      ]
+    },
+    camp_enquiry: {
+      title: 'Thanks, your camp question is in.',
+      pending: 'Check your inbox to confirm your email, then we send you this season\'s camps.',
+      done: 'This season\'s camps are on their way to your inbox.',
+      steps: [
+        '<li><b>Pick a camp from the email</b> and reply with the one you want. We hold a place and come back with how to pay.</li>'
+      ],
+      button: '<a class="tns-btn" href="/camps">See all camps</a>'
+    },
+    one_to_one: {
+      title: 'Thanks, your 1:1 request is in.',
+      pending: 'Check your inbox to confirm your email, then we get in touch about 1:1 training.',
+      done: 'We will be in touch about 1:1 training.',
+      steps: [
+        '<li><b>We email you</b> to find days and times that suit.</li>'
+      ]
+    }
+  };
+
+  function otherPanelHtml(kind, pending) {
+    var k = OTHER_KIND[kind];
+    return [
+      '<div class="tns">',
+      '<div class="tns-head"><b>' + k.title + '</b>',
+      '<span>' + (pending ? k.pending : k.done) +
+        ' Check spam if it is not there in five minutes.</span></div>',
+      '<div class="tns-body">',
+      '<b style="display:block;margin-bottom:8px">What happens next</b>',
+      '<ol>',
+      (pending
+        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
+        : ''),
+      k.steps.join(''),
+      '</ol>',
+      k.button || '',
+
+      '<div class="tns-sec">',
+      '<b>Kit, jerseys and hoodies</b>',
+      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
+      '</div>',
+
+      '<p class="tns-foot">Any question at all, just reply to the email. It comes straight to us.</p>',
+      '</div></div>'
+    ].join('');
+  }
+
+  function girls15PanelHtml(pending) {
+    return [
+      '<div class="tns">',
+      pending
+        ? '<div class="tns-head"><b>One quick thing: check your email.</b>' +
+          '<span>We have sent you a link to confirm your address. Click it and you are in. ' +
+          'Check spam if it is not there in five minutes.</span></div>'
+        : '<div class="tns-head"><b>Got it. Come and play.</b>' +
+          '<span>Confirmation is in your inbox. Check spam if it is not there in five minutes.</span></div>',
+      '<div class="tns-body">',
+
+      sessionBlock(GIRLS_15),
+
+      '<b style="display:block;margin-bottom:8px">What happens next</b>',
+      '<ol>',
+      (pending
+        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
+        : ''),
+      '<li><b>Just come.</b> Any of the three sessions, nothing to book. Ask for Coach Deng.</li>',
+      '<li><b>The first session is free.</b> Trainers and a water bottle is all she needs.</li>',
+      '<li><b>After that, enrolment goes through Stevnsgade.</b> We sort it out with you.</li>',
+      '</ol>',
+
+      '<div class="tns-sec">',
+      '<b>Kit, jerseys and hoodies</b>',
+      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
+      '</div>',
+
+      '<p class="tns-foot">Any question at all, just reply to the confirmation email. It comes straight to us.</p>',
+      '</div></div>'
+    ].join('');
+  }
+
+  function panelHtml(variant, route, pending, kind, data) {
+    if (kind && kind !== 'trial' && OTHER_KIND[kind]) return otherPanelHtml(kind, pending);
+    if (isGirl15(data)) return girls15PanelHtml(pending);
     var link = variant === 'mini' ? HOLDSPORT.mini : HOLDSPORT.intake;
     var team = variant === 'mini' ? 'Talata Mini' : 'Talata Basketball';
     return [
@@ -353,7 +488,10 @@
         if (!res.ok) throw new Error('lead rejected');
         return res.json().catch(function () { return {}; });
       }).then(function (out) {
-        var route = (out && out.route) || null;
+        var kind = kindOf(out, data);
+        // A route is a first session. Only a trial has one; an older Worker
+        // still sends one for a camp booking, so it is dropped here too.
+        var route = (kind === 'trial' && out && out.route) || null;
         var pending = !!(out && out.pending);
         fireConversion(data);
         form.reset();
@@ -363,7 +501,7 @@
         });
         var host = opts.mount && document.getElementById(opts.mount);
         if (host) {
-          host.innerHTML = panelHtml(opts.variant, route, pending);
+          host.innerHTML = panelHtml(opts.variant, route, pending, kind, data);
           host.style.display = 'block';
         } else {
           // No dedicated mount: swap the form's own contents for the panel.
@@ -372,7 +510,7 @@
           Array.prototype.forEach.call(form.children, function (el) {
             el.style.display = 'none';
           });
-          form.insertAdjacentHTML('beforeend', panelHtml(opts.variant, route, pending));
+          form.insertAdjacentHTML('beforeend', panelHtml(opts.variant, route, pending, kind, data));
         }
         var panel = (host || form).querySelector('.tns');
         if (panel && panel.scrollIntoView) {
