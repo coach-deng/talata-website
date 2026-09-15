@@ -65,6 +65,9 @@ VENUE_ADDRESS = {
 def publishable(g):
     return (
         not g.get("played")
+        # An annulled game is never a scheduled event, even before a score is
+        # typed (15 Sep 2026, same rule the page applies in talata-fixtures.js).
+        and not g.get("annulled")
         and g.get("state") == "confirmed"
         and g.get("date")
         and g.get("time")

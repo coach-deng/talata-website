@@ -272,10 +272,21 @@
     });
   }
 
+  /* `!g.annulled` rides beside `!g.played` everywhere a game can become "next"
+     (15 Sep 2026). The annulled Hørsholm cup win keeps its score, so played
+     already keeps it out; the flag is there so a result the federation voids
+     before a score is typed can never come back as a fixture to turn up to. */
   function upcoming(games) {
     var t = todayISO();
-    return games.filter(function (g) { return g.date >= t && !g.played; });
+    return games.filter(function (g) { return g.date >= t && !g.played && !g.annulled; });
   }
+
+  /* A win is a played game we lead that still counts. DBBF annulled the 7 Sep
+     78 67 over Hørsholm on protest and the tie was replayed on 14 Sep (Deng,
+     15 Sep 2026: keep both stats). The old score stays on the page, tagged
+     Annulled, and nothing paints it in the win colour. */
+  function isWin(g) { return !!g.played && !g.annulled && g.us > g.them; }
+
   function results(games) {
     return games.filter(function (g) { return g.played; }).reverse();
   }
@@ -377,20 +388,40 @@
     var st = boxFor(g);
     if (!st) return '';
     var num = function (v) { return v === null || v === undefined ? '' : esc(String(v)); };
+    /* A column no row fills is left off (15 Sep 2026). The Hørsholm replay
+       sheet has no game clock and its shirt numbers are unverified, so that
+       box carries num and min as null, and two empty columns read as missing
+       data. The 7 Sep box has both and keeps both. */
+    var has = function (k) {
+      return st.box.some(function (p) { return p[k] !== null && p[k] !== undefined && p[k] !== ''; });
+    };
+    var showNum = has('num'), showMin = has('min');
     var rows = st.box.map(function (p) {
-      return '<tr><td class="n">' + num(p.num) + '</td><td class="p">' + esc(p.name || '') + '</td>' +
-        '<td>' + esc(p.min || '') + '</td><td class="pts">' + num(p.pts) + '</td>' +
+      return '<tr>' + (showNum ? '<td class="n">' + num(p.num) + '</td>' : '') +
+        '<td class="p">' + esc(p.name || '') + '</td>' +
+        (showMin ? '<td>' + esc(p.min || '') + '</td>' : '') + '<td class="pts">' + num(p.pts) + '</td>' +
         '<td>' + esc(p.ft || '') + '</td><td>' + num(p.fg) + '</td><td>' + num(p.pf) + '</td></tr>';
     }).join('');
     var t = st.totals || {};
     var tot = t.pts === undefined ? '' :
-      '<tr class="tot"><td></td><td class="p">Talata</td><td></td><td class="pts">' + num(t.pts) + '</td>' +
+      '<tr class="tot">' + (showNum ? '<td></td>' : '') + '<td class="p">Talata</td>' +
+      (showMin ? '<td></td>' : '') + '<td class="pts">' + num(t.pts) + '</td>' +
       '<td>' + esc(t.ft || '') + '</td><td>' + num(t.fg) + '</td><td>' + num(t.pf) + '</td></tr>';
+    /* talata-fixtures.css left-aligns the SECOND header cell, because Player
+       always sat there behind #. With no # column Player is first and a number
+       is second, so those two carry their alignment here. */
+    var cols = (showNum ? ['#'] : []).concat(['Player'], showMin ? ['Min'] : [], ['Pts', 'FT', 'FG', 'PF']);
+    var head = cols.map(function (c, i) {
+      var align = showNum ? ''
+        : (c === 'Player' ? ' style="text-align:left"' : (i === 1 ? ' style="text-align:right"' : ''));
+      return '<th' + align + '>' + c + '</th>';
+    }).join('');
     return '<div class="tf-box">' +
         '<div class="tf-box-h"><b>Box score</b><span>Talata ' + num(g.us) + ', ' +
-          esc(g.opponent || g.title || '') + ' ' + num(g.them) + '</span></div>' +
+          esc(g.opponent || g.title || '') + ' ' + num(g.them) +
+          (g.ot ? ' after overtime' : '') + (g.annulled ? '. Annulled' : '') + '</span></div>' +
         '<div class="tf-box-scroll"><table>' +
-          '<thead><tr><th>#</th><th>Player</th><th>Min</th><th>Pts</th><th>FT</th><th>FG</th><th>PF</th></tr></thead>' +
+          '<thead><tr>' + head + '</tr></thead>' +
           '<tbody>' + rows + tot + '</tbody></table></div>' +
         '<p class="tf-box-src">FG is made field goals. From the official scoresheet.</p>' +
       '</div>';
@@ -425,14 +456,22 @@
             ? (isTalataNight(g) ? '<b class="tf-hl">Talata Night</b>' : 'Home')
             : 'Away') +
           (g.played
-            ? row('Result', esc(String(g.us)) + ' - ' + esc(String(g.them)))
-            : (t ? '<div class="tf-row"><span>Time left</span>' +
+            ? row('Result', esc(String(g.us)) + ' - ' + esc(String(g.them)) +
+                (g.ot ? ' OT' : '') +
+                (g.annulled ? ' <i class="tf-r-tag is-annulled">Annulled</i>' : ''))
+            : (t && !g.annulled
+                 ? '<div class="tf-row"><span>Time left</span>' +
                    '<div class="tf-cd" data-tf-cd="' + t + '"></div></div>'
-                 : row('Tip-off', g.state === 'moving'
-                     ? 'Being moved, date can change'
-                     : 'The federation has not set one yet'))) +
+                 : row('Tip-off', g.annulled
+                     ? 'Annulled'
+                     : (g.state === 'moving'
+                       ? 'Being moved, date can change'
+                       : 'The federation has not set one yet')))) +
+          /* Hand-typed in results.json and public on purpose. The annulled
+             7 Sep game says why it no longer counts and where the replay went. */
+          (g.note ? row('Note', esc(g.note)) : '') +
           '<div class="tf-feat-cta">' +
-            (g.home && !g.played
+            (g.home && !g.played && !g.annulled
               ? '<button class="tf-btn is-primary" data-tf-claim="' + esc(g.id) +
                 '" data-tf-date="' + esc(g.date) + '">Claim free ticket</button>'
               : '') +
@@ -563,20 +602,24 @@
     var rightCrest = home ? crestHTML(opp) : talataCrest(g.team);
     var sLeft = g.played ? (home ? g.us : g.them) : '–';
     var sRight = g.played ? (home ? g.them : g.us) : '–';
-    var won = g.played && g.us > g.them;
+    var won = isWin(g);
     /* Mark the side that actually won, not both numbers. `.tf-r.is-won
        .tf-r-score` used to paint the pair green, so a 41-59 win showed the
-       opponent's 41 in the win colour too. */
-    var lWon = g.played && sLeft > sRight;
-    var rWon = g.played && sRight > sLeft;
+       opponent's 41 in the win colour too. An annulled game marks neither. */
+    var counts = g.played && !g.annulled;
+    var lWon = counts && sLeft > sRight;
+    var rWon = counts && sRight > sLeft;
 
     return '<article data-tf-open="' + esc(g.id) + '" tabindex="0" role="button"' +
       ' class="tf-r tf-k-' + compKind(g) + (home ? ' is-home' : '') +
         (g.state !== 'confirmed' ? ' is-tbc' : '') +
-        (g.played ? (won ? ' is-won' : ' is-lost') : '') + '">' +
+        (g.annulled ? ' is-annulled' : (g.played ? (won ? ' is-won' : ' is-lost') : '')) + '">' +
       '<div class="tf-r-comp"><span>' + esc(g.competition) + '</span>' +
         '<b>' + esc(timeLabel(g)) +
         (isTalataNight(g) ? ' <i class="tf-r-tag">Talata Night</i>' : '') +
+        /* Same pill as Talata Night, so it wraps under the date the same way
+           on a phone. The score beside it stays, uncoloured. */
+        (g.annulled ? ' <i class="tf-r-tag is-annulled">Annulled</i>' : '') +
         '</b></div>' +
       '<div class="tf-r-venue"><span>' + (home ? 'Home' : 'Away') + '</span><b>' + esc(venueLabel(g)) + '</b></div>' +
       '<div class="tf-r-match">' +
@@ -587,16 +630,19 @@
           '<b' + (lWon ? ' class="is-w"' : '') + '>' + sLeft + '</b>' +
           '<i>' + (g.played ? '–' : 'v') + '</i>' +
           '<b' + (rWon ? ' class="is-w"' : '') + '>' + sRight + '</b>' +
+          /* Inside the scoreline, in the muted small type the dash uses, so
+             89 - 87 OT reads as one result. */
+          (g.played && g.ot ? '<i class="tf-r-ot" title="After overtime">OT</i>' : '') +
         '</span>' +
         rightCrest + '<span class="tf-r-team is-r">' + right + '</span>' +
       '</div>' +
       '<div class="tf-r-act">' +
-        (home && !g.played
+        (home && !g.played && !g.annulled
           ? '<button class="tf-r-tix" data-tf-claim="' + esc(g.id) +
             '" data-tf-date="' + esc(g.date) + '">Free ticket</button>'
           : (g.played
               ? (boxFor(g) ? '<span class="tf-r-free">Box score</span>' : '')
-              : '<span class="tf-r-free">Free entry</span>')) +
+              : (g.annulled ? '' : '<span class="tf-r-free">Free entry</span>'))) +
         '<span class="tf-r-more">Details &rsaquo;</span>' +
       '</div>' +
     '</article>';
@@ -665,14 +711,14 @@
        highlight, the countdown AND the scroll-park that centres the strip on the
        next game. It looked like a styling preference and it was a broken filter. */
     var nextId = (games.filter(function (g) {
-      return !g.played && tipOff(g) !== null;
+      return !g.played && !g.annulled && tipOff(g) !== null;
     })[0] || {}).id;
 
     var cards = games.slice(0, 12).map(function (g) {
       var opp = g.opponent || g.title;
-      var isNext = !g.played && g.id === nextId;
-      var won = g.played && g.us > g.them;
-      var cup = isCup(g) && !g.played;
+      var isNext = !g.played && !g.annulled && g.id === nextId;
+      var won = isWin(g);
+      var cup = isCup(g) && !g.played && !g.annulled;
       return '<a class="tkc' + (g.home ? ' is-home' : '') + (isNext ? ' is-next' : '') +
         (cup ? ' is-cup' : '') +
         (g.played ? ' is-done' : '') + '" href="/games#g-' + encodeURIComponent(String(g.id)) + '">' +
@@ -686,7 +732,10 @@
         (g.played
           ? '<span class="tkc-score' + (won ? ' is-won' : '') + '">' +
               esc(String(g.us)) + ' <i>-</i> ' + esc(String(g.them)) + '</span>' +
-            '<span class="tkc-when">ENDED</span>'
+            /* An annulled result can land in the last three results this strip
+               carries (15 Sep 2026, the Hørsholm cup tie), and it must not read
+               as a finished game. The line under the score says which it is. */
+            '<span class="tkc-when">' + (g.annulled ? 'ANNULLED' : (g.ot ? 'ENDED, OT' : 'ENDED')) + '</span>'
           : '<span class="tkc-date">' + esc(dayName(g.date) + ' ' + shortDate(g.date).toUpperCase()) + '</span>' +
             (isNext
               ? '<span class="tkc-cd tf-cd" data-tf-cd="' + tipOff(g) + '"></span>'
@@ -1099,7 +1148,7 @@
 
     var t = todayISO();
     var cup = games.filter(function (g) {
-      return !g.played && isCup(g) && g.date >= t && daysAway(g) <= CUP_WINDOW_DAYS;
+      return !g.played && !g.annulled && isCup(g) && g.date >= t && daysAway(g) <= CUP_WINDOW_DAYS;
     })[0];
     if (!cup || cupSeen(cup.id)) return;
 

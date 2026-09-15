@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-08T11:36:24Z",
+  "generated": "2026-09-15T09:45:13Z",
   "source": "kampe_2026-08-31.csv",
   "note": "League and cup fixtures from the DBBF/MVP export. This is the federation record and it is what the site publishes. Friendlies and tournaments are added live from Holdsport by talata-api /fixtures. Where the two disagree, DBBF wins.",
   "counts": {
-    "total": 40,
-    "confirmed": 34,
+    "total": 41,
+    "confirmed": 35,
     "moving": 2,
     "tbc": 4
   },
@@ -24,7 +24,27 @@
       "played": true,
       "us": 78,
       "them": 67,
+      "annulled": true,
+      "note": "Annulled on protest 11 Sep 2026. Replayed 14 Sep. We won 89 to 87 after overtime.",
       "source": "dbbf"
+    },
+    {
+      "id": "40102931",
+      "date": "2026-09-14",
+      "time": "21:00",
+      "team": "Men",
+      "opponent": "Hørsholm",
+      "home": true,
+      "competition": "Danish Cup",
+      "venue": "Rungsted Skole",
+      "court": "Stor Bane",
+      "homeCourt": false,
+      "state": "confirmed",
+      "played": true,
+      "us": 89,
+      "them": 87,
+      "ot": true,
+      "source": "results"
     },
     {
       "id": "40098287",

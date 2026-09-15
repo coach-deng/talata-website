@@ -1,8 +1,10 @@
 {
-  "note": "Scores typed by hand before the DBBF export carries them, keyed by DBBF game id, always as us/them. build-fixtures.py reads us/them and marks the game played; the export wins as soon as it has its own score. A box entry is the Men's box score for the details panel on /games (Deng, 8 Sep 2026: Men only, full box score; youth games carry a score and nothing else). Columns: num, name, min, pts, ft, fg (made field goals), pf.",
+  "note": "Scores typed by hand before the DBBF export carries them, keyed by DBBF game id, always as us/them. build-fixtures.py reads us/them and marks the game played; the export wins as soon as it has its own score. A box entry is the Men's box score for the details panel on /games (Deng, 8 Sep 2026: Men only, full box score; youth games carry a score and nothing else). Columns: num, name, min, pts, ft, fg (made field goals), pf. A null cell prints blank, and a num or min column with no value in any row is left off the table. An under 18 gets a first name only, a null min and a null pf, and totals.pf stays null on any game with an under 18 so the sum cannot give his fouls away. Added 15 Sep 2026 for the Hørsholm replay: annulled true keeps the score and box on the site, tagged Annulled, never shown as a win and never picked as the next game (Deng: keep both stats). note is public text for the details panel. ot true prints OT beside the score. fixture holds date, time, team, opponent, home, competition, venue and court for a game the export does not have yet; build-fixtures.py adds it as a row with source results, and the export row wins the day it carries the id.",
   "40099294": {
     "us": 78,
     "them": 67,
+    "annulled": true,
+    "note": "Annulled on protest 11 Sep 2026. Replayed 14 Sep. We won 89 to 87 after overtime.",
     "source": "MVP box score, 7 Sep 2026. Eight players; the sheet's 1:00 for #83 is a table error, Deng 8 Sep.",
     "team": "Men",
     "box": [
@@ -26,21 +28,21 @@
       },
       {
         "num": 5,
-        "name": "Deyan Nikiforov",
-        "min": "39:59",
+        "name": "Deyan",
+        "min": null,
         "pts": 11,
         "ft": "0/0",
         "fg": 5,
-        "pf": 1
+        "pf": null
       },
       {
         "num": 8,
-        "name": "Milan Mortensen",
-        "min": "2:14",
+        "name": "Milan",
+        "min": null,
         "pts": 0,
         "ft": "0/0",
         "fg": 0,
-        "pf": 0
+        "pf": null
       },
       {
         "num": 21,
@@ -83,7 +85,95 @@
       "pts": 78,
       "ft": "10/11",
       "fg": 33,
-      "pf": 17
+      "pf": null
+    }
+  },
+  "40102931": {
+    "us": 89,
+    "them": 87,
+    "ot": true,
+    "source": "MVP scoresheet 111129, approved. Replay of 40099294, Mon 14 Sep 2026, Rungsted Skole. 80 80 after regulation, 9 to 7 in overtime. Seven players; one more on the sheet did not play. No num or min: the sheet has no game clock and its shirt numbers differ from 7 Sep. Under 18s get a first name and no fouls, and the team foul total stays blank so it cannot give theirs away.",
+    "team": "Men",
+    "fixture": {
+      "date": "2026-09-14",
+      "time": "21:00",
+      "team": "Men",
+      "opponent": "Hørsholm",
+      "home": true,
+      "competition": "Danish Cup",
+      "venue": "Rungsted Skole",
+      "court": "Stor Bane"
+    },
+    "box": [
+      {
+        "num": null,
+        "name": "Deng Awak",
+        "min": null,
+        "pts": 34,
+        "ft": "13/15",
+        "fg": 9,
+        "pf": 2
+      },
+      {
+        "num": null,
+        "name": "Jordan Naughton",
+        "min": null,
+        "pts": 21,
+        "ft": "3/4",
+        "fg": 9,
+        "pf": 1
+      },
+      {
+        "num": null,
+        "name": "Deyan",
+        "min": null,
+        "pts": 17,
+        "ft": "2/3",
+        "fg": 7,
+        "pf": null
+      },
+      {
+        "num": null,
+        "name": "Lewis Gouadjio",
+        "min": null,
+        "pts": 9,
+        "ft": "0/0",
+        "fg": 3,
+        "pf": 1
+      },
+      {
+        "num": null,
+        "name": "Amir Negash",
+        "min": null,
+        "pts": 5,
+        "ft": "0/0",
+        "fg": 2,
+        "pf": 1
+      },
+      {
+        "num": null,
+        "name": "AJ Drammeh",
+        "min": null,
+        "pts": 3,
+        "ft": "0/0",
+        "fg": 1,
+        "pf": 1
+      },
+      {
+        "num": null,
+        "name": "Shih-Hsueh Lee",
+        "min": null,
+        "pts": 0,
+        "ft": "0/0",
+        "fg": 0,
+        "pf": 3
+      }
+    ],
+    "totals": {
+      "pts": 89,
+      "ft": "18/22",
+      "fg": 31,
+      "pf": null
     }
   }
 }

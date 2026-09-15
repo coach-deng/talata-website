@@ -158,6 +158,29 @@ except FileNotFoundError:
     RESULTS = {}
 
 
+def result_flags(ov) -> dict:
+    """The hand-kept flags a results entry puts on its game row.
+
+    15 Sep 2026. DBBF annulled the 7 Sep cup win over Hørsholm (40099294) on
+    protest and the tie was replayed on 14 Sep (40102931), 89 to 87 after
+    overtime. Deng: keep both stats. So the 78 67 keeps its score and its box,
+    and the row carries `annulled` so the page tags it and never counts it as a
+    win. The export has no field for any of this, which is why it rides in from
+    results.json. Keys are only written when set, so every other row stays
+    byte for byte what it was.
+    """
+    if not ov:
+        return {}
+    flags = {}
+    if ov.get("annulled") is True:
+        flags["annulled"] = True
+    if ov.get("ot") is True:
+        flags["ot"] = True
+    if isinstance(ov.get("note"), str) and ov["note"].strip():
+        flags["note"] = ov["note"].strip()
+    return flags
+
+
 def build(path: str) -> dict:
     with io.open(path, encoding="utf-8-sig") as fh:
         rows = list(csv.DictReader(fh, delimiter=";"))
@@ -192,10 +215,13 @@ def build(path: str) -> dict:
         # data/results.json holds a score we know before the federation files
         # it (typed from the MVP box score the morning after). The export wins
         # the moment it carries a score of its own.
+        ov = RESULTS.get(clean(r.get("number")))
+        # A flag-only entry (annulled before any score is typed) has no us/them,
+        # so the copy is guarded rather than trusting both keys are there.
         if not (hs.isdigit() and as_.isdigit()):
-            ov = RESULTS.get(clean(r.get("number")))
-            if ov:
-                hs, as_ = (str(ov["us"]), str(ov["them"])) if is_home else (str(ov["them"]), str(ov["us"]))
+            ou, ot_ = str((ov or {}).get("us", "")), str((ov or {}).get("them", ""))
+            if ou.isdigit() and ot_.isdigit():
+                hs, as_ = (ou, ot_) if is_home else (ot_, ou)
         played = hs.isdigit() and as_.isdigit()
 
         # 'Mangler Tid' means missing TIME, not missing date. The date is already
@@ -224,7 +250,47 @@ def build(path: str) -> dict:
                 "played": played,
                 "us": int(hs if is_home else as_) if played else None,
                 "them": int(as_ if is_home else hs) if played else None,
+                # Flags pass through whether or not the export has a score, so
+                # an annulled game stays annulled after DBBF files the sheet.
+                **result_flags(ov),
                 "source": "dbbf",
+            }
+        )
+
+    # A game the export has never seen (15 Sep 2026). The newest export was
+    # pulled on 31 Aug, before the Hørsholm replay (40102931, played 14 Sep)
+    # existed, so the replay had a score and a box in results.json and no row
+    # to hang them on. A results entry with a `fixture` object supplies that
+    # row. The export row always wins: the moment a fresh CSV carries the id,
+    # this is skipped and the federation's date, time and hall are what publish.
+    exported = {g["id"] for g in games}
+    for gid, ov in RESULTS.items():
+        fx = ov.get("fixture")
+        if not isinstance(fx, dict) or gid in exported:
+            continue
+        venue = VENUE_CANON.get(clean(fx.get("venue")), clean(fx.get("venue")))
+        us, them = str(ov.get("us", "")), str(ov.get("them", ""))
+        played = us.isdigit() and them.isdigit()
+        games.append(
+            {
+                "id": gid,
+                "date": clean(fx.get("date")),
+                "time": clean(fx.get("time")) or None,
+                "team": clean(fx.get("team")) or clean(ov.get("team")) or "Talata",
+                "opponent": clean(fx.get("opponent")),
+                "home": fx.get("home") is True,
+                # Typed as the public label already ("Danish Cup"). Running it
+                # through competition_label() would report it as unmapped.
+                "competition": clean(fx.get("competition")),
+                "venue": venue or None,
+                "court": clean(fx.get("court")) or None,
+                "homeCourt": bool(venue) and venue in HOME_VENUES,
+                "state": "confirmed",
+                "played": played,
+                "us": int(us) if played else None,
+                "them": int(them) if played else None,
+                **result_flags(ov),
+                "source": "results",
             }
         )
 
@@ -308,6 +374,14 @@ def main() -> None:
         for u in unmapped:
             print(f"     {u}")
         print("     Add a rule to COMPETITION_RULES near the top of this file.")
+
+    # Rows typed into results.json because the export lacks them. Named on
+    # every run, so it is plain which games still publish a hand-typed date and
+    # hall. The line goes quiet the day an export carries the id.
+    typed = [g for g in payload["games"] if g["source"] == "results"]
+    if typed:
+        print(f"Typed    {len(typed)} game(s) from data/results.json, not in the export: "
+              + ", ".join(f"{g['id']} {g['date']} {g['team']} vs {g['opponent']}" for g in typed))
 
     if skipped:
         # A full-federation export carries every club's games, over 2,300 rows.

@@ -234,6 +234,9 @@
   font-style:normal;text-transform:uppercase;color:#0B0F17;background:var(--f-accent);
   padding:2px 7px;border-radius:999px;white-space:nowrap;
 }
+/* Annulled is a status, not a promotion (15 Sep 2026). The baby blue pill is
+   what Talata Night wears, so an annulled game gets the quiet line colours. */
+.tf-r-tag.is-annulled{background:var(--f-line);color:var(--f-text);}
 .tf-r-tix{
   font-family:var(--f-disp);font-size:.66rem;font-weight:800;letter-spacing:.07em;
   text-transform:uppercase;cursor:pointer;white-space:nowrap;
