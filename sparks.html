@@ -296,6 +296,8 @@
       border-top: 1px solid var(--border); margin-top: 60px;
     }
     .footer a {color:var(--td-link); text-decoration: none; }
+  /* 15 Sep 2026: stack the photo strip on phones so tiles are not slivers */
+  @media (max-width:640px){ .photo-strip{ grid-template-columns:1fr !important; height:auto !important; } .photo-strip > div{ height:200px; } }
   </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20260915a">
@@ -428,7 +430,7 @@
   </div>
 
   <!-- PHOTO STRIP -->
-  <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; height: 280px; gap: 3px; overflow:hidden;">
+  <div class="photo-strip" style="display:grid; grid-template-columns: 2fr 1fr 1fr; height: 280px; gap: 3px; overflow:hidden;">
     <div style="background-image:url('/images/girls-game-action.jpg'); background-size:cover; background-position:center 35%;"></div>
     <div style="background-image:url('/images/aarhus-girls-squad.jpg'); background-size:cover; background-position:center 30%;"></div>
     <div style="background-image:url('/images/jul26/girls-academy-banner.jpg'); background-size:cover; background-position:center 30%;"></div>

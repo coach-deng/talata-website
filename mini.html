@@ -161,8 +161,8 @@
 
     /* HERO */
     .hero {
-      background: linear-gradient(135deg, rgba(17,17,17,0.78) 0%, rgba(26,39,68,0.72) 50%, rgba(15,52,96,0.80) 100%), url('/images/mini-deng-group.jpg');
-      background-size: cover; background-position: center 30%;
+      background: linear-gradient(135deg, rgba(17,17,17,0.78) 0%, rgba(26,39,68,0.72) 50%, rgba(15,52,96,0.80) 100%), url('/images/2026-09/site/mini-hero-deng-explains-drill.jpg');
+      background-size: cover; background-position: center, 47% 25%; /* 15 Sep 2026: sharp DSLR frame of Deng teaching seated Mini kids. 25% keeps his head and the ball in the band */
       color: #fff; padding: 72px 24px 60px; text-align: center;
       position: relative; overflow: hidden;
     }
@@ -297,6 +297,8 @@
       border-top: 1px solid var(--border); margin-top: 60px;
     }
     .footer a {color:var(--td-link); text-decoration: none; }
+  /* 15 Sep 2026: stack the photo strip on phones so tiles are not slivers */
+  @media (max-width:640px){ .photo-strip{ grid-template-columns:1fr !important; height:auto !important; } .photo-strip > div{ height:200px; } }
   </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20260915a">
@@ -316,7 +318,7 @@
 <!-- LCP hero. It is a CSS background, which the preload scanner cannot see,
      so it was discovered late: Cloudflare measured this element at 10,490ms
      over 28 Jul to 27 Aug 2026. This hint makes it discoverable in the head. -->
-<link rel="preload" as="image" href="/images/mini-deng-group.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/images/2026-09/site/mini-hero-deng-explains-drill.jpg" fetchpriority="high">
 <link rel="stylesheet" href="/assets/talata-dark.css?v=20260915a">
 </head>
 <body>
@@ -432,8 +434,8 @@
   </div>
 
   <!-- PHOTO STRIP -->
-  <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; height: 280px; gap: 3px; overflow:hidden;">
-    <div style="background-image:url('/images/jul26/smiling-drive.jpg'); background-size:cover; background-position:center 35%;"></div>
+  <div class="photo-strip" style="display:grid; grid-template-columns: 2fr 1fr 1fr; height: 280px; gap: 3px; overflow:hidden;">
+    <div style="background-image:url('/images/2026-09/site/mini-strip-overhead-pass.jpg'); background-size:cover; background-position:62% 40%;" role="img" aria-label="Mini player lining up a pass during a Strandvejsskolen session"></div>
     <div style="background-image:url('/images/mini-strandvejsskolen-drill-2026.jpg'); background-size:cover; background-position:center 35%;"></div>
     <div style="background-image:url('/images/jun26/mini-group-wall.jpg'); background-size:cover; background-position:center 40%;"></div>
   </div>

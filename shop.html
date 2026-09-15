@@ -439,7 +439,7 @@
 
     .hero { position:relative; color:#fff; padding:56px 0 40px; overflow:hidden;
              background:linear-gradient(135deg,var(--black) 0%,var(--navy) 100%); }
-    .hero .shot { position:absolute; inset:0; background:url('/images/team-tunnel.jpg') center 30%/cover no-repeat; opacity:.55; }
+    .hero .shot { position:absolute; inset:0; background:url('/images/2026-09/site/shop-hero-academy-squad-blue-kit.jpg') center 35%/cover no-repeat; opacity:.55; } /* 15 Sep 2026: sharp Academy squad in club gear replaces the thin team tunnel band */
     .hero .veil { position:absolute; inset:0;
                   background:linear-gradient(100deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.86) 38%,rgba(11,31,58,.55) 70%,rgba(11,31,58,.28) 100%); }
     .hero .wrap { position:relative; z-index:2; }
@@ -483,7 +483,7 @@
     /* LOOKBOOK strip. Four action shots, uniform 3:4 crop. */
     .lookbook { padding:18px 0 4px; }
     .lb-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
-    .lb-grid img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block;
+    .lb-grid img { width:100%; height:auto; aspect-ratio:3/4; /* 15 Sep 2026: height:auto so the height attribute stops stretching tiles */ object-fit:cover; display:block;
                    border-radius:12px; background:var(--mist); }
     .lb-note { font-size:.82rem;color:var(--td-muted); margin:10px 0 0; }
     @media (max-width:700px){
@@ -738,7 +738,7 @@
 
 
 <header class="hero">
-  <div class="shot" role="img" aria-label="Talata players in the baby blue game gear on court"></div>
+  <div class="shot" role="img" aria-label="Talata Academy players and coaches in the club gear"></div>
   <div class="veil"></div>
   <div class="wrap">
     <h1>Talata Shop.<br><em>Wear it properly.</em></h1>
@@ -767,12 +767,12 @@
      the gear; they are not product photography and the caption says so. -->
 <div class="wrap lookbook">
   <div class="lb-grid">
-    <img src="/images/jun26/u13-drive-intensity.jpg" alt="Talata player driving in the home gear" decoding="async" fetchpriority="high" width="1068" height="1600">
-    <img src="/images/jul26/drive-vs-espergaerde.jpg" alt="Talata player attacking the basket in match gear" loading="lazy" decoding="async" width="1068" height="1600">
-    <img src="/images/malmo26/malmo-players-cheering-in-the-stands.jpg" alt="Talata players in club hoodies watching from the stands in Malm&ouml;" loading="lazy" decoding="async" width="799" height="533">
-    <img src="/images/malmo26/malmo-deng-talata-hoodie-arena.jpg" alt="Coach Deng Awak in the Talata Basketball hoodie" loading="lazy" decoding="async" width="799" height="533">
+    <img src="/images/jun26/u13-drive-intensity.jpg" alt="Talata player driving in the baby blue home kit" decoding="async" fetchpriority="high" width="1068" height="1600">
+    <img src="/images/2026-09/site/shop-lookbook-home-jersey-back-25.jpg" alt="The Talata home jersey from behind, TALATA and number 25 on the back" loading="lazy" decoding="async" width="600" height="800">
+    <img src="/images/2026-09/site/shop-lookbook-black-game-kit-trio.jpg" alt="Three Talata Academy players in the black game jersey and shorts" loading="lazy" decoding="async" width="600" height="800">
+    <img src="/images/2026-09/site/shop-lookbook-deng-talata-hoodie.jpg" alt="Coach Deng Awak in the black Talata Basketball hoodie" loading="lazy" decoding="async" width="600" height="800">
   </div>
-  <p class="lb-note">Our own players and coaches, in the gear you are buying. Garment photos land with the first batch. Malm&ouml; photos by <a href="https://www.flickr.com/photos/malbas75/" target="_blank" rel="noopener">Malbas</a>.</p>
+  <p class="lb-note">Our own players and coaches, in the gear you are buying. Garment photos land with the first batch.</p>
 </div>
 
 <main class="wrap">

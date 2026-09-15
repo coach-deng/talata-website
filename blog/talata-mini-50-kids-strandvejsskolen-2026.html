@@ -93,7 +93,8 @@
     .article h2 { font-size: 1.35rem; font-weight: 800; margin: 44px 0 16px;color:var(--td-text); }
     .article blockquote { border-left: 3px solid var(--blue); padding: 4px 0 4px 20px; margin: 32px 0; font-size: 1.15rem; font-weight: 600;color:var(--td-text); line-height: 1.5; }
 
-    .inline-photo { width: 100%; border-radius: var(--radius); margin: 32px 0 8px; display: block; }
+    /* 15 Sep 2026: height:auto so the inline photos keep their 3:2 ratio instead of stretching to 1067px tall */
+    .inline-photo { width: 100%; height: auto; border-radius: var(--radius); margin: 32px 0 8px; display: block; }
     .photo-caption { text-align: center; font-size: 0.8rem;color:var(--td-muted); margin-bottom: 24px; font-style: italic; }
 
     .stat-row { display: flex; gap: 24px; margin: 36px 0 16px; flex-wrap: wrap; }
@@ -266,7 +267,7 @@
     <div class="meta">April 29, 2026 · 4 min read · Strandvejsskolen, Østerbro</div>
   </div>
 
-  <img src="/images/mini-strandvejsskolen-group-2026.jpg" alt="Coach Deng with around 14 kids at Strandvejsskolen, one holding a basketball up" class="hero-image" fetchpriority="high" decoding="async" width="1600" height="1067">
+  <img src="/images/mini-strandvejsskolen-group-2026.jpg" alt="Coach Deng with around 14 kids at Strandvejsskolen, one holding a basketball up" class="hero-image" style="object-position:50% 10%" fetchpriority="high" decoding="async" width="1600" height="1067">
 
   <div class="article">
 

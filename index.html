@@ -67,6 +67,8 @@ a{text-decoration:none;color:inherit;}
 /* hero */
 .hero{position:relative;color:#fff;background:var(--navy);}
 .hero .bg{position:absolute;inset:0;background:url('images/talata-huddle.jpg') center 30%/cover;opacity:0.38;}
+/* 15 Sep 2026: portrait huddle on phones, the landscape showed 17% of the frame */
+@media (max-width:700px){ .hero .bg{ background-image:url('/images/2026-09/site/index-hero-phone-u13-huddle-herlev.jpg'); background-position:42% 50%; } }
 .hero .shade{position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,10,10,0.92) 20%,rgba(11,31,58,0.75) 55%,rgba(11,31,58,0.35));}
 .hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;padding-top:72px;padding-bottom:80px;align-items:center;}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:0.76rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--td-link);margin-bottom:18px;}
@@ -531,7 +533,7 @@ footer a:hover{color:var(--td-link);}
   <div class="wrap">
     <div class="gs-grid">
       <a class="gs-card" href="/games">
-        <img src="/images/jul26/drive-vs-espergaerde.jpg" alt="Talata player driving to the basket" fetchpriority="high" decoding="async" width="1068" height="1600">
+        <img src="/images/jul26/drive-vs-espergaerde.jpg" alt="Talata player driving to the basket" style="object-position:50% 40%" fetchpriority="high" decoding="async" width="1068" height="1600">
         <span class="gs-shade"></span>
         <span class="gs-label">Games</span>
       </a>

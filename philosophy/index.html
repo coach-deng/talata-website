@@ -14,8 +14,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://talatabasketball.dk/philosophy/">
 <!-- Preload LCP hero image — WebP first, JPEG fallback -->
-<link rel="preload" as="image" href="./photos/hero-training.webp" type="image/webp" fetchpriority="high">
-<link rel="preload" as="image" href="./photos/hero-training.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/images/2026-09/site/academy-squad-2024-25-2048.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="/images/2026-09/site/academy-squad-2024-25-2048.jpg" fetchpriority="high">
 
 <link rel="stylesheet" href="/assets/talata-tw.css?v=20260915a">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -34,7 +34,7 @@ body { font-family: 'Inter', sans-serif; }
 .hero-bg {
   position: relative;
   background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(11,31,58,0.85) 50%, rgba(30,64,175,0.75) 100%),
-              image-set(url('./photos/hero-training.webp') type('image/webp'), url('./photos/hero-training.jpg') type('image/jpeg')) center/cover no-repeat;
+              image-set(url('/images/2026-09/site/academy-squad-2024-25-2048.webp') type('image/webp'), url('/images/2026-09/site/academy-squad-2024-25-2048.jpg') type('image/jpeg')) center/cover no-repeat;
 }
 .pillar-card { transition: transform 0.2s, box-shadow 0.2s; }
 .pillar-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -10px rgba(11, 31, 58, 0.25); }
@@ -75,7 +75,7 @@ body { font-family: 'Inter', sans-serif; }
 <!-- LCP hero. It is a CSS background, which the preload scanner cannot see,
      so it was discovered late: Cloudflare measured this element at 4,018ms
      over 28 Jul to 27 Aug 2026. This hint makes it discoverable in the head. -->
-<link rel="preload" as="image" href="/philosophy/photos/hero-training.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/images/2026-09/site/academy-squad-2024-25-2048.webp" fetchpriority="high">
 </head>
 
 <body class="tw-dark bg-white text-talata-navy antialiased">
@@ -291,7 +291,7 @@ body { font-family: 'Inter', sans-serif; }
 
   <!-- IMAGE QUOTE BREAK -->
   <section class="mb-20">
-    <div class="image-quote text-white py-24 px-8 text-center" style="background-image: url('./photos/team-huddle.jpg');">
+    <div class="image-quote text-white py-24 px-8 text-center" style="background-image:url('/images/2026-09/site/philosophy-quote-academy-passing-drill.jpg'); background-position:center 70%;">
       <p class="text-2xl md:text-4xl font-extrabold leading-snug max-w-4xl mx-auto">
         "We don't coach the body. <br>We coach the <span class="text-talata-baby">environment</span>."
       </p>

@@ -338,6 +338,8 @@
       border-top: 1px solid var(--border); margin-top: 60px;
     }
     .footer a {color:var(--td-link); text-decoration: none; }
+  /* 15 Sep 2026: stack the photo strip on phones so tiles are not slivers */
+  @media (max-width:640px){ .photo-strip{ grid-template-columns:1fr !important; height:auto !important; } .photo-strip > div{ height:200px; } }
   </style>
 <link rel="stylesheet" href="/assets/talata-fixtures.css?v=20260915a">
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
@@ -472,9 +474,9 @@
   </div>
 
   <!-- PHOTO STRIP · game day June 2026 -->
-  <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; height: 280px; gap: 3px; overflow:hidden;">
+  <div class="photo-strip" style="display:grid; grid-template-columns: 2fr 1fr 1fr; height: 280px; gap: 3px; overflow:hidden;">
     <div style="background-image:url('/images/jul26/game-timeout-huddle.jpg'); background-size:cover; background-position:center 30%;"></div>
-    <div style="background-image:url('/images/jun26/u13-layup-contested.jpg'); background-size:cover; background-position:center 35%;"></div>
+    <div style="background-image:url('/images/2026-09/site/academy-one-on-one-wing-square.jpg'); background-size:cover; background-position:center 50%;" role="img" aria-label="Talata Academy player squaring up a defender with the ball"></div>
     <div style="background-image:url('/images/2026-08/academy-team-lineup-black.jpg'); background-size:cover; background-position:center 35%;"></div>
   </div>
 
@@ -517,8 +519,8 @@
        are "built into the week rather than bolted on" and then showed only game
        photos. These are the off-court sessions it is talking about. 14 Sep 2026:
        Tuesday is a court day now (Holdsport), so the band no longer names a day. -->
-  <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; height: 240px; gap: 3px; overflow:hidden;">
-    <div style="background-image:url('/images/2026-08/mental-strength-workshop.jpg'); background-size:cover; background-position:center 30%;" role="img" aria-label="Talata Academy players at an Introduction to Mental Strength session"></div>
+  <div class="photo-strip" style="display:grid; grid-template-columns: 1fr 1fr 1fr; height: 240px; gap: 3px; overflow:hidden;">
+    <div style="background-image:url('/images/2026-09/site/academy-mental-strength-session-wide.jpg'); background-size:cover; background-position:center 50%;" role="img" aria-label="Talata Academy players at an Introduction to Mental Strength session"></div>
     <div style="background-image:url('/images/2026-08/team-meeting-classroom.jpg'); background-size:cover; background-position:center 40%;" role="img" aria-label="Talata Academy team meeting before a session"></div>
     <div style="background-image:url('/images/2026-08/u15-win-vs-vikings-75-69.jpg'); background-size:cover; background-position:center 45%;" role="img" aria-label="Talata team under the scoreboard after a 75 to 69 win"></div>
   </div>
