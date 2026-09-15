@@ -60,6 +60,12 @@
   .pcard:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 6px 18px rgba(11,31,58,.07);}
   .pcard img{width:auto;max-width:150px;display:block;}
   .pcard-t span{font-weight:800;color:var(--td-text);font-size:.98rem;letter-spacing:-.01em;text-align:center;}
+  /* Every tile is a LIGHT card on the dark site (15 Sep 2026), the same light island the
+     homepage partner strip uses. DBBF, Gorilla Juice, Københavns Kommune and We Do Greens
+     are dark ink and vanished on --td-surface. Brands keep their own colours; nothing is
+     inverted. Text tiles share the card so a row reads as one wall. */
+  .pcard{background:#EEF2F7;border-color:#D6DEE8;}
+  .pcard-t span{color:#101828;}
   .note{color:var(--td-muted);font-size:.92rem;margin:26px 0 0;}
   footer{background:var(--navy);color:rgba(255,255,255,.7);text-align:center;padding:32px 24px;font-size:.85rem;}
   footer a{color:var(--td-link);}
