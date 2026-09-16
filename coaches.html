@@ -46,7 +46,7 @@
         "@type": "Person",
         "name": "Jordan Naughton",
         "jobTitle": "Head of Academy",
-        "image": "https://talatabasketball.dk/images/people/jordan-naughton.jpg",
+        "image": "https://talatabasketball.dk/images/people/jordan-naughton-talata-free-throw.jpg",
         "alumniOf": {
           "@type": "CollegeOrUniversity",
           "name": "University of Wyoming"
@@ -87,7 +87,6 @@
         "@type": "Person",
         "name": "Tyler Hansen",
         "jobTitle": "Assistant Coach, Mini and Junior",
-        "image": "https://talatabasketball.dk/images/people/tyler-hansen.jpg",
         "worksFor": {
           "@type": "SportsOrganization",
           "name": "Talata Basketball"
@@ -339,6 +338,8 @@
       color: rgba(255,255,255,0.92);
       font-size: 3rem; font-weight: 900; letter-spacing: -1px;
     }
+    /* 15 Sep 2026: a coach with no photo in Talata kit gets a plain Navy tile, so no other club's kit shows */
+    .person-initials--navy { background: #0B1F3A; color: #7DD3FC; }
     .person-body { padding: 28px 28px 26px; }
     .person-body .role {
       font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;color:var(--td-link); text-transform: uppercase; margin-bottom: 8px;
@@ -527,7 +528,7 @@
 
     <div class="person">
       <div class="person-photo">
-        <img src="/images/people/jordan-naughton.jpg" alt="Jordan Naughton, Head of Academy at Talata Basketball" loading="lazy" width="765" height="959" decoding="async">
+        <img src="/images/people/jordan-naughton-talata-free-throw.jpg" alt="Jordan Naughton, Head of Academy, shooting a free throw for Talata" loading="lazy" width="416" height="520" decoding="async" style="object-position:center 40%;">
       </div>
       <div class="person-body">
         <div class="role">Head of Academy</div>
@@ -583,7 +584,7 @@
 
     <div class="person">
       <div class="person-photo">
-        <img src="/images/people/tyler-hansen.jpg" alt="Tyler Hansen, assistant coach at Talata Basketball" width="900" height="1125" loading="lazy" decoding="async" style="object-position:center 18%;">
+        <div class="person-initials person-initials--navy" role="img" aria-label="Tyler Hansen, assistant coach at Talata Basketball">TH</div>
       </div>
       <div class="person-body">
         <div class="role">Assistant Coach</div>
