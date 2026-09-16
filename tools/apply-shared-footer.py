@@ -115,7 +115,7 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260915a">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260916a">'
 
 # Per page trial CTA, mirroring apply-shared-header.py's CTA map. A footer that
 # says "Book a free trial" must land on that page's own form, not scroll-to-top
@@ -129,8 +129,8 @@ TRIAL = {
     "ish-primary-school.html": "#signup",
     "ish-high-school.html": "#signup",
     "school-partnerships.html": "#contact",
-    "camps/autumn-camp-2026.html": "#waitlist",
-    "camps/winter-camp-2026.html": "#waitlist",
+    "camps/academy-u16-camp-2026.html": "#waitlist",
+    "camps/college-pathway-camp-2026.html": "#waitlist",
     "camps/lithuania-camp-2026.html": "#register",
 }
 DEFAULT_TRIAL = "/join"
@@ -317,7 +317,7 @@ def process(path: Path, check: bool):
         src = src[:body_end] + footer + "\n\n" + src[body_end:]
         notes.append("injected")
 
-    if "/assets/talata-footer.css?v=20260915a" not in src:
+    if "/assets/talata-footer.css?v=20260916a" not in src:
         head = src.find("</head>")
         if head != -1:
             src = src[:head] + CSS_TAG + "\n" + src[head:]

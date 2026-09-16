@@ -11,24 +11,22 @@
     gtag('js', new Date());
     gtag('config', 'G-R64Y9CQ2VZ');
   </script>
-  <title>Pathway Camp 2026 | Dec 28-30, København | Talata</title>
-  <link rel="canonical" href="https://talatabasketball.dk/camps/winter-camp-2026" />
-  <meta name="description" content="Pathway Camp 2026, juleferie. Tre dage for spillere på 13 til 17 år, 28. til 30. december i Hafnia-Hallen, København SV. Du bliver målt, filmet og vurderet skriftligt. 16 pladser." />
-  <meta name="keywords" content="vintercamp basketball, juleferie basketball, winter basketball camp copenhagen, december camp basketball, basketball vinterferie" />
+  <title>Academy U16 Camp 2026 | Basketball 12-16 år i København</title>
+  <link rel="canonical" href="https://talatabasketball.dk/camps/academy-u16-camp-2026" />
+  <meta name="description" content="Academy U16 Camp 2026, efterårsferie uge 42. Basketball for 12 til 16 år, mandag 12. til torsdag 15. oktober i Hafnia-Hallen, København SV. Fire dage, 09:30 til 14:30, snacks og frugt inkluderet, 25 pladser." />
+  <meta name="keywords" content="efterårsferie basketball, autumn camp copenhagen, basketball uge 42, talata autumn camp, basketball ferie aktivitet" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://talatabasketball.dk/camps/winter-camp-2026" />
-  <meta property="og:title" content="Pathway Camp 2026. Dec 28 to 30, Copenhagen | Talata" />
-  <meta property="og:description" content="Three days on what playing in America actually takes. Ages 13 to 17. Measured, filmed, and told the truth about where you stand." />
-  <meta property="og:image" content="https://talatabasketball.dk/images/2026-09/site/winter-camp-academy-defensive-drill-hero.jpg" />
+  <meta property="og:url" content="https://talatabasketball.dk/camps/academy-u16-camp-2026" />
+  <meta property="og:title" content="Academy U16 Camp 2026. Four days of basketball in the autumn break, ages 12 to 16" />
+  <meta property="og:description" content="Four days of basketball over efterårsferie for ages 12 to 16, at Hafnia-Hallen. Booking open." />
+  <meta property="og:image" content="https://talatabasketball.dk/images/IMG_4172.JPG" />
   <style>
     @font-face { font-family: 'Inter'; font-weight: 400 800; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --bg: #fafafa; --text: #1a1a1a; --muted: #555; --blue: #1E40AF; --navy: #0B1F3A; --sky: #BAE6FD; --baby: #7DD3FC; --border: #e0e0e0; }
+    :root { --bg: #fafafa; --text: #1a1a1a; --muted: #555; --blue: #1E40AF; --sky: #BAE6FD; --baby: #7DD3FC; --navy: #0B1F3A; --border: #e0e0e0; }
     body { font-family: 'Inter', -apple-system, sans-serif;color:var(--td-text); background: var(--bg); line-height: 1.6; }
     .page { max-width: 800px; margin: 0 auto; }
-    .hero { background: linear-gradient(135deg, #0B1F3A 0%, #1E40AF 50%, #4a87b0 100%); color: #fff; padding: 60px 40px 50px; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: '❄'; position: absolute; top: 20%; left: 10%; font-size: 4rem; opacity: 0.1; }
-    .hero::after { content: '❄'; position: absolute; bottom: 20%; right: 15%; font-size: 5rem; opacity: 0.08; }
+    .hero { background: linear-gradient(135deg, #0B1F3A 0%, #1E40AF 50%, #4a87b0 100%); color: #fff; padding: 60px 40px 50px; text-align: center; }
     .hero .badge { display: inline-block; background: rgba(255,255,255,0.2); color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 20px; }
     .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
     .hero .sub { font-size: 1.05rem; opacity: 0.95; margin-bottom: 24px; }
@@ -40,6 +38,14 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
     .card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
     .card h3 { font-size: 1.1rem; margin-bottom: 8px;color:var(--td-link); }
+    /* Dead rule: no element on this page carries .track. Kept, but disarmed.
+       It was a #fff -> #F8FAFC gradient with no colour beside it, so the first
+       <div class="track"> anyone added would have rendered --td-text at 1.08:1.
+       Both QA tools were blind to it: qa-check.py because the white is a fill
+       and not a colour, and the contrast runner because a gradient reports
+       backgroundColor rgba(0,0,0,0), so effBg() walks straight past it. */
+    .track { background: var(--td-surface); border: 2px solid var(--blue); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+    .track h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
     /* THE FACT BLOCK — the same six rows in the same order on every camp
        page, so a parent comparing two camps compares like with like. */
     .facts { border: 1px solid var(--border); border-radius: 12px; padding: 4px 20px; background: var(--bg); }
@@ -56,8 +62,7 @@
       .fact dt { margin-bottom: 3px; }
       .fact dd { text-align: left; }
     }
-    .schedule { background: var(--bg); border-left: 4px solid var(--blue); padding: 16px 20px; margin: 12px 0; }
-    .schedule-time { font-weight: 700;color:var(--td-link); }
+    .note { border-left: 4px solid var(--blue); padding: 14px 18px; margin-top: 16px; background: var(--bg);color:var(--td-text); border-radius: 0 10px 10px 0; }
     /* One call to action, and it sits where the facts finish. A parent who
        has read the six rows has decided, and the form is a long way down. */
     .cta { display: block; text-align: center; background: var(--blue); color: #fff; text-decoration: none; font-weight: 700; font-size: 1.05rem; padding: 16px; border-radius: 10px; margin-top: 16px; }
@@ -69,41 +74,32 @@
     .waitlist-form .field { margin-bottom: 16px; }
     .waitlist-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .waitlist-form button { background: var(--blue); color: #fff; padding: 14px 32px; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: inherit; width: 100%; }
+    .waitlist-form button:hover { background: #16305c; }
     .success { display: none; padding: 16px; background: #ecfdf5; border-radius: 8px; color: #065f46; font-weight: 600; text-align: center; margin-top: 16px; }
-    /* PHOTOS. Men's team and older Academy only. A parent of a 15 year old
-       should see what the next level looks like, not a Mini session. */
-    .photo { margin: 0; }
-    .photo img { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--navy); }
-    .photo figcaption { font-size: 0.82rem;color:var(--td-muted); margin-top: 8px; }
-    .photo-top { margin-top: 32px; }
-    .photo-top img { border-radius: 0; }
-    .photo-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
-    .photo-inline { margin-top: 20px; }
-    @media (max-width: 480px) { .photo-strip { grid-template-columns: 1fr; } }
     .nav { background: #0A0A0A; color: #fff; padding: 16px 24px; }
     .nav a { color: #fff; text-decoration: none; font-weight: 600; }
     @media (max-width: 600px) { .waitlist-form .row { grid-template-columns: 1fr; } .hero h1 { font-size: 1.8rem; } }
   </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/talata-nav.css?v=20260915a">
+<link rel="stylesheet" href="/assets/talata-nav.css?v=20260916a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B1F3A">
-<link rel="stylesheet" href="/assets/talata-footer.css?v=20260915a">
+<link rel="stylesheet" href="/assets/talata-footer.css?v=20260916a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SportsEvent",
-  "name": "Talata Pathway Camp 2026",
-  "description": "Three days for players aged 13 to 17 in the Copenhagen winter break. Monday 28 to Wednesday 30 December, 09:00 to 14:00 at Hafnia-Hallen. Measured, filmed and evaluated in writing.",
-  "startDate": "2026-12-28T09:00:00+01:00",
-  "endDate": "2026-12-30T14:00:00+01:00",
+  "name": "Talata Academy U16 Camp 2026",
+  "description": "Four days of basketball for ages 12 to 16 in the Copenhagen autumn break. Monday 12 to Thursday 15 October at Hafnia-Hallen. Snacks and fruit included.",
+  "startDate": "2026-10-12T09:30:00+02:00",
+  "endDate": "2026-10-15T14:30:00+02:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "url": "https://talatabasketball.dk/camps/winter-camp-2026",
-  "image": "https://talatabasketball.dk/images/2026-09/site/winter-camp-academy-defensive-drill-hero.jpg",
-  "maximumAttendeeCapacity": 16,
+  "url": "https://talatabasketball.dk/camps/academy-u16-camp-2026",
+  "image": "https://talatabasketball.dk/images/IMG_4172.JPG",
+  "maximumAttendeeCapacity": 25,
   "location": {
     "@type": "Place",
     "name": "Hafnia-Hallen",
@@ -123,15 +119,15 @@
   "offers": {
     "@type": "Offer",
     "name": "Early bird",
-    "price": "1295",
+    "price": "1395",
     "priceCurrency": "DKK",
     "availability": "https://schema.org/InStock",
-    "validThrough": "2026-11-01T23:59:00+01:00",
-    "url": "https://talatabasketball.dk/camps/winter-camp-2026#waitlist"
+    "validThrough": "2026-09-21T23:59:00+02:00",
+    "url": "https://talatabasketball.dk/camps/academy-u16-camp-2026#waitlist"
   }
 }
 </script>
-<link rel="stylesheet" href="/assets/talata-dark.css?v=20260915a">
+<link rel="stylesheet" href="/assets/talata-dark.css?v=20260916a">
 </head>
 <body>
 
@@ -228,70 +224,53 @@
 
 
 <section class="hero">
-  <div class="badge">Winter break &middot; December</div>
-  <h1>Pathway Camp 2026</h1>
-  <div class="sub">Three days on what playing in America actually takes, ages 13 to 17</div>
+  <div class="badge">Autumn break &middot; week 42</div>
+  <h1>Academy U16 Camp 2026</h1>
+  <div class="sub">Four days of basketball for ages 12 to 16</div>
 </section>
 
 <div class="page">
-<figure class="photo photo-top">
-  <img src="/images/2026-09/site/winter-camp-academy-defensive-drill-hero.jpg" width="1600" height="600" alt="Talata Academy players defending in a live drill" decoding="async" fetchpriority="high">
-</figure>
 <div class="content">
 
   <div class="section">
     <dl class="facts">
-      <div class="fact"><dt>Ages</dt><dd>13 to 17</dd></div>
-      <div class="fact"><dt>Days</dt><dd>Three days. Monday 28 to Wednesday 30 December</dd></div>
-      <div class="fact"><dt>Time</dt><dd>09:00 to 14:00, doors 08:45</dd></div>
+      <div class="fact"><dt>Ages</dt><dd>12 to 16</dd></div>
+      <div class="fact"><dt>Days</dt><dd>Four days. Monday 12 to Thursday 15 October</dd></div>
+      <div class="fact"><dt>Time</dt><dd>09:30 to 14:30, doors 09:15. Thursday starts 10:00</dd></div>
       <div class="fact"><dt>Where</dt><dd>Hafnia-Hallen, Julius Andersensvej 6, 2450 K&oslash;benhavn SV</dd></div>
-      <div class="fact"><dt>Places</dt><dd>16</dd></div>
-      <div class="fact fact-price"><dt>Price</dt><dd>1.295 kr to Sunday 1 November, then 1.495 kr</dd></div>
+      <div class="fact"><dt>Places</dt><dd>25</dd></div>
+      <div class="fact fact-price"><dt>Price</dt><dd>1.395 kr to Monday 21 September, then 1.595 kr</dd></div>
     </dl>
-    <a class="cta" href="#waitlist">Sign up for Pathway Camp &rarr;</a>
+      <!-- 🔴 6 Sep 2026: this page sells FOUR days, and Tuesday 13 Oct is the upstairs /
+       non-court day that was ASKED of Hafnia and not yet confirmed in writing.
+       If Simon declines the Tuesday, drop it from the product and revisit the day
+       count and the price BEFORE leaving four-day copy up. Canon: programs.md
+       § Holiday Camps 2026/27. -->
+    <p class="note"><strong>Tuesday 13 October is a full camp day too.</strong> Court time in the morning and the afternoon, with a session upstairs in the middle of the day. Same building, same hours. <strong>Snacks and fruit are included every day</strong>, so there is no packed lunch to make.</p>
+    <a class="cta" href="#waitlist">Sign up for Academy U16 Camp &rarr;</a>
   </div>
 
   <div class="section">
     <h2>What you do</h2>
-    <p>You get measured, you get filmed, and you get a written evaluation on the last day.</p>
-    <div class="photo-strip">
-      <figure class="photo"><img src="/images/2026-09/academy-senior-top-of-key.jpg" width="1280" height="1600" alt="Talata Academy senior player with the ball at the top of the key, eyes up, reading the defence." loading="lazy" decoding="async"></figure>
-      <figure class="photo"><img src="/images/2026-09/academy-one-on-one-attack.jpg" width="1280" height="1600" alt="Talata Academy ball handler attacking a defender who is closing hard." loading="lazy" decoding="async"></figure>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>A day at camp</h2>
-    <div class="schedule">
-      <div class="schedule-time">09:00 to 11:30</div>
-      <div>Testing and skills. Height, wingspan, standing reach, vertical, lane agility and timed shooting</div>
-    </div>
-    <div class="schedule">
-      <div class="schedule-time">11:30 to 12:30</div>
-      <div>Lunch, then film. Your own footage from the morning</div>
-    </div>
-    <div class="schedule">
-      <div class="schedule-time">12:30 to 14:00</div>
-      <div>Live play, filmed from a fixed camera. Wednesday closes with each player's written evaluation</div>
-    </div>
-    <figure class="photo photo-inline">
-      <img src="/images/2026-09/academy-scrimmage-strip-attempt.jpg" width="1600" height="1067" alt="Talata Academy scrimmage: a defender reaches in to strip the ball on the drive as a teammate closes out." loading="lazy" decoding="async">
-      <figcaption>Live play is filmed from a fixed camera and you watch your own footage the same day.</figcaption>
-    </figure>
+    <p>Monday is the base. Ball handling under pressure, footwork, shooting off the catch and off the dribble. Tuesday is court time in the morning and the afternoon, with a session upstairs in the middle. Wednesday is reads and decisions at game pace, with live play all afternoon. Thursday is skills in the morning, then games from 12:30 with every age group in the hall. Families welcome for that.</p>
   </div>
 
   <div class="section">
     <h2>Questions parents ask</h2>
     <div class="grid">
-      <div class="card"><h3>What do they bring?</h3><p>Indoor shoes and a water bottle. Lunch, snacks and the camp t-shirt come from us.</p></div>
-      <div class="card"><h3>Drop off and pick up?</h3><p>Doors 08:45, start 09:00, pick up 14:00, all three days.</p></div>
-      <div class="card"><h3>Who is it for?</h3><p>Players aged 13 to 17 who are already in a club and want to know where they actually stand.</p></div>
+      <div class="card"><h3>What do they bring?</h3><p>Indoor shoes and a water bottle. Balls, snacks, fruit and the camp t-shirt come from us, so there is no lunch to pack.</p></div>
+      <div class="card"><h3>Drop off and pick up?</h3><p>Doors 09:15, start 09:30, pick up 14:30. Thursday starts at 10:00.</p></div>
+      <div class="card"><h3>Who is coaching?</h3><p>The Talata coaches who run the Academy season, in the hall all four days.</p></div>
     </div>
+  </div>
+
+  <div class="section">
+    <p>Younger brother or sister? <a href="/camps/academy-u12-camp-2026">Academy U12 Camp</a>, ages 5 to 11, is in the same hall at the same time all four days. One drop off, one pick up, and on Thursday afternoon they play together.</p>
   </div>
 
   <div class="waitlist-form" id="waitlist">
     <h2 style="margin-bottom: 8px;">Sign up</h2>
-    <p style="color:var(--td-muted); margin-bottom: 20px;">16 places. We confirm by email and send the payment details.</p>
+    <p style="color:var(--td-muted); margin-bottom: 20px;">25 places. We confirm by email and send the payment details.</p>
     <form id="camp-form">
       <div class="row">
         <div class="field">
@@ -300,7 +279,7 @@
         </div>
         <div class="field">
           <label for="f-age">Age</label>
-          <input id="f-age" type="number" name="age" required placeholder="e.g. 15" min="13" max="17" />
+          <input id="f-age" type="number" name="age" required placeholder="e.g. 14" min="12" max="16" />
         </div>
       </div>
       <div class="field">
@@ -326,9 +305,9 @@
       </div>
       <div class="field">
         <label for="f-msg">Anything we should know? (optional)</label>
-        <textarea id="f-msg" name="message" rows="3" placeholder="Allergies, current club..."></textarea>
+        <textarea id="f-msg" name="message" rows="3" placeholder="Allergies, a sibling on the other camp..."></textarea>
       </div>
-      <button type="submit" id="submit-btn">Sign up for Pathway Camp</button>
+      <button type="submit" id="submit-btn">Sign up for Academy U16 Camp</button>
       <div class="success" id="form-success" style="display:none"></div>
     </form>
   </div>
@@ -336,7 +315,7 @@
 </div>
 </div>
 
-<script src="/assets/talata-signup.js?v=20260915a"></script>
+<script src="/assets/talata-signup.js?v=20260916a"></script>
 <script>
   // Was posting to a literal placeholder (AKfycbxXXXX) with mode:'no-cors',
   // which never throws, so every parent saw "You're on the list" and the
@@ -344,14 +323,14 @@
   TalataSignup.wire({
     formId: 'camp-form',
     buttonId: 'submit-btn',
-    formId_: 'talata-winter-camp-2026',
-    program: 'Pathway Camp 2026 (December)',
+    formId_: 'talata-autumn-camp-2026',
+    program: 'Academy Camp 2026 (October)',
     mount: 'form-success'
   });
 </script>
 
-<script src="/assets/talata-nav.js?v=20260915a" defer></script>
-<script src="/assets/talata-track.js?v=20260915a" defer></script>
+<script src="/assets/talata-nav.js?v=20260916a" defer></script>
+<script src="/assets/talata-track.js?v=20260916a" defer></script>
 <!-- TALATA:FOOTER:START — generated by tools/apply-shared-footer.py, do not hand-edit -->
 <footer class="tf">
   <div class="tf-wrap">

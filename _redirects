@@ -69,10 +69,10 @@
 
 # Winter Camp was "Christmas Hoops Camp" until Aug 10 2026. Keep these:
 # the old slug is in Google's index and in every email sent before the rename.
-/camps/christmas-hoops-camp-2026        /camps/winter-camp-2026    301
-/camps/christmas-hoops-camp-2026.html   /camps/winter-camp-2026    301
-/camps/christmas-camp                   /camps/winter-camp-2026    301
-/winter-camp                            /camps/winter-camp-2026    301
+/camps/christmas-hoops-camp-2026        /camps/college-pathway-camp-2026    301
+/camps/christmas-hoops-camp-2026.html   /camps/college-pathway-camp-2026    301
+/camps/christmas-camp                   /camps/college-pathway-camp-2026    301
+/winter-camp                            /camps/college-pathway-camp-2026    301
 
 # Deyan post pulled 20 Aug 2026, hours after publish — Deng flagged it as wrong.
 # Redirect rather than 404 since it was live and may already be crawled.
@@ -81,7 +81,7 @@
 
 # Autumn week split into two camps, 22 Aug 2026
 /starter-camp    /camps/starter-camp-2026    301
-/pathway-camp    /camps/winter-camp-2026    301
+/pathway-camp    /camps/college-pathway-camp-2026    301
 /autumn-camp    /camps/autumn-camp-2026    301
 
 # Saturday sessions, live 23 Aug 2026
