@@ -82,20 +82,29 @@
 # Autumn week split into two camps, 22 Aug 2026
 /starter-camp    /camps/academy-u12-camp-2026    301
 /pathway-camp    /camps/college-pathway-camp-2026    301
-/autumn-camp    /camps/academy-u16-camp-2026    301
+/autumn-camp    /camps/academy-u15-camp-2026    301
 
 # Holiday camps renamed 15 Sep 2026, pages moved 16 Sep. Starter is Academy U12,
-# Academy is Academy U16, Pathway is International Academy and College Pathway.
+# Academy is Academy U16 (Academy U15 since 17 Sep), Pathway is International Academy
+# and College Pathway.
 # The old slugs are in Google's index and in every camp email sent before that.
 /camps/starter-camp-2026         /camps/academy-u12-camp-2026         301
 /camps/starter-camp-2026.html    /camps/academy-u12-camp-2026         301
-/camps/autumn-camp-2026          /camps/academy-u16-camp-2026         301
-/camps/autumn-camp-2026.html     /camps/academy-u16-camp-2026         301
+/camps/autumn-camp-2026          /camps/academy-u15-camp-2026         301
+/camps/autumn-camp-2026.html     /camps/academy-u15-camp-2026         301
 /camps/winter-camp-2026          /camps/college-pathway-camp-2026     301
 /camps/winter-camp-2026.html     /camps/college-pathway-camp-2026     301
 /academy-u12-camp                /camps/academy-u12-camp-2026         301
-/academy-u16-camp                /camps/academy-u16-camp-2026         301
+/academy-u16-camp                /camps/academy-u15-camp-2026         301
 /college-pathway-camp            /camps/college-pathway-camp-2026     301
+
+# Academy U16 Camp renamed Academy U15 Camp 17 Sep 2026 (Deng), page moved the
+# same day. The u16 slug was live 16 to 17 Sep and is in camp emails, so every
+# spelling goes straight to the new page. Older slugs above point there too.
+/camps/academy-u16-camp-2026         /camps/academy-u15-camp-2026         301
+/camps/academy-u16-camp-2026.html    /camps/academy-u15-camp-2026         301
+/camps/academy-u16-camp-2026/        /camps/academy-u15-camp-2026         301
+/academy-u15-camp                    /camps/academy-u15-camp-2026         301
 
 # Saturday sessions, live 23 Aug 2026
 /saturdays    /saturday    301

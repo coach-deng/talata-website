@@ -168,7 +168,8 @@
     if (/1[:\s]?(on|to)?[:\s]?1|one.on.one|private/.test(label)) return 'one_to_one';
     // 16 Sep 2026: the camps are Academy U12, Academy U16 and International
     // Academy and College Pathway now. The old names still route.
-    if (/(starter|academy|pathway)\s*camp|academy\s*u\s*1[26]\s*camp/.test(label)) return 'camp';
+    // 17 Sep 2026: Academy U16 Camp is Academy U15 Camp. U15 and U16 both read as a camp.
+    if (/(starter|academy|pathway)\s*camp|academy\s*u\s*1[256]\s*camp/.test(label)) return 'camp';
     if (/camp/.test(label)) return 'camp_enquiry';
     return 'trial';
   }

@@ -43,7 +43,7 @@ CTA = {
     "school-partnerships.html": ("#contact", "Get in touch"),
     # "Join waitlist" rode the sticky bar on every camp page, so the one button
     # a parent could always see said the camp was full. Places are open.
-    "camps/academy-u16-camp-2026.html": ("#waitlist", "Sign up"),
+    "camps/academy-u15-camp-2026.html": ("#waitlist", "Sign up"),
     "camps/academy-u12-camp-2026.html": ("#waitlist", "Sign up"),
     "camps/college-pathway-camp-2026.html": ("#waitlist", "Sign up"),
     "camps/lithuania-camp-2026.html": ("#register", "Sign up"),
@@ -145,15 +145,15 @@ CARET = (
 FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" '
                 'type="font/woff2" crossorigin>')
 
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260917a">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260917b">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0F17">"""
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260917a">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260917b">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260917a" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260917b" defer></script>'
 
 
 def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
@@ -319,7 +319,7 @@ def process(path: Path, check: bool):
         src = src[: body.end()] + "\n\n" + header + "\n" + src[body.end():]
         notes.append("injected")
 
-    if "/assets/talata-nav.css?v=20260917a" not in src:
+    if "/assets/talata-nav.css?v=20260917b" not in src:
         head = re.search(r"</head>", src)
         if head:
             src = src[: head.start()] + HEAD_TAGS + "\n" + src[head.start():]
@@ -357,7 +357,7 @@ def process(path: Path, check: bool):
         src = src[: anchor.start()] + DARK_TAG + "\n" + src[anchor.start():]
         notes.append("dark css")
 
-    if "/assets/talata-nav.js?v=20260917a" not in src:
+    if "/assets/talata-nav.js?v=20260917b" not in src:
         body_end = src.rfind("</body>")
         if body_end != -1:
             src = src[:body_end] + SCRIPT_TAG + "\n" + src[body_end:]
