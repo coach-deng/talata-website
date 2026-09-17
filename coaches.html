@@ -231,6 +231,11 @@
 
     /* SECTION */
     .section { padding: 64px 24px; max-width: 760px; margin: 0 auto; }
+    .board-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: 10px; }
+    .board-list li { background:var(--td-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+    .board-list .b-role { display: block; font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color:var(--td-link); margin-bottom: 4px; }
+    .board-list .b-name { font-weight: 700; color:var(--td-text); }
+    .board-mail { margin-top: 14px; font-size: 0.9rem; }
     .section-title {
       font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px;
       margin-bottom: 18px;color:var(--td-text);
@@ -601,6 +606,20 @@
         </ul>
       </div>
 
+  </div>
+
+  <!-- BOARD -->
+  <div class="section" id="board" style="padding-top:0;">
+    <h2 class="section-title">Board</h2>
+    <ul class="board-list">
+      <li><span class="b-role">Chair</span><span class="b-name">Snorre Kj&aelig;r</span></li>
+      <li><span class="b-role">Vice chair</span><span class="b-name">Elmira Nouraei Nik</span></li>
+      <li><span class="b-role">Treasurer</span><span class="b-name">Ashfaq Abdali</span></li>
+      <li><span class="b-role">Board member</span><span class="b-name">Justo Gambula</span></li>
+      <li><span class="b-role">Board member</span><span class="b-name">AJ Drammeh</span></li>
+      <li><span class="b-role">Board member</span><span class="b-name">Hristina Valentinova</span></li>
+    </ul>
+    <p class="board-mail"><a href="mailto:bestyrelse@talatabasketball.dk" style="color:var(--td-link);font-weight:700;text-decoration:none;">bestyrelse@talatabasketball.dk</a></p>
   </div>
 
   <!-- PHILOSOPHY -->
