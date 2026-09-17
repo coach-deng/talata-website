@@ -5,7 +5,9 @@
  * see a single question. No login here, no card processor.
  *
  * PAYMENT RAIL — do not change without reading this.
- *   Merch pays to MobilePay **52697**, the club/forening rail.
+ *   Merch pays to MobilePay **119874**, the club's own merch number on a
+ *   separate club account (board 16 Sep 2026, number from Ashfaq 17 Sep 2026).
+ *   It was 52697, the membership rail, until 17 Sep 2026.
  *   NEVER 767375: that is Rhynoflow, a different CVR, and routing merch there
  *   would break the momsloven § 13 stk. 1 nr. 21 reasoning that keeps member
  *   deliveries outside erhvervsmæssig indkomst.
@@ -22,7 +24,7 @@
 (function (global) {
   'use strict';
 
-  var MOBILEPAY = '52697';
+  var MOBILEPAY = '119874';
   // Orders go to /orders, NOT /leads. Posting them to /leads made GAS send the
   // trial-lead auto-reply ("Deng replies within a day with your training time")
   // to someone who had just bought a hoodie. Caught Aug 10 2026 on a real order.
