@@ -495,13 +495,28 @@
     return 3;
   }
 
+  /* Who the feature panel is allowed to show (Deng, 21 Sep 2026). The export
+     carries the U9 and U13 Grand Prix rounds, and one of those led the page:
+     a U9 pool game is not what we ask a hall to turn up for. Cup ties qualify
+     whatever the age, everything else has to be Men, U19 or U15. The younger
+     games keep their rows in the list below. */
+  var FEATURE_TEAMS = { Men: 1, U19: 1, U15: 1 };
+  function featureEligible(g) {
+    return isCup(g) || !!FEATURE_TEAMS[g.team];
+  }
+
   function renderFeature(el, games) {
     /* Lead with a game somebody can actually turn up to. The very next fixture
        may have neither an agreed time nor a venue, and two TBCs at the top of
        the page is a poor first thing to see. It still appears in the list
        below, in date order, so nothing is hidden. */
+    /* Home, or a cup tie anywhere. The 1/8 at BK Amager is the game Deng most
+       wants a travelling crowd at, and a home-only rule pushed it off the top
+       of the page in favour of a league game five weeks out (21 Sep 2026). */
     var showable = games.filter(function (x) {
-      return x.home && x.state === 'confirmed' && x.venue;
+      return (x.home || isCup(x)) && x.state === 'confirmed' && x.venue
+          && !x.played && !x.annulled && daysAway(x) >= 0
+          && featureEligible(x);
     });
     /* 60 days keeps this honest. Without a window, a cup tie in March would sit
        at the top of the page all winter while the game next Friday scrolled by
@@ -512,9 +527,16 @@
       var ra = featureRank(a), rb = featureRank(b);
       return ra !== rb ? ra - rb : a.date.localeCompare(b.date);
     });
+    /* Fallbacks stay inside the same rules: an eligible game we have not played
+       yet, then any upcoming game at all. A finished game never leads. */
     var g = pool[0]
-         || games.filter(function (x) { return x.state === 'confirmed'; })[0]
-         || games[0];
+         || games.filter(function (x) {
+              return x.state === 'confirmed' && !x.played && !x.annulled
+                  && daysAway(x) >= 0 && featureEligible(x);
+            })[0]
+         || games.filter(function (x) {
+              return !x.played && !x.annulled && daysAway(x) >= 0;
+            })[0];
     if (!g) { el.innerHTML = ''; return; }
     el.innerHTML = detailHTML(g);
     startCountdowns(el);

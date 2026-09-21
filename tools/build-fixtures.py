@@ -61,7 +61,9 @@ CLUB = "Talata Basketball"
 # entered it). Never key off organizerteam. The tournament name is stable.
 TOURNAMENT_TO_TEAM = [
     ("U13 Drenge Mester", "U13"),
+    ("U13 Drenge Øst GP", "U13"),
     ("U15 Drenge Mester", "U15"),
+    ("U9 Drenge Øst GP", "U9"),
     ("HU19", "U19"),
     ("HU17", "U17"),
     ("Divisionspokal", "Men"),
@@ -87,6 +89,10 @@ COMPETITION_RULES = [
     (("hu19", "1. division"),        "U19 1st Division East"),
     (("u15", "mester"),              "U15 Championship East"),
     (("u13", "mester"),              "U13 Championship East"),
+    # Grand Prix rounds arrived with the 21 Sep 2026 export. Without these the
+    # rows published the raw Danish admin string and the team read "Talata".
+    (("u13", "gp"),                  "U13 Grand Prix East"),
+    (("u9", "gp"),                   "U9 Grand Prix East"),
 ]
 
 
@@ -227,7 +233,10 @@ def build(path: str) -> dict:
         # 'Mangler Tid' means missing TIME, not missing date. The date is already
         # set by the federation. 'Flytning igang' means a move is in progress, so
         # BOTH the date and the time can still change under us.
-        if status == "OK" and time:
+        # 'Afgjort' is a finished game. It was falling through to 'tbc', so the
+        # U19 and U15 games played last weekend came back onto the site wearing
+        # a "time TBC" badge with a final score next to them (21 Sep 2026).
+        if status in ("OK", "Afgjort") and time:
             state = "confirmed"
         elif status == "Flytning igang":
             state = "moving"
