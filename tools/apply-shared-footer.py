@@ -143,7 +143,7 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260922b">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260922c">'
 
 # Per page trial CTA, mirroring apply-shared-header.py's CTA map. A footer that
 # says "Book a free trial" must land on that page's own form, not scroll-to-top
@@ -186,6 +186,24 @@ def build_footer(rel: str, year: int = 2026) -> str:
         '      <div class="tf-col">\n        <h4>Contact</h4>%s\n      </div>' % contact
     )
 
+    # Pay is a column, not a strip across the bottom. It was a strip for about
+    # twenty minutes on 22 Sep 2026 and read as loose numbers with no owner.
+    # A footer column already carries "these facts belong together" without a
+    # sentence saying so, which is why the heading could come off. Values stack
+    # one per line: an IBAN is read in chunks, not scanned across a row.
+    pay = (
+        '\n        <span class="tf-pay-hero">MobilePay %s</span>'
+        '\n        <span>%s</span>'
+        '\n        <span>Reg. %s</span>'
+        '\n        <span>Konto %s</span>'
+        '\n        <span>IBAN %s</span>'
+        '\n        <span>BIC %s</span>'
+        '\n        <small>Always put the player&rsquo;s name as the reference.</small>'
+    ) % (PAY["mobilepay"], PAY["bank"], PAY["reg"], PAY["konto"], PAY["iban"], PAY["bic"])
+    cols.append(
+        '      <div class="tf-col tf-col-pay">\n        <h4>Pay</h4>%s\n      </div>' % pay
+    )
+
     social = "".join(
         '<a href="%s" target="_blank" rel="noopener">%s</a>' % (href, label)
         for href, label in SOCIAL
@@ -203,15 +221,6 @@ def build_footer(rel: str, year: int = 2026) -> str:
       </div>
 {cols}
     </div>
-    <div class="tf-pay">
-      <h4>Paying the club</h4>
-      <p class="tf-pay-rows">
-        <span><b>MobilePay {mp}</b></span>
-        <span>{bank} &middot; Reg. {reg} &middot; Konto {konto}</span>
-        <span>IBAN {iban} &middot; BIC {bic}</span>
-      </p>
-      <p class="tf-pay-note">Always put the player&rsquo;s name as the reference, otherwise we cannot match the payment. Camps booked through DGI are paid to DGI.</p>
-    </div>
     <div class="tf-base">
       <span>&copy; {year} Talata Basketball &middot; Copenhagen &Oslash;</span>
       <span>First session is always free. You need indoor shoes, nothing else.</span>
@@ -226,15 +235,11 @@ def build_footer(rel: str, year: int = 2026) -> str:
         cvr=CVR,
         social=social,
         cols="\n".join(cols),
-        # .tf-id gets its own track, then one per COLUMNS entry, then Contact.
+        # .tf-id gets its own track, then one per COLUMNS entry, then
+        # Contact. Pay gets its own wider track, appended in the CSS, because an
+        # IBAN does not fit a 1fr column at 1180px and wraps mid-number.
         tfcols=len(COLUMNS) + 1,
         year=year,
-        mp=PAY["mobilepay"],
-        bank=PAY["bank"],
-        reg=PAY["reg"],
-        konto=PAY["konto"],
-        iban=PAY["iban"],
-        bic=PAY["bic"],
     )
 
 
@@ -360,7 +365,7 @@ def process(path: Path, check: bool):
         src = src[:body_end] + footer + "\n\n" + src[body_end:]
         notes.append("injected")
 
-    if "/assets/talata-footer.css?v=20260922b" not in src:
+    if "/assets/talata-footer.css?v=20260922c" not in src:
         head = src.find("</head>")
         if head != -1:
             src = src[:head] + CSS_TAG + "\n" + src[head:]

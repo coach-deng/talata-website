@@ -33,8 +33,10 @@
   /* One track for .tf-id, then one per COLUMNS entry in
      tools/apply-shared-footer.py, then one for the Contact column it appends.
      The generator sets --tf-cols to len(COLUMNS) + 1, so adding a column to
-     that list cannot silently wrap the last one under the identity block. */
-  grid-template-columns: 1.6fr repeat(var(--tf-cols, 5), minmax(0, 1fr));
+     that list cannot silently wrap the last one under the identity block.
+     The trailing 1.35fr is the Pay column: an IBAN is 24 characters and wraps
+     mid-number in a 1fr track, which is the one place a wrap is unreadable. */
+  grid-template-columns: 1.6fr repeat(var(--tf-cols, 5), minmax(0, 1fr)) 1.35fr;
   gap: 34px 28px;
   margin-bottom: 34px;
 }
@@ -118,52 +120,30 @@
   color: #7DD3FC;
 }
 
-/* Payment details row, added 22 Sep 2026. Sits between the link grid and the
-   copyright line, so it reads as club admin rather than as a sales block.
-   Deliberately quiet: same muted tone as .tf-base, with only the MobilePay
-   number lifted, because that is the one a parent actually needs to copy.
-   The rows wrap on a phone instead of forcing a horizontal scroll, and the
-   IBAN gets tabular figures so a parent can read it digit by digit. */
-.tf-pay {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding-top: 20px;
-  margin-bottom: 22px;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.46);
-}
-
-.tf-pay h4 {
-  margin: 0 0 8px;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+/* Pay column, 22 Sep 2026. It started as a full-width strip under the links
+   and read as orphaned numbers, so it became a column like everything else.
+   Non-link text, so it needs its own line rhythm: .tf-col styles only anchors.
+   Tabular figures because a parent reads an account number digit by digit, and
+   overflow-wrap because the IBAN is longer than a 1fr track at 1180px. */
+.tf-col-pay span {
+  display: block;
+  padding: 5px 0;
   color: rgba(255, 255, 255, 0.62);
-}
-
-.tf-pay-rows {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 20px;
   font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
 }
 
-.tf-pay-rows b {
+.tf-col-pay .tf-pay-hero {
   color: #BAE6FD;
   font-weight: 600;
 }
 
-.tf-pay-note {
-  margin: 8px 0 0;
+.tf-col-pay small {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.74rem;
+  line-height: 1.45;
   color: rgba(255, 255, 255, 0.38);
-  max-width: 62ch;
-}
-
-@media (max-width: 560px) {
-  .tf-pay-rows {
-    flex-direction: column;
-    gap: 3px;
-  }
 }
 
 /* Tablet: identity takes the full row, links go two-up. minmax(0,...) so a long
@@ -178,6 +158,12 @@
   }
   .tf-id p {
     max-width: none;
+  }
+  /* Pay takes the full row below 900px. In a half-width track an IBAN is wider
+     than the column and overflow-wrap breaks it mid-group, which is the one
+     number on this site nobody can afford to misread. */
+  .tf-col-pay {
+    grid-column: 1 / -1;
   }
 }
 
