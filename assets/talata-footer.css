@@ -118,6 +118,54 @@
   color: #7DD3FC;
 }
 
+/* Payment details row, added 22 Sep 2026. Sits between the link grid and the
+   copyright line, so it reads as club admin rather than as a sales block.
+   Deliberately quiet: same muted tone as .tf-base, with only the MobilePay
+   number lifted, because that is the one a parent actually needs to copy.
+   The rows wrap on a phone instead of forcing a horizontal scroll, and the
+   IBAN gets tabular figures so a parent can read it digit by digit. */
+.tf-pay {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 20px;
+  margin-bottom: 22px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.46);
+}
+
+.tf-pay h4 {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.tf-pay-rows {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tf-pay-rows b {
+  color: #BAE6FD;
+  font-weight: 600;
+}
+
+.tf-pay-note {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.38);
+  max-width: 62ch;
+}
+
+@media (max-width: 560px) {
+  .tf-pay-rows {
+    flex-direction: column;
+    gap: 3px;
+  }
+}
+
 /* Tablet: identity takes the full row, links go two-up. minmax(0,...) so a long
    link can wrap instead of forcing the track wider. */
 @media (max-width: 900px) {

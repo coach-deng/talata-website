@@ -62,6 +62,34 @@ ADDRESS = (
 # footer is where a company number is supposed to live.
 CVR = "CVR 43599453"
 
+# Payment details in the footer, added 22 Sep 2026 (Deng's call, in chat).
+#
+# These are the FORENING's rails and only those. MobilePay 52697 is the club
+# number: memberships, Mini, most DK club fees. The Danske Bank account is the
+# club's own receiving account and programs.md marks it explicitly safe to give
+# to a paying family, which is why it can sit on a public page at all.
+#
+# 🔴 What must never appear here:
+#   767375  the Rhynoflow COMMERCIAL rail (Canada, Nida, DK Summer, the three
+#           holiday camps). A different legal entity. Putting it on the club
+#           footer mixes the forening's books with the company's.
+#   119874  merch only, and the shop drawer already writes its own checkout.
+#   767373  a typo for a real stranger's merchant. Never type it.
+#   Any Lunar IBAN. Those are Rhynoflow or personal, never the club.
+#
+# MobilePay leads and the bank is the fallback, per programs.md: bank transfer
+# is the answer for international families who cannot get MobilePay, not the
+# pitch. The reference line is load-bearing, the club has no automated matching
+# and an unreferenced transfer cannot be reconciled at all.
+PAY = {
+    "mobilepay": "52697",
+    "bank": "Danske Bank",
+    "reg": "9570",
+    "konto": "13883386",
+    "iban": "DK98 3000 0013 8833 86",
+    "bic": "DABADKKK",
+}
+
 # Every destination the nav does not have room for lives here. Nothing on this
 # site should be reachable only from the nav.
 # Cut to four short columns on 26 Aug 2026, following zalgiris.lt/en (Deng).
@@ -115,7 +143,7 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260921a">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260922b">'
 
 # Per page trial CTA, mirroring apply-shared-header.py's CTA map. A footer that
 # says "Book a free trial" must land on that page's own form, not scroll-to-top
@@ -175,6 +203,15 @@ def build_footer(rel: str, year: int = 2026) -> str:
       </div>
 {cols}
     </div>
+    <div class="tf-pay">
+      <h4>Paying the club</h4>
+      <p class="tf-pay-rows">
+        <span><b>MobilePay {mp}</b></span>
+        <span>{bank} &middot; Reg. {reg} &middot; Konto {konto}</span>
+        <span>IBAN {iban} &middot; BIC {bic}</span>
+      </p>
+      <p class="tf-pay-note">Always put the player&rsquo;s name as the reference, otherwise we cannot match the payment. Camps booked through DGI are paid to DGI.</p>
+    </div>
     <div class="tf-base">
       <span>&copy; {year} Talata Basketball &middot; Copenhagen &Oslash;</span>
       <span>First session is always free. You need indoor shoes, nothing else.</span>
@@ -192,6 +229,12 @@ def build_footer(rel: str, year: int = 2026) -> str:
         # .tf-id gets its own track, then one per COLUMNS entry, then Contact.
         tfcols=len(COLUMNS) + 1,
         year=year,
+        mp=PAY["mobilepay"],
+        bank=PAY["bank"],
+        reg=PAY["reg"],
+        konto=PAY["konto"],
+        iban=PAY["iban"],
+        bic=PAY["bic"],
     )
 
 
@@ -317,7 +360,7 @@ def process(path: Path, check: bool):
         src = src[:body_end] + footer + "\n\n" + src[body_end:]
         notes.append("injected")
 
-    if "/assets/talata-footer.css?v=20260921a" not in src:
+    if "/assets/talata-footer.css?v=20260922b" not in src:
         head = src.find("</head>")
         if head != -1:
             src = src[:head] + CSS_TAG + "\n" + src[head:]
