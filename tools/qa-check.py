@@ -22,6 +22,15 @@ Every check here was written after the bug it catches shipped, on 26 Aug 2026:
     ranges included.
   * Six "honestly" and one "The honest truth" heading.
 
+Added 23 Sep 2026, after Search Console flagged it:
+
+  * reviews/index.html's first JSON-LD block stopped parsing on 14 Sep (a
+    trailing comma left after a sameAs entry came out), and /camps shipped
+    three SportsEvents with no startDate, organizer or eventStatus on 9 Sep.
+    Both went past a green gate, because nothing here read JSON-LD. Now every
+    ld+json block on every page must parse, and every Event in it must carry
+    the fields Google flags when they are missing.
+
 WHAT IT DELIBERATELY DOES NOT DO
 --------------------------------
 It reads the CSS, it does not render the page, so it cannot see a colour that
@@ -34,6 +43,7 @@ tryouts" is ordinary reassurance, and rewriting every one of those is the same
 mistake as a drift detector that fires 29 times on party budgets.
 """
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -175,6 +185,40 @@ def check_dark(fails, warns):
                 fails.append((rel, "literal white background left", m.group(0)))
 
 
+LD = re.compile(r"<script[^>]*application/ld\+json[^>]*>(.*?)</script>", re.S | re.I)
+EVENT_TYPES = {"Event", "SportsEvent", "EducationEvent"}
+EVENT_NEEDS = ("name", "startDate", "location", "organizer", "eventStatus")
+
+
+def _events(node):
+    if isinstance(node, list):
+        for n in node:
+            yield from _events(n)
+    elif isinstance(node, dict):
+        t = node.get("@type")
+        if EVENT_TYPES & (set(t) if isinstance(t, list) else {t}):
+            yield node
+        for v in node.values():
+            yield from _events(v)
+
+
+def check_jsonld(fails, warns):
+    """Every ld+json block parses, and every Event in it has what Google needs."""
+    for path in pages():
+        src = path.read_text(encoding="utf-8")
+        rel = str(path.relative_to(ROOT))
+        for block in LD.findall(src):
+            try:
+                data = json.loads(block)
+            except ValueError as e:
+                fails.append((rel, "JSON-LD does not parse", str(e)))
+                continue
+            for ev in _events(data):
+                for need in EVENT_NEEDS:
+                    if not ev.get(need):
+                        fails.append((rel, "Event missing " + need, str(ev.get("name", "?"))[:60]))
+
+
 def check_structure(fails, warns):
     versions = set()
     for path in pages():
@@ -201,6 +245,7 @@ def main():
         check_dark(fails, warns)
     if not only or "structure" in only:
         check_structure(fails, warns)
+        check_jsonld(fails, warns)
 
     if not quiet:
         for label, colour, rows in (("FAIL", RED, fails), ("note", YEL, warns)):
