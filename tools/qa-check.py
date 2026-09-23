@@ -186,7 +186,14 @@ def check_dark(fails, warns):
 
 
 LD = re.compile(r"<script[^>]*application/ld\+json[^>]*>(.*?)</script>", re.S | re.I)
-EVENT_TYPES = {"Event", "SportsEvent", "EducationEvent"}
+# Any schema.org type whose name ends in "Event" (Event, SportsEvent,
+# EducationEvent, SocialEvent, MusicEvent, ...). A fixed set missed the
+# subtypes nobody had used yet, and they went unchecked.
+def _is_event_type(t):
+    return any(isinstance(x, str) and x.endswith("Event")
+               for x in (t if isinstance(t, list) else [t]))
+
+
 EVENT_NEEDS = ("name", "startDate", "location", "organizer", "eventStatus")
 
 
@@ -195,8 +202,7 @@ def _events(node):
         for n in node:
             yield from _events(n)
     elif isinstance(node, dict):
-        t = node.get("@type")
-        if EVENT_TYPES & (set(t) if isinstance(t, list) else {t}):
+        if _is_event_type(node.get("@type")):
             yield node
         for v in node.values():
             yield from _events(v)
@@ -214,9 +220,31 @@ def check_jsonld(fails, warns):
                 fails.append((rel, "JSON-LD does not parse", str(e)))
                 continue
             for ev in _events(data):
+                name = str(ev.get("name", "?"))[:60]
                 for need in EVENT_NEEDS:
                     if not ev.get(need):
-                        fails.append((rel, "Event missing " + need, str(ev.get("name", "?"))[:60]))
+                        fails.append((rel, "Event missing " + need, name))
+                for problem in _location_problems(ev.get("location")):
+                    fails.append((rel, "Event " + problem, name))
+
+
+def _location_problems(loc):
+    """Google requires location.address on every in-person Event. A Place with
+    only a name passes a truthiness test and still gets flagged, so look inside.
+    A VirtualLocation carries a url instead of an address."""
+    if not loc:
+        return []  # already reported as "Event missing location"
+    places = loc if isinstance(loc, list) else [loc]
+    out = []
+    for p in places:
+        if not isinstance(p, dict):
+            out.append("location is not a Place object")
+        elif p.get("@type") == "VirtualLocation":
+            if not p.get("url"):
+                out.append("VirtualLocation missing url")
+        elif not p.get("address"):
+            out.append("location missing address")
+    return out
 
 
 def check_structure(fails, warns):

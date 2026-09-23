@@ -24,8 +24,16 @@ Only games that are worth a machine's attention:
   - at a venue with a street address on record (VENUE_ADDRESS). Google
     requires location.address on every Event, and away halls have none on
     record, so away games stay on the page and off the schema (23 Sep 2026).
-    That also keeps organizer honest: every published game is a Talata home
-    game, so Talata really is the organizer.
+  - a Talata home game (g["home"]). Talata is named as organizer, so an away
+    game is never published, even one another club hosts at one of the halls
+    above. The venue check alone does not guarantee that.
+
+Each event's url is /games#g-<fixture id>. /games opens that game's detail
+panel from the hash (talata-fixtures.js, openFromHash), so the url lands on the
+game itself rather than the top of the schedule.
+
+Because past games drop off by the clock, --check reports "would update" after
+every game day. tools/ship.py regenerates the block when run without --check.
 
 Home games say isAccessibleForFree, because every Talata home game is free to
 watch.
@@ -38,6 +46,7 @@ import json
 import sys
 from datetime import datetime, timedelta
 from pathlib import Path
+from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -94,6 +103,9 @@ def publishable(g):
         # Google needs a street address on every Event and away halls have
         # none on record. Away games stay on the page and off the schema.
         and g["venue"] in VENUE_ADDRESS
+        # Talata is the organizer on every published event, so only home
+        # games qualify. An away game at one of our halls is the host's event.
+        and g.get("home")
         # A game that has started is never an upcoming event, score or not.
         and start_of(g) > datetime.now(TZ)
     )
@@ -102,6 +114,8 @@ def publishable(g):
 def event(g):
     """One SportsEvent. Talata is always one of the two sides."""
     start = start_of(g)
+    # The page opens this game's detail panel from #g-<id>.
+    url = "%s/games#g-%s" % (SITE, quote(str(g["id"]), safe=""))
 
     us = "Talata %s" % g["team"]
     them = g["opponent"]
@@ -136,19 +150,19 @@ def event(g):
             "name": "Talata Basketball",
             "url": SITE,
         },
-        "url": "%s/games" % SITE,
+        "url": url,
     }
     if g.get("home"):
         # Every Talata home game is free to watch. publishable() only lets
-        # games at our own halls through, but the guard stays: an away game is
-        # the other club's gate, so we say nothing about it.
+        # home games through, but the guard stays: an away game is the other
+        # club's gate, so we say nothing about it.
         ev["isAccessibleForFree"] = True
         ev["offers"] = {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "DKK",
             "availability": "https://schema.org/InStock",
-            "url": "%s/games" % SITE,
+            "url": url,
         }
     return ev
 

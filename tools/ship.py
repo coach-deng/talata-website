@@ -107,19 +107,44 @@ def main():
     #     elsewhere (data/fixtures.json, assets/talata-shop.js), so a stale
     #     block means the markup and the page disagree, which is worse for a
     #     crawler than having no markup at all.
-    stale = []
-    for label, tool in (("games", "tools/apply-games-schema.py"),
-                        ("shop", "tools/apply-shop-schema.py")):
-        ok, out, code = run(label, [tool, "--check"], expect_zero=False)
-        if "would update" in out:
-            stale.append((label, tool))
-    if stale:
-        blocking.append("schema block(s) stale: %s\n        Run: %s"
-                        % (", ".join(l for l, _ in stale),
-                           "; ".join("python3 " + t for _, t in stale)))
-        print("  schema       ✗  %s stale" % ", ".join(l for l, _ in stale))
+    #     The games block goes stale on its own after every game day: a game
+    #     that has kicked off drops out of the schema by the clock. So, like the
+    #     asset stamp, apply mode regenerates and --check only reports.
+    SCHEMA = (("games", "tools/apply-games-schema.py", "games.html"),
+              ("shop", "tools/apply-shop-schema.py", "shop.html"))
+    if args.check:
+        stale = []
+        for label, tool, page in SCHEMA:
+            ok, out, code = run(label, [tool, "--check"], expect_zero=False)
+            if "would update" in out:
+                stale.append((label, tool))
+        if stale:
+            why = ""
+            if any(l == "games" for l, _ in stale):
+                why = ("\n        (games: usually a game has kicked off since the last run and"
+                       " drops off the schema. Expected after a game day.)")
+            blocking.append("schema block(s) stale: %s\n        Run: python3 tools/ship.py"
+                            " (regenerates them), or %s%s"
+                            % (", ".join(l for l, _ in stale),
+                               "; ".join("python3 " + t for _, t in stale), why))
+            print("  schema       ✗  %s stale" % ", ".join(l for l, _ in stale))
+        else:
+            print("  schema       ok")
     else:
-        print("  schema       ok")
+        regenerated, failed = [], False
+        for label, tool, page in SCHEMA:
+            ok, out, code = run(label, [tool], expect_zero=False)
+            if code != 0:
+                blocking.append("%s failed:\n        %s" % (tool, out.replace("\n", "\n        ")))
+                print("  schema       ✗  %s generator failed" % label)
+                failed = True
+            elif " updated" in out:
+                regenerated.append(page)
+        if regenerated:
+            print("  schema       ok  REGENERATED %s, include it in the commit"
+                  % ", ".join(regenerated))
+        elif not failed:
+            print("  schema       ok")
 
     # 3. voice, contrast, structure
     ok, out, code = run("qa", ["tools/qa-check.py"], expect_zero=False)
