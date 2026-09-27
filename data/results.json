@@ -175,5 +175,30 @@
       "fg": 31,
       "pf": null
     }
+  },
+  "40099305": {
+    "us": 79,
+    "them": 93,
+    "source": "mvpcompetition.com box score, read 24 Sep 2026",
+    "team": "Men",
+    "note": "Out of the Divisionspokal at the round of 16. BK Amager play two divisions above us."
+  },
+  "40098747": {
+    "us": 27,
+    "them": 132,
+    "source": "mvpcompetition.com, kampnr 40098747, read 25 Sep 2026",
+    "team": "U15"
+  },
+  "40098291": {
+    "us": 44,
+    "them": 87,
+    "source": "mvpcompetition.com club page 1028, Seneste resultater, read as text 27 Sep 2026",
+    "team": "U19"
+  },
+  "40097910": {
+    "us": 74,
+    "them": 66,
+    "source": "mvpcompetition.com kamp 40097910, checked 27 Sep 2026",
+    "team": "U13"
   }
 }

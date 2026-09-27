@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-21T12:12:29Z",
+  "generated": "2026-09-27T08:55:52Z",
   "source": "kampe_2026-09-21.csv",
   "note": "League and cup fixtures from the DBBF/MVP export. This is the federation record and it is what the site publishes. Friendlies and tournaments are added live from Holdsport by talata-api /fixtures. Where the two disagree, DBBF wins.",
   "counts": {
@@ -123,9 +123,10 @@
       "court": "Stor bane",
       "homeCourt": false,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 79,
+      "them": 93,
+      "note": "Out of the Divisionspokal at the round of 16. BK Amager play two divisions above us.",
       "source": "dbbf"
     },
     {
@@ -140,9 +141,9 @@
       "court": "Hal C1",
       "homeCourt": false,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 27,
+      "them": 132,
       "source": "dbbf"
     },
     {
@@ -157,9 +158,9 @@
       "court": "Hal 2",
       "homeCourt": false,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 44,
+      "them": 87,
       "source": "dbbf"
     },
     {
@@ -174,9 +175,9 @@
       "court": "Hal B Bane 3",
       "homeCourt": false,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 74,
+      "them": 66,
       "source": "dbbf"
     },
     {
