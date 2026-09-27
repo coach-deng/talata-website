@@ -44,6 +44,7 @@ DELIBERATE_ORPHANS = {
     "ish-primary-school.html":       "HIDDEN since 6 Aug 2026, 302s to /school-partnerships while Ryparken is unconfirmed",
     "index.html":                    "the homepage is /, nothing links to /index",
     "404.html":                      "Cloudflare Pages serves it for unmatched routes. Linking to it, or listing it in the sitemap, would be the bug",
+    "program.html":                  "free 4-week home program, shared by direct link (Instagram, messages). Kept out of the nav on purpose (Deng, 27 Sep 2026)",
 }
 
 SKIP_DIR_PARTS = ("/junk/", "/_unused/", "/Photos-", "/Basketball 2013",
