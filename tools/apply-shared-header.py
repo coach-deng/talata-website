@@ -146,9 +146,9 @@ FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.wof
                 'type="font/woff2" crossorigin>')
 
 HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260922c">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="theme-color" content="#0B0F17">"""
 
 DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260922c">'
