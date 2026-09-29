@@ -145,15 +145,29 @@ CARET = (
 FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" '
                 'type="font/woff2" crossorigin>')
 
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260922c">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20260929a">
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="theme-color" content="#0B0F17">"""
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260922c">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20260929a">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260922c" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20260929a" defer></script>'
+
+# Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
+# test asks "is THIS stamp on the page", and answers no the moment a page's
+# stamp and the generator's differ by any route other than tools/bump-assets.py:
+# a hand-edit, a half-finished bump, a page pasted from an older sibling, a
+# merge that kept both sides. The tag is then injected a SECOND time and the
+# page ships two copies of the same stylesheet. Path presence asks the question
+# the block actually cares about, which is whether the asset is linked at all.
+# The stamp stays owned by tools/bump-assets.py and tools/assets.lock, which
+# rewrite every page on the next bump, and qa-check.py fails while any two
+# stamps disagree. The dark stylesheet and the font preload below are already
+# immune by a different route: they strip any previous copy before placing one.
+NAV_CSS_LINK = re.compile(r'<link[^>]+href="/assets/talata-nav\.css(?:\?[^"]*)?"')
+NAV_JS_TAG = re.compile(r'<script[^>]+src="/assets/talata-nav\.js(?:\?[^"]*)?"')
 
 
 def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
@@ -319,7 +333,7 @@ def process(path: Path, check: bool):
         src = src[: body.end()] + "\n\n" + header + "\n" + src[body.end():]
         notes.append("injected")
 
-    if "/assets/talata-nav.css?v=20260922c" not in src:
+    if not NAV_CSS_LINK.search(src):
         head = re.search(r"</head>", src)
         if head:
             src = src[: head.start()] + HEAD_TAGS + "\n" + src[head.start():]
@@ -357,7 +371,7 @@ def process(path: Path, check: bool):
         src = src[: anchor.start()] + DARK_TAG + "\n" + src[anchor.start():]
         notes.append("dark css")
 
-    if "/assets/talata-nav.js?v=20260922c" not in src:
+    if not NAV_JS_TAG.search(src):
         body_end = src.rfind("</body>")
         if body_end != -1:
             src = src[:body_end] + SCRIPT_TAG + "\n" + src[body_end:]

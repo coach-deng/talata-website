@@ -143,7 +143,20 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260922c">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20260929a">'
+
+# Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
+# test asks "is THIS stamp on the page", and answers no the moment a page's
+# stamp and the generator's differ by any route other than tools/bump-assets.py:
+# a hand-edit, a half-finished bump, a page pasted from an older sibling, a
+# merge that kept both sides. The tag is then injected a SECOND time and the
+# page ships two copies of the same stylesheet. Path presence asks the question
+# the block actually cares about, which is whether the asset is linked at all.
+# The stamp stays owned by tools/bump-assets.py and tools/assets.lock, which
+# rewrite every page on the next bump, and qa-check.py fails while any two
+# stamps disagree. The generated footer block itself is immune by a different
+# route: it is stripped and rebuilt on every run.
+CSS_LINK = re.compile(r'<link[^>]+href="/assets/talata-footer\.css(?:\?[^"]*)?"')
 
 # Per page trial CTA, mirroring apply-shared-header.py's CTA map. A footer that
 # says "Book a free trial" must land on that page's own form, not scroll-to-top
@@ -365,7 +378,7 @@ def process(path: Path, check: bool):
         src = src[:body_end] + footer + "\n\n" + src[body_end:]
         notes.append("injected")
 
-    if "/assets/talata-footer.css?v=20260922c" not in src:
+    if not CSS_LINK.search(src):
         head = src.find("</head>")
         if head != -1:
             src = src[:head] + CSS_TAG + "\n" + src[head:]

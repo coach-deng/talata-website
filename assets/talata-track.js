@@ -19,6 +19,34 @@
 (function () {
   'use strict';
 
+  /* ---------- where the visit came from ---------- */
+  // talata-signup.js reads this when the form is sent, but it only loads on
+  // pages with a form. A ManyChat DM lands on /program or /mindset first, so
+  // the landing has to be saved here, on every page, or it is lost by the time
+  // the family reaches a signup. Same key and shape as talata-signup.js.
+  // ?src=ig-program (older ManyChat links) counts as utm_source.
+  try {
+    if (!sessionStorage.getItem('talata_attr')) {
+      var q = new URLSearchParams(location.search);
+      var utm = q.get('utm_source') || q.get('src') || '';
+      if (utm || q.get('gclid') || q.get('gbraid') || q.get('wbraid')) {
+        var ch = '';
+        if (q.get('gclid') || q.get('gbraid') || q.get('wbraid')) ch = 'google-ads';
+        else if ((q.get('utm_medium') || '').match(/cpc|ppc|paid/i)) ch = utm + '-ads';
+        else ch = utm;
+        sessionStorage.setItem('talata_attr', JSON.stringify({
+          channel: ch,
+          gclid: q.get('gclid') || '',
+          utm_source: utm,
+          utm_medium: q.get('utm_medium') || '',
+          utm_campaign: q.get('utm_campaign') || '',
+          landing: location.pathname,
+          referrer: (document.referrer || '').slice(0, 200)
+        }));
+      }
+    }
+  } catch (err) { /* private mode: attribution is a nice to have */ }
+
   if (typeof window.gtag !== 'function') return;
 
   var HOST = window.location.hostname;

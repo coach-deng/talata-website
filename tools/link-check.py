@@ -45,6 +45,7 @@ DELIBERATE_ORPHANS = {
     "index.html":                    "the homepage is /, nothing links to /index",
     "404.html":                      "Cloudflare Pages serves it for unmatched routes. Linking to it, or listing it in the sitemap, would be the bug",
     "program.html":                  "free 4-week home program, shared by direct link (Instagram, messages). Kept out of the nav on purpose (Deng, 27 Sep 2026)",
+    "free.html":                     "Instagram link in bio: free guides plus the key links. Shared by direct link, kept out of the nav (Deng, 29 Sep 2026)",
 }
 
 SKIP_DIR_PARTS = ("/junk/", "/_unused/", "/Photos-", "/Basketball 2013",

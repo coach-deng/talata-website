@@ -49,7 +49,7 @@
     var channel = '';
     if (p.get('gclid') || p.get('gbraid') || p.get('wbraid')) channel = 'google-ads';
     else if ((p.get('utm_medium') || '').match(/cpc|ppc|paid/i)) channel = (p.get('utm_source') || 'paid') + '-ads';
-    else if (p.get('utm_source')) channel = p.get('utm_source');
+    else if (p.get('utm_source') || p.get('src')) channel = p.get('utm_source') || p.get('src');
     else if (/google\./i.test(ref)) channel = 'google-organic';
     else if (/bing\.|duckduckgo\.|ecosia\./i.test(ref)) channel = 'search-other';
     else if (/instagram\.|facebook\.|l\.instagram/i.test(ref)) channel = 'instagram';
@@ -57,7 +57,7 @@
     var attr = {
       channel: channel,
       gclid: p.get('gclid') || '',
-      utm_source: p.get('utm_source') || '',
+      utm_source: p.get('utm_source') || p.get('src') || '',
       utm_medium: p.get('utm_medium') || '',
       utm_campaign: p.get('utm_campaign') || '',
       landing: location.pathname,
