@@ -64,6 +64,8 @@ TOURNAMENT_TO_TEAM = [
     ("U13 Drenge Øst GP", "U13"),
     ("U15 Drenge Mester", "U15"),
     ("U9 Drenge Øst GP", "U9"),
+    ("U13 Drenge Øst Pokal", "U13"),
+    ("U15 Drenge Øst Pokal", "U15"),
     ("HU19", "U19"),
     ("HU17", "U17"),
     ("Divisionspokal", "Men"),
@@ -93,10 +95,17 @@ COMPETITION_RULES = [
     # rows published the raw Danish admin string and the team read "Talata".
     (("u13", "gp"),                  "U13 Grand Prix East"),
     (("u9", "gp"),                   "U9 Grand Prix East"),
+    # The youth cup ties arrived with the 30 Sep 2026 export, same failure again.
+    (("u13", "pokal"),               "U13 Cup East"),
+    (("u15", "pokal"),               "U15 Cup East"),
 ]
 
 
 UNMAPPED_COMPETITIONS = set()
+
+# Games a results.json entry holds off the site ("hold": true). Named on every
+# run, like the typed rows, so a held game is never forgotten.
+HELD_GAMES = []
 
 
 def competition_label(raw: str) -> str:
@@ -243,6 +252,13 @@ def build(path: str) -> dict:
         else:
             state = "tbc"
 
+        # Deng, 30 Sep 2026: the U15 cup loss (31 to 123) stays off the site.
+        # Dropping the row here keeps it off /games, the ticker, the posters
+        # and the dash in one place. The score stays in the vault record.
+        if (ov or {}).get("hold") is True:
+            HELD_GAMES.append(f"{clean(r.get('number'))} {clean(r.get('date'))} {team_for(tournament)} vs {opponent}")
+            continue
+
         games.append(
             {
                 "id": clean(r.get("number")),
@@ -275,7 +291,7 @@ def build(path: str) -> dict:
     exported = {g["id"] for g in games}
     for gid, ov in RESULTS.items():
         fx = ov.get("fixture")
-        if not isinstance(fx, dict) or gid in exported:
+        if not isinstance(fx, dict) or gid in exported or ov.get("hold") is True:
             continue
         venue = VENUE_CANON.get(clean(fx.get("venue")), clean(fx.get("venue")))
         us, them = str(ov.get("us", "")), str(ov.get("them", ""))
@@ -391,6 +407,9 @@ def main() -> None:
     if typed:
         print(f"Typed    {len(typed)} game(s) from data/results.json, not in the export: "
               + ", ".join(f"{g['id']} {g['date']} {g['team']} vs {g['opponent']}" for g in typed))
+
+    if HELD_GAMES:
+        print(f"Held     {len(HELD_GAMES)} game(s) off the site (results.json hold): " + ", ".join(HELD_GAMES))
 
     if skipped:
         # A full-federation export carries every club's games, over 2,300 rows.

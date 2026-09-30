@@ -1,5 +1,5 @@
 {
-  "note": "Scores typed by hand before the DBBF export carries them, keyed by DBBF game id, always as us/them. build-fixtures.py reads us/them and marks the game played; the export wins as soon as it has its own score. A box entry is the Men's box score for the details panel on /games (Deng, 8 Sep 2026: Men only, full box score; youth games carry a score and nothing else). Columns: num, name, min, pts, ft, fg (made field goals), pf. A null cell prints blank, and a num or min column with no value in any row is left off the table. An under 18 gets a first name only, a null min and a null pf, and totals.pf stays null on any game with an under 18 so the sum cannot give his fouls away. Added 15 Sep 2026 for the Hørsholm replay: annulled true keeps the score and box on the site, tagged Annulled, never shown as a win and never picked as the next game (Deng: keep both stats). note is public text for the details panel. ot true prints OT beside the score. fixture holds date, time, team, opponent, home, competition, venue and court for a game the export does not have yet; build-fixtures.py adds it as a row with source results, and the export row wins the day it carries the id.",
+  "note": "Scores typed by hand before the DBBF export carries them, keyed by DBBF game id, always as us/them. build-fixtures.py reads us/them and marks the game played; the export wins as soon as it has its own score. A box entry is the Men's box score for the details panel on /games (Deng, 8 Sep 2026: Men only, full box score; youth games carry a score and nothing else). Columns: num, name, min, pts, ft, fg (made field goals), pf. A null cell prints blank, and a num or min column with no value in any row is left off the table. An under 18 gets a first name only, a null min and a null pf, and totals.pf stays null on any game with an under 18 so the sum cannot give his fouls away. Added 15 Sep 2026 for the Hørsholm replay: annulled true keeps the score and box on the site, tagged Annulled, never shown as a win and never picked as the next game (Deng: keep both stats). note is public text for the details panel. ot true prints OT beside the score. fixture holds date, time, team, opponent, home, competition, venue and court for a game the export does not have yet; build-fixtures.py adds it as a row with source results, and the export row wins the day it carries the id. hold true keeps a game off the site: build-fixtures.py drops its row from fixtures.json and names it on every run (Deng, 30 Sep 2026, the U15 cup loss). Take the entry out to publish it.",
   "40099294": {
     "us": 78,
     "them": 67,
@@ -200,5 +200,10 @@
     "them": 66,
     "source": "mvpcompetition.com kamp 40097910, checked 27 Sep 2026",
     "team": "U13"
+  },
+  "40104208": {
+    "hold": true,
+    "why": "Deng 30 Sep 2026: the U15 cup loss to Værløse stays off the site. The score is in the vault record.",
+    "team": "U15"
   }
 }
