@@ -478,7 +478,7 @@
       var extra = [];
       if (data.wants_team) extra.push('Looking for: ' + data.wants_team);
       // v3.0 (Deng, 1 Oct 2026): the camp lunch add-on, paid with the camp in his follow-up.
-      if (data.lunch === 'yes') extra.push('LUNCH ADD-ON: yes, 350 kr');
+      if (data.lunch === 'yes') extra.push('LUNCH ADD-ON: yes, 200 kr');
       delete data.lunch;
       if (extra.length) {
         data.message = (data.message ? data.message + ' | ' : '') + extra.join(' | ');
