@@ -205,5 +205,11 @@
     "hold": true,
     "why": "Deng 30 Sep 2026: the U15 cup loss to Værløse stays off the site. The score is in the vault record.",
     "team": "U15"
+  },
+  "40104236": {
+    "us": 95,
+    "them": 53,
+    "team": "U13",
+    "source": "Talata Dash Score in, 1 Oct 2026"
   }
 }

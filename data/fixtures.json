@@ -141,9 +141,9 @@
       "court": "Hallen",
       "homeCourt": true,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 95,
+      "them": 53,
       "source": "dbbf"
     },
     {
