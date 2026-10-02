@@ -55,3 +55,6 @@ images/_unused/**
 !images/partners/*.png
 !images/partners/*.svg
 !images/partners/*.webp
+
+# build output (tools/build-dist.py), deployed by CI, never committed
+dist/
