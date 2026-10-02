@@ -76,14 +76,14 @@ html.light table { box-shadow: 0 1px 2px rgba(11, 31, 58, 0.06); }
    names the section ("on") when one is missing. */
 html.light :is(
   .tn-bar, .tn-util, .tn-drawer, footer.tf,
-  /* index */ .hero, .kit-band, .ins-band, .story, .camps, .wcard, .kfeat .shot, .stcard .shot,
+  /* index */ .hero, .kit-band, .ins-band, .story, section.camps, .wcard, .kfeat .shot, .stcard .shot,
   /* camps */ .h-spring, .h-canada, .h-lithuania, .h-nida, .h-dk, .h-autumn, .h-winter,
   /* games */ .g-hero, .g-friday,
   /* the navy cards on the programme pages */ .tryout-box, .trial-box, .proof-quote, .cost-card,
-  #apply .cta-box, .cup-card, .gs-card,
+  .cup-card, .gs-card,
   /* camps/*: the closing call to action */ div.cta,
-  /* help: the Insider box */ div.sub,
-  /* blog posts: the closing box */ .cta-box.is-dark,
+  /* any box tagged in its page: CTA boxes, the help Insider box */ .is-dark,
+  /* gallery, basketball-in-copenhagen, shop */ .cta-band, header.head, section.nk, .drawer header,
   /* reviews, philosophy (Tailwind) */ body.tw-dark :is(.bg-talata-navy, .bg-talata-black,
   .bg-talata-blue, .hero-bg, .image-quote, .bg-gradient-to-br)
 ) {

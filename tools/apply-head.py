@@ -51,6 +51,11 @@ LIGHT_OK = {
     "blog.html",
     # batch 4: Tailwind pages. talata-tw-dark.css stands down under html.light
     "reviews/index.html", "philosophy/index.html",
+    # batch 5: the rest
+    "404.html", "basketball-in-copenhagen.html", "coaches.html", "free.html",
+    "gallery.html", "guide.html", "ish-high-school.html", "ish-primary-school.html",
+    "partners.html", "pathway.html", "placement.html", "privacy.html", "program.html",
+    "school-partnerships.html", "shop.html",
 }
 # Every post shares one template, so a new post joins light mode on its own.
 # Run the contrast runner over blog/ when that template changes.
