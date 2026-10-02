@@ -141,6 +141,25 @@ def check_voice(fails, warns):
                 fails.append((rel, "em or en dash in title or meta", m.group(0)[:70]))
 
 
+# Danish words in visible English copy (Deng: English on every page, Danish only in
+# the SEO meta). Body only, so <title> and meta stay Danish. help/holdsport.html quotes
+# Holdsport's own Danish buttons on purpose. Added 2 Oct 2026 after "Academy Sommercamp".
+DANISH = re.compile(r"\b(sommercamp|træning(?:en|er)?|prøvetræning|tilmelding(?:en)?|tilmeld|forældre|"
+                    r"efterårsferie(?:n)?|lørdag|kontingent)\b", re.I)
+DANISH_OK = {"help/holdsport.html"}
+
+
+def check_danish(fails, warns):
+    for path in pages():
+        rel = str(path.relative_to(ROOT))
+        if rel in DANISH_OK:
+            continue
+        src = path.read_text(encoding="utf-8")
+        body = re.sub(r"<head\b.*?</head>", "", src, flags=re.S | re.I)
+        for m in DANISH.finditer(visible(body)):
+            fails.append((rel, "Danish word in visible copy", m.group(0)))
+
+
 def check_dark(fails, warns):
     for path in pages():
         src = path.read_text(encoding="utf-8")
@@ -269,6 +288,7 @@ def main():
 
     if not only or "voice" in only:
         check_voice(fails, warns)
+        check_danish(fails, warns)
     if not only or "dark" in only:
         check_dark(fails, warns)
     if not only or "structure" in only:

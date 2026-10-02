@@ -88,7 +88,7 @@ WATCH_PLACEHOLDER = "__WATCH__"
 MENU = {
     "Programs": [
         ("/mini", "Mini + Junior", "ages 5 to 12"),
-        ("/saturday", "Saturdays", "ages 5 to 12, from autumn"),
+        ("/saturday", "Saturdays", "ages 5 to 12, from 3 Oct"),
         ("/academy", "Academy", "ages 13 to 19"),
         ("/sparks", "Sparks", "girls 6 to 14"),
         ("/men", "Adults", "Men 3. Division + fitness"),
