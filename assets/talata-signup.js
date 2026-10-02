@@ -478,7 +478,13 @@
       var extra = [];
       if (data.wants_team) extra.push('Looking for: ' + data.wants_team);
       // v3.0 (Deng, 1 Oct 2026): the camp lunch add-on, paid with the camp in his follow-up.
-      if (data.lunch) extra.push('LUNCH ADD-ON: ' + data.lunch);
+      // The price comes from the tick box's own label, which tools/apply-facts.py
+      // fills from data/facts.json, so the lead says what the page said.
+      if (data.lunch) {
+        var lunchLabel = form.querySelector('label[for="f-lunch"]');
+        var lunchText = lunchLabel ? lunchLabel.textContent.replace(/^\s*Add lunch:\s*/, '').replace(/\s+/g, ' ').trim() : '';
+        extra.push('LUNCH ADD-ON: ' + (lunchText || 'yes'));
+      }
       delete data.lunch;
       if (extra.length) {
         data.message = (data.message ? data.message + ' | ' : '') + extra.join(' | ');

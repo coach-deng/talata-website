@@ -146,6 +146,59 @@ def main():
         elif not failed:
             print("  schema       ok")
 
+    # 2c. facts: times, prices and halls (Website v3, 2 Oct 2026). One source, the
+    #     vault, through tools/build-facts.py into data/facts.json and the Worker's
+    #     site-facts.generated.ts, then tools/apply-facts.py into every marker.
+    #     Stale facts BLOCK in both modes: a push must carry the regenerated files,
+    #     so apply mode regenerates and still stops, and you commit and push again.
+    facts_stale = []
+    ok, out, code = run("facts", ["tools/build-facts.py", "--check"], expect_zero=False)
+    if code != 0:
+        facts_stale.append("data/facts.json is behind the vault")
+        if not args.check:
+            run("facts", ["tools/build-facts.py"], expect_zero=False)
+    ok, out, code = run("facts", ["tools/apply-facts.py", "--check"], expect_zero=False)
+    if code != 0:
+        facts_stale.append("page markers are behind data/facts.json")
+        if not args.check:
+            run("facts", ["tools/apply-facts.py"], expect_zero=False)
+    if facts_stale:
+        blocking.append("facts stale: %s.\n        %s" % ("; ".join(facts_stale),
+                        "Regenerated now. Commit the changed files and push again." if not args.check
+                        else "Run: python3 tools/build-facts.py && python3 tools/apply-facts.py"))
+        print("  facts        ✗  %s" % "; ".join(facts_stale))
+    else:
+        print("  facts        ok")
+    ok, out, code = run("orphans", ["tools/apply-facts.py", "--orphans"], expect_zero=False)
+    if code != 0:
+        blocking.append("a page gained hand-typed times or prices:\n        " + out.replace("\n", "\n        "))
+        print("  hand-typed   ✗  more times or prices outside markers")
+    else:
+        print("  hand-typed   ok  " + out.split("orphans ok, ")[-1])
+    # The trial email must run on the same facts. /health reports the sha it was
+    # deployed with; a site push ahead of the Worker would show one time on the
+    # page and another in the email.
+    try:
+        import json as _json
+        import urllib.request as _u
+        site_sha = _json.loads(open(os.path.join(str(ROOT), "data", "facts.json"), encoding="utf-8").read()).get("sha")
+        with _u.urlopen(_u.Request("https://talata-api.coach-258.workers.dev/health",
+                                  headers={"User-Agent": "talata-ship/1.0"}), timeout=8) as r:
+            live = (_json.loads(r.read().decode()).get("gate") or {}).get("site_facts_sha")
+        if live == site_sha:
+            print("  worker       ok  trial email on the same facts")
+        elif os.environ.get("TALATA_WORKER_LAG_OK") == "1":
+            warned.append("the Worker runs facts %s, the site %s (TALATA_WORKER_LAG_OK=1)" % (str(live)[:12], str(site_sha)[:12]))
+            print("  worker       ⚠  behind, allowed by TALATA_WORKER_LAG_OK")
+        else:
+            blocking.append("the trial email runs on other facts than the site (Worker %s, site %s).\n"
+                            "        Run: cd \"/Users/dengawak/Created Apps/Talata/Talata-API\" && npm run deploy\n"
+                            "        (or push anyway with TALATA_WORKER_LAG_OK=1)" % (str(live)[:12], str(site_sha)[:12]))
+            print("  worker       ✗  Worker facts behind the site")
+    except Exception as e:  # noqa: BLE001, offline is a warning, never a block
+        warned.append("could not read the Worker's /health (%s)" % type(e).__name__)
+        print("  worker       ⚠  /health not reachable")
+
     # 3. voice, contrast, structure
     ok, out, code = run("qa", ["tools/qa-check.py"], expect_zero=False)
     fail = re.search(r"(\d+) problem", out)

@@ -1,0 +1,913 @@
+{
+  "built_for": "2026-10-02",
+  "camps": {
+    "academy": {
+      "age_max": 16,
+      "age_min": 12,
+      "days": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "eb_deadline": "2026-09-30",
+      "games_from": "12:30",
+      "lunch_addon": 350,
+      "month": 10,
+      "name": "Academy U15 Camp",
+      "places": 25,
+      "price_early": 1395,
+      "price_early_until": "2026-09-30",
+      "price_now": 1595,
+      "price_standard": 1595,
+      "thursday_start": "10:00",
+      "time_end": "14:30",
+      "time_start": "09:30",
+      "when": "Mon 12 - Thu 15 Oct (4 days)"
+    },
+    "pathway": {
+      "age_max": 17,
+      "age_min": 13,
+      "days": [
+        28,
+        29,
+        30
+      ],
+      "eb_deadline": "2026-11-01",
+      "month": 12,
+      "name": "International Academy and College Pathway Camp",
+      "places": 16,
+      "price_early": 1295,
+      "price_early_until": "2026-11-01",
+      "price_now": 1295,
+      "price_standard": 1495,
+      "time_end": "14:00",
+      "time_start": "09:00",
+      "when": "Mon 28 - Wed 30 Dec"
+    },
+    "starter": {
+      "age_max": 11,
+      "age_min": 5,
+      "days": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "eb_deadline": "2026-09-30",
+      "games_from": "12:30",
+      "lunch_addon": 250,
+      "month": 10,
+      "name": "Academy U12 Camp",
+      "places": 35,
+      "price_early": 1195,
+      "price_early_until": "2026-09-30",
+      "price_now": 1395,
+      "price_standard": 1395,
+      "thursday_start": "12:30",
+      "time_end": "14:30",
+      "time_start": "09:30",
+      "when": "Mon 12 - Thu 15 Oct (4 days)"
+    }
+  },
+  "facts": {
+    "camp.academy.age_max": 16,
+    "camp.academy.age_min": 12,
+    "camp.academy.days": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "camp.academy.eb_deadline": "2026-09-30",
+    "camp.academy.games_from": "12:30",
+    "camp.academy.lunch_addon": 350,
+    "camp.academy.month": 10,
+    "camp.academy.name": "Academy U15 Camp",
+    "camp.academy.places": 25,
+    "camp.academy.price_early": 1395,
+    "camp.academy.price_standard": 1595,
+    "camp.academy.thursday_start": "10:00",
+    "camp.academy.time_end": "14:30",
+    "camp.academy.time_start": "09:30",
+    "camp.academy.when": "Mon 12 - Thu 15 Oct (4 days)",
+    "camp.pathway.age_max": 17,
+    "camp.pathway.age_min": 13,
+    "camp.pathway.days": [
+      28,
+      29,
+      30
+    ],
+    "camp.pathway.eb_deadline": "2026-11-01",
+    "camp.pathway.month": 12,
+    "camp.pathway.name": "International Academy and College Pathway Camp",
+    "camp.pathway.places": 16,
+    "camp.pathway.price_early": 1295,
+    "camp.pathway.price_standard": 1495,
+    "camp.pathway.time_end": "14:00",
+    "camp.pathway.time_start": "09:00",
+    "camp.pathway.when": "Mon 28 - Wed 30 Dec",
+    "camp.starter.age_max": 11,
+    "camp.starter.age_min": 5,
+    "camp.starter.days": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "camp.starter.eb_deadline": "2026-09-30",
+    "camp.starter.games_from": "12:30",
+    "camp.starter.lunch_addon": 250,
+    "camp.starter.month": 10,
+    "camp.starter.name": "Academy U12 Camp",
+    "camp.starter.places": 35,
+    "camp.starter.price_early": 1195,
+    "camp.starter.price_standard": 1395,
+    "camp.starter.thursday_start": "12:30",
+    "camp.starter.time_end": "14:30",
+    "camp.starter.time_start": "09:30",
+    "camp.starter.when": "Mon 12 - Thu 15 Oct (4 days)",
+    "program.academy.age_max": 19,
+    "program.academy.age_min": 13,
+    "program.academy.fee": 3300,
+    "program.academy.name": "Talata Academy U13 / U15 / U17 / U19",
+    "program.academy.time": "17:00-19:00",
+    "program.academy.venue": "Svanemøllehallen",
+    "program.academy_u13_u15.days": "Mon",
+    "program.academy_u13_u15.name": "Academy U13/U15",
+    "program.academy_u13_u15.time": "17:00-19:00",
+    "program.academy_u13_u15.time_end": "19:00",
+    "program.academy_u13_u15.time_start": "17:00",
+    "program.academy_u13_u15.venue": "Svanemøllehallen",
+    "program.academy_u17_u19.days": "Mon",
+    "program.academy_u17_u19.name": "Academy U17/U19",
+    "program.academy_u17_u19.time": "18:00-20:00",
+    "program.academy_u17_u19.time_end": "20:00",
+    "program.academy_u17_u19.time_start": "18:00",
+    "program.academy_u17_u19.venue": "Svanemøllehallen",
+    "program.fitness_men.age_min": 18,
+    "program.fitness_men.fee": 2000,
+    "program.fitness_men.name": "Talata Fitness Men",
+    "program.girls.name": "Talata Girls",
+    "program.girls.time": "15:30-16:30",
+    "program.girls_stevnsgade.address": "Nørrebrogade 208, 2200 København N",
+    "program.girls_stevnsgade.age_min": 15,
+    "program.girls_stevnsgade.days": "Monday, Wednesday, Friday",
+    "program.girls_stevnsgade.name": "Stevnsgade girls team",
+    "program.girls_stevnsgade.time": "17:30-19:00",
+    "program.girls_stevnsgade.time_end": "19:00",
+    "program.girls_stevnsgade.time_start": "17:30",
+    "program.girls_stevnsgade.venue": "Nørrebrohallen",
+    "program.ish.name": "Talata @ ISH",
+    "program.ish.time": "15:30-16:30",
+    "program.junior.age_max": 12,
+    "program.junior.age_min": 10,
+    "program.junior.fee": 1800,
+    "program.junior.name": "Talata Junior",
+    "program.junior.time": "16:30-17:45",
+    "program.junior.venue": "Strandvejsskolen",
+    "program.kobenhavn.fee": 2000,
+    "program.kobenhavn.name": "Talata København",
+    "program.men_competitive.age_min": 18,
+    "program.men_competitive.fee": 2000,
+    "program.men_competitive.name": "Talata Men Competitive",
+    "program.men_competitive.time": "18:45-20:15",
+    "program.mini.age_max": 9,
+    "program.mini.age_min": 5,
+    "program.mini.fee": 1800,
+    "program.mini.name": "Talata Mini",
+    "program.mini.time": "15:30-16:30",
+    "program.mini.venue": "Strandvejsskolen",
+    "venue.bellahoj_hallerne.address": "Bellahøjvej 1-3, 2700 Brønshøj",
+    "venue.bellahoj_hallerne.name": "Bellahøj Hallerne",
+    "venue.hafnia_hallen.address": "Julius Andersensvej 6, 2450 København SV",
+    "venue.hafnia_hallen.name": "Hafnia-Hallen",
+    "venue.heibergskolen.address": "Sunday block",
+    "venue.heibergskolen.name": "Heibergskolen",
+    "venue.kulturhuset_indre_by.address": "Charlotte Ammundsens Plads 3, 1359 København K",
+    "venue.kulturhuset_indre_by.name": "Kulturhuset Indre By",
+    "venue.norre_faelled_skole.address": "Biskop Krags Vænge 7, 2200 København N",
+    "venue.norre_faelled_skole.name": "Nørre Fælled Skole",
+    "venue.norrebrohallen.address": "Nørrebrogade 208, 2200 København N",
+    "venue.norrebrohallen.name": "Nørrebrohallen",
+    "venue.strandvejsskolen.address": "Sionsgade 1, 2100 København Ø",
+    "venue.strandvejsskolen.name": "Strandvejsskolen",
+    "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
+    "venue.svanemollehallen.name": "Svanemøllehallen"
+  },
+  "sha": "d845bba60cd31386ff0686bda3872dbb3c89cf131704492ea102ffb573fc5eb0",
+  "sources": {
+    "programs_sha": "3924e99a705fa759832374fc1ea3b73abb738049a7a5852c67269a3953edded3",
+    "training_sha": "2b4e96307c617bc33216046370b466f246dd846f3b740cc133393512ddff51bf",
+    "training_updated": "2026-10-02"
+  },
+  "teams": {
+    "academy_u13_u15": {
+      "label": "Academy U13 + U15",
+      "sessions": [
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "17:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 1,
+          "day_name": "Tuesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [],
+          "start": "16:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "17:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Bellahøjvej 1-3, 2700 Brønshøj",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Bellahøj Hallerne",
+          "off": [],
+          "start": "16:15",
+          "starts": "2026-10-02"
+        }
+      ]
+    },
+    "academy_u15_u17": {
+      "label": "Academy U15 + U17",
+      "sessions": [
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "17:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "20:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "18:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 1,
+          "day_name": "Tuesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [],
+          "start": "16:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "17:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "18:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Bellahøjvej 1-3, 2700 Brønshøj",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Bellahøj Hallerne",
+          "off": [],
+          "start": "16:15",
+          "starts": "2026-10-02"
+        },
+        {
+          "address": "Biskop Krags Vænge 7, 2200 København N",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "21:00",
+          "ends": null,
+          "hall": "Nørre Fælled Skole",
+          "off": [],
+          "start": "19:00",
+          "starts": "2026-10-02"
+        }
+      ]
+    },
+    "academy_u17_u19": {
+      "label": "Academy U17 + U19",
+      "sessions": [
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "20:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "18:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 1,
+          "day_name": "Tuesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [],
+          "start": "16:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "17:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "18:00",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Biskop Krags Vænge 7, 2200 København N",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "21:00",
+          "ends": null,
+          "hall": "Nørre Fælled Skole",
+          "off": [],
+          "start": "19:00",
+          "starts": "2026-10-02"
+        }
+      ]
+    },
+    "girls_15": {
+      "label": "Girls 15 and up (Stevnsgade)",
+      "sessions": [
+        {
+          "address": "Nørrebrogade 208, 2200 København N",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Nørrebrohallen",
+          "off": [],
+          "start": "17:30",
+          "starts": "2026-09-14"
+        },
+        {
+          "address": "Nørrebrogade 208, 2200 København N",
+          "day": 2,
+          "day_name": "Wednesday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Nørrebrohallen",
+          "off": [],
+          "start": "17:30",
+          "starts": "2026-09-14"
+        },
+        {
+          "address": "Nørrebrogade 208, 2200 København N",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Nørrebrohallen",
+          "off": [],
+          "start": "17:30",
+          "starts": "2026-09-14"
+        }
+      ]
+    },
+    "junior": {
+      "label": "Talata Junior",
+      "sessions": [
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 1,
+          "day_name": "Tuesday",
+          "end": "17:45",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "16:30",
+          "starts": "2026-10-02"
+        },
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "17:45",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "16:30",
+          "starts": "2026-10-02"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 5,
+          "day_name": "Saturday",
+          "end": "12:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [
+            "2026-12-26",
+            "2027-01-02"
+          ],
+          "start": "11:00",
+          "starts": "2026-10-03"
+        }
+      ]
+    },
+    "men": {
+      "label": "Talata Men",
+      "sessions": [
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "20:15",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "18:45",
+          "starts": "2026-10-05"
+        },
+        {
+          "address": "Biskop Krags Vænge 7, 2200 København N",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "21:00",
+          "ends": null,
+          "hall": "Nørre Fælled Skole",
+          "off": [],
+          "start": "19:00",
+          "starts": "2026-10-02"
+        }
+      ]
+    },
+    "mini": {
+      "label": "Talata Mini",
+      "sessions": [
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 1,
+          "day_name": "Tuesday",
+          "end": "16:30",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "15:30",
+          "starts": "2026-10-02"
+        },
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "16:30",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "15:30",
+          "starts": "2026-10-02"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 5,
+          "day_name": "Saturday",
+          "end": "11:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [
+            "2026-12-26",
+            "2027-01-02"
+          ],
+          "start": "10:00",
+          "starts": "2026-10-03"
+        }
+      ]
+    },
+    "open_gym": {
+      "label": "Open gym",
+      "sessions": [
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 2,
+          "day_name": "Wednesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [],
+          "start": "16:00",
+          "starts": "2026-10-05"
+        }
+      ]
+    },
+    "sparks": {
+      "label": "Talata Sparks",
+      "sessions": [
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "16:30",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "15:30",
+          "starts": "2026-08-10"
+        }
+      ]
+    }
+  },
+  "training": [
+    {
+      "address": "Sionsgade 1, 2100 København Ø",
+      "day": 0,
+      "day_name": "Monday",
+      "end": "16:30",
+      "ends": null,
+      "hall": "Strandvejsskolen",
+      "off": [],
+      "start": "15:30",
+      "starts": "2026-08-10",
+      "teams": [
+        "sparks"
+      ],
+      "who": "Sparks"
+    },
+    {
+      "address": "Østerbrogade 240, 2100 København Ø",
+      "day": 0,
+      "day_name": "Monday",
+      "end": "19:00",
+      "ends": null,
+      "hall": "Svanemøllehallen",
+      "off": [],
+      "start": "17:00",
+      "starts": "2026-10-05",
+      "teams": [
+        "academy_u13_u15",
+        "academy_u15_u17"
+      ],
+      "who": "U13 Academy + U15"
+    },
+    {
+      "address": "Nørrebrogade 208, 2200 København N",
+      "day": 0,
+      "day_name": "Monday",
+      "end": "19:00",
+      "ends": null,
+      "hall": "Nørrebrohallen",
+      "off": [],
+      "start": "17:30",
+      "starts": "2026-09-14",
+      "teams": [
+        "girls_15"
+      ],
+      "who": "Girls 15+ (Stevnsgade)"
+    },
+    {
+      "address": "Østerbrogade 240, 2100 København Ø",
+      "day": 0,
+      "day_name": "Monday",
+      "end": "20:00",
+      "ends": null,
+      "hall": "Svanemøllehallen",
+      "off": [],
+      "start": "18:00",
+      "starts": "2026-10-05",
+      "teams": [
+        "academy_u15_u17",
+        "academy_u17_u19"
+      ],
+      "who": "U17 + U19"
+    },
+    {
+      "address": "Østerbrogade 240, 2100 København Ø",
+      "day": 0,
+      "day_name": "Monday",
+      "end": "20:15",
+      "ends": null,
+      "hall": "Svanemøllehallen",
+      "off": [],
+      "start": "18:45",
+      "starts": "2026-10-05",
+      "teams": [
+        "men"
+      ],
+      "who": "Men"
+    },
+    {
+      "address": "Sionsgade 1, 2100 København Ø",
+      "day": 1,
+      "day_name": "Tuesday",
+      "end": "16:30",
+      "ends": null,
+      "hall": "Strandvejsskolen",
+      "off": [],
+      "start": "15:30",
+      "starts": "2026-10-02",
+      "teams": [
+        "mini"
+      ],
+      "who": "Mini"
+    },
+    {
+      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+      "day": 1,
+      "day_name": "Tuesday",
+      "end": "18:00",
+      "ends": null,
+      "hall": "Kulturhuset Indre By",
+      "off": [],
+      "start": "16:00",
+      "starts": "2026-10-05",
+      "teams": [
+        "academy_u13_u15",
+        "academy_u15_u17",
+        "academy_u17_u19"
+      ],
+      "who": "U15 + U17"
+    },
+    {
+      "address": "Sionsgade 1, 2100 København Ø",
+      "day": 1,
+      "day_name": "Tuesday",
+      "end": "17:45",
+      "ends": null,
+      "hall": "Strandvejsskolen",
+      "off": [],
+      "start": "16:30",
+      "starts": "2026-10-02",
+      "teams": [
+        "junior"
+      ],
+      "who": "Junior"
+    },
+    {
+      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+      "day": 2,
+      "day_name": "Wednesday",
+      "end": "18:00",
+      "ends": null,
+      "hall": "Kulturhuset Indre By",
+      "off": [],
+      "start": "16:00",
+      "starts": "2026-10-05",
+      "teams": [
+        "open_gym"
+      ],
+      "who": "Open gym"
+    },
+    {
+      "address": "Nørrebrogade 208, 2200 København N",
+      "day": 2,
+      "day_name": "Wednesday",
+      "end": "19:00",
+      "ends": null,
+      "hall": "Nørrebrohallen",
+      "off": [],
+      "start": "17:30",
+      "starts": "2026-09-14",
+      "teams": [
+        "girls_15"
+      ],
+      "who": "Girls 15+ (Stevnsgade)"
+    },
+    {
+      "address": "Sionsgade 1, 2100 København Ø",
+      "day": 3,
+      "day_name": "Thursday",
+      "end": "16:30",
+      "ends": null,
+      "hall": "Strandvejsskolen",
+      "off": [],
+      "start": "15:30",
+      "starts": "2026-10-02",
+      "teams": [
+        "mini"
+      ],
+      "who": "Mini"
+    },
+    {
+      "address": "Sionsgade 1, 2100 København Ø",
+      "day": 3,
+      "day_name": "Thursday",
+      "end": "17:45",
+      "ends": null,
+      "hall": "Strandvejsskolen",
+      "off": [],
+      "start": "16:30",
+      "starts": "2026-10-02",
+      "teams": [
+        "junior"
+      ],
+      "who": "Junior"
+    },
+    {
+      "address": "Østerbrogade 240, 2100 København Ø",
+      "day": 3,
+      "day_name": "Thursday",
+      "end": "18:00",
+      "ends": null,
+      "hall": "Svanemøllehallen",
+      "off": [],
+      "start": "17:00",
+      "starts": "2026-10-05",
+      "teams": [
+        "academy_u13_u15",
+        "academy_u15_u17",
+        "academy_u17_u19"
+      ],
+      "who": "U15 + U17"
+    },
+    {
+      "address": "Østerbrogade 240, 2100 København Ø",
+      "day": 3,
+      "day_name": "Thursday",
+      "end": "19:00",
+      "ends": null,
+      "hall": "Svanemøllehallen",
+      "off": [],
+      "start": "18:00",
+      "starts": "2026-10-05",
+      "teams": [
+        "academy_u15_u17",
+        "academy_u17_u19"
+      ],
+      "who": "U17 + U19"
+    },
+    {
+      "address": "Bellahøjvej 1-3, 2700 Brønshøj",
+      "day": 4,
+      "day_name": "Friday",
+      "end": "18:00",
+      "ends": null,
+      "hall": "Bellahøj Hallerne",
+      "off": [],
+      "start": "16:15",
+      "starts": "2026-10-02",
+      "teams": [
+        "academy_u13_u15",
+        "academy_u15_u17"
+      ],
+      "who": "U13 Academy + U15"
+    },
+    {
+      "address": "Nørrebrogade 208, 2200 København N",
+      "day": 4,
+      "day_name": "Friday",
+      "end": "19:00",
+      "ends": null,
+      "hall": "Nørrebrohallen",
+      "off": [],
+      "start": "17:30",
+      "starts": "2026-09-14",
+      "teams": [
+        "girls_15"
+      ],
+      "who": "Girls 15+ (Stevnsgade)"
+    },
+    {
+      "address": "Biskop Krags Vænge 7, 2200 København N",
+      "day": 4,
+      "day_name": "Friday",
+      "end": "21:00",
+      "ends": null,
+      "hall": "Nørre Fælled Skole",
+      "off": [],
+      "start": "19:00",
+      "starts": "2026-10-02",
+      "teams": [
+        "academy_u15_u17",
+        "academy_u17_u19",
+        "men"
+      ],
+      "who": "U17 + U19 + Men"
+    },
+    {
+      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+      "day": 5,
+      "day_name": "Saturday",
+      "end": "11:00",
+      "ends": null,
+      "hall": "Kulturhuset Indre By",
+      "off": [
+        "2026-12-26",
+        "2027-01-02"
+      ],
+      "start": "10:00",
+      "starts": "2026-10-03",
+      "teams": [
+        "mini"
+      ],
+      "who": "Mini"
+    },
+    {
+      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+      "day": 5,
+      "day_name": "Saturday",
+      "end": "12:00",
+      "ends": null,
+      "hall": "Kulturhuset Indre By",
+      "off": [
+        "2026-12-26",
+        "2027-01-02"
+      ],
+      "start": "11:00",
+      "starts": "2026-10-03",
+      "teams": [
+        "junior"
+      ],
+      "who": "Junior"
+    }
+  ],
+  "venues": {
+    "bellahoj_hallerne": {
+      "address": "Bellahøjvej 1-3, 2700 Brønshøj",
+      "name": "Bellahøj Hallerne"
+    },
+    "hafnia_hallen": {
+      "address": "Julius Andersensvej 6, 2450 København SV",
+      "name": "Hafnia-Hallen"
+    },
+    "heibergskolen": {
+      "address": "Sunday block",
+      "name": "Heibergskolen"
+    },
+    "kulturhuset_indre_by": {
+      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+      "name": "Kulturhuset Indre By"
+    },
+    "norre_faelled_skole": {
+      "address": "Biskop Krags Vænge 7, 2200 København N",
+      "name": "Nørre Fælled Skole"
+    },
+    "norrebrohallen": {
+      "address": "Nørrebrogade 208, 2200 København N",
+      "name": "Nørrebrohallen"
+    },
+    "strandvejsskolen": {
+      "address": "Sionsgade 1, 2100 København Ø",
+      "name": "Strandvejsskolen"
+    },
+    "svanemollehallen": {
+      "address": "Østerbrogade 240, 2100 København Ø",
+      "name": "Svanemøllehallen"
+    }
+  }
+}
