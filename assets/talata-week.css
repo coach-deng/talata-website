@@ -1,0 +1,26 @@
+/* This week at Talata (Website v3, 2 Oct 2026). The dash's 7-day strip, public:
+   teams and halls only. Built by tools/apply-facts.py (block "week"), redrawn by
+   assets/talata-week.js as seven days from today. */
+.wk-band{padding:56px 0 8px}
+.wk-band .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.wk-band .head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.wk-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.wk-day{background:var(--td-surface,#1b2333);border:1px solid var(--td-border,rgba(248,250,252,.1));border-radius:16px;
+  padding:12px 12px 10px;min-width:0}
+.wk-day h3{margin:0 0 8px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--td-muted,#a9b4c4)}
+.wk-day.today{border-color:var(--td-link,#7DD3FC);box-shadow:0 0 0 1px var(--td-link,#7DD3FC) inset}
+.wk-day.today h3{color:var(--td-link,#7DD3FC)}
+.wk-day ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.wk-day li{font-size:.84rem;line-height:1.3;color:var(--td-text,#F8FAFC)}
+.wk-day li b{display:block;font-weight:700}
+.wk-day li span{display:block;color:var(--td-muted,#a9b4c4);font-size:.78rem}
+.wk-day li.game b{color:var(--td-link,#7DD3FC)}
+.wk-none{margin:0;font-size:.84rem;color:var(--td-muted,#a9b4c4)}
+.wk-note{margin:12px 0 0;font-size:.8rem;color:var(--td-muted,#a9b4c4)}
+.num{font-variant-numeric:tabular-nums}
+@media (max-width:980px){
+  .wk-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(150px,46%);overflow-x:auto;
+    scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .wk-day{scroll-snap-align:start}
+}
+@media (prefers-reduced-motion:reduce){.wk-grid{scroll-behavior:auto}}

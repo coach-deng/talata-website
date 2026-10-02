@@ -44,6 +44,8 @@ EXTRA = [ROOT / "llms.txt"]
 DAY3 = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 INLINE = re.compile(r"<!--fact:([A-Za-z0-9_.]+)(?:\|([a-z]+))?-->(.*?)<!--/fact-->", re.S)
+# Blocks: <!-- TALATA:FACTS:week:START --> ... <!-- TALATA:FACTS:week:END -->
+BLOCK = re.compile(r"(<!-- TALATA:FACTS:([a-z-]+):START -->)(.*?)(<!-- TALATA:FACTS:\2:END -->)", re.S)
 
 
 def pages():
@@ -128,6 +130,43 @@ def apply_filter(value, filt):
     raise ValueError("unknown filter %r" % filt)
 
 
+def esc(t):
+    return (str(t).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+DAYS_FULL = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+
+def block_week(doc):
+    """The whole week as plain HTML (crawlable, and what a phone without JS sees),
+    plus the same rows as JSON for assets/talata-week.js, which redraws it as seven
+    days from today with dates, days off and games (Website v3, 2 Oct 2026)."""
+    rows = sorted(doc["training"], key=lambda r: (r["day"], r["start"]))
+    out = ['\n<div class="wk-grid" data-talata-week>']
+    for d in range(7):
+        items = [r for r in rows if r["day"] == d]
+        out.append('  <div class="wk-day"><h3>%s</h3>' % DAYS_FULL[d])
+        if items:
+            out.append("    <ul>")
+            for r in items:
+                out.append('      <li><b class="num">%s to %s</b> %s <span>%s</span></li>'
+                           % (r["start"], r["end"], esc(r["who"]), esc(r["hall"])))
+            out.append("    </ul>")
+        else:
+            out.append('    <p class="wk-none">No training</p>')
+        out.append("  </div>")
+    out.append("</div>")
+    upd = (doc.get("sources") or {}).get("training_updated") or ""
+    keep = [{k: r[k] for k in ("day", "start", "end", "who", "hall", "starts", "ends", "off")} for r in rows]
+    out.append('<p class="wk-note">Times checked %s. Holiday changes show here first.</p>' % esc(upd))
+    out.append('<script type="application/json" id="tw-week">%s</script>\n'
+               % json.dumps(keep, ensure_ascii=False, separators=(",", ":")))
+    return "\n".join(out)
+
+
+BLOCKS = {"week": block_week}
+
+
 def render_text(src, doc, where):
     def sub(m):
         path, filt = m.group(1), m.group(2)
@@ -139,7 +178,14 @@ def render_text(src, doc, where):
         if re.search(r"\d\s*[-–—]\s*\d", out):
             raise SystemExit("apply-facts: %s %r would print a dash between numbers: %r" % (where, path, out))
         return "<!--fact:%s%s-->%s<!--/fact-->" % (path, "|" + filt if filt else "", out)
-    return INLINE.sub(sub, src)
+    out = INLINE.sub(sub, src)
+
+    def bsub(m):
+        name = m.group(2)
+        if name not in BLOCKS:
+            raise SystemExit("apply-facts: %s has an unknown block %r" % (where, name))
+        return m.group(1) + BLOCKS[name](doc) + m.group(4)
+    return BLOCK.sub(bsub, out)
 
 
 # Hand-typed facts that should live in a marker: a clock time or a kr price.
@@ -147,7 +193,7 @@ ORPHAN = re.compile(r"\b\d{1,2}:\d{2}\b|\b\d{1,2}[.,]\d{3}\s*(?:kr|DKK)\b|\b\d{3
 
 
 def visible(src):
-    s = INLINE.sub("", src)
+    s = BLOCK.sub("", INLINE.sub("", src))
     s = re.sub(r"<(script|style)\b.*?</\1>", "", s, flags=re.S | re.I)
     s = re.sub(r"<head\b.*?</head>", "", s, flags=re.S | re.I)
     s = re.sub(r"<!--.*?-->", "", s, flags=re.S)
@@ -214,7 +260,7 @@ def main(argv):
     changed = []
     for p in pages():
         src = p.read_text(encoding="utf-8")
-        if "<!--fact:" not in src:
+        if "<!--fact:" not in src and "TALATA:FACTS:" not in src:
             continue
         out = render_text(src, doc, str(p.relative_to(ROOT)))
         if out != src:
