@@ -7,6 +7,9 @@
  * out, and games from /data/fixtures.json added. Without JS the weekly timetable
  * stays, which is still right.
  *
+ * A team page carries only its own rows, and data-games="U13,U15" on the grid
+ * keeps only that team's games (empty: none). No data-games: every game.
+ *
  * ?today=2026-10-03 overrides the date on localhost only, for checking.
  */
 (function () {
@@ -16,6 +19,8 @@
   if (!grid || !data) return;
   var rows;
   try { rows = JSON.parse(data.textContent); } catch (e) { return; }
+  var only = grid.hasAttribute('data-games')
+    ? grid.getAttribute('data-games').split(',').filter(Boolean) : null;
 
   var DAY = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -56,6 +61,7 @@
       });
       (games || []).forEach(function (g) {
         if (g.date !== iso || g.played) return;
+        if (only && only.indexOf(g.team) === -1) return;
         var vs = g.home ? 'vs ' : 'at ';
         items.push({ t: g.time || '99:99', html: '<li class="game"><b class="num">' + esc(g.time || 'Time tbc') +
           ' game</b>' + esc(g.team) + ' ' + vs + esc(g.opponent) + '<span>' + esc(g.venue || '') + '</span></li>' });

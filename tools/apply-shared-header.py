@@ -145,15 +145,15 @@ CARET = (
 FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" '
                 'type="font/woff2" crossorigin>')
 
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261002i">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261002j">
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">"""
 # theme-color lives in the TALATA:HEAD block now (tools/apply-head.py).
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261002i">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261002j">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261002i" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261002j" defer></script>'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's

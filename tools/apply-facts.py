@@ -137,12 +137,20 @@ def esc(t):
 DAYS_FULL = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
 
-def block_week(doc):
+def block_week(doc, teams=None, games=None):
     """The whole week as plain HTML (crawlable, and what a phone without JS sees),
     plus the same rows as JSON for assets/talata-week.js, which redraws it as seven
-    days from today with dates, days off and games (Website v3, 2 Oct 2026)."""
+    days from today with dates, days off and games (Website v3, 2 Oct 2026).
+
+    teams: only rows for these team keys (a team page). games: the fixture team
+    names that page shows, written as data-games; None shows every game."""
     rows = sorted(doc["training"], key=lambda r: (r["day"], r["start"]))
-    out = ['\n<div class="wk-grid" data-talata-week>']
+    if teams is not None:
+        rows = [r for r in rows if set(r.get("teams") or []) & set(teams)]
+        if not rows:
+            raise SystemExit("apply-facts: week block for %s has no training rows" % ", ".join(teams))
+    attr = "" if games is None else ' data-games="%s"' % esc(",".join(games))
+    out = ['\n<div class="wk-grid" data-talata-week%s>' % attr]
     for d in range(7):
         items = [r for r in rows if r["day"] == d]
         out.append('  <div class="wk-day"><h3>%s</h3>' % DAYS_FULL[d])
@@ -164,7 +172,19 @@ def block_week(doc):
     return "\n".join(out)
 
 
+# Team pages (Website v3 phase 3): their own rows and their own games only.
+# Keys are team keys in data/facts.json; games are fixture team names.
+TEAM_WEEKS = {
+    "week-mini":    (["mini", "junior"], ["U9"]),
+    "week-academy": (["academy_u13_u15", "academy_u15_u17", "academy_u17_u19", "open_gym"],
+                     ["U13", "U15", "U17", "U19"]),
+    "week-sparks":  (["sparks", "girls_15"], []),
+    "week-men":     (["men"], ["Men"]),
+}
+
 BLOCKS = {"week": block_week}
+for _name, (_teams, _games) in TEAM_WEEKS.items():
+    BLOCKS[_name] = (lambda t, g: lambda doc: block_week(doc, t, g))(_teams, _games)
 
 
 def render_text(src, doc, where):

@@ -23,4 +23,11 @@
     scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch}
   .wk-day{scroll-snap-align:start}
 }
+/* On a team page the strip sits inside a narrow section: always a swipe row. */
+.wk-team{margin:22px 0 6px}
+.wk-team .wk-title{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--td-link,#7DD3FC);margin:0 0 10px}
+.wk-team .wk-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(150px,31%);overflow-x:auto;
+  scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.wk-team .wk-day{scroll-snap-align:start}
+@media (max-width:640px){.wk-team .wk-grid{grid-auto-columns:minmax(150px,46%)}}
 @media (prefers-reduced-motion:reduce){.wk-grid{scroll-behavior:auto}}
