@@ -83,7 +83,9 @@ html.light :is(
   #apply .cta-box, .cup-card, .gs-card,
   /* camps/*: the closing call to action */ div.cta,
   /* help: the Insider box */ div.sub,
-  /* blog posts: the closing box */ .cta-box.is-dark
+  /* blog posts: the closing box */ .cta-box.is-dark,
+  /* reviews, philosophy (Tailwind) */ body.tw-dark :is(.bg-talata-navy, .bg-talata-black,
+  .bg-talata-blue, .hero-bg, .image-quote, .bg-gradient-to-br)
 ) {
   --td-bg:#121824; --td-surface:#1C2534; --td-surface-2:#263148; --td-line:#35435D;
   --td-text:#F2F6FC; --td-muted:#B3C0D2; --td-link:#8FD6FF; --td-accent:#7DD3FC;
@@ -130,3 +132,14 @@ html.light th, html.light thead th { background: var(--td-surface-2); color: var
 html.light .card--holdsport { --hs: #B4410F; }             /* help: Holdsport orange, 5.6:1 on white */
 html.light .result-card.win .result-label  { color: #166534; }   /* blog results: green and red that read on white */
 html.light .result-card.loss .result-label { color: #B42318; }
+
+/* ---- reviews and philosophy (Tailwind) ----
+   talata-tw-dark.css stands down under html.light, so these two pages show
+   their own light design. What is left: */
+html.light body.tw-dark :is(.hero-bg, .image-quote) { background-color: #0B1F3A; }  /* under the photo */
+/* Baby blue as type reads on navy, not on white. Sky 700 on white is 5.9:1. */
+html.light body.tw-dark .text-talata-baby { color: #0369A1; }
+html.light body.tw-dark :is(.bg-talata-navy, .bg-talata-black, .bg-talata-blue, .hero-bg, .image-quote, .bg-gradient-to-br) .text-talata-baby { color: #7DD3FC; }
+html.light body.tw-dark .text-slate-400 { color: #64748B; }
+html.light body.tw-dark .bg-white .stars,
+html.light body.tw-dark .review-card .stars { color: #B45309; }   /* amber that reads on white */

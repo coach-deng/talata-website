@@ -12,7 +12,8 @@
    "doesn't look right".
 
    Load AFTER talata-dark.css. Scoped to body.tw-dark so nothing here can reach
-   the other 48 pages.
+   the other 48 pages, and to html:not(.light) so light mode (2 Oct 2026,
+   tools/apply-head.py) gets the pages' own Tailwind light design back.
 
    THE TRAP, and it is the same one that shipped on 26 Aug
    ------------------------------------------------------
@@ -24,54 +25,54 @@
    higher specificity than the blanket rule. Fills first, restores last.
    ========================================================================== */
 
-body.tw-dark {
+html:not(.light) body.tw-dark {
   background-color: var(--td-bg);
   color: var(--td-text);
 }
 
 /* ---------- surfaces that were light and must go dark ---------- */
-body.tw-dark .bg-white       { background-color: var(--td-surface); }
-body.tw-dark .bg-talata-mist { background-color: var(--td-bg); }
+html:not(.light) body.tw-dark .bg-white       { background-color: var(--td-surface); }
+html:not(.light) body.tw-dark .bg-talata-mist { background-color: var(--td-bg); }
 
 /* ---------- body copy ---------- */
-body.tw-dark .text-talata-navy,
-body.tw-dark .text-talata-black { color: var(--td-text); }
+html:not(.light) body.tw-dark .text-talata-navy,
+html:not(.light) body.tw-dark .text-talata-black { color: var(--td-text); }
 
-body.tw-dark .text-slate-700,
-body.tw-dark .text-slate-600,
-body.tw-dark .text-slate-500,
-body.tw-dark .text-slate-400,
-body.tw-dark .text-gray-600,
-body.tw-dark .text-gray-500  { color: var(--td-muted); }
+html:not(.light) body.tw-dark .text-slate-700,
+html:not(.light) body.tw-dark .text-slate-600,
+html:not(.light) body.tw-dark .text-slate-500,
+html:not(.light) body.tw-dark .text-slate-400,
+html:not(.light) body.tw-dark .text-gray-600,
+html:not(.light) body.tw-dark .text-gray-500  { color: var(--td-muted); }
 
 /* The brand blue #1E40AF is a FILL colour. As type on a dark card it measures
    about 2.3:1 and fails, so text use gets the text-safe accent instead. This is
    the same substitution talata-dark.css makes for --td-link. */
-body.tw-dark .text-talata-blue { color: var(--td-link); }
+html:not(.light) body.tw-dark .text-talata-blue { color: var(--td-link); }
 
 /* talata-tw.css compiles `talata-baby` to #0284C7, a mid sky blue, NOT the
    brand baby #7DD3FC. As type it measures 4.34:1 on the page ground and 3.76:1
    on a card, so it fails both. Pull it to the real accent, which is light. */
-body.tw-dark .text-talata-baby { color: var(--td-accent); }
+html:not(.light) body.tw-dark .text-talata-baby { color: var(--td-accent); }
 
 /* ---------- rules and hairlines ---------- */
-body.tw-dark .border-talata-sky,
-body.tw-dark .border-talata-mist,
-body.tw-dark .border-slate-100,
-body.tw-dark .border-slate-200,
-body.tw-dark .border-slate-400 { border-color: var(--td-line); }
+html:not(.light) body.tw-dark .border-talata-sky,
+html:not(.light) body.tw-dark .border-talata-mist,
+html:not(.light) body.tw-dark .border-slate-100,
+html:not(.light) body.tw-dark .border-slate-200,
+html:not(.light) body.tw-dark .border-slate-400 { border-color: var(--td-line); }
 
 /* ---------- RESTORES: light fills keep dark type ----------
    Higher specificity than the blanket rules above, and last in the file, so a
    pill cannot end up light-on-light no matter which utility it also carries. */
-body.tw-dark .bg-talata-sky,
-body.tw-dark .bg-talata-baby,
-body.tw-dark .bg-talata-sky.text-talata-navy,
-body.tw-dark .bg-talata-baby.text-talata-navy,
-body.tw-dark .bg-talata-sky .text-talata-navy,
-body.tw-dark .bg-talata-baby .text-talata-navy,
-body.tw-dark .bg-talata-sky .text-talata-blue,
-body.tw-dark .bg-talata-baby .text-talata-blue { color: var(--td-navy); }
+html:not(.light) body.tw-dark .bg-talata-sky,
+html:not(.light) body.tw-dark .bg-talata-baby,
+html:not(.light) body.tw-dark .bg-talata-sky.text-talata-navy,
+html:not(.light) body.tw-dark .bg-talata-baby.text-talata-navy,
+html:not(.light) body.tw-dark .bg-talata-sky .text-talata-navy,
+html:not(.light) body.tw-dark .bg-talata-baby .text-talata-navy,
+html:not(.light) body.tw-dark .bg-talata-sky .text-talata-blue,
+html:not(.light) body.tw-dark .bg-talata-baby .text-talata-blue { color: var(--td-navy); }
 
 /* THE VENN NEEDS A LIGHT GROUND, and not for taste.
    `.venn-circle` uses `mix-blend-mode: multiply`, which is a light-background
@@ -82,7 +83,7 @@ body.tw-dark .bg-talata-baby .text-talata-blue { color: var(--td-navy); }
    Its two saturated discs keep the white type from the page's own CSS. The
    third disc is pale blue and had white type at 2.05:1 — that failed on the
    light page too, long before dark mode, and is fixed inline in the markup. */
-body.tw-dark .venn-container {
+html:not(.light) body.tw-dark .venn-container {
   background: #F8FAFC;
   border-radius: 20px;
   padding: 8px;
@@ -92,29 +93,29 @@ body.tw-dark .venn-container {
 /* The SKILL EMERGES label sits over that light ground and carries
    .text-talata-navy, so the blanket rule above would have made it near-white on
    near-white. Anything inside the light island keeps dark type. */
-body.tw-dark .venn-container .text-talata-navy,
-body.tw-dark .venn-container .text-talata-black,
-body.tw-dark .venn-container .text-talata-baby { color: var(--td-navy); }
+html:not(.light) body.tw-dark .venn-container .text-talata-navy,
+html:not(.light) body.tw-dark .venn-container .text-talata-black,
+html:not(.light) body.tw-dark .venn-container .text-talata-baby { color: var(--td-navy); }
 
 /* The filter chips: the active one is a blue fill with white type and is fine.
    The inactive ones were white fill + navy type, so they follow .bg-white above
    and need their border and type pulled back to the dark palette. */
-body.tw-dark .filter-chip:not(.active) {
+html:not(.light) body.tw-dark .filter-chip:not(.active) {
   background-color: var(--td-surface);
   border-color: var(--td-line);
   color: var(--td-text);
 }
-body.tw-dark .filter-chip:not(.active):hover {
+html:not(.light) body.tw-dark .filter-chip:not(.active):hover {
   background-color: var(--td-accent-2);
   color: var(--td-navy);
 }
 
 /* Reviews pull-quotes. The page's own `.review-card.is-pull` scores (0,2,0),
-   exactly the same as `body.tw-dark .bg-white` above, and this stylesheet loads
+   exactly the same as `html:not(.light) body.tw-dark .bg-white` above, and this stylesheet loads
    after the page's <style> block — so the plain card surface was winning and
    every pull-quote rendered identical to a normal card. Same specificity trap
-   as the nav dropdown on 26 Aug. Scoping through body.tw-dark settles it. */
-body.tw-dark .review-card.is-pull {
+   as the nav dropdown on 26 Aug. Scoping through html:not(.light) body.tw-dark settles it. */
+html:not(.light) body.tw-dark .review-card.is-pull {
   background: var(--td-card-hi);
   border-color: var(--td-accent);
 }
