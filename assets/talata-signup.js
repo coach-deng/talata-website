@@ -129,9 +129,6 @@
       '<b class="tns-now-v">' + esc(route.when) + '</b>',
       '<span class="tns-now-g">' + esc(route.group) + '</span>',
       '<span class="tns-now-w">' + esc(route.where) + '</span>',
-      route.movesLater
-        ? '<span class="tns-now-n">Note: this group moves 30 minutes later from Mon 24 August.</span>'
-        : '',
       '</div>',
       alt
     ].join('');

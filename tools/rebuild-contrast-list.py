@@ -6,7 +6,7 @@ Run after adding or removing pages:  python3 tools/rebuild-contrast-list.py
 import json, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SKIP_PARTS = {"node_modules", "instagram_posts", "tools"}
+SKIP_PARTS = {"node_modules", "instagram_posts", "tools", "dist"}  # dist: build output
 SKIP_PREFIX = ("Photos", "Basketball", "Talata Website Photos", "posters")
 
 pages = sorted(

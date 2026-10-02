@@ -160,6 +160,24 @@ def check_danish(fails, warns):
             fails.append((rel, "Danish word in visible copy", m.group(0)))
 
 
+# A dash between numbers in visible copy: "15:30-16:30", "ages 5-9", "95-53" (Deng:
+# no dashes, write "to"). Body only. A street number range ("Bellahøjvej 1-3") is
+# an address, not copy, and passes. Added 2 Oct 2026 after 60 of them were found.
+NUM_DASH = re.compile(r"(?<![\d,.:-])\d{1,4}(?:[:,.]\d{2,3})?\s?[-–—]\s?\d{1,4}(?:[:,.]\d{2,3})?(?![\d-])")
+STREET_END = re.compile(r"(vej|gade|allé|alle|plads|vænge|stræde|road|street)\s$", re.I)
+
+
+def check_number_dash(fails, warns):
+    for path in pages():
+        rel = str(path.relative_to(ROOT))
+        src = path.read_text(encoding="utf-8")
+        body = visible(re.sub(r"<head\b.*?</head>", "", src, flags=re.S | re.I))
+        for m in NUM_DASH.finditer(body):
+            if STREET_END.search(body[max(0, m.start() - 12):m.start()]):
+                continue
+            fails.append((rel, "dash between numbers, write 'to'", m.group(0)))
+
+
 def check_consent(fails, warns):
     """Google loads only after Accept (tools/apply-consent.py, 2 Oct 2026)."""
     for path in pages():
@@ -300,6 +318,7 @@ def main():
     if not only or "voice" in only:
         check_voice(fails, warns)
         check_danish(fails, warns)
+        check_number_dash(fails, warns)
         check_consent(fails, warns)
     if not only or "dark" in only:
         check_dark(fails, warns)

@@ -135,6 +135,8 @@ def esc(t):
 
 
 DAYS_FULL = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+MONTHS_FULL = ["January", "February", "March", "April", "May", "June", "July", "August",
+               "September", "October", "November", "December"]
 
 
 def block_week(doc, teams=None, games=None):
@@ -165,6 +167,9 @@ def block_week(doc, teams=None, games=None):
         out.append("  </div>")
     out.append("</div>")
     upd = (doc.get("sources") or {}).get("training_updated") or ""
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})$", upd)
+    if m:  # "2 October 2026": no ISO dashes in visible copy
+        upd = "%d %s %s" % (int(m.group(3)), MONTHS_FULL[int(m.group(2)) - 1], m.group(1))
     keep = [{k: r[k] for k in ("day", "start", "end", "who", "hall", "starts", "ends", "off")} for r in rows]
     out.append('<p class="wk-note">Times checked %s. Holiday changes show here first.</p>' % esc(upd))
     out.append('<script type="application/json" id="tw-week">%s</script>\n'

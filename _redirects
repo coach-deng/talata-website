@@ -6,6 +6,11 @@
 /ish-primary-school    /school-partnerships    302
 /ish-primary-school.html    /school-partnerships    302
 
+# Retired 2 Oct 2026. The 19 Apr Mini post said "aged 6 to 11", a dead band;
+# the 29 Apr post tells the same story.
+/blog/talata-mini-strandvejsskolen-2026    /blog/talata-mini-50-kids-strandvejsskolen-2026    301
+/blog/talata-mini-strandvejsskolen-2026.html    /blog/talata-mini-50-kids-strandvejsskolen-2026    301
+
 # Redirect base64-encoded camp URLs to canonical paths
 # Cloudflare Pages strips .html automatically, so target clean URLs
 /camps/Y2FuYWRhLWNhbXAtMjAyNg*    /camps/canada-camp-2026    301
@@ -20,8 +25,8 @@
 # Catch likely 404s (old/legacy paths Google may have indexed)
 /camp    /camps    301
 /summer-camp    /camps/dk-summer-camp-2026    301
-/camps/spring    /camps/spring-camp-2026    301
-/spring-camp    /camps/spring-camp-2026    301
+/camps/spring    /camps    301
+/spring-camp    /camps    301
 /canada    /camps/canada-camp-2026    301
 /lithuania    /camps/nida-camp-2026    301
 /nida    /camps/nida-camp-2026    301
