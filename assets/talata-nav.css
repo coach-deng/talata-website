@@ -335,7 +335,7 @@ html.tn-locked,body.tn-locked{overflow:hidden;}
   font-weight:800;font-size:1.1rem;margin-bottom:6px;
 }
 .tn-closed p{margin:0 0 16px;font-size:0.92rem;opacity:0.75;}
-.tn-closed a{
+.tn-closed a,.tn-closed a:not([class]){
   display:inline-flex;align-items:center;gap:8px;
   background:#1E40AF;color:#fff;
   font-family:'Montserrat','Montserrat Fallback',system-ui,sans-serif;font-weight:800;font-size:0.9rem;

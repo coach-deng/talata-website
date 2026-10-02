@@ -80,7 +80,9 @@ html.light :is(
   /* camps */ .h-spring, .h-canada, .h-lithuania, .h-nida, .h-dk, .h-autumn, .h-winter,
   /* games */ .g-hero, .g-friday,
   /* the navy cards on the programme pages */ .tryout-box, .trial-box, .proof-quote, .cost-card,
-  #apply .cta-box, .cup-card, .gs-card
+  #apply .cta-box, .cup-card, .gs-card,
+  /* camps/*: the closing call to action */ div.cta,
+  /* help: the Insider box */ div.sub
 ) {
   --td-bg:#121824; --td-surface:#1C2534; --td-surface-2:#263148; --td-line:#35435D;
   --td-text:#F2F6FC; --td-muted:#B3C0D2; --td-link:#8FD6FF; --td-accent:#7DD3FC;
@@ -123,3 +125,5 @@ html.light .btn-talata { color: #FFFFFF; }                 /* camps: blue button
 html.light #member .mb-warn b { color: #9A3412; }          /* join: the member warning, orange 7:1 */
 html.light .tf-r.is-home > div { background: #EAF1FF; }    /* fixtures: home rows */
 html.light .tf-r.is-home:hover > div { background: #DCE8FF; }
+html.light th, html.light thead th { background: var(--td-surface-2); color: var(--td-text); }  /* help tables */
+html.light .card--holdsport { --hs: #B4410F; }             /* help: Holdsport orange, 5.6:1 on white */
