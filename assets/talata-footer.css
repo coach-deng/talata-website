@@ -143,7 +143,7 @@
   margin-top: 10px;
   font-size: 0.74rem;
   line-height: 1.45;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.58);   /* was .38, 3.5:1 on the black footer */
 }
 
 /* Tablet: identity takes the full row, links go two-up. minmax(0,...) so a long
@@ -188,3 +188,28 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Theme control, Website v3 (2 Oct 2026). Drawn by talata-theme.js, only on
+   pages that have light mode. The footer itself stays black in both themes. */
+.tf-theme {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.62);
+}
+.tf-theme span { margin-right: 4px; }
+.tf-theme button {
+  font: inherit;
+  color: rgba(255, 255, 255, 0.72);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+.tf-theme button[aria-pressed="true"] {
+  color: #0A0A0A;
+  background: #7DD3FC;
+  border-color: #7DD3FC;
+}
+.tf-theme button:focus-visible { outline: 2px solid #7DD3FC; outline-offset: 2px; }

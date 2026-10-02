@@ -103,6 +103,21 @@ def main():
     else:
         print("  nav drift    ok")
 
+    # 2a. the TALATA:HEAD block: theme-color, and light mode on pages in
+    #     tools/apply-head.py LIGHT_OK (Website v3, 2 Oct 2026). A new page, or
+    #     a header regeneration, can leave a page without it. Apply mode
+    #     rewrites, --check only reports.
+    ok, out, code = run("head", ["tools/apply-head.py", "--check"], expect_zero=False)
+    if code != 0:
+        if args.check:
+            blocking.append("TALATA:HEAD block missing or stale.\n        Run: python3 tools/apply-head.py")
+            print("  head         ✗  stale")
+        else:
+            run("head", ["tools/apply-head.py"], expect_zero=False)
+            print("  head         ok  REGENERATED, include it in the commit")
+    else:
+        print("  head         ok")
+
     # 2b. generated schema blocks. Both are built from a source of truth
     #     elsewhere (data/fixtures.json, assets/talata-shop.js), so a stale
     #     block means the markup and the page disagree, which is worse for a

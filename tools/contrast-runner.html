@@ -119,8 +119,23 @@ const PAGES = ["academy.html", "basketball-in-copenhagen.html", "blog.html", "bl
 const CHECK = function(doc, win){
   const px=c=>{const m=c.match(/[\d.]+/g).map(Number);return {r:m[0],g:m[1],b:m[2],a:m.length>3?m[3]:1}};
   const over=(f,b)=>({r:f.r*f.a+b.r*(1-f.a),g:f.g*f.a+b.g*(1-f.a),b:f.b*f.a+b.b*(1-f.a),a:1});
-  function effBg(el){const s=[];let e=el;while(e){const c=px(win.getComputedStyle(e).backgroundColor);if(c.a>0)s.push(c);e=e.parentElement}
-    let a={r:255,g:255,b:255,a:1};for(let i=s.length-1;i>=0;i--)a=over(s[i],a);return a}
+  /* src: the nearest element that paints a ground (colour or image), so a
+     failure names the section to fix, not just the text. */
+  let src=null;
+  const nm=e=>e.tagName.toLowerCase()+(e.id?'#'+e.id:'')+(typeof e.className==='string'&&e.className.trim()?'.'+e.className.trim().split(/\s+/).join('.'):'');
+  /* Website v3: a gradient is a layer too. Each stop is a candidate ground and
+     the text is measured against the worst one, so a dark hero drawn with
+     linear-gradient() is no longer read as white. Photos (url()) stay unseen;
+     their sections carry a solid colour or a shade layer underneath. */
+  const stops=img=>(img.match(/rgba?\([^)]*\)/g)||[]).map(px);
+  function effBg(el){const L=[];let e=el;src=null;while(e){const cs=win.getComputedStyle(e);
+      const st=cs.backgroundImage.indexOf('gradient')>=0?stops(cs.backgroundImage):[];
+      if(st.length){L.push(st);if(!src)src=e}
+      const c=px(cs.backgroundColor);if(c.a>0){L.push([c]);if(!src)src=e}
+      if(!src&&cs.backgroundImage!=='none')src=e;e=e.parentElement}
+    let C=[{r:255,g:255,b:255,a:1}];
+    for(let i=L.length-1;i>=0;i--){const n=[];C.forEach(b=>L[i].forEach(f=>n.push(over(f,b))));C=n.slice(0,64)}
+    return C}
   const lum=c=>{const f=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(c.r)+0.7152*f(c.g)+0.0722*f(c.b)};
   const ratio=(a,b)=>{const l1=lum(a),l2=lum(b);return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05)};
   const out=[];const seen=new Set();
@@ -130,15 +145,23 @@ const CHECK = function(doc, win){
     const cs=win.getComputedStyle(el);
     if(cs.display==='none'||cs.visibility==='hidden'||cs.opacity==='0')return;
     const rect=el.getBoundingClientRect(); if(!rect.width||!rect.height)return;
-    const b=effBg(el);const r=ratio(over(px(cs.color),b),b);
+    const B=effBg(el);let b=B[0],r=99;B.forEach(g=>{const q=ratio(over(px(cs.color),g),g);if(q<r){r=q;b=g}});
     const size=parseFloat(cs.fontSize),bold=(parseInt(cs.fontWeight)||400)>=700;
     const floor=(size>=24||(size>=18.66&&bold))?3:4.5;
     const k=cs.color+'|'+Math.round(b.r)+','+Math.round(b.g)+','+Math.round(b.b)+'|'+el.className;
     if(seen.has(k))return;seen.add(k);
-    if(r<floor)out.push({r:+r.toFixed(2),need:floor,txt:el.textContent.trim().slice(0,30),cls:(el.className||el.tagName).toString().slice(0,30)});
+    if(r<floor)out.push({r:+r.toFixed(2),need:floor,txt:el.textContent.trim().slice(0,30),cls:(el.className||el.tagName).toString().slice(0,30),color:cs.color,on:src?nm(src).slice(0,60):'page'});
   });
   return out.sort((a,b)=>a.r-b.r);
 };
+/* Website v3: ?theme=light|dark stores the choice the pages' pre-paint script
+   reads (same origin, same localStorage), and ?pages=index,join narrows the run
+   to one batch. A page that does not come up in the asked theme is a failure,
+   so a page outside apply-head.py LIGHT_OK cannot pass a light run by accident. */
+const Q=new URLSearchParams(location.search);
+const THEME=Q.get('theme');
+try{ if(THEME==='light'||THEME==='dark') localStorage.setItem('talata-theme',THEME); else localStorage.removeItem('talata-theme'); }catch(e){}
+if(Q.get('pages')){ const want=Q.get('pages').split(',').map(x=>x.trim().replace(/\.html$/,'')+'.html'); PAGES.length=0; want.forEach(x=>PAGES.push(x)); }
 const f=document.getElementById('f'),s=document.getElementById('s'),o=document.getElementById('o');
 const results={};
 let i=0;
@@ -159,7 +182,7 @@ function next(){
     try{d=f.contentDocument}catch(e){d=null}
     if((!d||d.readyState!=='complete'||!d.body)&&tries<12){tries++;return setTimeout(grab,220)}
     if(!d||!d.body){results[p]=[{err:'document unavailable after '+tries+' tries'}];i++;return next()}
-    try{results[p]=CHECK(d,f.contentWindow)}catch(e){results[p]=[{err:String(e)}]}
+    try{results[p]=CHECK(d,f.contentWindow);if(THEME==='light'&&!d.documentElement.classList.contains('light'))results[p].unshift({err:'page did not render light'})}catch(e){results[p]=[{err:String(e)}]}
     i++;next();
   };
   /* A page whose load event never fires (a hanging subresource, a redirect

@@ -37,13 +37,15 @@
   --td-line:      #35435D;   /* borders and rules */
   --td-text:      #F2F6FC;   /* body copy */
   --td-muted:     #B3C0D2;   /* secondary copy */
-  /* Text-safe accent. The brand blue #2C4FD8 is a FILL colour: white on it is
-     fine, but as type on a dark card it measures 2.67:1, which fails. Anything
-     that used the brand blue for TEXT gets this instead. */
+  /* Text-safe accent. The brand blue is a FILL colour: white on it is fine,
+     but as type on a dark card it fails. Anything that used the brand blue for
+     TEXT gets this instead. */
   --td-link:      #8FD6FF;
   --td-accent:    #7DD3FC;   /* Talata baby blue, the accent on dark */
   --td-accent-2:  #BAE6FD;   /* sky, for hovers */
-  --td-brand:     #2C4FD8;   /* filled buttons. White on this is ~7:1 */
+  /* Talata Blue, the dash's accent (2 Oct 2026, Website v3). It was #2C4FD8,
+     a near miss that matched nothing else the club prints. White on it 8.7:1. */
+  --td-brand:     #1E40AF;   /* filled buttons */
   --td-navy:      #0B1F3A;   /* kept: the brand navy still reads on dark */
   --td-card-hi:   #223047;   /* a card sitting on another card */
   /* 🔴 31 Aug: the "stop" callout on the four help pages was a literal
@@ -60,6 +62,13 @@
      loss, so the site keeps one red rather than growing a second. */
   --td-stop:      #33212A;   /* danger / stop callout fill */
   --td-stop-line: #F2777A;   /* its accent bar. 5.53:1 on --td-stop */
+
+  /* ---- shape and motion, shared with the dash (Website v3) ----
+     Cards 22, tiles 16, as on the dash. Pages opt in through the tokens, so
+     nothing changes shape until a rule asks for it. */
+  --td-radius-card: 22px;
+  --td-radius-tile: 16px;
+  --td-ease:        cubic-bezier(0.2, 0.8, 0.2, 1);
 
   /* ---- newer pages (index, games, shop) ---- */
   --black: var(--td-bg);
@@ -242,4 +251,19 @@ body .callout.stop,
 body .note.stop {
   background: var(--td-stop);
   border-left-color: var(--td-stop-line);
+}
+
+/* ---- shared with the dash (Website v3, 2 Oct 2026) ---- */
+
+/* Figures that line up: prices, times, scores. Add class="num". */
+.num { font-variant-numeric: tabular-nums; }
+
+/* A visitor who asked the phone for less motion gets none. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

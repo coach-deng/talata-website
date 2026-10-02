@@ -145,15 +145,15 @@ CARET = (
 FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" '
                 'type="font/woff2" crossorigin>')
 
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261002d">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261002e">
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<meta name="theme-color" content="#0B0F17">"""
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">"""
+# theme-color lives in the TALATA:HEAD block now (tools/apply-head.py).
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261002d">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261002e">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261002d" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261002e" defer></script>'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -365,6 +365,10 @@ def process(path: Path, check: bool):
     src = re.sub(r'[ \t]*<link rel="stylesheet" href="/assets/talata-dark\.css[^"]*">\n?', "", src)
     anchor = re.search(
         r'[ \t]*<link rel="stylesheet" href="/assets/talata-tw-dark\.css[^"]*">', src)
+    # 2 Oct 2026: light mode (tools/apply-head.py) has the last word over dark.
+    if anchor is None:
+        anchor = re.search(
+            r'[ \t]*<link rel="stylesheet" href="/assets/talata-light\.css[^"]*">', src)
     if anchor is None:
         anchor = re.search(r"</head>", src)
     if anchor:
@@ -389,6 +393,7 @@ def main():
         p for p in ROOT.glob("**/*.html")
         if "node_modules" not in p.parts
         and ".wrangler" not in p.parts
+        and p.relative_to(ROOT).parts[0] != "dist"   # build output, tools/build-dist.py
         and p.relative_to(ROOT).as_posix() not in SKIP
     )
     touched = 0

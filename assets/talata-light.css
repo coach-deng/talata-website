@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Talata light mode (Website v3, 2 Oct 2026). The dash's light palette.
+
+   talata-dark.css paints every page through the --td-* tokens and maps both
+   older and newer page variable families onto them. Light mode only has to
+   change the tokens, under html.light, which outranks :root wherever this file
+   loads. html.light is set before first paint by the inline theme script that
+   tools/apply-head.py writes, from the visitor's own choice (footer: Auto,
+   Light, Dark) or, on Auto, the phone's setting.
+
+   A page only gets this file once it is in apply-head.py LIGHT_OK, which means
+   it measured clean in light (WCAG AA, rendered, every text node). Until then it
+   stays dark, which is right, rather than light and unreadable.
+
+   Contrast (WCAG AA): ink #0B1F3A on #F8FAFC is 15.6:1, on #FFFFFF 16.3:1.
+   Muted #46566B on #FFFFFF is 7.4:1. Talata Blue #1E40AF as text on #FFFFFF is
+   8.7:1, and white on it 8.7:1.
+   ========================================================================== */
+
+html.light {
+  --td-bg:        #F8FAFC;   /* Mist, the page ground */
+  --td-surface:   #FFFFFF;   /* cards */
+  --td-surface-2: #EFF2F6;   /* raised, inputs, stripes */
+  --td-line:      #D5DCE6;   /* borders and rules */
+  --td-text:      #0B1F3A;   /* Navy ink */
+  --td-muted:     #46566B;
+  --td-link:      #1E40AF;   /* Talata Blue as text */
+  --td-accent:    #1E40AF;
+  --td-accent-2:  #16305C;
+  --td-brand:     #1E40AF;
+  --td-navy:      #0B1F3A;
+  --td-card-hi:   #EFF2F6;
+  --td-stop:      #FCEEEE;
+  --td-stop-line: #B2252A;
+  color-scheme: light;
+}
+
+html.light body {
+  background: var(--td-bg);
+  color: var(--td-text);
+}
+
+/* ---- what talata-dark.css hardwires for a dark ground ----
+   Each rule below undoes one dark-only assumption. Selectors are prefixed with
+   html.light so they outrank their dark twin on specificity, not load order. */
+
+/* Baby-blue fills carry dark type in both themes. On dark that was --td-bg,
+   which in light is Mist, so it would read 1.3:1. Navy on #7DD3FC is 10.8:1. */
+html.light [style*="background:#7DD3FC"],  html.light [style*="background: #7DD3FC"],
+html.light [style*="background:#7dd3fc"],  html.light [style*="background: #7dd3fc"],
+html.light [style*="background:#BAE6FD"],  html.light [style*="background: #BAE6FD"],
+html.light [style*="background:#bae6fd"],  html.light [style*="background: #bae6fd"],
+html.light [style*="background-color:#7DD3FC"], html.light [style*="background-color: #7DD3FC"],
+html.light [style*="background-color:#7dd3fc"], html.light [style*="background-color: #7dd3fc"],
+html.light [style*="background-color:#BAE6FD"], html.light [style*="background-color: #BAE6FD"],
+html.light [style*="background-color:#bae6fd"], html.light [style*="background-color: #bae6fd"],
+html.light .camps .ccard > a,
+html.light .camps .ccard > a:visited,
+html.light .camps .ccard > a:hover { color: #0B1F3A !important; }
+
+html.light ::selection { background: #BAE6FD; color: #0B1F3A; }
+html.light input:focus, html.light select:focus, html.light textarea:focus { outline-color: #1E40AF; }
+
+/* Cards get the dash's hairline and a whisper of shadow, so white on Mist
+   still reads as a card. */
+html.light table { box-shadow: 0 1px 2px rgba(11, 31, 58, 0.06); }
+
+/* ---- dark islands ----
+   Photo heroes, the navy brand bands, the nav bar and the footer stay dark in
+   light mode. Their type was written for a dark ground (white literals, or
+   --td-text that used to be light), so each island gets the dark palette back.
+   Both page variable families are re-declared too: --navy and friends resolve
+   on :root, and a child only inherits the result, so resetting --td-* alone
+   would leave them light.
+   Add a selector here when a section is meant to stay dark; the contrast runner
+   names the section ("on") when one is missing. */
+html.light :is(
+  .tn-bar, .tn-util, .tn-drawer, footer.tf,
+  /* index */ .hero, .kit-band, .ins-band, .story, .camps, .wcard, .kfeat .shot, .stcard .shot,
+  /* camps */ .h-spring, .h-canada, .h-lithuania, .h-nida, .h-dk, .h-autumn, .h-winter,
+  /* games */ .g-hero, .g-friday,
+  /* the navy cards on the programme pages */ .tryout-box, .trial-box, .proof-quote, .cost-card,
+  #apply .cta-box, .cup-card, .gs-card
+) {
+  --td-bg:#121824; --td-surface:#1C2534; --td-surface-2:#263148; --td-line:#35435D;
+  --td-text:#F2F6FC; --td-muted:#B3C0D2; --td-link:#8FD6FF; --td-accent:#7DD3FC;
+  --td-accent-2:#BAE6FD; --td-brand:#1E40AF; --td-navy:#0B1F3A; --td-card-hi:#223047;
+  --black:#121824; --navy:#1C2534; --blue:#1E40AF; --baby:#7DD3FC; --sky:#BAE6FD;
+  --mist:#121824; --ink:#F2F6FC; --ink2:#B3C0D2; --line:#35435D; --white:#1C2534;
+  --bg:#121824; --text:#F2F6FC; --text-muted:#B3C0D2; --muted:#B3C0D2; --border:#35435D;
+  --dark:#1C2534; --blue-light:#263148; --talata:#1E40AF; --talata-dark:#1C2534;
+  --talata-light:#7DD3FC; --gold:#BAE6FD;
+  color-scheme: dark;
+}
+
+/* ---- fixtures (talata-fixtures.css) ----
+   The list, the month headings, the filter chips and the key go light. The
+   featured next game, the ticker, the detail dialog and the cup pop-up stay
+   dark cards: each declares its own --f-* tokens on itself and paints its own
+   dark ground, so they need nothing here. */
+html.light :is(.tf-scope, .tf-month, .tf-bar, .tf-tabs) {
+  --f-bg:#F8FAFC; --f-card:#FFFFFF; --f-card2:#EFF2F6; --f-line:#D5DCE6;
+  --f-text:#0B1F3A; --f-muted:#46566B; --f-accent:#1E40AF; --f-sky:#16305C;
+  --f-win:#166534; --f-warn:#854D0E;
+}
+html.light .tf-r-tag:not(.is-annulled),
+html.light .tf-chip.is-on { color: #FFFFFF; }
+/* The competition colours, darkened to read on white (all over 4.5:1). */
+html.light .tf-key .k-cup, html.light .tf-r.tf-k-cup .tf-r-comp span { color: #B42318; }
+html.light .tf-key .k-inv, html.light .tf-r.tf-k-inv .tf-r-comp span { color: #15803D; }
+html.light .tf-key .k-se,  html.light .tf-r.tf-k-se  .tf-r-comp span { color: #7A5F00; }
+html.light .tf-key .k-es,  html.light .tf-r.tf-k-es  .tf-r-comp span { color: #7E3AAF; }
+
+/* Photo heroes paint the photo under a see-through shade. On dark the page
+   showed through the shade; on light it would be Mist, and the white type on
+   top would wash out. A dark ground under the photo keeps them as they were. */
+html.light :is(.hero, .g-hero, .gs-card) { background-color: #121824; }
+
+/* ---- one-offs, page by page ---- */
+html.light { --card: var(--td-surface); }                 /* games: .g-win */
+html.light .tcard i { color: var(--td-muted); }            /* index: hall line, was #98A2B3 */
+html.light .btn-talata { color: #FFFFFF; }                 /* camps: blue button */
+html.light #member .mb-warn b { color: #9A3412; }          /* join: the member warning, orange 7:1 */
+html.light .tf-r.is-home > div { background: #EAF1FF; }    /* fixtures: home rows */
+html.light .tf-r.is-home:hover > div { background: #DCE8FF; }
