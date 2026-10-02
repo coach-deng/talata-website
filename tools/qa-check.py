@@ -55,7 +55,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # "tools" added 27 Aug: contrast-runner.html lives there and is an internal
 # harness, not a page. It has no nav and no dark stylesheet on purpose, and
 # without this it fails three structural checks that do not apply to it.
-SKIP = {"node_modules", "images", "fonts", "downloads", "junk", "posters", "tools"}
+SKIP = {"node_modules", "images", "fonts", "downloads", "junk", "posters", "tools", "dist"}
 
 RED, YEL, GRN, DIM, OFF = "\033[31m", "\033[33m", "\033[32m", "\033[2m", "\033[0m"
 
