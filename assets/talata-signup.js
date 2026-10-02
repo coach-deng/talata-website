@@ -475,7 +475,10 @@
       data.form_id = opts.formId_ || 'talata-web';
       data.campaign = opts.formId_ || 'talata-web';
 
-      data.source = data.how_found || opts.formId_ || 'talata-web';
+      // The trial forms stopped asking "how did you find us" on 2 Oct 2026, so the
+      // visit's own channel (google-organic, instagram, ig-program, referral) is the
+      // source, and the form id only when the visit came in direct.
+      data.source = data.how_found || attribution.channel || opts.formId_ || 'talata-web';
       if (data.source === 'google' && attribution.channel.indexOf('google') === 0) {
         data.source = attribution.channel;
       }
