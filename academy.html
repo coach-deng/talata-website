@@ -697,7 +697,7 @@
     <div class="form-card">
       <form id="academy-form">
         <!-- One trial form on every page (2 Oct 2026): name, date of birth, boy or girl,
-             parent email, phone. The Worker works out the group from the date of birth and
+             parent email, where they heard of us, phone. The Worker works out the group from the date of birth and
              sends every girl of 15 or older to Stevnsgade, which is why boy or girl stays. -->
         <div class="form-row">
           <div class="form-group">
@@ -723,6 +723,10 @@
         <div class="form-group">
           <label for="phone">Phone <span style="font-weight:400;opacity:.6">(optional)</span></label>
           <input type="tel" id="phone" name="phone" placeholder="+45 ..." autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="how_found">Where did you hear about us?</label>
+          <select id="how_found" name="how_found" required><option value="">Choose</option><option value="google">Google search</option><option value="instagram">Instagram</option><option value="friend">Friend or teammate</option><option value="parent">Another parent</option><option value="school">School</option><option value="camp">A Talata camp</option><option value="other">Other</option></select>
         </div>
         <p style="margin:4px 0 14px;font-size:.88rem;color:var(--td-muted);">We show you the first session as soon as you send this, and email it too. Nothing to book.</p>
         <button type="submit" class="form-submit" id="submit-btn">Claim my free session</button>
