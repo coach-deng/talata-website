@@ -111,6 +111,12 @@ def apply_filter(value, filt):
         return num(value)
     if filt == "sched":
         return sched(value)
+    if filt == "sat":
+        # Saturday sessions only, e.g. "10:00 to 11:00 at Kulturhuset Indre By" (2 Oct 2026)
+        sat = [x for x in value.get("sessions", []) if x.get("day") == 5]
+        if not sat:
+            raise ValueError("no Saturday session for %s" % value.get("label"))
+        return sched(dict(value, sessions=sat)).replace("Sat ", "", 1)
     if filt == "priceline":
         # a camp: "1.295 kr to Sunday 1 November, then 1.495 kr" while the early bird
         # runs, then just "1.495 kr". The nightly re-render flips it.
