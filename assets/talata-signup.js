@@ -362,25 +362,44 @@
     'Talata Academy': 3300, 'Talata Men': 2000, 'Free trial': 2200
   };
 
+  // Club bands since 19 Aug 2026: Mini 5 to 9, Junior 10 to 12, Academy 13 to 18,
+  // Men 19 and up (2 Oct 2026: this still used the old 5-8 / 9-11 / 12+ bands).
   function leadValue(data) {
     var age = parseInt(data.age, 10);
-    if (age >= 5 && age <= 8) return LEAD_VALUE['Talata Mini'];
-    if (age >= 9 && age <= 11) return LEAD_VALUE['Talata Junior'];
-    if (age >= 12 && age <= 19) return LEAD_VALUE['Talata Academy'];
-    if (age >= 20) return LEAD_VALUE['Talata Men'];
+    if (age >= 5 && age <= 9) return LEAD_VALUE['Talata Mini'];
+    if (age >= 10 && age <= 12) return LEAD_VALUE['Talata Junior'];
+    if (age >= 13 && age <= 18) return LEAD_VALUE['Talata Academy'];
+    if (age >= 19) return LEAD_VALUE['Talata Men'];
     return LEAD_VALUE[data.program] || LEAD_VALUE['Free trial'];
+  }
+
+  // A camp booking is worth the camp, not a season. The page's own price line and
+  // the lunch tick box both come from data/facts.json (tools/apply-facts.py).
+  function kr(text) {
+    var m = String(text || '').match(/(\d{1,2})[.,](\d{3})\s*kr|(\d{3})\s*kr/);
+    return m ? parseInt(m[1] ? m[1] + m[2] : m[3], 10) : 0;
+  }
+  function campValue(form, data) {
+    var price = kr((document.querySelector('.fact-price dd') || {}).textContent);
+    if (data.lunch_added) {
+      var lab = form && form.querySelector('label[for="f-lunch"]');
+      price += kr(lab && lab.textContent);
+    }
+    return price;
   }
 
   // Fire once, on a confirmed 2xx from the Worker. Firing on click instead
   // would count every fat-fingered submit as a signup and quietly poison the
   // bidding data, which is worse than having no data at all.
-  function fireConversion(data) {
+  function fireConversion(data, form) {
     if (typeof window.gtag !== 'function') return;
-    var value = leadValue(data);
+    var isCamp = /camp/i.test(data.form_id || '');
+    var value = isCamp ? (campValue(form, data) || leadValue(data)) : leadValue(data);
     try {
       window.gtag('event', 'generate_lead', {
         currency: 'DKK',
         value: value,
+        lead_type: isCamp ? 'camp' : 'trial',
         program: data.program || 'Free trial',
         age: data.age || '',
         form_id: data.form_id || '',
@@ -485,6 +504,7 @@
         var lunchText = lunchLabel ? lunchLabel.textContent.replace(/^\s*Add lunch:\s*/, '').replace(/\s+/g, ' ').trim() : '';
         extra.push('LUNCH ADD-ON: ' + (lunchText || 'yes'));
       }
+      var lunchAdded = !!data.lunch;
       delete data.lunch;
       if (extra.length) {
         data.message = (data.message ? data.message + ' | ' : '') + extra.join(' | ');
@@ -505,7 +525,7 @@
         // still sends one for a camp booking, so it is dropped here too.
         var route = (kind === 'trial' && out && out.route) || null;
         var pending = !!(out && out.pending);
-        fireConversion(data);
+        fireConversion(Object.assign({}, data, { lunch_added: lunchAdded }), form);
         form.reset();
         (opts.hide || []).concat([opts.buttonId]).forEach(function (id) {
           var el = document.getElementById(id);

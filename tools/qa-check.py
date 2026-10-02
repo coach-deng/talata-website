@@ -160,6 +160,17 @@ def check_danish(fails, warns):
             fails.append((rel, "Danish word in visible copy", m.group(0)))
 
 
+def check_consent(fails, warns):
+    """Google loads only after Accept (tools/apply-consent.py, 2 Oct 2026)."""
+    for path in pages():
+        src = path.read_text(encoding="utf-8")
+        rel = str(path.relative_to(ROOT))
+        if "googletagmanager.com" in src:
+            fails.append((rel, "loads Google before consent", "googletagmanager.com in the page"))
+        elif "<head" in src and "TALATA:CONSENT" not in src:
+            fails.append((rel, "no consent stub", "run tools/apply-consent.py"))
+
+
 def check_dark(fails, warns):
     for path in pages():
         src = path.read_text(encoding="utf-8")
@@ -289,6 +300,7 @@ def main():
     if not only or "voice" in only:
         check_voice(fails, warns)
         check_danish(fails, warns)
+        check_consent(fails, warns)
     if not only or "dark" in only:
         check_dark(fails, warns)
     if not only or "structure" in only:
