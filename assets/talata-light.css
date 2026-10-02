@@ -82,7 +82,8 @@ html.light :is(
   /* the navy cards on the programme pages */ .tryout-box, .trial-box, .proof-quote, .cost-card,
   #apply .cta-box, .cup-card, .gs-card,
   /* camps/*: the closing call to action */ div.cta,
-  /* help: the Insider box */ div.sub
+  /* help: the Insider box */ div.sub,
+  /* blog posts: the closing box */ .cta-box.is-dark
 ) {
   --td-bg:#121824; --td-surface:#1C2534; --td-surface-2:#263148; --td-line:#35435D;
   --td-text:#F2F6FC; --td-muted:#B3C0D2; --td-link:#8FD6FF; --td-accent:#7DD3FC;
@@ -127,3 +128,5 @@ html.light .tf-r.is-home > div { background: #EAF1FF; }    /* fixtures: home row
 html.light .tf-r.is-home:hover > div { background: #DCE8FF; }
 html.light th, html.light thead th { background: var(--td-surface-2); color: var(--td-text); }  /* help tables */
 html.light .card--holdsport { --hs: #B4410F; }             /* help: Holdsport orange, 5.6:1 on white */
+html.light .result-card.win .result-label  { color: #166534; }   /* blog results: green and red that read on white */
+html.light .result-card.loss .result-label { color: #B42318; }
