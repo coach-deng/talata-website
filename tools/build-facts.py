@@ -60,8 +60,10 @@ WHO_MAP = {
     "u13": ["junior"],
     "u13 academy": ["academy_u13_u15"],
     "u15": ["academy_u13_u15", "academy_u15_u17"],
-    "u17": ["academy_u15_u17", "academy_u17_u19"],
-    "u19": ["academy_u17_u19"],
+    # academy_u17 / academy_u19 (5 Oct 2026): the trial email offers U17 and U19 different sessions
+    # (Deng: U17 Wed or Fri, U19 Mon or Fri 18:45), so each needs a team of its own.
+    "u17": ["academy_u15_u17", "academy_u17_u19", "academy_u17"],
+    "u19": ["academy_u17_u19", "academy_u19"],
     "men": ["men"],
     "girls 15+ (stevnsgade)": ["girls_15"],
     "open gym": ["open_gym"],
@@ -76,6 +78,8 @@ TEAMS = {
     "academy_u13_u15": "Academy U13 + U15",
     "academy_u15_u17": "Academy U15 + U17",
     "academy_u17_u19": "Academy U17 + U19",
+    "academy_u17": "Academy U17",
+    "academy_u19": "Academy U19",
     "girls_15": "Girls 15 and up (Stevnsgade)",
     "men": "Talata Men",
     "open_gym": "Open gym",
