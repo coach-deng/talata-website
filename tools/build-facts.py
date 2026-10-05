@@ -65,6 +65,8 @@ WHO_MAP = {
     "men": ["men"],
     "girls 15+ (stevnsgade)": ["girls_15"],
     "open gym": ["open_gym"],
+    # 5 Oct 2026 (Deng): Saturday Family Time at Kulturhuset, kids and parents together.
+    "family time": ["family_time"],
 }
 
 TEAMS = {
@@ -77,6 +79,7 @@ TEAMS = {
     "girls_15": "Girls 15 and up (Stevnsgade)",
     "men": "Talata Men",
     "open_gym": "Open gym",
+    "family_time": "Family Time",
 }
 
 

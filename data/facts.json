@@ -191,10 +191,10 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "0a99df1cf391a858584618185a5c978834b188134d503937f732fd58e6c02b71",
+  "sha": "2a5264fd18a8f4f4c367a6149b4ea2f7bad4dde4c0b3bba9ecf7b39097a967fd",
   "sources": {
-    "programs_sha": "5fdb6e3c66e9953134dbf198fd9024fdb4e5dfe81e7ba99113b3840a2c1bf6f1",
-    "training_sha": "b0b906619d3033bb018767875d7997e4b229c62c21de33c910410ac5be9f92a1",
+    "programs_sha": "db0f1073473955fabe4e9817d1a03022d46322c8ce5d3430be6e6e5f389aed84",
+    "training_sha": "e0adfa0f1ce284fa4f1264dd1fe6e5fb39196f67628684c3f602d2b4e234b4b4",
     "training_updated": "2026-10-05"
   },
   "teams": {
@@ -460,6 +460,25 @@
           ],
           "start": "18:45",
           "starts": "2026-10-23"
+        }
+      ]
+    },
+    "family_time": {
+      "label": "Family Time",
+      "sessions": [
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 5,
+          "day_name": "Saturday",
+          "end": "13:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [
+            "2026-12-26",
+            "2027-01-02"
+          ],
+          "start": "12:00",
+          "starts": "2026-10-10"
         }
       ]
     },
@@ -1013,6 +1032,24 @@
         "junior"
       ],
       "who": "Junior"
+    },
+    {
+      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+      "day": 5,
+      "day_name": "Saturday",
+      "end": "13:00",
+      "ends": null,
+      "hall": "Kulturhuset Indre By",
+      "off": [
+        "2026-12-26",
+        "2027-01-02"
+      ],
+      "start": "12:00",
+      "starts": "2026-10-10",
+      "teams": [
+        "family_time"
+      ],
+      "who": "Family Time"
     }
   ],
   "venues": {
