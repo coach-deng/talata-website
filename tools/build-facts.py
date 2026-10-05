@@ -55,6 +55,9 @@ WHO_MAP = {
     "sparks": ["sparks"],
     "mini": ["mini"],
     "junior": ["junior"],
+    # 5 Oct 2026: the vault's Holdsport week trains U13 with Junior at Strandvejsskolen ("Junior + U13").
+    # On the site that is the Junior session, so u13 alone maps to junior. "u13 academy" stays the Academy row.
+    "u13": ["junior"],
     "u13 academy": ["academy_u13_u15"],
     "u15": ["academy_u13_u15", "academy_u15_u17"],
     "u17": ["academy_u15_u17", "academy_u17_u19"],
