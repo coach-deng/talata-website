@@ -8,6 +8,7 @@
 <script>(function(){var m='auto';try{var s=localStorage.getItem('talata-theme');if(s==='light'||s==='dark')m=s}catch(e){}var d=m==='dark';if(m==='auto'){try{d=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){d=true}}var r=document.documentElement;r.classList.remove('light','dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light'})();</script>
 <script src="/assets/talata-theme.js?v=20261006a" defer></script>
 <!-- TALATA:HEAD:END -->
+<link rel="preconnect" href="https://talata-api.coach-258.workers.dev" crossorigin>
 <title>Basketballklub i København | Første træning gratis | Talata</title>
 <meta name="description" content="Basketballklub på Østerbro i København. Basketbold for børn, unge og voksne fra 5 år. Første træning er gratis, og du behøver ingen erfaring eller udstyr." />
 <meta name="keywords" content="basketball københavn, basketballklub østerbro, basketball børn, gratis prøvetræning basketball, svanemøllehallen basketball, basketball camp københavn" />
@@ -199,23 +200,31 @@ section{padding:72px 0;}
 .ccard .price{font-family:var(--disp);font-weight:800;font-size:1.05rem;color:#fff;}
 .ccard a{margin-top:10px;text-align:center;background:var(--baby);color:var(--td-bg);font-family:var(--disp);font-weight:800;font-size:0.85rem;padding:11px;border-radius:100px;}
 
-/* watch strip */
+/* watch strip. Club header + Follow, fallback club photos, live tiles 3:4
+   (3 by 2 on desktop, a swipe strip on phones). Only the grid scrolls sideways,
+   never the page (Deng, 6 Oct 2026). */
+.watch .head{align-items:center;}
+.watch .ighead{display:flex;align-items:center;gap:12px;}
+.watch .igmark{width:44px;height:44px;border-radius:12px;background:#0B1F3A;border:1px solid var(--td-line);display:flex;align-items:center;justify-content:center;flex:none;}
+.watch .igmark svg{width:30px;height:30px;display:block;fill:#fff;}
+.watch .igid{display:flex;flex-direction:column;line-height:1.25;}
+.watch .igid b{font-family:var(--disp);font-weight:800;font-size:0.98rem;color:var(--td-text);}
+.watch .igid span{font-size:0.8rem;color:var(--td-muted);}
+.watch .head a.igfollow{background:#1E40AF;color:#fff;font-family:var(--disp);font-weight:800;font-size:0.85rem;padding:10px 22px;border-radius:100px;margin-left:6px;text-decoration:none;}
+.watch .head a.igfollow:hover{background:#16305C;color:#fff;}
 .watch .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.watch .wgrid.ig-live .wcard{aspect-ratio:4/5;}
-@media(max-width:880px){.watch .wgrid.ig-live{grid-template-columns:repeat(2,1fr);gap:10px;}}
-@media(max-width:880px){.watch .wgrid{grid-template-columns:1fr;}}
+.watch .wgrid.ig-live .wcard{aspect-ratio:3/4;opacity:0;transition:opacity .45s ease;}
+.watch .wgrid.ig-live .wcard.is-loaded{opacity:1;}
+@media(prefers-reduced-motion:reduce){.watch .wgrid.ig-live .wcard{transition:none;}}
+@media(max-width:880px){
+  .watch .wgrid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;}
+  .watch .wgrid::-webkit-scrollbar{display:none;}
+  .watch .wgrid .wcard{scroll-snap-align:start;}
+  .watch .wgrid.ig-live{grid-auto-columns:41%;gap:10px;}
+}
 .wcard{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:var(--navy);}
 .wcard img{width:100%;height:100%;object-fit:cover;object-position:center 31%;opacity:0.85;transition:transform .4s;}
 .wcard:hover img{transform:scale(1.05);}
-.wcard .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
-/* Was color:var(--td-text) on a white disc. Dark mode remapped --td-text to
-   #F2F6FC, so from 26 Aug the play arrow rendered near-white on near-white at
-   1.08:1 and the cards showed three blank circles. An SVG rather than the U+25B6
-   glyph, which some platforms substitute with a colour emoji that ignores
-   `color` entirely. */
-.wcard .play i{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(10,10,10,0.35);transition:transform .2s;}
-.wcard:hover .play i{transform:scale(1.08);}
-.wcard .play svg{width:17px;height:19px;margin-left:3px;fill:var(--td-bg);display:block;}
 .wcard .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(to top,rgba(10,10,10,0.85),transparent);color:#fff;font-weight:700;font-size:0.9rem;}
 
 /* numbers */
@@ -545,11 +554,18 @@ footer a:hover{color:var(--td-link);}
 
 <section class="watch" id="watch">
   <div class="wrap">
-    <div class="head"><h2>Watch <i>Talata</i></h2><a href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">@talatabasketball →</a></div>
+    <div class="head">
+      <h2>Watch <i>Talata</i></h2>
+      <div class="ighead">
+        <span class="igmark" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M14.57 12.77L49.43 12.77L49.43 20.31L36.63 20.31L36.63 52.77L27.38 52.77L27.38 20.31L14.57 20.31Z"/></svg></span>
+        <span class="igid"><b>@talatabasketball</b><span>Game days, training and camps</span></span>
+        <a class="igfollow" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener" data-track="ig-follow">Follow</a>
+      </div>
+    </div>
     <div class="wgrid" data-talata-ig>
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="images/action-fastbreak.jpg" alt="Fast break at Talata training" decoding="async" width="1068" height="1600" loading="lazy"><div class="play"><i><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0l12 7-12 7z"/></svg></i></div><div class="cap">Academy runs at Svanemøllehallen</div></a>
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="/images/2026-09/site/academy-deng-coaching-session-wide.jpg" alt="Coach Deng Awak talking Talata Academy players through a drill" decoding="async" width="1200" height="675" loading="lazy"><div class="play"><i><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0l12 7-12 7z"/></svg></i></div><div class="cap">Inside an Academy session</div></a>
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener"><img src="images/jun26/mini-group-energy.jpg" alt="Talata Mini kids full of energy after training" decoding="async" width="1200" height="1600" loading="lazy"><div class="play"><i><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0l12 7-12 7z"/></svg></i></div><div class="cap">Inside a Mini session</div></a>
+      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener" data-track="ig-card"><img src="/images/2026-10/site/u13-grand-prix-four-clubs-group.jpg" alt="Players and coaches from four clubs together after the U13 Grand Prix at Korsgadehallen" decoding="async" width="1600" height="1067" loading="lazy" style="object-position:50% 52%"><div class="cap">Four clubs. One photo.</div></a>
+      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener" data-track="ig-card"><img src="/images/2026-10/site/u13-grand-prix-team-with-coach.jpg" alt="The Talata U13 team with their coach at the Grand Prix" decoding="async" width="1600" height="1067" loading="lazy" style="object-position:50% 40%"><div class="cap">U13 Grand Prix East</div></a>
+      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener" data-track="ig-card"><img src="/images/2026-10/site/u13-grand-prix-hands-in-huddle.jpg" alt="Talata U13 players with their hands in, in the huddle with their coach" decoding="async" width="1600" height="1067" loading="lazy" style="object-position:50% 45%"><div class="cap">Hands in before tip off</div></a>
     </div>
   </div>
 </section>
