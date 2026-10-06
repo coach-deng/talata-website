@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-05",
+  "built_for": "2026-10-06",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -191,9 +191,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "cd791c498e6dbfdab3a87d782fb54acbff0d21a2574bac10ea0d7aa060695b57",
+  "sha": "d3eccf22be43aa1aec0321fef834ef7b54040e11688d2202ebc34c9c9d02c280",
   "sources": {
-    "programs_sha": "db0f1073473955fabe4e9817d1a03022d46322c8ce5d3430be6e6e5f389aed84",
+    "programs_sha": "bdb27be68d9bf0a54819c8e2d71d306de3cd48dc901cae6e8a38763ba88726ed",
     "training_sha": "e0adfa0f1ce284fa4f1264dd1fe6e5fb39196f67628684c3f602d2b4e234b4b4",
     "training_updated": "2026-10-05"
   },
@@ -201,17 +201,6 @@
     "academy_u13_u15": {
       "label": "Academy U13 + U15",
       "sessions": [
-        {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 0,
-          "day_name": "Monday",
-          "end": "18:45",
-          "ends": "2026-10-05",
-          "hall": "Svanemøllehallen",
-          "off": [],
-          "start": "16:45",
-          "starts": "2026-10-05"
-        },
         {
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
@@ -284,17 +273,6 @@
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
           "day_name": "Monday",
-          "end": "18:45",
-          "ends": "2026-10-05",
-          "hall": "Svanemøllehallen",
-          "off": [],
-          "start": "16:45",
-          "starts": "2026-10-05"
-        },
-        {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 0,
-          "day_name": "Monday",
           "end": "19:00",
           "ends": null,
           "hall": "Svanemøllehallen",
@@ -360,17 +338,6 @@
       "label": "Academy U17",
       "sessions": [
         {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 0,
-          "day_name": "Monday",
-          "end": "18:45",
-          "ends": "2026-10-05",
-          "hall": "Svanemøllehallen",
-          "off": [],
-          "start": "16:45",
-          "starts": "2026-10-05"
-        },
-        {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
           "day": 1,
           "day_name": "Tuesday",
@@ -427,17 +394,6 @@
     "academy_u17_u19": {
       "label": "Academy U17 + U19",
       "sessions": [
-        {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 0,
-          "day_name": "Monday",
-          "end": "18:45",
-          "ends": "2026-10-05",
-          "hall": "Svanemøllehallen",
-          "off": [],
-          "start": "16:45",
-          "starts": "2026-10-05"
-        },
         {
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
@@ -817,24 +773,6 @@
         "sparks"
       ],
       "who": "Sparks"
-    },
-    {
-      "address": "Østerbrogade 240, 2100 København Ø",
-      "day": 0,
-      "day_name": "Monday",
-      "end": "18:45",
-      "ends": "2026-10-05",
-      "hall": "Svanemøllehallen",
-      "off": [],
-      "start": "16:45",
-      "starts": "2026-10-05",
-      "teams": [
-        "academy_u13_u15",
-        "academy_u15_u17",
-        "academy_u17_u19",
-        "academy_u17"
-      ],
-      "who": "U15 + U17"
     },
     {
       "address": "Østerbrogade 240, 2100 København Ø",
