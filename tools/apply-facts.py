@@ -16,10 +16,26 @@ FILTERS
   kr      1595          -> 1.595 kr
   num     1595          -> 1.595
   sched   a team        -> "Tue + Thu 15:30 to 16:30 at Strandvejsskolen, Sat 10:00 to 11:00 at Kulturhuset Indre By"
+                           Standing sessions only (6 Oct 2026): a row whose `ends` has passed is
+                           dropped, a one-off row (starts == ends, like Men Fri 9 Oct) never shows,
+                           and a row that starts more than a week from today gets "from 19 Oct".
+                           The nightly CI re-render drops the "from" once the row is running.
+  sat     a team        -> its Saturday sessions only, without the "Sat "
+  hall    a venue       -> what trains there, from the training rows, same standing rules as sched:
+                           <!--fact:venues.svanemollehallen|hall--> ->
+                           "Mon 18:45 to 20:15 U19 + Men, Thu 17:00 to 19:00 U13 Academy + U15 + U17"
   priceline a camp      -> "1.295 kr to Sunday 1 November, then 1.495 kr", or "1.495 kr" once it has passed
   range   "16:15-18:00" -> 16:15 to 18:00
   (none)  the value as it is
   No filter ever writes a dash between two numbers (Deng's rule, qa-check fails it).
+
+BLOCKS
+  <!-- TALATA:FACTS:week:START --> ... END     the week as HTML + JSON (team pages: week-mini etc)
+  <!-- TALATA:FACTS:org-ld:START --> ... END   wraps an ld+json <script>. Its JSON is kept and three
+                                              keys are rewritten from facts: location (every venue but
+                                              Heibergskolen), identifier (CVR) and
+                                              openingHoursSpecification (standing training rows).
+  <!-- TALATA:FACTS:place-ld:START --> ... END  the same, openingHoursSpecification only.
 
 MODES
     python3 tools/apply-facts.py            write every marker
@@ -81,36 +97,84 @@ def num(v):
     return "{:,}".format(int(v)).replace(",", ".")
 
 
-def group_sessions(team):
+TODAY = None  # pin a date for a test; otherwise Copenhagen today
+MON3 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+SOON_DAYS = 7  # a row starting within a week is simply on the schedule
+
+
+def _today():
+    return TODAY or today_cph()
+
+
+def _date(iso):
+    import datetime as dt
+    return dt.date.fromisoformat(iso) if iso else None
+
+
+def standing(rows):
+    """Rows that are part of the standing week today: not ended, not a one-off."""
+    today = _today()
+    out = []
+    for r in rows:
+        starts, ends = _date(r.get("starts")), _date(r.get("ends"))
+        if ends and ends < today:
+            continue
+        if starts and ends and starts == ends:
+            continue
+        out.append(r)
+    return out
+
+
+def row_note(r):
+    """" from 19 Oct" for a row that starts more than a week out, " until 9 Oct" for one that ends."""
+    import datetime as dt
+    today = _today()
+    starts, ends = _date(r.get("starts")), _date(r.get("ends"))
+    if starts and starts > today + dt.timedelta(days=SOON_DAYS):
+        return " from %d %s" % (starts.day, MON3[starts.month - 1])
+    if ends:
+        return " until %d %s" % (ends.day, MON3[ends.month - 1])
+    return ""
+
+
+def _group(rows, label):
     groups = []
-    for s in sorted(team["sessions"], key=lambda s: (s["start"], s["hall"], s["day"])):
-        key = (s["start"], s["end"], s["hall"])
+    for r in sorted(rows, key=lambda r: (r["start"], r["day"])):
+        key = (r["start"], r["end"], label(r), row_note(r))
         for g in groups:
             if g["key"] == key:
-                g["days"].append(s["day"])
+                g["days"].append(r["day"])
                 break
         else:
-            groups.append({"key": key, "days": [s["day"]]})
+            groups.append({"key": key, "days": [r["day"]]})
     groups.sort(key=lambda g: (min(g["days"]), g["key"][0]))
-    return groups
+    return [(" + ".join(DAY3[d] for d in sorted(set(g["days"]))),) + g["key"] for g in groups]
 
 
 def sched(team):
-    parts = []
-    for g in group_sessions(team):
-        start, end, hall = g["key"]
-        days = " + ".join(DAY3[d] for d in sorted(set(g["days"])))
-        parts.append("%s %s to %s at %s" % (days, start, end, hall))
+    parts = ["%s %s to %s at %s%s" % g for g in _group(standing(team["sessions"]), lambda r: r["hall"])]
+    if not parts:
+        print("apply-facts: warning, %s has no standing sessions" % team.get("label"), file=sys.stderr)
     return ", ".join(parts)
 
 
-def apply_filter(value, filt):
+def hall_sched(venue, doc):
+    """Ongoing groups and times at one hall (6 Oct 2026, for /where-we-train)."""
+    rows = [r for r in standing(doc.get("training") or []) if r.get("hall") == venue.get("name")]
+    if not rows:
+        raise ValueError("no training at %s" % venue.get("name"))
+    return ", ".join("%s %s to %s %s%s" % g for g in _group(rows, lambda r: r["who"]))
+
+
+def apply_filter(value, filt, doc=None):
     if filt == "kr":
         return num(value) + " kr"
     if filt == "num":
         return num(value)
     if filt == "sched":
         return sched(value)
+    if filt == "hall":
+        return hall_sched(value, doc or {})
     if filt == "sat":
         # Saturday sessions only, e.g. "10:00 to 11:00 at Kulturhuset Indre By" (2 Oct 2026)
         sat = [x for x in value.get("sessions", []) if x.get("day") == 5]
@@ -152,7 +216,9 @@ def block_week(doc, teams=None, games=None):
 
     teams: only rows for these team keys (a team page). games: the fixture team
     names that page shows, written as data-games; None shows every game."""
-    rows = sorted(doc["training"], key=lambda r: (r["day"], r["start"]))
+    today = _today()  # a row that has ended leaves the page (the JS skips it too)
+    rows = sorted((r for r in doc["training"] if not (r.get("ends") and _date(r["ends"]) < today)),
+                  key=lambda r: (r["day"], r["start"]))
     if teams is not None:
         rows = [r for r in rows if set(r.get("teams") or []) & set(teams)]
         if not rows:
@@ -193,7 +259,66 @@ TEAM_WEEKS = {
     "week-men":     (["men"], ["Men"]),
 }
 
-BLOCKS = {"week": block_week}
+DAYS_LD = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+NO_LD_VENUES = {"heibergskolen"}  # its address in the vault is "Sunday block", not a street
+CVR = "43599453"
+
+
+def opening_hours(doc):
+    """openingHoursSpecification from the standing training rows (6 Oct 2026).
+    One spec per day for what runs now. A row that starts more than a week out
+    and widens that day adds a second spec with validFrom, and the first one
+    gets validThrough the day before."""
+    import datetime as dt
+    soon = _today() + dt.timedelta(days=SOON_DAYS)
+    rows = standing(doc.get("training") or [])
+    out = []
+    for d in range(7):
+        day = [r for r in rows if r["day"] == d]
+        now = [r for r in day if not r.get("starts") or _date(r["starts"]) <= soon]
+        later = [r for r in day if r not in now]
+        spec = None
+        if now:
+            spec = {"@type": "OpeningHoursSpecification", "dayOfWeek": [DAYS_LD[d]],
+                    "opens": min(r["start"] for r in now), "closes": max(r["end"] for r in now)}
+            out.append(spec)
+        for start in sorted({r["starts"] for r in later}):
+            span = now + [r for r in later if r["starts"] <= start]
+            o, c = min(r["start"] for r in span), max(r["end"] for r in span)
+            if spec and o == spec["opens"] and c == spec["closes"]:
+                continue
+            if spec:
+                spec["validThrough"] = (_date(start) - dt.timedelta(days=1)).isoformat()
+            spec = {"@type": "OpeningHoursSpecification", "dayOfWeek": [DAYS_LD[d]],
+                    "opens": o, "closes": c, "validFrom": start}
+            out.append(spec)
+    return out
+
+
+LD_SCRIPT = re.compile(r"(<script[^>]*application/ld\+json[^>]*>)(.*?)(</script>)", re.S)
+
+
+def _ld_block(name, doc, inner):
+    m = LD_SCRIPT.search(inner or "")
+    if not m:
+        raise SystemExit("apply-facts: block %s needs an ld+json <script> inside it" % name)
+    data = json.loads(m.group(2))
+    data.pop("openingHours", None)
+    data["openingHoursSpecification"] = opening_hours(doc)
+    if name == "org-ld":
+        data["location"] = [{"@type": "SportsActivityLocation", "name": v["name"], "address": v["address"]}
+                            for k, v in sorted((doc.get("venues") or {}).items()) if k not in NO_LD_VENUES]
+        data["identifier"] = {"@type": "PropertyValue", "propertyID": "CVR", "value": CVR}
+    pretty = '\n  "' in m.group(2)
+    body = json.dumps(data, ensure_ascii=False, indent=2 if pretty else None,
+                      separators=None if pretty else (",", ":"))
+    return "\n%s\n%s\n%s\n" % (m.group(1), body, m.group(3))
+
+
+BLOCKS = {"week": block_week,
+          "org-ld": lambda doc, inner: _ld_block("org-ld", doc, inner),
+          "place-ld": lambda doc, inner: _ld_block("place-ld", doc, inner)}
+INNER_BLOCKS = {"org-ld", "place-ld"}
 for _name, (_teams, _games) in TEAM_WEEKS.items():
     BLOCKS[_name] = (lambda t, g: lambda doc: block_week(doc, t, g))(_teams, _games)
 
@@ -205,7 +330,7 @@ def render_text(src, doc, where):
             value = walk(doc, path)
         except KeyError:
             raise SystemExit("apply-facts: %s names %r, which is not in data/facts.json" % (where, path))
-        out = apply_filter(value, filt)
+        out = apply_filter(value, filt, doc)
         if re.search(r"\d\s*[-–—]\s*\d", out):
             raise SystemExit("apply-facts: %s %r would print a dash between numbers: %r" % (where, path, out))
         return "<!--fact:%s%s-->%s<!--/fact-->" % (path, "|" + filt if filt else "", out)
@@ -215,6 +340,8 @@ def render_text(src, doc, where):
         name = m.group(2)
         if name not in BLOCKS:
             raise SystemExit("apply-facts: %s has an unknown block %r" % (where, name))
+        if name in INNER_BLOCKS:
+            return m.group(1) + BLOCKS[name](doc, m.group(3)) + m.group(4)
         return m.group(1) + BLOCKS[name](doc) + m.group(4)
     return BLOCK.sub(bsub, out)
 
