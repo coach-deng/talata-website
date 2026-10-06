@@ -84,9 +84,8 @@
 
     /* HERO */
     .hero {
-      background: linear-gradient(160deg, rgba(17,17,17,0.80) 0%, rgba(26,42,56,0.74) 100%), url('/images/2026-09/site/camps-hero-camp-group-with-coaches-c.jpg');
-      background-size: cover;
-      background-position: center, 45% 52%; /* 15 Sep 2026: real camp day group replaces the Junior game day tunnel */
+      background: #0B1F3A; /* the photo is .hero-photo below (6 Oct 2026); 45% 52% frames the camp day group */
+      position: relative; overflow: hidden;
       color: #fff;
       padding: 64px 40px 56px;
       text-align: center;
@@ -281,6 +280,12 @@
     }
       .hero .slogan { color: #fff; max-width: none; }
     .hero h1.hero-badge { line-height: 1.5; }
+  
+    /* 6 Oct 2026: the hero photo is a real <img> with alt text. The shade sits
+       over it and the copy over both. */
+    .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 52%; z-index: 0; }
+    .hero-shade { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(17,17,17,0.80) 0%, rgba(26,42,56,0.74) 100%); z-index: 1; }
+    .hero > :not(.hero-photo):not(.hero-shade) { position: relative; z-index: 2; }
   </style>
   <script type="application/ld+json">
 {
@@ -420,6 +425,8 @@
 
 
   <div class="hero">
+    <img class="hero-photo" src="/images/2026-09/site/camps-hero-camp-group-with-coaches-c.jpg" alt="Talata campers and coaches together at a holiday basketball camp in Copenhagen" width="1920" height="1080" fetchpriority="high" decoding="async">
+    <div class="hero-shade"></div>
     <h1 class="eyebrow">Basketball camps in Copenhagen</h1>
     <p class="slogan">Talata Basketball Camps</p>
     <p>Basketball camps in Copenhagen in the school holidays, for ages 5 to 17, run by the same coaches your kid sees all season. Next camp: Monday 12 October.</p>
