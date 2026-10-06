@@ -361,14 +361,15 @@
     'Talata Academy': 3300, 'Talata Men': 2000, 'Free trial': 2200
   };
 
-  // Club bands since 19 Aug 2026: Mini 5 to 9, Junior 10 to 12, Academy 13 to 18,
-  // Men 19 and up (2 Oct 2026: this still used the old 5-8 / 9-11 / 12+ bands).
+  // Club bands since 19 Aug 2026: Mini 5 to 9, Junior 10 to 12, Academy 13 to 17,
+  // Men 18 and up (2 Oct 2026: this still used the old 5-8 / 9-11 / 12+ bands;
+  // 6 Oct 2026: Men is 18+, not 19+).
   function leadValue(data) {
     var age = parseInt(data.age, 10);
     if (age >= 5 && age <= 9) return LEAD_VALUE['Talata Mini'];
     if (age >= 10 && age <= 12) return LEAD_VALUE['Talata Junior'];
-    if (age >= 13 && age <= 18) return LEAD_VALUE['Talata Academy'];
-    if (age >= 19) return LEAD_VALUE['Talata Men'];
+    if (age >= 13 && age <= 17) return LEAD_VALUE['Talata Academy'];
+    if (age >= 18) return LEAD_VALUE['Talata Men'];
     return LEAD_VALUE[data.program] || LEAD_VALUE['Free trial'];
   }
 

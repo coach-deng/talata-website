@@ -114,3 +114,14 @@
 # Saturday sessions, live 23 Aug 2026
 /saturdays    /saturday    301
 /lordag       /saturday    301
+
+# Old /klub/talata-basketball/ URLs, 6 Oct 2026. Search Console still shows one
+# (/klub/.../lithuania-camp-2026.html, Insights 15 Aug to 11 Sep). Known dead camp
+# slugs go straight to their page in one hop; everything else drops the prefix and
+# lands on the same path at the root, where the rules above take over.
+/klub/talata-basketball/camps/lithuania-camp-2026.html    /camps/nida-camp-2026    301
+/klub/talata-basketball/camps/lithuania-camp-2026         /camps/nida-camp-2026    301
+/klub/talata-basketball/lithuania-camp-2026.html          /camps/nida-camp-2026    301
+/klub/talata-basketball                                   /                        301
+/klub/talata-basketball/                                  /                        301
+/klub/talata-basketball/*                                 /:splat                  301
