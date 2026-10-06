@@ -20,6 +20,7 @@
    MOUNT POINTS
      <div data-talata-ticker></div>
      <div data-talata-feature></div>
+     <div data-talata-next></div>      homepage: next home game banner
      <div data-tf-host> [data-tf-tabs] [data-tf-filters] [data-talata-fixtures] </div>
      <div data-talata-fixtures data-limit="5"></div>
    ========================================================================== */
@@ -200,6 +201,117 @@
   function venueLabel(g) {
     if (!g.venue) return 'Venue to confirm';
     return g.venue + (g.court && g.court !== 'Hallen' ? ' · ' + g.court : '');
+  }
+
+  /* ---------- add to calendar, directions, share (6 Oct 2026) ---------- */
+
+  /* Our own halls only, from data/facts.json venue.*. Any other hall uses the
+     address Holdsport carries (venueAddr, kept by merge) or a plain search on
+     the hall name. Never a guessed street address. */
+  var VENUE_ADDR = [
+    ['Nørre Fælled', 'Nørre Fælled Skole, Biskop Krags Vænge 7, 2200 København N'],
+    ['Svanemølle', 'Svanemøllehallen, Østerbrogade 240, 2100 København Ø'],
+    ['Strandvejsskolen', 'Strandvejsskolen, Sionsgade 1, 2100 København Ø']
+  ];
+  function placeOf(g) {
+    if (g.venueAddr) return g.venueAddr.replace(/\s+/g, ' ');
+    var v = g.venue || '';
+    for (var i = 0; i < VENUE_ADDR.length; i++) {
+      if (v.indexOf(VENUE_ADDR[i][0]) === 0) return VENUE_ADDR[i][1];
+    }
+    return v ? v + ', Denmark' : '';
+  }
+  function mapsURL(g) {
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(placeOf(g));
+  }
+  function shareURL(g) {
+    return 'https://talatabasketball.dk/games?utm_source=share#g-' + encodeURIComponent(String(g.id));
+  }
+  function gameTitle(g) {
+    return squadName(g.team) + (g.home ? ' vs ' : ' at ') + oppLabel(g);
+  }
+
+  /* iCalendar text. UTC times from tipOff, CRLF lines folded at 75 octets,
+     text escaped. The UID is stable, so adding the same game twice updates
+     the one event instead of making two. */
+  function icsStamp(ms) { return new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
+  function icsText(s) { return String(s).replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n'); }
+  function icsFold(line) {
+    var out = [], cur = '', bytes = 0, max = 75;
+    for (var i = 0; i < line.length; i++) {
+      var ch = line.charAt(i), cp = line.charCodeAt(i);
+      if (cp >= 0xD800 && cp <= 0xDBFF && i + 1 < line.length) { ch += line.charAt(++i); }
+      var b = encodeURIComponent(ch).replace(/%[0-9A-F]{2}/g, 'x').length;
+      if (bytes + b > max) { out.push(cur); cur = ' '; bytes = 1; }
+      cur += ch; bytes += b;
+    }
+    out.push(cur);
+    return out.join('\r\n');
+  }
+  function icsFile(g) {
+    var t = tipOff(g);
+    if (t === null) return '';
+    var lines = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Talata Basketball//Games//EN',
+      'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
+      'UID:talata-' + String(g.id).replace(/[^\w.-]/g, '') + '@talatabasketball.dk',
+      'DTSTAMP:' + icsStamp(Date.now()),
+      'DTSTART:' + icsStamp(t),
+      'DTEND:' + icsStamp(t + 2 * 3600000),
+      'SUMMARY:' + icsText(gameTitle(g)),
+      'LOCATION:' + icsText(placeOf(g) || venueLabel(g)),
+      'DESCRIPTION:' + icsText((g.competition ? g.competition + '. ' : '') +
+        (canClaim(g) ? 'Free entry. ' : '') + shareURL(g)),
+      'URL:' + shareURL(g),
+      'END:VEVENT', 'END:VCALENDAR'
+    ];
+    return lines.map(icsFold).join('\r\n') + '\r\n';
+  }
+
+  /* The three small doors on every game still to come. A data: link rather
+     than a blob, because iOS Safari opens a data:text/calendar straight into
+     Calendar. */
+  function extrasHTML(g) {
+    if (!isActionable(g)) return '';
+    var ics = icsFile(g);
+    return '<div class="tf-extras">' +
+      (ics
+        ? '<a class="tf-mini" href="data:text/calendar;charset=utf-8,' + encodeURIComponent(ics) + '"' +
+            ' download="talata-' + esc(String(g.id).replace(/[^\w.-]/g, '')) + '.ics" data-track="game-ics">Add to calendar</a>'
+        : '') +
+      (g.venue
+        ? '<a class="tf-mini" href="' + esc(mapsURL(g)) + '" target="_blank" rel="noopener" data-track="game-map">Directions</a>'
+        : '') +
+      '<button type="button" class="tf-mini" data-tf-share="' + esc(g.id) + '" data-track="game-share">Share</button>' +
+    '</div>';
+  }
+
+  function wireShare(scope) {
+    var nodes = (scope || document).querySelectorAll('[data-tf-share]');
+    Array.prototype.forEach.call(nodes, function (btn) {
+      if (btn._tfWired) return;
+      btn._tfWired = true;
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var g = findGame(btn.getAttribute('data-tf-share'));
+        if (!g) return;
+        var url = shareURL(g);
+        var text = gameTitle(g) + ', ' + DAYS_LONG[parseISO(g.date).getDay()] + ' ' + longDate(g.date) +
+          (g.time ? ' at ' + g.time : '') + '.';
+        var copied = function () {
+          btn.textContent = 'Link copied';
+          setTimeout(function () { btn.textContent = 'Share'; }, 2500);
+        };
+        if (navigator.share) {
+          navigator.share({ title: gameTitle(g), text: text, url: url }).catch(function () { /* closed the sheet */ });
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(copied, function () { window.prompt('Copy this link', url); });
+        } else {
+          window.prompt('Copy this link', url);
+        }
+      });
+    });
   }
 
 
@@ -566,7 +678,7 @@
   /* The detail panel. One markup for the feature game at the top of the page
      and for the panel a fixture row opens, so a game looks the same wherever
      you meet it. Modelled on zalgiris.lt (Deng, 26 Aug). */
-  function detailHTML(g) {
+  function detailHTML(g, kick) {
     var opp = oppLabel(g);
     var t = tipOff(g);
     var act = isActionable(g);
@@ -574,7 +686,8 @@
     var row = function (k, v) {
       return '<div class="tf-row"><span>' + k + '</span><b>' + v + '</b></div>';
     };
-    return '<div class="tf-feat tf-k-' + compKind(g) + (poster ? ' has-poster' : '') + '">' +
+    return '<div class="tf-feat tf-k-' + compKind(g) + (poster ? ' has-poster' : '') + (kick ? ' has-kick' : '') + '">' +
+        (kick ? '<p class="tf-feat-kick">' + esc(kick) + '</p>' : '') +
         '<div class="tf-feat-main">' +
           '<div class="tf-feat-side">' + talataCrest(g.team) + '<span>Talata</span></div>' +
           '<div class="tf-feat-mid">' +
@@ -586,7 +699,10 @@
         '</div>' +
         '<div class="tf-feat-info">' +
           row('Competition', esc(g.competition)) +
-          row('Venue', esc(venueLabel(g))) +
+          row('Venue', g.venue
+            ? '<a class="tf-map" href="' + esc(mapsURL(g)) + '" target="_blank" rel="noopener" data-track="game-map">' +
+                esc(venueLabel(g)) + '</a>'
+            : esc(venueLabel(g))) +
           row('Home or away', g.home
             ? (isTalataNight(g) ? '<b class="tf-hl">Talata Night</b>' : 'Home')
             : 'Away') +
@@ -612,13 +728,14 @@
           '<div class="tf-feat-cta">' +
             (canClaim(g)
               ? '<button class="tf-btn is-primary" data-tf-claim="' + esc(g.id) +
-                '" data-tf-date="' + esc(g.date) + '">Claim free ticket</button>'
+                '" data-tf-date="' + esc(g.date) + '" data-track="game-claim">Claim free ticket</button>'
               : '') +
             /* #season exists on /games only. The row panel on /men and
                /academy needs the full path. */
             '<a class="tf-btn" href="' + (document.getElementById('season') ? '#season' : '/games#season') +
               '">All games</a>' +
           '</div>' +
+          extrasHTML(g) +
         '</div>' +
         poster +
         boxHTML(g) +
@@ -675,8 +792,18 @@
               return x.state === 'confirmed' && isActionable(x) && featureEligible(x);
             })[0]
          || games.filter(isActionable)[0];
+    /* 🔴 Deng, 6 Oct 2026: the hero is the next home game at our own halls,
+       any team, the one people can walk in to with a free ticket. The rules
+       above only decide when there is no such game left. The ticker's Next up
+       and this card now point at the same Friday. */
+    var home = games.filter(function (x) {
+      return canClaim(x) && x.state === 'confirmed' && !!x.time;
+    })[0];
+    var kick;
+    if (home) { g = home; kick = kickFor(home); }
+    else if (g) kick = isCup(g) ? 'Cup night' : 'Next big game';
     if (!g) { el.innerHTML = ''; return; }
-    el.innerHTML = detailHTML(g);
+    el.innerHTML = detailHTML(g, kick);
     startCountdowns(el);
     wireClaims(el);
   }
@@ -731,6 +858,7 @@
             '" data-track="next-claim">Claim a free ticket</button>' +
           '<a class="tf-btn" href="' + href + '" data-track="next-details">Game details</a>' +
         '</div>' +
+        extrasHTML(g) +
       '</div>';
     startCountdowns(el);
     wireClaims(el);
@@ -830,11 +958,16 @@
        .tf-r-score` used to paint the pair green, so a 41-59 win showed the
        opponent's 41 in the win colour too. An annulled game marks neither. */
     var counts = g.played && !g.annulled;
-    var lWon = counts && sLeft > sRight;
-    var rWon = counts && sRight > sLeft;
+    /* Nothing to say in the action cell: a phone row lets the date take the
+       full width instead of drawing an empty box. */
+    var noAct = !canClaim(g) && !(g.played && boxFor(g)) && !awaitingResult(g);
+    /* Only our number goes green, and only on a win. A loss is the plain
+       score (Deng, 6 Oct 2026: losses plain, youth restraint). */
+    var lWon = counts && won && sLeft > sRight;
+    var rWon = counts && won && sRight > sLeft;
 
     return '<article data-tf-open="' + esc(g.id) + '" tabindex="0" role="button"' +
-      ' class="tf-r tf-k-' + compKind(g) + (home ? ' is-home' : '') +
+      ' class="tf-r tf-k-' + compKind(g) + (home ? ' is-home' : '') + (noAct ? ' no-act' : '') +
         (g.state !== 'confirmed' ? ' is-tbc' : '') +
         (g.annulled ? ' is-annulled' : (g.played ? (won ? ' is-won' : ' is-lost') : '')) + '">' +
       '<div class="tf-r-comp"><span>' + esc(g.competition) + '</span>' +
@@ -843,7 +976,11 @@
         /* Same pill as Talata Night, so it wraps under the date the same way
            on a phone. The score beside it stays, uncoloured. */
         (g.annulled ? ' <i class="tf-r-tag is-annulled">Annulled</i>' : '') +
-        '</b></div>' +
+        '</b>' +
+        /* Phone only: the venue cell is hidden under 560px, so the hall rides
+           here as small text. */
+        '<small class="tf-r-where">' + esc(venueLabel(g)) + '</small>' +
+        '</div>' +
       '<div class="tf-r-venue"><span>' + (home ? 'Home' : 'Away') + '</span><b>' + esc(venueLabel(g)) + '</b></div>' +
       '<div class="tf-r-match">' +
         '<span class="tf-r-team is-l">' + left + '</span>' + leftCrest +
@@ -858,6 +995,9 @@
               /* Inside the scoreline, in the muted small type, so 89 87 OT
                  reads as one result. */
               (g.ot ? '<i class="tf-r-ot" title="After overtime">OT</i>' : '') +
+              /* A W on wins only (Deng, 6 Oct 2026). A loss shows the plain
+                 score, which is the youth restraint. */
+              (won ? '<i class="tf-r-wl is-w" title="Won">W</i>' : '') +
             '</span>'
           : '<span class="tf-r-score is-vs"><i>vs</i></span>') +
         rightCrest + '<span class="tf-r-team is-r">' + right + '</span>' +
@@ -888,7 +1028,7 @@
     return games.filter(function (g) { return want.indexOf(g.team) >= 0; });
   }
 
-  function renderRows(el, games) {
+  function renderRows(el, games, mark) {
     var limit = parseInt(el.getAttribute('data-limit') || '0', 10);
     var list = limit > 0 ? games.slice(0, limit) : games;
 
@@ -896,6 +1036,14 @@
       el.innerHTML = '<p class="tf-empty">Try another filter, or <a href="/games">see the full season</a>.</p>';
       return;
     }
+    /* mark: the first game still to come. The season fold draws a Today
+       line right above it. */
+    var todayLine = '<div class="tf-today" id="today"><span>Today</span></div>';
+    var marked = false;
+    var rowOf = function (g) {
+      if (mark && g === mark && !marked) { marked = true; return todayLine + fixtureRow(g); }
+      return fixtureRow(g);
+    };
 
     var order = [], byMonth = {};
     list.forEach(function (g) {
@@ -906,8 +1054,9 @@
 
     var html = order.map(function (k) {
       return '<section class="tf-month"><h3 class="tf-mh">' + monthLabel(k) + '</h3>' +
-        byMonth[k].map(fixtureRow).join('') + '</section>';
+        byMonth[k].map(rowOf).join('') + '</section>';
     }).join('');
+    if (mark === true) html += todayLine;   /* everything is in the past */
 
     if (limit > 0 && games.length > limit) {
       html += '<p class="tf-more"><a href="/games">See the full season</a></p>';
@@ -1160,6 +1309,7 @@
      enters that person in the monthly draw, so a supporter does one thing.
      No stake is ever paid, which keeps this outside Danish gambling law. */
   function wireClaims(scope) {
+    wireShare(scope);
     var nodes = (scope || document).querySelectorAll('[data-tf-claim]');
     Array.prototype.forEach.call(nodes, function (btn) {
       if (btn._tfWired) return;
@@ -1274,7 +1424,14 @@
        not behind a second tab. A parent looking for "how did Malmö go" should not
        have to know a Results tab exists. So the season runs in date order,
        finished games carry their score and the rest carry a dash. */
-    var state = { filter: 'all' };
+    /* Opens on the games still to come (6 Oct 2026). It used to open at
+       28 Aug, about 41 rows above the next game. The earlier games and their
+       scores sit behind one fold; /games?view=results opens it. */
+    var qs0 = new URLSearchParams(location.search);
+    var state = { filter: 'all', past: qs0.get('view') === 'results' };
+    var foldEl = document.createElement('div');
+    foldEl.className = 'tf-scope tf-fold-wrap';
+    out.parentNode.insertBefore(foldEl, out);
 
     var teams = [];
     allGames.forEach(function (g) { if (teams.indexOf(g.team) < 0) teams.push(g.team); });
@@ -1306,16 +1463,62 @@
       /* Whole season in date order. merge() already sorted it, so a played game
          sits under its own month above the fixtures still to come. */
       var base = allGames;
-      var list = base;
+      var list = base, team = '';
       if (state.filter === 'home') list = base.filter(function (g) { return g.home; });
       else if (state.filter === 'away') list = base.filter(function (g) { return !g.home; });
       else if (state.filter === 'tournament') list = base.filter(isTournament);
       else if (state.filter.indexOf('team:') === 0) {
-        var t = state.filter.slice(5);
-        list = base.filter(function (g) { return g.team === t; });
+        team = state.filter.slice(5);
+        list = base.filter(function (g) { return g.team === team; });
       }
-      renderRows(out, list);
+      var past = list.filter(isOver);
+      var ahead = list.filter(function (g) { return !isOver(g); });
+      paintFold(past, ahead.length);
+      if (state.past) {
+        renderRows(out, list, ahead[0] || true);
+      } else if (ahead.length) {
+        renderRows(out, ahead);
+      } else {
+        out.innerHTML = '<p class="tf-empty">No more games this season' + (team ? ' for ' + esc(team) : '') +
+          (past.length ? '. The results are just above.' : '. Try another filter.') + '</p>';
+      }
     }
+
+    function paintFold(past, aheadCount) {
+      if (!past.length) { foldEl.innerHTML = ''; foldEl.hidden = true; return; }
+      foldEl.hidden = false;
+      var latest = past.filter(function (g) { return g.played; }).slice(-3).reverse();
+      foldEl.innerHTML =
+        '<button type="button" class="tf-fold" aria-expanded="' + (state.past ? 'true' : 'false') + '"' +
+          ' data-track="season-fold">' +
+          (state.past
+            ? 'Hide earlier games'
+            : 'Show ' + past.length + ' earlier ' + (past.length === 1 ? 'game' : 'games') + ' and results') +
+        '</button>' +
+        (!state.past && latest.length
+          ? '<p class="tf-latest"><span>Latest results</span>' + latest.map(function (g) {
+              return '<a href="#g-' + encodeURIComponent(String(g.id)) + '">' +
+                esc(g.team) + (g.home ? ' vs ' : ' at ') + esc(oppLabel(g)) + ' <b>' +
+                esc(String(g.us)) + ' to ' + esc(String(g.them)) + '</b>' +
+                (isWin(g) ? ' <i class="tf-r-wl is-w" title="Won">W</i>' : '') + '</a>';
+            }).join('') + '</p>'
+          : '');
+      var btn = foldEl.querySelector('.tf-fold');
+      btn.addEventListener('click', function () {
+        state.past = !state.past;
+        paintList();
+        if (state.past) {
+          var t = document.getElementById('today');
+          if (t && t.scrollIntoView) t.scrollIntoView({ block: 'center' });
+        }
+      });
+    }
+    /* openFromHash calls this when the linked game is already over. */
+    host._tfShowPast = function () {
+      if (state.past) return;
+      state.past = true;
+      paintList();
+    };
     if (barEl) barEl.addEventListener('click', function (e) {
       var b = e.target.closest('.tf-chip'); if (!b) return;
       Array.prototype.forEach.call(barEl.querySelectorAll('.tf-chip'), function (x) {
@@ -1479,6 +1682,11 @@
     var hit = findGame(id);
     if (!hit) return false;
     id = String(hit.id);
+    /* A finished game sits behind the season fold. Open it first, so the row
+       is there to scroll to behind the panel. */
+    if (isOver(hit)) {
+      document.querySelectorAll('[data-tf-host]').forEach(function (h) { if (h._tfShowPast) h._tfShowPast(); });
+    }
     var row = document.querySelector('[data-tf-open="' + id.replace(/["\\]/g, '') + '"]');
     if (row && row.scrollIntoView) row.scrollIntoView({ block: 'center' });
     openDetails(id);

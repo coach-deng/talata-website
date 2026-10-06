@@ -11,7 +11,7 @@
 
 /* .cup-pop is in the list because it mounts straight into body, outside every
    other scope here, and its rules read these tokens. */
-.tf-scope,.tk,.tf-feat,.tf-month,.tf-bar,.tf-tabs,.tf-modal,.cup-pop,.tf-next{
+.tf-scope,.tk,.tf-feat,.tf-month,.tf-bar,.tf-tabs,.tf-modal,.cup-pop,.tf-next,.tf-fold-wrap{
   --f-bg:#0B0F17; --f-card:#131A26; --f-card2:#1A2333; --f-line:#26324A;
   --f-text:#E6EDF7; --f-muted:#93A3BA; --f-accent:#7DD3FC; --f-sky:#BAE6FD;
   --f-brand:#1E40AF; --f-win:#4ADE80; --f-warn:#FBBF24;
@@ -225,6 +225,17 @@
 /* An unplayed row is a fixture, not a result. Keep it quiet. */
 .tf-r-score:not(.is-done) b{color:var(--f-muted);font-weight:800;}
 .tf-r-score b.is-w{color:var(--f-win);}
+.tf-r-score.is-vs{padding:5px 10px;}
+.tf-r-score.is-vs i{opacity:1;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+/* The W pill (Deng, 6 Oct 2026): wins only, losses stay a plain score. */
+.tf-r-score i.tf-r-wl,.tf-r-wl{
+  font-family:var(--f-disp);font-style:normal;font-size:.6rem;font-weight:900;letter-spacing:.04em;
+  line-height:1;padding:3px 6px;border-radius:999px;opacity:1;align-self:center;
+}
+.tf-r-wl.is-w,.tf-r-score i.tf-r-wl.is-w{background:var(--f-win);color:#0B0F17;}
+html.light .tf-r-wl.is-w,html.light .tf-r-score i.tf-r-wl.is-w{color:#FFFFFF;}
+.tf-r-where{display:none;font-size:.72rem;color:var(--f-muted);line-height:1.25;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
 .tf-r-act{align-items:flex-end!important;gap:6px;}
 /* Sits inline with the competition name now, not stacked in the action column
@@ -272,8 +283,21 @@
   .tf-r-score{padding:4px 8px;gap:5px;}
   .tf-r-score b{font-size:.95rem;min-width:18px;}
   /* Three lines on a phone. "Helsingborg BBK Blue" and "KFUM Kalmar Basket"
-     do not fit two lines in 72px, and the stacked row is 256px tall anyway. */
+     do not fit two lines in 72px. */
   .tf-r-team{-webkit-line-clamp:3;}
+  /* TWO ROWS, about 115px (6 Oct 2026). The stacked row was 256px, so a phone
+     showed two games a screen. The match on top, then the date with the hall
+     as small text, and the ticket on the right. The competition still reads
+     from the colour bar on the left edge. Also applies on /men and /academy. */
+  .tf-r{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"match match" "when act";}
+  .tf-r>div{min-height:0;padding:8px 12px;}
+  .tf-r-match{grid-area:match;order:0;}
+  .tf-r-comp{grid-area:when;}
+  .tf-r-act{grid-area:act;justify-content:center;align-items:flex-end!important;}
+  .tf-r-comp span,.tf-r-venue,.tf-r-more{display:none!important;}
+  .tf-r-where{display:block;}
+  .tf-r.no-act{grid-template-areas:"match match" "when when";}
+  .tf-r.no-act .tf-r-act{display:none;}
 }
 
 /* ---------- tabs + filters ---------- */
@@ -594,9 +618,11 @@
 .tf-scope[data-talata-fixtures]:empty { min-height: 100vh; }
 [data-talata-ticker] { min-height: 158px; }
 @media (max-width: 640px) { [data-talata-ticker] { min-height: 156px; } }
-[data-talata-feature] { min-height: 494px; }
+/* Re-measured 6 Oct 2026 with the hero kicker and the calendar, directions
+   and share row: 616px at 360 wide, 405px at 1280. */
+[data-talata-feature] { min-height: 616px; }
 @media (min-width: 768px) {
-  [data-talata-feature] { min-height: 322px; }
+  [data-talata-feature] { min-height: 405px; }
 }
 
 /* ═══ TICKER: squad name, next game, cup game (31 Aug 2026) ═══════════════
@@ -810,3 +836,43 @@
   .tf-next-h{font-size:1.12rem;}
   .tf-next-cta .tf-btn{flex:1 1 auto;}
 }
+
+/* ---------- hero kicker + game extras (6 Oct 2026) ---------- */
+.tf-feat-kick{
+  grid-column:1/-1;margin:0;padding:10px 22px;
+  font-family:var(--f-disp);font-size:.66rem;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--f-accent);background:var(--f-bg);
+  border-bottom:1px solid var(--f-line);
+}
+.tf-map{color:inherit;text-decoration:underline;text-decoration-color:rgba(125,211,252,.5);text-underline-offset:3px;}
+.tf-map:hover{color:var(--f-accent);}
+.tf-extras{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.tf-mini{
+  font-family:var(--f-body);font-size:.76rem;font-weight:700;cursor:pointer;
+  background:transparent;color:var(--f-text);border:1px solid var(--f-line);
+  padding:7px 12px;border-radius:999px;text-decoration:none;white-space:nowrap;
+  transition:border-color .15s ease,color .15s ease;
+}
+.tf-mini:hover{border-color:var(--f-accent);color:var(--f-accent);}
+.tf-mini:focus-visible{outline:2px solid var(--f-accent);outline-offset:2px;}
+.tf-next .tf-extras{grid-column:1/-1;margin-top:0;}
+.tf-next .tf-mini{color:#F8FAFC;border-color:rgba(248,250,252,.3);}
+
+/* ---------- season fold (6 Oct 2026) ---------- */
+.tf-fold-wrap{margin:0 0 18px;font-family:var(--f-body);}
+.tf-fold-wrap[hidden]{display:none;}
+.tf-fold{
+  font-family:var(--f-body);font-size:.86rem;font-weight:700;cursor:pointer;
+  background:var(--f-card);color:var(--f-text);border:1px dashed var(--f-line);
+  padding:10px 16px;border-radius:12px;width:100%;text-align:left;
+}
+.tf-fold:hover{border-color:var(--f-accent);color:var(--f-accent);}
+.tf-fold:focus-visible{outline:2px solid var(--f-accent);outline-offset:2px;}
+.tf-latest{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:10px 2px 0;font-size:.82rem;}
+.tf-latest>span{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--f-muted);font-weight:700;}
+.tf-latest a{color:var(--f-text);text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+.tf-latest a:hover{color:var(--f-accent);}
+.tf-latest b{font-variant-numeric:tabular-nums;}
+.tf-today{display:flex;align-items:center;gap:10px;margin:4px 0 12px;font-family:var(--f-disp);
+  font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--f-accent);}
+.tf-today::before,.tf-today::after{content:"";flex:1 1 auto;height:2px;background:var(--f-accent);opacity:.5;}
