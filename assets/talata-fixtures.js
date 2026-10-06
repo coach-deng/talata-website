@@ -57,12 +57,35 @@
 
   /* Copenhagen "today", not the visitor's. Someone opening this from Toronto
      must not see tonight's game drop off a day early. */
+  /* A test clock, localhost only (6 Oct 2026), same rule as talata-week.js.
+       ?today=2026-10-06          the Copenhagen date
+       ?now=2026-10-09T20:30      a Copenhagen wall-clock instant (sets today too)
+     Production ignores both, so a shared link can never move the clock. */
+  function testParam(k) {
+    if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return null;
+    try { return new URLSearchParams(location.search).get(k); } catch (e) { return null; }
+  }
+
   function todayISO() {
+    var q = testParam('today');
+    if (q && /^\d{4}-\d{2}-\d{2}$/.test(q)) return q;
+    var n = testParam('now');
+    if (n && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(n)) return n.slice(0, 10);
     var p = new Intl.DateTimeFormat('en-CA', {
       timeZone: 'Europe/Copenhagen', year: 'numeric', month: '2-digit', day: '2-digit'
     }).formatToParts(new Date());
     var g = function (t) { return (p.find(function (x) { return x.type === t; }) || {}).value; };
     return g('year') + '-' + g('month') + '-' + g('day');
+  }
+
+  /* The instant every countdown and "is it over" check reads. */
+  function nowMs() {
+    var n = testParam('now');
+    if (n && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(n)) {
+      var t = Date.parse(n + ':00' + cphOff(n.slice(0, 10)));
+      if (!isNaN(t)) return t;
+    }
+    return Date.now();
   }
 
   function parseISO(d) { var a = d.split('-'); return new Date(+a[0], +a[1] - 1, +a[2]); }
@@ -100,13 +123,52 @@
     return MONTHS[+a[1] - 1] + ', <b>' + a[0] + '</b>';
   }
 
-  /* Tip-off as a real instant, so a countdown means the same thing everywhere.
-     Copenhagen is +02:00 until the last Sunday in October, +01:00 after. */
+  /* Copenhagen's UTC offset on a date. EU rule: summer time runs from the last
+     Sunday in March to the last Sunday in October. Worked out per year, so the
+     clock changes need no hand edit (was hard-coded to 2026-10-25 and
+     2027-03-28 until 6 Oct 2026). Games never tip off in the 02:00 to 03:00
+     changeover hour, so the date alone decides. */
+  function lastSunday(y, m) {            /* m is 0-based */
+    var d = new Date(Date.UTC(y, m + 1, 0));
+    d.setUTCDate(d.getUTCDate() - d.getUTCDay());
+    return d.toISOString().slice(0, 10);
+  }
+  function cphOff(date) {
+    var y = +date.slice(0, 4);
+    return (date >= lastSunday(y, 2) && date < lastSunday(y, 9)) ? '+02:00' : '+01:00';
+  }
+
+  /* Tip-off as a real instant, so a countdown means the same thing everywhere. */
   function tipOff(g) {
     if (!g.time) return null;
-    var off = (g.date >= '2026-10-25' && g.date < '2027-03-28') ? '+01:00' : '+02:00';
-    var t = Date.parse(g.date + 'T' + g.time + ':00' + off);
+    var t = Date.parse(g.date + 'T' + g.time + ':00' + cphOff(g.date));
     return isNaN(t) ? null : t;
+  }
+
+  /* ---------- is the game still ahead of us (6 Oct 2026) ----------
+     /games offered free tickets on the 3 and 4 Oct Grand Prix rows after they
+     were played, because the export had no score yet and !played was the only
+     test. A game is over once it has a score, once its date is past, or two
+     and a half hours after tip-off on the day. */
+  var GAME_MS = 150 * 60000;
+  function isOver(g) {
+    if (g.played) return true;
+    var t = todayISO();
+    if (g.date < t) return true;
+    if (g.date > t) return false;
+    var tip = tipOff(g);
+    return tip !== null && nowMs() > tip + GAME_MS;
+  }
+  /* Something a supporter can still turn up to. */
+  function isActionable(g) { return !isOver(g) && !g.annulled; }
+  /* Over, not voided, and no score filed yet. */
+  function awaitingResult(g) { return isOver(g) && !g.played && !g.annulled; }
+  /* A free ticket only where entry really is free: a home game at one of our
+     own halls (Nørre Fælled, Svanemøllehallen, Strandvejsskolen). homeCourt
+     comes from build-fixtures.py HOME_VENUES and from the Worker. A "home"
+     game at another club's hall is theirs to run (Deng, 6 Oct 2026). */
+  function canClaim(g) {
+    return isActionable(g) && !!g.home && !!g.homeCourt && g.state !== 'moving';
   }
 
   function esc(s) {
@@ -151,8 +213,11 @@
   };
   function teamFull(t) { return TEAM_FULL[t] || ('Talata ' + (t || '')).trim(); }
 
+  /* Friday nights only (6 Oct 2026). The Sun 8 Nov U9 morning is at the same
+     hall and is not a Talata Night. */
   function isTalataNight(g) {
-    return g.home && g.venue && g.venue.indexOf('Nørre Fælled') === 0;
+    return !!(g.home && g.venue && g.venue.indexOf('Nørre Fælled') === 0 &&
+      g.date && parseISO(g.date).getDay() === 5);
   }
 
   /* ---------- crests ---------- */
@@ -253,23 +318,93 @@
 
   /* ---------- merge ---------- */
 
+  /* Holdsport names a squad the way the club calendar does. The federation
+     file names it by age bracket. Same game, two labels. */
+  var TEAM_ALIAS = { Mini: 'U9', Junior: 'U11' };
+  function tKey(team) { return TEAM_ALIAS[team] || team || ''; }
+
+  /* "BMS Herlev 2 vs Talata" and "Hørsholm vs Talata U15" are how Holdsport
+     titles an away game. The opponent is the part before "vs Talata". */
+  function cleanOpp(s) {
+    if (s == null) return s;
+    return String(s).replace(/\s+vs\.?\s+(?:Team\s+)?Talata\b.*$/i, '').replace(/\s+/g, ' ').trim();
+  }
+
+  function fold(s) {
+    return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/ø/g, 'o').replace(/æ/g, 'ae').replace(/å/g, 'a').trim();
+  }
+  /* Loose on purpose: "HBBF 3" and "Hovedstadens BBF 3", "Køge bugt" and
+     "Køge Bugt". Same first letter, and the same team number when both carry
+     one. A blank side matches anything (the U9 home morning has no opponent). */
+  function oppOk(a, b) {
+    var x = fold(a), y = fold(b);
+    if (!x || !y) return true;
+    if (x.charAt(0) !== y.charAt(0)) return false;
+    var nx = /(\d+)$/.exec(x), ny = /(\d+)$/.exec(y);
+    return !(nx && ny && nx[1] !== ny[1]);
+  }
+
+  /* An old /games#g-activity... link still opens the game after its Holdsport
+     copy was folded into the federation row. Live id -> kept id. */
+  var aliases = {};
+
   function merge(staticGames, liveGames) {
-    var known = {};
-    staticGames.forEach(function (g) { known[g.id] = true; });
+    /* Copies, so a venue address carried over below never leaks into the
+       static list the next paint starts from. */
+    staticGames = staticGames.map(function (g) { return Object.assign({}, g); });
+    var byId = {};
+    staticGames.forEach(function (g) { byId[g.id] = g; });
     /* A tournament typed into tournaments.json also exists in Holdsport as one
        loose activity per day ("BMS Herlev cup", U19, no opponent). Drop the
        Holdsport copy when a typed game already sits on that date for that
        team, otherwise the strip shows a blank row next to the real ones. */
     var typed = {};
     staticGames.forEach(function (g) { if (g.source === 'tournament') typed[g.date + '|' + g.team] = true; });
+    /* Second key, 6 Oct 2026. Holdsport carries no DBBF number on the U13 and
+       Mini games, so 25 Oct Køge Bugt showed twice. Same date, same squad, same
+       tip-off and a matching opponent is the same game. */
+    var slot = {};
+    staticGames.forEach(function (g) {
+      var k = g.date + '|' + tKey(g.team) + '|' + (g.time || '');
+      (slot[k] = slot[k] || []).push(g);
+    });
+    var drop = function (g, kept) {
+      aliases[g.id] = kept.id;
+      /* Holdsport often has the street address ("Amagerhallen, Stor bane,
+         Løjtegårdsvej 58, Kastrup"). Keep it for directions. */
+      if (!kept.venueAddr && g.venue && g.venue.indexOf(',') > 0) kept.venueAddr = g.venue;
+      return false;
+    };
     var live = (liveGames || []).filter(function (g) {
-      if (g.dbbfId && known[g.dbbfId]) return false;   /* the federation copy wins */
+      /* A cancelled game stays in Holdsport with AFLYST in front of its title.
+         It rendered as a home game with a ticket (4 Dec, U19 v Gladsaxe 2). */
+      if (/^\s*(aflyst|cancel+ed)\b/i.test(g.title || '')) return false;
+      if (g.dbbfId && byId[g.dbbfId]) return drop(g, byId[g.dbbfId]);   /* the federation copy wins */
       if (!g.dbbfId && typed[g.date + '|' + g.team]) return false;
+      var same = (slot[g.date + '|' + tKey(g.team) + '|' + (g.time || '')] || [])
+        .filter(function (s) { return oppOk(s.opponent, cleanOpp(g.opponent)); })[0];
+      if (same) return drop(g, same);
       return true;
+    }).map(function (g) {
+      var c = Object.assign({}, g);
+      c.opponent = cleanOpp(g.opponent) || null;
+      return c;
     });
     return staticGames.concat(live).sort(function (a, b) {
       return (a.date + (a.time || '99:99')).localeCompare(b.date + (b.time || '99:99'));
     });
+  }
+
+  /* The name a row prints for the other side. Never blank and never the raw
+     Holdsport title, which is Danish admin text ("Grand Prix stævne U9 home
+     game."). */
+  function oppLabel(g) {
+    if (g.opponent) return g.opponent;
+    var c = g.competition || '';
+    if (c && !/^(game|cup|kamp)$/i.test(c)) return c;
+    if (isTournament(g)) return 'Tournament';
+    return 'Opponent to confirm';
   }
 
   /* `!g.annulled` rides beside `!g.played` everywhere a game can become "next"
@@ -277,8 +412,7 @@
      already keeps it out; the flag is there so a result the federation voids
      before a score is typed can never come back as a fixture to turn up to. */
   function upcoming(games) {
-    var t = todayISO();
-    return games.filter(function (g) { return g.date >= t && !g.played && !g.annulled; });
+    return games.filter(isActionable);
   }
 
   /* A win is a played game we lead that still counts. DBBF annulled the 7 Sep
@@ -418,7 +552,7 @@
     }).join('');
     return '<div class="tf-box">' +
         '<div class="tf-box-h"><b>Box score</b><span>Talata ' + num(g.us) + ', ' +
-          esc(g.opponent || g.title || '') + ' ' + num(g.them) +
+          esc(oppLabel(g)) + ' ' + num(g.them) +
           (g.ot ? ' after overtime' : '') + (g.annulled ? '. Annulled' : '') + '</span></div>' +
         '<div class="tf-box-scroll"><table>' +
           '<thead><tr>' + head + '</tr></thead>' +
@@ -433,8 +567,9 @@
      and for the panel a fixture row opens, so a game looks the same wherever
      you meet it. Modelled on zalgiris.lt (Deng, 26 Aug). */
   function detailHTML(g) {
-    var opp = g.opponent || g.title;
+    var opp = oppLabel(g);
     var t = tipOff(g);
+    var act = isActionable(g);
     var poster = posterHTML(g);
     var row = function (k, v) {
       return '<div class="tf-row"><span>' + k + '</span><b>' + v + '</b></div>';
@@ -456,26 +591,33 @@
             ? (isTalataNight(g) ? '<b class="tf-hl">Talata Night</b>' : 'Home')
             : 'Away') +
           (g.played
-            ? row('Result', esc(String(g.us)) + ' - ' + esc(String(g.them)) +
+            ? row('Result', (isWin(g) ? 'Won ' : 'Final ') +
+                esc(String(g.us)) + ' to ' + esc(String(g.them)) +
                 (g.ot ? ' OT' : '') +
                 (g.annulled ? ' <i class="tf-r-tag is-annulled">Annulled</i>' : ''))
-            : (t && !g.annulled
+            : (awaitingResult(g)
+                ? row('Result', (isTournament(g) || /grand prix/i.test(g.competition || ''))
+                    ? 'Played' : 'Result to come')
+                : (t && act
                  ? '<div class="tf-row"><span>Time left</span>' +
                    '<div class="tf-cd" data-tf-cd="' + t + '"></div></div>'
                  : row('Tip-off', g.annulled
                      ? 'Annulled'
                      : (g.state === 'moving'
                        ? 'Being moved, date can change'
-                       : 'The federation has not set one yet')))) +
+                       : 'The federation has not set one yet'))))) +
           /* Hand-typed in results.json and public on purpose. The annulled
              7 Sep game says why it no longer counts and where the replay went. */
           (g.note ? row('Note', esc(g.note)) : '') +
           '<div class="tf-feat-cta">' +
-            (g.home && !g.played && !g.annulled
+            (canClaim(g)
               ? '<button class="tf-btn is-primary" data-tf-claim="' + esc(g.id) +
                 '" data-tf-date="' + esc(g.date) + '">Claim free ticket</button>'
               : '') +
-            '<a class="tf-btn" href="#season">All games</a>' +
+            /* #season exists on /games only. The row panel on /men and
+               /academy needs the full path. */
+            '<a class="tf-btn" href="' + (document.getElementById('season') ? '#season' : '/games#season') +
+              '">All games</a>' +
           '</div>' +
         '</div>' +
         poster +
@@ -515,8 +657,7 @@
        of the page in favour of a league game five weeks out (21 Sep 2026). */
     var showable = games.filter(function (x) {
       return (x.home || isCup(x)) && x.state === 'confirmed' && x.venue
-          && !x.played && !x.annulled && daysAway(x) >= 0
-          && featureEligible(x);
+          && isActionable(x) && featureEligible(x);
     });
     /* 60 days keeps this honest. Without a window, a cup tie in March would sit
        at the top of the page all winter while the game next Friday scrolled by
@@ -531,12 +672,9 @@
        yet, then any upcoming game at all. A finished game never leads. */
     var g = pool[0]
          || games.filter(function (x) {
-              return x.state === 'confirmed' && !x.played && !x.annulled
-                  && daysAway(x) >= 0 && featureEligible(x);
+              return x.state === 'confirmed' && isActionable(x) && featureEligible(x);
             })[0]
-         || games.filter(function (x) {
-              return !x.played && !x.annulled && daysAway(x) >= 0;
-            })[0];
+         || games.filter(isActionable)[0];
     if (!g) { el.innerHTML = ''; return; }
     el.innerHTML = detailHTML(g);
     startCountdowns(el);
@@ -546,8 +684,16 @@
   /* A fixture row opens the same panel in a dialog. Zalgiris puts a DETAILS
      button on every row; here the whole row is the target, which is a bigger
      tap area on a phone and needs no extra column. */
+  /* By id, through the Holdsport alias map, so an old activity id still
+     finds the federation row that replaced it. */
+  function findGame(id) {
+    id = String(id);
+    if (Object.prototype.hasOwnProperty.call(aliases, id)) id = String(aliases[id]);
+    return allGames.filter(function (x) { return String(x.id) === id; })[0] || null;
+  }
+
   function openDetails(gameId) {
-    var g = allGames.filter(function (x) { return String(x.id) === String(gameId); })[0];
+    var g = findGame(gameId);
     if (!g) return;
     var wrap = document.getElementById('tf-detail');
     if (!wrap) {
@@ -611,7 +757,7 @@
   }
 
   function fixtureRow(g) {
-    var opp = g.opponent || g.title;
+    var opp = oppLabel(g);
     var home = g.home;
     /* 🔴 The Talata side prints NO name (Deng, 1 Sep 2026). The club crest is
        the wordmark "TALATA ACADEMY", so printing the word "Talata" beside it
@@ -622,8 +768,8 @@
     var right = home ? esc(opp) : '';
     var leftCrest = home ? talataCrest(g.team) : crestHTML(opp);
     var rightCrest = home ? crestHTML(opp) : talataCrest(g.team);
-    var sLeft = g.played ? (home ? g.us : g.them) : '–';
-    var sRight = g.played ? (home ? g.them : g.us) : '–';
+    var sLeft = g.played ? (home ? g.us : g.them) : null;
+    var sRight = g.played ? (home ? g.them : g.us) : null;
     var won = isWin(g);
     /* Mark the side that actually won, not both numbers. `.tf-r.is-won
        .tf-r-score` used to paint the pair green, so a 41-59 win showed the
@@ -647,24 +793,33 @@
       '<div class="tf-r-match">' +
         '<span class="tf-r-team is-l">' + left + '</span>' + leftCrest +
         /* One scoreline, not two pills. Two boxes read as two unrelated
-           numbers; a scoreline reads as a result. */
-        '<span class="tf-r-score' + (g.played ? ' is-done' : '') + '">' +
-          '<b' + (lWon ? ' class="is-w"' : '') + '>' + sLeft + '</b>' +
-          '<i>' + (g.played ? '–' : 'v') + '</i>' +
-          '<b' + (rWon ? ' class="is-w"' : '') + '>' + sRight + '</b>' +
-          /* Inside the scoreline, in the muted small type the dash uses, so
-             89 - 87 OT reads as one result. */
-          (g.played && g.ot ? '<i class="tf-r-ot" title="After overtime">OT</i>' : '') +
-        '</span>' +
+           numbers; a scoreline reads as a result. No dash glyph between them
+           (6 Oct 2026), and a game still to come shows "vs" with no number
+           boxes at all. */
+        (g.played
+          ? '<span class="tf-r-score is-done">' +
+              '<b' + (lWon ? ' class="is-w"' : '') + '>' + sLeft + '</b>' +
+              '<b' + (rWon ? ' class="is-w"' : '') + '>' + sRight + '</b>' +
+              /* Inside the scoreline, in the muted small type, so 89 87 OT
+                 reads as one result. */
+              (g.ot ? '<i class="tf-r-ot" title="After overtime">OT</i>' : '') +
+            '</span>'
+          : '<span class="tf-r-score is-vs"><i>vs</i></span>') +
         rightCrest + '<span class="tf-r-team is-r">' + right + '</span>' +
       '</div>' +
       '<div class="tf-r-act">' +
-        (home && !g.played && !g.annulled
+        /* A ticket only where entry is ours to give (canClaim). An away row,
+           or a "home" game at another club's hall, prints no label at all. */
+        (canClaim(g)
           ? '<button class="tf-r-tix" data-tf-claim="' + esc(g.id) +
             '" data-tf-date="' + esc(g.date) + '">Free ticket</button>'
           : (g.played
               ? (boxFor(g) ? '<span class="tf-r-free">Box score</span>' : '')
-              : (g.annulled ? '' : '<span class="tf-r-free">Free entry</span>'))) +
+              : (awaitingResult(g)
+                  ? '<span class="tf-r-free">' +
+                      ((isTournament(g) || /grand prix/i.test(g.competition || '')) ? 'Played' : 'Result to come') +
+                    '</span>'
+                  : ''))) +
         '<span class="tf-r-more">Details &rsaquo;</span>' +
       '</div>' +
     '</article>';
@@ -733,14 +888,14 @@
        highlight, the countdown AND the scroll-park that centres the strip on the
        next game. It looked like a styling preference and it was a broken filter. */
     var nextId = (games.filter(function (g) {
-      return !g.played && !g.annulled && tipOff(g) !== null;
+      return isActionable(g) && tipOff(g) !== null;
     })[0] || {}).id;
 
     var cards = games.slice(0, 12).map(function (g) {
-      var opp = g.opponent || g.title;
-      var isNext = !g.played && !g.annulled && g.id === nextId;
+      var opp = oppLabel(g);
+      var isNext = isActionable(g) && g.id === nextId;
       var won = isWin(g);
-      var cup = isCup(g) && !g.played && !g.annulled;
+      var cup = isCup(g) && isActionable(g);
       return '<a class="tkc' + (g.home ? ' is-home' : '') + (isNext ? ' is-next' : '') +
         (cup ? ' is-cup' : '') +
         (g.played ? ' is-done' : '') + '" href="/games#g-' + encodeURIComponent(String(g.id)) + '">' +
@@ -753,16 +908,17 @@
         '<span class="tkc-squad">' + esc(squadName(g.team)) + '</span>' +
         (g.played
           ? '<span class="tkc-score' + (won ? ' is-won' : '') + '">' +
-              esc(String(g.us)) + ' <i>-</i> ' + esc(String(g.them)) + '</span>' +
+              esc(String(g.us)) + ' <i>to</i> ' + esc(String(g.them)) + '</span>' +
             /* An annulled result can land in the last three results this strip
                carries (15 Sep 2026, the Hørsholm cup tie), and it must not read
                as a finished game. The line under the score says which it is. */
-            '<span class="tkc-when">' + (g.annulled ? 'ANNULLED' : (g.ot ? 'ENDED, OT' : 'ENDED')) + '</span>'
+            '<span class="tkc-when">' + (g.annulled ? 'ANNULLED' :
+              ((won ? 'WON' : 'FINAL') + (g.ot ? ', OT' : ''))) + '</span>'
           : '<span class="tkc-date">' + esc(dayName(g.date) + ' ' + shortDate(g.date).toUpperCase()) + '</span>' +
             (isNext
               ? '<span class="tkc-cd tf-cd" data-tf-cd="' + tipOff(g) + '"></span>'
               : '<span class="tkc-when">' + esc(timeOnly(g)) + '</span>')) +
-        (isTalataNight(g) && !g.played ? '<span class="tkc-tag">Talata Night</span>' : '') +
+        (isTalataNight(g) && isActionable(g) ? '<span class="tkc-tag">Talata Night</span>' : '') +
       '</a>';
     }).join('');
 
@@ -922,11 +1078,14 @@
     if (!nodes.length) return;
     if (host._tfTimer) clearInterval(host._tfTimer);
     var tick = function () {
-      var now = Date.now(), live = 0;
+      var now = nowMs(), live = 0;
       Array.prototype.forEach.call(nodes, function (n) {
         var ms = parseInt(n.getAttribute('data-tf-cd'), 10) - now;
-        if (ms <= 0) { n.innerHTML = '<span><b>TIP-OFF</b></span>'; return; }
+        /* Two and a half hours after tip-off the game is over: say nothing.
+           Before that, while the ball is in the air, say so. */
+        if (ms <= -GAME_MS) { n.innerHTML = ''; return; }
         live++;
+        if (ms <= 0) { n.innerHTML = '<span><b>Live now</b></span>'; return; }
         var m = Math.floor(ms / 60000);
         n.innerHTML =
           '<span><b>' + Math.floor(m / 1440) + '</b><i>days</i></span>' +
@@ -958,7 +1117,14 @@
   }
 
   function openClaim(gameId, date, btn) {
-    var g = allGames.filter(function (x) { return String(x.id) === String(gameId); })[0] || {};
+    var g = findGame(gameId);
+    /* A button painted before the game tipped off (or a stale tab) must not
+       open a ticket for a game that is over or at another club's hall. */
+    if (!g || !canClaim(g)) {
+      if (btn) { btn.disabled = true; btn.textContent = 'Tickets closed'; }
+      return;
+    }
+    date = g.date || date;
     var wrap = document.getElementById('tf-claim');
     if (!wrap) {
       wrap = document.createElement('div');
@@ -970,7 +1136,7 @@
         '<div class="tf-modal-box">' +
           '<button class="tf-x" aria-label="Close">&times;</button>' +
           '<p class="tf-k">Free ticket</p>' +
-          '<h3>' + esc(g.team || 'Talata') + ' vs ' + esc(g.opponent || g.title || '') + '</h3>' +
+          '<h3>' + esc(g.team || 'Talata') + ' vs ' + esc(oppLabel(g)) + '</h3>' +
           '<p class="tf-mwhen">' + esc(DAYS_LONG[parseISO(date).getDay()] + ' ' + longDate(date)) + ' · ' + esc(timeOnly(g)) +
             '<br>' + esc(venueLabel(g)) + '</p>' +
           '<form>' +
@@ -1015,10 +1181,10 @@
            game number, and an email that says "your ticket for 40098287" is
            useless to a parent. */
         body: JSON.stringify({
-          game: gameId, date: date, email: v,
+          game: g.id, date: g.date || date, email: v,
           seats: form.querySelector('[name=seats]').value,
           team: teamFull(g.team),
-          opponent: g.opponent || g.title || '',
+          opponent: oppLabel(g),
           home: !!g.home,
           when: DAYS_LONG[parseISO(date).getDay()] + ' ' + longDate(date),
           time: g.time || '',
@@ -1168,20 +1334,24 @@
     var host = document.querySelector('[data-talata-cup]');
     if (!host) return;                          /* not the homepage */
 
-    var t = todayISO();
     var cup = games.filter(function (g) {
-      return !g.played && !g.annulled && isCup(g) && g.date >= t && daysAway(g) <= CUP_WINDOW_DAYS;
+      return isActionable(g) && isCup(g) && daysAway(g) <= CUP_WINDOW_DAYS;
     })[0];
     if (!cup || cupSeen(cup.id)) return;
 
     var when = DAYS_LONG[parseISO(cup.date).getDay()] + ' ' + longDate(cup.date) + (cup.time ? ', ' + cup.time : '');
-    var opp = cup.opponent || cup.title || 'TBC';
+    var opp = oppLabel(cup);
     var poster = posterFor(cup);
+    /* A ticket only where we can give one (6 Oct 2026). The 24 Oct U13 tie
+       is away at Amagerhallen, so the popup asks people to travel instead of
+       promising free entry at somebody else's door. */
+    var tix = canClaim(cup);
+    var gameURL = '/games#g-' + encodeURIComponent(String(cup.id));
 
     /* The three lines both versions share. */
     var lines =
       '<p class="cup-kick">Danish Cup</p>' +
-      '<p class="cup-h">' + esc(squadName(cup.team)) + ' vs ' + esc(opp) + '</p>' +
+      '<p class="cup-h">' + esc(squadName(cup.team)) + (cup.home ? ' vs ' : ' at ') + esc(opp) + '</p>' +
       '<p class="cup-when"><b>' + esc(when) + '</b><br>' + esc(venueLabel(cup)) + '</p>';
 
     if (poster) {
@@ -1200,9 +1370,12 @@
               ' width="' + th.w + '" height="' + th.h + '"' +
               ' alt="' + esc(poster.alt || '') + '" loading="lazy" decoding="async">' +
           '</a>' +
-          '<div class="cup-body">' + lines + '</div>' +
+          '<div class="cup-body">' + lines +
+            (tix ? '' : '<p class="cup-sub">' + (cup.home ? '' : 'Away day. ') + 'Come and back them.</p>') +
+          '</div>' +
           '<div class="cup-acts">' +
-            '<a class="cup-cta" href="/games#season">Game details and free ticket</a>' +
+            '<a class="cup-cta" href="' + gameURL + '">' +
+              (tix ? 'Game details and free ticket' : 'Game details') + '</a>' +
             (poster.article
               ? '<a class="cup-cta cup-cta-ghost" href="' + esc(poster.article) + '">Read the story</a>'
               : '') +
@@ -1213,8 +1386,11 @@
         '<div class="cup-pop" role="dialog" aria-modal="false" aria-label="Cup game">' +
           '<button class="cup-x" aria-label="Close">&times;</button>' +
           lines +
-          '<p class="cup-sub">Free entry, like every home game. Claim a ticket so we know how many are coming.</p>' +
-          '<a class="cup-cta" href="/games#season">Claim a free ticket</a>' +
+          (tix
+            ? '<p class="cup-sub">Free entry, like every home game. Claim a ticket so we know how many are coming.</p>' +
+              '<a class="cup-cta" href="' + gameURL + '">Claim a free ticket</a>'
+            : '<p class="cup-sub">' + (cup.home ? '' : 'Away day. ') + 'Come and back them.</p>' +
+              '<a class="cup-cta" href="' + gameURL + '">Game details</a>') +
         '</div>';
     }
 
@@ -1245,8 +1421,9 @@
     if (!m) return false;
     var id;
     try { id = decodeURIComponent(m[1]); } catch (err) { id = m[1]; }
-    var known = allGames.some(function (x) { return String(x.id) === String(id); });
-    if (!known) return false;
+    var hit = findGame(id);
+    if (!hit) return false;
+    id = String(hit.id);
     var row = document.querySelector('[data-tf-open="' + id.replace(/["\\]/g, '') + '"]');
     if (row && row.scrollIntoView) row.scrollIntoView({ block: 'center' });
     openDetails(id);

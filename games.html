@@ -884,7 +884,7 @@
           <li>A free place at a Talata camp</li>
           <li>A 1:1 private session with Coach Deng or Coach Jordan, worth 1.400 kr</li>
         </ul>
-        <p class="fine"><b>Anyone can enter.</b> Under 13s, ask a parent to use their email. Claim a ticket on any home game below.</p>
+        <p class="fine"><b>Anyone can enter.</b> Under 13s, ask a parent to use their email. Claim a ticket on any home game at our own halls below.</p>
       </div>
     </div>
   </div>
@@ -996,34 +996,6 @@
 <!-- TALATA:FOOTER:END -->
 
 <script src="/assets/talata-fixtures.js?v=20261006a" defer></script>
-<script>
-/* Reuses the Worker's existing /subscribe route. `source` records which game
-   the entry came from, so a draw can be run per month from the same table
-   without inventing a second backend for it. */
-(function () {
-  var f = document.getElementById('fanForm');
-  if (!f) return;
-  f.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var input = document.getElementById('fanEmail');
-    var email = (input.value || '').trim();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { input.focus(); return; }
-    var btn = f.querySelector('button');
-    btn.disabled = true; btn.textContent = 'Entering...';
-    fetch('https://talata-api.coach-258.workers.dev/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, source: 'talata-night-draw' })
-    }).then(function () {
-      f.style.display = 'none';
-      document.getElementById('fanOk').style.display = 'block';
-      if (window.gtag) gtag('event', 'fan_draw_entry');
-    }).catch(function () {
-      btn.disabled = false; btn.textContent = 'Try again';
-    });
-  });
-})();
-</script>
 <script src="/assets/talata-nav.js?v=20261006a" defer></script>
 <script src="/assets/talata-track.js?v=20261006a" defer></script>
 </body>
