@@ -1591,6 +1591,9 @@
   function renderCupPopup(games) {
     var host = document.querySelector('[data-talata-cup]');
     if (!host) return;                          /* not the homepage */
+    /* One popup at a time (6 Oct 2026): the camp popup (talata-camp-pop.js)
+       is up, so the cup game waits for the next visit. */
+    if (window.__talataCampPopOpen) return;
 
     var cup = games.filter(function (g) {
       return isActionable(g) && isCup(g) && daysAway(g) <= CUP_WINDOW_DAYS;

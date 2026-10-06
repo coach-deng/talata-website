@@ -105,7 +105,7 @@
 
     // Internal CTAs. Tells us which button on which page actually starts a
     // signup, which is the thing the owner has never been able to see.
-    var isCta = a.matches('.btn, .go, .nav-cta, .tn-cta, .cta a, [data-cta], .submit-btn, button[type=submit]');
+    var isCta = a.matches('.btn, .go, .nav-cta, .tn-cta, .cta a, [data-cta], .cup-cta, .cup-poster, .submit-btn, button[type=submit]');
     if (isCta) {
       send('cta_click', { label: label, destination: href.slice(0, 100) || 'submit' });
     }

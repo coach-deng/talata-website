@@ -762,6 +762,64 @@ html.light .tf-r-wl.is-w,html.light .tf-r-score i.tf-r-wl.is-w{color:#FFFFFF;}
   .cup-pop{transition:none;}
 }
 
+/* ═══ CAMP POPUP (6 Oct 2026) ═════════════════════════════════════════════
+   assets/talata-camp-pop.js clones a card from <template id="camp-pop-tpl"> on
+   index.html. Same corner, same sheet and same restraint as the cup popup,
+   painted in the camp poster colours: navy #0B1F3A, yellow #FACC15, white
+   type, Talata Blue for the second button. No coral on this card.
+   "oct" uses .has-poster (poster left, facts right). "dec" is .is-wide, a
+   photo banner across the top. Phone: a bottom sheet, 80vh at most, scrolls
+   inside. */
+.cup-pop.is-camp{
+  background:#0B1F3A;color:#fff;
+  border:1px solid rgba(250,204,21,.45);border-left:4px solid #FACC15;
+}
+.cup-pop.is-camp:focus{outline:none;}
+.cup-pop.is-camp:focus-visible{outline:2px solid #FACC15;outline-offset:3px;}
+.cup-pop.is-camp.has-poster{width:520px;}
+.is-camp .cup-x{color:#BAE6FD;}
+.is-camp .cup-x:hover{color:#fff;}
+.is-camp .cup-x:focus-visible{outline-color:#FACC15;}
+.is-camp .cup-kick{color:#FACC15;}
+.is-camp .cup-h{color:#fff;}
+.is-camp .cup-h em,.is-camp .cup-sub em{font-style:normal;color:#FACC15;}
+.is-camp .cup-when{color:#F8FAFC;}
+.is-camp .cup-when b{color:#fff;}
+.is-camp .cup-sub{color:#BAE6FD;margin-bottom:0;}
+.is-camp .cup-sub b{color:#FACC15;}
+.is-camp .cup-poster img{border-color:rgba(250,204,21,.6);}
+.is-camp .cup-poster:focus-visible{outline-color:#FACC15;}
+.is-camp .cup-cta{background:#FACC15;color:#0B1F3A;line-height:1.3;}
+.is-camp .cup-cta:hover{background:#fff;color:#0B1F3A;}
+.is-camp .cup-cta+.cup-cta{margin-top:8px;}
+.is-camp .cup-cta-alt{background:#1E40AF;color:#fff;}
+.is-camp .cup-cta:focus-visible{outline:2px solid #FACC15;outline-offset:2px;}
+.is-camp .cup-cta-alt:focus-visible{outline-color:#fff;}
+
+.cup-pop.is-camp.is-wide{
+  width:400px;padding:0 0 18px;overflow:hidden auto;max-height:calc(100vh - 40px);
+}
+.is-wide .camp-pop-img{display:block;width:100%;height:150px;object-fit:cover;}
+.is-wide .cup-body{padding:14px 20px 0;}
+.is-wide .cup-acts{padding:14px 20px 0;}
+.is-wide .cup-x{
+  top:8px;right:8px;width:34px;height:34px;padding:0;border-radius:50%;
+  background:rgba(11,31,58,.82);color:#fff;
+}
+
+@media (max-width:600px){
+  .cup-pop.is-camp,.cup-pop.is-camp.has-poster,.cup-pop.is-camp.is-wide{
+    left:0;right:0;bottom:0;width:auto;max-width:none;
+    border-radius:16px 16px 0 0;
+    border-left:1px solid rgba(250,204,21,.45);border-top:4px solid #FACC15;
+    max-height:80vh;overflow-y:auto;
+  }
+  .cup-pop.is-camp.has-poster{padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));}
+  .cup-pop.is-camp.is-wide{padding:0 0 calc(16px + env(safe-area-inset-bottom,0px));}
+  .is-wide .camp-pop-img{height:22vh;}
+  .is-wide .cup-body,.is-wide .cup-acts{padding-left:16px;padding-right:16px;}
+}
+
 /* ---------- box score (Deng, 8 Sep 2026: Men only) ----------
    A full-width grid child of .tf-feat, under the poster strip, so it shows in
    the details panel and never in the feature at the top of the page, which is
