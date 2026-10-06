@@ -160,7 +160,7 @@
     "program.junior.age_min": 10,
     "program.junior.fee": 1800,
     "program.junior.name": "Talata Junior",
-    "program.junior.time": "16:30-17:45",
+    "program.junior.time": "16:30-18:00",
     "program.junior.venue": "Strandvejsskolen",
     "program.kobenhavn.fee": 2000,
     "program.kobenhavn.name": "Talata København",
@@ -191,9 +191,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "cd3d6e1c931bfd76a03c46f0c2383fda1380901f9b024a4889f0f43f055e8527",
+  "sha": "046d930fbd21b1149fb9e3091722cdba0f55b01e98edf8ac74516212651955e0",
   "sources": {
-    "programs_sha": "feb20b366669d0868a68d9c4e35b37dab84e08cf5a8909dc6e2a9e575c4f02d9",
+    "programs_sha": "6d221304653688f65d252eeab543533d31e899524de26d7dbe1c2fc17705ca52",
     "training_sha": "d517e3893cf3e1dda6b5d0d673cbd34a3074a1a6c1dd644dbdc24ecdb636cf20",
     "training_updated": "2026-10-06"
   },
