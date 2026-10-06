@@ -54,6 +54,8 @@ BIAS = {
     "/images/recovery-week-team-apr2026.jpg": 0.30,
     "/images/jun26/mini-session-group.jpg": 0.35,
     "/images/jul26/airborne-drive.jpg": 0.25,
+    # four clubs in one group photo, faces just above the middle (6 Oct 2026)
+    "/images/2026-10/site/u13-grand-prix-four-clubs-group.jpg": 0.5,
 }
 
 SKIP_DIRS = ("images/junk", "Photos-001", "posters/")
