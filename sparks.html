@@ -181,11 +181,11 @@
       text-transform: uppercase; padding: 6px 16px; border-radius: 20px;
       margin-bottom: 24px;
     }
-    .hero h1 {
+    .hero .slogan {
       font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800;
       letter-spacing: -1px; margin-bottom: 16px; line-height: 1.15;
     }
-    .hero h1 span {color:var(--td-link); }
+    .hero .slogan span {color:var(--td-link); }
     .hero p {
       font-size: 1.1rem; color: rgba(255,255,255,0.75);
       max-width: 540px; margin: 0 auto 32px;
@@ -303,6 +303,23 @@
     .footer a {color:var(--td-link); text-decoration: none; }
   /* 15 Sep 2026: stack the photo strip on phones so tiles are not slivers */
   @media (max-width:640px){ .photo-strip{ grid-template-columns:1fr !important; height:auto !important; } .photo-strip > div{ height:200px; } }
+  
+    /* Fact box above the fold (SEO batch 9, 6 Oct 2026). It sits on the dark
+       hero in both themes, so its colours are literals. Every time and price
+       in it is an apply-facts marker. */
+    .factbox { max-width: 600px; margin: 26px auto 0; padding: 18px 20px; border-radius: 14px;
+      background: rgba(10,10,10,0.5); border: 1px solid rgba(186,230,253,0.3); text-align: left; color: #fff; }
+    .factbox dl { margin: 0; display: grid; gap: 9px; }
+    .factbox dl > div { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; align-items: baseline; }
+    .factbox dt { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #BAE6FD; }
+    .factbox dd { margin: 0; font-size: 0.93rem; line-height: 1.5; color: #fff; }
+    .factbox dd a { color: #BAE6FD; }
+    .factbox .fb-go { display: block; margin-top: 16px; text-align: center; background: #1E40AF; color: #fff;
+      font-weight: 800; padding: 13px 18px; border-radius: 10px; text-decoration: none; }
+    .factbox .fb-go:hover { background: #0B1F3A; }
+    @media (max-width: 480px) { .factbox dl > div { grid-template-columns: 1fr; gap: 2px; } }
+    .hero .slogan { color: #fff; max-width: none; }
+    .hero h1.hero-badge { line-height: 1.5; }
   </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20261006b">
@@ -418,22 +435,22 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">Girls 6 to 14 · Talata Sparks</div>
-    <h1>Basketball, just for<br>the girls. <span>And it's hers.</span></h1>
-    <p>Talata Sparks is our girls only programme for ages 6 to 14. Mondays at Strandvejsskolen, coached by Deng with our older girls helping out. Whether she has held a ball before or not, this is where she starts.</p>
-    <div class="hero-actions">
-      <a href="#register" class="btn btn-primary">Book a free session</a>
-      <a href="#schedule" class="btn btn-ghost">See the details</a>
+    <h1 class="hero-badge">Girls basketball in Copenhagen, ages 6 to 14</h1>
+    <p class="slogan">Basketball, just for<br>the girls. <span>And it's hers.</span></p>
+    <p>Girls basketball on &Oslash;sterbro in Copenhagen. Talata Sparks is our girls only programme for ages 6 to 14. Mondays at Strandvejsskolen, coached by Deng with our older girls helping out. Whether she has held a ball before or not, this is where she starts.</p>
+    <div class="factbox">
+      <dl>
+        <div><dt>Ages</dt><dd>Girls 6 to 14. No experience needed</dd></div>
+        <div><dt>When</dt><dd><!--fact:teams.sparks|sched-->Mon 15:30 to 16:30 at Strandvejsskolen<!--/fact--></dd></div>
+        <div><dt>Where</dt><dd>Strandvejsskolen, <!--fact:venues.strandvejsskolen.address-->Sionsgade 1, 2100 København Ø<!--/fact--></dd></div>
+        <div><dt>Price</dt><dd>1.200 kr per half-season for Sparks on its own</dd></div>
+        <div><dt>Girls 15+</dt><dd><a href="#girls-15">The Stevnsgade girls team at Nørrebrohallen</a></dd></div>
+        <div><dt>First session</dt><dd>Free. Bring her friends</dd></div>
+      </dl>
+      <a class="fb-go" href="#register">Book a free session</a>
     </div>
   </div>
 
-  <!-- INFO STRIP -->
-  <div class="info-strip">
-    <div class="info-item"><span><strong>Mondays</strong> <span class="label">15:30 to 16:30</span></span></div>
-    <div class="info-item"><span><strong>Strandvejsskolen</strong> <span class="label">Østerbro, Copenhagen</span></span></div>
-    <div class="info-item"><span><strong>Girls 6 to 14</strong> <span class="label">No experience needed</span></span></div>
-    <div class="info-item"><span><strong>Girls 15 and up</strong> <a href="#girls-15">Mon, Wed, Fri at Nørrebrohallen</a></span></div>
-  </div>
 
   <!-- PHOTO STRIP -->
   <!-- 15 Sep 2026: the strip used another club's kit (girls-game-action) and the
@@ -451,7 +468,7 @@
 
   <!-- WHAT IS TALATA SPARKS -->
   <div class="section">
-    <div class="section-title">What is Talata Sparks?</div>
+    <h2 class="section-title">What is Talata Sparks?</h2>
     <p>Sparks is part of <strong>Talata Girls</strong>. The younger ones get a gym that belongs to them for an hour, and it changes how they play. Nobody hides at the back and nobody waits around for a turn.</p>
     <p>Our U17 and U19 girls, the <strong>Big Sisters</strong>, help out every session. Every Spark has an older girl in her corner from day one.</p>
 
@@ -487,7 +504,7 @@
 
   <!-- BIG SISTERS -->
   <div class="section">
-    <div class="section-title">Meet the Big Sisters</div>
+    <h2 class="section-title">Meet the Big Sisters</h2>
     <p>Our older girls, the U17s and U19s, lead the Sparks sessions. They have been exactly where the little ones are now.</p>
     <p>A teenager who plays the game and is on your side changes what a 7 year old thinks is possible. The older girls get to lead, which they take seriously. This is the main reason girls stay with us.</p>
   </div>
@@ -496,7 +513,7 @@
 
   <!-- SCHEDULE -->
   <div class="section" id="schedule">
-    <div class="section-title">Training schedule</div>
+    <h2 class="section-title">Training schedule</h2>
     <p>We train Mondays at Strandvejsskolen. One hour, all girls, all season. Come every week, it is the same time and place.</p>
 
     <div class="schedule-card">
@@ -551,7 +568,7 @@
     </div>
 
     <div class="sfo-note" style="margin-top: 10px;">
-      <strong>What it costs:</strong> <strong>1.200 kr / half-season</strong> for the Monday Sparks session on its own. <strong>1.800 kr / half-season</strong> adds one weekday session, Tuesday or Thursday, alongside it.
+      <strong>What it costs:</strong> <strong>1.200 kr / half-season</strong> for the Monday Sparks session on its own. <strong><!--fact:facts.program.mini.fee|kr-->1.800 kr<!--/fact--> / half-season</strong> adds one weekday session, Tuesday or Thursday, alongside it.
     </div>
     <div class="sfo-note" style="margin-top: 10px;">
       <strong>SFO kids:</strong> we pick up directly from Strandvejsskolen SFO before training. No extra travel for parents on Mondays.
@@ -570,7 +587,7 @@
        Never add the game PINs, they are scorer codes. The script below shows
        the next three and hides the rest, so the list does not go stale. -->
   <div class="section" id="girls-15">
-    <div class="section-title">Girls 15 and up</div>
+    <h2 class="section-title">Girls 15 and up at Nørrebrohallen</h2>
     <p>Sparks runs to 14. From 15, girls train with the <strong>Stevnsgade girls team</strong>, coached by Deng. The team plays the KU17 league, the under 17 girls league, with home games at Nørrebrohallen.</p>
 
     <div class="schedule-card">
@@ -677,7 +694,7 @@
 
   <!-- REGISTER / CONTACT -->
   <div class="section" id="register">
-    <div class="section-title">Get in touch or sign up</div>
+    <h2 class="section-title">Get in touch or sign up</h2>
     <p>Fill in the form and I'll get back to you. If you are ready to sign up properly, you can do that directly on Holdsport.</p>
 
     <div class="form-card" style="margin-top: 24px;">
@@ -724,7 +741,7 @@
 
   <!-- WHAT'S NEXT -->
   <div class="section">
-    <div class="section-title">What's next as she grows?</div>
+    <h2 class="section-title">What's next as she grows?</h2>
     <p>As she gets older, she keeps moving up through <strong>Talata Girls</strong>. At 15 she joins the <a href="#girls-15">Stevnsgade girls team</a>, coached by Deng.</p>
     <p>Same coach the whole way up. One day the Big Sisters she looked up to are just her teammates.</p>
   </div>

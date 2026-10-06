@@ -191,11 +191,11 @@
       text-transform: uppercase; padding: 6px 16px; border-radius: 20px;
       margin-bottom: 24px;
     }
-    .hero h1 {
+    .hero .slogan {
       font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800;
       letter-spacing: -1px; margin-bottom: 16px; line-height: 1.15;
     }
-    .hero h1 span {color:var(--td-link); }
+    .hero .slogan span {color:var(--td-link); }
     .hero p {
       font-size: 1.1rem; color: rgba(255,255,255,0.75);
       max-width: 540px; margin: 0 auto 32px;
@@ -343,6 +343,23 @@
       border-top: 1px solid var(--border); margin-top: 60px;
     }
     .footer a {color:var(--td-link); text-decoration: none; }
+  
+    /* Fact box above the fold (SEO batch 9, 6 Oct 2026). It sits on the dark
+       hero in both themes, so its colours are literals. Every time and price
+       in it is an apply-facts marker. */
+    .factbox { max-width: 600px; margin: 26px auto 0; padding: 18px 20px; border-radius: 14px;
+      background: rgba(10,10,10,0.5); border: 1px solid rgba(186,230,253,0.3); text-align: left; color: #fff; }
+    .factbox dl { margin: 0; display: grid; gap: 9px; }
+    .factbox dl > div { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; align-items: baseline; }
+    .factbox dt { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #BAE6FD; }
+    .factbox dd { margin: 0; font-size: 0.93rem; line-height: 1.5; color: #fff; }
+    .factbox dd a { color: #BAE6FD; }
+    .factbox .fb-go { display: block; margin-top: 16px; text-align: center; background: #1E40AF; color: #fff;
+      font-weight: 800; padding: 13px 18px; border-radius: 10px; text-decoration: none; }
+    .factbox .fb-go:hover { background: #0B1F3A; }
+    @media (max-width: 480px) { .factbox dl > div { grid-template-columns: 1fr; gap: 2px; } }
+    .hero .slogan { color: #fff; max-width: none; }
+    .hero h1.hero-badge { line-height: 1.5; }
   </style>
 <link rel="stylesheet" href="/assets/talata-fixtures.css?v=20261006b">
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
@@ -459,33 +476,32 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">Adults 18+ &middot; Talata Men</div>
-    <h1>Grown men's basketball,<br>on a real team. <span>Three nights a week.</span></h1>
-    <p>Talata Men is the club's adult side. One group plays <strong>3. Division Herrer &Oslash;st</strong> in the Danish federation. The other trains alongside them with no league commitment at all. Same nights, same coaches.</p>
-    <div class="hero-actions">
-      <a href="#join" class="btn btn-primary">Come and train with us</a>
-      <a href="#fixtures" class="btn btn-ghost">See the fixtures</a>
+    <h1 class="hero-badge">Adult basketball in Copenhagen, competitive and for fitness</h1>
+    <p class="slogan">Grown men's basketball,<br>on a real team. <span>Three nights a week.</span></p>
+    <p>Adult basketball on &Oslash;sterbro and in N&oslash;rrebro, Copenhagen. Talata Men is the club's adult side. One group plays <strong>3. Division Herrer &Oslash;st</strong> in the Danish federation. The other trains alongside them with no league commitment at all. Same nights, same coaches.</p>
+    <div class="factbox">
+      <dl>
+        <div><dt>Ages</dt><dd>18 and up</dd></div>
+        <div><dt>When</dt><dd><!--fact:teams.men|sched-->Mon 18:45 to 20:15 at Svanemøllehallen, Tue 18:45 to 20:00 at Svanemøllehallen, Fri 18:45 to 21:00 at Nørre Fælled Skole from 23 Oct<!--/fact--></dd></div>
+        <div><dt>Where</dt><dd>Svanem&oslash;llehallen, <!--fact:venues.svanemollehallen.address-->Østerbrogade 240, 2100 København Ø<!--/fact--> &middot; N&oslash;rre F&aelig;lled Skole, <!--fact:venues.norre_faelled_skole.address-->Biskop Krags Vænge 7, 2200 København N<!--/fact--></dd></div>
+        <div><dt>Price</dt><dd><!--fact:facts.program.men_competitive.fee|kr-->2.000 kr<!--/fact--> per half-season, Competitive or Fitness</dd></div>
+        <div><dt>First session</dt><dd>Free</dd></div>
+      </dl>
+      <a class="fb-go" href="#join">Come and train with us</a>
     </div>
   </div>
 
-  <!-- INFO STRIP -->
-  <div class="info-strip">
-    <div class="info-item"><span><strong>Training</strong> <span class="label"><!--fact:teams.men|sched-->Mon 18:45 to 20:15 at Svanemøllehallen, Tue 18:45 to 20:00 at Svanemøllehallen, Fri 18:45 to 21:00 at Nørre Fælled Skole from 23 Oct<!--/fact--></span></span></div>
-    <div class="info-item"><span><strong>Mon + Tue Svanem&oslash;llehallen</strong> <span class="label">&Oslash;sterbrogade 240, &Oslash;sterbro</span></span></div>
-    <div class="info-item"><span><strong>Fri N&oslash;rre F&aelig;lled Skole</strong> <span class="label">Biskop Krags V&aelig;nge 7, N&oslash;rrebro</span></span></div>
-    <div class="info-item"><span><strong>2.000 kr</strong> <span class="label">per half-season</span></span></div>
-  </div>
 
   <!-- TWO WAYS IN -->
   <div class="section">
-    <div class="section-title">Two ways to play</div>
+    <h2 class="section-title">Two ways to play: competitive or fitness basketball</h2>
     <p>Both train in the same slot, split into two zones. You pick the one that matches how much you want to commit, and you can move between them.</p>
     <div class="pillars">
       <div class="pillar">
         <h3>Competitive</h3>
         <p>The registered team. We play <strong>3. Division Herrer &Oslash;st</strong> in the DBBF league, plus the Danish Cup. There is a promotion route up to 2. Division through the Final Four. Expect league games most weekends and a tryout to get on the roster.</p>
       </div>
-      <div class="pillar">
+      <div class="pillar" id="fitness">
         <h3>Fitness</h3>
         <p>Recreational adult basketball, no DBBF commitment and no weekend games. Turn up, train, play. This is the one for people coming back to the game after a few years off, or starting properly for the first time.</p>
       </div>
@@ -496,7 +512,7 @@
 
   <!-- WHEN -->
   <div class="section" id="schedule">
-    <div class="section-title">When we train</div>
+    <h2 class="section-title">When we train</h2>
     <div class="schedule-card">
       <div class="schedule-row">
         <div class="schedule-day">Every week</div>
@@ -550,7 +566,7 @@
 
   <!-- FIXTURES -->
   <div class="section" id="fixtures">
-    <div class="section-title">Our games</div>
+    <h2 class="section-title">Our games</h2>
     <p>League, cup and friendlies. Entry is free at every home game and anyone is welcome to come and watch before they decide.</p>
     <!-- CUP RESULT note. Federation game 40102931, the replay of 40099294: Talata 89,
          Hørsholm 87 after overtime, Mon 14 Sep 2026. The run ended at the 1/8 final,
@@ -581,8 +597,8 @@
 
   <!-- COST -->
   <div class="section">
-    <div class="section-title">What it costs</div>
-    <p><strong>2.000 kr per half-season</strong>, the same for Competitive and Fitness. That covers the hall, the coaching and your league registration. Pay with MobilePay to <strong>52697</strong> or by bank transfer once you are on the team.</p>
+    <h2 class="section-title">What it costs</h2>
+    <p><strong><!--fact:facts.program.men_competitive.fee|kr-->2.000 kr<!--/fact--> per half-season</strong>, the same for Competitive and Fitness. That covers the hall, the coaching and your league registration. Pay with MobilePay to <strong>52697</strong> or by bank transfer once you are on the team.</p>
     <p>Full price list and the other age groups are on the <a href="/help/age-groups">prices and times</a> page.</p>
   </div>
 

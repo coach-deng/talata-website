@@ -34,7 +34,7 @@
     .page { max-width: 800px; margin: 0 auto; }
     .hero { background: linear-gradient(135deg, #0B1F3A 0%, #1E40AF 50%, #4a87b0 100%); color: #fff; padding: 60px 40px 50px; text-align: center; }
     .hero .badge { display: inline-block; background: rgba(255,255,255,0.2); color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 20px; }
-    .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+    .hero .slogan { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
     .hero .sub { font-size: 1.05rem; opacity: 0.95; margin-bottom: 24px; }
     .hero-details { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 24px; font-size: 0.9rem; }
     .hero-details div { background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 8px; }
@@ -65,7 +65,24 @@
     .success { display: none; padding: 16px; background: #ecfdf5; border-radius: 8px; color: #065f46; font-weight: 600; text-align: center; margin-top: 16px; }
     .nav { background: #0A0A0A; color: #fff; padding: 16px 24px; }
     .nav a { color: #fff; text-decoration: none; font-weight: 600; }
-    @media (max-width: 600px) { .waitlist-form .row { grid-template-columns: 1fr; } .hero h1 { font-size: 1.8rem; } }
+    @media (max-width: 600px) { .waitlist-form .row { grid-template-columns: 1fr; } .hero .slogan { font-size: 1.8rem; } }
+  
+    /* Fact box above the fold (SEO batch 9, 6 Oct 2026). It sits on the dark
+       hero in both themes, so its colours are literals. Every time and price
+       in it is an apply-facts marker. */
+    .factbox { max-width: 600px; margin: 26px auto 0; padding: 18px 20px; border-radius: 14px;
+      background: rgba(10,10,10,0.5); border: 1px solid rgba(186,230,253,0.3); text-align: left; color: #fff; }
+    .factbox dl { margin: 0; display: grid; gap: 9px; }
+    .factbox dl > div { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; align-items: baseline; }
+    .factbox dt { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #BAE6FD; }
+    .factbox dd { margin: 0; font-size: 0.93rem; line-height: 1.5; color: #fff; }
+    .factbox dd a { color: #BAE6FD; }
+    .factbox .fb-go { display: block; margin-top: 16px; text-align: center; background: #1E40AF; color: #fff;
+      font-weight: 800; padding: 13px 18px; border-radius: 10px; text-decoration: none; }
+    .factbox .fb-go:hover { background: #0B1F3A; }
+    @media (max-width: 480px) { .factbox dl > div { grid-template-columns: 1fr; gap: 2px; } }
+    .hero .slogan { line-height: 1.15; }
+    .hero h1.badge { font-size: 0.75rem; }
   </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20261006b">
@@ -171,15 +188,19 @@
 
 
 <section class="hero" style="position:relative;background-image:linear-gradient(135deg,rgba(10,10,10,.82) 0%,rgba(11,31,58,.78) 55%,rgba(30,64,175,.68) 100%),url('/images/2026-09/site/mini-hero-deng-explains-drill-c.jpg');background-size:cover;background-position:center,47% 28%;">
-  <div class="badge">New for 2026/27</div>
-  <h1>Saturday mornings</h1>
-  <div class="sub">Basketball for ages 5 to 12, and an hour for the whole family</div>
-  <div class="hero-details">
-    <div><strong>Saturdays</strong> &middot; all season</div>
-    <div><strong>Mini 5 to 9</strong> &middot; 10:00 to 11:00</div>
-    <div><strong>Junior 10 to 12</strong> &middot; 11:00 to 12:00</div>
-    <div><strong>Family Time</strong> &middot; kids and parents</div>
-    <div><strong>Kulturhuset Indre By</strong></div>
+  <h1 class="badge">Saturday basketball for kids in Copenhagen</h1>
+  <p class="slogan">Saturday mornings</p>
+  <div class="sub">Saturday basketball for kids in central Copenhagen, ages 5 to 12. Plus an hour for the whole family, new for 2026/27.</div>
+    <div class="factbox">
+    <dl>
+      <div><dt>Mini 5 to 9</dt><dd><!--fact:teams.mini|sat-->10:00 to 11:00 at Kulturhuset Indre By<!--/fact--></dd></div>
+      <div><dt>Junior 10 to 12</dt><dd><!--fact:teams.junior|sat-->11:00 to 12:00 at Kulturhuset Indre By<!--/fact--></dd></div>
+      <div><dt>Family Time</dt><dd><!--fact:teams.family_time|sat-->12:00 to 13:00 at Kulturhuset Indre By<!--/fact-->, kids and parents</dd></div>
+      <div><dt>Where</dt><dd>Kulturhuset Indre By, <!--fact:venues.kulturhuset_indre_by.address-->Charlotte Ammundsens Plads 3, 1359 København K<!--/fact--></dd></div>
+      <div><dt>Price</dt><dd>Mini and Junior membership, <!--fact:facts.program.mini.fee|kr-->1.800 kr<!--/fact--> per half-season</dd></div>
+      <div><dt>First Saturday</dt><dd>Free</dd></div>
+    </dl>
+    <a class="fb-go" href="#book">Book a free Saturday</a>
   </div>
 </section>
 

@@ -184,11 +184,11 @@
       text-transform: uppercase; padding: 6px 16px; border-radius: 20px;
       margin-bottom: 24px;
     }
-    .hero h1 {
+    .hero .slogan {
       font-size: clamp(2.4rem, 5.5vw, 3.6rem); font-weight: 900;
       letter-spacing: -1.5px; margin-bottom: 18px; line-height: 1.1;
     }
-    .hero h1 span {color:var(--td-link); }
+    .hero .slogan span {color:var(--td-link); }
     .hero p {
       font-size: 1.15rem; color: rgba(255,255,255,0.85);
       max-width: 580px; margin: 0 auto 32px; line-height: 1.6;
@@ -345,6 +345,23 @@
     .footer a {color:var(--td-link); text-decoration: none; }
   /* 15 Sep 2026: stack the photo strip on phones so tiles are not slivers */
   @media (max-width:640px){ .photo-strip{ grid-template-columns:1fr !important; height:auto !important; } .photo-strip > div{ height:200px; } }
+  
+    /* Fact box above the fold (SEO batch 9, 6 Oct 2026). It sits on the dark
+       hero in both themes, so its colours are literals. Every time and price
+       in it is an apply-facts marker. */
+    .factbox { max-width: 600px; margin: 26px auto 0; padding: 18px 20px; border-radius: 14px;
+      background: rgba(10,10,10,0.5); border: 1px solid rgba(186,230,253,0.3); text-align: left; color: #fff; }
+    .factbox dl { margin: 0; display: grid; gap: 9px; }
+    .factbox dl > div { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; align-items: baseline; }
+    .factbox dt { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #BAE6FD; }
+    .factbox dd { margin: 0; font-size: 0.93rem; line-height: 1.5; color: #fff; }
+    .factbox dd a { color: #BAE6FD; }
+    .factbox .fb-go { display: block; margin-top: 16px; text-align: center; background: #1E40AF; color: #fff;
+      font-weight: 800; padding: 13px 18px; border-radius: 10px; text-decoration: none; }
+    .factbox .fb-go:hover { background: #0B1F3A; }
+    @media (max-width: 480px) { .factbox dl > div { grid-template-columns: 1fr; gap: 2px; } }
+    .hero .slogan { color: #fff; max-width: none; }
+    .hero h1.hero-badge { line-height: 1.5; }
   </style>
 <link rel="stylesheet" href="/assets/talata-fixtures.css?v=20261006b">
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
@@ -462,12 +479,18 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-inner">
-      <div class="hero-badge">Talata Academy · Ages 13 to 19</div>
-      <h1>Serious about basketball?<br><span>This is where you come.</span></h1>
-      <p>Up to four days a week on court, with league games most weekends and trips abroad every year. Academy is for the players who want to build something around this sport. It asks a lot of them.</p>
-      <div class="hero-actions">
-        <a href="#apply" class="btn btn-primary">Apply for Academy</a>
-        <a href="#what" class="btn btn-ghost">What you get</a>
+      <h1 class="hero-badge">Youth basketball academy in Copenhagen, ages 13 to 19</h1>
+      <p class="slogan">Serious about basketball?<br><span>This is where you come.</span></p>
+      <p>Youth basketball in Copenhagen, with our home court at Svanem&oslash;llehallen on &Oslash;sterbro. Up to four days a week on court, with league games most weekends and trips abroad every year. Academy is for the players who want to build something around this sport. It asks a lot of them.</p>
+    <div class="factbox">
+        <dl>
+          <div><dt>Ages</dt><dd>13 to 19, in U13, U15, U17 and U19</dd></div>
+          <div><dt>When</dt><dd>Up to five sessions a week, Monday to Friday. <a href="#this-week">See the week</a></dd></div>
+          <div><dt>Where</dt><dd>Svanem&oslash;llehallen, Kulturhuset Indre By, Bellah&oslash;j Hallerne, Strandvejsskolen and N&oslash;rre F&aelig;lled Skole</dd></div>
+          <div><dt>Price</dt><dd><!--fact:facts.program.academy.fee|kr-->3.300 kr<!--/fact--> per half-season</dd></div>
+          <div><dt>Entry</dt><dd>Application required. The first session is free</dd></div>
+        </dl>
+        <a class="fb-go" href="#apply">Apply for Academy</a>
       </div>
     </div>
   </div>
@@ -488,7 +511,7 @@
 
   <!-- WHAT IS THE ACADEMY -->
   <div class="section" id="what">
-    <div class="section-title">What is Talata Academy?</div>
+    <h2 class="section-title">What is Talata Academy?</h2>
     <p>Most kids play basketball once or twice a week. Academy kids play almost every day. Most weekday afternoons, games on the weekend. We build real players here.</p>
     <p>There is more to it than court time. James runs the strength and conditioning. We sit down and watch film so players actually understand what they did rather than repeating it blind. And we travel, because playing teams you would never meet in Denmark is the fastest way to find out where you really are.</p>
     <p>The whole thing is built around one idea. Basketball is the tool we use to prepare kids for whatever life throws at them next. Discipline, teamwork, showing up when it's hard, handling losses, handling wins. That's the real curriculum.</p>
@@ -536,7 +559,7 @@
 
   <!-- PROOF -->
   <div class="section">
-    <div class="section-title">It's already working</div>
+    <h2 class="section-title">It's already working</h2>
     <p>The proof is the players who came through.</p>
 
     <div class="proof-quote">
@@ -558,7 +581,7 @@
 
   <!-- TRAINING SCHEDULE -->
   <div class="section">
-    <div class="section-title">What the week looks like</div>
+    <h2 class="section-title">What the week looks like</h2>
     <p><strong>U13 Academy and U15:</strong> <!--fact:teams.academy_u13_u15|sched-->Mon 16:30 to 18:00 at Strandvejsskolen from 19 Oct, Mon 16:45 to 18:45 at Svanemøllehallen from 19 Oct, Tue + Wed 16:00 to 18:00 at Kulturhuset Indre By, Thu 17:00 to 19:00 at Svanemøllehallen, Fri 16:00 to 18:00 at Bellahøj Hallerne<!--/fact-->.<br>
     <strong>U17:</strong> <!--fact:teams.academy_u17|sched-->Mon 16:45 to 18:45 at Svanemøllehallen from 19 Oct, Tue + Wed 16:00 to 18:00 at Kulturhuset Indre By, Thu 17:00 to 19:00 at Svanemøllehallen, Fri 16:00 to 18:00 at Bellahøj Hallerne<!--/fact-->.<br>
     <strong>U19:</strong> <!--fact:teams.academy_u19|sched-->Mon 18:45 to 20:15 at Svanemøllehallen, Tue 18:45 to 20:00 at Svanemøllehallen, Fri 18:45 to 21:00 at Nørre Fælled Skole from 23 Oct<!--/fact-->.</p>
@@ -622,7 +645,7 @@
        for. Mini, Junior and Sparks get NO mount, because they have no games at
        all and an empty list is worse than no list. -->
   <div class="section">
-    <div class="section-title">Academy games</div>
+    <h2 class="section-title">Academy games</h2>
     <p>The next fixtures for our U13, U15 and U19 squads. <a href="/games?team=U19">See the full season &rarr;</a></p>
     <div data-talata-fixtures data-limit="5" data-team="U19,U15,U13"></div>
   </div>
@@ -632,7 +655,7 @@
   <!-- U13 GRAND PRIX photo band. Permanent (Deng, 6 Oct 2026). The four-clubs photo
        and the huddle from Sun 4 Oct at Korsgadehallen, linking to the story. -->
   <div class="section" id="u13-grand-prix">
-    <div class="section-title">U13 at the Grand Prix</div>
+    <h2 class="section-title">U13 at the Grand Prix</h2>
     <p>Four clubs, six games and one photo at Korsgadehallen on Sunday 4 October. <a href="/blog/u13-grand-prix-east-2026" style="color:var(--td-link); font-weight: 700; text-decoration: none;">Read the story &rarr;</a></p>
     <a class="photo-strip" href="/blog/u13-grand-prix-east-2026" style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px;">
       <img src="/images/2026-10/site/u13-grand-prix-four-clubs-group.jpg" alt="Players and coaches from four clubs together after the U13 Grand Prix at Korsgadehallen" width="1600" height="1067" loading="lazy" decoding="async" style="display:block; width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; object-position:50% 52%; border-radius:12px;">
@@ -644,7 +667,7 @@
 
   <!-- COACHES -->
   <div class="section">
-    <div class="section-title">Who's coaching</div>
+    <h2 class="section-title">Who's coaching</h2>
     <p>Four coaches, decades of experience between them. Played professionally. Coached across multiple countries. This is who your kid will be working with every day.</p>
 
     <div class="coach-grid">
@@ -675,11 +698,11 @@
 
   <!-- COST -->
   <div class="section">
-    <div class="section-title">What it costs</div>
+    <h2 class="section-title">What it costs</h2>
     <p>Academy fees cover the season here at home. Training, games, uniforms, referees, gym rentals and the DBBF fees that come with real competition.</p>
 
     <div class="cost-card">
-      <div class="price">3.300 kr</div>
+      <div class="price"><!--fact:facts.program.academy.fee|kr-->3.300 kr<!--/fact--></div>
       <div class="price-sub">per half season · paid twice a year</div>
       <ul class="cost-includes">
         <li>Three or four team trainings a week, six to seven hours on court</li>

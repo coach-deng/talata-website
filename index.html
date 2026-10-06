@@ -82,8 +82,8 @@ a{text-decoration:none;color:inherit;}
 .hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;padding-top:72px;padding-bottom:80px;align-items:center;}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:0.76rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--td-link);margin-bottom:18px;}
 .eyebrow::before{content:"";width:28px;height:2px;background:var(--baby);color:var(--td-bg)}
-.hero h1{font-family:var(--disp);font-weight:900;font-size:clamp(2.3rem,4.8vw,3.8rem);line-height:1.04;letter-spacing:-0.02em;text-transform:uppercase;}
-.hero h1 em{font-style:normal;color:var(--td-link);}
+.hero .slogan {font-family:var(--disp);font-weight:900;font-size:clamp(2.3rem,4.8vw,3.8rem);line-height:1.04;letter-spacing:-0.02em;text-transform:uppercase;}
+.hero .slogan em{font-style:normal;color:var(--td-link);}
 .hero .sub{margin:20px 0 26px;font-size:1.08rem;color:rgba(255,255,255,0.78);max-width:30em;}
 .tickers{display:flex;gap:26px;flex-wrap:wrap;}
 .tick b{display:block;font-family:var(--disp);font-size:1.35rem;font-weight:800;color:#fff;}
@@ -106,7 +106,7 @@ a{text-decoration:none;color:inherit;}
   .hero-head{order:1;}
   .hero .trial{order:2;}
   .hero-rest{order:3;}
-  .hero h1{font-size:clamp(2rem,8.5vw,2.9rem);}
+  .hero .slogan {font-size:clamp(2rem,8.5vw,2.9rem);}
   .hero .sub{margin:0 0 22px;font-size:1rem;}
 }
 
@@ -373,11 +373,11 @@ footer a:hover{color:var(--td-link);}
   <div class="wrap">
     <div class="hero-copy">
       <div class="hero-head">
-        <span class="eyebrow">Copenhagen's basketball club · Østerbro</span>
-        <h1>One club.<br>Every level.<br><em>First session free.</em></h1>
+        <h1 class="eyebrow">Basketball club in Copenhagen for kids, teens and adults</h1>
+        <p class="slogan">One club.<br>Every level.<br><em>First session free.</em></p>
       </div>
       <div class="hero-rest">
-      <p class="sub">Five year olds taking their first dribble at Strandvejsskolen. A men's 3. Division roster at Svanemøllehallen. Everyone in between trains here too, four days a week. Coach Deng played pro in Canada, Lithuania and Denmark, and the club now runs camps in all three.</p>
+      <p class="sub">A basketball club on &Oslash;sterbro in Copenhagen, for kids, teens and adults. Five year olds taking their first dribble at Strandvejsskolen. A men's 3. Division roster at Svanemøllehallen. Everyone in between trains here too, four days a week. Coach Deng played pro in Canada, Lithuania and Denmark, and the club now runs camps in all three.</p>
       <div class="tickers">
         <div class="tick"><b>100+</b> <span>players</span></div>
         <div class="tick"><b>5</b> <span>countries we take kids to</span></div>
