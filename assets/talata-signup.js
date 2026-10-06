@@ -74,6 +74,8 @@
     var s = document.createElement('style');
     s.id = STYLE_ID;
     s.textContent = [
+      '.tns-exp{border:0;padding:0;margin:4px 0 14px}.tns-exp legend{font-weight:600;margin-bottom:6px;padding:0}',
+      '.tns-exp label{display:inline-flex;align-items:center;gap:6px;margin:0 18px 6px 0;font-weight:400}',
       '.tns{margin-top:18px;border:1px solid #BAE6FD;border-radius:14px;overflow:hidden;',
       'background:#F8FAFC;color:#0A0A0A;font-size:.95rem;line-height:1.6;text-align:left}',
       '.tns-head{background:#0B1F3A;color:#fff;padding:14px 18px}',
@@ -412,6 +414,47 @@
     } catch (err) { /* never let analytics break the confirmation panel */ }
   }
 
+  // Deng, 6 Oct 2026: a new 13 or 14 year old who has played in a club gets U13
+  // Academy, a beginner gets a Junior invite. The form never asked, so the email
+  // could not tell them apart. One question, shown only when the date of birth
+  // makes the player 13 or 14 on 1 October (the DBBF cutoff), required while shown.
+  function bracketAge(dob, now) {
+    var b = new Date(dob);
+    if (isNaN(b.getTime())) return null;
+    var season = now.getMonth() >= 7 ? now.getFullYear() : now.getFullYear() - 1;
+    var cut = new Date(season, 9, 1);
+    var a = cut.getFullYear() - b.getFullYear();
+    if (cut.getMonth() < b.getMonth() || (cut.getMonth() === b.getMonth() && cut.getDate() < b.getDate())) a--;
+    return a;
+  }
+
+  function wireExperience(form, dobEl) {
+    if (form.querySelector('[name="experience"]')) return;
+    var box = document.createElement('fieldset');
+    box.className = 'tns-exp';
+    box.hidden = true;
+    box.innerHTML =
+      '<legend>Has the player played basketball in a club before?</legend>' +
+      '<label><input type="radio" name="experience" value="Played in a club"> Yes, in a club</label>' +
+      '<label><input type="radio" name="experience" value="Beginner"> No, new to basketball</label>';
+    var group = dobEl.closest('.form-group, .field') || dobEl.parentNode;
+    var row = group.closest('.form-row, .row');
+    (row || group).insertAdjacentElement('afterend', box);
+    var radios = box.querySelectorAll('input');
+    function update() {
+      var a = dobEl.value ? bracketAge(dobEl.value, new Date()) : null;
+      var show = a === 13 || a === 14;
+      box.hidden = !show;
+      for (var i = 0; i < radios.length; i++) {
+        radios[i].required = show;
+        radios[i].disabled = !show;
+      }
+    }
+    dobEl.addEventListener('change', update);
+    dobEl.addEventListener('input', update);
+    update();
+  }
+
   function wire(opts) {
     var form = document.getElementById(opts.formId);
     var btn = document.getElementById(opts.buttonId);
@@ -422,6 +465,7 @@
     // today on every load rather than hardcoding a date that goes stale.
     var dobEl = form.querySelector('input[name="dob"]');
     if (dobEl) dobEl.max = new Date().toISOString().slice(0, 10);
+    if (dobEl) wireExperience(form, dobEl);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();

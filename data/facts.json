@@ -127,14 +127,14 @@
     "program.academy.age_min": 13,
     "program.academy.fee": 3300,
     "program.academy.name": "Talata Academy U13 / U15 / U17 / U19",
-    "program.academy.time": "17:00-19:00",
+    "program.academy.time": "16:30-18:00",
     "program.academy.venue": "Svanemøllehallen",
     "program.academy_u13_u15.days": "Mon",
     "program.academy_u13_u15.name": "Academy U13/U15",
-    "program.academy_u13_u15.time": "17:00-19:00",
-    "program.academy_u13_u15.time_end": "19:00",
-    "program.academy_u13_u15.time_start": "17:00",
-    "program.academy_u13_u15.venue": "Svanemøllehallen",
+    "program.academy_u13_u15.time": "16:30-18:00",
+    "program.academy_u13_u15.time_end": "18:00",
+    "program.academy_u13_u15.time_start": "16:30",
+    "program.academy_u13_u15.venue": "Strandvejsskolen",
     "program.academy_u17_u19.days": "Mon",
     "program.academy_u17_u19.name": "Academy U17/U19",
     "program.academy_u17_u19.time": "18:00-20:00",
@@ -191,16 +191,27 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "d3eccf22be43aa1aec0321fef834ef7b54040e11688d2202ebc34c9c9d02c280",
+  "sha": "1d45a2418832dd7d5f27533e397b9137503b41422ec21e41930484e750f6b1cc",
   "sources": {
-    "programs_sha": "bdb27be68d9bf0a54819c8e2d71d306de3cd48dc901cae6e8a38763ba88726ed",
-    "training_sha": "e0adfa0f1ce284fa4f1264dd1fe6e5fb39196f67628684c3f602d2b4e234b4b4",
-    "training_updated": "2026-10-05"
+    "programs_sha": "60d1d66a616e7fe82cd2e5268736b28a12015045044b674a3ebe187374320f33",
+    "training_sha": "bd7a9ea5d37004a16de054ab7f01cd187729fba53b7278c51aa1aaaaaa1cad8b",
+    "training_updated": "2026-10-06"
   },
   "teams": {
     "academy_u13_u15": {
       "label": "Academy U13 + U15",
       "sessions": [
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "16:30",
+          "starts": "2026-10-19"
+        },
         {
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
@@ -338,6 +349,17 @@
       "label": "Academy U17",
       "sessions": [
         {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "17:00",
+          "starts": "2026-10-19"
+        },
+        {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
           "day": 1,
           "day_name": "Tuesday",
@@ -394,6 +416,17 @@
     "academy_u17_u19": {
       "label": "Academy U17 + U19",
       "sessions": [
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "17:00",
+          "starts": "2026-10-19"
+        },
         {
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
@@ -775,6 +808,21 @@
       "who": "Sparks"
     },
     {
+      "address": "Sionsgade 1, 2100 København Ø",
+      "day": 0,
+      "day_name": "Monday",
+      "end": "18:00",
+      "ends": null,
+      "hall": "Strandvejsskolen",
+      "off": [],
+      "start": "16:30",
+      "starts": "2026-10-19",
+      "teams": [
+        "academy_u13_u15"
+      ],
+      "who": "U13 Academy"
+    },
+    {
       "address": "Østerbrogade 240, 2100 København Ø",
       "day": 0,
       "day_name": "Monday",
@@ -786,9 +834,11 @@
       "starts": "2026-10-19",
       "teams": [
         "academy_u13_u15",
-        "academy_u15_u17"
+        "academy_u15_u17",
+        "academy_u17_u19",
+        "academy_u17"
       ],
-      "who": "U13 Academy + U15"
+      "who": "U15 + U17"
     },
     {
       "address": "Nørrebrogade 208, 2200 København N",
