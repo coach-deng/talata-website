@@ -211,5 +211,33 @@
     "them": 53,
     "team": "U13",
     "source": "Talata Dash Score in, 1 Oct 2026"
+  },
+  "40098298": {
+    "source": "Holdsport and the 26 to 31 Aug DBBF exports. Missing from the 21 and 30 Sep exports; Deng confirmed it is on (6 Oct 2026). No score yet.",
+    "team": "U19",
+    "fixture": {
+      "date": "2026-10-09",
+      "time": "19:30",
+      "team": "U19",
+      "opponent": "BK Amager",
+      "home": true,
+      "competition": "U19 1st Division East",
+      "venue": "Nørre Fælled Skole",
+      "court": "Hallen"
+    }
+  },
+  "40104241": {
+    "source": "Holdsport, U13 cup draw. Not in the 30 Sep DBBF export yet (6 Oct 2026). No score yet.",
+    "team": "U13",
+    "fixture": {
+      "date": "2026-10-24",
+      "time": "18:15",
+      "team": "U13",
+      "opponent": "BK Amager",
+      "home": false,
+      "competition": "U13 Cup East",
+      "venue": "Amagerhallen",
+      "court": "Stor bane"
+    }
   }
 }

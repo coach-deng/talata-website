@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-30T21:35:42Z",
+  "generated": "2026-10-06T11:53:41Z",
   "source": "kampe_2026-09-30.csv",
   "note": "League and cup fixtures from the DBBF/MVP export. This is the federation record and it is what the site publishes. Friendlies and tournaments are added live from Holdsport by talata-api /fixtures. Where the two disagree, DBBF wins.",
   "counts": {
-    "total": 58,
-    "confirmed": 57,
+    "total": 60,
+    "confirmed": 59,
     "tbc": 1
   },
   "games": [
@@ -249,6 +249,23 @@
       "source": "dbbf"
     },
     {
+      "id": "40098298",
+      "date": "2026-10-09",
+      "time": "19:30",
+      "team": "U19",
+      "opponent": "BK Amager",
+      "home": true,
+      "competition": "U19 1st Division East",
+      "venue": "Nørre Fælled Skole",
+      "court": "Hallen",
+      "homeCourt": true,
+      "state": "confirmed",
+      "played": false,
+      "us": null,
+      "them": null,
+      "source": "results"
+    },
+    {
       "id": "40098755",
       "date": "2026-10-20",
       "time": "17:45",
@@ -298,6 +315,23 @@
       "us": null,
       "them": null,
       "source": "dbbf"
+    },
+    {
+      "id": "40104241",
+      "date": "2026-10-24",
+      "time": "18:15",
+      "team": "U13",
+      "opponent": "BK Amager",
+      "home": false,
+      "competition": "U13 Cup East",
+      "venue": "Amagerhallen",
+      "court": "Stor bane",
+      "homeCourt": false,
+      "state": "confirmed",
+      "played": false,
+      "us": null,
+      "them": null,
+      "source": "results"
     },
     {
       "id": "40097918",
