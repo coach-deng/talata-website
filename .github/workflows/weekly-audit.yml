@@ -51,7 +51,7 @@ jobs:
         with:
           urls: |
             https://talatabasketball.dk
-            https://talatabasketball.dk/camps/dk-summer-camp-2026
+            https://talatabasketball.dk/camps/summer-camp
             https://talatabasketball.dk/camps/canada-camp-2026
           uploadArtifacts: true
           temporaryPublicStorage: true

@@ -28,12 +28,8 @@ NEXT_LABEL = "Autumn Camps, Oct 12 to 15"
 
 # page -> the line under the banner headline
 PAST = {
-    "camps/dk-summer-camp-2026.html":
-        "DK Summer Camp ran Aug 3 to 7 2026 at N&oslash;rre F&aelig;lled Skole. "
-        "Registration is closed.",
-    "camps/dk-mini-summer-camp-2026.html":
-        "The younger track ran Aug 4 to 7 2026 at N&oslash;rre F&aelig;lled Skole. "
-        "Registration is closed.",
+    # The two 2026 summer pages were retired 6 Oct 2026: both 301 to
+    # /camps/summer-camp, the evergreen summer page with the 2027 list.
     "camps/nida-camp-2026.html":
         "Nida Camp ran Jul 25 to Aug 2 2026 in Lithuania. Registration is closed.",
     "camps/lithuania-camp-2026.html":

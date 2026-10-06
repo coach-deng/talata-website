@@ -14,17 +14,17 @@
 # Redirect base64-encoded camp URLs to canonical paths
 # Cloudflare Pages strips .html automatically, so target clean URLs
 /camps/Y2FuYWRhLWNhbXAtMjAyNg*    /camps/canada-camp-2026    301
-/camps/ZGstc3VtbWVyLWNhbXAtMjAyNg*    /camps/dk-summer-camp-2026    301
+/camps/ZGstc3VtbWVyLWNhbXAtMjAyNg*    /camps/summer-camp    301
 /camps/bm9kYS1jYW1wLTIwMjY*    /camps/nida-camp-2026    301
 
 # Pretty URLs
 # /blog redirect removed — Cloudflare Pages auto-strips .html, no redirect needed
 /nida-camp    /camps/nida-camp-2026    301
-/dk-summer-camp    /camps/dk-summer-camp-2026    301
+/dk-summer-camp    /camps/summer-camp    301
 
 # Catch likely 404s (old/legacy paths Google may have indexed)
 /camp    /camps    301
-/summer-camp    /camps/dk-summer-camp-2026    301
+/summer-camp    /camps/summer-camp    301
 /camps/spring    /camps    301
 /spring-camp    /camps    301
 /canada    /camps/canada-camp-2026    301
@@ -47,7 +47,6 @@
 /camps/canada-camp-2026.html    /camps/canada-camp-2026    301
 /camps/lithuania-camp-2026.html    /camps/nida-camp-2026    301
 /camps/nida-camp-2026.html    /camps/nida-camp-2026    301
-/camps/dk-summer-camp-2026.html    /camps/dk-summer-camp-2026    301
 /camps/spring-camp-2026.html    /camps/spring-camp-2026    301
 /camps/spring-camp-u9-u11-2026.html    /camps/spring-camp-u9-u11-2026    301
 /camps/spring-camp-u13-u15-2026.html    /camps/spring-camp-u13-u15-2026    301
@@ -125,3 +124,11 @@
 /klub/talata-basketball                                   /                        301
 /klub/talata-basketball/                                  /                        301
 /klub/talata-basketball/*                                 /:splat                  301
+
+# Summer camp went evergreen 6 Oct 2026. Both 2026 summer pages (ages 13 to 17 and
+# ages 5 to 12) were retired and their content folded into /camps/summer-camp, which
+# carries the 2027 list. Clean and .html forms, one hop each.
+/camps/dk-summer-camp-2026              /camps/summer-camp    301
+/camps/dk-summer-camp-2026.html         /camps/summer-camp    301
+/camps/dk-mini-summer-camp-2026         /camps/summer-camp    301
+/camps/dk-mini-summer-camp-2026.html    /camps/summer-camp    301
