@@ -20,7 +20,9 @@ FILTERS
                            dropped, a one-off row (starts == ends, like Men Fri 9 Oct) never shows,
                            and a row that starts more than a week from today gets "from 19 Oct".
                            The nightly CI re-render drops the "from" once the row is running.
-  sat     a team        -> its Saturday sessions only, without the "Sat "
+  sat     a team        -> its Saturday sessions only, without the "Sat ". Also mon, tue, wed,
+                           thu, fri, sun: <!--fact:teams.academy_u15_u17|thu--> ->
+                           "17:00 to 19:00 at Svanemøllehallen"
   hall    a venue       -> what trains there, from the training rows, same standing rules as sched:
                            <!--fact:venues.svanemollehallen|hall--> ->
                            "Mon 18:45 to 20:15 U19 + Men, Thu 17:00 to 19:00 U13 Academy + U15 + U17"
@@ -58,6 +60,7 @@ LOCK = ROOT / "tools/facts-orphans.lock"
 SKIP_DIRS = {"tools", "node_modules", ".git", "blog", "dist"}
 EXTRA = [ROOT / "llms.txt"]
 DAY3 = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+DAY_FILTERS = {d.lower(): i for i, d in enumerate(DAY3)}
 
 INLINE = re.compile(r"<!--fact:([A-Za-z0-9_.]+)(?:\|([a-z]+))?-->(.*?)<!--/fact-->", re.S)
 # Blocks: <!-- TALATA:FACTS:week:START --> ... <!-- TALATA:FACTS:week:END -->
@@ -175,12 +178,15 @@ def apply_filter(value, filt, doc=None):
         return sched(value)
     if filt == "hall":
         return hall_sched(value, doc or {})
-    if filt == "sat":
-        # Saturday sessions only, e.g. "10:00 to 11:00 at Kulturhuset Indre By" (2 Oct 2026)
-        sat = [x for x in value.get("sessions", []) if x.get("day") == 5]
-        if not sat:
-            raise ValueError("no Saturday session for %s" % value.get("label"))
-        return sched(dict(value, sessions=sat)).replace("Sat ", "", 1)
+    if filt in DAY_FILTERS:
+        # one day's sessions only, e.g. |sat -> "10:00 to 11:00 at Kulturhuset Indre By"
+        # (2 Oct 2026; |mon to |sun since 6 Oct 2026)
+        d = DAY_FILTERS[filt]
+        one = [x for x in value.get("sessions", []) if x.get("day") == d]
+        out = sched(dict(value, sessions=one))
+        if not out:
+            raise ValueError("no %s session for %s" % (DAYS_FULL[d], value.get("label")))
+        return out.replace(DAY3[d] + " ", "", 1)
     if filt == "priceline":
         # a camp: "1.295 kr to Sunday 1 November, then 1.495 kr" while the early bird
         # runs, then just "1.495 kr". The nightly re-render flips it.
