@@ -1,5 +1,4 @@
 {
- "academy.html": 1,
  "basketball-in-copenhagen.html": 2,
  "blog.html": 1,
  "camps.html": 13,
@@ -7,8 +6,6 @@
  "camps/academy-u15-camp-2026.html": 9,
  "camps/canada-camp-2026.html": 6,
  "camps/college-pathway-camp-2026.html": 10,
- "camps/dk-mini-summer-camp-2026.html": 14,
- "camps/dk-summer-camp-2026.html": 18,
  "camps/nida-camp-2026.html": 21,
  "camps/spring-camp-u13-u15-2026.html": 6,
  "camps/spring-camp-u9-u11-2026.html": 12,
@@ -19,11 +16,10 @@
  "ish-primary-school.html": 13,
  "join.html": 6,
  "llms.txt": 13,
- "men.html": 2,
  "mini.html": 5,
  "posters/spring-camp-u13-u15-poster.html": 5,
  "posters/spring-camp-u9-u11-poster.html": 5,
  "reviews/index.html": 3,
- "saturday.html": 13,
- "sparks.html": 23
+ "saturday.html": 9,
+ "sparks.html": 21
 }

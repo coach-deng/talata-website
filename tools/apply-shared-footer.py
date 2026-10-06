@@ -121,6 +121,8 @@ COLUMNS = [
         ("/help/age-groups", "Prices and times"),
         ("/help", "Help &amp; guides"),
         ("/basketball-in-copenhagen", "Basketball in Copenhagen"),
+        ("/where-we-train", "Where we train"),
+        ("/english-speaking-basketball-copenhagen", "English-speaking families"),
         ("/partners", "Partners"),
     ]),
     ("Shop", [

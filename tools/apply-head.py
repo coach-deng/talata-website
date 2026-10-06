@@ -43,7 +43,7 @@ LIGHT_OK = {
     # batch 2
     "camps/academy-u12-camp-2026.html", "camps/academy-u15-camp-2026.html",
     "camps/canada-camp-2026.html", "camps/college-pathway-camp-2026.html",
-    "camps/dk-mini-summer-camp-2026.html", "camps/dk-summer-camp-2026.html",
+    "camps/summer-camp.html",  # 6 Oct 2026: replaces both 2026 summer pages (301s in _redirects)
     "camps/nida-camp-2026.html",  # spring-camp-2026 is a redirect stub, never paints
     "camps/spring-camp-u13-u15-2026.html", "camps/spring-camp-u9-u11-2026.html",
     "help.html", "help/age-groups.html", "help/first-session.html", "help/holdsport.html",
@@ -56,6 +56,8 @@ LIGHT_OK = {
     "gallery.html", "guide.html", "ish-high-school.html", "ish-primary-school.html",
     "partners.html", "pathway.html", "placement.html", "privacy.html", "program.html",
     "school-partnerships.html", "shop.html",
+    # batch 9 SEO pages, 6 Oct 2026: built on the basketball-in-copenhagen template
+    "where-we-train.html", "english-speaking-basketball-copenhagen.html",
 }
 # Every post shares one template, so a new post joins light mode on its own.
 # Run the contrast runner over blog/ when that template changes.
