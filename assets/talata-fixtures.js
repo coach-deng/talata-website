@@ -681,6 +681,61 @@
     wireClaims(el);
   }
 
+  /* ---------- next home game banner (homepage, 6 Oct 2026) ----------
+     Sits above This week at Talata. On a phone Friday is four swipes away in
+     the strip, so this puts the game in view. A free home game in the next 7
+     days gets the full navy panel with the countdown and the ticket. Further
+     out it is one slim line. No home game left, no banner. */
+  function kickFor(g) {
+    var d = daysAway(g), night = isTalataNight(g), k;
+    if (d === 0) k = (g.time && g.time >= '17:00') ? 'Tonight' : 'Today';
+    else if (d === 1) k = 'Tomorrow';
+    else if (d <= 7) k = (d <= 6 ? 'This ' : 'Next ') + DAYS_LONG[parseISO(g.date).getDay()];
+    else k = 'Next home game';
+    return night ? k + ' · Talata Night' : k;
+  }
+
+  function renderNext(el, games) {
+    var home = games.filter(canClaim);
+    var soon = home.filter(function (g) { return daysAway(g) <= 7; })[0];
+    var g = soon || home[0];
+    if (!g) { el.innerHTML = ''; el.hidden = true; return; }
+    el.hidden = false;
+    var href = '/games#g-' + encodeURIComponent(String(g.id));
+    var match = esc(g.team) + ' vs ' + esc(oppLabel(g));
+    if (!soon) {
+      el.innerHTML =
+        '<a class="tf-next is-slim" href="' + href + '" data-track="next-game">' +
+          '<span class="tf-next-kick">Next home game</span>' +
+          '<span class="tf-next-line">' +
+            esc(dayName(g.date).charAt(0) + dayName(g.date).slice(1).toLowerCase() + ' ' + shortDate(g.date)) +
+            ', ' + match + '</span>' +
+          '<i aria-hidden="true">&rsaquo;</i>' +
+        '</a>';
+      return;
+    }
+    var t = tipOff(g);
+    el.innerHTML =
+      '<div class="tf-next is-big">' +
+        '<div class="tf-next-main">' +
+          '<p class="tf-next-kick">' + esc(kickFor(g)) + '</p>' +
+          '<div class="tf-next-match">' +
+            '<span class="tf-next-crests">' + talataCrest(g.team) + crestHTML(oppLabel(g)) + '</span>' +
+            '<span class="tf-next-h">' + match + '</span>' +
+          '</div>' +
+          '<p class="tf-next-when">' + esc(g.time || 'Time to confirm') + ' · ' + esc(venueLabel(g)) + ' · Free entry</p>' +
+        '</div>' +
+        (t ? '<div class="tf-cd tf-next-cd" data-tf-cd="' + t + '"></div>' : '') +
+        '<div class="tf-next-cta">' +
+          '<button class="tf-btn is-primary" data-tf-claim="' + esc(g.id) + '" data-tf-date="' + esc(g.date) +
+            '" data-track="next-claim">Claim a free ticket</button>' +
+          '<a class="tf-btn" href="' + href + '" data-track="next-details">Game details</a>' +
+        '</div>' +
+      '</div>';
+    startCountdowns(el);
+    wireClaims(el);
+  }
+
   /* A fixture row opens the same panel in a dialog. Zalgiris puts a DETAILS
      button on every row; here the whole row is the target, which is a bigger
      tap area on a phone and needs no extra column. */
@@ -1439,6 +1494,7 @@
     var strip = results(games).slice(0, 3).reverse().concat(next);
     document.querySelectorAll('[data-talata-ticker]').forEach(function (el) { renderTicker(el, strip); });
     document.querySelectorAll('[data-talata-feature]').forEach(function (el) { renderFeature(el, next); });
+    document.querySelectorAll('[data-talata-next]').forEach(function (el) { renderNext(el, next); });
     document.querySelectorAll('[data-tf-key]').forEach(function (el) { renderKey(el, games); });
     document.querySelectorAll('[data-tf-host]').forEach(function (h) {
       if (h._tfPaint) h._tfPaint(); else wireHost(h);
@@ -1450,6 +1506,17 @@
          so they get no mount rather than an empty list. */
       renderRows(el, filterTeams(next, el.getAttribute('data-team')));
     });
+
+    /* Shared with the homepage week strip (talata-week.js), so This week at
+       Talata draws from the same merged, deduped, clock-aware list as the
+       ticker. week.js loads first; it reads this if it is already set and
+       listens for the event if not. */
+    window.TalataGames = games;
+    window.TalataFx = {
+      canClaim: canClaim, isOver: isOver, isTalataNight: isTalataNight,
+      crestHTML: crestHTML, talataCrest: talataCrest, squadName: squadName, oppLabel: oppLabel
+    };
+    try { document.dispatchEvent(new CustomEvent('talata:games')); } catch (err) { /* very old browser */ }
 
     if (!paint._hashOpened) paint._hashOpened = openFromHash();
     if (!paint._hashWired) {

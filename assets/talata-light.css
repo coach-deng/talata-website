@@ -79,6 +79,7 @@ html.light :is(
   /* index */ .hero, .kit-band, .ins-band, .story, section.camps, .wcard, .kfeat .shot, .stcard .shot,
   /* camps */ .h-spring, .h-canada, .h-lithuania, .h-nida, .h-dk, .h-autumn, .h-winter,
   /* games */ .g-hero, .g-friday,
+  /* the game card in This week at Talata, the next game banner */ .wk-game, .tf-next,
   /* the navy cards on the programme pages */ .tryout-box, .trial-box, .proof-quote, .cost-card,
   .cup-card, .gs-card,
   /* camps/*: the closing call to action */ div.cta,

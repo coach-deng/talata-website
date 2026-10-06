@@ -11,7 +11,7 @@
 
 /* .cup-pop is in the list because it mounts straight into body, outside every
    other scope here, and its rules read these tokens. */
-.tf-scope,.tk,.tf-feat,.tf-month,.tf-bar,.tf-tabs,.tf-modal,.cup-pop{
+.tf-scope,.tk,.tf-feat,.tf-month,.tf-bar,.tf-tabs,.tf-modal,.cup-pop,.tf-next{
   --f-bg:#0B0F17; --f-card:#131A26; --f-card2:#1A2333; --f-line:#26324A;
   --f-text:#E6EDF7; --f-muted:#93A3BA; --f-accent:#7DD3FC; --f-sky:#BAE6FD;
   --f-brand:#1E40AF; --f-win:#4ADE80; --f-warn:#FBBF24;
@@ -764,3 +764,49 @@
 /* The details box scrolls inside the modal, so a panel with a box score under
    it fits on a phone instead of running off the bottom of the overlay. */
 .tf-detail-box{max-height:calc(100vh - 40px);overflow-y:auto;-webkit-overflow-scrolling:touch;}
+
+/* ---------- next home game banner, homepage (6 Oct 2026) ----------
+   Painted by renderNext() into [data-talata-next] above This week at Talata.
+   Navy in both themes (it is on the dark-island list in talata-light.css).
+   Yellow #FACC15 appears only here on navy, as the kicker. */
+[data-talata-next]{margin:0 0 16px;}
+[data-talata-next][hidden]{display:none;}
+.tf-next{
+  font-family:var(--f-body);background:#0B1F3A;color:#F8FAFC;
+  border:1px solid rgba(125,211,252,.25);border-radius:16px;
+}
+.tf-next-kick{
+  font-family:var(--f-disp);font-size:.66rem;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:#FACC15;margin:0;
+}
+.tf-next.is-big{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;
+  gap:14px 22px;padding:18px 20px;
+}
+.tf-next-main{min-width:0;display:flex;flex-direction:column;gap:6px;}
+.tf-next-match{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap;}
+.tf-next-crests{display:flex;align-items:center;gap:8px;flex:0 0 auto;}
+.tf-next-crests .tf-crest{width:34px;height:34px;border-radius:8px;}
+.tf-next-crests .tf-crest.is-talata{width:auto;height:auto;max-width:84px;}
+.tf-next-crests .tf-crest.is-talata img{max-height:20px;}
+.tf-next-h{font-family:var(--f-disp);font-weight:900;font-size:1.3rem;line-height:1.15;color:#FFFFFF;min-width:0;}
+.tf-next-when{margin:0;font-size:.88rem;color:#BAE6FD;line-height:1.4;}
+.tf-next-cd{justify-self:end;}
+.tf-next-cta{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;}
+.tf-next-cta .tf-btn{flex:0 1 auto;}
+.tf-next .tf-btn:not(.is-primary){color:#F8FAFC;border-color:rgba(248,250,252,.3);}
+.tf-next .tf-btn:not(.is-primary):hover{color:#7DD3FC;border-color:#7DD3FC;}
+.tf-next.is-slim{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none;
+  flex-wrap:wrap;
+}
+.tf-next-line{font-weight:700;font-size:.92rem;color:#F8FAFC;min-width:0;flex:1 1 auto;}
+.tf-next.is-slim i{font-style:normal;color:#7DD3FC;font-size:1.2rem;line-height:1;}
+.tf-next.is-slim:hover{border-color:#7DD3FC;}
+.tf-next.is-slim:focus-visible{outline:2px solid #7DD3FC;outline-offset:2px;}
+@media (max-width:640px){
+  .tf-next.is-big{grid-template-columns:minmax(0,1fr);padding:16px;}
+  .tf-next-cd{justify-self:start;}
+  .tf-next-h{font-size:1.12rem;}
+  .tf-next-cta .tf-btn{flex:1 1 auto;}
+}
