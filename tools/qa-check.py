@@ -43,6 +43,7 @@ tryouts" is ordinary reassurance, and rewriting every one of those is the same
 mistake as a drift detector that fires 29 times on party budgets.
 """
 
+import html
 import json
 import re
 import sys
@@ -122,7 +123,10 @@ def visible(src):
     s = re.sub(r"<(script|style)\b.*?</\1>", "", src, flags=re.S | re.I)
     s = re.sub(r"<!--.*?-->", "", s, flags=re.S)
     s = re.sub(r"<[^>]+>", " ", s)
-    s = re.sub(r"&[a-zA-Z]+;|&#\d+;", " ", s)
+    # Decode entities, do not blank them (6 Oct 2026): "&mdash;", "&#8211;" and
+    # "tr&aelig;ning" used to turn into a space and walk past the dash and
+    # Danish checks.
+    s = html.unescape(s)
     return re.sub(r"[ \t]+", " ", s)
 
 
@@ -144,6 +148,11 @@ def check_voice(fails, warns):
 # Danish words in visible English copy (Deng: English on every page, Danish only in
 # the SEO meta). Body only, so <title> and meta stay Danish. help/holdsport.html quotes
 # Holdsport's own Danish buttons on purpose. Added 2 Oct 2026 after "Academy Sommercamp".
+#
+# The Danish SEO layer (Deng, 6 Oct 2026): Danish is allowed in <title>, meta
+# description, og:title and og:description (and the rest of the head meta). It
+# still fails in visible copy, in alt text anywhere, and in JSON-LD, even when the
+# JSON-LD sits in the head: schema names and FAQ answers stay English.
 DANISH = re.compile(r"\b(sommercamp|træning(?:en|er)?|prøvetræning|tilmelding(?:en)?|tilmeld|forældre|"
                     r"efterårsferie(?:n)?|lørdag|kontingent)\b", re.I)
 DANISH_OK = {"help/holdsport.html"}
@@ -158,6 +167,12 @@ def check_danish(fails, warns):
         body = re.sub(r"<head\b.*?</head>", "", src, flags=re.S | re.I)
         for m in DANISH.finditer(visible(body)):
             fails.append((rel, "Danish word in visible copy", m.group(0)))
+        for alt in re.findall(r"""\balt\s*=\s*(?:"([^"]*)"|'([^']*)')""", src, re.I):
+            for m in DANISH.finditer(html.unescape(alt[0] or alt[1])):
+                fails.append((rel, "Danish word in alt text", m.group(0)))
+        for block in LD.findall(src):
+            for m in DANISH.finditer(html.unescape(block)):
+                fails.append((rel, "Danish word in JSON-LD", m.group(0)))
 
 
 # A dash between numbers in visible copy: "15:30-16:30", "ages 5-9", "95-53" (Deng:

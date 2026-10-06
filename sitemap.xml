@@ -78,6 +78,43 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Past camps, kept as recaps (6 Oct 2026) -->
+  <url>
+    <loc>https://talatabasketball.dk/camps/canada-camp-2026</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/camps/nida-camp-2026</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/camps/dk-summer-camp-2026</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/camps/dk-mini-summer-camp-2026</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/camps/spring-camp-u9-u11-2026</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://talatabasketball.dk/camps/spring-camp-u13-u15-2026</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
   <url>
     <loc>https://talatabasketball.dk/basketball-in-copenhagen</loc>
     <changefreq>monthly</changefreq>
