@@ -35,6 +35,14 @@ WHAT A POST MUST CARRY
     <meta name="talata:read">         minutes, an integer
 
 OPTIONAL
+    <meta name="talata:card-title">   the card headline, when og:title is Danish.
+    <meta name="talata:card-desc">    the card blurb, when og:description is Danish.
+                                      Cards are visible copy and stay English.
+                                      og:title and og:description belong to the
+                                      Danish SEO layer (Deng, 6 Oct 2026), so a
+                                      post with a Danish head carries its English
+                                      card text here. Without them the card falls
+                                      back to the og tags.
     <meta name="talata:card-focus">   object-position for the card crop, e.g.
                                       "50% 30%". Card slots are wide and short,
                                       so a tall photo gets cover-cropped around
@@ -85,8 +93,10 @@ def read_post(path: Path):
     post = {
         "slug": path.stem,
         "date": d.group(1) if d else "",
-        "title": meta(src, "og:title"),
-        "desc": meta(src, "og:description"),
+        # English card text first, so a Danish og layer never reaches /blog or
+        # the homepage (7 Oct 2026).
+        "title": meta(src, "talata:card-title") or meta(src, "og:title"),
+        "desc": meta(src, "talata:card-desc") or meta(src, "og:description"),
         "kicker": meta(src, "talata:kicker"),
         "event": meta(src, "talata:event"),
         "image": meta(src, "talata:card-image"),
