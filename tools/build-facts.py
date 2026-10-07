@@ -128,6 +128,10 @@ def team_keys(who):
     keys = []
     whole = who.strip().lower()
     toks = [whole] if whole in WHO_MAP else [t.strip().lower() for t in re.split(r"\s\+\s", who)]
+    # 7 Oct 2026: on a U13 Academy row, "Junior" and "U13" are the Juniors Deng picks to move up
+    # (Monday Strandvejsskolen from 19 Oct). It is not a Junior session, so it stays off the Junior schedule.
+    if "u13 academy" in toks:
+        toks = [t for t in toks if t not in ("junior", "u13")]
     for tok in toks:
         if tok not in WHO_MAP:
             raise SystemExit("REFUSING: training-week.md names %r (in %r), which is not a team the site "

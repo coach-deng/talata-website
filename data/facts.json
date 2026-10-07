@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-06",
+  "built_for": "2026-10-07",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -167,7 +167,7 @@
     "program.men_competitive.age_min": 18,
     "program.men_competitive.fee": 2000,
     "program.men_competitive.name": "Talata Men Competitive",
-    "program.men_competitive.time": "18:30-20:15",
+    "program.men_competitive.time": "18:45-20:15",
     "program.mini.age_max": 9,
     "program.mini.age_min": 5,
     "program.mini.fee": 1800,
@@ -191,11 +191,11 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "5fdfb6b34d678caf3a0f3aad2e8cc0f35a1cbd7da31eb89b5ab258e1b3bdd8af",
+  "sha": "a1f6ed41b508ea9525d2aa473ad4853970cdb479bbe5ca4ffd9dc087aaf276fc",
   "sources": {
-    "programs_sha": "45ffb138362564e73e788a64c4c9163d205627dee2dc7ece6716fb0e058172e9",
-    "training_sha": "d517e3893cf3e1dda6b5d0d673cbd34a3074a1a6c1dd644dbdc24ecdb636cf20",
-    "training_updated": "2026-10-06"
+    "programs_sha": "e4bc03386b61cd49cd8d672e916fa5555bc516838e19e2dd85680af8d2827207",
+    "training_sha": "82f46f716f802bcb2abff3fa6a4d7c9572cfb3358917e6ba3dd2e83954978926",
+    "training_updated": "2026-10-07"
   },
   "teams": {
     "academy_u13_u15": {
@@ -454,19 +454,6 @@
           "starts": "2026-10-06"
         },
         {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 1,
-          "day_name": "Tuesday",
-          "end": "20:00",
-          "ends": null,
-          "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-13"
-          ],
-          "start": "18:45",
-          "starts": "2026-10-06"
-        },
-        {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
           "day": 2,
           "day_name": "Wednesday",
@@ -509,6 +496,19 @@
           "address": "Biskop Krags Vænge 7, 2200 København N",
           "day": 4,
           "day_name": "Friday",
+          "end": "20:45",
+          "ends": "2026-10-09",
+          "hall": "Nørre Fælled Skole",
+          "off": [
+            "2026-10-30"
+          ],
+          "start": "18:45",
+          "starts": "2026-10-09"
+        },
+        {
+          "address": "Biskop Krags Vænge 7, 2200 København N",
+          "day": 4,
+          "day_name": "Friday",
           "end": "21:00",
           "ends": null,
           "hall": "Nørre Fælled Skole",
@@ -537,17 +537,17 @@
           "starts": "2026-10-05"
         },
         {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 1,
-          "day_name": "Tuesday",
-          "end": "20:00",
-          "ends": null,
-          "hall": "Svanemøllehallen",
+          "address": "Biskop Krags Vænge 7, 2200 København N",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "20:45",
+          "ends": "2026-10-09",
+          "hall": "Nørre Fælled Skole",
           "off": [
-            "2026-10-13"
+            "2026-10-30"
           ],
           "start": "18:45",
-          "starts": "2026-10-06"
+          "starts": "2026-10-09"
         },
         {
           "address": "Biskop Krags Vænge 7, 2200 København N",
@@ -626,17 +626,6 @@
       "sessions": [
         {
           "address": "Sionsgade 1, 2100 København Ø",
-          "day": 0,
-          "day_name": "Monday",
-          "end": "18:00",
-          "ends": null,
-          "hall": "Strandvejsskolen",
-          "off": [],
-          "start": "16:30",
-          "starts": "2026-10-19"
-        },
-        {
-          "address": "Sionsgade 1, 2100 København Ø",
           "day": 1,
           "day_name": "Tuesday",
           "end": "18:00",
@@ -694,17 +683,17 @@
           "starts": "2026-10-05"
         },
         {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 1,
-          "day_name": "Tuesday",
-          "end": "20:00",
-          "ends": null,
-          "hall": "Svanemøllehallen",
+          "address": "Biskop Krags Vænge 7, 2200 København N",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "20:45",
+          "ends": "2026-10-09",
+          "hall": "Nørre Fælled Skole",
           "off": [
-            "2026-10-13"
+            "2026-10-30"
           ],
           "start": "18:45",
-          "starts": "2026-10-06"
+          "starts": "2026-10-09"
         },
         {
           "address": "Biskop Krags Vænge 7, 2200 København N",
@@ -718,17 +707,6 @@
           ],
           "start": "18:45",
           "starts": "2026-10-23"
-        },
-        {
-          "address": "Biskop Krags Vænge 7, 2200 København N",
-          "day": 4,
-          "day_name": "Friday",
-          "end": "22:00",
-          "ends": "2026-10-09",
-          "hall": "Nørre Fælled Skole",
-          "off": [],
-          "start": "20:45",
-          "starts": "2026-10-09"
         }
       ]
     },
@@ -829,8 +807,7 @@
       "start": "16:30",
       "starts": "2026-10-19",
       "teams": [
-        "academy_u13_u15",
-        "junior"
+        "academy_u13_u15"
       ],
       "who": "U13 Academy + Junior + U13"
     },
@@ -939,25 +916,6 @@
         "junior"
       ],
       "who": "Junior + U13"
-    },
-    {
-      "address": "Østerbrogade 240, 2100 København Ø",
-      "day": 1,
-      "day_name": "Tuesday",
-      "end": "20:00",
-      "ends": null,
-      "hall": "Svanemøllehallen",
-      "off": [
-        "2026-10-13"
-      ],
-      "start": "18:45",
-      "starts": "2026-10-06",
-      "teams": [
-        "academy_u17_u19",
-        "academy_u19",
-        "men"
-      ],
-      "who": "U19 + Men"
     },
     {
       "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -1087,6 +1045,25 @@
       "address": "Biskop Krags Vænge 7, 2200 København N",
       "day": 4,
       "day_name": "Friday",
+      "end": "20:45",
+      "ends": "2026-10-09",
+      "hall": "Nørre Fælled Skole",
+      "off": [
+        "2026-10-30"
+      ],
+      "start": "18:45",
+      "starts": "2026-10-09",
+      "teams": [
+        "academy_u17_u19",
+        "academy_u19",
+        "men"
+      ],
+      "who": "U19 + Men"
+    },
+    {
+      "address": "Biskop Krags Vænge 7, 2200 København N",
+      "day": 4,
+      "day_name": "Friday",
       "end": "21:00",
       "ends": null,
       "hall": "Nørre Fælled Skole",
@@ -1101,21 +1078,6 @@
         "men"
       ],
       "who": "U19 + Men"
-    },
-    {
-      "address": "Biskop Krags Vænge 7, 2200 København N",
-      "day": 4,
-      "day_name": "Friday",
-      "end": "22:00",
-      "ends": "2026-10-09",
-      "hall": "Nørre Fælled Skole",
-      "off": [],
-      "start": "20:45",
-      "starts": "2026-10-09",
-      "teams": [
-        "men"
-      ],
-      "who": "Men"
     },
     {
       "address": "Charlotte Ammundsens Plads 3, 1359 København K",
