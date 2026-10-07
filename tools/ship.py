@@ -56,6 +56,75 @@ def newest_export():
     return os.path.basename(newest), used
 
 
+def _load_build_fixtures():
+    """tools/build-fixtures.py as a module, for its export ordering and CSV
+    reading. Importing runs nothing: its main() sits behind __main__, and the
+    module level only reads data/results.json."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "build_fixtures", os.path.join(ROOT, "tools", "build-fixtures.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def export_ids(path, bf):
+    """Game numbers in one kampe_*.csv, read the way build-fixtures.py reads it."""
+    import csv
+    import io
+    with io.open(path, encoding="utf-8-sig") as fh:
+        return {bf.clean(r.get("number")) for r in csv.DictReader(fh, delimiter=";")}
+
+
+def withdrawn_typed_games(today=None, downloads=None, fixtures=None):
+    """Hand-typed upcoming games that an older DBBF export carried and the
+    newest one does not. That is how a withdrawal looks.
+
+    WHY (7 Oct 2026): U19 v BK Amager, Fri 9 Oct (40098298), sat in every
+    export until 31 Aug, then BK Amager withdrew on 7 Sep and the federation
+    dropped the game. A results.json `fixture` entry, typed so the site could
+    sell tickets, kept it alive as a phantom home game for a month (fbd6cf0).
+    build-fixtures.py adds such a row precisely BECAUSE the export lacks it, so
+    it can never notice that the export used to have it. This can.
+
+    Returns [(game, last_export_that_had_it, newest_export)]. A warning, never
+    a block: the export can lag a real game, and Deng makes the call."""
+    import datetime as dt
+    bf = _load_build_fixtures()
+    downloads = downloads or bf.DOWNLOADS
+    fixtures = fixtures or os.path.join(ROOT, "data", "fixtures.json")
+    files = glob.glob(os.path.join(downloads, "kampe_*.csv"))
+    if not files or not os.path.isfile(fixtures):
+        return []
+    if today is None:
+        try:
+            from zoneinfo import ZoneInfo
+            today = dt.datetime.now(ZoneInfo("Europe/Copenhagen")).date().isoformat()
+        except Exception:  # noqa: BLE001
+            today = dt.date.today().isoformat()
+    typed = [g for g in json.load(open(fixtures, encoding="utf-8")).get("games", [])
+             if g.get("source") == "results" and (g.get("date") or "") >= today]
+    if not typed:
+        return []
+
+    # Same order build-fixtures.py uses to pick its newest: the date in the
+    # name first, mtime only to break a same-day tie.
+    def key(p):
+        m = re.search(r"kampe_(\d{4}-\d{2}-\d{2})", os.path.basename(p))
+        return (m.group(1) if m else "0000-00-00", os.path.getmtime(p))
+    ordered = sorted(files, key=key)
+    newest = ordered[-1]
+    in_newest = export_ids(newest, bf)
+    out = []
+    for g in typed:
+        if g["id"] in in_newest:
+            continue
+        had = [p for p in ordered[:-1] if g["id"] in export_ids(p, bf)]
+        if had:
+            out.append((g, os.path.basename(had[-1]), os.path.basename(newest)))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="report only, change nothing")
@@ -73,6 +142,22 @@ def main():
         print("  fixtures     ⚠  newer export available (%s)" % newest)
     else:
         print("  fixtures     ok  (%s)" % (used or "no fixtures.json"))
+
+    # 0a. a hand-typed game the federation has dropped. Read-only.
+    try:
+        gone = withdrawn_typed_games()
+    except Exception as e:  # noqa: BLE001, a broken CSV must not stop a ship
+        gone = []
+        warned.append("could not compare typed games with the exports (%s)" % type(e).__name__)
+    if gone:
+        for g, had, newest_csv in gone:
+            warned.append("%s %s %s vs %s is typed in data/results.json. %s had it, %s does not.\n"
+                          "        That is how a withdrawal looks. Check MVP, then drop the results.json\n"
+                          "        fixture and rebuild." % (g["id"], g["date"], g.get("team"),
+                                                          g.get("opponent"), had, newest_csv))
+        print("  withdrawn    ⚠  %d typed game(s) gone from the newest export" % len(gone))
+    else:
+        print("  withdrawn    ok  no typed game dropped by DBBF")
 
     # 1. asset cache stamps. The 1 Sep bug.
     if args.check:
