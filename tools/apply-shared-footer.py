@@ -104,6 +104,9 @@ PAY = {
 COLUMNS = [
     ("Play", [
         ("/mini", "Mini + Junior"),
+        # Saturday sessions have their own page, /saturday (live from 3 Oct
+        # 2026), and the nav already lists it. Added 7 Oct 2026.
+        ("/saturday", "Saturdays"),
         ("/academy", "Academy"),
         ("/sparks", "Sparks"),
         ("/men", "Talata Men"),
@@ -393,11 +396,18 @@ def process(path: Path, check: bool):
 
 
 def main():
+    # An unknown flag must not fall through to apply mode (7 Oct 2026).
+    unknown = [a for a in sys.argv[1:] if a != "--check"]
+    if unknown:
+        sys.exit("apply-shared-footer: unknown argument %r. The only flag is --check." % unknown[0])
     check = "--check" in sys.argv
     pages = sorted(
         p for p in ROOT.glob("**/*.html")
         if "node_modules" not in p.parts
         and ".wrangler" not in p.parts
+        # dist/ is local build output (tools/build-dist.py, gitignored). Skipped
+        # the way qa-check.py skips it: --check counted its 69 pages as drift.
+        and "dist" not in p.relative_to(ROOT).parts
         and p.relative_to(ROOT).as_posix() not in SKIP
     )
     touched = 0
