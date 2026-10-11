@@ -34,233 +34,106 @@
   </script>
   <script src="/assets/talata-consent.js?v=20261011a" defer></script>
 <style>
+/* Plain look, 11 Oct 2026. Deng: people said the site looked like AI.
+   One colour headings, flat buttons and cards, photos shown as they are.
+   No gradients, glows, blur, lifts or arrows. tools/qa-check.py --style holds the line. */
 :root{
   --black:#0A0A0A; --navy:#0B1F3A; --blue:#1E40AF; --baby:#7DD3FC; --sky:#BAE6FD; --mist:#F8FAFC;
-  --ink:#101828; --ink2:#475467; --line:#E4E9F0;
+  --line:#E4E9F0;
   --disp:'Montserrat','Montserrat Fallback',sans-serif; --body:'Inter',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--body);color:var(--td-text);background:var(--mist);line-height:1.6;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--body);color:var(--td-text);background:var(--td-bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
 img{max-width:100%;display:block;}
 a{text-decoration:none;color:inherit;}
-.wrap{max-width:1220px;margin:0 auto;padding:0 24px;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+@media(max-width:600px){.wrap{padding:0 16px;}}
 
-/* utility bar */
-.util{background:var(--black);color:rgba(255,255,255,0.65);font-size:0.78rem;padding:7px 0;}
-.util .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.util b{color:var(--td-link);font-weight:600;}
-.util a{color:rgba(255,255,255,0.65);}
-.util a:hover{color:#fff;}
+/* hero: text and a real photo on the left, the trial form on the right */
+.hero{background:var(--navy);color:#fff;}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;padding-top:56px;padding-bottom:64px;align-items:start;}
+.hero h1{font-family:var(--disp);font-weight:900;font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.08;letter-spacing:-0.01em;text-transform:uppercase;}
+.hero .sub{margin:18px 0 24px;font-size:1.05rem;color:rgba(255,255,255,0.82);max-width:34em;}
+.hero .photo{border-radius:8px;overflow:hidden;aspect-ratio:3/2;background:#13294a;}
+.hero .photo img{width:100%;height:100%;object-fit:cover;}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:200;background:var(--navy);box-shadow:0 2px 20px rgba(0,0,0,0.25);}
-.nav .wrap{display:flex;align-items:center;gap:8px;height:64px;}
-.logo{font-family:var(--disp);font-weight:900;font-size:1.15rem;color:#fff;letter-spacing:0.04em;margin-right:24px;text-transform:uppercase;text-decoration:none;}
-.logo span{display:block;font-weight:600;font-size:0.55rem;letter-spacing:0.28em;color:var(--td-link);margin-top:1px;}
-.menu{display:flex;align-items:center;height:100%;flex:1;}
-.menu>li{list-style:none;position:relative;height:100%;}
-.menu>li>a{display:flex;align-items:center;gap:6px;height:100%;padding:0 16px;color:rgba(255,255,255,0.85);font-size:0.92rem;font-weight:600;border-bottom:3px solid transparent;}
-.menu>li:hover>a,.menu>li:focus-within>a{color:#fff;border-bottom-color:var(--baby);background:rgba(255,255,255,0.04);}
-.menu .car{font-size:0.6rem;opacity:0.6;transform:translateY(1px);}
-.drop{position:absolute;top:100%;left:0;min-width:250px;background:var(--td-surface);border-radius:0 0 12px 12px;box-shadow:0 24px 48px rgba(10,10,10,0.18);opacity:0;visibility:hidden;transform:translateY(8px);transition:all .18s ease;padding:8px;}
-.menu>li:hover .drop,.menu>li:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0);}
-.drop a{display:flex;justify-content:space-between;align-items:baseline;padding:11px 14px;border-radius:8px;font-size:0.9rem;font-weight:600;color:var(--td-text);}
-.drop a:hover{background:var(--sky);color:var(--td-bg);}
-.drop a small{font-weight:500;color:var(--td-muted);font-size:0.75rem;}
-.nav-cta{margin-left:auto;background:var(--baby);color:var(--td-bg);font-family:var(--disp);font-weight:800;font-size:0.88rem;padding:11px 22px;border-radius:100px;transition:transform .15s;}
-.nav-cta:hover{transform:translateY(-1px);}
-.burger{display:none;}
-@media(max-width:920px){.menu{display:none;}.burger{display:block;margin-left:auto;color:#fff;font-size:1.4rem;background:none;border:0;}.nav-cta{margin-left:12px;padding:9px 16px;}}
-
-/* hero */
-.hero{position:relative;color:#fff;background:var(--navy);}
-.hero .bg{position:absolute;inset:0;background:url('images/talata-huddle.jpg') center 30%/cover;opacity:0.38;}
-/* 15 Sep 2026: portrait huddle on phones, the landscape showed 17% of the frame */
-@media (max-width:700px){ .hero .bg{ background-image:url('/images/2026-09/site/index-hero-phone-u13-huddle-herlev.jpg'); background-position:42% 50%; } }
-.hero .shade{position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,10,10,0.92) 20%,rgba(11,31,58,0.75) 55%,rgba(11,31,58,0.35));}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;padding-top:72px;padding-bottom:80px;align-items:center;}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:0.76rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--td-link);margin-bottom:18px;}
-.eyebrow::before{content:"";width:28px;height:2px;background:var(--baby);color:var(--td-bg)}
-.hero .slogan {font-family:var(--disp);font-weight:900;font-size:clamp(2.3rem,4.8vw,3.8rem);line-height:1.04;letter-spacing:-0.02em;text-transform:uppercase;}
-.hero .slogan em{font-style:normal;color:var(--td-link);}
-.hero .sub{margin:20px 0 26px;font-size:1.08rem;color:rgba(255,255,255,0.78);max-width:30em;}
-.tickers{display:flex;gap:26px;flex-wrap:wrap;}
-.tick b{display:block;font-family:var(--disp);font-size:1.35rem;font-weight:800;color:#fff;}
-.tick span{font-size:0.78rem;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.08em;}
-
-/* trial card */
-.trial{background:var(--td-surface);border-radius:16px;padding:30px 30px 26px;color:var(--td-text);box-shadow:0 40px 90px rgba(0,0,0,0.45);}
-.trial h2{font-family:var(--disp);font-weight:800;font-size:1.3rem;letter-spacing:-0.01em;}
-.trial .note{font-size:0.86rem;color:var(--td-muted);margin:6px 0 18px;}
+/* trial form */
+.trial{background:var(--td-surface);border:1px solid var(--td-line);border-radius:8px;padding:28px 28px 24px;color:var(--td-text);}
+.trial h2{font-family:var(--disp);font-weight:800;font-size:1.3rem;text-transform:uppercase;}
+.trial .note{font-size:0.92rem;color:var(--td-muted);margin:6px 0 16px;}
 .trial label{display:block;font-size:0.78rem;font-weight:700;margin:12px 0 5px;}
-.trial input,.trial select,.trial textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:0.95rem;font-family:var(--body);background:#FBFCFE;resize:vertical;}
+.trial input,.trial select,.trial textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:6px;font-size:0.95rem;font-family:var(--body);background:#FBFCFE;resize:vertical;}
 .trial input:focus,.trial select:focus,.trial textarea:focus{outline:2px solid var(--blue);border-color:transparent;}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.trial button{width:100%;margin-top:18px;background:var(--blue);color:#fff;border:0;font-family:var(--disp);font-weight:800;font-size:1rem;padding:15px;border-radius:100px;cursor:pointer;transition:transform .15s;}
-.trial button:hover{transform:translateY(-1px);}
-.trial .fine{text-align:center;font-size:0.75rem;color:#98A2B3;margin-top:10px;}
+.trial button{width:100%;margin-top:18px;background:#7DD3FC;color:#0B0F17;border:0;font-family:var(--disp);font-weight:800;font-size:1rem;padding:14px;border-radius:6px;cursor:pointer;}
+.trial button:hover{background:#5cc4f5;color:#0B0F17;}
+.trial .fine{font-size:0.8rem;color:var(--td-muted);margin-top:10px;}
 @media(max-width:920px){
-  .hero .wrap{grid-template-columns:1fr;padding-top:32px;padding-bottom:48px;gap:26px;}
+  .hero .wrap{grid-template-columns:1fr;padding-top:28px;padding-bottom:40px;gap:24px;}
   .hero-copy{display:contents;}
-  .hero-head{order:1;}
+  .hero h1{order:1;}
   .hero .trial{order:2;}
   .hero-rest{order:3;}
-  .hero .slogan {font-size:clamp(2rem,8.5vw,2.9rem);}
-  .hero .sub{margin:0 0 22px;font-size:1rem;}
+  .hero .sub{margin:0 0 18px;font-size:1rem;}
 }
+@media(max-width:600px){.trial{padding:22px 18px 20px;}.row2{grid-template-columns:1fr;gap:0;}}
 
-
-
-.coach-band{background:var(--td-bg);padding:54px 0;}
-.coach-band .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
-.coach-band .head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;}
-.coach-band h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;letter-spacing:-.02em;color:var(--td-text);margin:0;}
-.coach-band h2 i{font-style:normal;color:var(--td-link);}
-.coach-band .head a{color:var(--td-link);font-weight:700;font-size:.92rem;text-decoration:none;}
-.stgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
-.stcard{display:block;background:var(--td-surface);border:1px solid var(--td-line);border-radius:14px;overflow:hidden;text-decoration:none;transition:.16s;}
-.stcard:hover{border-color:#1E40AF;transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,31,58,.07);}
-.stcard .shot{position:relative;aspect-ratio:4/5;background:#0B1F3A;}
-.stcard .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
-.stcard .shot .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#0B1F3A 0%,#1E40AF 100%);color:rgba(255,255,255,.92);font-size:2rem;font-weight:900;letter-spacing:-1px;}
-.stcard .shot .ini--navy{background:#0B1F3A;color:#7DD3FC;}
-.stcard .meta{padding:14px 16px 16px;}
-.stcard b{display:block;font-size:1rem;color:var(--td-text);font-weight:900;line-height:1.25;}
-.stcard span{display:block;font-size:.82rem;color:var(--td-muted);margin-top:4px;}
-.feat-band{background:var(--td-bg);padding:54px 0;}
-.fgrid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
-.fcard{display:block;background:var(--td-surface);border:1px solid var(--td-line);border-radius:14px;padding:22px;text-decoration:none;transition:.16s;}
-.fcard:hover{border-color:#1E40AF;transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,31,58,.07);}
-.fcard b{display:block;font-size:1.02rem;color:var(--td-text);font-weight:800;line-height:1.3;}
-.fcard span{display:block;font-size:.9rem;color:var(--td-muted);margin-top:7px;}
-.fcard i{display:block;font-style:normal;color:var(--td-link);font-weight:700;font-size:.86rem;margin-top:12px;}
-#ins-form{display:flex;gap:10px;flex-wrap:wrap;}
-#ins-email{flex:1 1 220px;padding:13px 15px;border-radius:10px;border:0;font:inherit;}
-#ins-btn{background:#7DD3FC;color:var(--td-bg);font-weight:800;font-size:.95rem;padding:13px 24px;border:0;border-radius:10px;cursor:pointer;font-family:inherit;}
-#ins-btn:hover{background:var(--td-surface);}
-.shop-go{color:#7DD3FC;font-weight:800;font-size:.95rem;}
-
-.marquee-wrap{overflow:hidden;position:relative;}
-.marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;}
-.marquee-wrap::before{left:0;background:linear-gradient(to right,var(--black),transparent);}
-.marquee-wrap::after{right:0;background:linear-gradient(to left,var(--black),transparent);}
-.marquee-track{display:flex;align-items:center;gap:0;animation:marquee 28s linear infinite;width:max-content;}
-.marquee-track:hover{animation-play-state:paused;}
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-@media(max-width:600px){.pgroup{margin-bottom:20px;}}
-.marquee-item{display:flex;align-items:center;white-space:nowrap;padding:0 40px;opacity:0.8;transition:opacity 0.2s;border-right:1px solid rgba(255,255,255,0.08);}
-.marquee-item:last-child{border-right:none;}
-.marquee-track:hover .marquee-item:hover{opacity:1;}
-.marquee-rhynoflow{display:flex;align-items:center;gap:10px;border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:8px 18px;background:transparent;transition:background 0.25s,border-color 0.25s;cursor:default;}
-.marquee-rhynoflow:hover{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.55);}
-
-/* section heads */
-section{padding:72px 0;}
-.head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:34px;flex-wrap:wrap;}
+/* sections */
+section{padding:64px 0;border-top:1px solid var(--td-line);}
+@media(max-width:600px){section{padding:44px 0;}}
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:24px;flex-wrap:wrap;}
 .head h2{font-family:var(--disp);font-weight:900;font-size:clamp(1.5rem,3vw,2.1rem);text-transform:uppercase;letter-spacing:-0.01em;}
-.head h2 i{font-style:normal;color:var(--td-link);}
-.head a{font-weight:700;font-size:0.88rem;color:var(--td-link);}
+.head a{font-weight:700;font-size:0.92rem;color:var(--td-link);text-decoration:underline;text-underline-offset:3px;}
+.lead{margin:-8px 0 22px;color:var(--td-muted);font-size:0.95rem;max-width:60em;}
 
-/* latest grid */
-.latest{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;}
+/* camps */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:980px){.cgrid{grid-template-columns:1fr;}}
+.ccard{background:var(--td-surface);border:1px solid var(--td-line);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:8px;}
+.ccard .when{font-size:0.8rem;font-weight:700;color:var(--td-muted);}
+.ccard h3{font-family:var(--disp);font-weight:800;font-size:1.1rem;line-height:1.3;}
+.ccard p{font-size:0.9rem;color:var(--td-muted);flex:1;}
+.ccard .price{font-family:var(--disp);font-weight:800;font-size:1.05rem;}
+.ccard a{margin-top:8px;text-align:center;background:#7DD3FC;color:#0B0F17;font-family:var(--disp);font-weight:800;font-size:0.9rem;padding:11px;border-radius:6px;}
+.ccard a:hover{background:#5cc4f5;color:#0B0F17;}
+
+/* programs: plain rows */
+.plist{list-style:none;border-top:1px solid var(--td-line);}
+.plist li{display:grid;grid-template-columns:200px 1fr auto;gap:8px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--td-line);}
+.plist h3{font-family:var(--disp);font-weight:800;font-size:1.1rem;}
+.plist .age{display:block;font-family:var(--body);font-size:0.8rem;font-weight:600;color:var(--td-muted);margin-top:2px;}
+.plist .sched{font-size:0.92rem;color:var(--td-muted);}
+.plist .sched a{color:var(--td-link);text-decoration:underline;}
+.plist .go{font-weight:700;font-size:0.92rem;color:var(--td-link);white-space:nowrap;text-decoration:underline;text-underline-offset:3px;}
+@media(max-width:760px){.plist li{grid-template-columns:1fr;}}
+
+/* latest: photo on top, words underneath */
+.latest{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;}
 @media(max-width:900px){.latest{grid-template-columns:1fr;}}
-.story{position:relative;border-radius:16px;overflow:hidden;background:var(--navy);min-height:300px;display:flex;align-items:flex-end;color:#fff;}
-.story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 31%;opacity:0.75;transition:transform .4s;}
-.story:hover img{transform:scale(1.04);}
-.story .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.88) 15%,transparent 60%);}
-.story .txt{position:relative;padding:24px;}
-.tag{display:inline-block;background:var(--baby);color:var(--td-bg);font-size:0.68rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:10px;}
-.story h3{font-family:var(--disp);font-weight:800;font-size:1.35rem;line-height:1.2;}
-.story p{font-size:0.88rem;color:rgba(255,255,255,0.75);margin-top:6px;}
-.sidecards{display:flex;flex-direction:column;gap:22px;}
-.sidecards .story{min-height:0;flex:1;}
-.sidecards h3{font-size:1.05rem;}
+.story{display:flex;flex-direction:column;border-radius:8px;overflow:hidden;background:var(--td-surface);border:1px solid var(--td-line);color:var(--td-text);}
+.story img{width:100%;aspect-ratio:16/9;height:auto;object-fit:cover;object-position:center 31%;}
+.story .grad{display:none;}
+.story .txt{padding:16px 18px 18px;}
+.tag{display:block;font-size:0.78rem;font-weight:700;color:var(--td-muted);margin-bottom:4px;}
+.story h3{font-family:var(--disp);font-weight:800;font-size:1.2rem;line-height:1.25;}
+.story:hover h3{text-decoration:underline;}
+.story p{font-size:0.9rem;color:var(--td-muted);margin-top:6px;}
+.sidecards{display:flex;flex-direction:column;gap:20px;}
+.sidecards h3{font-size:1.02rem;}
+.sidecards .story img{aspect-ratio:2/1;}
 
-/* programs */
-.progs{background:var(--td-surface);}
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-@media(max-width:900px){.pgrid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){.pgrid{grid-template-columns:1fr;}}
-.pcard{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--mist);transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column;gap:8px;}
-.pcard:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(16,24,40,0.09);}
-.age{align-self:flex-start;background:var(--navy);color:var(--td-link);font-size:0.7rem;font-weight:800;letter-spacing:0.08em;padding:4px 10px;border-radius:100px;}
-.pcard h3{font-family:var(--disp);font-weight:800;font-size:1.08rem;}
-.pcard .sched{font-size:0.84rem;color:var(--td-muted);flex:1;}
-.pcard .go{display:inline-block;font-weight:700;font-size:0.85rem;color:var(--td-link);padding:11px 0;min-height:44px;line-height:22px;margin-right:18px;}.pcard .go2{color:var(--td-muted);}.pcard .go:hover{text-decoration:underline;}
-
-/* camps band */
-.camps{background:linear-gradient(120deg,var(--black),var(--navy));color:#fff;}
-.camps .head h2 i{color:var(--td-link);}
-.cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
-@media(max-width:880px){.cgrid{grid-template-columns:1fr;}}
-.ccard{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:8px;}
-.ccard .when{font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--td-link);}
-.ccard h3{font-family:var(--disp);font-weight:800;font-size:1.15rem;}
-.ccard p{font-size:0.87rem;color:rgba(255,255,255,0.68);flex:1;}
-.ccard .price{font-family:var(--disp);font-weight:800;font-size:1.05rem;color:#fff;}
-.ccard a{margin-top:10px;text-align:center;background:var(--baby);color:var(--td-bg);font-family:var(--disp);font-weight:800;font-size:0.85rem;padding:11px;border-radius:100px;}
-
-/* watch strip. Club header + Follow, fallback club photos, live tiles 3:4
-   (3 by 2 on desktop, a swipe strip on phones). Only the grid scrolls sideways,
-   never the page (Deng, 6 Oct 2026). */
-.watch .head{align-items:center;}
-.watch .ighead{display:flex;align-items:center;gap:12px;}
-.watch .igmark{width:44px;height:44px;border-radius:12px;background:#0B1F3A;border:1px solid var(--td-line);display:flex;align-items:center;justify-content:center;flex:none;}
-.watch .igmark svg{width:30px;height:30px;display:block;fill:#fff;}
-.watch .igid{display:flex;flex-direction:column;line-height:1.25;}
-.watch .igid b{font-family:var(--disp);font-weight:800;font-size:0.98rem;color:var(--td-text);}
-.watch .igid span{font-size:0.8rem;color:var(--td-muted);}
-.watch .head a.igfollow{background:#1E40AF;color:#fff;font-family:var(--disp);font-weight:800;font-size:0.85rem;padding:10px 22px;border-radius:100px;margin-left:6px;text-decoration:none;}
-.watch .head a.igfollow:hover{background:#16305C;color:#fff;}
-.watch .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.watch .wgrid.ig-live .wcard{aspect-ratio:3/4;opacity:0;transition:opacity .45s ease;}
-.watch .wgrid.ig-live .wcard.is-loaded{opacity:1;}
-@media(prefers-reduced-motion:reduce){.watch .wgrid.ig-live .wcard{transition:none;}}
-@media(max-width:880px){
-  .watch .wgrid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;}
-  .watch .wgrid::-webkit-scrollbar{display:none;}
-  .watch .wgrid .wcard{scroll-snap-align:start;}
-  .watch .wgrid.ig-live{grid-auto-columns:41%;gap:10px;}
-}
-.wcard{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:var(--navy);}
-.wcard img{width:100%;height:100%;object-fit:cover;object-position:center 31%;opacity:0.85;transition:transform .4s;}
-.wcard:hover img{transform:scale(1.05);}
-.wcard .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(to top,rgba(10,10,10,0.85),transparent);color:#fff;font-weight:700;font-size:0.9rem;}
-
-/* numbers */
-.numbers{background:var(--td-surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.numbers .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;padding-top:52px;padding-bottom:52px;}
-@media(max-width:700px){.numbers .wrap{grid-template-columns:repeat(2,1fr);}}
-.num b{display:block;font-family:var(--disp);font-weight:900;font-size:2.4rem;color:var(--td-link);line-height:1.1;}
-.num span{font-size:0.82rem;color:var(--td-muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;}
-
-/* footer */
-footer{background:var(--black);color:rgba(255,255,255,0.6);padding:56px 0 32px;}
-.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:36px;}
-@media(max-width:800px){.fgrid{grid-template-columns:1fr 1fr;}}
-footer h4{font-family:var(--disp);color:#fff;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;}
-footer a{display:block;font-size:0.88rem;padding:4px 0;color:rgba(255,255,255,0.6);}
-footer a:hover{color:var(--td-link);}
-.fbase{border-top:1px solid rgba(255,255,255,0.12);padding-top:22px;font-size:0.78rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-
-/* Homepage games block, 26 Aug 2026. */
-.games-home{background:var(--td-surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:52px 0;}
-.gh-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;align-items:start;}
-.gh-kick{font-family:var(--disp);font-size:.68rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--td-link);}
-.games-home h2{font-family:var(--disp);font-weight:900;font-size:1.9rem;color:var(--td-text);margin:10px 0 10px;line-height:1.1;}
-.gh-lead>p{color:var(--td-muted);margin-bottom:20px;}
-.gh-all{display:inline-block;margin-top:18px;font-family:var(--disp);font-weight:800;font-size:.82rem;letter-spacing:.04em;color:var(--td-link);}
-.gh-all:hover{color:var(--td-text);}
-@media(max-width:900px){.gh-grid{grid-template-columns:1fr;gap:26px;}}
-
-
-
-/* Product cards carry a photo where an honest one exists. There is no shot of
-   the club's own hoodie or pants yet, so those cards stay text-led rather than
-   borrowing an unrelated image. Added 26 Aug 2026. */
-.kcard.has-shot{position:relative;overflow:hidden;isolation:isolate;}
+/* coaches */
+.stgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:800px){.stgrid{grid-template-columns:repeat(2,1fr);}}
+.stcard{display:block;background:var(--td-surface);border:1px solid var(--td-line);border-radius:8px;overflow:hidden;}
+.stcard:hover b{text-decoration:underline;}
+.stcard .shot{position:relative;aspect-ratio:4/5;background:#0B1F3A;}
+.stcard .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.stcard .shot .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#0B1F3A;color:#7DD3FC;font-family:var(--disp);font-size:2rem;font-weight:900;}
+.stcard .meta{padding:12px 14px 14px;}
+.stcard b{display:block;font-size:1rem;font-weight:800;line-height:1.25;}
+.stcard span{display:block;font-size:.84rem;color:var(--td-muted);margin-top:3px;}
 </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20261011a">
@@ -269,10 +142,6 @@ footer a:hover{color:var(--td-link);}
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="stylesheet" href="/assets/talata-footer.css?v=20261011a">
-<!-- LCP hero. It is a CSS background, which the preload scanner cannot see,
-     so it was discovered late: Cloudflare measured this element at 4,176ms
-     over 28 Jul to 27 Aug 2026. This hint makes it discoverable in the head. -->
-<link rel="preload" as="image" href="/images/talata-huddle.jpg" fetchpriority="high">
 <link rel="stylesheet" href="/assets/talata-dark.css?v=20261011a">
 <link rel="stylesheet" href="/assets/talata-light.css?v=20261011a">
 </head>
@@ -369,25 +238,17 @@ footer a:hover{color:var(--td-link);}
 <!-- TALATA:HEADER:END -->
 
 <header class="hero">
-  <div class="bg"></div><div class="shade"></div>
   <div class="wrap">
     <div class="hero-copy">
-      <div class="hero-head">
-        <h1 class="eyebrow">Basketball club in Copenhagen for kids, teens and adults</h1>
-        <p class="slogan">One club.<br>Every level.<br><em>First session free.</em></p>
-      </div>
+      <h1>Basketball club in Copenhagen for kids, teens and adults</h1>
       <div class="hero-rest">
-      <p class="sub">A basketball club on &Oslash;sterbro in Copenhagen, for kids, teens and adults. Five year olds taking their first dribble at Strandvejsskolen. A men's 3. Division roster at Svanemøllehallen. Everyone in between trains here too, four days a week. Coach Deng played pro in Canada, Lithuania and Denmark, and the club now runs camps in all three.</p>
-      <div class="tickers">
-        <div class="tick"><b>110+</b> <span>players</span></div>
-        <div class="tick"><b>5</b> <span>countries we take kids to</span></div>
-        <div class="tick"><b>Since 2021</b><span>camps abroad</span></div>
-      </div>
+      <p class="sub">We are on &Oslash;sterbro. Five year olds take their first dribble at Strandvejsskolen. Our men play 3. Division at Svanem&oslash;llehallen, and every age in between trains with us during the week. Coach Deng played pro in Canada, Lithuania and Denmark, and we run camps in all three.</p>
+      <div class="photo"><img src="/images/2026-10/site/family-time-group-coaches-wide.jpg" srcset="/images/2026-10/site/family-time-group-coaches-wide.jpg 1600w" sizes="(max-width:920px) 100vw, 600px" alt="Talata kids of all ages with their coaches in the gym" width="1600" height="902" fetchpriority="high" decoding="async"></div>
       </div>
     </div>
     <form class="trial" id="trial">
-      <h2>Book a free trial</h2>
-      <p class="note">You need nothing. No gear, no experience. Fill this in and we tell you your first session, right here on this page.</p>
+      <h2>Book a trial</h2>
+      <p class="note">Your first session is free. Bring indoor shoes. Fill this in and we show you your first session right here.</p>
       <label for="player_name">Player's name</label>
       <input id="player_name" name="player_name" required placeholder="Full name">
       <div class="row2">
@@ -400,9 +261,9 @@ footer a:hover{color:var(--td-link);}
       </div>
       <label for="how_found">Where did you hear about us?</label>
       <select id="how_found" name="how_found" required><option value="">Choose</option><option value="google">Google search</option><option value="instagram">Instagram</option><option value="friend">Friend or teammate</option><option value="parent">Another parent</option><option value="school">School</option><option value="camp">A Talata camp</option><option value="other">Other</option></select>
-      <button type="submit" id="trial-btn">Claim my free session</button>
-      <p class="fine" id="trial-fine">We work out the group from the date of birth and show you the next session straight away. No waiting list, nothing to book.</p>
-      <p class="fine" id="trial-ok" style="display:none;color:#15803D;font-weight:700;">Got it. Check your inbox, your free session details are on the way.</p>
+      <button type="submit" id="trial-btn">Book a trial</button>
+      <p class="fine" id="trial-fine">We work out the group from the date of birth and show you the next session straight away.</p>
+      <p class="fine" id="trial-ok" style="display:none;color:#15803D;font-weight:700;">Got it. Check your inbox, your session details are on the way.</p>
     </form>
   </div>
 </header>
@@ -431,7 +292,7 @@ footer a:hover{color:var(--td-link);}
     </a>
     <div class="cup-body">
       <p class="cup-kick">Autumn break camp</p>
-      <p class="cup-h" id="camp-pop-h-oct">Four days. Hot lunch. <em>The shooting machine.</em></p>
+      <p class="cup-h" id="camp-pop-h-oct">Four days of basketball, hot lunch and the shooting machine</p>
       <p class="cup-when"><b>Mon 12 to Thu 15 Oct</b><br>Hafnia-Hallen &middot; ages 5 to 16</p>
     </div>
     <div class="cup-acts">
@@ -446,7 +307,7 @@ footer a:hover{color:var(--td-link);}
       <p class="cup-kick">Christmas break camp</p>
       <p class="cup-h" id="camp-pop-h-dec">International Academy and College Pathway Camp</p>
       <p class="cup-when"><b>Mon 28 to Wed 30 Dec</b><br>Hafnia-Hallen &middot; ages 13 to 17</p>
-      <p class="cup-sub">Testing, film and a written evaluation to take home. <em>The shooting machine</em> is in the hall all three days. Early bird <b><!--fact:camps.pathway.price_early|kr-->1.295 kr<!--/fact--></b> to Sun 1 Nov.</p>
+      <p class="cup-sub">Testing, film and a written evaluation to take home. The shooting machine is in the hall all three days. Early bird <b><!--fact:camps.pathway.price_early|kr-->1.295 kr<!--/fact--></b> to Sun 1 Nov.</p>
     </div>
     <div class="cup-acts">
       <a class="cup-cta" href="/camps/college-pathway-camp-2026#camp-form" data-cta data-track="camp-pop dec pathway">See the camp and sign up</a>
@@ -456,8 +317,8 @@ footer a:hover{color:var(--td-link);}
 
 <section class="camps" id="camps">
   <div class="wrap">
-    <div class="head"><h2>Camps <i>coming up</i></h2><a href="/camps">See all camps →</a></div>
-    <p style="margin:-8px 0 20px;color:var(--td-muted);font-size:0.92rem;">The autumn break camps run Monday to Thursday. <b>Tuesday 13 October</b> adds a session upstairs in the middle of the day, and <b>Thursday is game day from 12:30</b>, the only part of Thursday for Academy U12 Camp. <b>Hot lunch included</b>, plus snacks and fruit.</p>
+    <div class="head"><h2>Camps</h2><a href="/camps">All camps</a></div>
+    <p class="lead">The autumn break camps run Monday to Thursday. <b>Tuesday 13 October</b> adds a session upstairs in the middle of the day, and <b>Thursday is game day from 12:30</b>, the only part of Thursday for Academy U12 Camp. <b>Hot lunch included</b>, plus snacks and fruit.</p>
     <div class="cgrid">
       <div class="ccard">
         <span class="when">Oct 12 to 15 &middot; autumn break</span>
@@ -476,7 +337,7 @@ footer a:hover{color:var(--td-link);}
       <div class="ccard">
         <span class="when">Dec 28 to 30 · Hafnia-Hallen</span>
         <h3>International Academy and College Pathway Camp, ages 13 to 17</h3>
-        <p>Three days on what playing in America actually takes. Measured profile, filmed games, and a written evaluation to take home. 16 places.</p>
+        <p>Three days on what it takes to play in America. Measured profile, filmed games, and a written evaluation to take home. 16 places.</p>
         <span class="price"><!--fact:camps.pathway|priceline-->1.295 kr to Sunday 1 November, then 1.495 kr<!--/fact--></span>
         <a href="/camps/college-pathway-camp-2026">Get the details</a>
       </div>
@@ -484,87 +345,25 @@ footer a:hover{color:var(--td-link);}
   </div>
 </section>
 
-<section class="progs" id="programs">
+<section id="programs">
   <div class="wrap">
-    <div class="head"><h2>Find <i>your team</i></h2><a href="#trial">Every program starts with a free session →</a></div>
-    <p style="margin:-8px 0 20px;color:var(--td-muted);font-size:0.92rem;">Our guide to <a href="/basketball-in-copenhagen" style="color:var(--td-link);font-weight:700;">basketball in Copenhagen</a> covers age groups, costs and where to play.</p>
-    <div class="pgrid">
-      <div class="pcard"><span class="age">AGES 5 TO 9</span><h3>Mini</h3><p class="sched"><!--fact:teams.mini|sched-->Tue + Thu 15:30 to 16:30 at Strandvejsskolen, Sat 10:00 to 11:00 at Kulturhuset Indre By<!--/fact--></p><a class="go" href="/mini">See Mini →</a></div>
-      <div class="pcard"><span class="age">AGES 10 TO 12</span><h3>Junior</h3><p class="sched"><!--fact:teams.junior|sched-->Tue + Thu 16:30 to 18:00 at Strandvejsskolen, Sat 11:00 to 12:00 at Kulturhuset Indre By<!--/fact--></p><a class="go" href="/mini">See Junior →</a></div>
-      <div class="pcard"><span class="age">AGES 5 TO 12</span><h3>Saturdays</h3><p class="sched">Mini <!--fact:teams.mini|sat-->10:00 to 11:00 at Kulturhuset Indre By<!--/fact-->. Junior <!--fact:teams.junior|sat-->11:00 to 12:00 at Kulturhuset Indre By<!--/fact-->. Family Time for kids and parents <!--fact:teams.family_time|sat-->12:00 to 13:00 at Kulturhuset Indre By<!--/fact-->. For families who cannot make a weekday afternoon.</p><a class="go" href="/saturday">See Saturdays →</a></div>
-      <div class="pcard"><span class="age">AGES 13 TO 19</span><h3>Academy</h3><p class="sched">Up to five days a week, Monday to Friday · <a href="/academy#this-week">see the full week</a></p><a class="go" href="/academy">See Academy →</a></div>
-      <div class="pcard"><span class="age">GIRLS 6 TO 14</span><h3>Sparks</h3><p class="sched"><!--fact:teams.sparks|sched-->Mon 15:30 to 16:30 at Strandvejsskolen<!--/fact--> · Big Sisters on court · Girls 15 and up: <a href="/sparks#girls-15">the Stevnsgade girls team</a></p><a class="go" href="/sparks">See Sparks →</a></div>
-      <div class="pcard"><span class="age">MEN 18+</span><h3>Talata Men</h3><p class="sched">New 3. Division team · <!--fact:teams.men|sched-->Mon 18:45 to 20:15 at Svanemøllehallen, Fri 18:45 to 21:00 at Nørre Fælled Skole from 23 Oct<!--/fact--> · full 26/27 schedule at signup</p><a class="go" href="/join">See the details →</a></div>
-      <div class="pcard"><span class="age">ADULTS</span><h3>Fitness</h3><p class="sched">For adults who want the running and the sweat without signing up to a league season</p><a class="go" href="/join">See the details →</a></div>
-    </div>
+    <div class="head"><h2>Find your team</h2><a href="/basketball-in-copenhagen">Guide to basketball in Copenhagen</a></div>
+    <ul class="plist">
+      <li><h3>Mini<span class="age">Ages 5 to 9</span></h3><p class="sched"><!--fact:teams.mini|sched-->Tue + Thu 15:30 to 16:30 at Strandvejsskolen, Sat 10:00 to 11:00 at Kulturhuset Indre By<!--/fact--></p><a class="go" href="/mini">See Mini</a></li>
+      <li><h3>Junior<span class="age">Ages 10 to 12</span></h3><p class="sched"><!--fact:teams.junior|sched-->Tue + Thu 16:30 to 18:00 at Strandvejsskolen, Sat 11:00 to 12:00 at Kulturhuset Indre By<!--/fact--></p><a class="go" href="/mini">See Junior</a></li>
+      <li><h3>Saturdays<span class="age">Ages 5 to 12, and parents</span></h3><p class="sched">Mini <!--fact:teams.mini|sat-->10:00 to 11:00 at Kulturhuset Indre By<!--/fact-->. Junior <!--fact:teams.junior|sat-->11:00 to 12:00 at Kulturhuset Indre By<!--/fact-->. Family Time for kids and parents <!--fact:teams.family_time|sat-->12:00 to 13:00 at Kulturhuset Indre By<!--/fact-->. For families who cannot make a weekday afternoon.</p><a class="go" href="/saturday">See Saturdays</a></li>
+      <li><h3>Academy<span class="age">Ages 13 to 19</span></h3><p class="sched">Up to five days a week, Monday to Friday. <a href="/academy#this-week">The full week</a></p><a class="go" href="/academy">See Academy</a></li>
+      <li><h3>Sparks<span class="age">Girls 6 to 14</span></h3><p class="sched"><!--fact:teams.sparks|sched-->Mon 15:30 to 16:30 at Strandvejsskolen<!--/fact-->, with Big Sisters on court. Girls 15 and up play with <a href="/sparks#girls-15">the Stevnsgade girls team</a>.</p><a class="go" href="/sparks">See Sparks</a></li>
+      <li><h3>Talata Men<span class="age">Men 18+</span></h3><p class="sched">New 3. Division team. <!--fact:teams.men|sched-->Mon 18:45 to 20:15 at Svanemøllehallen, Fri 18:45 to 21:00 at Nørre Fælled Skole from 23 Oct<!--/fact-->. Full 26/27 schedule when you sign up.</p><a class="go" href="/men">See Men</a></li>
+      <li><h3>Fitness<span class="age">Adults</span></h3><p class="sched">For adults who want the running and the sweat without a league season.</p><a class="go" href="/join">See the details</a></li>
+    </ul>
   </div>
 </section>
-
-<section class="wk-band" id="this-week" aria-labelledby="wk-title">
-  <div class="wrap">
-    <div class="head"><h2 id="wk-title">This week <i>at Talata</i></h2><a href="#programs">Find your team &rarr;</a></div>
-    <div data-talata-next hidden></div>
-<!-- TALATA:FACTS:week:START -->
-<div class="wk-grid" data-talata-week>
-  <div class="wk-day"><h3>Monday</h3>
-    <ul>
-      <li><b class="num">15:30 to 16:30</b> Sparks <span>Strandvejsskolen</span></li>
-      <li><b class="num">16:30 to 18:00</b> U13 Academy + Junior + U13 <span>Strandvejsskolen</span></li>
-      <li><b class="num">16:45 to 18:45</b> U15 + U17 <span>Svanemøllehallen</span></li>
-      <li><b class="num">17:30 to 19:00</b> Girls 15+ (Stevnsgade) <span>Nørrebrohallen</span></li>
-      <li><b class="num">18:45 to 20:15</b> U19 + Men <span>Svanemøllehallen</span></li>
-    </ul>
-  </div>
-  <div class="wk-day"><h3>Tuesday</h3>
-    <ul>
-      <li><b class="num">15:30 to 16:30</b> Mini <span>Strandvejsskolen</span></li>
-      <li><b class="num">16:00 to 18:00</b> U13 Academy + U15 + U17 <span>Kulturhuset Indre By</span></li>
-      <li><b class="num">16:30 to 18:00</b> Junior + U13 <span>Strandvejsskolen</span></li>
-    </ul>
-  </div>
-  <div class="wk-day"><h3>Wednesday</h3>
-    <ul>
-      <li><b class="num">16:00 to 18:00</b> U13 Academy + U15 + U17 <span>Kulturhuset Indre By</span></li>
-      <li><b class="num">17:30 to 19:00</b> Girls 15+ (Stevnsgade) <span>Nørrebrohallen</span></li>
-    </ul>
-  </div>
-  <div class="wk-day"><h3>Thursday</h3>
-    <ul>
-      <li><b class="num">15:30 to 16:30</b> Mini <span>Strandvejsskolen</span></li>
-      <li><b class="num">16:30 to 18:00</b> Junior + U13 <span>Strandvejsskolen</span></li>
-      <li><b class="num">17:00 to 19:00</b> U13 Academy + U15 + U17 <span>Svanemøllehallen</span></li>
-    </ul>
-  </div>
-  <div class="wk-day"><h3>Friday</h3>
-    <ul>
-      <li><b class="num">16:00 to 18:00</b> U13 Academy + U15 + U17 <span>Bellahøj Hallerne</span></li>
-      <li><b class="num">17:30 to 19:00</b> Girls 15+ (Stevnsgade) <span>Nørrebrohallen</span></li>
-      <li><b class="num">18:45 to 21:00</b> U19 + Men <span>Nørre Fælled Skole</span></li>
-    </ul>
-  </div>
-  <div class="wk-day"><h3>Saturday</h3>
-    <ul>
-      <li><b class="num">10:00 to 11:00</b> Mini <span>Kulturhuset Indre By</span></li>
-      <li><b class="num">11:00 to 12:00</b> Junior <span>Kulturhuset Indre By</span></li>
-      <li><b class="num">12:00 to 13:00</b> Family Time <span>Kulturhuset Indre By</span></li>
-    </ul>
-  </div>
-  <div class="wk-day"><h3>Sunday</h3>
-    <p class="wk-none">No training</p>
-  </div>
-</div>
-<p class="wk-note">Times checked 7 October 2026. Holiday changes show here first.</p>
-<script type="application/json" id="tw-week">[{"day":0,"start":"15:30","end":"16:30","who":"Sparks","hall":"Strandvejsskolen","starts":"2026-08-10","ends":null,"off":["2026-10-12"]},{"day":0,"start":"16:30","end":"18:00","who":"U13 Academy + Junior + U13","hall":"Strandvejsskolen","starts":"2026-10-19","ends":null,"off":[]},{"day":0,"start":"16:45","end":"18:45","who":"U15 + U17","hall":"Svanemøllehallen","starts":"2026-10-19","ends":null,"off":[]},{"day":0,"start":"17:30","end":"19:00","who":"Girls 15+ (Stevnsgade)","hall":"Nørrebrohallen","starts":"2026-09-14","ends":null,"off":["2026-10-12"]},{"day":0,"start":"18:45","end":"20:15","who":"U19 + Men","hall":"Svanemøllehallen","starts":"2026-10-05","ends":null,"off":["2026-10-12"]},{"day":1,"start":"15:30","end":"16:30","who":"Mini","hall":"Strandvejsskolen","starts":"2026-10-02","ends":null,"off":["2026-10-13"]},{"day":1,"start":"16:00","end":"18:00","who":"U13 Academy + U15 + U17","hall":"Kulturhuset Indre By","starts":"2026-10-06","ends":null,"off":["2026-10-13"]},{"day":1,"start":"16:30","end":"18:00","who":"Junior + U13","hall":"Strandvejsskolen","starts":"2026-10-06","ends":null,"off":["2026-10-13"]},{"day":2,"start":"16:00","end":"18:00","who":"U13 Academy + U15 + U17","hall":"Kulturhuset Indre By","starts":"2026-10-07","ends":null,"off":["2026-10-14"]},{"day":2,"start":"17:30","end":"19:00","who":"Girls 15+ (Stevnsgade)","hall":"Nørrebrohallen","starts":"2026-09-14","ends":null,"off":["2026-10-14"]},{"day":3,"start":"15:30","end":"16:30","who":"Mini","hall":"Strandvejsskolen","starts":"2026-10-02","ends":null,"off":["2026-10-15"]},{"day":3,"start":"16:30","end":"18:00","who":"Junior + U13","hall":"Strandvejsskolen","starts":"2026-10-08","ends":null,"off":["2026-10-15"]},{"day":3,"start":"17:00","end":"19:00","who":"U13 Academy + U15 + U17","hall":"Svanemøllehallen","starts":"2026-10-08","ends":null,"off":["2026-10-15"]},{"day":4,"start":"16:00","end":"18:00","who":"U13 Academy + U15 + U17","hall":"Bellahøj Hallerne","starts":"2026-10-09","ends":null,"off":["2026-10-16"]},{"day":4,"start":"17:30","end":"19:00","who":"Girls 15+ (Stevnsgade)","hall":"Nørrebrohallen","starts":"2026-09-14","ends":null,"off":["2026-10-16"]},{"day":4,"start":"18:45","end":"21:00","who":"U19 + Men","hall":"Nørre Fælled Skole","starts":"2026-10-23","ends":null,"off":["2026-10-30"]},{"day":5,"start":"10:00","end":"11:00","who":"Mini","hall":"Kulturhuset Indre By","starts":"2026-10-03","ends":null,"off":["2026-10-17","2026-12-26","2027-01-02"]},{"day":5,"start":"11:00","end":"12:00","who":"Junior","hall":"Kulturhuset Indre By","starts":"2026-10-03","ends":null,"off":["2026-10-17","2026-12-26","2027-01-02"]},{"day":5,"start":"12:00","end":"13:00","who":"Family Time","hall":"Kulturhuset Indre By","starts":"2026-10-10","ends":null,"off":["2026-10-17","2026-12-26","2027-01-02"]}]</script>
-<!-- TALATA:FACTS:week:END -->
-  </div>
-</section>
-<link rel="stylesheet" href="/assets/talata-week.css?v=20261011a">
-<script src="/assets/talata-week.js?v=20261011a" defer></script>
 
 <section id="stories">
   <div class="wrap">
 <!-- TALATA:LATEST:START — generated by tools/apply-blog-index.py, do not hand-edit -->
-    <div class="head"><h2>Latest from <i>the club</i></h2><a href="/blog">All stories &rarr;</a></div>
+    <div class="head"><h2>Latest</h2><a href="/blog">All stories</a></div>
     <div class="latest">
       <a class="story" href="/blog/u13-grand-prix-east-2026">
         <img src="images/2026-10/site/u13-grand-prix-four-clubs-group.jpg" alt="Players and coaches from Talata, Falcon, H&oslash;rsholm and &Oslash;restad Gorillas together after the U13 Grand Prix at Korsgadehallen." loading="lazy" decoding="async" width="1600" height="1067" style="object-position:50% 52%">
@@ -588,28 +387,9 @@ footer a:hover{color:var(--td-link);}
   </div>
 </section>
 
-<section class="watch" id="watch">
+<section id="coaches">
   <div class="wrap">
-    <div class="head">
-      <h2>Watch <i>Talata</i></h2>
-      <div class="ighead">
-        <span class="igmark" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M14.57 12.77L49.43 12.77L49.43 20.31L36.63 20.31L36.63 52.77L27.38 52.77L27.38 20.31L14.57 20.31Z"/></svg></span>
-        <span class="igid"><b>@talatabasketball</b><span>Game days, training and camps</span></span>
-        <a class="igfollow" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener" data-track="ig-follow">Follow</a>
-      </div>
-    </div>
-    <div class="wgrid" data-talata-ig>
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener" data-track="ig-card"><img src="/images/2026-10/site/u13-grand-prix-four-clubs-group.jpg" alt="Players and coaches from four clubs together after the U13 Grand Prix at Korsgadehallen" decoding="async" width="1600" height="1067" loading="lazy" style="object-position:50% 52%"><div class="cap">Four clubs. One photo.</div></a>
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener" data-track="ig-card"><img src="/images/2026-10/site/u13-grand-prix-team-with-coach.jpg" alt="The Talata U13 team with their coach at the Grand Prix" decoding="async" width="1600" height="1067" loading="lazy" style="object-position:50% 40%"><div class="cap">U13 Grand Prix East</div></a>
-      <a class="wcard" href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener" data-track="ig-card"><img src="/images/2026-10/site/u13-grand-prix-hands-in-huddle.jpg" alt="Talata U13 players with their hands in, in the huddle with their coach" decoding="async" width="1600" height="1067" loading="lazy" style="object-position:50% 45%"><div class="cap">Hands in before tip off</div></a>
-    </div>
-  </div>
-</section>
-<script src="/assets/talata-ig.js?v=20261011a" defer></script>
-
-<section class="coach-band">
-  <div class="wrap">
-    <div class="head"><h2>Who is <i>on the floor</i></h2><a href="/coaches">All coaches &rarr;</a></div>
+    <div class="head"><h2>Coaches</h2><a href="/coaches">All coaches</a></div>
     <div class="stgrid">
       <a class="stcard" href="/coaches">
         <div class="shot"><img src="images/people/deng-awak.jpg" alt="Deng Awak, head coach" width="1200" height="1200" loading="lazy" decoding="async" style="object-position:center 18%;"></div>

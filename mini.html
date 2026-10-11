@@ -122,205 +122,62 @@
       src: url('/fonts/inter-latin.woff2') format('woff2');
       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
+    /* Plain look, 11 Oct 2026 (Deng: the site read as AI). Flat, one colour
+       headings, photos shown as they are. No gradients, glows, lifts or arrows. */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --blue: #7BAFD4;
-      --blue-light: #EBF4FB;
-      --dark: #111;
-      --text: #1a1a1a;
-      --text-muted: #555;
-      --border: #e0e0e0;
-      --radius: 12px;
-      --bg: #fafafa;
-    }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;color:var(--td-text);
-      background: var(--bg);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
+    :root { --navy:#0B1F3A; --baby:#7DD3FC; --radius:8px; --disp:'Montserrat','Montserrat Fallback',sans-serif; }
+    body { font-family:'Inter',-apple-system,sans-serif; color:var(--td-text); background:var(--td-bg); line-height:1.6; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; }
+    img { max-width:100%; display:block; }
 
-    /* NAV */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--dark); padding: 16px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo {
-      color: #fff; font-weight: 800; font-size: 1rem;
-      letter-spacing: 1px; text-decoration: none;
-    }
-    .nav-logo span {color:var(--td-link); }
-    .nav-links { display: flex; gap: 24px; align-items: center; }
-    .nav-links a {
-      color: rgba(255,255,255,0.75); text-decoration: none;
-      font-size: 0.875rem; font-weight: 500; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: #fff; }
-    .nav-links .nav-cta {
-      background: var(--blue); color: #fff; padding: 8px 18px;
-      border-radius: 8px; font-weight: 700;
-    }
-    @media (max-width: 600px) { .nav-links { display: none; } }
+    /* hero: words on navy, the photo beside them in full colour */
+    .hero { background:var(--navy); color:#fff; }
+    .hero-in { max-width:1120px; margin:0 auto; padding:52px 24px 56px; display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start; }
+    .hero h1 { font-family:var(--disp); font-weight:900; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.1; text-transform:uppercase; }
+    .hero .sub { margin:16px 0 0; font-size:1.05rem; color:rgba(255,255,255,0.82); }
+    .hero .photo { border-radius:var(--radius); overflow:hidden; aspect-ratio:4/3; background:#13294a; }
+    .hero .photo img { width:100%; height:100%; object-fit:cover; }
+    .factbox { margin-top:24px; padding:18px 20px; border-radius:var(--radius); border:1px solid rgba(186,230,253,0.3); color:#fff; }
+    .factbox dl { margin:0; display:grid; gap:9px; }
+    .factbox dl > div { display:grid; grid-template-columns:7.5em 1fr; gap:12px; align-items:baseline; }
+    .factbox dt { font-size:0.8rem; font-weight:700; color:#BAE6FD; }
+    .factbox dd { margin:0; font-size:0.93rem; line-height:1.5; color:#fff; }
+    .factbox dd a { color:#BAE6FD; }
+    .btn, .factbox .fb-go, .form-submit { display:inline-block; background:#7DD3FC; color:#0B0F17; font-family:var(--disp); font-weight:800; font-size:0.95rem; padding:13px 24px; border-radius:6px; border:0; text-decoration:none; cursor:pointer; }
+    .btn:hover, .factbox .fb-go:hover, .form-submit:hover { background:#5cc4f5; color:#0B0F17; }
+    .factbox .fb-go { display:block; margin-top:16px; text-align:center; }
+    @media (max-width:860px) { .hero-in { grid-template-columns:1fr; padding:28px 16px 36px; gap:22px; } }
+    @media (max-width:480px) { .factbox dl > div { grid-template-columns:1fr; gap:2px; } }
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, rgba(17,17,17,0.78) 0%, rgba(26,39,68,0.72) 50%, rgba(15,52,96,0.80) 100%), url('/images/2026-09/site/mini-hero-deng-explains-drill-c.jpg');
-      background-size: cover; background-position: center, 47% 25%; /* 15 Sep 2026: sharp DSLR frame of Deng teaching seated Mini kids. 25% keeps his head and the ball in the band */
-      color: #fff; padding: 72px 24px 60px; text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: -80px; right: -80px;
-      width: 400px; height: 400px; background: var(--blue);
-      opacity: 0.07; border-radius: 50%;
-    }
-    .hero-badge {
-      display: inline-block; background: var(--blue); color: #fff;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
-      text-transform: uppercase; padding: 6px 16px; border-radius: 20px;
-      margin-bottom: 24px;
-    }
-    .hero .slogan {
-      font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800;
-      letter-spacing: -1px; margin-bottom: 16px; line-height: 1.15;
-    }
-    .hero .slogan span {color:var(--td-link); }
-    .hero p {
-      font-size: 1.1rem; color: rgba(255,255,255,0.75);
-      max-width: 540px; margin: 0 auto 32px;
-    }
-    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      display: inline-block; padding: 14px 28px; border-radius: 8px;
-      font-weight: 700; font-size: 0.95rem; text-decoration: none;
-      cursor: pointer; border: none; font-family: inherit; transition: opacity 0.2s;
-    }
-    .btn:hover { opacity: 0.88; }
-    .btn-primary { background: var(--blue); color: #fff; }
-    .btn-ghost { background: rgba(255,255,255,0.1); color: #fff; }
+    /* sections */
+    .section { padding:56px 24px; max-width:720px; margin:0 auto; }
+    .section-title { font-family:var(--disp); font-size:1.5rem; font-weight:900; text-transform:uppercase; margin-bottom:16px; color:var(--td-text); }
+    .section p { font-size:1rem; color:var(--td-muted); margin-bottom:16px; line-height:1.7; }
+    .section p:last-child { margin-bottom:0; }
+    .section .pic { border-radius:var(--radius); overflow:hidden; margin:22px 0; aspect-ratio:3/2; background:var(--td-surface); }
+    .section .pic img { width:100%; height:100%; object-fit:cover; }
+    .divider { border:none; border-top:1px solid var(--td-line); margin:0; }
+    .schedule-card { background:var(--td-surface); border:1px solid var(--td-line); border-radius:var(--radius); margin-top:20px; }
+    .schedule-row { display:grid; grid-template-columns:120px 1fr; padding:16px 20px; align-items:center; gap:16px; }
+    .schedule-day { font-weight:700; font-size:0.9rem; }
+    .schedule-detail { font-size:0.9rem; color:var(--td-muted); }
+    .sfo-note { border-left:3px solid var(--baby); padding:10px 16px; font-size:0.9rem; color:var(--td-text); margin-top:16px; }
 
-    /* INFO STRIP */
-    .info-strip {background:var(--td-surface); border-bottom: 1px solid var(--border);
-      padding: 18px 24px;
-      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-    }
-    .info-item {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.875rem; font-weight: 600;color:var(--td-text);
-    }
-    .info-item .label {color:var(--td-muted); font-weight: 400; }
+    /* form */
+    .form-card { background:var(--td-surface); border:1px solid var(--td-line); border-radius:var(--radius); padding:28px; margin-top:24px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+    .form-group label { font-size:0.82rem; font-weight:700; color:var(--td-muted); }
+    .form-group input, .form-group select, .form-group textarea { padding:12px 14px; border:1.5px solid var(--td-line); border-radius:6px; font-size:0.95rem; font-family:inherit; color:var(--td-text); background:var(--td-surface); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:2px solid var(--baby); border-color:transparent; }
+    .form-submit { width:100%; font-size:1rem; padding:14px; }
+    .form-success { display:none; border:1.5px solid #4caf7d; border-radius:6px; padding:16px; text-align:center; font-weight:600; margin-top:16px; }
+    @media (max-width:600px) { .form-row { grid-template-columns:1fr; gap:0; } .section { padding:40px 16px; } .form-card { padding:20px 16px; } }
 
-    /* SECTION */
-    .section { padding: 60px 24px; max-width: 720px; margin: 0 auto; }
-    .section-title {
-      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px;
-      margin-bottom: 16px;color:var(--td-text);
-    }
-    .section p {
-      font-size: 1rem;color:var(--td-muted); margin-bottom: 16px;
-      line-height: 1.7;
-    }
-    .section p:last-child { margin-bottom: 0; }
-
-    /* DIVIDER */
-    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-    /* WHAT SECTION */
-    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 24px; }
-    .pillar {background:var(--td-surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 24px 20px;
-    }
-    .pillar-icon { font-size: 1.6rem; margin-bottom: 12px; }
-    .pillar h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .pillar p { font-size: 0.875rem;color:var(--td-muted); line-height: 1.6; margin: 0; }
-
-    /* SCHEDULE */
-    .schedule-card {background:var(--td-surface); border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; margin-top: 24px;
-    }
-    .schedule-row {
-      display: grid; grid-template-columns: 120px 1fr;
-      padding: 16px 20px; border-bottom: 1px solid var(--border);
-      align-items: center; gap: 16px;
-    }
-    .schedule-row:last-child { border-bottom: none; }
-    .schedule-day { font-weight: 700; font-size: 0.9rem; }
-    .schedule-detail { font-size: 0.875rem;color:var(--td-muted); }
-    .schedule-detail strong {color:var(--td-text); }
-    .sfo-note {
-      background: var(--blue-light); border-left: 3px solid var(--blue);
-      padding: 14px 20px; border-radius: 0 var(--radius) var(--radius) 0;
-      font-size: 0.875rem;color:var(--td-text); margin-top: 16px;
-    }
-
-    /* TRIAL */
-    .trial-box {
-      background: var(--dark); color: #fff; border-radius: var(--radius);
-      padding: 36px 32px; text-align: center; margin-top: 24px;
-    }
-    .trial-box h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
-    .trial-box p { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 24px; }
-
-    /* CONTACT / REGISTER FORM */
-    .form-card {background:var(--td-surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 32px; margin-top: 0;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-    .form-group label { font-size: 0.8rem; font-weight: 600;color:var(--td-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .form-group input, .form-group select, .form-group textarea {
-      padding: 12px 14px; border: 1.5px solid var(--border);
-      border-radius: 8px; font-size: 0.95rem; font-family: inherit;color:var(--td-text);background:var(--td-surface); transition: border-color 0.2s;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none; border-color: var(--blue);
-    }
-    .form-submit {
-      width: 100%; padding: 14px; background: var(--blue); color: #fff;
-      border: none; border-radius: 8px; font-size: 1rem; font-weight: 700;
-      cursor: pointer; font-family: inherit; transition: opacity 0.2s;
-    }
-    .form-submit:hover { opacity: 0.88; }
-    .form-success {
-      display: none; background: #f0faf4; border: 1.5px solid #4caf7d;
-      border-radius: 8px; padding: 16px; text-align: center;
-      font-weight: 600; color: #1a6638; margin-top: 16px;
-    }
-    @media (max-width: 600px) {
-      .form-row { grid-template-columns: 1fr; }
-      .section { padding: 40px 20px; }
-      .pillars { grid-template-columns: 1fr; }
-      .trial-box { padding: 28px 20px; }
-    }
-
-    /* FOOTER */
-    .footer {
-      text-align: center; padding: 28px 24px;
-      font-size: 0.8rem;color:var(--td-muted);
-      border-top: 1px solid var(--border); margin-top: 60px;
-    }
-    .footer a {color:var(--td-link); text-decoration: none; }
-  /* 15 Sep 2026: stack the photo strip on phones so tiles are not slivers */
-  @media (max-width:640px){ .photo-strip{ grid-template-columns:1fr !important; height:auto !important; } .photo-strip > div{ height:200px; } }
-  
-    /* Fact box above the fold (SEO batch 9, 6 Oct 2026). It sits on the dark
-       hero in both themes, so its colours are literals. Every time and price
-       in it is an apply-facts marker. */
-    .factbox { max-width: 600px; margin: 26px auto 0; padding: 18px 20px; border-radius: 14px;
-      background: rgba(10,10,10,0.5); border: 1px solid rgba(186,230,253,0.3); text-align: left; color: #fff; }
-    .factbox dl { margin: 0; display: grid; gap: 9px; }
-    .factbox dl > div { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; align-items: baseline; }
-    .factbox dt { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #BAE6FD; }
-    .factbox dd { margin: 0; font-size: 0.93rem; line-height: 1.5; color: #fff; }
-    .factbox dd a { color: #BAE6FD; }
-    .factbox .fb-go { display: block; margin-top: 16px; text-align: center; background: #1E40AF; color: #fff;
-      font-weight: 800; padding: 13px 18px; border-radius: 10px; text-decoration: none; }
-    .factbox .fb-go:hover { background: #0B1F3A; }
-    @media (max-width: 480px) { .factbox dl > div { grid-template-columns: 1fr; gap: 2px; } }
-    .hero .slogan { color: #fff; max-width: none; }
-    .hero h1.hero-badge { line-height: 1.5; }
+    /* closing link to the philosophy page */
+    .way { background:var(--navy); padding:40px 24px; text-align:center; color:#fff; }
+    .way h2 { font-family:var(--disp); font-size:1.2rem; font-weight:900; text-transform:uppercase; margin-bottom:8px; }
+    .way p { color:rgba(255,255,255,0.8); margin-bottom:16px; }
   </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20261011a">
@@ -440,62 +297,33 @@
 
   <!-- HERO -->
   <div class="hero">
-    <h1 class="hero-badge">Kids basketball in Copenhagen, ages 5 to 12</h1>
-    <p class="slogan">Basketball starts<br>here. <span>And it's fun.</span></p>
-    <p>Kids basketball on &Oslash;sterbro in Copenhagen. Talata Mini (ages 5 to 9) and Talata Junior (ages 10 to 12) train back to back in the same gym with the same coaches. The kids are moving the whole hour. If they are not having fun they will not come back, and we know it.</p>
-    <div class="factbox">
-      <dl>
-        <div><dt>Ages</dt><dd>Mini 5 to 9 &middot; Junior 10 to 12</dd></div>
-        <div><dt>Mini</dt><dd><!--fact:teams.mini|sched-->Tue + Thu 15:30 to 16:30 at Strandvejsskolen, Sat 10:00 to 11:00 at Kulturhuset Indre By<!--/fact--></dd></div>
-        <div><dt>Junior</dt><dd><!--fact:teams.junior|sched-->Tue + Thu 16:30 to 18:00 at Strandvejsskolen, Sat 11:00 to 12:00 at Kulturhuset Indre By<!--/fact--></dd></div>
-        <div><dt>Where</dt><dd>Strandvejsskolen, <!--fact:venues.strandvejsskolen.address-->Sionsgade 1, 2100 København Ø<!--/fact-->. Saturdays at Kulturhuset Indre By</dd></div>
-        <div><dt>Price</dt><dd><!--fact:facts.program.mini.fee|kr-->1.800 kr<!--/fact--> per half-season</dd></div>
-        <div><dt>First session</dt><dd>Free. Nothing to sign, nothing to pay</dd></div>
-      </dl>
-      <a class="fb-go" href="#register">Book a free session</a>
+    <div class="hero-in">
+      <div>
+        <h1>Kids basketball in Copenhagen, ages 5 to 12</h1>
+        <p class="sub">Talata Mini (5 to 9) and Talata Junior (10 to 12) train back to back on &Oslash;sterbro, same gym, same coaches. The kids are moving the whole hour. If they are not having fun they will not come back, and we know it.</p>
+        <div class="factbox">
+          <dl>
+            <div><dt>Ages</dt><dd>Mini 5 to 9 &middot; Junior 10 to 12</dd></div>
+            <div><dt>Mini</dt><dd><!--fact:teams.mini|sched-->Tue + Thu 15:30 to 16:30 at Strandvejsskolen, Sat 10:00 to 11:00 at Kulturhuset Indre By<!--/fact--></dd></div>
+            <div><dt>Junior</dt><dd><!--fact:teams.junior|sched-->Tue + Thu 16:30 to 18:00 at Strandvejsskolen, Sat 11:00 to 12:00 at Kulturhuset Indre By<!--/fact--></dd></div>
+            <div><dt>Where</dt><dd>Strandvejsskolen, <!--fact:venues.strandvejsskolen.address-->Sionsgade 1, 2100 København Ø<!--/fact-->. Saturdays at Kulturhuset Indre By</dd></div>
+            <div><dt>Price</dt><dd><!--fact:facts.program.mini.fee|kr-->1.800 kr<!--/fact--> per half-season</dd></div>
+            <div><dt>First session</dt><dd>Free. Bring indoor shoes</dd></div>
+          </dl>
+          <a class="fb-go" href="#register">Book a trial</a>
+        </div>
+      </div>
+      <div class="photo"><img src="/images/2026-10/site/mini-hands-in-with-deng-strandvejsskolen.jpg" srcset="/images/2026-10/site/mini-hands-in-with-deng-strandvejsskolen-800.jpg 800w, /images/2026-10/site/mini-hands-in-with-deng-strandvejsskolen.jpg 1600w" sizes="(max-width:860px) 100vw, 540px" alt="Talata Mini kids with their hands in, with Coach Deng at Strandvejsskolen" width="1600" height="1067" fetchpriority="high" decoding="async"></div>
     </div>
-  </div>
-
-
-  <!-- PHOTO STRIP -->
-  <div class="photo-strip" style="display:grid; grid-template-columns: 2fr 1fr 1fr; height: 280px; gap: 3px; overflow:hidden;">
-    <div style="background-image:url('/images/2026-09/site/mini-strip-overhead-pass.jpg'); background-size:cover; background-position:62% 40%;" role="img" aria-label="Mini player lining up a pass during a Strandvejsskolen session"></div>
-    <img src="/images/mini-strandvejsskolen-drill-2026.jpg" alt="Talata Mini players in a drill at Strandvejsskolen, &Oslash;sterbro, Copenhagen" width="1600" height="1067" loading="lazy" decoding="async" style="display:block; width:100%; height:100%; min-width:0; object-fit:cover; object-position:center 35%;">
-    <div style="background-image:url('/images/jun26/mini-group-wall.jpg'); background-size:cover; background-position:center 40%;"></div>
   </div>
 
   <!-- WHAT IS TALATA MINI -->
   <div class="section">
-    <h2 class="section-title">What is Talata Mini?</h2>
-    <p>For 5 to 9 year olds who just want to play. Come once a week or twice, whatever suits your family. Small group, proper coaching, games built for how young they are.</p>
-    <p>The only thing that matters at this age is that your kid wants to come back next week. That's what we build toward.</p>
-
-    <div class="pillars">
-      <div class="pillar">
-        <h3>Movement first</h3>
-        <p>Your kid will be moving almost the whole hour. We do not run lines where nine kids stand and watch one.</p>
-      </div>
-      <div class="pillar">
-        <h3>Teamwork</h3>
-        <p>Taking turns and backing each other up. Sounds small. At this age it is most of the job.</p>
-      </div>
-      <div class="pillar">
-        <h3>Ball control</h3>
-        <p>The basics, pitched at what a 7 year old can actually manage rather than what looks good on a drill sheet.</p>
-      </div>
-      <div class="pillar">
-        <h3>Just have fun</h3>
-        <p>We want your kid to love the game. Everything else comes later.</p>
-      </div>
-      <div class="pillar">
-        <h3>First time? Perfect.</h3>
-        <p>Most kids who join have never played before. That's exactly who this is for.</p>
-      </div>
-      <div class="pillar">
-        <h3>We know your kid's name</h3>
-        <p>Small group, so the coaches know every kid by name and know how each one learns.</p>
-      </div>
-    </div>
+    <h2 class="section-title">Talata Mini</h2>
+    <p>For 5 to 9 year olds. Most of them have never played before. Come once a week or twice, whatever suits your family.</p>
+    <p>Nobody stands in a line watching one kid shoot. They dribble, pass, take turns and play small games, at the level a 7 year old can manage. The group is small, so the coaches know every kid by name.</p>
+    <div class="pic"><img src="/images/mini-strandvejsskolen-drill-2026.jpg" alt="Talata Mini players in a drill at Strandvejsskolen, &Oslash;sterbro" width="1600" height="1067" loading="lazy" decoding="async"></div>
+    <p>What matters most at this age is that your kid wants to come back next week.</p>
   </div>
 
   <hr class="divider">
@@ -567,13 +395,9 @@
   <!-- JUNIOR -->
   <div class="section" id="junior">
     <h2 class="section-title">Junior basketball for ages 10 to 12</h2>
-    <p>Junior comes next, once the basics are there. Proper foundations and real decisions in games, and it leads straight into Academy when they are ready for it.</p>
+    <p>Junior is the next step once the basics are there. More fundamentals, more games, and it leads into Academy when they are ready.</p>
 
-    <!-- Junior photos, U13 Grand Prix 4 Oct 2026 (Deng, 5 Oct 2026). Same photo-strip mobile rule as the top strip. -->
-    <div class="photo-strip" style="display:grid; grid-template-columns: 3fr 2fr; height: 300px; gap: 3px; overflow:hidden; border-radius:12px; margin:18px 0 22px;">
-      <div style="background-image:url('/images/2026-10/site/u13-grand-prix-team-with-coach.jpg'); background-size:cover; background-position:center 62%;" role="img" aria-label="Talata players with their coach, laughing together on court"></div>
-      <div style="background-image:url('/images/2026-10/site/u13-grand-prix-overhead-shot.jpg'); background-size:cover; background-position:42% 35%;" role="img" aria-label="A Talata player shooting, seen from above"></div>
-    </div>
+    <div class="pic"><img src="/images/jun26/mini-group-wall.jpg" alt="A Talata group of young players in the school gym" width="1600" height="1200" loading="lazy" decoding="async"></div>
 
     <div class="schedule-card">
       <div class="schedule-row">
@@ -583,11 +407,11 @@
     </div>
 
     <div class="sfo-note" style="margin-top: 10px;">
-      <strong>Same gym, right after Mini:</strong> an easy pickup if you've got kids in both age groups. <!--fact:facts.program.junior.fee|kr-->1.800 kr<!--/fact--> / half-season.
+      <strong>Same gym, right after Mini.</strong> One pickup if you have kids in both. <!--fact:facts.program.junior.fee|kr-->1.800 kr<!--/fact--> / half-season.
     </div>
 
     <div style="margin-top: 20px;">
-      <a href="#register" class="btn btn-primary">Register for Junior</a>
+      <a href="#register" class="btn">Book a trial</a>
     </div>
   </div>
 
@@ -595,23 +419,12 @@
 
   <!-- SUMMER CAMP -->
   <div class="section">
-    <h2 class="section-title">A good place to start: Academy U12 Camp</h2>
+    <h2 class="section-title">Academy U12 Camp</h2>
     <p>If your kid has never touched a basketball before, a camp is an easier way in than a regular session. Four days with other kids at the same level and nobody watching to see how good they are.</p>
     <p>Academy U12 Camp is for ages 5 to 11 and runs <strong>Mon 12 to Thu 15 October</strong> over the autumn break, <strong>09:30 to 14:30</strong> Monday to Wednesday at Hafnia-Hallen. Tuesday mixes court time with a session upstairs in the middle of the day, and Thursday is game day with every age group, 12:30 to 14:30. <strong>Hot lunch included</strong> Monday to Wednesday, plus snacks and fruit. <strong><!--fact:camps.starter.price_now|kr-->1.195 kr<!--/fact-->.</strong> 35 places.</p>
     <p>A lot of kids who come to a camp end up in the weekly sessions afterwards. The coaches already know them by then, so turning up on a Tuesday is not the same leap.</p>
     <div style="margin-top: 20px;">
-      <a href="/camps/academy-u12-camp-2026" class="btn btn-primary" style="display:inline-block;">Academy U12 Camp details &rarr;</a>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- FREE TRIAL -->
-  <div class="section">
-    <div class="trial-box">
-      <h3>Want to try it first?</h3>
-      <p>Your kid is welcome to come to any session for free. Same time, same place. Just show up. Or register below so we know to expect them.</p>
-      <a href="#register" class="btn btn-primary">Register for a free trial</a>
+      <a href="/camps/academy-u12-camp-2026" class="btn">Academy U12 Camp details</a>
     </div>
   </div>
 
@@ -619,8 +432,8 @@
 
   <!-- REGISTER / CONTACT -->
   <div class="section" id="register">
-    <h2 class="section-title">Get in touch or sign up</h2>
-    <p>Fill in the form and I'll get back to you with your day, time and gym. The first session is free and there is nothing to pay to come and try.</p>
+    <h2 class="section-title">Book a trial</h2>
+    <p>Your first session is free. Fill this in and you see your day, time and gym straight away. We email it too.</p>
     <p>Once your child has been in the gym and it is a fit, I send you the Holdsport link and get them on the team properly. Already decided? Say so in the form and I'll send it straight away.</p>
 
     <div class="form-card" style="margin-top: 24px;">
@@ -657,8 +470,7 @@
           <label for="how_found">Where did you hear about us?</label>
           <select id="how_found" name="how_found" required><option value="">Choose</option><option value="google">Google search</option><option value="instagram">Instagram</option><option value="friend">Friend or teammate</option><option value="parent">Another parent</option><option value="school">School</option><option value="camp">A Talata camp</option><option value="other">Other</option></select>
         </div>
-        <p style="margin:4px 0 14px;font-size:.88rem;color:var(--td-muted);">We show you the first session as soon as you send this, and email it too. Nothing to book.</p>
-        <button type="submit" class="form-submit" id="submit-btn">Claim my free session</button>
+                <button type="submit" class="form-submit" id="submit-btn">Book a trial</button>
       </form>
       <div class="form-success" id="form-success">
         Got it. Your first session is on its way to your inbox.
@@ -670,19 +482,18 @@
 
   <!-- WHAT'S NEXT -->
   <div class="section">
-    <h2 class="section-title">What's next?</h2>
-    <p>At <strong>10</strong>, kids move from Mini into <strong>Talata Junior</strong>. Same gym, straight after Mini, with proper fundamentals and real decisions in games.</p>
+    <h2 class="section-title">After Mini</h2>
+    <p>At <strong>10</strong>, kids move from Mini into <strong>Talata Junior</strong>. Same gym, straight after Mini.</p>
     <p>At <strong>13</strong> they move up to <strong>Talata Academy</strong>, where it turns into competitive basketball with league games and video review. Kids who came up through Mini and Junior already know the coaches, so the jump is not a shock.</p>
     <div class="sfo-note" style="margin-top: 20px;">
-      <strong>Mini → Junior → Academy:</strong> when your child is ready to move up, we'll reach out and get them set up on the next team.
+      When your child is ready to move up, we get in touch and set them up on the next team.
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <div style="background:#0B1F3A;padding:2.5rem 2rem;text-align:center;">
-    <p style="color:#7DD3FC;font-size:0.75rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">The Talata Way</p>
-    <p style="color:white;font-size:1.1rem;font-weight:700;margin-bottom:1rem;">Curious why our sessions look nothing like a normal practice?</p>
-    <a href="/philosophy" style="background:#7DD3FC;color:var(--td-bg);padding:0.6em 1.6em;border-radius:9999px;font-weight:800;text-decoration:none;font-size:0.9rem;">Read our coaching philosophy</a>
+  <div class="way">
+    <h2>How we coach</h2>
+    <p>Our sessions look different from a normal practice. Here is why.</p>
+    <a class="btn" href="/philosophy">Read our coaching philosophy</a>
   </div>
 
 <script src="/assets/talata-signup.js?v=20261011a"></script>

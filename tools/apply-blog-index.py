@@ -214,7 +214,7 @@ def render_home_latest(posts):
         </a>"""
     )
 
-    return """    <div class="head"><h2>Latest from <i>the club</i></h2><a href="/blog">All stories &rarr;</a></div>
+    return """    <div class="head"><h2>Latest</h2><a href="/blog">All stories</a></div>
     <div class="latest">
       <a class="story" href="/blog/{slug}">
         <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}" style="object-position:{focus}">
