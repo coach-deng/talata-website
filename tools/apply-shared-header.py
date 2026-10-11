@@ -31,13 +31,13 @@ SKIP = {
 
 # Per page: (cta_href, cta_label). Anchors verified against each page's form id.
 CTA = {
-    "basketball-in-copenhagen.html": ("/join", "Book free trial"),
-    "index.html": ("#trial", "Book free trial"),
-    "academy.html": ("#apply", "Book free trial"),
-    "mini.html": ("#register", "Book free trial"),
-    "sparks.html": ("#register", "Book free trial"),
+    "basketball-in-copenhagen.html": ("/join", "Book a trial"),
+    "index.html": ("#trial", "Book a trial"),
+    "academy.html": ("#apply", "Book a trial"),
+    "mini.html": ("#register", "Book a trial"),
+    "sparks.html": ("#register", "Book a trial"),
     "men.html": ("#join", "Come and train"),
-    "join.html": ("#register", "Book free trial"),
+    "join.html": ("#register", "Book a trial"),
     "ish-primary-school.html": ("#signup", "Sign up"),
     "ish-high-school.html": ("#signup", "Sign up"),
     "school-partnerships.html": ("#contact", "Get in touch"),
@@ -48,7 +48,7 @@ CTA = {
     "camps/college-pathway-camp-2026.html": ("#waitlist", "Sign up"),
     "camps/lithuania-camp-2026.html": ("#register", "Sign up"),
 }
-DEFAULT_CTA = ("/#trial", "Book free trial")
+DEFAULT_CTA = ("/#trial", "Book a trial")
 
 # The primary CTA became "Become a member" on 6 Sep 2026 (Deng). Trial demoted to
 # secondary, kept because it is still how a cold parent starts.
@@ -145,15 +145,15 @@ CARET = (
 FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" '
                 'type="font/woff2" crossorigin>')
 
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261006c">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261011a">
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">"""
 # theme-color lives in the TALATA:HEAD block now (tools/apply-head.py).
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261006c">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261011a">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261006c" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261011a" defer></script>'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -217,7 +217,7 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
 
 <div class="tn-util">
   <div class="tn-util-in">
-    <p><b>First session free</b><span class="tn-util-x"> &middot; Home court: Svanem&oslash;llehallen, &Oslash;sterbro</span></p>
+    <p>Home court: Svanem&oslash;llehallen, &Oslash;sterbro</p>
     <p class="tn-util-links"><a href="https://www.instagram.com/talatabasketball/" target="_blank" rel="noopener">Instagram</a><span>&middot;</span><a href="mailto:coach@talatabasketball.dk">coach@talatabasketball.dk</a></p>
   </div>
 </div>
@@ -232,7 +232,7 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
       </ul>
     </nav>
     <a class="tn-cta-alt" href="{cta_href}">{cta_label}</a>
-    <a class="tn-cta tn-cta--member" href="{member_href}">{member_label} <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-cta tn-cta--member" href="{member_href}">{member_label}</a>
     <button class="tn-burger" id="tn-burger" type="button" aria-expanded="false" aria-controls="tn-drawer" aria-label="Open menu"><i></i></button>
   </div>
 </div>
@@ -245,8 +245,8 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
     <button class="tn-drawer-close" id="tn-drawer-close" type="button" aria-label="Close menu">&#10005;</button>
   </div>
   <div class="tn-drawer-body">
-    <a class="tn-drawer-cta tn-drawer-cta--member" href="{member_href}">{member_label} <span aria-hidden="true">&rarr;</span></a>
-    <a class="tn-drawer-cta tn-drawer-cta--ghost" href="{cta_href}">{cta_label} <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-drawer-cta tn-drawer-cta--member" href="{member_href}">{member_label}</a>
+    <a class="tn-drawer-cta tn-drawer-cta--ghost" href="{cta_href}">{cta_label}</a>
 {drawer}
     <h3>More</h3>
     <ul class="tn-drawer-list">

@@ -148,7 +148,7 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261006c">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261011a">'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -199,7 +199,7 @@ def build_footer(rel: str, year: int = 2026) -> str:
     contact = "".join(
         '\n        <a href="%s">%s</a>' % (href, label) for href, label in CONTACT
     )
-    contact += '\n        <a href="%s"><b>Book a free trial &rarr;</b></a>' % trial
+    contact += '\n        <a href="%s"><b>Book a trial</b></a>' % trial
     cols.append(
         '      <div class="tf-col">\n        <h4>Contact</h4>%s\n      </div>' % contact
     )
@@ -241,7 +241,6 @@ def build_footer(rel: str, year: int = 2026) -> str:
     </div>
     <div class="tf-base">
       <span>&copy; {year} Talata Basketball &middot; Copenhagen &Oslash; &middot; <a href="/privacy">Privacy</a> &middot; <a href="/privacy#cookies" data-cookie-settings>Cookie settings</a></span>
-      <span>First session is always free. You need indoor shoes, nothing else.</span>
     </div>
   </div>
 </footer>
