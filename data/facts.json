@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-07",
+  "built_for": "2026-10-11",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -191,10 +191,10 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "a1f6ed41b508ea9525d2aa473ad4853970cdb479bbe5ca4ffd9dc087aaf276fc",
+  "sha": "96f79fc24e41574d1acf8dc83cb82d92bd38818c6eca90973e1796c17a47e15f",
   "sources": {
-    "programs_sha": "e4bc03386b61cd49cd8d672e916fa5555bc516838e19e2dd85680af8d2827207",
-    "training_sha": "82f46f716f802bcb2abff3fa6a4d7c9572cfb3358917e6ba3dd2e83954978926",
+    "programs_sha": "574d0c8e45e1a63b403ab075bcb43b241230f2c7dad0c102120692688be3b425",
+    "training_sha": "d087eaaac1bf2e67689289d5b321add075e092a6789da1e67c56bf4eb6e7158f",
     "training_updated": "2026-10-07"
   },
   "teams": {
@@ -496,19 +496,6 @@
           "address": "Biskop Krags Vænge 7, 2200 København N",
           "day": 4,
           "day_name": "Friday",
-          "end": "20:45",
-          "ends": "2026-10-09",
-          "hall": "Nørre Fælled Skole",
-          "off": [
-            "2026-10-30"
-          ],
-          "start": "18:45",
-          "starts": "2026-10-09"
-        },
-        {
-          "address": "Biskop Krags Vænge 7, 2200 København N",
-          "day": 4,
-          "day_name": "Friday",
           "end": "21:00",
           "ends": null,
           "hall": "Nørre Fælled Skole",
@@ -540,19 +527,6 @@
           "address": "Biskop Krags Vænge 7, 2200 København N",
           "day": 4,
           "day_name": "Friday",
-          "end": "20:45",
-          "ends": "2026-10-09",
-          "hall": "Nørre Fælled Skole",
-          "off": [
-            "2026-10-30"
-          ],
-          "start": "18:45",
-          "starts": "2026-10-09"
-        },
-        {
-          "address": "Biskop Krags Vænge 7, 2200 København N",
-          "day": 4,
-          "day_name": "Friday",
           "end": "21:00",
           "ends": null,
           "hall": "Nørre Fælled Skole",
@@ -575,6 +549,7 @@
           "ends": null,
           "hall": "Kulturhuset Indre By",
           "off": [
+            "2026-10-17",
             "2026-12-26",
             "2027-01-02"
           ],
@@ -593,7 +568,9 @@
           "end": "19:00",
           "ends": null,
           "hall": "Nørrebrohallen",
-          "off": [],
+          "off": [
+            "2026-10-12"
+          ],
           "start": "17:30",
           "starts": "2026-09-14"
         },
@@ -604,7 +581,9 @@
           "end": "19:00",
           "ends": null,
           "hall": "Nørrebrohallen",
-          "off": [],
+          "off": [
+            "2026-10-14"
+          ],
           "start": "17:30",
           "starts": "2026-09-14"
         },
@@ -615,7 +594,9 @@
           "end": "19:00",
           "ends": null,
           "hall": "Nørrebrohallen",
-          "off": [],
+          "off": [
+            "2026-10-16"
+          ],
           "start": "17:30",
           "starts": "2026-09-14"
         }
@@ -658,6 +639,7 @@
           "ends": null,
           "hall": "Kulturhuset Indre By",
           "off": [
+            "2026-10-17",
             "2026-12-26",
             "2027-01-02"
           ],
@@ -681,19 +663,6 @@
           ],
           "start": "18:45",
           "starts": "2026-10-05"
-        },
-        {
-          "address": "Biskop Krags Vænge 7, 2200 København N",
-          "day": 4,
-          "day_name": "Friday",
-          "end": "20:45",
-          "ends": "2026-10-09",
-          "hall": "Nørre Fælled Skole",
-          "off": [
-            "2026-10-30"
-          ],
-          "start": "18:45",
-          "starts": "2026-10-09"
         },
         {
           "address": "Biskop Krags Vænge 7, 2200 København N",
@@ -747,6 +716,7 @@
           "ends": null,
           "hall": "Kulturhuset Indre By",
           "off": [
+            "2026-10-17",
             "2026-12-26",
             "2027-01-02"
           ],
@@ -836,7 +806,9 @@
       "end": "19:00",
       "ends": null,
       "hall": "Nørrebrohallen",
-      "off": [],
+      "off": [
+        "2026-10-12"
+      ],
       "start": "17:30",
       "starts": "2026-09-14",
       "teams": [
@@ -944,7 +916,9 @@
       "end": "19:00",
       "ends": null,
       "hall": "Nørrebrohallen",
-      "off": [],
+      "off": [
+        "2026-10-14"
+      ],
       "start": "17:30",
       "starts": "2026-09-14",
       "teams": [
@@ -1033,32 +1007,15 @@
       "end": "19:00",
       "ends": null,
       "hall": "Nørrebrohallen",
-      "off": [],
+      "off": [
+        "2026-10-16"
+      ],
       "start": "17:30",
       "starts": "2026-09-14",
       "teams": [
         "girls_15"
       ],
       "who": "Girls 15+ (Stevnsgade)"
-    },
-    {
-      "address": "Biskop Krags Vænge 7, 2200 København N",
-      "day": 4,
-      "day_name": "Friday",
-      "end": "20:45",
-      "ends": "2026-10-09",
-      "hall": "Nørre Fælled Skole",
-      "off": [
-        "2026-10-30"
-      ],
-      "start": "18:45",
-      "starts": "2026-10-09",
-      "teams": [
-        "academy_u17_u19",
-        "academy_u19",
-        "men"
-      ],
-      "who": "U19 + Men"
     },
     {
       "address": "Biskop Krags Vænge 7, 2200 København N",
@@ -1087,6 +1044,7 @@
       "ends": null,
       "hall": "Kulturhuset Indre By",
       "off": [
+        "2026-10-17",
         "2026-12-26",
         "2027-01-02"
       ],
@@ -1105,6 +1063,7 @@
       "ends": null,
       "hall": "Kulturhuset Indre By",
       "off": [
+        "2026-10-17",
         "2026-12-26",
         "2027-01-02"
       ],
@@ -1123,6 +1082,7 @@
       "ends": null,
       "hall": "Kulturhuset Indre By",
       "off": [
+        "2026-10-17",
         "2026-12-26",
         "2027-01-02"
       ],
