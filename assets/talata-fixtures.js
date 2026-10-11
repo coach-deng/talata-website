@@ -855,7 +855,7 @@
         (t ? '<div class="tf-cd tf-next-cd" data-tf-cd="' + t + '"></div>' : '') +
         '<div class="tf-next-cta">' +
           '<button class="tf-btn is-primary" data-tf-claim="' + esc(g.id) + '" data-tf-date="' + esc(g.date) +
-            '" data-track="next-claim">Claim a free ticket</button>' +
+            '" data-track="next-claim">Get a ticket</button>' +
           '<a class="tf-btn" href="' + href + '" data-track="next-details">Game details</a>' +
         '</div>' +
         extrasHTML(g) +
@@ -1337,7 +1337,7 @@
       document.body.appendChild(wrap);
     }
     wrap.innerHTML =
-      '<div class="tf-modal" role="dialog" aria-modal="true" aria-label="Claim a free ticket">' +
+      '<div class="tf-modal" role="dialog" aria-modal="true" aria-label="Get a ticket">' +
         '<div class="tf-modal-box">' +
           '<button class="tf-x" aria-label="Close">&times;</button>' +
           '<p class="tf-k">Free ticket</p>' +
@@ -1351,7 +1351,7 @@
               '<option>4</option><option>5</option><option>6</option>' +
               '<option>8</option><option>10</option>' +
             '</select></label>' +
-            '<button type="submit" class="tf-btn is-primary">Claim ticket</button>' +
+            '<button type="submit" class="tf-btn is-primary">Get a ticket</button>' +
           '</form>' +
           '<p class="tf-fine">Entry is free. This tells us how many to expect and puts you in ' +
             'the monthly draw. Anyone can enter, and under 13s should ask a parent to use ' +

@@ -137,9 +137,9 @@
     "program.academy_u13_u15.venue": "Strandvejsskolen",
     "program.academy_u17_u19.days": "Mon",
     "program.academy_u17_u19.name": "Academy U17/U19",
-    "program.academy_u17_u19.time": "18:00-20:00",
-    "program.academy_u17_u19.time_end": "20:00",
-    "program.academy_u17_u19.time_start": "18:00",
+    "program.academy_u17_u19.time": "18:45-20:15",
+    "program.academy_u17_u19.time_end": "20:15",
+    "program.academy_u17_u19.time_start": "18:45",
     "program.academy_u17_u19.venue": "Svanemøllehallen",
     "program.fitness_men.age_min": 18,
     "program.fitness_men.fee": 2000,
@@ -191,9 +191,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "96f79fc24e41574d1acf8dc83cb82d92bd38818c6eca90973e1796c17a47e15f",
+  "sha": "aecdc80bd5075c13738729dbe3742aef78a18b363adca2ac12957aa2ec4bf6cc",
   "sources": {
-    "programs_sha": "574d0c8e45e1a63b403ab075bcb43b241230f2c7dad0c102120692688be3b425",
+    "programs_sha": "afdf821ce7856d5ef5062ed7663427ea9703fbb84f85ea64fedaba6301468572",
     "training_sha": "d087eaaac1bf2e67689289d5b321add075e092a6789da1e67c56bf4eb6e7158f",
     "training_updated": "2026-10-07"
   },

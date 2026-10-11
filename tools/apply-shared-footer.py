@@ -148,7 +148,7 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261011a">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261011b">'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's

@@ -165,7 +165,7 @@ def render_blog_list(posts):
         <h2>{title}</h2>
         <p>{desc}</p>
         <div class="meta">{meta}</div>
-        <span class="read-more" style="margin-top:20px;">Read post &rarr;</span>
+        <span class="read-more" style="margin-top:20px;">Read post</span>
       </div>
     </a>
   </div>

@@ -107,7 +107,19 @@ CHECKS_VOICE = [
     ("poster line", re.compile(r"(that (is|was) the (entire|whole)? ?point|what we can say is|worth sitting with|the clearest signal)", re.I), True),
     ("overexplain clause", re.compile(r"[.,;]\s*(which means|that is because)\b", re.I), True),
     ("opens on a negation", re.compile(r"(?<![a-zA-Z])(No|Nothing|Never|Not)\s+[a-z]{3,}[^.!?]{0,50}[.!?]"), False),
+    # The AI-sounding stack, 11 Oct 2026 (Deng: people said the site read as AI).
+    ("reassurance stack", re.compile(r"\b(100% free|no commitment|nothing to (pay|book|sign|bring)|costs nothing|no strings|risk.free|is on us)\b", re.I), True),
+    ("template phrase", re.compile(r"\b(claim my|next level|on and off the court|ready to (play|start|join|go)\?|look no further|whether you're)\b", re.I), True),
+    ("hype word", re.compile(r"\b(actually|real (coaching|competition|curriculum|talk))\b", re.I), False),
+    ("triplet fragment", re.compile(r"(?:\b[A-Z][\w']*(?: [\w']+){0,2}\. ){2}[A-Z][\w']*(?: [\w']+){0,2}\."), False),
+    ("arrow in copy", re.compile(r"[→⟶➜]"), True),
 ]
+
+# "Free" once per page, near the form (Deng, 11 Oct 2026). Blog posts are
+# history, /free is about free things, and reviews quote parents.
+FREE = re.compile(r"\bfree\b", re.I)
+FREE_MAX = 2
+FREE_OK = {"free.html", "reviews/index.html", "privacy.html"}
 
 META = re.compile(
     r"(<title>[^<]*</title>|<meta[^>]*(?:name=\"(?:description|keywords)\"|property=\"og:(?:title|description)\")[^>]*>)",
@@ -140,6 +152,10 @@ def check_voice(fails, warns):
                 continue
             for m in pat.finditer(text):
                 (fails if is_fail else warns).append((rel, name, m.group(0).strip()[:60]))
+        if rel not in FREE_OK and not rel.startswith("blog/"):
+            n = len(FREE.findall(text))
+            if n > FREE_MAX:
+                fails.append((rel, "says free too often", f"{n} times, keep it to one near the form"))
         for m in META.finditer(src):
             if "—" in m.group(0) or "–" in m.group(0):
                 fails.append((rel, "em or en dash in title or meta", m.group(0)[:70]))
@@ -325,6 +341,50 @@ def check_structure(fails, warns):
         warns.append(("site-wide", "no asset version stamp", "cache will serve stale files"))
 
 
+# The plain look, 11 Oct 2026. Glows, gradients, glass, lifts and pill labels
+# were most of why the site read as AI. Pages' inline <style> blocks and the
+# shared stylesheets. talata-tw.css is a compiled Tailwind dump: it carries
+# every utility whether or not a page uses it, so the markup check covers it.
+STYLE_BAD = [
+    ("gradient", re.compile(r"(linear|radial|conic)-gradient\(", re.I)),
+    ("glass blur", re.compile(r"backdrop-filter|backdrop-blur", re.I)),
+    ("text shadow", re.compile(r"text-shadow\s*:", re.I)),
+    ("animation", re.compile(r"@keyframes", re.I)),
+]
+SHADOW = re.compile(r"box-shadow\s*:\s*([^;}]+)", re.I)
+HOVER_MOVE = re.compile(r":hover[^{]*\{[^}]*(translate|scale\()", re.I)
+CLASS_BAD = re.compile(r"""class=["'][^"']*\b(hero-badge|eyebrow|backdrop-blur|bg-gradient-to-\w+|animate-\w+|hover:-?translate-\S+|hover:scale-\S+|shadow-(?:lg|xl|2xl))\b""")
+
+
+def _style_rules(rel, css, fails):
+    for name, pat in STYLE_BAD:
+        for m in pat.finditer(css):
+            fails.append((rel, name, css[max(0, m.start() - 30):m.end() + 20].replace("\n", " ")[:60]))
+    for m in SHADOW.finditer(css):
+        v = m.group(1).strip()
+        if v.startswith("none") or "inset" in v or re.match(r"0 0 0 \d+px", v) or re.match(r"0 1px \d+px", v):
+            continue
+        fails.append((rel, "drop shadow", v[:50]))
+    for m in HOVER_MOVE.finditer(css):
+        fails.append((rel, "hover lift", m.group(0)[:60]))
+
+
+def check_style(fails, warns):
+    for path in pages():
+        src = path.read_text(encoding="utf-8")
+        rel = str(path.relative_to(ROOT))
+        for block in re.findall(r"<style[^>]*>(.*?)</style>", src, re.S):
+            _style_rules(rel, block, fails)
+        for m in re.finditer(r"""style=["']([^"']*)["']""", src):
+            _style_rules(rel, m.group(1), fails)
+        for m in CLASS_BAD.finditer(src):
+            fails.append((rel, "template class", m.group(1)))
+    for css in sorted((ROOT / "assets").glob("*.css")):
+        if css.name == "talata-tw.css":
+            continue
+        _style_rules("assets/" + css.name, css.read_text(encoding="utf-8"), fails)
+
+
 def main():
     only = {a.lstrip("-") for a in sys.argv[1:] if a.startswith("--")} - {"quiet"}
     quiet = "--quiet" in sys.argv
@@ -337,6 +397,8 @@ def main():
         check_consent(fails, warns)
     if not only or "dark" in only:
         check_dark(fails, warns)
+    if not only or "style" in only:
+        check_style(fails, warns)
     if not only or "structure" in only:
         check_structure(fails, warns)
         check_jsonld(fails, warns)
