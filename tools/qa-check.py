@@ -155,7 +155,7 @@ def check_voice(fails, warns):
 # JSON-LD sits in the head: schema names and FAQ answers stay English.
 DANISH = re.compile(r"\b(sommercamp|træning(?:en|er)?|prøvetræning|tilmelding(?:en)?|tilmeld|forældre|"
                     r"efterårsferie(?:n)?|lørdag|kontingent)\b", re.I)
-DANISH_OK = {"help/holdsport.html"}
+DANISH_OK = {"help/holdsport.html", "how-to-holdsport.html"}  # both quote Holdsport's own Danish buttons (11 Oct 2026)
 
 
 def check_danish(fails, warns):

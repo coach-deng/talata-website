@@ -58,6 +58,8 @@ LIGHT_OK = {
     "school-partnerships.html", "shop.html",
     # batch 9 SEO pages, 6 Oct 2026: built on the basketball-in-copenhagen template
     "where-we-train.html", "english-speaking-basketball-copenhagen.html",
+    # 11 Oct 2026: the phone walkthrough for joining a team, built on help/holdsport
+    "how-to-holdsport.html",
 }
 # Every post shares one template, so a new post joins light mode on its own.
 # Run the contrast runner over blog/ when that template changes.
