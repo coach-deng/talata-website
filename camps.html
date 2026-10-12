@@ -12,17 +12,17 @@
   <!-- Self-hosted Inter: no cross-origin round-trip, preloaded for zero LCP delay -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
-  <title>Basketball camp København | Efterår, jul og sommer | Talata</title>
+  <title>Basketball camp København | Jul og sommer | Talata</title>
   <link rel="canonical" href="https://talatabasketball.dk/camps" />
-  <meta name="description" content="Basketballcamps i ferierne i København for 5 til 17 år. Efterårsferie uge 42 og juleferie 28. til 30. december i Hafnia-Hallen. Sommercamp 2027 kommer." />
+  <meta name="description" content="Basketballcamp i København for 13 til 17 år. Juleferie 28. til 30. december i Hafnia-Hallen, med NBA-trænere på video. Sommercamp 2027 kommer." />
   <meta name="keywords" content="basketball camp københavn, basketball camp, basketball camps børn, basketball camp efterårsferie, basketball camp juleferie, basketball sommercamp, basket camp københavn" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://talatabasketball.dk/camps" />
-  <meta property="og:title" content="Basketball camp København | Efterår, jul og sommer" />
-  <meta property="og:description" content="Basketballcamps i skoleferierne i København for 5 til 17 år. Efterår, jul og sommer. Se de næste camps, og skriv dig op." />
+  <meta property="og:title" content="Basketball camp København | Jul og sommer" />
+  <meta property="og:description" content="Basketballcamps i København for 13 til 17 år. Juleferie og sommer. Se de næste camps, og skriv dig op." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Basketball camp København | Efterår, jul og sommer" />
-  <meta name="twitter:description" content="Basketballcamps i skoleferierne i København for 5 til 17 år. Efterår, jul og sommer. Se de næste camps, og skriv dig op." />
+  <meta name="twitter:title" content="Basketball camp København | Jul og sommer" />
+  <meta name="twitter:description" content="Basketballcamps i København for 13 til 17 år. Juleferie og sommer. Se de næste camps, og skriv dig op." />
   <meta name="twitter:image" content="https://talatabasketball.dk/images/mini-strandvejsskolen-drill-2026.jpg" />
   <meta property="og:image" content="https://talatabasketball.dk/images/mini-strandvejsskolen-drill-2026.jpg" />  <style>
     @font-face {
@@ -77,6 +77,20 @@
     .btn { display:block; text-align:center; background:#7DD3FC; color:#0B0F17; font-family:var(--disp); font-weight:800; font-size:0.95rem; padding:13px 20px; border-radius:6px; text-decoration:none; }
     .btn:hover { background:#5cc4f5; color:#0B0F17; }
 
+    /* One camp on the page: it gets the full width and a bigger head. */
+    .cards-wrap.solo { grid-template-columns:1fr; }
+    .solo .camp-card img { display:block; width:100%; height:auto; }
+    .solo .card-header { padding:28px 32px 22px; }
+    .solo .card-header h2 { font-size:2rem; }
+    .solo .card-header .sub { font-size:1.05rem; }
+    .solo .facts { padding:8px 32px 16px; }
+    .solo .fact dt { flex:0 0 70px; font-size:0.9rem; }
+    .solo .fact dd { font-size:1.05rem; }
+    .solo .fact-price dd { font-size:1.15rem; }
+    .solo .card-cta { padding:20px 32px 28px; }
+    .solo .btn { font-size:1.05rem; padding:15px 20px; }
+    @media (max-width:640px) { .solo .card-header, .solo .facts, .solo .card-cta { padding-left:20px; padding-right:20px; } .solo .card-header h2 { font-size:1.5rem; } }
+
     /* Card headers: solid colours. The class names are also dark islands in
        assets/talata-light.css, so keep them. */
     .h-autumn    { background:#0B1F3A; }
@@ -125,21 +139,11 @@
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Talata Basketball camps",
-  "numberOfItems": 3,
+  "numberOfItems": 1,
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
-      "url": "https://talatabasketball.dk/camps/academy-u12-camp-2026"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "url": "https://talatabasketball.dk/camps/academy-u15-camp-2026"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
       "url": "https://talatabasketball.dk/camps/college-pathway-camp-2026"
     }
   ]
@@ -261,65 +265,20 @@
     <div class="hero-in">
       <div>
         <h1>Basketball camps in Copenhagen</h1>
-        <p class="sub">Holiday camps for ages 5 to 17, run by the same coaches your kid sees all season. Next camp: Monday 12 October.</p>
+        <p class="sub">Camps run by the same coaches your kid sees all season. Next camp: Monday 28 December, ages 13 to 17.</p>
       </div>
       <div class="photo"><img src="/images/2026-09/site/camps-hero-camp-group-with-coaches-c.jpg" alt="Talata campers and coaches together at a holiday basketball camp in Copenhagen" width="1920" height="1080" fetchpriority="high" decoding="async"></div>
     </div>
   </div>
 
-  <div class="note-wrap">
-    <p class="note"><strong>Autumn break, week 42.</strong> Both camps run Monday 12 to Thursday 15 October at Hafnia-Hallen. <strong>Tuesday 13 October is a full day too</strong>, with a session upstairs in the middle, and <strong>Thursday is game day from 12:30</strong>. Academy U12 Camp comes for the games only, 12:30 to 14:30. <strong>Hot lunch is included</strong>, plus snacks and fruit every day.</p>
-  </div>
-
   <!-- CAMP CARDS -->
-  <div class="cards-wrap">
-
-    <!-- AUTUMN: STARTER 5-11 -->
-    <div class="camp-card">
-      <div class="card-header h-autumn">
-        <div class="tag">Autumn break &middot; week 42</div>
-        <h2>Academy U12 Camp 2026</h2>
-        <div class="sub">Fundamentals and small sided games</div>
-        <div class="sub" style="margin-top:8px"><strong>Hot lunch included</strong> &middot; the shooting machine all week</div>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Ages</dt><dd>5 to 11</dd></div>
-        <div class="fact"><dt>Days</dt><dd>Four days. Monday 12 to Thursday 15 October</dd></div>
-        <div class="fact"><dt>Time</dt><dd>09:30 to 14:30. Thursday game day only, 12:30 to 14:30</dd></div>
-        <div class="fact"><dt>Where</dt><dd>Hafnia-Hallen, Julius Andersensvej 6, 2450 K&oslash;benhavn SV</dd></div>
-        <div class="fact"><dt>Places</dt><dd>35</dd></div>
-        <div class="fact fact-price"><dt>Price</dt><dd><!--fact:camps.starter.price_now|kr-->1.195 kr<!--/fact--></dd></div>
-      </dl>
-      <div class="card-cta">
-        <a href="/camps/academy-u12-camp-2026" class="btn">Sign up for Academy U12 Camp</a>
-      </div>
-    </div>
-
-    <!-- AUTUMN: ACADEMY 12-16 -->
-    <div class="camp-card">
-      <div class="card-header h-autumn">
-        <div class="tag">Autumn break &middot; week 42</div>
-        <h2>Academy U15 Camp 2026</h2>
-        <div class="sub">Skill work and live play at game pace</div>
-        <div class="sub" style="margin-top:8px"><strong>Hot lunch included</strong> &middot; the shooting machine all week</div>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Ages</dt><dd>12 to 16</dd></div>
-        <div class="fact"><dt>Days</dt><dd>Four days. Monday 12 to Thursday 15 October</dd></div>
-        <div class="fact"><dt>Time</dt><dd>09:30 to 14:30. Thursday starts 10:00, games from 12:30</dd></div>
-        <div class="fact"><dt>Where</dt><dd>Hafnia-Hallen, Julius Andersensvej 6, 2450 K&oslash;benhavn SV</dd></div>
-        <div class="fact"><dt>Places</dt><dd>25</dd></div>
-        <div class="fact fact-price"><dt>Price</dt><dd><!--fact:camps.academy.price_now|kr-->1.395 kr<!--/fact--></dd></div>
-      </dl>
-      <div class="card-cta">
-        <a href="/camps/academy-u15-camp-2026" class="btn">Sign up for Academy U15 Camp</a>
-      </div>
-    </div>
+  <div class="cards-wrap solo">
 
     <!-- WINTER: PATHWAY 13-17 -->
     <div class="camp-card">
+      <img src="/images/2026-09/site/winter-camp-academy-defensive-drill-hero.jpg" width="1600" height="600" alt="Talata Academy players defending in a live drill" decoding="async">
       <div class="card-header h-winter">
-        <div class="tag">Winter break &middot; December</div>
+        <div class="tag">Next camp &middot; Winter break &middot; December</div>
         <h2>NBA and College Pathway Camp 2026</h2>
         <div class="sub">NBA coaches on a live video call</div>
       </div>
@@ -343,9 +302,11 @@
   </div>
 
   <section class="past">
-    <h2>Camps we ran in 2026</h2>
+    <h2>More camps in 2026</h2>
     <p>See what a Talata camp looks like.</p>
     <ul>
+      <li><a href="/camps/academy-u15-camp-2026">Academy U15 Camp, ages 12 to 16 <span>&middot; October &middot; autumn break</span></a></li>
+      <li><a href="/camps/academy-u12-camp-2026">Academy U12 Camp, ages 5 to 11 <span>&middot; October &middot; autumn break</span></a></li>
       <li><a href="/blog/talata-canada-camp-2026-recap">Canada Camp, Lethbridge <span>&middot; June &middot; read the recap</span></a></li>
       <li><a href="/camps/nida-camp-2026">Nida Camp, Lithuania <span>&middot; July &middot; see the details</span></a></li>
       <li><a href="/camps/summer-camp">Summer Camp, ages 5 to 17 <span>&middot; August &middot; see what we did, and join the 2027 list</span></a></li>
