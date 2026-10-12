@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-11",
+  "built_for": "2026-10-12",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -34,7 +34,7 @@
       ],
       "eb_deadline": "2026-11-01",
       "month": 12,
-      "name": "International Academy and College Pathway Camp",
+      "name": "NBA and College Pathway Camp",
       "places": 16,
       "price_early": 1295,
       "price_early_until": "2026-11-01",
@@ -97,7 +97,7 @@
     ],
     "camp.pathway.eb_deadline": "2026-11-01",
     "camp.pathway.month": 12,
-    "camp.pathway.name": "International Academy and College Pathway Camp",
+    "camp.pathway.name": "NBA and College Pathway Camp",
     "camp.pathway.places": 16,
     "camp.pathway.price_early": 1295,
     "camp.pathway.price_standard": 1495,
@@ -191,9 +191,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "aecdc80bd5075c13738729dbe3742aef78a18b363adca2ac12957aa2ec4bf6cc",
+  "sha": "2bfb0fb80c3982a48b3bc6885121e6a47119fda77e0072156d1974e17b54135e",
   "sources": {
-    "programs_sha": "afdf821ce7856d5ef5062ed7663427ea9703fbb84f85ea64fedaba6301468572",
+    "programs_sha": "a06d94c770dd3644c7a47b4ade91f18256905c95bc86601756e8a6466a45a1df",
     "training_sha": "d087eaaac1bf2e67689289d5b321add075e092a6789da1e67c56bf4eb6e7158f",
     "training_updated": "2026-10-07"
   },

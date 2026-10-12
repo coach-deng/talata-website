@@ -2,7 +2,7 @@
  *
  * The October camps (Mon 12 to Thu 15 Oct) are under-filled and sales close
  * Sun 11 Oct 20:00. This card sells them, then switches itself to the December
- * International Academy and College Pathway Camp until the early bird ends.
+ * NBA and College Pathway Camp until the early bird ends.
  *
  * The markup lives in <template id="camp-pop-tpl"> on index.html, so the prices
  * sit inside facts markers and tools/apply-facts.py keeps them in sync. This file
