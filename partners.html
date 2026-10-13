@@ -8,13 +8,13 @@
 <script>(function(){var m='auto';try{var s=localStorage.getItem('talata-theme');if(s==='light'||s==='dark')m=s}catch(e){}var d=m==='dark';if(m==='auto'){try{d=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){d=true}}var r=document.documentElement;r.classList.remove('light','dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light'})();</script>
 <script src="/assets/talata-theme.js?v=20261012a" defer></script>
 <!-- TALATA:HEAD:END -->
-<title>Sponsorer og partnere | Klubber, firmaer og haller | Talata</title>
+<title>Talata 1000 | Bliv partner i Talata Basketball fra 300 kr</title>
 <link rel="canonical" href="https://talatabasketball.dk/partners" />
-<meta name="description" content="Klubberne, firmaerne, forbundene og hallerne bag Talata Basketball i København." />
+<meta name="description" content="Bliv en af 1.000 partnere bag Talata Basketball i København. Fra 300 kr pr. sæson. Dit nummer, dit navn på partnervæggen og en stemme ved den årlige partneraften." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://talatabasketball.dk/partners" />
-<meta property="og:title" content="Sponsorer og partnere | Klubber, firmaer og haller | Talata" />
-<meta property="og:description" content="Klubberne, firmaerne, forbundene og hallerne bag Talata Basketball i København." />
+<meta property="og:title" content="Talata 1000 | Bliv partner i Talata Basketball fra 300 kr" />
+<meta property="og:description" content="Bliv en af 1.000 partnere bag Talata Basketball i København. Fra 300 kr pr. sæson. Dit nummer, dit navn på partnervæggen og en stemme ved den årlige partneraften." />
   <meta property="og:image" content="https://talatabasketball.dk/images/og/team-photo-tunnel-arena-og.jpg" />
 <meta property="og:site_name" content="Talata Basketball" />
 <meta name="twitter:card" content="summary" />
@@ -77,6 +77,56 @@
   .note{color:var(--td-muted);font-size:.92rem;margin:26px 0 0;}
   footer{background:var(--navy);color:rgba(255,255,255,.7);text-align:center;padding:32px 24px;font-size:.85rem;}
   footer a{color:var(--td-link);}
+  /* Talata 1000 (13 Oct 2026) */
+  .t1k-hero .phero-in{padding-bottom:56px;}
+  .t1k-kick{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7DD3FC;margin-bottom:12px;}
+  .t1k-hero h1{font-family:'Montserrat','Montserrat Fallback',sans-serif;font-size:clamp(2rem,4.4vw,3.2rem);font-weight:900;text-transform:uppercase;line-height:1.05;margin-bottom:14px;color:#fff;}
+  .t1k-hero p{font-size:1.08rem;color:rgba(255,255,255,.85);max-width:36em;}
+  .t1k-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+  .t1k-btn{display:inline-block;background:#1E40AF;color:#fff;font-weight:800;padding:13px 22px;border-radius:999px;}
+  .t1k-btn:hover{background:#16305C;}
+  .t1k-btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,.6);}
+  .t1k-btn-ghost:hover{background:rgba(255,255,255,.08);}
+  .t1k-sec{max-width:1000px;margin:0 auto;padding:52px 24px 0;}
+  .t1k-sec h2{font-family:'Montserrat','Montserrat Fallback',sans-serif;font-size:clamp(1.3rem,2.4vw,1.75rem);font-weight:900;text-transform:uppercase;color:var(--td-text);margin-bottom:10px;line-height:1.15;}
+  .t1k-lead{color:var(--td-muted);max-width:40em;margin-bottom:22px;}
+  .t1k-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .t1k-stat{background:var(--td-surface);border:1px solid var(--td-line);border-radius:14px;padding:18px 18px 16px;}
+  .t1k-stat b{display:block;font-family:'Montserrat','Montserrat Fallback',sans-serif;font-size:1.9rem;font-weight:900;color:var(--td-accent);line-height:1.1;}
+  .t1k-stat span{display:block;color:var(--td-muted);font-size:.92rem;margin-top:4px;}
+  .t1k-story{color:var(--td-text);max-width:42em;margin-top:22px;}
+  .t1k-story p+p{margin-top:12px;}
+  .t1k-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .t1k-tier{background:var(--td-surface);border:1px solid var(--td-line);border-radius:16px;padding:22px 20px;display:flex;flex-direction:column;}
+  .t1k-tier h3{font-size:1.05rem;font-weight:800;color:var(--td-text);}
+  .t1k-price{font-family:'Montserrat','Montserrat Fallback',sans-serif;font-size:1.6rem;font-weight:900;color:var(--td-accent);margin:6px 0 2px;}
+  .t1k-price small{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;color:var(--td-muted);}
+  .t1k-who{color:var(--td-muted);font-size:.93rem;margin-bottom:10px;}
+  .t1k-tier ul{list-style:none;font-size:.93rem;color:var(--td-text);}
+  .t1k-tier li{padding-left:18px;position:relative;margin-top:6px;}
+  .t1k-tier li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--td-accent);}
+  .t1k-tier--top{border-color:var(--td-accent);}
+  .t1k-life{margin-top:16px;background:var(--td-surface-2);border-left:4px solid var(--td-accent);border-radius:10px;padding:14px 16px;color:var(--td-text);}
+  .t1k-perks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .t1k-perk{background:var(--td-surface);border:1px solid var(--td-line);border-radius:14px;padding:18px;}
+  .t1k-perk h3{font-size:1rem;font-weight:800;color:var(--td-text);margin-bottom:4px;}
+  .t1k-perk p{color:var(--td-muted);font-size:.94rem;}
+  .t1k-perk--biz{border-style:dashed;}
+  .t1k-guard{color:var(--td-muted);font-size:.92rem;margin-top:16px;max-width:42em;}
+  .t1k-wall{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+  .t1k-slot{border:1.5px dashed var(--td-line);border-radius:10px;padding:14px 8px;text-align:center;}
+  .t1k-slot b{display:block;font-family:'Montserrat','Montserrat Fallback',sans-serif;font-weight:900;color:var(--td-accent);font-size:1rem;}
+  .t1k-slot span{display:block;color:var(--td-muted);font-size:.78rem;margin-top:2px;}
+  .t1k-steps{list-style:none;counter-reset:st;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .t1k-steps li{counter-increment:st;background:var(--td-surface);border:1px solid var(--td-line);border-radius:14px;padding:18px;color:var(--td-text);font-size:.95rem;}
+  .t1k-steps li::before{content:counter(st);display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#1E40AF;color:#fff;font-weight:800;margin-bottom:10px;}
+  .t1k-steps b{display:block;font-weight:800;margin-bottom:4px;}
+  .t1k-steps p{color:var(--td-muted);}
+  .t1k-join-cta{margin-top:20px;}
+  .t1k-sec .t1k-join-cta a,.t1k-sec .t1k-join-cta a:visited{display:inline-block;background:#1E40AF;color:#fff !important;font-weight:800;padding:13px 22px;border-radius:999px;}
+  .t1k-today{padding-top:64px;}
+  @media(max-width:860px){.t1k-tiers{grid-template-columns:1fr 1fr;}.t1k-stats{grid-template-columns:1fr 1fr;}.t1k-wall{grid-template-columns:repeat(4,1fr);}}
+  @media(max-width:600px){.t1k-sec{padding:40px 16px 0;}.t1k-tiers,.t1k-perks,.t1k-steps{grid-template-columns:1fr;}.t1k-wall{grid-template-columns:repeat(3,1fr);}}
 </style>
 
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
@@ -181,14 +231,118 @@
 <!-- TALATA:HEADER:END -->
 
 
-<div class="hero" style="background:var(--navy);color:#fff;">
+<div class="hero t1k-hero" style="background:var(--td-navy);color:#fff;">
   <div class="phero-in">
-  <h1 style="font-family:'Montserrat','Montserrat Fallback',sans-serif;font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:900;text-transform:uppercase;line-height:1.1;margin-bottom:12px;">Partners and supporters</h1>
-  <p style="font-size:1.05rem;color:rgba(255,255,255,.82);max-width:34em;">The people, clubs and organisations that make a season possible.</p>
+  <span class="t1k-kick">Talata 1000</span>
+  <h1>Own a piece of the story</h1>
+  <p>We are looking for 1.000 partners. Every partner gets a number, #0001 to #1000, and a real say in how the club grows. From 300 kr a season.</p>
+  <div class="t1k-ctas"><a class="t1k-btn" href="#join">Become a partner</a><a class="t1k-btn t1k-btn-ghost" href="#tiers">See the tiers</a></div>
   </div>
 </div>
 
-<div class="wrap">
+<section class="t1k-sec" id="story">
+  <h2>The story so far</h2>
+  <div class="t1k-stats">
+    <div class="t1k-stat"><b>20</b><span>players in August 2024</span></div>
+    <div class="t1k-stat"><b>110+</b><span>players today</span></div>
+    <div class="t1k-stat"><b>6</b><span>teams in DBBF leagues</span></div>
+    <div class="t1k-stat"><b>2</b><span>players gone on to North America</span></div>
+  </div>
+  <div class="t1k-story">
+    <p>August 2024. One team, twenty kids, our first DBBF season. Today we have 110+ players, from five-year-olds on a Saturday morning to our men&rsquo;s team, and six teams in DBBF leagues.</p>
+    <p>Malthe went to Orangeville Prep in Ontario in 2025. Johan, one of the first twenty, plays high school basketball in Ohio this season. The next ones are in the gym right now.</p>
+  </div>
+</section>
+
+<section class="t1k-sec" id="tiers">
+  <h2>Pick your tier</h2>
+  <p class="t1k-lead">Every tier runs for one season. Every partner gets a number.</p>
+  <div class="t1k-tiers">
+    <div class="t1k-tier">
+      <h3>Supporter</h3>
+      <div class="t1k-price">300 kr <small>/ season</small></div>
+      <p class="t1k-who">For anyone. Grandparents, alumni, neighbours, friends of the club.</p>
+      <ul><li>Your partner number</li><li>Your name on the partner wall</li><li>Everything in What owners get</li></ul>
+    </div>
+    <div class="t1k-tier">
+      <h3>Founding Partner</h3>
+      <div class="t1k-price">1.000 kr <small>/ season</small></div>
+      <p class="t1k-who">For people who want to back the club in a bigger way.</p>
+      <ul><li>Your partner number</li><li>Your name on the partner wall</li><li>Everything in What owners get</li></ul>
+    </div>
+    <div class="t1k-tier">
+      <h3>Court Partner</h3>
+      <div class="t1k-price">5.000 kr <small>/ season</small></div>
+      <p class="t1k-who">For local shops, clinics and cafés near our halls.</p>
+      <ul><li>Your logo on the partners page</li><li>One post on our Instagram</li><li>Your name on the training tops</li><li>Window sticker and Morning Coffee</li></ul>
+    </div>
+    <div class="t1k-tier">
+      <h3>Team Partner</h3>
+      <div class="t1k-price">15.000 kr <small>/ season</small></div>
+      <p class="t1k-who">Name one team for a whole season.</p>
+      <ul><li>Your logo on that team&rsquo;s warm-ups</li><li>Two posts on our Instagram</li><li>A team photo you can use</li><li>Everything in Court Partner</li></ul>
+    </div>
+    <div class="t1k-tier">
+      <h3>Travel Partner</h3>
+      <div class="t1k-price">40.000 kr <small>/ season</small></div>
+      <p class="t1k-who">Backs our international tournament fund.</p>
+      <ul><li>Your logo on the travel kit</li><li>Trip photos and video for your own channels</li><li>Named in every post from the trip</li><li>Everything in Team Partner</li></ul>
+    </div>
+    <div class="t1k-tier t1k-tier--top">
+      <h3>Main Partner</h3>
+      <div class="t1k-price">75.000 kr <small>/ season</small></div>
+      <p class="t1k-who">The club&rsquo;s lead partner for the season.</p>
+      <ul><li>Named on every fixture</li><li>Named on the homepage</li><li>Everything in Travel Partner</li></ul>
+    </div>
+  </div>
+  <p class="t1k-life"><b>The first 100 partners keep their price for life.</b> Numbers #0001 to #0100.</p>
+</section>
+
+<section class="t1k-sec" id="owners">
+  <h2>What owners get</h2>
+  <p class="t1k-lead">Every partner, from 300 kr up.</p>
+  <div class="t1k-perks">
+    <div class="t1k-perk"><h3>The Owners&rsquo; Letter</h3><p>Once a year. Our players and teams, where every krone went, the wins and what comes next.</p></div>
+    <div class="t1k-perk"><h3>Partner night</h3><p>A game and a short meeting, once a year. Partners vote on one real thing, like the next warm-up design or where we run a free clinic.</p></div>
+    <div class="t1k-perk"><h3>Your name on the wall</h3><p>On this page and on the banner in our gym.</p></div>
+    <div class="t1k-perk"><h3>Early camp access</h3><p>Camp places open to partners first.</p></div>
+    <div class="t1k-perk"><h3>A quarterly update</h3><p>Four short notes a year from the club.</p></div>
+    <div class="t1k-perk t1k-perk--biz"><h3>For businesses</h3><p>A window sticker for your shop, &ldquo;Vi st&oslash;tter Talata Basketball&rdquo;, and the yearly Talata Morning Coffee with the other partners.</p></div>
+  </div>
+  <p class="t1k-guard">Talata 1000 is a supporter membership. Every krone stays in the club. The vote at partner night is advisory.</p>
+</section>
+
+<section class="t1k-sec" id="wall">
+  <h2>The partner wall</h2>
+  <p class="t1k-lead">The first names go up in December. #0001 is still open.</p>
+  <div class="t1k-wall">
+      <div class="t1k-slot"><b>#0001</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0002</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0003</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0004</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0005</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0006</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0007</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0008</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0009</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0010</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0011</b><span>Your name</span></div>
+      <div class="t1k-slot"><b>#0012</b><span>Your name</span></div>
+  </div>
+</section>
+
+<section class="t1k-sec" id="join">
+  <h2>How to join</h2>
+  <ol class="t1k-steps">
+    <li><b>Pick your tier</b><p>Supporter or Founding Partner for people. Court Partner and up for businesses.</p></li>
+    <li><b>Pay</b><p>MobilePay 52697, or bank transfer to the account at the bottom of this page. Write &ldquo;Talata 1000&rdquo; and your name.</p></li>
+    <li><b>Send us your name</b><p>Email us the name for the wall. We send your partner number back. Businesses, email us and we send an invoice.</p></li>
+  </ol>
+  <p class="t1k-join-cta"><a href="mailto:coach@talatabasketball.dk?subject=Talata%201000">Email coach@talatabasketball.dk</a></p>
+</section>
+
+<div class="wrap t1k-today">
+  <h2 style="font-family:'Montserrat','Montserrat Fallback',sans-serif;font-size:clamp(1.3rem,2.4vw,1.75rem);font-weight:900;text-transform:uppercase;color:var(--td-text);margin-bottom:22px;">Our partners today</h2>
   <div class="ptier">
     <h2>Main partners</h2>
     <div class="pgrid">
@@ -247,7 +401,7 @@
     </div>
   </div>
 
-  <p class="note">To support the club, email <a href="mailto:coach@talatabasketball.dk" style="color:var(--td-link);font-weight:700">coach@talatabasketball.dk</a>.</p>
+  <p class="note">Questions about Talata 1000, email <a href="mailto:coach@talatabasketball.dk" style="color:var(--td-link);font-weight:700">coach@talatabasketball.dk</a>.</p>
 </div>
 
 <script src="/assets/talata-nav.js?v=20261012a" defer></script>
