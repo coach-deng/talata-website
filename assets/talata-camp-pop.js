@@ -27,7 +27,7 @@
 
   var KEY = 'talata_camp_pop_seen_v1';
   var OCT_END = Date.parse('2026-10-11T20:00:00+02:00');   /* October sales close */
-  var DEC_END = Date.parse('2026-11-01T23:59:00+01:00');   /* December early bird ends */
+  var DEC_END = Date.parse('2026-11-15T23:59:00+01:00');   /* December early bird ends */
   var DELAY_MS = 5000;
   var SCROLL_SHARE = 0.4;
   var RETRY_MS = 1000;
