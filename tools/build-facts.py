@@ -69,6 +69,8 @@ WHO_MAP = {
     "open gym": ["open_gym"],
     # 5 Oct 2026 (Deng): Saturday Family Time at Kulturhuset, kids and parents together.
     "family time": ["family_time"],
+    # 14 Oct 2026 (Deng): Talata & Co., the co-ed adult team (18+), Fri 18:30 at Svanemøllehallen.
+    "talata & co.": ["talata_co"],
 }
 
 TEAMS = {
@@ -84,6 +86,7 @@ TEAMS = {
     "men": "Talata Men",
     "open_gym": "Open gym",
     "family_time": "Family Time",
+    "talata_co": "Talata & Co.",
 }
 
 
