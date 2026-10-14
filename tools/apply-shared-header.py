@@ -47,6 +47,8 @@ CTA = {
     "camps/academy-u15-camp-2026.html": ("#waitlist", "Sign up"),
     "camps/academy-u12-camp-2026.html": ("#waitlist", "Sign up"),
     "camps/college-pathway-camp-2026.html": ("#waitlist", "Sign up"),
+    # Coaches book with Deng by email or WhatsApp, no form (14 Oct 2026).
+    "camps/coaches-clinic-2026.html": ("#book", "Book a seat"),
     "camps/lithuania-camp-2026.html": ("#register", "Sign up"),
 }
 DEFAULT_CTA = ("/#trial", "Book a trial")

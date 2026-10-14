@@ -178,6 +178,7 @@ TRIAL = {
     "school-partnerships.html": "#contact",
     "camps/academy-u15-camp-2026.html": "#waitlist",
     "camps/college-pathway-camp-2026.html": "#waitlist",
+    "camps/coaches-clinic-2026.html": "#book",
     "camps/lithuania-camp-2026.html": "#register",
 }
 DEFAULT_TRIAL = "/join"
