@@ -191,9 +191,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "c6929b292fb996226a81855872590eb722f5ab0583612d95abf45b15698346bc",
+  "sha": "b8b224352666720fed146b29d6d8627fbd42e8a7928748a6504b43b9cb3b75ac",
   "sources": {
-    "programs_sha": "7eac8840787b3fe71291bbc1aa90fe4e0a51d509999d2e4a8a3a489cfc97bbe2",
+    "programs_sha": "8d067d35cdb9f0bed4f56854ae226e54471ae337ea8daaee9754686a9831b224",
     "training_sha": "65b8d76e08cb5953dda8af606885dbe3ea287129f20a138e42b74502bcd3394a",
     "training_updated": "2026-10-14"
   },
