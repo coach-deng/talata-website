@@ -102,6 +102,8 @@
       // academy) repainted this line pale grey on the light panel, 1.76:1. Two
       // classes outrank it, so the panel keeps its own dark type.
       '.tns .tns-foot{color:#0A0A0A}',
+      // 14 Oct 2026: the panel's own lines, same reason as .tns-foot above.
+      '.tns .tns-p{color:#0A0A0A;margin:0 0 10px}',
       // The session block is the whole point of the panel, so it outranks
       // everything under it visually.
       '.tns-now{background:#0B1F3A;color:#fff;border-radius:11px;padding:14px 16px;margin-bottom:16px}',
@@ -193,31 +195,32 @@
     return girl && age >= 15 && age <= 19;
   }
 
+  // 14 Oct 2026 (Deng): shorter, his voice, no shop button on this screen.
   var OTHER_KIND = {
     camp: {
-      title: 'Your camp registration is in.',
-      pending: 'Check your inbox to confirm your email, then we send the camp details.',
+      title: 'Got it. Your camp place is in.',
+      pending: 'One tap in the email we just sent and the camp details come straight after.',
       done: 'The camp details are on their way to your inbox.',
       steps: [
-        '<li><b>Read the camp email.</b> It has the dates, the hours, the hall and what to bring.</li>',
-        '<li><b>Payment details follow in a separate email.</b> There is nothing to pay today.</li>'
+        '<li><b>Read the camp email.</b> Dates, hours, the hall and what to bring.</li>',
+        '<li><b>Payment details come in a separate email.</b> Nothing to pay today.</li>'
       ]
     },
     camp_enquiry: {
-      title: 'Thanks, your camp question is in.',
-      pending: 'Check your inbox to confirm your email, then we send you this season\'s camps.',
+      title: 'Got it. Thanks for asking about camps.',
+      pending: 'One tap in the email we just sent and this season\'s camps come straight after.',
       done: 'This season\'s camps are on their way to your inbox.',
       steps: [
-        '<li><b>Pick a camp from the email</b> and reply with the one you want. We hold a place and come back with how to pay.</li>'
+        '<li><b>Pick a camp from the email</b> and reply with the one you want. We hold a place.</li>'
       ],
       button: '<a class="tns-btn" href="/camps">See all camps</a>'
     },
     one_to_one: {
-      title: 'Thanks, your 1:1 request is in.',
-      pending: 'Check your inbox to confirm your email, then we get in touch about 1:1 training.',
-      done: 'We will be in touch about 1:1 training.',
+      title: 'Got it. Thanks for asking about 1:1.',
+      pending: 'One tap in the email we just sent and we get in touch about days.',
+      done: 'We get in touch about days for 1:1 training.',
       steps: [
-        '<li><b>We email you</b> to find days and times that suit.</li>'
+        '<li><b>Reply with the days that suit you</b> and what you want to work on.</li>'
       ]
     }
   };
@@ -230,107 +233,68 @@
       '<span>' + (pending ? k.pending : k.done) +
         ' Check spam if it is not there in five minutes.</span></div>',
       '<div class="tns-body">',
-      '<b style="display:block;margin-bottom:8px">What happens next</b>',
       '<ol>',
-      (pending
-        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
-        : ''),
       k.steps.join(''),
       '</ol>',
       k.button || '',
-
-      '<div class="tns-sec">',
-      '<b>Kit, jerseys and hoodies</b>',
-      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
-      '</div>',
-
-      '<p class="tns-foot">Any question at all, just reply to the email. It comes straight to us.</p>',
+      '<p class="tns-foot">Any question, just reply to the email. It comes straight to us.</p>',
       '</div></div>'
     ].join('');
   }
 
-  function girls15PanelHtml(pending) {
+  /* 14 Oct 2026 (Deng): the panel leads with the session and "just come", the
+     way he answers a walk-in: "The first time is free, no registration
+     necessary. See you out there." The tap in the confirm email is one line
+     under it, because the family can come either way. The Holdsport box and the
+     shop button are gone from this screen: the join link comes after the
+     session, and a parent who just booked a free session is not shopping. */
+  var TAP_LINE = '<p class="tns-p"><b>Tap the link in the email we just sent</b> so the coach knows you\'re coming. Check spam if it is not there in five minutes.</p>';
+
+  function girls15PanelHtml(route, pending) {
+    // The Worker routes a girl of 15 and up to the Stevnsgade team (14 Oct 2026
+    // check). An older Worker did not, so the page keeps its own fallback.
+    var r = route && route.when && /stevnsgade/i.test(route.group || '') ? route : GIRLS_15;
     return [
       '<div class="tns">',
-      pending
-        ? '<div class="tns-head"><b>One quick thing: check your email.</b>' +
-          '<span>We have sent you a link to confirm your address. Click it and you are in. ' +
-          'Check spam if it is not there in five minutes.</span></div>'
-        : '<div class="tns-head"><b>Got it. Come and play.</b>' +
-          '<span>Confirmation is in your inbox. Check spam if it is not there in five minutes.</span></div>',
+      '<div class="tns-head"><b>See you there.</b>',
+      '<span>First session is always free. No registration needed, just come.</span></div>',
       '<div class="tns-body">',
-
-      sessionBlock(GIRLS_15),
-
-      '<b style="display:block;margin-bottom:8px">What happens next</b>',
-      '<ol>',
-      (pending
-        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
-        : ''),
-      '<li><b>Just come.</b> Any of the three sessions. Ask for Coach Jordan.</li>',
-      '<li><b>The first session is free.</b> She needs indoor shoes and a water bottle.</li>',
-      '<li><b>After that, enrolment goes through Stevnsgade.</b> We sort it out with you.</li>',
-      '</ol>',
-
-      '<div class="tns-sec">',
-      '<b>Kit, jerseys and hoodies</b>',
-      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
-      '</div>',
-
-      '<p class="tns-foot">Any question at all, just reply to the confirmation email. It comes straight to us.</p>',
+      sessionBlock(r),
+      '<p class="tns-p">The team trains Monday, Wednesday and Friday, 17:30 to 19:00, so any of them works. Bring indoor shoes and water and ask for Coach Jordan.</p>',
+      pending ? TAP_LINE : '<p class="tns-p">The details are in your inbox too.</p>',
+      '<p class="tns-p">After the first session, joining goes through Stevnsgade. We sort it out with you.</p>',
+      '<p class="tns-foot">Any question, just reply to the email. It comes straight to us.</p>',
       '</div></div>'
     ].join('');
   }
 
   function panelHtml(variant, route, pending, kind, data) {
     if (kind && kind !== 'trial' && OTHER_KIND[kind]) return otherPanelHtml(kind, pending);
-    if (isGirl15(data)) return girls15PanelHtml(pending);
-    var link = variant === 'mini' ? HOLDSPORT.mini : HOLDSPORT.intake;
-    var team = variant === 'mini' ? 'Talata Mini' : 'Talata Basketball';
+    if (isGirl15(data)) return girls15PanelHtml(route, pending);
+    if (!route || !route.when) {
+      return [
+        '<div class="tns">',
+        '<div class="tns-head"><b>Got it.</b>',
+        '<span>First session is always free. No registration needed.</span></div>',
+        '<div class="tns-body">',
+        pending
+          ? '<p class="tns-p"><b>Tap the link in the email we just sent.</b> Then we send you the right session. Check spam if it is not there in five minutes.</p>'
+          : '<p class="tns-p">We email you the right session.</p>',
+        '<p class="tns-foot">Any question, just reply to the email. It comes straight to us.</p>',
+        '</div></div>'
+      ].join('');
+    }
+    var coach = route.coach ? ' and ask for ' + esc(route.coach) : '';
     return [
       '<div class="tns">',
-      pending
-        ? '<div class="tns-head"><b>One quick thing: check your email.</b>' +
-          '<span>We have sent you a link to confirm your address. Click it and you are in. ' +
-          'Check spam if it is not there in five minutes.</span></div>'
-        : '<div class="tns-head"><b>Got it. Come and play.</b>' +
-          '<span>Confirmation is in your inbox. Check spam if it is not there in five minutes.</span></div>',
+      '<div class="tns-head"><b>See you there.</b>',
+      '<span>First session is always free. No registration needed, just come.</span></div>',
       '<div class="tns-body">',
-
       sessionBlock(route),
-
-      '<b style="display:block;margin-bottom:8px">What happens next</b>',
-      '<ol>',
-      (pending
-        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
-        : ''),
-      (route && route.when
-        ? '<li><b>Just turn up.</b> Ask for a coach at the door.</li>'
-        : '<li><b>We email you within a day</b> with your exact day, time and gym.</li>'),
-      '<li><b>The first session is free.</b> Bring indoor shoes and a water bottle.</li>',
-      '<li>If it is a fit, you join the club properly. That part is below when you are ready.</li>',
-      '</ol>',
-
-      '<div class="tns-sec">',
-      '<b>Joining for the season</b>',
-      '<div class="tns-warn">',
-      '<b>Come to your first session before you join.</b>',
-      '<ul>',
-      (data && /talata\s*(&|and)\s*co/i.test(data.program || '')
-        ? '<li>If it is a fit, we send you the Holdsport link afterwards and get you on the team.</li>'
-        : '<li>If it is a fit, we send you the Holdsport link afterwards and get your child on the right team.</li>'),
-      '<li><b>Membership starts the moment you join a team on Holdsport</b>, so we hold that back until you have been in the gym.</li>',
-      '<li><b>Already decided?</b> Reply to your confirmation email and we will send the link today.</li>',
-      '</ul>',
-      '</div>',
-      '</div>',
-
-      '<div class="tns-sec">',
-      '<b>Kit, jerseys and hoodies</b>',
-      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
-      '</div>',
-
-      '<p class="tns-foot">Any question at all, just reply to the confirmation email. It comes straight to us.</p>',
+      '<p class="tns-p">Bring indoor shoes and water' + coach + '.</p>',
+      pending ? TAP_LINE : '<p class="tns-p">The details are in your inbox too.</p>',
+      '<p class="tns-p">If it\'s a fit, we send you the link to join after the session.</p>',
+      '<p class="tns-foot">Any question, just reply to the email. It comes straight to us.</p>',
       '</div></div>'
     ].join('');
   }
