@@ -31,7 +31,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKIP_DIRS = ("tools/", "node_modules/", "dist/", ".git/", ".wrangler/", "posters/")
+SKIP_DIRS = ("tools/", "node_modules/", "dist/", ".git/", ".wrangler/", ".claude/", "posters/")
 SKIP = {"index-new.html", "home-classic.html", "hero-carousel-preview.html"}
 
 # Batches roll in per the v3 plan. Add a page here only after the contrast

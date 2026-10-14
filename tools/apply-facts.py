@@ -57,7 +57,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 FACTS = ROOT / "data/facts.json"
 LOCK = ROOT / "tools/facts-orphans.lock"
-SKIP_DIRS = {"tools", "node_modules", ".git", "blog", "dist"}
+SKIP_DIRS = {"tools", "node_modules", ".git", ".claude", "blog", "dist"}
 EXTRA = [ROOT / "llms.txt"]
 DAY3 = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 DAY_FILTERS = {d.lower(): i for i, d in enumerate(DAY3)}
