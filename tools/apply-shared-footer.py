@@ -110,6 +110,7 @@ COLUMNS = [
         ("/academy", "Academy"),
         ("/sparks", "Sparks"),
         ("/men", "Talata Men"),
+        ("/talata-and-co", "Talata & Co."),
         ("/camps", "Camps"),
     ]),
     ("Watch", [
@@ -148,7 +149,7 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261013b">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261014a">'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's

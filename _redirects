@@ -115,6 +115,10 @@
 /saturdays    /saturday    301
 /lordag       /saturday    301
 
+# Talata & Co., the co-ed adult team, 14 Oct 2026
+/talata-co    /talata-and-co    301
+/co           /talata-and-co    301
+
 # Old /klub/talata-basketball/ URLs, 6 Oct 2026. Search Console still shows one
 # (/klub/.../lithuania-camp-2026.html, Insights 15 Aug to 11 Sep). Known dead camp
 # slugs go straight to their page in one hop; everything else drops the prefix and

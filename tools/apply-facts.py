@@ -263,6 +263,7 @@ TEAM_WEEKS = {
                      ["U13", "U15", "U17", "U19"]),
     "week-sparks":  (["sparks", "girls_15"], []),
     "week-men":     (["men"], ["Men"]),
+    "week-talata-co": (["talata_co"], []),
 }
 
 DAYS_LD = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
