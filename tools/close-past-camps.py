@@ -45,10 +45,10 @@ CLOSES = {
         "Academy U12 Camp ran Oct 12 to 15 2026 at Hafnia-Hallen. Registration is closed."),
     "camps/academy-u15-camp-2026.html": ("2026-10-16",
         "Academy U15 Camp ran Oct 12 to 15 2026 at Hafnia-Hallen. Registration is closed."),
-    # The Coaches Clinic runs Tue 29 and Wed 30 Dec 2026 inside the December camp.
+    # The Coaches Clinic runs Mon 28 and Tue 29 Dec 2026 inside the December camp.
     # Its booking buttons sit inside the CLOSEDFORM markers, so they go too.
-    "camps/coaches-clinic-2026.html": ("2026-12-31",
-        "The Coaches Clinic ran Dec 29 to 30 2026 at Hafnia-Hallen. Booking is closed."),
+    "camps/coaches-clinic-2026.html": ("2026-12-30",
+        "The Coaches Clinic ran Dec 28 to 29 2026 at Hafnia-Hallen. Booking is closed."),
 }
 
 # page -> the line under the banner headline
