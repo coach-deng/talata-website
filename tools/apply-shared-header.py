@@ -37,6 +37,7 @@ CTA = {
     "mini.html": ("#register", "Book a trial"),
     "sparks.html": ("#register", "Book a trial"),
     "men.html": ("#join", "Come and train"),
+    "talata-and-co.html": ("#join", "Book a trial"),
     "join.html": ("#register", "Book a trial"),
     "ish-primary-school.html": ("#signup", "Sign up"),
     "ish-high-school.html": ("#signup", "Sign up"),
@@ -91,7 +92,8 @@ MENU = {
         ("/saturday", "Saturdays", "ages 5 to 12, mornings"),
         ("/academy", "Academy", "ages 13 to 19"),
         ("/sparks", "Sparks", "girls 6 to 14"),
-        ("/men", "Adults", "Men 3. Division + fitness"),
+        ("/men", "Talata Men", "3. Division, 18+"),
+        ("/talata-and-co", "Talata & Co.", "Men and women, all levels"),
         ("/school-partnerships", "Schools", "ISH and school programmes"),
     ],
     # No dropdown. /camps already lists Starter, Pathway, Winter and the archive,
@@ -145,15 +147,15 @@ CARET = (
 FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" '
                 'type="font/woff2" crossorigin>')
 
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261013b">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261014a">
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">"""
 # theme-color lives in the TALATA:HEAD block now (tools/apply-head.py).
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261013b">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261014a">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261013b" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261014a" defer></script>'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's

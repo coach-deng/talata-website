@@ -179,12 +179,14 @@
   // Svanemøllehallen, so the page answers for itself until the Worker is fixed.
   // No price and no Holdsport link: Stevnsgade holds the membership.
   var GIRLS_15 = {
-    group: 'Stevnsgade girls team, coached by Deng',
+    group: 'Stevnsgade girls team, coached by Jordan',
     when: 'Monday, Wednesday or Friday, 17:30 to 19:00',
     where: 'Nørrebrohallen, Nørrebrogade 208, 2200 København N'
   };
 
   function isGirl15(data) {
+    // A woman of 18 or 19 who picked Talata & Co. gets Talata & Co. (14 Oct 2026).
+    if (/talata\s*(&|and)\s*co/i.test((data && data.program) || '')) return false;
     var age = parseInt(data && data.age, 10);
     var girl = /girl|female|pige/i.test((data && data.gender) || '') ||
       /sparks|pige|\bgirls?\b/i.test((data && data.program) || '');
@@ -265,7 +267,7 @@
       (pending
         ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
         : ''),
-      '<li><b>Just come.</b> Any of the three sessions. Ask for Coach Deng.</li>',
+      '<li><b>Just come.</b> Any of the three sessions. Ask for Coach Jordan.</li>',
       '<li><b>The first session is free.</b> She needs indoor shoes and a water bottle.</li>',
       '<li><b>After that, enrolment goes through Stevnsgade.</b> We sort it out with you.</li>',
       '</ol>',
@@ -314,7 +316,9 @@
       '<div class="tns-warn">',
       '<b>Come to your first session before you join.</b>',
       '<ul>',
-      '<li>If it is a fit, we send you the Holdsport link afterwards and get your child on the right team.</li>',
+      (data && /talata\s*(&|and)\s*co/i.test(data.program || '')
+        ? '<li>If it is a fit, we send you the Holdsport link afterwards and get you on the team.</li>'
+        : '<li>If it is a fit, we send you the Holdsport link afterwards and get your child on the right team.</li>'),
       '<li><b>Membership starts the moment you join a team on Holdsport</b>, so we hold that back until you have been in the gym.</li>',
       '<li><b>Already decided?</b> Reply to your confirmation email and we will send the link today.</li>',
       '</ul>',
@@ -358,7 +362,7 @@
   // share of trials that never convert to a paid member.
   var LEAD_VALUE = {
     'Talata Mini': 1800, 'Talata Junior': 1800, 'Talata Sparks': 1800,
-    'Talata Academy': 3300, 'Talata Men': 2000, 'Free trial': 2200
+    'Talata Academy': 3300, 'Talata Men': 2000, 'Talata & Co.': 2000, 'Free trial': 2200
   };
 
   // Club bands since 19 Aug 2026: Mini 5 to 9, Junior 10 to 12, Academy 13 to 17,
