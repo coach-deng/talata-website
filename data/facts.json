@@ -226,16 +226,27 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "68369b14513cc05d678503871d8b84b4d43fd099c35880b96b10be17a8d2fcf8",
+  "sha": "a7db740ef265b6ecfa945618d4c2605520edf40fc16e8ce9fdee1fc0c0cfabaf",
   "sources": {
-    "programs_sha": "a5c5153ac49f6df19e9930bf27f84dd78d9932cad4637130646024ff231abc58",
-    "training_sha": "65b8d76e08cb5953dda8af606885dbe3ea287129f20a138e42b74502bcd3394a",
+    "programs_sha": "44e04133c8afa2fa1731ad9766b5ff34fea6c7b86aa0e96760aa1a75bed4e2ae",
+    "training_sha": "37e718eef7a9dcd4b205d0de997acfbe0eea98a134a19286b149c218f819b856",
     "training_updated": "2026-10-14"
   },
   "teams": {
     "academy_u13_u15": {
       "label": "Academy U13 + U15",
       "sessions": [
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "18:15",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "16:15",
+          "starts": "2026-10-19"
+        },
         {
           "address": "Sionsgade 1, 2100 København Ø",
           "day": 0,
@@ -245,17 +256,6 @@
           "hall": "Strandvejsskolen",
           "off": [],
           "start": "16:30",
-          "starts": "2026-10-19"
-        },
-        {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 0,
-          "day_name": "Monday",
-          "end": "18:45",
-          "ends": null,
-          "hall": "Svanemøllehallen",
-          "off": [],
-          "start": "16:45",
           "starts": "2026-10-19"
         },
         {
@@ -321,11 +321,11 @@
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
           "day_name": "Monday",
-          "end": "18:45",
+          "end": "18:15",
           "ends": null,
           "hall": "Svanemøllehallen",
           "off": [],
-          "start": "16:45",
+          "start": "16:15",
           "starts": "2026-10-19"
         },
         {
@@ -391,11 +391,11 @@
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
           "day_name": "Monday",
-          "end": "18:45",
+          "end": "18:15",
           "ends": null,
           "hall": "Svanemøllehallen",
           "off": [],
-          "start": "16:45",
+          "start": "16:15",
           "starts": "2026-10-19"
         },
         {
@@ -461,11 +461,11 @@
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
           "day_name": "Monday",
-          "end": "18:45",
+          "end": "18:15",
           "ends": null,
           "hall": "Svanemøllehallen",
           "off": [],
-          "start": "16:45",
+          "start": "16:15",
           "starts": "2026-10-19"
         },
         {
@@ -857,6 +857,24 @@
       "who": "Sparks"
     },
     {
+      "address": "Østerbrogade 240, 2100 København Ø",
+      "day": 0,
+      "day_name": "Monday",
+      "end": "18:15",
+      "ends": null,
+      "hall": "Svanemøllehallen",
+      "off": [],
+      "start": "16:15",
+      "starts": "2026-10-19",
+      "teams": [
+        "academy_u13_u15",
+        "academy_u15_u17",
+        "academy_u17_u19",
+        "academy_u17"
+      ],
+      "who": "U15 + U17"
+    },
+    {
       "address": "Sionsgade 1, 2100 København Ø",
       "day": 0,
       "day_name": "Monday",
@@ -870,24 +888,6 @@
         "academy_u13_u15"
       ],
       "who": "U13 Academy + Junior + U13"
-    },
-    {
-      "address": "Østerbrogade 240, 2100 København Ø",
-      "day": 0,
-      "day_name": "Monday",
-      "end": "18:45",
-      "ends": null,
-      "hall": "Svanemøllehallen",
-      "off": [],
-      "start": "16:45",
-      "starts": "2026-10-19",
-      "teams": [
-        "academy_u13_u15",
-        "academy_u15_u17",
-        "academy_u17_u19",
-        "academy_u17"
-      ],
-      "who": "U15 + U17"
     },
     {
       "address": "Nørrebrogade 208, 2200 København N",
