@@ -103,6 +103,13 @@
     .person-facts li strong { color:var(--td-text); }
     #tremaine > p { margin-top: 12px; }
     .person-link { margin-top: 10px; font-size: 0.92rem; font-weight: 700; }
+    /* Deng, 15 Oct 2026: Tremaine is the headline, Deng sits after him and smaller. */
+    .person-lead { grid-template-columns: 320px 1fr; }
+    .person-lead .person-body h3 { font-size: 1.8rem; }
+    .person-lead .person-facts li { font-size: 1rem; }
+    .person-small { grid-template-columns: 160px 1fr; margin-top: 28px; }
+    .person-small .person-body h3 { font-size: 1.15rem; }
+    @media (max-width: 720px) { .person-lead, .person-small { grid-template-columns: 1fr; } }
     .person-link a { color: var(--td-link); }
     @media (max-width: 720px) {
       .person { grid-template-columns: 1fr; }
@@ -318,25 +325,8 @@
   </div>
 
   <div class="section" id="tremaine">
-    <h2>Your coaches: Deng and Tremaine Dalton</h2>
-    <div class="person" id="deng">
-      <div class="person-photo">
-        <img src="/images/people/deng-awak.jpg" alt="Deng Awak, head coach at Talata Basketball" width="900" height="1125" loading="lazy" decoding="async" style="object-position:center 18%;">
-      </div>
-      <div class="person-body">
-        <div class="role">Head coach, runs the camp all three days</div>
-        <h3>Deng Awak</h3>
-        <p class="sub">Founder of Talata Basketball</p>
-        <ul class="person-facts">
-          <li>Captained <strong>Mount Royal University</strong> in Calgary, U SPORTS Canada West</li>
-          <li>Pro in <strong>Canada, Lithuania and Denmark</strong>, including BK Amager in the Basketligaen</li>
-          <li>Has coached in <strong>four countries</strong>: Canada, Lithuania, Indonesia and Denmark</li>
-          <li>Ran the Talata <strong>Canada Camp</strong> in Lethbridge, Alberta, in July 2026</li>
-        </ul>
-        <p class="person-link"><a href="/coaches/deng-awak">Deng's full profile</a></p>
-      </div>
-    </div>
-    <div class="person">
+    <h2>Your coaches: Tremaine Dalton and Deng</h2>
+    <div class="person person-lead">
       <div class="person-photo">
         <img src="/images/2026-10/tremaine/tremaine-dalton-pro-session.jpg" alt="Tremaine Dalton on a pro court while a player shoots behind him" width="768" height="960" loading="lazy" decoding="async">
       </div>
@@ -374,6 +364,23 @@
         <span class="video-thumb"><img src="/images/2026-10/tremaine/tremaine-les-deux-interview.jpg" alt="Tremaine Dalton standing on a street in New York" width="960" height="540" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></span>
         <span class="video-cap">Speak Ya Clout: Tremaine's story<small>Watch on YouTube</small></span>
       </a>
+    </div>
+    <div class="person person-small" id="deng">
+      <div class="person-photo">
+        <img src="/images/people/deng-awak.jpg" alt="Deng Awak, head coach at Talata Basketball" width="900" height="1125" loading="lazy" decoding="async" style="object-position:center 18%;">
+      </div>
+      <div class="person-body">
+        <div class="role">Head coach, runs the camp all three days</div>
+        <h3>Deng Awak</h3>
+        <p class="sub">Founder of Talata Basketball</p>
+        <ul class="person-facts">
+          <li>Captained <strong>Mount Royal University</strong> in Calgary, U SPORTS Canada West</li>
+          <li>Pro in <strong>Canada, Lithuania and Denmark</strong>, including BK Amager in the Basketligaen</li>
+          <li>Has coached in <strong>four countries</strong>: Canada, Lithuania, Indonesia and Denmark</li>
+          <li>Ran the Talata <strong>Canada Camp</strong> in Lethbridge, Alberta, in July 2026</li>
+        </ul>
+        <p class="person-link"><a href="/coaches/deng-awak">Deng's full profile</a></p>
+      </div>
     </div>
   </div>
 
