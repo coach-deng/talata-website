@@ -400,6 +400,13 @@
       order_total: total(),
       order_member: isMember ? 'yes' : 'no',
       order_lines: lines,
+      /* 15 Oct 2026 (security check): the Worker prices the order from these
+         and its own table (Talata-API/src/shop-prices.ts). Total and lines
+         above are for the page only. */
+      order_items: cart.map(function (it) {
+        return { id: it.id, qty: it.qty, size: it.size, kit: it.kit, name: it.name, number: it.number };
+      }),
+      note: buyer.note || '',
       message:
         'SHOP ORDER ' + ref + ' | ' + (isMember ? 'MEMBER' : 'public') + ' | total ' +
         total() + ' kr | MobilePay ' + MOBILEPAY + '\n' + lines.join('\n') +

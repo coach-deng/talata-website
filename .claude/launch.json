@@ -4,7 +4,7 @@
     {
       "name": "talata-website",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", ".", "-p", "3000", "--no-clipboard"],
+      "runtimeArgs": ["serve", ".", "-l", "tcp://127.0.0.1:3000", "--no-clipboard"],
       "port": 3000
     }
   ]

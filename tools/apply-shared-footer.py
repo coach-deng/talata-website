@@ -151,7 +151,7 @@ SOCIAL = [
 
 # 15 Oct 2026 (Deng): the big camp popup shows on every page, so its script
 # rides in the footer block. It loads its own CSS only when it shows.
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261015b">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261015d">'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -248,7 +248,7 @@ def build_footer(rel: str, year: int = 2026) -> str:
     </div>
   </div>
 </footer>
-<script src="/assets/talata-camp-pop.js?v=20261015b" defer></script>
+<script src="/assets/talata-camp-pop.js?v=20261015d" defer></script>
 {end}""".format(
         start=START,
         end=END,

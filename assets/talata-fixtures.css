@@ -483,6 +483,9 @@ html.light .tf-r-wl.is-w,html.light .tf-r-score i.tf-r-wl.is-w{color:#FFFFFF;}
   background:var(--f-card2);color:var(--f-text);
 }
 .tf-modal-box .tf-btn{width:100%;margin-top:4px;}
+/* newsletter tickbox on the ticket form, 15 Oct 2026 */
+.tf-modal-box label.tf-check{display:flex;align-items:center;gap:8px;font-weight:500;cursor:pointer;}
+.tf-modal-box label.tf-check input{width:auto;margin:0;flex:none;}
 .tf-fine{font-size:.74rem;color:var(--f-muted);margin:14px 0 0;line-height:1.55;}
 .tf-ok{display:none;font-size:.95rem;color:var(--f-win);margin:8px 0 0;line-height:1.5;}
 
