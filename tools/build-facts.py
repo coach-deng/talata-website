@@ -46,6 +46,8 @@ DASH_COLLECT = Path("/Users/dengawak/talata-automations/scripts/dash_collect.py"
 OUT_JSON = ROOT / "data/facts.json"
 OUT_TS = Path("/Users/dengawak/Created Apps/Talata/Talata-API/src/site-facts.generated.ts")
 
+DA_MONTHS = ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august",
+             "september", "oktober", "november", "december"]
 DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
 # A "Who" token in training-week.md -> the team keys it feeds. A row can feed
@@ -145,6 +147,11 @@ def team_keys(who):
     return keys
 
 
+def listing(items, word):
+    """['28', '29', '30'] -> '28, 29 and 30'."""
+    return items[0] if len(items) == 1 else "%s %s %s" % (", ".join(items[:-1]), word, items[-1])
+
+
 def price_now(camp, today):
     """The price a family pays if they book today: early bird until its date, then standard."""
     until = camp.get("price_early_until")
@@ -180,13 +187,29 @@ def build(today):
 
     camps = {}
     for key in ("starter", "academy", "pathway"):
-        c = {f: facts[k] for k in facts for f in [k.split(".", 2)[2]] if k.startswith("camp.%s." % key)}
+        c = {k.split(".", 2)[2]: facts[k] for k in facts if k.startswith("camp.%s." % key)}
         if not c:
             continue
         if "camp.%s.price_early" % key in until:
             c["price_early_until"] = until["camp.%s.price_early" % key]
         c["price_now"] = price_now(c, today)
         camps[key] = c
+
+    # The Coaches Clinic (15 Oct 2026). On 14 Oct its days moved three times by
+    # hand on the page. Its text forms are built here so apply-facts only prints.
+    clinic = {k.split(".", 1)[1]: facts[k] for k in facts if k.startswith("clinic.")}
+    if clinic:
+        if "clinic.price_early" in until:
+            clinic["price_early_until"] = until["clinic.price_early"]
+        clinic["price_now"] = price_now(clinic, today)
+        dates = [dt.date(clinic["year"], clinic["month"], d) for d in clinic["days"]]
+        month = dates[0].strftime("%B")
+        clinic["start_date"], clinic["end_date"] = dates[0].isoformat(), dates[-1].isoformat()
+        clinic["days_long"] = "%s %s" % (listing(["%s %d" % (d.strftime("%A"), d.day) for d in dates], "and"), month)
+        clinic["days_short"] = "%s %s" % (listing([str(d.day) for d in dates], "and"), month)
+        clinic["days_da"] = "%s %s" % (listing(["%d." % d.day for d in dates], "og"), DA_MONTHS[dates[0].month - 1])
+        clinic["count"] = len(dates)
+        clinic["time"] = "%s to %s" % (clinic["time_start"], clinic["time_end"])
 
     dc = load(DASH_COLLECT, "dashcollect")
     rows = dc.parse_training(dc.Paths(training=str(TRAINING)), today)["data"]["rows"]
@@ -216,6 +239,7 @@ def build(today):
         },
         "facts": facts,
         "camps": camps,
+        "clinic": clinic,
         "teams": teams,
         "training": training,
         "venues": {v["key"]: {"name": v["name"], "address": v["address"]} for v in venues.values()},
