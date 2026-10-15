@@ -68,6 +68,29 @@
       "when": "Mon 12 - Thu 15 Oct (4 days)"
     }
   },
+  "clinic": {
+    "count": 2,
+    "days": [
+      28,
+      29
+    ],
+    "days_da": "28. og 29. december",
+    "days_long": "Monday 28 and Tuesday 29 December",
+    "days_short": "28 and 29 December",
+    "eb_deadline": "2026-11-15",
+    "end_date": "2026-12-29",
+    "month": 12,
+    "places": 30,
+    "price_early": 1500,
+    "price_early_until": "2026-11-15",
+    "price_now": 1500,
+    "price_standard": 1995,
+    "start_date": "2026-12-28",
+    "time": "09:15 to 15:00",
+    "time_end": "15:00",
+    "time_start": "09:15",
+    "year": 2026
+  },
   "facts": {
     "camp.academy.age_max": 16,
     "camp.academy.age_min": 12,
@@ -123,6 +146,18 @@
     "camp.starter.time_end": "14:30",
     "camp.starter.time_start": "09:30",
     "camp.starter.when": "Mon 12 - Thu 15 Oct (4 days)",
+    "clinic.days": [
+      28,
+      29
+    ],
+    "clinic.eb_deadline": "2026-11-15",
+    "clinic.month": 12,
+    "clinic.places": 30,
+    "clinic.price_early": 1500,
+    "clinic.price_standard": 1995,
+    "clinic.time_end": "15:00",
+    "clinic.time_start": "09:15",
+    "clinic.year": 2026,
     "program.academy.age_max": 19,
     "program.academy.age_min": 13,
     "program.academy.fee": 3300,
@@ -191,7 +226,7 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "feef18bf12bf19a673b9147ace322a1dcb3ea54979c3be370151580f016f93c2",
+  "sha": "d1a159bb5dbac8f56e098553ccd1a07959ff6b4e5cb463157fa89421fc4b9f92",
   "sources": {
     "programs_sha": "0f3f009822c5ea0543771dab2a5703bc11ce22337c4e6c14ef242ee359cc878e",
     "training_sha": "65b8d76e08cb5953dda8af606885dbe3ea287129f20a138e42b74502bcd3394a",
