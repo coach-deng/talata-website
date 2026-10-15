@@ -222,7 +222,11 @@ def build(today):
     }
     # The sha covers the content only, so a rebuild on another day with nothing
     # changed is not "stale". price_now is content: it changes on the deadline.
-    sha = hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+    # 15 Oct 2026: sources stays out of the sha. Its programs_sha moves on any
+    # edit to programs.md, a note included, and on 14 Oct that forced four site
+    # and Worker "sha refresh" deploys with no fact changed.
+    content = {k: v for k, v in body.items() if k != "sources"}
+    sha = hashlib.sha256(json.dumps(content, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     return dict(body, sha=sha, built_for=today.isoformat())
 
 
