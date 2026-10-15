@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-14",
+  "built_for": "2026-10-15",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -191,9 +191,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "554c311de93d27f28e8bdb860e58372346f57756b9447320c85ca9e9d78bd1a6",
+  "sha": "feef18bf12bf19a673b9147ace322a1dcb3ea54979c3be370151580f016f93c2",
   "sources": {
-    "programs_sha": "19ec1bd856c42e48c6d389f1a5d093de747b987d812cde17a65834c832261c76",
+    "programs_sha": "0f3f009822c5ea0543771dab2a5703bc11ce22337c4e6c14ef242ee359cc878e",
     "training_sha": "65b8d76e08cb5953dda8af606885dbe3ea287129f20a138e42b74502bcd3394a",
     "training_updated": "2026-10-14"
   },
