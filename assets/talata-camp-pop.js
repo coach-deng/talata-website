@@ -6,7 +6,10 @@
  *
  *   - EVERY PAGE. The script rides in the shared footer block
  *     (tools/apply-shared-footer.py). It stays quiet on the camp page itself,
- *     the Coaches Clinic, /join and the shop, where it would block a form.
+ *     the Coaches Clinic, /join and the shop, where it would block a form, and
+ *     on Mini, Saturday and Talata & Co., where nobody is 13 to 17 (15 Oct 2026).
+ *   - NEVER OVER A FORM. Once someone clicks into a form field, it stays shut
+ *     for that page view, so it never lands on a half-typed trial form.
  *   - FIRST SCROLL. It shows once the page has scrolled SCROLL_PX, with no
  *     timer, so the hero is seen first and the card comes straight after.
  *   - ONCE A DAY. localStorage talata_camp_pop_v2 holds when it was closed or
@@ -33,7 +36,8 @@
   var SCROLL_PX = 120;
   var RETRY_MS = 1000;
   var CAMP_URL = '/camps/college-pathway-camp-2026';
-  var QUIET = ['/camps/college-pathway-camp-2026', '/camps/coaches-clinic-2026', '/join', '/shop'];
+  var QUIET = ['/camps/college-pathway-camp-2026', '/camps/coaches-clinic-2026', '/join', '/shop',
+               '/mini', '/saturday', '/talata-and-co'];
   var IMG = '/images/2026-10/site/pathway-camp-malmo-shot-hero.jpg';
 
   function path() {
@@ -65,7 +69,7 @@
   var me = document.currentScript;
   var stamp = (me && /\?v=([0-9a-z]+)/.exec(me.src || '') || [])[1] || '';
 
-  var camp = null, cssReady = false, scrollOk = false, shown = false, waiting = false;
+  var camp = null, cssReady = false, scrollOk = false, shown = false, waiting = false, typing = false;
   var back = null, card = null, lastFocus = null;
 
   /* ---- facts ------------------------------------------------------------ */
@@ -129,7 +133,7 @@
         '<div class="tcp-body">' +
           '<p class="tcp-kick">Christmas break camp</p>' +
           '<h2 class="tcp-h" id="tcp-h">' + camp.name + '</h2>' +
-          '<p class="tcp-sub">Three days on what NBA, EuroLeague and college coaches look for, with Deng Awak and guest coach Tremaine Dalton of the NBA Basketball Schools in Europe.</p>' +
+          '<p class="tcp-sub">Three days on what NBA, EuroLeague and college coaches look for, with Tremaine Dalton of the NBA Basketball Schools in Europe and Deng Awak.</p>' +
           '<dl class="tcp-facts">' +
             '<div><dt>Days</dt><dd>' + camp.days + (camp.time ? ', ' + camp.time : '') + '</dd></div>' +
             '<div><dt>Ages</dt><dd>' + camp.ages + '</dd></div>' +
@@ -196,7 +200,7 @@
   }
 
   function attempt() {
-    if (shown || !scrollOk || !camp || !cssReady) return;
+    if (shown || typing || !scrollOk || !camp || !cssReady) return;
     if (cupUp() || (isPhone() && !consentDone())) {
       if (!waiting) {
         waiting = true;
@@ -229,6 +233,11 @@
   css.href = '/assets/talata-camp-pop.css' + (stamp ? '?v=' + stamp : '');
   css.onload = function () { cssReady = true; attempt(); };
   document.head.appendChild(css);
+
+  document.addEventListener('focusin', function (e) {
+    var t = e.target;
+    if (!force && t && t.closest && t.closest('form') && !(back && back.contains(t))) typing = true;
+  });
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();   /* a reload half way down the page already counts */

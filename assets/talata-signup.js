@@ -160,13 +160,15 @@
   // way the Worker's verifyKind() does (1:1 first, then a named camp, then any
   // other "camp", else trial), so a camp page still gets camp wording while a
   // new Worker is not yet deployed.
-  var KINDS = { trial: 1, camp: 1, camp_enquiry: 1, one_to_one: 1 };
+  // 15 Oct 2026: "clinic", the Coaches Clinic seat form.
+  var KINDS = { trial: 1, camp: 1, camp_enquiry: 1, one_to_one: 1, clinic: 1 };
 
   function kindOf(out, data) {
     var k = out && out.kind;
     if (k && KINDS.hasOwnProperty(k)) return k;
     var label = String((data && (data.program || data.camp)) || '').toLowerCase();
     if (/1[:\s]?(on|to)?[:\s]?1|one.on.one|private/.test(label)) return 'one_to_one';
+    if (/coach(es)?\s*clinic/.test(label)) return 'clinic';
     // 16 Sep 2026: the camps are Academy U12, Academy U16 and International
     // Academy and College Pathway now. The old names still route.
     // 17 Sep 2026: Academy U16 Camp is Academy U15 Camp. U15 and U16 both read as a camp.
@@ -204,6 +206,15 @@
       steps: [
         '<li><b>Read the camp email.</b> Dates, hours, the hall and what to bring.</li>',
         '<li><b>Payment details come in a separate email.</b> Nothing to pay today.</li>'
+      ]
+    },
+    clinic: {
+      title: 'Got it. Your seat is in.',
+      pending: 'One tap in the email we just sent and the clinic details come straight after.',
+      done: 'The clinic details are on their way to your inbox.',
+      steps: [
+        '<li><b>Read the clinic email.</b> Days, hours, the hall and what to bring.</li>',
+        '<li><b>Payment details come in a separate email.</b> Your club can pay by invoice.</li>'
       ]
     },
     camp_enquiry: {
@@ -424,6 +435,27 @@
     update();
   }
 
+  function ageOnDay(dob, day) {
+    var b = new Date(dob), d = new Date(day);
+    if (isNaN(b.getTime()) || isNaN(d.getTime())) return null;
+    var a = d.getFullYear() - b.getFullYear();
+    var m = d.getMonth() - b.getMonth();
+    if (m < 0 || (m === 0 && d.getDate() < b.getDate())) a--;
+    return a;
+  }
+
+  function wireAgeOn(dobEl, rule) {
+    function check() {
+      var a = dobEl.value ? ageOnDay(dobEl.value, rule.date) : null;
+      dobEl.setCustomValidity(a !== null && (a < rule.min || a > rule.max)
+        ? 'The camp is for ages ' + rule.min + ' to ' + rule.max + ' on the first day.'
+        : '');
+    }
+    dobEl.addEventListener('change', check);
+    dobEl.addEventListener('input', check);
+    check();
+  }
+
   function wire(opts) {
     var form = document.getElementById(opts.formId);
     var btn = document.getElementById(opts.buttonId);
@@ -434,7 +466,12 @@
     // today on every load rather than hardcoding a date that goes stale.
     var dobEl = form.querySelector('input[name="dob"]');
     if (dobEl) dobEl.max = new Date().toISOString().slice(0, 10);
-    if (dobEl) wireExperience(form, dobEl);
+    // A camp page passes experience: false. The club question is for trials.
+    if (dobEl && opts.experience !== false) wireExperience(form, dobEl);
+    // opts.ageOn = { date: '2026-12-28', min: 13, max: 17 }: a camp takes the
+    // age the player is on the first camp day, the same age the invites use
+    // (15 Oct 2026). A 12-year-old who turns 13 before the camp gets in.
+    if (dobEl && opts.ageOn) wireAgeOn(dobEl, opts.ageOn);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -508,6 +545,7 @@
       // Aug 10 2026: parents were already writing it into the free-text box
       // unprompted, so it was a field cost for information we already had.
       var extra = [];
+      if (data.club) extra.push('Club: ' + data.club);
       if (data.wants_team) extra.push('Looking for: ' + data.wants_team);
       // v3.0 (Deng, 1 Oct 2026): the camp lunch add-on, paid with the camp in his follow-up.
       // The price comes from the tick box's own label, which tools/apply-facts.py
