@@ -1351,15 +1351,11 @@
               '<option>4</option><option>5</option><option>6</option>' +
               '<option>8</option><option>10</option>' +
             '</select></label>' +
-            /* 15 Oct 2026 (security check): unticked by default. Ticked, the
-               Worker sends a confirm email and adds the address only on the tap. */
-            '<label class="tf-check"><input type="checkbox" name="newsletter"> ' +
-              'Send me the Talata newsletter too</label>' +
             '<button type="submit" class="tf-btn is-primary">Get a ticket</button>' +
           '</form>' +
           '<p class="tf-fine">Entry is free. This tells us how many to expect and puts you in ' +
             'the monthly draw. Anyone can enter, and under 13s should ask a parent to use ' +
-            'their email. Every mail we send has an unsubscribe link.</p>' +
+            'their email. Plans change? Reply to the ticket email and we take you off.</p>' +
           '<p class="tf-ok"></p>' +
         '</div>' +
       '</div>';
@@ -1399,16 +1395,13 @@
           time: g.time || '',
           venue: venueLabel(g),
           competition: g.competition || 'Talata Basketball',
-          talataNight: isTalataNight(g),
-          newsletter: form.querySelector('[name=newsletter]').checked
+          talataNight: isTalataNight(g)
         })
       }).then(function (r) { return r.json(); }).then(function () {
         form.style.display = 'none';
         var ok = wrap.querySelector('.tf-ok');
         ok.innerHTML = '<b>You are on the list.</b><br>See you at the game, and you are in ' +
-          'this month’s draw.' +
-          (form.querySelector('[name=newsletter]').checked
-            ? '<br>Tap the link in our email to get the newsletter.' : '');
+          'this month’s draw.';
         ok.style.display = 'block';
         if (window.gtag) gtag('event', 'ticket_claim', { game: gameId });
         if (btn) { btn.textContent = 'Ticket claimed'; btn.disabled = true; }
