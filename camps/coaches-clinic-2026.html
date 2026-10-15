@@ -123,14 +123,16 @@
     .video-cap { display: block; font-size: 0.9rem; font-weight: 600; margin-top: 8px; }
     .video-cap small { display: block; font-weight: 400; font-size: 0.82rem;color:var(--td-muted); }
     @media (max-width: 560px) { .video-grid { grid-template-columns: 1fr; } }
-    /* HIGHLIGHT. Deng, 15 Oct 2026: NBA, EuroLeague and the pros must jump
-       out. Yellow on the navy hero (his poster accent), a highlighter band in text. */
-    .hl { font-weight: 800; color: #0B0F17; background: #BAE6FD; padding: 0 3px; border-radius: 3px; }
-    html.dark .hl { color: var(--td-text); background: rgba(125,211,252,0.28); }
-    .hero .hl, html.dark .hero .hl { color: #FACC15; background: none; padding: 0; }
-    .values li.value-hl { background: #0B1F3A; color: #fff; border-color: #0B1F3A; }
-    html.dark .values li.value-hl { border-color: #7DD3FC; }
-    .values li.value-hl .hl, html.dark .values li.value-hl .hl { color: #FACC15; background: none; padding: 0; }
+    /* LEAGUE WORDS. Deng, 15 Oct 2026: bold the word in its league colour, no
+       band behind it, and only NBA and EuroLeague. Never in the hero or a link.
+       EuroLeague orange is darkened to pass on white (4.7:1); dark mode takes
+       the true orange and a lighter NBA blue. The only orange besides the
+       member button. */
+    .lg-nba, .lg-el { font-weight: 800; }
+    .lg-nba { color: #1D428A; }
+    .lg-el { color: #C2490C; }
+    html.dark .lg-nba { color: #8FB0EA; }
+    html.dark .lg-el { color: #F47321; }
     @media (max-width: 600px) { .hero h1 { font-size: 1.8rem; } }
   </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
@@ -308,7 +310,7 @@
 <section class="hero">
   <div class="badge">Winter break &middot; For coaches</div>
   <h1>Coaches Clinic 2026</h1>
-  <div class="sub">Two days on the floor with Tremaine Dalton of the <span class="hl">NBA Basketball Schools</span> in Europe. Learn it in the morning, coach it in the afternoon.</div>
+  <div class="sub">Two days on the floor with Tremaine Dalton of the NBA Basketball Schools in Europe. Learn it in the morning, coach it in the afternoon.</div>
 </section>
 
 <div class="page">
@@ -318,7 +320,7 @@
 <div class="content">
 
   <div class="section">
-    <ul class="values" aria-label="What the clinic includes"><li><!--fact:clinic.count-->2<!--/fact--> days</li><li>On court with real players</li><li>You coach a team in the games</li><li>Feedback after every game</li><li>Led by Tremaine Dalton</li><li class="value-hl"><span class="hl">NBA</span> and <span class="hl">EuroLeague</span> coaches on video</li><li>Session plans to take home</li><li>Wednesday game day too</li><li>Lunch both days</li><li>The camp t-shirt</li></ul>
+    <ul class="values" aria-label="What the clinic includes"><li><!--fact:clinic.count-->2<!--/fact--> days</li><li>On court with real players</li><li>You coach a team in the games</li><li>Feedback after every game</li><li>Led by Tremaine Dalton</li><li><span class="lg-nba">NBA</span> and <span class="lg-el">EuroLeague</span> coaches on video</li><li>Session plans to take home</li><li>Wednesday game day too</li><li>Lunch both days</li><li>The camp t-shirt</li></ul>
     <dl class="facts">
       <div class="fact"><dt>Who</dt><dd>Coaches from any club, any level</dd></div>
       <div class="fact"><dt>Days</dt><dd><!--fact:clinic.days_long-->Monday 28 and Tuesday 29 December<!--/fact--></dd></div>
@@ -341,17 +343,17 @@
         <h3>Tremaine Dalton</h3>
         <p class="sub">Founder of The Process Basketball</p>
         <ul class="person-facts">
-          <li><strong>Camp director</strong> for the <span class="hl">NBA Basketball Schools</span> in Europe</li>
-          <li><strong>Technical director</strong> of the <span class="hl">NBA Basketball School</span> Portugal since 2024</li>
+          <li><strong>Camp director</strong> for the <span class="lg-nba">NBA</span> Basketball Schools in Europe</li>
+          <li><strong>Technical director</strong> of the <span class="lg-nba">NBA</span> Basketball School Portugal since 2024</li>
           <li><strong>Naismith Basketball Hall of Fame</strong> contributor nominee for the class of 2026</li>
-          <li>Trains <span class="hl">NBA and EuroLeague</span> players and French national team players</li>
+          <li>Trains <span class="lg-nba">NBA</span> and <span class="lg-el">EuroLeague</span> players and French national team players</li>
           <li>Played pro in <strong>France, Israel and Australia</strong></li>
         </ul>
       </div>
     </div>
     <p>Tremaine leads both days, on the floor and in the coaches-only hour upstairs. Deng Awak, Talata's Head Coach, supports him and runs the camp around you.</p>
-    <p><span class="hl">NBA and EuroLeague</span> coaches join on a live video call on Monday or Tuesday to talk about how they got there and what they look for. We announce each guest once they confirm.</p>
-    <p><span class="hl">Mathias Lessort</span> trained with him in Paris before <span class="hl">winning the EuroLeague</span> with Panathinaikos in 2024. He has also worked with <span class="hl">NBA champion Serge Ibaka</span>, <span class="hl">Phoenix Suns</span> wing <span class="hl">Adonis Arms</span> and <span class="hl">Boston Celtics</span> first round pick <span class="hl">James Young</span>.</p>
+    <p><span class="lg-nba">NBA</span> and <span class="lg-el">EuroLeague</span> coaches join on a live video call on Monday or Tuesday to talk about how they got there and what they look for. We announce each guest once they confirm.</p>
+    <p>Mathias Lessort trained with him in Paris before winning the EuroLeague with Panathinaikos in 2024. He has also worked with NBA champion Serge Ibaka, Phoenix Suns wing Adonis Arms and Boston Celtics first round pick James Young.</p>
     <div class="photo-strip">
       <figure class="photo"><img src="/images/2026-10/tremaine/tremaine-youth-camp-france.jpg" width="666" height="832" alt="Tremaine Dalton laughing in a team huddle with young players at a camp in France" loading="lazy" decoding="async"><figcaption>Running a youth camp in France.</figcaption></figure>
       <figure class="photo"><img src="/images/2026-10/tremaine/tremaine-dalton-court.jpg" width="666" height="832" alt="Tremaine Dalton on an outdoor court with a basketball" loading="lazy" decoding="async"><figcaption>His shoot with Les Deux.</figcaption></figure>
@@ -359,7 +361,7 @@
     <div class="video-grid">
       <a class="video" href="https://www.youtube.com/watch?v=39oI9YxroRs" target="_blank" rel="noopener">
         <span class="video-thumb"><img src="/images/2026-10/tremaine/tremaine-lessort-summer-training.jpg" alt="Mathias Lessort shooting in an empty arena during summer training" width="480" height="270" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></span>
-        <span class="video-cap">Summer training with <span class="hl">Mathias Lessort</span><small>Watch on YouTube</small></span>
+        <span class="video-cap">Summer training with Mathias Lessort<small>Watch on YouTube</small></span>
       </a>
       <a class="video" href="https://www.youtube.com/watch?v=sNQuq2ho2pU" target="_blank" rel="noopener">
         <span class="video-thumb"><img src="/images/2026-10/tremaine/tremaine-les-deux-interview.jpg" alt="Tremaine Dalton standing on a street in New York" width="960" height="540" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></span>
@@ -411,7 +413,7 @@
 
   <div class="section">
     <h2>Real players in front of you</h2>
-    <p>The players are our <a href="/camps/college-pathway-camp-2026"><span class="hl">NBA</span> and <span class="hl">EuroLeague</span> Pathway Camp</a>, ages 13 to 17. What you learn in the morning, you run with them that afternoon.</p>
+    <p>The players are our <a href="/camps/college-pathway-camp-2026">NBA and EuroLeague Pathway Camp</a>, ages 13 to 17. What you learn in the morning, you run with them that afternoon.</p>
     <p>We coach the constraints-led way: small-sided games, guided discovery, less talking. You see it run, then you run it.</p>
   </div>
 

@@ -116,9 +116,13 @@
     a { color:inherit; }
     img { max-width:100%; display:block; }
 
-    /* HIGHLIGHT. Deng, 15 Oct 2026. */
-    .hl { font-weight: 800; color: #0B0F17; background: #BAE6FD; padding: 0 3px; border-radius: 3px; }
-    html.dark .hl { color: var(--td-text); background: rgba(125,211,252,0.28); }
+    /* LEAGUE WORDS. Deng, 15 Oct 2026: NBA and EuroLeague bold in their own
+       colours, nothing else highlighted. Same rule as the camp and clinic pages. */
+    .lg-nba, .lg-el { font-weight: 800; }
+    .lg-nba { color: #1D428A; }
+    .lg-el { color: #C2490C; }
+    html.dark .lg-nba { color: #8FB0EA; }
+    html.dark .lg-el { color: #F47321; }
     /* hero: words on navy, the photo beside them in full colour */
     .hero { background:var(--navy); color:#fff; }
     .hero-in { max-width:1120px; margin:0 auto; padding:52px 24px 56px; display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start; }
@@ -419,15 +423,15 @@
         <img src="/images/2026-10/tremaine/tremaine-dalton-pro-session.jpg" alt="Tremaine Dalton on a pro court while a player shoots behind him" width="768" height="960" loading="lazy" decoding="async">
       </div>
       <div class="person-body">
-        <div class="role">Guest coach, December camp and Coaches Clinic</div>
+        <div class="role">Leads the December camp and Coaches Clinic</div>
         <h3>Tremaine Dalton</h3>
         <p class="sub">Founder of The Process Basketball</p>
-        <p>Tremaine leads our <span class="hl">NBA and EuroLeague</span> Pathway Camp, 28 to 30 December, and leads the Coaches Clinic, with Deng supporting, on <!--fact:clinic.days_short-->28 and 29 December<!--/fact-->.</p>
+        <p>Tremaine leads our NBA and EuroLeague Pathway Camp, 28 to 30 December, and the Coaches Clinic on <!--fact:clinic.days_short-->28 and 29 December<!--/fact-->. Deng is with him on court every day.</p>
         <ul class="person-facts">
-          <li><strong>Camp director</strong> for the <span class="hl">NBA Basketball Schools</span> in Europe</li>
-          <li><strong>Technical director</strong> of the <span class="hl">NBA Basketball School</span> Portugal since 2024</li>
+          <li><strong>Camp director</strong> for the <span class="lg-nba">NBA</span> Basketball Schools in Europe</li>
+          <li><strong>Technical director</strong> of the <span class="lg-nba">NBA</span> Basketball School Portugal since 2024</li>
           <li><strong>Naismith Basketball Hall of Fame</strong> contributor nominee for the class of 2026</li>
-          <li>Trained <span class="hl">Mathias Lessort</span> before his 2024 <span class="hl">EuroLeague</span> title</li>
+          <li>Trained <strong>Mathias Lessort</strong> before his 2024 <span class="lg-el">EuroLeague</span> title</li>
         </ul>
         <p><a href="/camps/college-pathway-camp-2026#tremaine">More on Tremaine and the camp</a></p>
       </div>

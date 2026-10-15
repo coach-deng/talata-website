@@ -129,13 +129,16 @@
     .video-cap { display: block; font-size: 0.9rem; font-weight: 600; margin-top: 8px; }
     .video-cap small { display: block; font-weight: 400; font-size: 0.82rem;color:var(--td-muted); }
     @media (max-width: 560px) { .video-grid { grid-template-columns: 1fr; } }
-    /* HIGHLIGHT. Deng, 15 Oct 2026: NBA, EuroLeague and the pros must jump out. */
-    .hl { font-weight: 800; color: #0B0F17; background: #BAE6FD; padding: 0 3px; border-radius: 3px; }
-    html.dark .hl { color: var(--td-text); background: rgba(125,211,252,0.28); }
-    .hero .hl, html.dark .hero .hl { color: #FACC15; background: none; padding: 0; }
-    .values li.value-hl { background: #0B1F3A; color: #fff; border-color: #0B1F3A; }
-    html.dark .values li.value-hl { border-color: #7DD3FC; }
-    .values li.value-hl .hl, html.dark .values li.value-hl .hl { color: #FACC15; background: none; padding: 0; }
+    /* LEAGUE WORDS. Deng, 15 Oct 2026: bold the word in its league colour, no
+       band behind it, and only NBA and EuroLeague. Never in the hero or a link.
+       EuroLeague orange is darkened to pass on white (4.7:1); dark mode takes
+       the true orange and a lighter NBA blue. The only orange besides the
+       member button. */
+    .lg-nba, .lg-el { font-weight: 800; }
+    .lg-nba { color: #1D428A; }
+    .lg-el { color: #C2490C; }
+    html.dark .lg-nba { color: #8FB0EA; }
+    html.dark .lg-el { color: #F47321; }
     .nav { background: #0A0A0A; color: #fff; padding: 16px 24px; }
     .nav a { color: #fff; text-decoration: none; font-weight: 600; }
     @media (max-width: 600px) { .waitlist-form .row { grid-template-columns: 1fr; } .hero h1 { font-size: 1.8rem; } }
@@ -151,7 +154,7 @@
   "@context": "https://schema.org",
   "@type": "SportsEvent",
   "name": "Talata NBA and EuroLeague Pathway Camp 2026",
-  "description": "Three days for players aged 13 to 17 in the Copenhagen winter break. Monday 28 to Wednesday 30 December, 09:30 to 14:00 at Hafnia-Hallen, with Head Coach Deng Awak and guest coach Tremaine Dalton of The Process Basketball. Measured, filmed and evaluated in writing.",
+  "description": "Three days for players aged 13 to 17 in the Copenhagen winter break. Monday 28 to Wednesday 30 December, 09:30 to 14:00 at Hafnia-Hallen, led by Tremaine Dalton of The Process Basketball, with Head Coach Deng Awak. Measured, filmed and evaluated in writing.",
   "startDate": "2026-12-28T09:30:00+01:00",
   "endDate": "2026-12-30T14:00:00+01:00",
   "eventStatus": "https://schema.org/EventScheduled",
@@ -308,8 +311,8 @@
 
 <section class="hero">
   <div class="badge">Winter break &middot; December</div>
-  <h1><span class="hl">NBA</span> and <span class="hl">EuroLeague</span> Pathway Camp 2026</h1>
-  <div class="sub">Three days with Tremaine Dalton and Deng Awak on what <span class="hl">NBA</span>, <span class="hl">EuroLeague</span> and college coaches look for, ages 13 to 17</div>
+  <h1>NBA and EuroLeague Pathway Camp 2026</h1>
+  <div class="sub">Three days with Tremaine Dalton and Deng Awak on what NBA, EuroLeague and college coaches look for, ages 13 to 17</div>
 </section>
 
 <div class="page">
@@ -319,7 +322,7 @@
 <div class="content">
 
   <div class="section">
-    <ul class="values" aria-label="What the camp includes"><li>3 days</li><li>Measured like the <span class="hl">NBA</span> Draft Combine</li><li>Film of your own game</li><li>A written evaluation to take home and share with scouts</li><li class="value-hl"><span class="hl">NBA</span> and <span class="hl">EuroLeague</span> coaches on video</li><li>Your game film, packaged</li><li>Tremaine and Deng on court all three days</li><li>The shooting machine</li><li>Hot lunch Monday and Tuesday</li><li>The camp t-shirt</li><li class="value-price"><!--fact:camps.pathway.price_now|kr-->1.795 kr<!--/fact--></li></ul>
+    <ul class="values" aria-label="What the camp includes"><li>3 days</li><li>Measured like the NBA Draft Combine</li><li>Film of your own game</li><li>A written evaluation to take home and share with scouts</li><li><span class="lg-nba">NBA</span> and <span class="lg-el">EuroLeague</span> coaches on video</li><li>Your game film, packaged</li><li>Tremaine and Deng on court all three days</li><li>The shooting machine</li><li>Hot lunch Monday and Tuesday</li><li>The camp t-shirt</li><li class="value-price"><!--fact:camps.pathway.price_now|kr-->1.795 kr<!--/fact--></li></ul>
     <dl class="facts">
       <div class="fact"><dt>Ages</dt><dd>13 to 17</dd></div>
       <div class="fact"><dt>Days</dt><dd>Three days. Monday 28 to Wednesday 30 December</dd></div>
@@ -342,17 +345,17 @@
         <h3>Tremaine Dalton</h3>
         <p class="sub">Founder of The Process Basketball</p>
         <ul class="person-facts">
-          <li><strong>Camp director</strong> for the <span class="hl">NBA Basketball Schools</span> in Europe</li>
-          <li><strong>Technical director</strong> of the <span class="hl">NBA Basketball School</span> Portugal since 2024</li>
+          <li><strong>Camp director</strong> for the <span class="lg-nba">NBA</span> Basketball Schools in Europe</li>
+          <li><strong>Technical director</strong> of the <span class="lg-nba">NBA</span> Basketball School Portugal since 2024</li>
           <li><strong>Naismith Basketball Hall of Fame</strong> contributor nominee for the class of 2026</li>
-          <li>Trains <span class="hl">NBA and EuroLeague</span> players and French national team players</li>
+          <li>Trains <span class="lg-nba">NBA</span> and <span class="lg-el">EuroLeague</span> players and French national team players</li>
           <li>Played pro in <strong>France, Israel and Australia</strong></li>
         </ul>
       </div>
     </div>
     <p>Tremaine leads the camp Monday to Wednesday. He runs sessions with you, watches your games and leads our Coaches Clinic on Monday and Tuesday. Deng Awak, Talata's Head Coach, is on court all three days supporting him and running the camp around you. Bring your questions.</p>
-    <p><span class="hl">NBA and EuroLeague</span> coaches join the camp on a live video call to talk about how they got there and what they look for. We announce each guest once they confirm.</p>
-    <p><span class="hl">Mathias Lessort</span> trained with him in Paris before <span class="hl">winning the EuroLeague</span> with Panathinaikos in 2024. He has also worked with <span class="hl">NBA champion Serge Ibaka</span>, <span class="hl">Phoenix Suns</span> wing <span class="hl">Adonis Arms</span> and <span class="hl">Boston Celtics</span> first round pick <span class="hl">James Young</span>.</p>
+    <p><span class="lg-nba">NBA</span> and <span class="lg-el">EuroLeague</span> coaches join the camp on a live video call to talk about how they got there and what they look for. We announce each guest once they confirm.</p>
+    <p>Mathias Lessort trained with him in Paris before winning the EuroLeague with Panathinaikos in 2024. He has also worked with NBA champion Serge Ibaka, Phoenix Suns wing Adonis Arms and Boston Celtics first round pick James Young.</p>
     <figure class="photo photo-inline">
       <img src="/images/2026-10/tremaine/tremaine-pros-israel.jpg" width="1080" height="520" alt="Tremaine Dalton sitting courtside with pro players between sessions" loading="lazy" decoding="async">
       <figcaption>Between sessions with pro players in Israel.</figcaption>
@@ -365,7 +368,7 @@
     <div class="video-grid">
       <a class="video" href="https://www.youtube.com/watch?v=39oI9YxroRs" target="_blank" rel="noopener">
         <span class="video-thumb"><img src="/images/2026-10/tremaine/tremaine-lessort-summer-training.jpg" alt="Mathias Lessort shooting in an empty arena during summer training" width="480" height="270" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></span>
-        <span class="video-cap">Summer training with <span class="hl">Mathias Lessort</span><small>Watch on YouTube</small></span>
+        <span class="video-cap">Summer training with Mathias Lessort<small>Watch on YouTube</small></span>
       </a>
       <a class="video" href="https://www.youtube.com/watch?v=sNQuq2ho2pU" target="_blank" rel="noopener">
         <span class="video-thumb"><img src="/images/2026-10/tremaine/tremaine-les-deux-interview.jpg" alt="Tremaine Dalton standing on a street in New York" width="960" height="540" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></span>
