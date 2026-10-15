@@ -136,7 +136,7 @@
             '<div><dt>Where</dt><dd>Hafnia-Hallen, Copenhagen SV</dd></div>' +
             '<div class="tcp-price"><dt>Price</dt><dd>' + camp.price + '</dd></div>' +
           '</dl>' +
-          '<p class="tcp-note">' + (camp.places ? camp.places + ' places. ' : '') + 'Measured, filmed, and a written evaluation to take home.</p>' +
+          '<p class="tcp-note">' + (camp.places ? camp.places + ' places. ' : '') + 'Measured, filmed, and a written evaluation to take home and share with scouts. NBA and EuroLeague coaches join by video.</p>' +
           '<div class="tcp-acts">' +
             '<a class="tcp-cta" href="' + CAMP_URL + '#camp-form" data-cta data-track="camp-pop big signup">Sign up for the December camp</a>' +
             '<a class="tcp-alt" href="' + CAMP_URL + '" data-track="camp-pop big details">See the camp</a>' +
