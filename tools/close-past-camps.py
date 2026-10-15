@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # (closes, href, label), in date order. Updated 7 Oct 2026.
 NEXT = [
     ("2026-10-16", "/camps", "October camps, Oct 12 to 15"),
-    ("2026-12-31", "/camps/college-pathway-camp-2026", "NBA and College Pathway Camp, Dec 28 to 30"),
+    ("2026-12-31", "/camps/college-pathway-camp-2026", "NBA and EuroLeague Pathway Camp, Dec 28 to 30"),
 ]
 FALLBACK = ("/camps", "All camps")
 

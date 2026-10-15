@@ -1,0 +1,70 @@
+/* Talata camp popup, the big one (Deng, 15 Oct 2026).
+ * Loaded by assets/talata-camp-pop.js only when the card is about to show.
+ * Camp poster colours: navy #0B1F3A, yellow #FACC15 for the highlight and the
+ * button, white type. A dark card in both themes. Plain look: no blur, no
+ * animation, no shadow. Phone: the card fills most of the screen and scrolls
+ * inside. */
+html.tcp-lock, html.tcp-lock body { overflow:hidden; }
+
+.tcp-back {
+  position:fixed; inset:0; z-index:2147483000;
+  background:rgba(11,31,58,0.78);
+  display:flex; align-items:center; justify-content:center;
+  padding:16px;
+}
+.tcp {
+  position:relative; width:100%; max-width:640px;
+  max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); overflow:auto;
+  background:#0B1F3A; color:#FFFFFF;
+  border:1px solid rgba(250,204,21,0.45); border-top:5px solid #FACC15; border-radius:10px;
+  font-family:'Inter',-apple-system,sans-serif; line-height:1.5; text-align:left;
+}
+.tcp:focus { outline:none; }
+.tcp:focus-visible { outline:none; }
+.tcp-img { display:block; width:100%; height:270px; object-fit:cover; object-position:center 35%; }
+.tcp-x {
+  position:absolute; top:10px; right:10px; width:42px; height:42px; padding:0;
+  border:0; border-radius:50%; background:rgba(11,31,58,0.88); color:#FFFFFF;
+  font-size:28px; line-height:42px; text-align:center; cursor:pointer;
+}
+.tcp-x:hover { background:#1E40AF; }
+.tcp-x:focus-visible { outline:3px solid #FACC15; outline-offset:2px; }
+.tcp-body { padding:22px 28px 28px; }
+.tcp-kick { margin:0 0 6px; color:#FACC15; font-size:0.8rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; }
+.tcp-h {
+  margin:0 0 10px; color:#FFFFFF;
+  font-family:'Montserrat','Montserrat Fallback',sans-serif; font-weight:900; text-transform:uppercase;
+  font-size:clamp(1.55rem,4.2vw,2.2rem); line-height:1.08; letter-spacing:-0.01em;
+}
+.tcp-sub { margin:0 0 16px; color:#BAE6FD; font-size:1rem; }
+.tcp-facts { margin:0 0 14px; padding:0; border-top:1px solid rgba(255,255,255,0.16); }
+.tcp-facts div { display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.16); }
+.tcp-facts dt { flex:0 0 64px; color:#BAE6FD; font-size:0.72rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; }
+.tcp-facts dd { margin:0; color:#FFFFFF; font-weight:700; text-align:right; }
+.tcp-facts dd b { color:#FACC15; font-weight:900; }
+.tcp-note { margin:0 0 18px; color:#F8FAFC; font-size:0.94rem; }
+.tcp-acts { display:flex; flex-wrap:wrap; gap:10px; }
+.tcp-cta {
+  flex:1 1 260px; display:block; text-align:center; text-decoration:none;
+  background:#FACC15; color:#0B1F3A; font-weight:800; font-size:1.06rem;
+  padding:15px 18px; border-radius:6px;
+}
+.tcp-cta:hover { background:#FFFFFF; color:#0B1F3A; }
+.tcp-alt {
+  flex:0 1 auto; display:block; text-align:center; text-decoration:none;
+  color:#FFFFFF; border:1px solid rgba(255,255,255,0.55); font-weight:700;
+  padding:15px 18px; border-radius:6px;
+}
+.tcp-alt:hover { border-color:#FFFFFF; text-decoration:underline; }
+.tcp-cta:focus-visible, .tcp-alt:focus-visible { outline:3px solid #FACC15; outline-offset:2px; }
+
+@media (max-width:600px) {
+  .tcp-back { padding:10px; }
+  .tcp { max-height:calc(100vh - 20px); max-height:calc(100dvh - 20px); }
+  .tcp-img { height:26vh; }
+  .tcp-body { padding:18px 18px 20px; }
+  .tcp-facts div { display:block; padding:8px 0; }
+  .tcp-facts dt { margin-bottom:2px; }
+  .tcp-facts dd { text-align:left; }
+  .tcp-cta, .tcp-alt { flex:1 1 100%; }
+}

@@ -53,7 +53,7 @@ SKIP_DIR_PARTS = ("/junk/", "/_unused/", "/Photos-", "/Basketball 2013",
 
 
 def pages():
-    pat = ["*.html", "blog/*.html", "camps/*.html", "help/*.html",
+    pat = ["*.html", "blog/*.html", "camps/*.html", "coaches/*.html", "help/*.html",
            "philosophy/*.html", "reviews/*.html"]
     out = []
     for p in pat:

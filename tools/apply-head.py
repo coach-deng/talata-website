@@ -62,6 +62,8 @@ LIGHT_OK = {
     "how-to-holdsport.html",
     # 14 Oct 2026: the Coaches Clinic, built on the college-pathway camp template
     "camps/coaches-clinic-2026.html",
+    # 15 Oct 2026: coach profile pages, built on the coaches.html template
+    "coaches/deng-awak.html", "coaches/jordan-naughton.html",
 }
 # Every post shares one template, so a new post joins light mode on its own.
 # Run the contrast runner over blog/ when that template changes.
