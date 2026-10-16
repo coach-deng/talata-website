@@ -157,4 +157,8 @@
   window.addEventListener('resize', function () {
     if (window.innerWidth > 900 && drawer && !drawer.hidden) closeDrawer();
   });
+
+  // iPhone Safari only shows :active when a touch listener exists. Without
+  // this the main buttons never show their pressed look (16 Oct 2026).
+  document.addEventListener('touchstart', function () {}, { passive: true });
 })();

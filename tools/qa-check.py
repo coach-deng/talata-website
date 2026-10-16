@@ -382,7 +382,12 @@ def check_style(fails, warns):
     for css in sorted((ROOT / "assets").glob("*.css")):
         if css.name == "talata-tw.css":
             continue
-        _style_rules("assets/" + css.name, css.read_text(encoding="utf-8"), fails)
+        text = css.read_text(encoding="utf-8")
+        # Premium main buttons, Deng 16 Oct 2026: the one sanctioned sheen and
+        # glow, fenced in talata-nav.css. Everything outside the fence still
+        # holds the plain look.
+        text = re.sub(r"/\* premium-buttons:start.*?/\* premium-buttons:end \*/", "", text, flags=re.S)
+        _style_rules("assets/" + css.name, text, fails)
 
 
 def main():
