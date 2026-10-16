@@ -8,6 +8,54 @@
 <script>(function(){var m='auto';try{var s=localStorage.getItem('talata-theme');if(s==='light'||s==='dark')m=s}catch(e){}var d=m==='dark';if(m==='auto'){try{d=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){d=true}}var r=document.documentElement;r.classList.remove('light','dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light'})();</script>
 <script src="/assets/talata-theme.js?v=20261016d" defer></script>
 <!-- TALATA:HEAD:END -->
+  <script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there a Saturday session for my 7-year-old?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mini is for ages 5 to 9, 10:00 to 11:00 at Kulturhuset Indre By. Junior, ages 10 to 12, follows straight after."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we start a week later?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pick any Saturday that suits you. We take a break on 26 December and 2 January."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is it, and how do we get there?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kulturhuset Indre By, Charlotte Ammundsens Plads 3, 1359 København K. It is a short walk from Nørreport. Bring indoor shoes and a water bottle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my child try before we pay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The first session is free. Book it below and you see the next Saturday session straight away."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I play with my child?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, at Family Time, 12:00 to 13:00 at Kulturhuset Indre By. Kids 5 and up with a parent, all levels. Grown ups need no experience."
+      }
+    }
+  ]
+}
+  </script>
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <!-- TALATA:CONSENT. Google loads only after Accept (tools/apply-consent.py). -->
   <script>
@@ -27,6 +75,19 @@
   <meta property="og:description" content="Basketball om lørdagen i det indre København. Mini 5 til 9 år, Junior 10 til 12 år og bagefter Family Time for børn og forældre. Første lørdag er gratis." />
   <meta property="og:image" content="https://talatabasketball.dk/images/IMG_4172.JPG" />
   <style>
+    /* FAQ, 16 Oct 2026: questions families sent since August */
+    .faq-wrap { max-width:720px; margin:0 auto; padding:56px 24px; }
+    .faq-wrap h2 { font-family:var(--disp); font-size:1.5rem; font-weight:900; text-transform:uppercase; margin-bottom:8px; color:var(--td-text); }
+    .faq-item { padding:18px 0; border-bottom:1px solid var(--td-line); }
+    .faq-item:last-child { border-bottom:none; }
+    .faq-item h3 { font-size:1rem; font-weight:700; margin-bottom:6px; color:var(--td-text); }
+    .faq-item p { font-size:0.95rem; color:var(--td-muted); margin:0; line-height:1.7; }
+    .faq-item p a { color:var(--td-text); text-decoration:underline; }
+    @media (max-width:600px) { .faq-wrap { padding:40px 16px; } }
+
+
+
+
     @font-face { font-family: 'Inter'; font-weight: 400 800; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
     /* Plain look, 11 Oct 2026 (Deng: the site read as AI). Flat, one colour
        headings, photos shown as they are. No gradients, glows, lifts or arrows. */
@@ -278,6 +339,31 @@
 
 <hr class="divider">
 
+  <!-- FAQ:START -->
+  <div class="faq-wrap" id="faq">
+    <h2>Questions</h2>
+      <div class="faq-item">
+        <h3>Is there a Saturday session for my 7-year-old?</h3>
+        <p>Yes. Mini is for ages 5 to 9, <!--fact:teams.mini|sat-->10:00 to 11:00 at Kulturhuset Indre By<!--/fact-->. Junior, ages 10 to 12, follows straight after.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can we start a week later?</h3>
+        <p>Yes. Pick any Saturday that suits you. We take a break on 26 December and 2 January.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Where is it, and how do we get there?</h3>
+        <p>Kulturhuset Indre By, Charlotte Ammundsens Plads 3, 1359 København K. It is a short walk from Nørreport. Bring indoor shoes and a water bottle.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can my child try before we pay?</h3>
+        <p>Yes. The first session is free. Book it below and you see the next Saturday session straight away.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I play with my child?</h3>
+        <p>Yes, at Family Time, <!--fact:teams.family_time|sat-->12:00 to 13:00 at Kulturhuset Indre By<!--/fact-->. Kids 5 and up with a parent, all levels. Grown ups need no experience.</p>
+      </div>
+  </div>
+  <!-- FAQ:END -->
 <div class="section" id="book">
   <h2 class="section-title">Book a trial</h2>
   <p>Your first session is free. Fill this in and you see the next Saturday session straight away. We email it too.</p>

@@ -8,6 +8,54 @@
 <script>(function(){var m='auto';try{var s=localStorage.getItem('talata-theme');if(s==='light'||s==='dark')m=s}catch(e){}var d=m==='dark';if(m==='auto'){try{d=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){d=true}}var r=document.documentElement;r.classList.remove('light','dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light'})();</script>
 <script src="/assets/talata-theme.js?v=20261016d" defer></script>
 <!-- TALATA:HEAD:END -->
+  <script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can my daughter just come along?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Book a trial below first, and you see the day and gym straight away. Sparks is Mon 15:30 to 16:30 at Strandvejsskolen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "She is 12 and has never played. Can she join?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Sparks is for girls aged 6 to 14 and puts fun first. It is built as a first step into basketball."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a team for girls 15 and up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Girls 15 and up train with the Stevnsgade girls team, coached by Jordan. Mon + Wed + Fri 17:30 to 19:00 at Nørrebrohallen. Ask for Coach Jordan at the first session."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can she do Sparks and Mini or Junior too?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, a girl can do both. 1.800 kr per half season covers Sparks on Monday plus one weekday session, Tuesday or Thursday."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do we join after the trial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Through Holdsport, our team app. We send you the link. Joining the team starts the membership fee, so do it once you have decided. New to Holdsport? Read the step by step guide."
+      }
+    }
+  ]
+}
+  </script>
 
   <!-- Self-hosted Inter: no cross-origin round-trip, preloaded for zero LCP delay -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
@@ -106,6 +154,19 @@
     }
   }
   </script>  <style>
+    /* FAQ, 16 Oct 2026: questions families sent since August */
+    .faq-wrap { max-width:720px; margin:0 auto; padding:56px 24px; }
+    .faq-wrap h2 { font-family:var(--disp); font-size:1.5rem; font-weight:900; text-transform:uppercase; margin-bottom:8px; color:var(--td-text); }
+    .faq-item { padding:18px 0; border-bottom:1px solid var(--td-line); }
+    .faq-item:last-child { border-bottom:none; }
+    .faq-item h3 { font-size:1rem; font-weight:700; margin-bottom:6px; color:var(--td-text); }
+    .faq-item p { font-size:0.95rem; color:var(--td-muted); margin:0; line-height:1.7; }
+    .faq-item p a { color:var(--td-text); text-decoration:underline; }
+    @media (max-width:600px) { .faq-wrap { padding:40px 16px; } }
+
+
+
+
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -517,6 +578,31 @@
   <hr class="divider">
 
   <!-- REGISTER / CONTACT -->
+  <!-- FAQ:START -->
+  <div class="faq-wrap" id="faq">
+    <h2>Questions</h2>
+      <div class="faq-item">
+        <h3>Can my daughter just come along?</h3>
+        <p>Book a trial below first, and you see the day and gym straight away. Sparks is <!--fact:teams.sparks|sched-->Mon 15:30 to 16:30 at Strandvejsskolen<!--/fact-->.</p>
+      </div>
+      <div class="faq-item">
+        <h3>She is 12 and has never played. Can she join?</h3>
+        <p>Yes. Sparks is for girls aged 6 to 14 and puts fun first. It is built as a first step into basketball.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is there a team for girls 15 and up?</h3>
+        <p>Yes. Girls 15 and up train with the <a href="#girls-15">Stevnsgade girls team</a>, coached by Jordan. <!--fact:teams.girls_15|sched-->Mon + Wed + Fri 17:30 to 19:00 at Nørrebrohallen<!--/fact-->. Ask for Coach Jordan at the first session.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can she do Sparks and Mini or Junior too?</h3>
+        <p>Yes, a girl can do both. <!--fact:facts.program.mini.fee|kr-->1.800 kr<!--/fact--> per half season covers Sparks on Monday plus one weekday session, Tuesday or Thursday.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do we join after the trial?</h3>
+        <p>Through Holdsport, our team app. We send you the link. Joining the team starts the membership fee, so do it once you have decided. New to Holdsport? Read the <a href="/how-to-holdsport">step by step guide</a>.</p>
+      </div>
+  </div>
+  <!-- FAQ:END -->
   <div class="section" id="register">
     <h2 class="section-title">Book a trial</h2>
     <p>Your first session is free. Fill this in and you see her day, time and gym straight away. We email it too. Ready to sign up properly? You can do that on Holdsport.</p>

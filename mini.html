@@ -8,6 +8,62 @@
 <script>(function(){var m='auto';try{var s=localStorage.getItem('talata-theme');if(s==='light'||s==='dark')m=s}catch(e){}var d=m==='dark';if(m==='auto'){try{d=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){d=true}}var r=document.documentElement;r.classList.remove('light','dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light'})();</script>
 <script src="/assets/talata-theme.js?v=20261016d" defer></script>
 <!-- TALATA:HEAD:END -->
+  <script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can my child try a session before we pay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Book a trial below and you see the day, time and gym straight away. You pay only once you join the team."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My child has never played. Is that okay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most kids in Mini start with no experience. Mini is fun, fundamentals and movement. Junior builds real basketball foundations and game decisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which group fits my child's age?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mini is ages 5 to 9 and Junior is 10 to 12. At 13 they move up to Academy. A 12-year-old plays Junior, and Academy only if the family asks for it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we move the trial to another day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pick any session that suits you. Mini and Junior train Tuesday and Thursday at Strandvejsskolen, Sionsgade 1, and Saturday morning at Kulturhuset Indre By."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mini and Junior are 1.800 kr per half season, for two sessions a week. Ask us about the sibling discount."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do we join after the trial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Through Holdsport, our team app. We send you the link for your child's team. Joining the team starts the membership fee, so do it once you have decided. New to Holdsport? Read the step by step guide."
+      }
+    }
+  ]
+}
+  </script>
 
   <!-- Self-hosted Inter: no cross-origin round-trip, preloaded for zero LCP delay -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
@@ -106,6 +162,19 @@
     }
   }
   </script>  <style>
+    /* FAQ, 16 Oct 2026: questions families sent since August */
+    .faq-wrap { max-width:720px; margin:0 auto; padding:56px 24px; }
+    .faq-wrap h2 { font-family:var(--disp); font-size:1.5rem; font-weight:900; text-transform:uppercase; margin-bottom:8px; color:var(--td-text); }
+    .faq-item { padding:18px 0; border-bottom:1px solid var(--td-line); }
+    .faq-item:last-child { border-bottom:none; }
+    .faq-item h3 { font-size:1rem; font-weight:700; margin-bottom:6px; color:var(--td-text); }
+    .faq-item p { font-size:0.95rem; color:var(--td-muted); margin:0; line-height:1.7; }
+    .faq-item p a { color:var(--td-text); text-decoration:underline; }
+    @media (max-width:600px) { .faq-wrap { padding:40px 16px; } }
+
+
+
+
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -432,6 +501,35 @@
 
   <hr class="divider">
 
+  <!-- FAQ:START -->
+  <div class="faq-wrap" id="faq">
+    <h2>Questions</h2>
+      <div class="faq-item">
+        <h3>Can my child try a session before we pay?</h3>
+        <p>Yes. Book a trial below and you see the day, time and gym straight away. You pay only once you join the team.</p>
+      </div>
+      <div class="faq-item">
+        <h3>My child has never played. Is that okay?</h3>
+        <p>Yes. Most kids in Mini start with no experience. Mini is fun, fundamentals and movement. Junior builds real basketball foundations and game decisions.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Which group fits my child's age?</h3>
+        <p>Mini is ages 5 to 9 and Junior is 10 to 12. At 13 they move up to <a href="/academy">Academy</a>. A 12-year-old plays Junior, and Academy only if the family asks for it.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can we move the trial to another day?</h3>
+        <p>Yes. Pick any session that suits you. Mini and Junior train Tuesday and Thursday at Strandvejsskolen, Sionsgade 1, and Saturday morning at Kulturhuset Indre By.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What does it cost?</h3>
+        <p>Mini and Junior are <!--fact:facts.program.mini.fee|kr-->1.800 kr<!--/fact--> per half season, for two sessions a week. Ask us about the sibling discount.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do we join after the trial?</h3>
+        <p>Through Holdsport, our team app. We send you the link for your child's team. Joining the team starts the membership fee, so do it once you have decided. New to Holdsport? Read the <a href="/how-to-holdsport">step by step guide</a>.</p>
+      </div>
+  </div>
+  <!-- FAQ:END -->
   <!-- REGISTER / CONTACT -->
   <div class="section" id="register">
     <h2 class="section-title">Book a trial</h2>

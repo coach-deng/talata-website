@@ -8,6 +8,54 @@
 <script>(function(){var m='auto';try{var s=localStorage.getItem('talata-theme');if(s==='light'||s==='dark')m=s}catch(e){}var d=m==='dark';if(m==='auto'){try{d=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){d=true}}var r=document.documentElement;r.classList.remove('light','dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light'})();</script>
 <script src="/assets/talata-theme.js?v=20261016d" defer></script>
 <!-- TALATA:HEAD:END -->
+  <script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When do you train?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mon 18:45 to 20:15 at Svanemøllehallen, Fri 18:45 to 21:00 at Nørre Fælled Skole. There is no Wednesday session."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the first session work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is free. Come Monday or Friday, whichever suits you. Book it and we email you the session. Bring indoor shoes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a few friends join together?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Book a trial each and come the same night. Talata Men is a league team with a tryout. For a group that wants to play without the league, Talata & Co. on Friday suits better."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2.000 kr per half season. That covers the hall, the coaching and your league registration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What level is the team?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We play 3. Division Herrer Øst in the Danish federation, plus the Danish Cup. The Final Four is the route up to 2. Division. Beginners and players coming back after years off start at Talata & Co."
+      }
+    }
+  ]
+}
+  </script>
 
   <!-- Self-hosted Inter: no cross-origin round-trip, preloaded for zero LCP delay -->
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
@@ -92,6 +140,19 @@
     }
   }
   </script>  <style>
+    /* FAQ, 16 Oct 2026: questions families sent since August */
+    .faq-wrap { max-width:720px; margin:0 auto; padding:56px 24px; }
+    .faq-wrap h2 { font-family:var(--disp); font-size:1.5rem; font-weight:900; text-transform:uppercase; margin-bottom:8px; color:var(--td-text); }
+    .faq-item { padding:18px 0; border-bottom:1px solid var(--td-line); }
+    .faq-item:last-child { border-bottom:none; }
+    .faq-item h3 { font-size:1rem; font-weight:700; margin-bottom:6px; color:var(--td-text); }
+    .faq-item p { font-size:0.95rem; color:var(--td-muted); margin:0; line-height:1.7; }
+    .faq-item p a { color:var(--td-text); text-decoration:underline; }
+    @media (max-width:600px) { .faq-wrap { padding:40px 16px; } }
+
+
+
+
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -420,6 +481,31 @@
   <hr class="divider">
 
   <!-- COME TRY -->
+  <!-- FAQ:START -->
+  <div class="faq-wrap" id="faq">
+    <h2>Questions</h2>
+      <div class="faq-item">
+        <h3>When do you train?</h3>
+        <p><!--fact:teams.men|sched-->Mon 18:45 to 20:15 at Svanemøllehallen, Fri 18:45 to 21:00 at Nørre Fælled Skole<!--/fact-->. There is no Wednesday session.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How does the first session work?</h3>
+        <p>It is free. Come Monday or Friday, whichever suits you. Book it and we email you the session. Bring indoor shoes.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can a few friends join together?</h3>
+        <p>Yes. Book a trial each and come the same night. Talata Men is a league team with a tryout. For a group that wants to play without the league, <a href="/talata-and-co">Talata &amp; Co.</a> on Friday suits better.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What does it cost?</h3>
+        <p><!--fact:facts.program.men_competitive.fee|kr-->2.000 kr<!--/fact--> per half season. That covers the hall, the coaching and your league registration.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What level is the team?</h3>
+        <p>We play 3. Division Herrer Øst in the Danish federation, plus the Danish Cup. The Final Four is the route up to 2. Division. Beginners and players coming back after years off start at <a href="/talata-and-co">Talata &amp; Co.</a></p>
+      </div>
+  </div>
+  <!-- FAQ:END -->
   <div class="section" id="join">
     <h2 class="section-title">Book a trial</h2>
     <p>Your first session is free. Book it and we email you the session, then come with indoor shoes.</p>

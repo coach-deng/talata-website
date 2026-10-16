@@ -8,6 +8,62 @@
 <script>(function(){var m='auto';try{var s=localStorage.getItem('talata-theme');if(s==='light'||s==='dark')m=s}catch(e){}var d=m==='dark';if(m==='auto'){try{d=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){d=true}}var r=document.documentElement;r.classList.remove('light','dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light'})();</script>
 <script src="/assets/talata-theme.js?v=20261016d" defer></script>
 <!-- TALATA:HEAD:END -->
+  <script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does Academy cost, and what is included?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3.300 kr per half season, one price for every player. It covers all training, strength training, mental training and a jersey to borrow for games."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it cheaper if my child trains fewer days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One price covers the full week, up to five sessions. Coming fewer days keeps the same fee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which team fits my child's age?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Academy follows the Danish federation, which goes on your age on 1 October. A player still under 15 on 1 October plays U15, and the same goes for U13, U17 and U19. Send the date of birth when you book and we place your child."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "We are new. Which session do we come to first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 13 or 14-year-old who played in a club before starts with U13 Academy, Monday at Strandvejsskolen or Friday at Bellahøj Hallerne. A beginner that age starts with Junior on Tuesday or Thursday. U17 players come Wednesday at Kulturhuset Indre By or Friday at Bellahøj Hallerne. U19 players come Monday at Svanemøllehallen or Friday at Nørre Fælled Skole. Girls 15 and up train with the Stevnsgade girls team."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we get help with the fee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, case by case. The board can approve financial support for a family. Write to us and we look at it together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I only see one team in Holdsport?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "New players start on our general Talata Basketball team in Holdsport. We move them to their age team once age and program are settled."
+      }
+    }
+  ]
+}
+  </script>
 
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
@@ -98,6 +154,19 @@
   </script>
 
   <style>
+    /* FAQ, 16 Oct 2026: questions families sent since August */
+    .faq-wrap { max-width:720px; margin:0 auto; padding:56px 24px; }
+    .faq-wrap h2 { font-family:var(--disp); font-size:1.5rem; font-weight:900; text-transform:uppercase; margin-bottom:8px; color:var(--td-text); }
+    .faq-item { padding:18px 0; border-bottom:1px solid var(--td-line); }
+    .faq-item:last-child { border-bottom:none; }
+    .faq-item h3 { font-size:1rem; font-weight:700; margin-bottom:6px; color:var(--td-text); }
+    .faq-item p { font-size:0.95rem; color:var(--td-muted); margin:0; line-height:1.7; }
+    .faq-item p a { color:var(--td-text); text-decoration:underline; }
+    @media (max-width:600px) { .faq-wrap { padding:40px 16px; } }
+
+
+
+
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -489,6 +558,35 @@
   <hr class="divider">
 
   <!-- APPLY -->
+  <!-- FAQ:START -->
+  <div class="faq-wrap" id="faq">
+    <h2>Questions</h2>
+      <div class="faq-item">
+        <h3>What does Academy cost, and what is included?</h3>
+        <p><!--fact:facts.program.academy.fee|kr-->3.300 kr<!--/fact--> per half season, one price for every player. It covers all training, strength training, mental training and a jersey to borrow for games.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is it cheaper if my child trains fewer days?</h3>
+        <p>One price covers the full week, up to five sessions. Coming fewer days keeps the same fee.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Which team fits my child's age?</h3>
+        <p>Academy follows the Danish federation, which goes on your age on 1 October. A player still under 15 on 1 October plays U15, and the same goes for U13, U17 and U19. Send the date of birth when you book and we place your child.</p>
+      </div>
+      <div class="faq-item">
+        <h3>We are new. Which session do we come to first?</h3>
+        <p>A 13 or 14-year-old who played in a club before starts with U13 Academy, Monday at Strandvejsskolen or Friday at Bellahøj Hallerne. A beginner that age starts with <a href="/mini">Junior</a> on Tuesday or Thursday. U17 players come Wednesday at Kulturhuset Indre By or Friday at Bellahøj Hallerne. U19 players come Monday at Svanemøllehallen or Friday at Nørre Fælled Skole. Girls 15 and up train with the <a href="/sparks#girls-15">Stevnsgade girls team</a>.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can we get help with the fee?</h3>
+        <p>Yes, case by case. The board can approve financial support for a family. Write to us and we look at it together.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why do I only see one team in Holdsport?</h3>
+        <p>New players start on our general Talata Basketball team in Holdsport. We move them to their age team once age and program are settled.</p>
+      </div>
+  </div>
+  <!-- FAQ:END -->
   <div class="section" id="apply">
     <h2 class="section-title">Book a trial</h2>
     <p>Your first session is free. Places are limited. Tell us about your player and we set up a trial session to see them on court. You see the day, time and gym as soon as you send this, and we email it too.</p>
