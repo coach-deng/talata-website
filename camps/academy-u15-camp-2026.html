@@ -242,6 +242,18 @@
 <span id="tn-content" tabindex="-1"></span>
 <!-- TALATA:HEADER:END -->
 
+<!-- TALATA:PASTCAMP:START -->
+<div class="tn-past">
+  <div class="tn-past-in">
+    <div>
+      <b>This camp has finished</b>
+      <p>Academy U15 Camp ran Oct 12 to 15 2026 at Hafnia-Hallen. Registration is closed.</p>
+    </div>
+    <a class="tn-past-cta" href="/camps/college-pathway-camp-2026">NBA and EuroLeague Pathway Camp, Dec 28 to 30</a>
+  </div>
+</div>
+<!-- TALATA:PASTCAMP:END -->
+
 
 
 <section class="hero">
@@ -344,45 +356,13 @@
   <div class="waitlist-form" id="waitlist">
     <h2 style="margin-bottom: 8px;">Sign up</h2>
     <p style="color:var(--td-muted); margin-bottom: 20px;">25 places. We confirm by email and send the payment details.</p>
-    <form id="camp-form">
-      <div class="row">
-        <div class="field">
-          <label for="f-name">Player name</label>
-          <input id="f-name" type="text" name="player_name" required placeholder="First and last name" />
-        </div>
-        <div class="field">
-          <label for="f-age">Age</label>
-          <input id="f-age" type="number" name="age" required placeholder="e.g. 14" min="12" max="16" />
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-email">Email (parent)</label>
-        <input id="f-email" type="email" name="email" required placeholder="email@example.com" />
-      </div>
-      <div class="field">
-        <label for="f-phone">Phone</label>
-        <input id="f-phone" type="tel" name="phone" placeholder="+45 ..." />
-      </div>
-      <div class="field">
-        <label for="f-found">How did you find us?</label>
-        <select id="f-found" name="how_found">
-          <option value="">Pick one</option>
-          <option value="google">Google search</option>
-          <option value="instagram">Instagram</option>
-          <option value="friend">Friend or teammate</option>
-          <option value="school">School</option>
-          <option value="parent">Another parent</option>
-          <option value="camp">A Talata camp</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="f-msg">Anything we should know? (optional)</label>
-        <textarea id="f-msg" name="message" rows="3" placeholder="Allergies, a sibling on the other camp..."></textarea>
-      </div>
-      <button type="submit" id="submit-btn">Sign up for Academy U15 Camp</button>
-      <div class="success" id="form-success" style="display:none"></div>
-    </form>
+    <!-- TALATA:CLOSEDFORM:START -->
+<div class="tn-closed">
+  <b>Registration closed</b>
+  <p>This camp has already run. Our next camp is open now.</p>
+  <a href="/camps/college-pathway-camp-2026">NBA and EuroLeague Pathway Camp, Dec 28 to 30</a>
+</div>
+<!-- TALATA:CLOSEDFORM:END -->
   </div>
 
 </div>

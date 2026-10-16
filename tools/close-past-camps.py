@@ -80,7 +80,7 @@ BANNER = """{s}
       <b>This camp has finished</b>
       <p>{note}</p>
     </div>
-    <a class="tn-past-cta" href="{href}">{label} <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-past-cta" href="{href}">{label}</a>
   </div>
 </div>
 {e}"""
@@ -89,7 +89,7 @@ CLOSED = """{s}
 <div class="tn-closed">
   <b>Registration closed</b>
   <p>This camp has already run. Our next camp is open now.</p>
-  <a href="{href}">{label} <span aria-hidden="true">&rarr;</span></a>
+  <a href="{href}">{label}</a>
 </div>
 {e}"""
 
