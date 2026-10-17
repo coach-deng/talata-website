@@ -271,7 +271,7 @@ TEAM_WEEKS = {
 }
 
 DAYS_LD = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-NO_LD_VENUES = {"heibergskolen"}  # its address in the vault is "Sunday block", not a street
+NO_LD_VENUES = {"heibergskolen", "norrebrohallen"}  # Heibergskolen: its address in the vault is "Sunday block", not a street
 CVR = "43599453"
 
 
