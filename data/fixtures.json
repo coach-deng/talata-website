@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T20:30:05Z",
+  "generated": "2026-10-22T09:22:19Z",
   "source": "kampe_2026-10-16.csv",
   "note": "League and cup fixtures from the DBBF/MVP export. This is the federation record and it is what the site publishes. Friendlies and tournaments are added live from Holdsport by talata-api /fixtures. Where the two disagree, DBBF wins.",
   "counts": {
@@ -259,9 +259,9 @@
       "court": "Ny. Hal",
       "homeCourt": false,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 60,
+      "them": 76,
       "source": "dbbf"
     },
     {
@@ -276,9 +276,9 @@
       "court": "Hal A Bane 3",
       "homeCourt": false,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 57,
+      "them": 97,
       "source": "dbbf"
     },
     {
