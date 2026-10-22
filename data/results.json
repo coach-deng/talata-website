@@ -225,5 +225,17 @@
       "venue": "Amagerhallen",
       "court": "Stor bane"
     }
+  },
+  "40098755": {
+    "us": 60,
+    "them": 76,
+    "team": "U15",
+    "source": "MVP member section, read by Claude 22 Oct 2026"
+  },
+  "40098296": {
+    "us": 57,
+    "them": 97,
+    "team": "U19",
+    "source": "MVP member section, read by Claude 22 Oct 2026"
   }
 }
