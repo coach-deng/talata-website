@@ -154,7 +154,7 @@ SOCIAL = [
 
 # 15 Oct 2026 (Deng): the big camp popup shows on every page, so its script
 # rides in the footer block. It loads its own CSS only when it shows.
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261023a">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261023b">'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -258,7 +258,7 @@ def build_footer(rel: str, year: int = 2026) -> str:
     </div>
   </div>
 </footer>
-<script src="/assets/talata-camp-pop.js?v=20261023a" defer></script>
+<script src="/assets/talata-camp-pop.js?v=20261023b" defer></script>
 {end}""".format(
         start=START,
         end=END,
@@ -419,7 +419,7 @@ def main():
         p for p in ROOT.glob("**/*.html")
         if "node_modules" not in p.parts
         and ".wrangler" not in p.parts
-        and ".claude" not in p.parts   # session worktrees hold full copies of the site
+        and ".claude" not in p.relative_to(ROOT).parts   # session worktrees hold full copies of the site; relative, so it still runs inside one
         # dist/ is local build output (tools/build-dist.py, gitignored). Skipped
         # the way qa-check.py skips it: --check counted its 69 pages as drift.
         and "dist" not in p.relative_to(ROOT).parts

@@ -1,6 +1,6 @@
 {
-  "heading": "Clubs and colleges we know",
-  "intro": "First the schools we sent a player to, then the teams, clubs and agents we know.",
+  "heading": "Who we know",
+  "intro": "We placed Malthe and Valdemar. Johan trained with us, and his family set up his move. We know the coaches at the rest.",
   "placed": [
     {
       "name": "Orangeville Prep",
@@ -18,7 +18,7 @@
       "flag": "us"
     }
   ],
-  "developed_label": "Developed here, his family ran the move",
+  "developed_label": "We trained him. His family set up the move.",
   "developed": [
     {
       "name": "Martins Ferry High School",
@@ -30,6 +30,56 @@
     }
   ],
   "groups": [
+    {
+      "label": "NBA and G League",
+      "entries": [
+        {
+          "name": "Toronto Raptors",
+          "where": "Toronto, Canada · NBA",
+          "logo": "toronto-raptors.png",
+          "url": "https://www.nba.com/raptors",
+          "flag": "ca"
+        },
+        {
+          "name": "Memphis Grizzlies",
+          "where": "Memphis, USA · NBA",
+          "logo": "memphis-grizzlies.png",
+          "url": "https://www.nba.com/grizzlies",
+          "flag": "us"
+        },
+        {
+          "name": "Raptors 905",
+          "where": "Mississauga, Canada · G League",
+          "logo": "raptors-905.png",
+          "url": "https://raptors905.gleague.nba.com",
+          "flag": "ca"
+        }
+      ]
+    },
+    {
+      "label": "Canada · pro, CEBL",
+      "flag": "ca",
+      "entries": [
+        {
+          "name": "Calgary Surge",
+          "where": "Calgary, Alberta",
+          "logo": "calgary-surge.png",
+          "url": "https://www.calgarysurge.ca"
+        },
+        {
+          "name": "Edmonton Stingers",
+          "where": "Edmonton, Alberta",
+          "logo": "edmonton-stingers.png",
+          "url": "https://www.thestingers.ca"
+        },
+        {
+          "name": "Vancouver Bandits",
+          "where": "Langley, British Columbia",
+          "logo": "vancouver-bandits.png",
+          "url": "https://www.thebandits.ca"
+        }
+      ]
+    },
     {
       "label": "Canada · university, U SPORTS Canada West",
       "entries": [
@@ -375,6 +425,18 @@
           "name": "Norrköping Dolphins",
           "where": "Norrköping, Sweden · Basketligan",
           "url": "https://www.dolphins.se"
+        },
+        {
+          "name": "Malbas",
+          "where": "Malmö, Sweden",
+          "logo": "malbas-navy.png",
+          "url": "https://www.malbas.se"
+        },
+        {
+          "name": "Trelleborg Pirates",
+          "where": "Trelleborg, Sweden",
+          "logo": "trelleborg-pirates.png",
+          "url": "https://gopirates.se"
         }
       ],
       "flag": "se"
@@ -383,15 +445,50 @@
       "label": "Indonesia",
       "entries": [
         {
+          "name": "Bogor Hornbills",
+          "where": "Bogor, Indonesia · IBL, 2026 champions",
+          "logo": "bogor-hornbills.png"
+        },
+        {
           "name": "RANS Simba Bogor",
           "where": "Bogor, Indonesia · IBL",
-          "url": "https://ransentertainment.co.id"
+          "url": "https://ransentertainment.co.id",
+          "logo": "rans-simba-bogor.png"
         }
       ],
       "flag": "id"
+    },
+    {
+      "label": "Japan",
+      "flag": "jp",
+      "entries": [
+        {
+          "name": "Kagoshima Rebnise",
+          "where": "Kagoshima, Japan · B2 League",
+          "logo": "kagoshima-rebnise.png",
+          "url": "https://www.rebnise.jp"
+        }
+      ]
     }
   ],
   "leagues": [
+    {
+      "name": "NBA",
+      "file": "nba.svg",
+      "url": "https://www.nba.com"
+    },
+    {
+      "name": "NBA G League",
+      "short": "G League",
+      "file": "g-league.svg",
+      "url": "https://gleague.nba.com"
+    },
+    {
+      "name": "Canadian Elite Basketball League",
+      "short": "CEBL",
+      "file": "cebl.png",
+      "url": "https://www.cebl.ca"
+    },
     {
       "name": "NCAA",
       "file": "ncaa.svg",
@@ -435,7 +532,49 @@
       "short": "IBL",
       "file": "ibl.png",
       "url": "https://iblindonesia.com"
+    },
+    {
+      "name": "Kvindebasketligaen, Denmark",
+      "short": "Kvindebasketligaen",
+      "file": "kvindebasketligaen.png",
+      "url": "https://kvindebasketligaen.dk"
+    },
+    {
+      "name": "LKL, Lithuania",
+      "short": "LKL",
+      "file": "",
+      "url": "https://lkl.lt"
+    },
+    {
+      "name": "NKL, Lithuania",
+      "short": "NKL",
+      "file": "nkl.png",
+      "url": "https://nkl.lt"
+    },
+    {
+      "name": "RKL, Lithuania",
+      "short": "RKL",
+      "file": "rkl.png",
+      "url": "https://www.rkl.lt"
+    },
+    {
+      "name": "Lega Basket Serie A, Italy",
+      "short": "Lega Basket Serie A",
+      "file": "lba-italy.png",
+      "url": "https://www.legabasket.it"
+    },
+    {
+      "name": "B.League, Japan",
+      "short": "B.League",
+      "file": "b-league.svg",
+      "url": "https://www.bleague.jp/en/"
+    },
+    {
+      "name": "Qatar Basketball League",
+      "short": "Qatar Basketball League",
+      "file": "qatar-basketball-league.png",
+      "url": "https://qatarbasketball.qa"
     }
   ],
-  "note": "These are programmes and coaches we can reach, not sponsors and not endorsements. Our Canada camp runs in Lethbridge, Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming, which is where a lot of the Alberta side of this comes from."
+  "note": "Our Canada camp runs in Lethbridge. Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming, so a lot of these are in Alberta. None of them sponsor or endorse Talata."
 }

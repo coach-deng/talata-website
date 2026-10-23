@@ -113,6 +113,15 @@ CHECKS_VOICE = [
     ("hype word", re.compile(r"\b(actually|real (coaching|competition|curriculum|talk))\b", re.I), False),
     ("triplet fragment", re.compile(r"(?:\b[A-Z][\w']*(?: [\w']+){0,2}\. ){2}[A-Z][\w']*(?: [\w']+){0,2}\."), False),
     ("arrow in copy", re.compile(r"[→⟶➜]"), True),
+    # From Wikipedia's "Signs of AI writing" (Deng, 23 Oct 2026: "talk like a human
+    # being"). Puffery and filler had no hits on the site, so they fail. The others
+    # turn up in real trip stories ("from Copenhagen to Lethbridge"), so they warn.
+    ("puffery word", re.compile(r"\b(boasts?|elevate[sd]?|unlock(s|ed)?|empower(s|ed|ing)?|vibrant|world.class|cutting.edge|renowned|seamless(ly)?|delve|testament|tapestry|game.changer)\b", re.I), True),
+    ("filler phrase", re.compile(r"\b(when it comes to|in order to|it'?s important to|plays a (key|vital|crucial) role|a wide range of)\b", re.I), True),
+    ("rather than", re.compile(r"\brather than\b", re.I), False),
+    ("-ing tail", re.compile(r",\s+(ensuring|fostering|highlighting|underscoring|allowing|enabling|providing)\b", re.I), False),
+    ("fake range, from X to every Y", re.compile(r"\bfrom [^.]{3,40} to (every|all|the whole)\b", re.I), False),
+    ("vague connect", re.compile(r"\bconnect (them|you|players|families|kids) with\b", re.I), False),
 ]
 
 # "Free" once per page, near the form (Deng, 11 Oct 2026). Blog posts are
@@ -128,7 +137,9 @@ META = re.compile(
 
 
 def pages():
-    return sorted(p for p in ROOT.glob("**/*.html") if not any(x in p.parts for x in SKIP))
+    # Relative parts (23 Oct 2026): a session copy lives under .claude/worktrees/,
+    # and the absolute path made every page look skipped, so QA passed on nothing.
+    return sorted(p for p in ROOT.glob("**/*.html") if not set(p.relative_to(ROOT).parts) & SKIP)
 
 
 def visible(src):
