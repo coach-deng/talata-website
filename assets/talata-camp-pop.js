@@ -133,14 +133,14 @@
         '<div class="tcp-body">' +
           '<p class="tcp-kick">Christmas break camp</p>' +
           '<h2 class="tcp-h" id="tcp-h">' + camp.name + '</h2>' +
-          '<p class="tcp-sub">Three days on what NBA, EuroLeague and college coaches look for, with Tremaine Dalton of the NBA Basketball Schools in Europe and Deng Awak.</p>' +
+          '<p class="tcp-sub">Three days on what NBA, EuroLeague and college coaches look for, with Deng Awak and Jordan Naughton.</p>' +
           '<dl class="tcp-facts">' +
             '<div><dt>Days</dt><dd>' + camp.days + (camp.time ? ', ' + camp.time : '') + '</dd></div>' +
             '<div><dt>Ages</dt><dd>' + camp.ages + '</dd></div>' +
             '<div><dt>Where</dt><dd>Hafnia-Hallen, Copenhagen SV</dd></div>' +
             '<div class="tcp-price"><dt>Price</dt><dd>' + camp.price + '</dd></div>' +
           '</dl>' +
-          '<p class="tcp-note">' + (camp.places ? camp.places + ' places. ' : '') + 'Tremaine and Deng on court all three days. You get measured, filmed and a written evaluation to share with scouts.</p>' +
+          '<p class="tcp-note">' + (camp.places ? camp.places + ' places. ' : '') + 'Deng and Jordan on court all three days, NBA and EuroLeague coaches on video. You get measured, filmed and a written evaluation to share with scouts.</p>' +
           '<div class="tcp-acts">' +
             '<a class="tcp-cta" href="' + CAMP_URL + '#camp-form" data-cta data-track="camp-pop big signup">Sign up for the December camp</a>' +
             '<a class="tcp-alt" href="' + CAMP_URL + '" data-track="camp-pop big details">See the camp</a>' +
