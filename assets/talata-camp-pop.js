@@ -36,7 +36,7 @@
   var SCROLL_PX = 120;
   var RETRY_MS = 1000;
   var CAMP_URL = '/camps/college-pathway-camp-2026';
-  var QUIET = ['/camps/college-pathway-camp-2026', '/camps/coaches-clinic-2026', '/join', '/shop',
+  var QUIET = ['/camps/college-pathway-camp-2026', '/camps/coaches-clinic-2026', '/join', '/shop', '/partners',
                '/mini', '/saturday', '/talata-and-co'];
   var IMG = '/images/2026-10/site/pathway-camp-malmo-shot-hero.jpg';
 
