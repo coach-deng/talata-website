@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-19",
+  "built_for": "2026-10-23",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -228,11 +228,11 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "e1d80bf23baa6e86d632b1cae82684fe599c9bb5fb325841763b9fe3413e0057",
+  "sha": "6de2cc5726da6195fb7295e4be2e2455952dc7abcf42400b02388925428acb75",
   "sources": {
-    "programs_sha": "d25862ee1f275f12374df07222fd4e6a2a25e53614dceff851e67700eabff4e5",
-    "training_sha": "4a6ea0ad374d60cacdd9e4ee296d13326d1883771c9595fb9fce9e311f0c8c84",
-    "training_updated": "2026-10-14"
+    "programs_sha": "e552d2434a686a567435f2a657afbbe7050a6edb9892f134902d4cc5c972688d",
+    "training_sha": "701d0fce650a6005622d997d026ea3e346d9e1b1fdd59547fd16536fbfb8c5ba",
+    "training_updated": "2026-10-23"
   },
   "teams": {
     "academy_u13_u15": {
@@ -616,16 +616,15 @@
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
           "day": 5,
           "day_name": "Saturday",
-          "end": "13:00",
+          "end": "12:00",
           "ends": null,
           "hall": "Kulturhuset Indre By",
           "off": [
-            "2026-10-17",
             "2026-12-26",
             "2027-01-02"
           ],
-          "start": "12:00",
-          "starts": "2026-10-10"
+          "start": "11:00",
+          "starts": "2026-10-24"
         }
       ]
     },
@@ -710,12 +709,11 @@
           "ends": null,
           "hall": "Kulturhuset Indre By",
           "off": [
-            "2026-10-17",
             "2026-12-26",
             "2027-01-02"
           ],
           "start": "11:00",
-          "starts": "2026-10-03"
+          "starts": "2026-10-24"
         }
       ]
     },
@@ -785,16 +783,15 @@
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
           "day": 5,
           "day_name": "Saturday",
-          "end": "11:00",
+          "end": "12:00",
           "ends": null,
           "hall": "Kulturhuset Indre By",
           "off": [
-            "2026-10-17",
             "2026-12-26",
             "2027-01-02"
           ],
-          "start": "10:00",
-          "starts": "2026-10-03"
+          "start": "11:00",
+          "starts": "2026-10-24"
         }
       ]
     },
@@ -1170,58 +1167,21 @@
       "address": "Charlotte Ammundsens Plads 3, 1359 København K",
       "day": 5,
       "day_name": "Saturday",
-      "end": "11:00",
-      "ends": null,
-      "hall": "Kulturhuset Indre By",
-      "off": [
-        "2026-10-17",
-        "2026-12-26",
-        "2027-01-02"
-      ],
-      "start": "10:00",
-      "starts": "2026-10-03",
-      "teams": [
-        "mini"
-      ],
-      "who": "Mini"
-    },
-    {
-      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
-      "day": 5,
-      "day_name": "Saturday",
       "end": "12:00",
       "ends": null,
       "hall": "Kulturhuset Indre By",
       "off": [
-        "2026-10-17",
         "2026-12-26",
         "2027-01-02"
       ],
       "start": "11:00",
-      "starts": "2026-10-03",
+      "starts": "2026-10-24",
       "teams": [
-        "junior"
-      ],
-      "who": "Junior"
-    },
-    {
-      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
-      "day": 5,
-      "day_name": "Saturday",
-      "end": "13:00",
-      "ends": null,
-      "hall": "Kulturhuset Indre By",
-      "off": [
-        "2026-10-17",
-        "2026-12-26",
-        "2027-01-02"
-      ],
-      "start": "12:00",
-      "starts": "2026-10-10",
-      "teams": [
+        "mini",
+        "junior",
         "family_time"
       ],
-      "who": "Family Time"
+      "who": "Mini + Junior + Family Time"
     }
   ],
   "venues": {
