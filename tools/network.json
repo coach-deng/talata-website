@@ -425,6 +425,18 @@
           "name": "Norrköping Dolphins",
           "where": "Norrköping, Sweden · Basketligan",
           "url": "https://www.dolphins.se"
+        },
+        {
+          "name": "Malbas",
+          "where": "Malmö, Sweden",
+          "logo": "malbas-navy.png",
+          "url": "https://www.malbas.se"
+        },
+        {
+          "name": "Trelleborg Pirates",
+          "where": "Trelleborg, Sweden",
+          "logo": "trelleborg-pirates.png",
+          "url": "https://gopirates.se"
         }
       ],
       "flag": "se"
