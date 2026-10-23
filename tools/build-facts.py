@@ -160,6 +160,10 @@ def price_now(camp, today):
     return camp.get("price_standard")
 
 
+def dc_front(path):
+    return load(DASH_COLLECT, "dashcollect").parse_frontmatter(path.read_text(encoding="utf-8"))
+
+
 def build(today):
     mf = load(MAKE_FACTS, "makefacts")
     data, bad = mf.compile_canon(today)
@@ -178,6 +182,11 @@ def build(today):
         facts[k] = v["v"]
         if v.get("until"):
             until[k] = v["until"]
+
+    # Kommune fee support (23 Oct 2026, "everyone should have the right to play").
+    # The amounts live in the frontmatter of the vault's kommune-support.md.
+    ks = dc_front(VAULT / "Talata/_references/kommune-support.md")
+    facts["support.kommune_fee"], facts["support.kommune_kit"] = int(ks["fee_kr"]), int(ks["kit_kr"])
 
     venues = {}
     for k, v in facts.items():

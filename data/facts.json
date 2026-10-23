@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-19",
+  "built_for": "2026-10-23",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -211,6 +211,8 @@
     "program.talata_co.age_min": 18,
     "program.talata_co.fee": 2000,
     "program.talata_co.name": "🆕 Talata & Co.",
+    "support.kommune_fee": 1000,
+    "support.kommune_kit": 500,
     "venue.bellahoj_hallerne.address": "Bellahøjvej 1-3, 2700 Brønshøj",
     "venue.bellahoj_hallerne.name": "Bellahøj Hallerne",
     "venue.hafnia_hallen.address": "Julius Andersensvej 6, 2450 København SV",
@@ -228,9 +230,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "e1d80bf23baa6e86d632b1cae82684fe599c9bb5fb325841763b9fe3413e0057",
+  "sha": "312a0aee9de1311ce4c4723fb621264b58143c62a930ae3b330e286d7c548f4a",
   "sources": {
-    "programs_sha": "d25862ee1f275f12374df07222fd4e6a2a25e53614dceff851e67700eabff4e5",
+    "programs_sha": "a839f71d1eaa4db336530a24fbbfce4355a856fcb7bfc32a9ce7da1394f94099",
     "training_sha": "4a6ea0ad374d60cacdd9e4ee296d13326d1883771c9595fb9fce9e311f0c8c84",
     "training_updated": "2026-10-14"
   },
