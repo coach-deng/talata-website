@@ -74,7 +74,7 @@ parts = ['  <div class="band">', '  <section class="section section-wide" id="ne
          "    <p>%s</p>" % esc(DATA["intro"]), '    <div class="tiers">']
 
 if placed:
-    parts.append('      <div class="tier-lbl">Players placed here</div>')
+    parts.append('      <div class="tier-lbl">We placed them</div>')
     parts.append('      <div class="dest">')
     parts += [card(e, True) for e in placed]
     parts.append("      </div>")
@@ -96,7 +96,7 @@ for g in groups:
 parts.append("    </div>")
 
 if leagues:
-    parts.append('    <div class="tier-lbl" style="margin-top:30px">Leagues our network competes in</div>')
+    parts.append('    <div class="tier-lbl" style="margin-top:30px">Leagues they play in</div>')
     parts.append('    <div class="leagues">')
     parts += [league(l) for l in leagues]
     parts.append("    </div>")

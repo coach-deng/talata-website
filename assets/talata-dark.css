@@ -48,6 +48,11 @@
   --td-brand:     #1E40AF;   /* filled buttons */
   --td-navy:      #0B1F3A;   /* kept: the brand navy still reads on dark */
   --td-card-hi:   #223047;   /* a card sitting on another card */
+  /* Crest tiles (Deng, 23 Oct 2026): club and league logos sit on white with
+     navy type in both themes, so a dark logo never vanishes. On purpose, not a
+     light-theme leftover. */
+  --td-crest:     #FFFFFF;
+  --td-crest-ink: #0B1F3A;
   /* 🔴 31 Aug: the "stop" callout on the four help pages was a literal
      `background:#FDECEA`, a pale pink, and the pink never went through a
      variable so nothing in the token remap could reach it. Its heading and its
