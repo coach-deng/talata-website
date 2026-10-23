@@ -1,6 +1,6 @@
 {
   "heading": "Who we know",
-  "intro": "Our players went to the first three schools. We know the coaches at the rest.",
+  "intro": "We placed Malthe and Valdemar. Johan trained with us, and his family set up his move. We know the coaches at the rest.",
   "placed": [
     {
       "name": "Orangeville Prep",
@@ -18,7 +18,7 @@
       "flag": "us"
     }
   ],
-  "developed_label": "Trained with us. His family set up the move.",
+  "developed_label": "We trained him. His family set up the move.",
   "developed": [
     {
       "name": "Martins Ferry High School",

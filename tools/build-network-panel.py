@@ -74,7 +74,7 @@ parts = ['  <div class="band">', '  <section class="section section-wide" id="ne
          "    <p>%s</p>" % esc(DATA["intro"]), '    <div class="tiers">']
 
 if placed:
-    parts.append('      <div class="tier-lbl">Players placed here</div>')
+    parts.append('      <div class="tier-lbl">We placed them</div>')
     parts.append('      <div class="dest">')
     parts += [card(e, True) for e in placed]
     parts.append("      </div>")
