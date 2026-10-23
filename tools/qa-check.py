@@ -339,6 +339,13 @@ def check_structure(fails, warns):
         fails.append(("site-wide", "asset versions disagree", ", ".join(sorted(versions))))
     elif not versions:
         warns.append(("site-wide", "no asset version stamp", "cache will serve stale files"))
+    # One photo, once, on the homepage (Deng, 23 Oct 2026). The hero photo
+    # showed three times: the hero, a Latest card whose post used the same
+    # image, and a re-saved copy on the families card. Latest is generated, so
+    # a new post can bring it back without anyone touching index.html.
+    srcs = re.findall(r"<img[^>]*\ssrc=\"/?(images/[^\"]+)\"", (ROOT / "index.html").read_text(encoding="utf-8"))
+    for img in sorted({s for s in srcs if srcs.count(s) > 1}):
+        fails.append(("index.html", "photo used twice on the homepage", img))
 
 
 # The plain look, 11 Oct 2026. Glows, gradients, glass, lifts and pill labels

@@ -148,6 +148,39 @@ section{padding:64px 0;border-top:1px solid var(--td-line);}
 .blist a{display:block;font-size:.84rem;font-weight:700;color:var(--td-link);margin-top:4px;overflow-wrap:anywhere;}
 .bmail{margin-top:14px;font-size:.92rem;color:var(--td-muted);}
 .bmail a{color:var(--td-link);font-weight:700;}
+
+/* everybody: both sides of the club, the players who went abroad, who we know
+   (Deng, 23 Oct 2026: logos, not player photos, and less writing) */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.two{grid-template-columns:1fr;}}
+.way{display:flex;flex-direction:column;gap:8px;background:var(--td-surface);border:1px solid var(--td-line);border-radius:8px;padding:20px;}
+.way h3{font-family:var(--disp);font-weight:800;font-size:1.15rem;text-transform:uppercase;}
+.way p{font-size:0.95rem;color:var(--td-muted);flex:1;}
+.way a{font-weight:700;font-size:0.92rem;color:var(--td-link);text-decoration:underline;text-underline-offset:3px;}
+.abroad{margin-top:40px;}
+.abroad .head{margin-bottom:16px;}
+.abroad .head h3{font-family:var(--disp);font-weight:900;font-size:1.2rem;text-transform:uppercase;}
+.alist{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:900px){.alist{grid-template-columns:1fr;}}
+.alist .pl{display:flex;gap:16px;align-items:center;height:100%;background:var(--td-surface);border:1px solid var(--td-line);border-radius:8px;padding:18px;}
+.alist .txt{display:block;color:var(--td-text);}
+.alist .txt:hover .nm{text-decoration:underline;}
+a.crest:hover{outline:2px solid var(--td-link);}
+.crests{flex:none;display:flex;gap:6px;}
+.crest{width:72px;height:72px;border-radius:8px;background:#F8FAFC;color:#0B0F17;padding:8px;display:flex;align-items:center;justify-content:center;}
+.crests .crest + .crest{width:56px;height:56px;align-self:flex-end;}
+.crest img{max-width:100%;max-height:100%;object-fit:contain;}
+.alist .nm{display:block;font-family:var(--disp);font-weight:800;font-size:1.05rem;line-height:1.25;}
+.alist .sc{display:block;font-weight:700;font-size:0.92rem;margin-top:4px;}
+.alist .wh{display:block;font-size:0.84rem;color:var(--td-muted);margin-top:2px;}
+.netwall{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+@media(max-width:900px){.netwall{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:520px){.netwall{grid-template-columns:repeat(3,1fr);}}
+.netwall li{aspect-ratio:3/2;border-radius:8px;background:#F8FAFC;color:#0B0F17;padding:12px;display:flex;align-items:center;justify-content:center;}
+.netwall a{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
+.netwall img{max-width:100%;max-height:100%;object-fit:contain;}
+.netwall li.dark,.crest.dark{background:#0B1F3A;color:#fff;}
+.crest.tx{font-family:var(--disp);font-weight:900;font-size:0.72rem;line-height:1.15;text-align:center;text-transform:uppercase;}
 </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/talata-nav.css?v=20261016e">
@@ -297,6 +330,54 @@ section{padding:64px 0;border-top:1px solid var(--td-line);}
      interrupting a reader is defensible, and the one page whose main job
      (free-trial signups) it must not outrank. No mount = no popup. -->
 <div data-talata-cup></div>
+<!-- Everybody should play (Deng, 23 Oct 2026). The family side and the elite
+     side together, then the players who went to North America. Card facts
+     must match /pathway and SecondBrain/Talata/_references/alumni-placements.md. -->
+<section id="everybody">
+  <div class="wrap">
+    <div class="head"><h2>Everybody should play</h2></div>
+    <p class="lead">Every kid should be able to play, wherever they are from and whatever their family earns. At five you can start with us.</p>
+    <div class="two">
+      <div class="way">
+        <h3>Start here</h3>
+        <p>Mini starts at 5, and Sparks is for girls 6 to 14. If money is in the way, talk to us. The board can help a family, and it stays private.</p>
+        <a href="#programs">Find your team</a>
+      </div>
+      <div class="way">
+        <h3>Go as far as you can</h3>
+        <p>The Academy trains up to five days a week. When a player is ready, we connect them with the schools, clubs and agents below.</p>
+        <a href="/pathway">See the pathway</a>
+      </div>
+    </div>
+    <div class="abroad">
+      <div class="head"><h3>Three players to North America</h3><a href="/placement">Going abroad</a></div>
+      <ul class="alist">
+        <li><div class="pl"><span class="crests"><a class="crest" href="https://www.orangevilleprep.com" target="_blank" rel="noopener" aria-label="Orangeville Prep website"><img src="/images/network/orangeville-prep.png" alt="" loading="lazy" decoding="async"></a><a class="crest" href="https://www.feia.ca" target="_blank" rel="noopener" aria-label="Fort Erie International Academy website"><img src="/images/network/fort-erie-international-academy.png" alt="" loading="lazy" decoding="async"></a></span><a class="txt" href="/blog/malthe-orangeville-2025"><span class="nm">Malthe Mikkelsen</span><span class="sc">Fort Erie, then Orangeville Prep</span><span class="wh">Ontario, Canada · 2025/26</span></a></div></li>
+        <li><div class="pl"><span class="crests"><a class="crest" href="https://hs.mfcsd.k12.oh.us" target="_blank" rel="noopener" aria-label="Martins Ferry High School website"><img src="/images/network/martins-ferry-high-school.png" alt="" loading="lazy" decoding="async"></a></span><a class="txt" href="/blog/johan-lyager-joensen-ohio-2026"><span class="nm">Johan Lyager Joensen</span><span class="sc">Martins Ferry High School</span><span class="wh">Ohio, USA · 2026/27</span></a></div></li>
+        <li><div class="pl"><span class="crests"><a class="crest dark tx" href="https://thepatrickschool.org" target="_blank" rel="noopener" aria-label="The Patrick School website">The Patrick School</a></span><a class="txt" href="/blog/valdemar-patrick-school-2026"><span class="nm">Valdemar Scharfe</span><span class="sc">The Patrick School program</span><span class="wh">New Jersey, USA · Fall 2026</span></a></div></li>
+      </ul>
+    </div>
+    <div class="abroad">
+      <div class="head"><h3>Who we know</h3><a href="/placement#network">The full network</a></div>
+      <p class="lead">Every Canada West team, every club in the Danish Basketligaen, and agents who can represent a player who is ready.</p>
+      <ul class="netwall">
+        <li><a href="https://nbabasketballschool.com" target="_blank" rel="noopener" aria-label="NBA Basketball School"><img src="/images/network/nba-basketball-school.png" alt="NBA Basketball School" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://zalgiris.lt/en" target="_blank" rel="noopener" aria-label="Zalgiris Kaunas"><img src="/images/network/zalgiris-kaunas.png" alt="Zalgiris Kaunas" loading="lazy" decoding="async"></a></li>
+        <li class="dark"><a href="https://tresportsmgmt.com" target="_blank" rel="noopener" aria-label="Tre Sports Management"><img src="/images/network/tre-sports-management.png" alt="Tre Sports Management" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://eliteurotalent.com" target="_blank" rel="noopener" aria-label="Elite Euro Talent"><img src="/images/network/elite-euro-talent.png" alt="Elite Euro Talent" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://mrucougars.com/sports/mens-basketball" target="_blank" rel="noopener" aria-label="Mount Royal Cougars"><img src="/images/network/mount-royal-cougars.png" alt="Mount Royal Cougars" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://godinos.com/sports/mens-basketball" target="_blank" rel="noopener" aria-label="Calgary Dinos"><img src="/images/network/calgary-dinos.png" alt="Calgary Dinos" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://gothunderbirds.ca/sports/mens-basketball" target="_blank" rel="noopener" aria-label="UBC Thunderbirds"><img src="/images/network/ubc-thunderbirds.png" alt="UBC Thunderbirds" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://bearsandpandas.ca/sports/mens-basketball" target="_blank" rel="noopener" aria-label="Alberta Golden Bears"><img src="/images/network/alberta-golden-bears.png" alt="Alberta Golden Bears" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://www.bakkenbears.com/" target="_blank" rel="noopener" aria-label="Bakken Bears"><img src="/images/network/bakken-bears.png" alt="Bakken Bears" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://bccopenhagen.com" target="_blank" rel="noopener" aria-label="BC Copenhagen"><img src="/images/network/bc-copenhagen.png" alt="BC Copenhagen" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://www.rabbits.dk" target="_blank" rel="noopener" aria-label="Svendborg Rabbits"><img src="/images/network/svendborg-rabbits.png" alt="Svendborg Rabbits" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://randerscimbria.dk" target="_blank" rel="noopener" aria-label="Randers Cimbria"><img src="/images/network/randers-cimbria.png" alt="Randers Cimbria" loading="lazy" decoding="async"></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section class="camps" id="camps">
   <div class="wrap">
     <div class="head"><h2>Camps</h2><a href="/camps">All camps, including October and summer</a></div>
@@ -333,19 +414,19 @@ section{padding:64px 0;border-top:1px solid var(--td-line);}
 <!-- TALATA:LATEST:START — generated by tools/apply-blog-index.py, do not hand-edit -->
     <div class="head"><h2>Latest</h2><a href="/blog">All stories</a></div>
     <div class="latest">
-      <a class="story" href="/blog/back-after-autumn-break-2026">
-        <img src="images/2026-10/site/family-time-group-coaches-wide.jpg" alt="Talata coaches with a big group of kids on court" loading="lazy" decoding="async" width="1600" height="902" style="object-position:50% 30%">
+      <a class="story" href="/blog/valdemar-patrick-school-2026">
+        <img src="images/2026-09/jordan-free-throw-horsholm-cup-hero.jpg" alt="Talata Men at the free throw line against H&oslash;rsholm in the Danish Cup, Svanem&oslash;llehallen, September 2026" loading="lazy" decoding="async" width="1600" height="599" style="object-position:50% 30%">
         <div class="grad"></div>
-        <div class="txt"><span class="tag">Club</span><h3>Back after the break. New coaches, Saturdays and Talata & Co.</h3><p>New coaches from Monday 19 October, Saturdays at Kulturhuset from 24 October, and Talata & Co. for adults from Friday 23 October.</p></div>
+        <div class="txt"><span class="tag">Player News</span><h3>Valdemar heads to New Jersey</h3><p>Valdemar Scharfe came to Talata in 2022 and opened this season with Talata Men. This fall he trains with The Patrick School basketball program in New Jersey.</p></div>
       </a>
       <div class="sidecards">
-        <a class="story" href="/blog/pathway-camp-december-2026">
-          <img src="images/2026-10/tremaine/tremaine-pros-israel.jpg" alt="Tremaine Dalton sitting courtside with pro players between sessions" loading="lazy" decoding="async" width="1080" height="520" style="object-position:50% 30%">
+        <a class="story" href="/blog/back-after-autumn-break-2026">
+          <img src="images/2026-10/site/program-academy-huddle-with-coaches.jpg" alt="Talata coaches talking to Academy players in a huddle" loading="lazy" decoding="async" width="1600" height="1066" style="object-position:50% 30%">
           <div class="grad"></div>
-          <div class="txt"><span class="tag">Camps</span><h3>December camp with Tremaine Dalton. 28 to 30 December.</h3></div>
+          <div class="txt"><span class="tag">Club</span><h3>Back after the break. New coaches, Saturdays and Talata & Co.</h3></div>
         </a>
         <a class="story" href="/reviews">
-          <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" loading="lazy" decoding="async" width="1600" height="902" style="object-position:50% 42%">
+          <img src="images/2026-10/site/u13-grand-prix-team-with-coach.jpg" alt="Talata U13 players with their coach at a Grand Prix day" loading="lazy" decoding="async" width="1600" height="1067" style="object-position:50% 45%">
           <div class="grad"></div>
           <div class="txt"><span class="tag">Parents</span><h3>What families say about us</h3></div>
         </a>

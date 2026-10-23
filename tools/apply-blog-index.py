@@ -208,7 +208,7 @@ def render_home_latest(posts):
         )
     side_html.append(
         """        <a class="story" href="/reviews">
-          <img src="images/mini-group-fun.jpg" alt="Talata Mini kids laughing at training" loading="lazy" decoding="async" width="1600" height="902" style="object-position:50% 42%">
+          <img src="images/2026-10/site/u13-grand-prix-team-with-coach.jpg" alt="Talata U13 players with their coach at a Grand Prix day" loading="lazy" decoding="async" width="1600" height="1067" style="object-position:50% 45%">
           <div class="grad"></div>
           <div class="txt"><span class="tag">Parents</span><h3>What families say about us</h3></div>
         </a>"""

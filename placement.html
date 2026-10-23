@@ -29,7 +29,7 @@
   <meta property="og:url" content="https://talatabasketball.dk/placement" />
   <meta property="og:title" content="Spil basketball i USA | High school og college | Talata" />
   <meta property="og:description" content="To spillere fra den samme hal i København spiller nu i Nordamerika. Vi gjorde dem klar. Nu klarer vi hele flytningen, fra start til slut." />
-  <meta property="og:image" content="https://talatabasketball.dk/images/people/johan-ohio-card.jpg" />
+  <meta property="og:image" content="https://talatabasketball.dk/images/og/team-photo-tunnel-arena-og.jpg" />
   <meta property="og:site_name" content="Talata Basketball" />
 
   <script type="application/ld+json">
@@ -138,6 +138,10 @@
     .person { background:var(--td-surface); border:1px solid var(--td-line); border-radius:var(--radius); overflow:hidden; margin-top:20px; display:grid; grid-template-columns:240px 1fr; }
     .person-photo { position:relative; background:#0B1F3A; aspect-ratio:4 / 5; align-self:start; overflow:hidden; }
     .person-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+    /* school crest instead of a player photo (Deng, 23 Oct 2026) */
+    .person-photo.crest-tile { background:#F8FAFC; color:#0B0F17; }
+    .person-photo.crest-tile img { inset:16%; width:68%; height:68%; object-fit:contain; }
+    .person-initials.tx { font-size:1.3rem; line-height:1.2; text-align:center; padding:12px; text-transform:uppercase; }
     .person-initials { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:#0B1F3A; color:#fff; font-family:var(--disp); font-size:2.6rem; font-weight:900; }
     .person-body { padding:26px 26px 24px; }
     .person-body .role { font-size:0.85rem; font-weight:700; color:var(--td-muted); margin-bottom:4px; }
@@ -173,9 +177,16 @@
     .dest { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(250px,100%), 1fr)); gap:12px; }
     .dest a, .dest div { background:var(--td-bg); border:1px solid var(--td-line); border-radius:var(--radius); padding:16px 18px; text-decoration:none; display:block; }
     .dest div div { background:none; border:0; padding:0; border-radius:0; }
+    .dest a div { background:none; border:0; padding:0; border-radius:0; }
+    .dest a:hover .n { text-decoration:underline; }
     .dest .n { font-size:0.97rem; font-weight:800; color:var(--td-text); }
     .dest .l { font-size:0.82rem; color:var(--td-muted); margin-top:3px; }
     .dest .who { font-size:0.82rem; color:var(--td-text); font-weight:700; margin-top:8px; }
+    /* crests beside the name, on a pale tile so dark and light logos both read */
+    .dest .has-crest { display:grid; grid-template-columns:56px 1fr; column-gap:14px; align-items:center; }
+    .dest .has-crest .crest { grid-row:span 3; width:56px; height:56px; background:#F8FAFC; color:#0B0F17; border-radius:6px; padding:6px; display:flex; align-items:center; justify-content:center; }
+    .dest .has-crest .crest img { max-width:100%; max-height:100%; object-fit:contain; }
+    .dest .has-crest .crest.dark { background:#0B1F3A; color:#fff; }
     .leagues { display:flex; flex-wrap:wrap; align-items:center; gap:14px 30px; margin-top:12px; background:var(--td-bg); border:1px solid var(--td-line); border-radius:var(--radius); padding:22px 24px; }
     .leagues .lg { display:flex; align-items:center; justify-content:center; height:38px; text-decoration:none; }
     .leagues .lg img { max-height:38px; max-width:120px; width:auto; height:auto; display:block; }
@@ -238,7 +249,7 @@
         "name": "Can a player come home again?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Malthe Mikkelsen spent 2025/26 at Orangeville Prep in Canada and returned to Copenhagen afterwards."
+          "text": "Yes. Malthe Mikkelsen spent 2025/26 in Canada, at Fort Erie International Academy and then Orangeville Prep, and returned to Copenhagen afterwards."
         }
       },
       {
@@ -375,7 +386,7 @@
   <section class="section">
     <h2 class="section-title">Every player named</h2>
     <p>Some placement websites show a 99 percent success rate and cannot name one kid they sent anywhere. Every player we help goes on this page by name, with the school and the year.</p>
-    <p><strong>Malthe joined our Academy for the year and we ran the process with him.</strong> He went to Orangeville Prep in Ontario. <strong>Johan came up through the club from the very first season.</strong> We built the player, and his family ran the move.</p>
+    <p><strong>Malthe joined our Academy for the year and we ran the process with him.</strong> He went to Fort Erie International Academy and then Orangeville Prep in Ontario. <strong>Valdemar played for Talata Men, and we set up his move</strong> to The Patrick School basketball program in New Jersey this fall. <strong>Johan came up through the club from the very first season.</strong> We built the player, and his family ran the move.</p>
     <p><strong>Who does what.</strong> We do the evaluation, the film, the profile and the relationship, because we see the player every week. <strong>The placement itself runs through licensed partner agencies</strong>, who handle school matching, admissions and the visa. We stay in it the whole way, and we stay on the phone once they land.</p>
   </section>
 
@@ -386,9 +397,7 @@
     <p>This is the full list. When it grows, it grows here.</p>
 
     <div class="person">
-      <div class="person-photo">
-        <img src="/images/people/johan-lyager-joensen.jpg" alt="Johan Lyager Joensen, Talata Basketball player now at Martins Ferry High School in Ohio" width="900" height="1125" loading="lazy" decoding="async">
-      </div>
+      <div class="person-photo crest-tile"><img src="/images/network/martins-ferry-high-school.png" alt="Martins Ferry High School" loading="lazy" decoding="async"></div>
       <div class="person-body">
         <div class="role">North America &middot; 2026/27</div>
         <h3>Johan Lyager Joensen</h3>
@@ -405,21 +414,38 @@
     </div>
 
     <div class="person">
-      <div class="person-photo">
-        <div class="person-initials">MM</div>
-      </div>
+      <div class="person-photo crest-tile"><img src="/images/network/orangeville-prep.png" alt="Orangeville Prep" loading="lazy" decoding="async"></div>
       <div class="person-body">
         <div class="role">North America &middot; 2025/26</div>
         <h3>Malthe Mikkelsen</h3>
-        <div class="sub">Talata to Orangeville Prep, Ontario, Canada</div>
-        <p>Malthe joined the Talata Academy for the year, and we took him through the process. He committed to Orangeville Prep in Ontario at fifteen, one of the top prep programmes in North America and a regular feeder into NCAA Division 1, and spent 2025/26 out there.</p>
+        <div class="sub">Talata to Fort Erie, then Orangeville Prep, Ontario, Canada</div>
+        <p>Malthe joined the Talata Academy for the year, and we took him through the process. He committed to Orangeville Prep at fifteen. He started 2025/26 at Fort Erie International Academy, then moved to Orangeville Prep, one of the top prep programmes in North America and a regular feeder into NCAA Division 1.</p>
         <ul class="person-facts">
-          <li><strong>Went to:</strong> Orangeville Prep, Ontario, Canada</li>
+          <li><strong>Went to:</strong> Fort Erie International Academy, then Orangeville Prep, Ontario, Canada</li>
           <li><strong>Season:</strong> 2025/26</li>
           <li><strong>Age at commitment:</strong> 15</li>
           <li><strong>Our part:</strong> he came to our Academy for that year and we ran the process with him</li>
         </ul>
         <p><a href="/pathway">Read the full story</a></p>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-photo">
+        <div class="person-initials tx">The Patrick School</div>
+      </div>
+      <div class="person-body">
+        <div class="role">North America &middot; fall 2026</div>
+        <h3>Valdemar Scharfe</h3>
+        <div class="sub">Talata Men to The Patrick School program, New Jersey, USA</div>
+        <p>Valdemar came to Talata in 2022 and played for Talata Men this season. At the start of October he left to train with The Patrick School basketball program in New Jersey, one of the best known high school programs in the United States.</p>
+        <ul class="person-facts">
+          <li><strong>Went to:</strong> The Patrick School basketball program, New Jersey, USA</li>
+          <li><strong>Season:</strong> fall 2026</li>
+          <li><strong>At Talata:</strong> since 2022, Talata Men in 2026/27</li>
+          <li><strong>Our part:</strong> we set the move up with him</li>
+        </ul>
+        <p><a href="/blog/valdemar-patrick-school-2026">Read the full story</a></p>
       </div>
     </div>
 
@@ -458,116 +484,327 @@
 
     <!-- TALATA:NETWORK:START generated by tools/build-network-panel.py -->
   <div class="band">
-  <section class="section section-wide">
+  <section class="section section-wide" id="network">
     <div class="kicker">The network</div>
     <h2 class="section-title">Clubs and colleges we know</h2>
-    <p>A placement is only as good as who answers on the other end. First the clubs we have sent a player to, then the ones we know.</p>
+    <p>First the schools we sent a player to, then the teams, clubs and agents we know.</p>
     <div class="tiers">
       <div class="tier-lbl">Players placed here</div>
       <div class="dest">
-      <div class="placed">
+      <a class="placed has-crest" href="https://www.feia.ca" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/fort-erie-international-academy.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Fort Erie International Academy</div>
+        <div class="l">Fort Erie, Ontario, Canada · OSBA</div>
+        <div class="who">Malthe Mikkelsen, fall 2025</div>
+      </a>
+      <a class="placed has-crest" href="https://www.orangevilleprep.com" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/orangeville-prep.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">Orangeville Prep</div>
         <div class="l">Mono, Ontario, Canada · OSBA</div>
         <div class="who">Malthe Mikkelsen, 2025/26</div>
+      </a>
+      <a class="placed" href="https://thepatrickschool.org" target="_blank" rel="noopener">
+        <div class="n">The Patrick School</div>
+        <div class="l">New Jersey, USA · high school basketball program</div>
+        <div class="who">Valdemar Scharfe, fall 2026</div>
+      </a>
       </div>
-      <div class="placed">
+      <div class="tier-lbl">Developed here, his family ran the move</div>
+      <div class="dest">
+      <a class="has-crest" href="https://hs.mfcsd.k12.oh.us" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/martins-ferry-high-school.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">Martins Ferry High School</div>
         <div class="l">Martins Ferry, Ohio, USA · OHSAA</div>
         <div class="who">Johan Lyager Joensen, 2026/27</div>
+      </a>
       </div>
-      </div>
-      <div class="tier-lbl">Canada · university, U SPORTS</div>
+      <div class="tier-lbl">Canada · university, U SPORTS Canada West</div>
       <div class="dest">
-      <div>
-        <div class="n">MacEwan Griffins</div>
-        <div class="l">Edmonton, Alberta · Canada West</div>
-      </div>
-      <div>
+      <a class="has-crest" href="https://bearsandpandas.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/alberta-golden-bears.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Alberta Golden Bears</div>
+        <div class="l">Edmonton, Alberta</div>
+      </a>
+      <a class="has-crest" href="https://godinos.com/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/calgary-dinos.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Calgary Dinos</div>
+        <div class="l">Calgary, Alberta</div>
+      </a>
+      <a class="has-crest" href="https://mrucougars.com/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/mount-royal-cougars.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">Mount Royal Cougars</div>
-        <div class="l">Calgary, Alberta · Canada West</div>
-      </div>
-      <div>
+        <div class="l">Calgary, Alberta</div>
+      </a>
+      <a class="has-crest" href="https://gohorns.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/lethbridge-pronghorns.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">Lethbridge Pronghorns</div>
-        <div class="l">Lethbridge, Alberta · Canada West</div>
+        <div class="l">Lethbridge, Alberta</div>
+      </a>
+      <a class="has-crest" href="https://macewangriffins.ca/sports/mbkb" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/macewan-griffins.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">MacEwan Griffins</div>
+        <div class="l">Edmonton, Alberta</div>
+      </a>
+      <a class="has-crest" href="https://gothunderbirds.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/ubc-thunderbirds.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">UBC Thunderbirds</div>
+        <div class="l">Vancouver, British Columbia</div>
+      </a>
+      <a class="has-crest" href="https://goheat.ca/sports/mbkb" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/ubc-okanagan-heat.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">UBC Okanagan Heat</div>
+        <div class="l">Kelowna, British Columbia</div>
+      </a>
+      <a class="has-crest" href="https://govikesgo.com/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/victoria-vikes.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Victoria Vikes</div>
+        <div class="l">Victoria, British Columbia</div>
+      </a>
+      <a class="has-crest" href="https://gocascades.ca/sports/mbkb" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/ufv-cascades.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">UFV Cascades</div>
+        <div class="l">Abbotsford, British Columbia</div>
+      </a>
+      <a class="has-crest" href="https://gospartans.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/trinity-western-spartans.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Trinity Western Spartans</div>
+        <div class="l">Langley, British Columbia</div>
+      </a>
+      <a class="has-crest" href="https://gowolfpack.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/thompson-rivers-wolfpack.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Thompson Rivers WolfPack</div>
+        <div class="l">Kamloops, British Columbia</div>
+      </a>
+      <a class="has-crest" href="https://unbctimberwolves.com/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/unbc-timberwolves.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">UNBC Timberwolves</div>
+        <div class="l">Prince George, British Columbia</div>
+      </a>
+      <a class="has-crest" href="https://huskies.usask.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/saskatchewan-huskies.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Saskatchewan Huskies</div>
+        <div class="l">Saskatoon, Saskatchewan</div>
+      </a>
+      <a class="has-crest" href="https://cougarsandrams.com/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/regina-cougars.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Regina Cougars</div>
+        <div class="l">Regina, Saskatchewan</div>
+      </a>
+      <a class="has-crest" href="https://gobisons.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/manitoba-bisons.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Manitoba Bisons</div>
+        <div class="l">Winnipeg, Manitoba</div>
+      </a>
+      <a class="has-crest" href="https://wesmen.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/winnipeg-wesmen.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Winnipeg Wesmen</div>
+        <div class="l">Winnipeg, Manitoba</div>
+      </a>
+      <a class="has-crest" href="https://gobobcats.ca/sports/mens-basketball" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/brandon-bobcats.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Brandon Bobcats</div>
+        <div class="l">Brandon, Manitoba</div>
+      </a>
       </div>
+      <div class="tier-lbl">Denmark · every Basketligaen club</div>
+      <div class="dest">
+      <a class="has-crest" href="https://www.bakkenbears.com/" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/bakken-bears.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Bakken Bears</div>
+        <div class="l">Aarhus · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://www.bakkenbears.com/bears-academy/" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/bears-academy.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Bears Academy</div>
+        <div class="l">Aarhus · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://horsensic.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/horsens-ic.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Horsens IC</div>
+        <div class="l">Horsens · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://randerscimbria.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/randers-cimbria.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Randers Cimbria</div>
+        <div class="l">Randers · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://bccopenhagen.com" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/bc-copenhagen.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">BC Copenhagen</div>
+        <div class="l">Copenhagen · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://bmsherlev.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/bms-herlev.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">BMS Herlev</div>
+        <div class="l">Herlev · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://www.gladsaxebasket.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/gladsaxe-basketball-klub.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Gladsaxe Basketball Klub</div>
+        <div class="l">Gladsaxe · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://www.vbbk.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/vaerlose-blue-hawks.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Vaerlose Blue Hawks</div>
+        <div class="l">Værløse · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://holbaekbasket.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/holbaek-stenhus.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Holbaek-Stenhus</div>
+        <div class="l">Holbæk · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://teamfog.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/team-fog-naestved.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Team FOG Naestved</div>
+        <div class="l">Næstved · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://www.rabbits.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/svendborg-rabbits.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Svendborg Rabbits</div>
+        <div class="l">Svendborg · Basketligaen</div>
+      </a>
+      <a class="has-crest" href="https://vejenbasket.dk" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/bk-vejen.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">BK Vejen</div>
+        <div class="l">Vejen · Basketligaen</div>
+      </a>
+      </div>
+      <div class="tier-lbl">Lithuania · LKL, NKL and RKL</div>
+      <div class="dest">
+      <a class="has-crest" href="https://rytasvilnius.lt" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/rytas-vilnius.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Rytas Vilnius</div>
+        <div class="l">Vilnius · LKL</div>
+      </a>
+      <a class="has-crest" href="https://zalgiris.lt/en" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/zalgiris-kaunas.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Žalgiris Kaunas</div>
+        <div class="l">Kaunas · LKL and EuroLeague</div>
+      </a>
+      <a class="has-crest" href="https://bcneptunas.lt" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/neptunas-klaipeda.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Neptūnas Klaipėda</div>
+        <div class="l">Klaipėda · LKL</div>
+      </a>
+      <a class="has-crest" href="https://bcjonava.lt" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/jonava.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Jonava</div>
+        <div class="l">Jonava · LKL</div>
+      </a>
+      <a class="has-crest" href="https://kknevezis.lt" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/nevezis-kedainiai.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Nevėžis Kėdainiai</div>
+        <div class="l">Kėdainiai · LKL</div>
+      </a>
+      <a class="has-crest" href="https://www.mbasket.lt" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/mazeikiai.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Mažeikiai</div>
+        <div class="l">Mažeikiai · NKL</div>
+      </a>
+      <a class="has-crest" href="https://bcjurbarkas.lt" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/jurbarkas.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Jurbarkas</div>
+        <div class="l">Jurbarkas · NKL</div>
+      </a>
+      <a class="has-crest" href="https://nkl.lt/komandos/alytaus-patriotai" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/alytus-patriotai.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Alytus Patriotai</div>
+        <div class="l">Alytus · NKL</div>
+      </a>
+      <div class="has-crest">
+        <span class="crest"><img src="/images/network/prienai.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Prienai</div>
+        <div class="l">Prienai</div>
+      </div>
+      <a class="has-crest" href="https://www.rkl.lt/komandos/raseiniu-raseiniai-178095/" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/raseiniai.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Raseiniai</div>
+        <div class="l">Raseiniai · RKL</div>
+      </a>
+      </div>
+      <div class="tier-lbl">Agents and showcases</div>
+      <div class="dest">
+      <a class="has-crest" href="https://tresportsmgmt.com" target="_blank" rel="noopener">
+        <span class="crest dark"><img src="/images/network/tre-sports-management.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Tre Sports Management</div>
+        <div class="l">Player representation, USA and Italy</div>
+      </a>
+      <a class="has-crest" href="https://eliteurotalent.com" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/elite-euro-talent.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Elite Euro Talent</div>
+        <div class="l">Showcase camp for European players</div>
+      </a>
+      <a class="has-crest" href="https://nbabasketballschool.com" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/nba-basketball-school.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">NBA Basketball School</div>
+        <div class="l">NBA youth programme in Europe</div>
+      </a>
       </div>
       <div class="tier-lbl">Canada · college, ACAC</div>
       <div class="dest">
-      <div>
+      <a href="https://naitooks.com" target="_blank" rel="noopener">
         <div class="n">NAIT Ooks</div>
         <div class="l">Edmonton, Alberta</div>
-      </div>
-      <div>
+      </a>
+      <a href="https://ambrose.edu/campus-life/athletics/" target="_blank" rel="noopener">
         <div class="n">Ambrose Lions</div>
         <div class="l">Calgary, Alberta</div>
-      </div>
-      <div>
+      </a>
+      <a href="https://stmu.ca/campus-life/athletics/" target="_blank" rel="noopener">
         <div class="n">St. Mary’s Lightning</div>
         <div class="l">Calgary, Alberta</div>
-      </div>
-      <div>
+      </a>
+      <a href="https://gokodiaks.ca" target="_blank" rel="noopener">
         <div class="n">Lethbridge Polytechnic Kodiaks</div>
         <div class="l">Lethbridge, Alberta</div>
-      </div>
+      </a>
       </div>
       <div class="tier-lbl">Canada · prep</div>
       <div class="dest">
-      <div>
+      <a href="https://canadatopflight.com/canadatopflightacademy/" target="_blank" rel="noopener">
         <div class="n">Canada Topflight Academy</div>
         <div class="l">Ottawa, Ontario · OSBA</div>
-      </div>
-      <div>
+      </a>
+      <a href="https://canadatopflight.com/canadatopflightacademy/" target="_blank" rel="noopener">
         <div class="n">CTA West</div>
         <div class="l">Calgary, Alberta · post-graduate</div>
-      </div>
-      <div>
+      </a>
+      <a href="https://www.edgeschool.ca" target="_blank" rel="noopener">
         <div class="n">Edge School</div>
         <div class="l">Calgary, Alberta · NPA</div>
-      </div>
-      <div>
-        <div class="n">Fort Erie International Academy</div>
-        <div class="l">Fort Erie, Ontario · OSBA</div>
-      </div>
+      </a>
       </div>
       <div class="tier-lbl">USA</div>
       <div class="dest">
-      <div>
+      <a href="https://gowyo.com/sports/mens-basketball" target="_blank" rel="noopener">
         <div class="n">University of Wyoming</div>
         <div class="l">Laramie, Wyoming · NCAA Division 1</div>
-      </div>
+      </a>
       </div>
       <div class="tier-lbl">Europe</div>
       <div class="dest">
-      <div>
+      <a href="https://www.dolphins.se" target="_blank" rel="noopener">
         <div class="n">Norrköping Dolphins</div>
         <div class="l">Norrköping, Sweden · Basketligan</div>
-      </div>
-      <div>
-        <div class="n">BC Copenhagen</div>
-        <div class="l">Nørrebro, Denmark · Basketligaen</div>
-      </div>
-      <div>
-        <div class="n">KK Raseiniai</div>
-        <div class="l">Raseiniai, Lithuania · RKL</div>
-      </div>
+      </a>
       </div>
       <div class="tier-lbl">Asia</div>
       <div class="dest">
-      <div>
+      <a href="https://ransentertainment.co.id" target="_blank" rel="noopener">
         <div class="n">RANS Simba Bogor</div>
         <div class="l">Bogor, Indonesia · IBL</div>
-      </div>
+      </a>
       </div>
     </div>
     <div class="tier-lbl" style="margin-top:30px">Leagues our network competes in</div>
     <div class="leagues">
     <a class="lg" href="https://www.ncaa.org" target="_blank" rel="noopener" aria-label="NCAA"><img src="/images/leagues/ncaa.svg" alt="NCAA" loading="lazy"></a>
     <a class="lg" href="https://usports.ca" target="_blank" rel="noopener" aria-label="U SPORTS"><img src="/images/leagues/usports.png" alt="U SPORTS" loading="lazy"></a>
-    <a class="lg" href="https://www.acac.ab.ca" target="_blank" rel="noopener" aria-label="Alberta Colleges Athletic Conference"><img src="/images/leagues/acac.png" alt="Alberta Colleges Athletic Conference" loading="lazy"></a>
-    <a class="lg" href="https://www.ccaa.ca" target="_blank" rel="noopener" aria-label="Canadian Collegiate Athletic Association"><img src="/images/leagues/ccaa.png" alt="Canadian Collegiate Athletic Association" loading="lazy"></a>
-    <a class="lg" href="https://www.osbahoops.ca" target="_blank" rel="noopener" aria-label="Ontario Scholastic Basketball Association"><span class="lg-text">OSBA</span></a>
-    <a class="lg" href="https://basketligan.se" target="_blank" rel="noopener" aria-label="Basketligan, Sweden"><img src="/images/leagues/basketligan-se.svg" alt="Basketligan, Sweden" loading="lazy"></a>
-    <a class="lg" href="https://basketligaen.dk" target="_blank" rel="noopener" aria-label="Basketligaen, Denmark"><img src="/images/leagues/basketligaen-dk.png" alt="Basketligaen, Denmark" loading="lazy"></a>
+    <a class="lg" href="https://acac.ab.ca" target="_blank" rel="noopener" aria-label="Alberta Colleges Athletic Conference"><img src="/images/leagues/acac.png" alt="Alberta Colleges Athletic Conference" loading="lazy"></a>
+    <a class="lg" href="https://ccaa.ca" target="_blank" rel="noopener" aria-label="Canadian Collegiate Athletic Association"><img src="/images/leagues/ccaa.png" alt="Canadian Collegiate Athletic Association" loading="lazy"></a>
+    <a class="lg" href="https://basketball.on.ca" target="_blank" rel="noopener" aria-label="Ontario Scholastic Basketball Association"><span class="lg-text">OSBA</span></a>
+    <a class="lg" href="https://www.svenskabasketligan.se" target="_blank" rel="noopener" aria-label="Basketligan, Sweden"><img src="/images/leagues/basketligan-se.svg" alt="Basketligan, Sweden" loading="lazy"></a>
+    <a class="lg" href="https://www.basketligaen.dk" target="_blank" rel="noopener" aria-label="Basketligaen, Denmark"><img src="/images/leagues/basketligaen-dk.png" alt="Basketligaen, Denmark" loading="lazy"></a>
     <a class="lg" href="https://iblindonesia.com" target="_blank" rel="noopener" aria-label="Indonesian Basketball League"><img src="/images/leagues/ibl.png" alt="Indonesian Basketball League" loading="lazy"></a>
     </div>
     <p class="note">These are programmes and coaches we can reach, not sponsors and not endorsements. Our Canada camp runs in Lethbridge, Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming, which is where a lot of the Alberta side of this comes from.</p>
