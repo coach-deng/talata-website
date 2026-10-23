@@ -160,6 +160,7 @@
     "clinic.year": 2026,
     "joiner.fee_mini_junior": 900,
     "joiner.fee_other": 1000,
+    "member.fee": 300,
     "program.academy.age_max": 19,
     "program.academy.age_min": 13,
     "program.academy.fee": 3300,
@@ -230,9 +231,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "9dbf191a4260b838482d89a5548adf30a57fd173137aeb4299f154fe5661b3e7",
+  "sha": "be9af2fd4d0dd0e1925030eb4317773bb3daacea2d4c323264ea09010529b11c",
   "sources": {
-    "programs_sha": "7a432f0ea85c9700261b03ee5893d973cdd883e718495657a6b082915c607dd4",
+    "programs_sha": "60c7649e1d03957ee9cf9691b66452500ba0703555a7661986f95db81055705d",
     "training_sha": "701d0fce650a6005622d997d026ea3e346d9e1b1fdd59547fd16536fbfb8c5ba",
     "training_updated": "2026-10-23"
   },
