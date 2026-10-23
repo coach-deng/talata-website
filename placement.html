@@ -11,7 +11,7 @@
 
   <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/inter-latin-ext.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="/images/2026-10/site/placement-academy-senior-closeout.jpg">
+  <link rel="preload" as="image" href="/images/2026-10/site/placement-jordan-dunk.jpg">
 
   <!-- TALATA:CONSENT. Google loads only after Accept (tools/apply-consent.py). -->
   <script>
@@ -184,9 +184,11 @@
     .dest .who { font-size:0.82rem; color:var(--td-text); font-weight:700; margin-top:8px; }
     /* crests beside the name, on a pale tile so dark and light logos both read */
     .dest .has-crest { display:grid; grid-template-columns:56px 1fr; column-gap:14px; align-items:center; }
-    .dest .has-crest .crest { grid-row:span 3; width:56px; height:56px; background:#F8FAFC; color:#0B0F17; border-radius:6px; padding:6px; display:flex; align-items:center; justify-content:center; }
+    /* White tile, edged, in both themes (Deng, 23 Oct 2026: no white on white) */
+    .dest .has-crest .crest { grid-row:span 3; width:56px; height:56px; background:#FFFFFF; border:1px solid var(--td-line); color:#0B1F3A; border-radius:6px; padding:6px; display:flex; align-items:center; justify-content:center; }
     .dest .has-crest .crest img { max-width:100%; max-height:100%; object-fit:contain; }
-    .dest .has-crest .crest.dark { background:#0B1F3A; color:#fff; }
+    .dest .has-crest .crest.tx { font-weight:900; font-size:0.6rem; line-height:1.15; text-align:center; text-transform:uppercase; }
+    .flag { display:inline-block; width:20px; height:15px; border-radius:2px; box-shadow:0 0 0 1px rgba(11,31,58,.18); vertical-align:-2px; margin-right:7px; }
     .leagues { display:flex; flex-wrap:wrap; align-items:center; gap:14px 30px; margin-top:12px; background:var(--td-bg); border:1px solid var(--td-line); border-radius:var(--radius); padding:22px 24px; }
     .leagues .lg { display:flex; align-items:center; justify-content:center; height:38px; text-decoration:none; }
     .leagues .lg img { max-height:38px; max-width:120px; width:auto; height:auto; display:block; }
@@ -379,7 +381,7 @@
           <a class="btn" href="mailto:coach@talatabasketball.dk?subject=Basketball%20placement%20enquiry">Email Coach Deng</a>
         </div>
       </div>
-      <div class="photo"><img src="/images/2026-10/site/placement-academy-senior-closeout.jpg" srcset="/images/2026-10/site/placement-academy-senior-closeout-800.jpg 800w, /images/2026-10/site/placement-academy-senior-closeout.jpg 1600w" sizes="(max-width:860px) 100vw, 540px" alt="A senior Talata Academy player closing out on a shooter in training" width="1600" height="1066" fetchpriority="high" decoding="async"></div>
+      <div class="photo"><img src="/images/2026-10/site/placement-jordan-dunk.jpg" srcset="/images/2026-10/site/placement-jordan-dunk-800.jpg 800w, /images/2026-10/site/placement-jordan-dunk.jpg 1600w" sizes="(max-width:860px) 100vw, 540px" alt="Coach Jordan Naughton dunking in a Danish league game. Photo: 1st Down Photo" width="1600" height="1065" fetchpriority="high" decoding="async"></div>
     </div>
   </section>
 
@@ -491,21 +493,16 @@
     <div class="tiers">
       <div class="tier-lbl">Players placed here</div>
       <div class="dest">
-      <a class="placed has-crest" href="https://www.feia.ca" target="_blank" rel="noopener">
-        <span class="crest"><img src="/images/network/fort-erie-international-academy.png" alt="" loading="lazy" decoding="async"></span>
-        <div class="n">Fort Erie International Academy</div>
-        <div class="l">Fort Erie, Ontario, Canada · OSBA</div>
-        <div class="who">Malthe Mikkelsen, fall 2025</div>
-      </a>
       <a class="placed has-crest" href="https://www.orangevilleprep.com" target="_blank" rel="noopener">
         <span class="crest"><img src="/images/network/orangeville-prep.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">Orangeville Prep</div>
-        <div class="l">Mono, Ontario, Canada · OSBA</div>
+        <div class="l"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Mono, Ontario, Canada · OSBA</div>
         <div class="who">Malthe Mikkelsen, 2025/26</div>
       </a>
-      <a class="placed" href="https://thepatrickschool.org" target="_blank" rel="noopener">
+      <a class="placed has-crest" href="https://thepatrickschool.org" target="_blank" rel="noopener">
+        <span class="crest tx">The Patrick School</span>
         <div class="n">The Patrick School</div>
-        <div class="l">New Jersey, USA · high school basketball program</div>
+        <div class="l"><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">New Jersey, USA · high school basketball program</div>
         <div class="who">Valdemar Scharfe, fall 2026</div>
       </a>
       </div>
@@ -514,11 +511,11 @@
       <a class="has-crest" href="https://hs.mfcsd.k12.oh.us" target="_blank" rel="noopener">
         <span class="crest"><img src="/images/network/martins-ferry-high-school.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">Martins Ferry High School</div>
-        <div class="l">Martins Ferry, Ohio, USA · OHSAA</div>
+        <div class="l"><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">Martins Ferry, Ohio, USA · OHSAA</div>
         <div class="who">Johan Lyager Joensen, 2026/27</div>
       </a>
       </div>
-      <div class="tier-lbl">Canada · university, U SPORTS Canada West</div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Canada · university, U SPORTS Canada West</div>
       <div class="dest">
       <a class="has-crest" href="https://bearsandpandas.ca/sports/mens-basketball" target="_blank" rel="noopener">
         <span class="crest"><img src="/images/network/alberta-golden-bears.png" alt="" loading="lazy" decoding="async"></span>
@@ -606,7 +603,7 @@
         <div class="l">Brandon, Manitoba</div>
       </a>
       </div>
-      <div class="tier-lbl">Denmark · every Basketligaen club</div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/dk.svg" alt="" width="20" height="15">Denmark · every Basketligaen club</div>
       <div class="dest">
       <a class="has-crest" href="https://www.bakkenbears.com/" target="_blank" rel="noopener">
         <span class="crest"><img src="/images/network/bakken-bears.png" alt="" loading="lazy" decoding="async"></span>
@@ -669,7 +666,7 @@
         <div class="l">Vejen · Basketligaen</div>
       </a>
       </div>
-      <div class="tier-lbl">Lithuania · LKL, NKL and RKL</div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/lt.svg" alt="" width="20" height="15">Lithuania · LKL, NKL and RKL</div>
       <div class="dest">
       <a class="has-crest" href="https://rytasvilnius.lt" target="_blank" rel="noopener">
         <span class="crest"><img src="/images/network/rytas-vilnius.png" alt="" loading="lazy" decoding="async"></span>
@@ -725,7 +722,7 @@
       <div class="tier-lbl">Agents and showcases</div>
       <div class="dest">
       <a class="has-crest" href="https://tresportsmgmt.com" target="_blank" rel="noopener">
-        <span class="crest dark"><img src="/images/network/tre-sports-management.png" alt="" loading="lazy" decoding="async"></span>
+        <span class="crest"><img src="/images/network/tre-sports-management-navy.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">Tre Sports Management</div>
         <div class="l">Player representation, USA and Italy</div>
       </a>
@@ -740,7 +737,7 @@
         <div class="l">NBA youth programme in Europe</div>
       </a>
       </div>
-      <div class="tier-lbl">Canada · college, ACAC</div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Canada · college, ACAC</div>
       <div class="dest">
       <a href="https://naitooks.com" target="_blank" rel="noopener">
         <div class="n">NAIT Ooks</div>
@@ -759,8 +756,13 @@
         <div class="l">Lethbridge, Alberta</div>
       </a>
       </div>
-      <div class="tier-lbl">Canada · prep</div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Canada · prep</div>
       <div class="dest">
+      <a class="has-crest" href="https://www.feia.ca" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/fort-erie-international-academy.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Fort Erie International Academy</div>
+        <div class="l">Fort Erie, Ontario, Canada · OSBA</div>
+      </a>
       <a href="https://canadatopflight.com/canadatopflightacademy/" target="_blank" rel="noopener">
         <div class="n">Canada Topflight Academy</div>
         <div class="l">Ottawa, Ontario · OSBA</div>
@@ -774,21 +776,21 @@
         <div class="l">Calgary, Alberta · NPA</div>
       </a>
       </div>
-      <div class="tier-lbl">USA</div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">USA</div>
       <div class="dest">
       <a href="https://gowyo.com/sports/mens-basketball" target="_blank" rel="noopener">
         <div class="n">University of Wyoming</div>
         <div class="l">Laramie, Wyoming · NCAA Division 1</div>
       </a>
       </div>
-      <div class="tier-lbl">Europe</div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/se.svg" alt="" width="20" height="15">Sweden</div>
       <div class="dest">
       <a href="https://www.dolphins.se" target="_blank" rel="noopener">
         <div class="n">Norrköping Dolphins</div>
         <div class="l">Norrköping, Sweden · Basketligan</div>
       </a>
       </div>
-      <div class="tier-lbl">Asia</div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/id.svg" alt="" width="20" height="15">Indonesia</div>
       <div class="dest">
       <a href="https://ransentertainment.co.id" target="_blank" rel="noopener">
         <div class="n">RANS Simba Bogor</div>
@@ -800,8 +802,8 @@
     <div class="leagues">
     <a class="lg" href="https://www.ncaa.org" target="_blank" rel="noopener" aria-label="NCAA"><img src="/images/leagues/ncaa.svg" alt="NCAA" loading="lazy"></a>
     <a class="lg" href="https://usports.ca" target="_blank" rel="noopener" aria-label="U SPORTS"><img src="/images/leagues/usports.png" alt="U SPORTS" loading="lazy"></a>
-    <a class="lg" href="https://acac.ab.ca" target="_blank" rel="noopener" aria-label="Alberta Colleges Athletic Conference"><img src="/images/leagues/acac.png" alt="Alberta Colleges Athletic Conference" loading="lazy"></a>
-    <a class="lg" href="https://ccaa.ca" target="_blank" rel="noopener" aria-label="Canadian Collegiate Athletic Association"><img src="/images/leagues/ccaa.png" alt="Canadian Collegiate Athletic Association" loading="lazy"></a>
+    <a class="lg" href="https://acac.ab.ca" target="_blank" rel="noopener" aria-label="Alberta Colleges Athletic Conference"><img src="/images/leagues/acac-navy.png" alt="Alberta Colleges Athletic Conference" loading="lazy"></a>
+    <a class="lg" href="https://ccaa.ca" target="_blank" rel="noopener" aria-label="Canadian Collegiate Athletic Association"><img src="/images/leagues/ccaa-navy.png" alt="Canadian Collegiate Athletic Association" loading="lazy"></a>
     <a class="lg" href="https://basketball.on.ca" target="_blank" rel="noopener" aria-label="Ontario Scholastic Basketball Association"><span class="lg-text">OSBA</span></a>
     <a class="lg" href="https://www.svenskabasketligan.se" target="_blank" rel="noopener" aria-label="Basketligan, Sweden"><img src="/images/leagues/basketligan-se.svg" alt="Basketligan, Sweden" loading="lazy"></a>
     <a class="lg" href="https://www.basketligaen.dk" target="_blank" rel="noopener" aria-label="Basketligaen, Denmark"><img src="/images/leagues/basketligaen-dk.png" alt="Basketligaen, Denmark" loading="lazy"></a>

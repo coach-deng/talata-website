@@ -3,24 +3,19 @@
   "intro": "First the schools we sent a player to, then the teams, clubs and agents we know.",
   "placed": [
     {
-      "name": "Fort Erie International Academy",
-      "where": "Fort Erie, Ontario, Canada · OSBA",
-      "who": "Malthe Mikkelsen, fall 2025",
-      "logo": "fort-erie-international-academy.png",
-      "url": "https://www.feia.ca"
-    },
-    {
       "name": "Orangeville Prep",
       "where": "Mono, Ontario, Canada · OSBA",
       "who": "Malthe Mikkelsen, 2025/26",
       "logo": "orangeville-prep.png",
-      "url": "https://www.orangevilleprep.com"
+      "url": "https://www.orangevilleprep.com",
+      "flag": "ca"
     },
     {
       "name": "The Patrick School",
       "where": "New Jersey, USA · high school basketball program",
       "who": "Valdemar Scharfe, fall 2026",
-      "url": "https://thepatrickschool.org"
+      "url": "https://thepatrickschool.org",
+      "flag": "us"
     }
   ],
   "developed_label": "Developed here, his family ran the move",
@@ -30,7 +25,8 @@
       "where": "Martins Ferry, Ohio, USA · OHSAA",
       "who": "Johan Lyager Joensen, 2026/27",
       "logo": "martins-ferry-high-school.png",
-      "url": "https://hs.mfcsd.k12.oh.us"
+      "url": "https://hs.mfcsd.k12.oh.us",
+      "flag": "us"
     }
   ],
   "groups": [
@@ -139,7 +135,8 @@
           "logo": "brandon-bobcats.png",
           "url": "https://gobobcats.ca/sports/mens-basketball"
         }
-      ]
+      ],
+      "flag": "ca"
     },
     {
       "label": "Denmark · every Basketligaen club",
@@ -216,7 +213,8 @@
           "logo": "bk-vejen.png",
           "url": "https://vejenbasket.dk"
         }
-      ]
+      ],
+      "flag": "dk"
     },
     {
       "label": "Lithuania · LKL, NKL and RKL",
@@ -280,7 +278,8 @@
           "logo": "raseiniai.png",
           "url": "https://www.rkl.lt/komandos/raseiniu-raseiniai-178095/"
         }
-      ]
+      ],
+      "flag": "lt"
     },
     {
       "label": "Agents and showcases",
@@ -288,8 +287,7 @@
         {
           "name": "Tre Sports Management",
           "where": "Player representation, USA and Italy",
-          "logo": "tre-sports-management.png",
-          "dark": true,
+          "logo": "tre-sports-management-navy.png",
           "url": "https://tresportsmgmt.com"
         },
         {
@@ -329,11 +327,18 @@
           "where": "Lethbridge, Alberta",
           "url": "https://gokodiaks.ca"
         }
-      ]
+      ],
+      "flag": "ca"
     },
     {
       "label": "Canada · prep",
       "entries": [
+        {
+          "name": "Fort Erie International Academy",
+          "where": "Fort Erie, Ontario, Canada · OSBA",
+          "logo": "fort-erie-international-academy.png",
+          "url": "https://www.feia.ca"
+        },
         {
           "name": "Canada Topflight Academy",
           "where": "Ottawa, Ontario · OSBA",
@@ -349,7 +354,8 @@
           "where": "Calgary, Alberta · NPA",
           "url": "https://www.edgeschool.ca"
         }
-      ]
+      ],
+      "flag": "ca"
     },
     {
       "label": "USA",
@@ -359,27 +365,30 @@
           "where": "Laramie, Wyoming · NCAA Division 1",
           "url": "https://gowyo.com/sports/mens-basketball"
         }
-      ]
+      ],
+      "flag": "us"
     },
     {
-      "label": "Europe",
+      "label": "Sweden",
       "entries": [
         {
           "name": "Norrköping Dolphins",
           "where": "Norrköping, Sweden · Basketligan",
           "url": "https://www.dolphins.se"
         }
-      ]
+      ],
+      "flag": "se"
     },
     {
-      "label": "Asia",
+      "label": "Indonesia",
       "entries": [
         {
           "name": "RANS Simba Bogor",
           "where": "Bogor, Indonesia · IBL",
           "url": "https://ransentertainment.co.id"
         }
-      ]
+      ],
+      "flag": "id"
     }
   ],
   "leagues": [
@@ -396,13 +405,13 @@
     {
       "name": "Alberta Colleges Athletic Conference",
       "short": "ACAC",
-      "file": "acac.png",
+      "file": "acac-navy.png",
       "url": "https://acac.ab.ca"
     },
     {
       "name": "Canadian Collegiate Athletic Association",
       "short": "CCAA",
-      "file": "ccaa.png",
+      "file": "ccaa-navy.png",
       "url": "https://ccaa.ca"
     },
     {

@@ -157,29 +157,32 @@ section{padding:64px 0;border-top:1px solid var(--td-line);}
 .way h3{font-family:var(--disp);font-weight:800;font-size:1.15rem;text-transform:uppercase;}
 .way p{font-size:0.95rem;color:var(--td-muted);flex:1;}
 .way a{font-weight:700;font-size:0.92rem;color:var(--td-link);text-decoration:underline;text-underline-offset:3px;}
-.abroad{margin-top:40px;}
+.abroad{margin-top:48px;}
 .abroad .head{margin-bottom:16px;}
 .abroad .head h3{font-family:var(--disp);font-weight:900;font-size:1.2rem;text-transform:uppercase;}
+.abroad .lead{margin:-4px 0 16px;}
 .alist{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 @media(max-width:900px){.alist{grid-template-columns:1fr;}}
 .alist .pl{display:flex;gap:16px;align-items:center;height:100%;background:var(--td-surface);border:1px solid var(--td-line);border-radius:8px;padding:18px;}
 .alist .txt{display:block;color:var(--td-text);}
 .alist .txt:hover .nm{text-decoration:underline;}
 a.crest:hover{outline:2px solid var(--td-link);}
-.crests{flex:none;display:flex;gap:6px;}
-.crest{width:72px;height:72px;border-radius:8px;background:#F8FAFC;color:#0B0F17;padding:8px;display:flex;align-items:center;justify-content:center;}
-.crests .crest + .crest{width:56px;height:56px;align-self:flex-end;}
+/* Logos sit on a white tile in both themes, edged so the tile shows on a light
+   page too (Deng, 23 Oct 2026: no white on white). A white logo gets a navy copy. */
+.crest{flex:none;width:72px;height:72px;border-radius:8px;background:#FFFFFF;border:1px solid var(--td-line);color:#0B1F3A;padding:8px;display:flex;align-items:center;justify-content:center;}
 .crest img{max-width:100%;max-height:100%;object-fit:contain;}
 .alist .nm{display:block;font-family:var(--disp);font-weight:800;font-size:1.05rem;line-height:1.25;}
 .alist .sc{display:block;font-weight:700;font-size:0.92rem;margin-top:4px;}
-.alist .wh{display:block;font-size:0.84rem;color:var(--td-muted);margin-top:2px;}
-.netwall{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+.alist .wh{display:flex;align-items:center;gap:6px;font-size:0.84rem;color:var(--td-muted);margin-top:4px;}
+.flag{flex:none;width:20px;height:15px;border-radius:2px;box-shadow:0 0 0 1px rgba(11,31,58,.18);}
+.flags{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 18px;font-size:0.9rem;font-weight:700;}
+.flags li{display:flex;align-items:center;gap:8px;}
+.netwall{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
 @media(max-width:900px){.netwall{grid-template-columns:repeat(4,1fr);}}
-@media(max-width:520px){.netwall{grid-template-columns:repeat(3,1fr);}}
-.netwall li{aspect-ratio:3/2;border-radius:8px;background:#F8FAFC;color:#0B0F17;padding:12px;display:flex;align-items:center;justify-content:center;}
+@media(max-width:520px){.netwall{grid-template-columns:repeat(3,1fr);gap:8px;}}
+.netwall li{aspect-ratio:3/2;border-radius:8px;background:#FFFFFF;border:1px solid var(--td-line);padding:14px;display:flex;align-items:center;justify-content:center;}
 .netwall a{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
 .netwall img{max-width:100%;max-height:100%;object-fit:contain;}
-.netwall li.dark,.crest.dark{background:#0B1F3A;color:#fff;}
 .crest.tx{font-family:var(--disp);font-weight:900;font-size:0.72rem;line-height:1.15;text-align:center;text-transform:uppercase;}
 </style>
 <link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" type="font/woff2" crossorigin>
@@ -352,18 +355,19 @@ a.crest:hover{outline:2px solid var(--td-link);}
     <div class="abroad">
       <div class="head"><h3>Three players to North America</h3><a href="/placement">Going abroad</a></div>
       <ul class="alist">
-        <li><div class="pl"><span class="crests"><a class="crest" href="https://www.orangevilleprep.com" target="_blank" rel="noopener" aria-label="Orangeville Prep website"><img src="/images/network/orangeville-prep.png" alt="" loading="lazy" decoding="async"></a><a class="crest" href="https://www.feia.ca" target="_blank" rel="noopener" aria-label="Fort Erie International Academy website"><img src="/images/network/fort-erie-international-academy.png" alt="" loading="lazy" decoding="async"></a></span><a class="txt" href="/blog/malthe-orangeville-2025"><span class="nm">Malthe Mikkelsen</span><span class="sc">Fort Erie, then Orangeville Prep</span><span class="wh">Ontario, Canada · 2025/26</span></a></div></li>
-        <li><div class="pl"><span class="crests"><a class="crest" href="https://hs.mfcsd.k12.oh.us" target="_blank" rel="noopener" aria-label="Martins Ferry High School website"><img src="/images/network/martins-ferry-high-school.png" alt="" loading="lazy" decoding="async"></a></span><a class="txt" href="/blog/johan-lyager-joensen-ohio-2026"><span class="nm">Johan Lyager Joensen</span><span class="sc">Martins Ferry High School</span><span class="wh">Ohio, USA · 2026/27</span></a></div></li>
-        <li><div class="pl"><span class="crests"><a class="crest dark tx" href="https://thepatrickschool.org" target="_blank" rel="noopener" aria-label="The Patrick School website">The Patrick School</a></span><a class="txt" href="/blog/valdemar-patrick-school-2026"><span class="nm">Valdemar Scharfe</span><span class="sc">The Patrick School program</span><span class="wh">New Jersey, USA · Fall 2026</span></a></div></li>
+        <li><div class="pl"><a class="crest" href="https://www.orangevilleprep.com" target="_blank" rel="noopener" aria-label="Orangeville Prep website"><img src="/images/network/orangeville-prep.png" alt="" loading="lazy" decoding="async"></a><a class="txt" href="/blog/malthe-orangeville-2025"><span class="nm">Malthe Mikkelsen</span><span class="sc">Orangeville Prep, after a fall at Fort Erie</span><span class="wh"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Ontario, Canada · 2025/26</span></a></div></li>
+        <li><div class="pl"><a class="crest" href="https://hs.mfcsd.k12.oh.us" target="_blank" rel="noopener" aria-label="Martins Ferry High School website"><img src="/images/network/martins-ferry-high-school.png" alt="" loading="lazy" decoding="async"></a><a class="txt" href="/blog/johan-lyager-joensen-ohio-2026"><span class="nm">Johan Lyager Joensen</span><span class="sc">Martins Ferry High School</span><span class="wh"><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">Ohio, USA · 2026/27</span></a></div></li>
+        <li><div class="pl"><a class="crest tx" href="https://thepatrickschool.org" target="_blank" rel="noopener" aria-label="The Patrick School website">The Patrick School</a><a class="txt" href="/blog/valdemar-patrick-school-2026"><span class="nm">Valdemar Scharfe</span><span class="sc">The Patrick School program</span><span class="wh"><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">New Jersey, USA · Fall 2026</span></a></div></li>
       </ul>
     </div>
     <div class="abroad">
       <div class="head"><h3>Who we know</h3><a href="/placement#network">The full network</a></div>
       <p class="lead">Every Canada West team, every club in the Danish Basketligaen, and agents who can represent a player who is ready.</p>
+      <ul class="flags" aria-label="Countries in our network"><li><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Canada</li><li><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">USA</li><li><img class="flag" src="/images/flags/dk.svg" alt="" width="20" height="15">Denmark</li><li><img class="flag" src="/images/flags/lt.svg" alt="" width="20" height="15">Lithuania</li><li><img class="flag" src="/images/flags/se.svg" alt="" width="20" height="15">Sweden</li><li><img class="flag" src="/images/flags/id.svg" alt="" width="20" height="15">Indonesia</li></ul>
       <ul class="netwall">
         <li><a href="https://nbabasketballschool.com" target="_blank" rel="noopener" aria-label="NBA Basketball School"><img src="/images/network/nba-basketball-school.png" alt="NBA Basketball School" loading="lazy" decoding="async"></a></li>
         <li><a href="https://zalgiris.lt/en" target="_blank" rel="noopener" aria-label="Zalgiris Kaunas"><img src="/images/network/zalgiris-kaunas.png" alt="Zalgiris Kaunas" loading="lazy" decoding="async"></a></li>
-        <li class="dark"><a href="https://tresportsmgmt.com" target="_blank" rel="noopener" aria-label="Tre Sports Management"><img src="/images/network/tre-sports-management.png" alt="Tre Sports Management" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://tresportsmgmt.com" target="_blank" rel="noopener" aria-label="Tre Sports Management"><img src="/images/network/tre-sports-management-navy.png" alt="Tre Sports Management" loading="lazy" decoding="async"></a></li>
         <li><a href="https://eliteurotalent.com" target="_blank" rel="noopener" aria-label="Elite Euro Talent"><img src="/images/network/elite-euro-talent.png" alt="Elite Euro Talent" loading="lazy" decoding="async"></a></li>
         <li><a href="https://mrucougars.com/sports/mens-basketball" target="_blank" rel="noopener" aria-label="Mount Royal Cougars"><img src="/images/network/mount-royal-cougars.png" alt="Mount Royal Cougars" loading="lazy" decoding="async"></a></li>
         <li><a href="https://godinos.com/sports/mens-basketball" target="_blank" rel="noopener" aria-label="Calgary Dinos"><img src="/images/network/calgary-dinos.png" alt="Calgary Dinos" loading="lazy" decoding="async"></a></li>
@@ -415,7 +419,7 @@ a.crest:hover{outline:2px solid var(--td-link);}
     <div class="head"><h2>Latest</h2><a href="/blog">All stories</a></div>
     <div class="latest">
       <a class="story" href="/blog/valdemar-patrick-school-2026">
-        <img src="images/2026-09/jordan-free-throw-horsholm-cup-hero.jpg" alt="Talata Men at the free throw line against H&oslash;rsholm in the Danish Cup, Svanem&oslash;llehallen, September 2026" loading="lazy" decoding="async" width="1600" height="599" style="object-position:50% 30%">
+        <img src="images/2026-09/preseason-seniors-academy-2026-09-04-hero.jpg" alt="Talata Men and Academy players together after the pre-season game at N&oslash;rre F&aelig;lled, 4 September 2026" loading="lazy" decoding="async" width="1600" height="599" style="object-position:50% 30%">
         <div class="grad"></div>
         <div class="txt"><span class="tag">Player News</span><h3>Valdemar heads to New Jersey</h3><p>Valdemar Scharfe came to Talata in 2022 and opened this season with Talata Men. This fall he trains with The Patrick School basketball program in New Jersey.</p></div>
       </a>

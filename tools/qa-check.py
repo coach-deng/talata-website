@@ -344,7 +344,8 @@ def check_structure(fails, warns):
     # image, and a re-saved copy on the families card. Latest is generated, so
     # a new post can bring it back without anyone touching index.html.
     srcs = re.findall(r"<img[^>]*\ssrc=\"/?(images/[^\"]+)\"", (ROOT / "index.html").read_text(encoding="utf-8"))
-    for img in sorted({s for s in srcs if srcs.count(s) > 1}):
+    # Country flags repeat by design (Deng, 23 Oct 2026), they are not photos.
+    for img in sorted({s for s in srcs if srcs.count(s) > 1 and not s.startswith("images/flags/")}):
         fails.append(("index.html", "photo used twice on the homepage", img))
 
 

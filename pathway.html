@@ -112,8 +112,9 @@
     .person-photo { position:relative; background:#0B1F3A; aspect-ratio:4 / 5; align-self:start; overflow:hidden; }
     .person-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; }
     /* school crest instead of a player photo (Deng, 23 Oct 2026) */
-    .person-photo.crest-tile { background:#F8FAFC; color:#0B0F17; }
+    .person-photo.crest-tile { background:#FFFFFF; border:1px solid var(--td-line); color:#0B1F3A; }
     .person-photo.crest-tile img { inset:16%; width:68%; height:68%; object-fit:contain; }
+    .person-photo.crest-tile .person-initials { background:#FFFFFF; color:#0B1F3A; }
     .person-initials.tx { font-size:1.3rem; line-height:1.2; text-align:center; padding:12px; text-transform:uppercase; }
     .person-initials { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:#0B1F3A; color:#fff; font-family:var(--disp); font-size:2.6rem; font-weight:900; }
     .person-body { padding:26px 26px 24px; }
@@ -272,7 +273,7 @@
       <div class="person-photo crest-tile"><img src="/images/network/orangeville-prep.png" alt="Orangeville Prep" loading="lazy" decoding="async"></div>
       <div class="person-body">
         <h3>Malthe Mikkelsen</h3>
-        <div class="move">Talata to Fort Erie, then Orangeville Prep, Canada</div>
+        <div class="move">Talata to Orangeville Prep, Canada</div>
         <p>Malthe was a wing in the Talata Academy through 2024/25. At the start of 2025/26 he went to <strong>Fort Erie International Academy</strong> in Ontario, then moved to <strong>Orangeville Prep</strong> for the rest of the season. Orangeville is one of the top prep programs in North America and a regular feeder into NCAA Division 1.</p>
         <ul class="person-facts">
           <li>Talata Academy, <strong>2024/25</strong></li>
@@ -301,7 +302,7 @@
     </div>
 
     <div class="person">
-      <div class="person-photo">
+      <div class="person-photo crest-tile">
         <div class="person-initials tx">The Patrick School</div>
       </div>
       <div class="person-body">

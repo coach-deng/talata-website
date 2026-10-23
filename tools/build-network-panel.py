@@ -20,24 +20,34 @@ END = "  <!-- TALATA:NETWORK:END -->"
 
 def esc(t): return html.escape(t, quote=False)
 
+def flag(code):
+    # Country flags (Deng, 23 Oct 2026), self-hosted from flag-icons in images/flags/
+    if not code:
+        return ""
+    return '<img class="flag" src="/images/flags/%s.svg" alt="" width="20" height="15">' % esc(code)
+
 def card(e, placed=False, who=False):
     # A crest sits beside the name when images/network/<logo> exists (Deng,
     # 23 Oct 2026: logos, not player photos). No file, no hole: name only.
+    # A school we sent a player to with no crest online gets its name on the
+    # tile instead, so the player cards line up.
     logo = e.get("logo", "")
     has = bool(logo) and (ROOT / "images" / "network" / logo).exists()
-    cls = " ".join(c for c in ("placed" if placed else "", "has-crest" if has else "") if c)
+    named = not has and (placed or who)
+    cls = " ".join(c for c in ("placed" if placed else "", "has-crest" if has or named else "") if c)
     # Every card links to the team's own site when we have the URL (Deng, 23 Oct 2026)
     url = e.get("url", "")
     tag = "a" if url else "div"
     attrs = (' class="%s"' % cls if cls else "") + (' href="%s" target="_blank" rel="noopener"' % esc(url) if url else "")
     out = ["      <%s%s>" % (tag, attrs)]
     if has:
-        # "dark": true puts a white logo on navy so it does not vanish
-        dark = " dark" if e.get("dark") else ""
-        out.append('        <span class="crest%s"><img src="/images/network/%s" alt="" loading="lazy" decoding="async"></span>' % (dark, esc(logo)))
+        # A white logo gets a navy copy in images/network/, never a dark tile
+        out.append('        <span class="crest"><img src="/images/network/%s" alt="" loading="lazy" decoding="async"></span>' % esc(logo))
+    elif named:
+        out.append('        <span class="crest tx">%s</span>' % esc(e["name"]))
     out.append('        <div class="n">%s</div>' % esc(e["name"]))
     if e.get("where"):
-        out.append('        <div class="l">%s</div>' % esc(e["where"]))
+        out.append('        <div class="l">%s%s</div>' % (flag(e.get("flag")), esc(e["where"])))
     if (placed or who) and e.get("who"):
         out.append('        <div class="who">%s</div>' % esc(e["who"]))
     out.append("      </%s>" % tag)
@@ -79,7 +89,7 @@ if developed:
     parts.append("      </div>")
 
 for g in groups:
-    parts.append('      <div class="tier-lbl">%s</div>' % esc(g["label"]))
+    parts.append('      <div class="tier-lbl">%s%s</div>' % (flag(g.get("flag")), esc(g["label"])))
     parts.append('      <div class="dest">')
     parts += [card(e) for e in g["entries"]]
     parts.append("      </div>")
