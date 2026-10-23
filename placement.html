@@ -185,17 +185,19 @@
     /* crests beside the name, on a pale tile so dark and light logos both read */
     .dest .has-crest { display:grid; grid-template-columns:56px 1fr; column-gap:14px; align-items:center; }
     /* White tile, edged, in both themes (Deng, 23 Oct 2026: no white on white) */
-    .dest .has-crest .crest { grid-row:span 3; width:56px; height:56px; background:#FFFFFF; border:1px solid var(--td-line); color:#0B1F3A; border-radius:6px; padding:6px; display:flex; align-items:center; justify-content:center; }
+    .dest .has-crest .crest { grid-row:span 3; width:56px; height:56px; background:var(--td-crest); border:1px solid var(--td-line); color:var(--td-crest-ink); border-radius:6px; padding:6px; display:flex; align-items:center; justify-content:center; }
     .dest .has-crest .crest img { max-width:100%; max-height:100%; object-fit:contain; }
     .dest .has-crest .crest.tx { font-weight:900; font-size:0.6rem; line-height:1.15; text-align:center; text-transform:uppercase; }
     .flag { display:inline-block; width:20px; height:15px; border-radius:2px; box-shadow:0 0 0 1px rgba(11,31,58,.18); vertical-align:-2px; margin-right:7px; }
-    .leagues { display:flex; flex-wrap:wrap; align-items:center; gap:14px 30px; margin-top:12px; background:var(--td-bg); border:1px solid var(--td-line); border-radius:var(--radius); padding:22px 24px; }
-    .leagues .lg { display:flex; align-items:center; justify-content:center; height:38px; text-decoration:none; }
-    .leagues .lg img { max-height:38px; max-width:120px; width:auto; height:auto; display:block; }
-    .leagues .lg-text { font-size:0.85rem; font-weight:800; color:var(--td-muted); }
+    .leagues { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:12px; background:var(--td-bg); border:1px solid var(--td-line); border-radius:var(--radius); padding:22px 24px; }
+    /* League marks on white tiles like the crests (23 Oct 2026): black marks vanished on the dark strip */
+    .leagues .lg { display:flex; align-items:center; justify-content:center; height:56px; min-width:76px; padding:8px 12px; background:var(--td-crest); color:var(--td-crest-ink); border:1px solid var(--td-line); border-radius:8px; text-decoration:none; }
+    .leagues .lg img { max-height:38px; max-width:110px; width:auto; height:auto; display:block; }
+    .leagues .lg-text { font-size:0.85rem; font-weight:800; color:var(--td-crest-ink); }
     @media (max-width:600px) {
-      .leagues { gap:12px 20px; padding:18px 16px; }
-      .leagues .lg, .leagues .lg img { max-height:30px; height:30px; }
+      .leagues { gap:8px; padding:16px; }
+      .leagues .lg { height:48px; min-width:64px; padding:6px 10px; }
+      .leagues .lg img { max-height:30px; max-width:90px; }
       .cta-box { padding:24px 18px; }
     }
     .cta-box .plain li { color:rgba(255,255,255,0.85); }
@@ -488,8 +490,8 @@
   <div class="band">
   <section class="section section-wide" id="network">
     <div class="kicker">The network</div>
-    <h2 class="section-title">Clubs and colleges we know</h2>
-    <p>First the schools we sent a player to, then the teams, clubs and agents we know.</p>
+    <h2 class="section-title">Who we know</h2>
+    <p>Our players went to the first three schools. We know the coaches at the rest.</p>
     <div class="tiers">
       <div class="tier-lbl">Players placed here</div>
       <div class="dest">
@@ -506,13 +508,49 @@
         <div class="who">Valdemar Scharfe, fall 2026</div>
       </a>
       </div>
-      <div class="tier-lbl">Developed here, his family ran the move</div>
+      <div class="tier-lbl">Trained with us. His family set up the move.</div>
       <div class="dest">
       <a class="has-crest" href="https://hs.mfcsd.k12.oh.us" target="_blank" rel="noopener">
         <span class="crest"><img src="/images/network/martins-ferry-high-school.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">Martins Ferry High School</div>
         <div class="l"><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">Martins Ferry, Ohio, USA · OHSAA</div>
         <div class="who">Johan Lyager Joensen, 2026/27</div>
+      </a>
+      </div>
+      <div class="tier-lbl">NBA and G League</div>
+      <div class="dest">
+      <a class="has-crest" href="https://www.nba.com/raptors" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/toronto-raptors.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Toronto Raptors</div>
+        <div class="l"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Toronto, Canada · NBA</div>
+      </a>
+      <a class="has-crest" href="https://www.nba.com/grizzlies" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/memphis-grizzlies.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Memphis Grizzlies</div>
+        <div class="l"><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">Memphis, USA · NBA</div>
+      </a>
+      <a class="has-crest" href="https://raptors905.gleague.nba.com" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/raptors-905.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Raptors 905</div>
+        <div class="l"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Mississauga, Canada · G League</div>
+      </a>
+      </div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Canada · pro, CEBL</div>
+      <div class="dest">
+      <a class="has-crest" href="https://www.calgarysurge.ca" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/calgary-surge.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Calgary Surge</div>
+        <div class="l">Calgary, Alberta</div>
+      </a>
+      <a class="has-crest" href="https://www.thestingers.ca" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/edmonton-stingers.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Edmonton Stingers</div>
+        <div class="l">Edmonton, Alberta</div>
+      </a>
+      <a class="has-crest" href="https://www.thebandits.ca" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/vancouver-bandits.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Vancouver Bandits</div>
+        <div class="l">Langley, British Columbia</div>
       </a>
       </div>
       <div class="tier-lbl"><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Canada · university, U SPORTS Canada West</div>
@@ -792,14 +830,31 @@
       </div>
       <div class="tier-lbl"><img class="flag" src="/images/flags/id.svg" alt="" width="20" height="15">Indonesia</div>
       <div class="dest">
-      <a href="https://ransentertainment.co.id" target="_blank" rel="noopener">
+      <div class="has-crest">
+        <span class="crest"><img src="/images/network/bogor-hornbills.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Bogor Hornbills</div>
+        <div class="l">Bogor, Indonesia · IBL, 2026 champions</div>
+      </div>
+      <a class="has-crest" href="https://ransentertainment.co.id" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/rans-simba-bogor.png" alt="" loading="lazy" decoding="async"></span>
         <div class="n">RANS Simba Bogor</div>
         <div class="l">Bogor, Indonesia · IBL</div>
       </a>
       </div>
+      <div class="tier-lbl"><img class="flag" src="/images/flags/jp.svg" alt="" width="20" height="15">Japan</div>
+      <div class="dest">
+      <a class="has-crest" href="https://www.rebnise.jp" target="_blank" rel="noopener">
+        <span class="crest"><img src="/images/network/kagoshima-rebnise.png" alt="" loading="lazy" decoding="async"></span>
+        <div class="n">Kagoshima Rebnise</div>
+        <div class="l">Kagoshima, Japan · B2 League</div>
+      </a>
+      </div>
     </div>
-    <div class="tier-lbl" style="margin-top:30px">Leagues our network competes in</div>
+    <div class="tier-lbl" style="margin-top:30px">Leagues they play in</div>
     <div class="leagues">
+    <a class="lg" href="https://www.nba.com" target="_blank" rel="noopener" aria-label="NBA"><img src="/images/leagues/nba.svg" alt="NBA" loading="lazy"></a>
+    <a class="lg" href="https://gleague.nba.com" target="_blank" rel="noopener" aria-label="NBA G League"><img src="/images/leagues/g-league.svg" alt="NBA G League" loading="lazy"></a>
+    <a class="lg" href="https://www.cebl.ca" target="_blank" rel="noopener" aria-label="Canadian Elite Basketball League"><img src="/images/leagues/cebl.png" alt="Canadian Elite Basketball League" loading="lazy"></a>
     <a class="lg" href="https://www.ncaa.org" target="_blank" rel="noopener" aria-label="NCAA"><img src="/images/leagues/ncaa.svg" alt="NCAA" loading="lazy"></a>
     <a class="lg" href="https://usports.ca" target="_blank" rel="noopener" aria-label="U SPORTS"><img src="/images/leagues/usports.png" alt="U SPORTS" loading="lazy"></a>
     <a class="lg" href="https://acac.ab.ca" target="_blank" rel="noopener" aria-label="Alberta Colleges Athletic Conference"><img src="/images/leagues/acac-navy.png" alt="Alberta Colleges Athletic Conference" loading="lazy"></a>
@@ -808,8 +863,15 @@
     <a class="lg" href="https://www.svenskabasketligan.se" target="_blank" rel="noopener" aria-label="Basketligan, Sweden"><img src="/images/leagues/basketligan-se.svg" alt="Basketligan, Sweden" loading="lazy"></a>
     <a class="lg" href="https://www.basketligaen.dk" target="_blank" rel="noopener" aria-label="Basketligaen, Denmark"><img src="/images/leagues/basketligaen-dk.png" alt="Basketligaen, Denmark" loading="lazy"></a>
     <a class="lg" href="https://iblindonesia.com" target="_blank" rel="noopener" aria-label="Indonesian Basketball League"><img src="/images/leagues/ibl.png" alt="Indonesian Basketball League" loading="lazy"></a>
+    <a class="lg" href="https://kvindebasketligaen.dk" target="_blank" rel="noopener" aria-label="Kvindebasketligaen, Denmark"><img src="/images/leagues/kvindebasketligaen.png" alt="Kvindebasketligaen, Denmark" loading="lazy"></a>
+    <a class="lg" href="https://lkl.lt" target="_blank" rel="noopener" aria-label="LKL, Lithuania"><span class="lg-text">LKL</span></a>
+    <a class="lg" href="https://nkl.lt" target="_blank" rel="noopener" aria-label="NKL, Lithuania"><img src="/images/leagues/nkl.png" alt="NKL, Lithuania" loading="lazy"></a>
+    <a class="lg" href="https://www.rkl.lt" target="_blank" rel="noopener" aria-label="RKL, Lithuania"><img src="/images/leagues/rkl.png" alt="RKL, Lithuania" loading="lazy"></a>
+    <a class="lg" href="https://www.legabasket.it" target="_blank" rel="noopener" aria-label="Lega Basket Serie A, Italy"><img src="/images/leagues/lba-italy.png" alt="Lega Basket Serie A, Italy" loading="lazy"></a>
+    <a class="lg" href="https://www.bleague.jp/en/" target="_blank" rel="noopener" aria-label="B.League, Japan"><img src="/images/leagues/b-league.svg" alt="B.League, Japan" loading="lazy"></a>
+    <a class="lg" href="https://qatarbasketball.qa" target="_blank" rel="noopener" aria-label="Qatar Basketball League"><img src="/images/leagues/qatar-basketball-league.png" alt="Qatar Basketball League" loading="lazy"></a>
     </div>
-    <p class="note">These are programmes and coaches we can reach, not sponsors and not endorsements. Our Canada camp runs in Lethbridge, Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming, which is where a lot of the Alberta side of this comes from.</p>
+    <p class="note">Our Canada camp runs in Lethbridge. Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming, so a lot of these are in Alberta. None of them sponsor or endorse Talata.</p>
   </section>
   </div>
   <!-- TALATA:NETWORK:END -->

@@ -169,7 +169,7 @@ section{padding:64px 0;border-top:1px solid var(--td-line);}
 a.crest:hover{outline:2px solid var(--td-link);}
 /* Logos sit on a white tile in both themes, edged so the tile shows on a light
    page too (Deng, 23 Oct 2026: no white on white). A white logo gets a navy copy. */
-.crest{flex:none;width:72px;height:72px;border-radius:8px;background:#FFFFFF;border:1px solid var(--td-line);color:#0B1F3A;padding:8px;display:flex;align-items:center;justify-content:center;}
+.crest{flex:none;width:72px;height:72px;border-radius:8px;background:var(--td-crest);border:1px solid var(--td-line);color:var(--td-crest-ink);padding:8px;display:flex;align-items:center;justify-content:center;}
 .crest img{max-width:100%;max-height:100%;object-fit:contain;}
 .alist .nm{display:block;font-family:var(--disp);font-weight:800;font-size:1.05rem;line-height:1.25;}
 .alist .sc{display:block;font-weight:700;font-size:0.92rem;margin-top:4px;}
@@ -180,7 +180,7 @@ a.crest:hover{outline:2px solid var(--td-link);}
 .netwall{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
 @media(max-width:900px){.netwall{grid-template-columns:repeat(4,1fr);}}
 @media(max-width:520px){.netwall{grid-template-columns:repeat(3,1fr);gap:8px;}}
-.netwall li{aspect-ratio:3/2;border-radius:8px;background:#FFFFFF;border:1px solid var(--td-line);padding:14px;display:flex;align-items:center;justify-content:center;}
+.netwall li{aspect-ratio:3/2;border-radius:8px;background:var(--td-crest);border:1px solid var(--td-line);padding:14px;display:flex;align-items:center;justify-content:center;}
 .netwall a{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
 .netwall img{max-width:100%;max-height:100%;object-fit:contain;}
 .crest.tx{font-family:var(--disp);font-weight:900;font-size:0.72rem;line-height:1.15;text-align:center;text-transform:uppercase;}
@@ -348,7 +348,7 @@ a.crest:hover{outline:2px solid var(--td-link);}
       </div>
       <div class="way">
         <h3>Go as far as you can</h3>
-        <p>The Academy trains up to five days a week. When a player is ready, we connect them with the schools, clubs and agents below.</p>
+        <p>Academy trains up to five days a week. When a player is ready, we pick up the phone.</p>
         <a href="/pathway">See the pathway</a>
       </div>
     </div>
@@ -362,9 +362,15 @@ a.crest:hover{outline:2px solid var(--td-link);}
     </div>
     <div class="abroad">
       <div class="head"><h3>Who we know</h3><a href="/placement#network">The full network</a></div>
-      <p class="lead">Every Canada West team, every club in the Danish Basketligaen, and agents who can represent a player who is ready.</p>
-      <ul class="flags" aria-label="Countries in our network"><li><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Canada</li><li><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">USA</li><li><img class="flag" src="/images/flags/dk.svg" alt="" width="20" height="15">Denmark</li><li><img class="flag" src="/images/flags/lt.svg" alt="" width="20" height="15">Lithuania</li><li><img class="flag" src="/images/flags/se.svg" alt="" width="20" height="15">Sweden</li><li><img class="flag" src="/images/flags/id.svg" alt="" width="20" height="15">Indonesia</li></ul>
+      <p class="lead">These are the coaches we call.</p>
+      <ul class="flags" aria-label="Countries in our network"><li><img class="flag" src="/images/flags/ca.svg" alt="" width="20" height="15">Canada</li><li><img class="flag" src="/images/flags/us.svg" alt="" width="20" height="15">USA</li><li><img class="flag" src="/images/flags/dk.svg" alt="" width="20" height="15">Denmark</li><li><img class="flag" src="/images/flags/lt.svg" alt="" width="20" height="15">Lithuania</li><li><img class="flag" src="/images/flags/it.svg" alt="" width="20" height="15">Italy</li><li><img class="flag" src="/images/flags/se.svg" alt="" width="20" height="15">Sweden</li><li><img class="flag" src="/images/flags/jp.svg" alt="" width="20" height="15">Japan</li><li><img class="flag" src="/images/flags/qa.svg" alt="" width="20" height="15">Qatar</li><li><img class="flag" src="/images/flags/id.svg" alt="" width="20" height="15">Indonesia</li></ul>
       <ul class="netwall">
+        <li><a href="https://www.nba.com/raptors" target="_blank" rel="noopener" aria-label="Toronto Raptors"><img src="/images/network/toronto-raptors.png" alt="Toronto Raptors" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://www.nba.com/grizzlies" target="_blank" rel="noopener" aria-label="Memphis Grizzlies"><img src="/images/network/memphis-grizzlies.png" alt="Memphis Grizzlies" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://raptors905.gleague.nba.com" target="_blank" rel="noopener" aria-label="Raptors 905"><img src="/images/network/raptors-905.png" alt="Raptors 905" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://www.calgarysurge.ca" target="_blank" rel="noopener" aria-label="Calgary Surge"><img src="/images/network/calgary-surge.png" alt="Calgary Surge" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://www.thestingers.ca" target="_blank" rel="noopener" aria-label="Edmonton Stingers"><img src="/images/network/edmonton-stingers.png" alt="Edmonton Stingers" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://www.thebandits.ca" target="_blank" rel="noopener" aria-label="Vancouver Bandits"><img src="/images/network/vancouver-bandits.png" alt="Vancouver Bandits" loading="lazy" decoding="async"></a></li>
         <li><a href="https://nbabasketballschool.com" target="_blank" rel="noopener" aria-label="NBA Basketball School"><img src="/images/network/nba-basketball-school.png" alt="NBA Basketball School" loading="lazy" decoding="async"></a></li>
         <li><a href="https://zalgiris.lt/en" target="_blank" rel="noopener" aria-label="Zalgiris Kaunas"><img src="/images/network/zalgiris-kaunas.png" alt="Zalgiris Kaunas" loading="lazy" decoding="async"></a></li>
         <li><a href="https://tresportsmgmt.com" target="_blank" rel="noopener" aria-label="Tre Sports Management"><img src="/images/network/tre-sports-management-navy.png" alt="Tre Sports Management" loading="lazy" decoding="async"></a></li>
@@ -377,6 +383,12 @@ a.crest:hover{outline:2px solid var(--td-link);}
         <li><a href="https://bccopenhagen.com" target="_blank" rel="noopener" aria-label="BC Copenhagen"><img src="/images/network/bc-copenhagen.png" alt="BC Copenhagen" loading="lazy" decoding="async"></a></li>
         <li><a href="https://www.rabbits.dk" target="_blank" rel="noopener" aria-label="Svendborg Rabbits"><img src="/images/network/svendborg-rabbits.png" alt="Svendborg Rabbits" loading="lazy" decoding="async"></a></li>
         <li><a href="https://randerscimbria.dk" target="_blank" rel="noopener" aria-label="Randers Cimbria"><img src="/images/network/randers-cimbria.png" alt="Randers Cimbria" loading="lazy" decoding="async"></a></li>
+        <li><img src="/images/network/bogor-hornbills.png" alt="Bogor Hornbills" loading="lazy" decoding="async"></li>
+        <li><a href="https://www.rebnise.jp" target="_blank" rel="noopener" aria-label="Kagoshima Rebnise"><img src="/images/network/kagoshima-rebnise.png" alt="Kagoshima Rebnise" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://rytasvilnius.lt" target="_blank" rel="noopener" aria-label="Rytas Vilnius"><img src="/images/network/rytas-vilnius.png" alt="Rytas Vilnius" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://www.bleague.jp/en/" target="_blank" rel="noopener" aria-label="B.League, Japan"><img src="/images/leagues/b-league.svg" alt="B.League, Japan" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://www.legabasket.it" target="_blank" rel="noopener" aria-label="Lega Basket Serie A, Italy"><img src="/images/leagues/lba-italy.png" alt="Lega Basket Serie A, Italy" loading="lazy" decoding="async"></a></li>
+        <li><a href="https://qatarbasketball.qa" target="_blank" rel="noopener" aria-label="Qatar Basketball League"><img src="/images/leagues/qatar-basketball-league.png" alt="Qatar Basketball League" loading="lazy" decoding="async"></a></li>
       </ul>
     </div>
   </div>

@@ -419,7 +419,7 @@ def main():
         p for p in ROOT.glob("**/*.html")
         if "node_modules" not in p.parts
         and ".wrangler" not in p.parts
-        and ".claude" not in p.parts   # session worktrees hold full copies of the site
+        and ".claude" not in p.relative_to(ROOT).parts   # session worktrees hold full copies of the site; relative, so it still runs inside one
         # dist/ is local build output (tools/build-dist.py, gitignored). Skipped
         # the way qa-check.py skips it: --check counted its 69 pages as drift.
         and "dist" not in p.relative_to(ROOT).parts

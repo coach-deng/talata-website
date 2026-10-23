@@ -397,7 +397,7 @@ def main():
         p for p in ROOT.glob("**/*.html")
         if "node_modules" not in p.parts
         and ".wrangler" not in p.parts
-        and ".claude" not in p.parts   # session worktrees hold full copies of the site
+        and ".claude" not in p.relative_to(ROOT).parts   # session worktrees hold full copies of the site; relative, so it still runs inside one
         and p.relative_to(ROOT).parts[0] != "dist"   # build output, tools/build-dist.py
         and p.relative_to(ROOT).as_posix() not in SKIP
     )

@@ -96,7 +96,7 @@ for g in groups:
 parts.append("    </div>")
 
 if leagues:
-    parts.append('    <div class="tier-lbl" style="margin-top:30px">Leagues our network competes in</div>')
+    parts.append('    <div class="tier-lbl" style="margin-top:30px">Leagues they play in</div>')
     parts.append('    <div class="leagues">')
     parts += [league(l) for l in leagues]
     parts.append("    </div>")
