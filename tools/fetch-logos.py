@@ -3,6 +3,7 @@
 Download third-party league logos into images/leagues/.
 
 Usage:  python3 tools/fetch-logos.py logos.tsv
+        python3 tools/fetch-logos.py crests.tsv --out=network   # team crests
         (TSV: slug <TAB> url  — one per line, # comments ignored)
 
 Validates that what came back is actually an image, normalises PNG/JPG to a
@@ -32,7 +33,12 @@ def fetch(url: str):
         return r.read()
 
 def main():
+    global OUT
     force = "--force" in sys.argv
+    # --out=network writes team crests to images/network/ (Deng, 23 Oct 2026)
+    for a in sys.argv[1:]:
+        if a.startswith("--out="):
+            OUT = ROOT / "images" / a.split("=", 1)[1]
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if not args:
         print("need a tsv file"); return 1

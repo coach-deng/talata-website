@@ -102,6 +102,8 @@
       // academy) repainted this line pale grey on the light panel, 1.76:1. Two
       // classes outrank it, so the panel keeps its own dark type.
       '.tns .tns-foot{color:#0A0A0A}',
+      // 14 Oct 2026: the panel's own lines, same reason as .tns-foot above.
+      '.tns .tns-p{color:#0A0A0A;margin:0 0 10px}',
       // The session block is the whole point of the panel, so it outranks
       // everything under it visually.
       '.tns-now{background:#0B1F3A;color:#fff;border-radius:11px;padding:14px 16px;margin-bottom:16px}',
@@ -158,13 +160,15 @@
   // way the Worker's verifyKind() does (1:1 first, then a named camp, then any
   // other "camp", else trial), so a camp page still gets camp wording while a
   // new Worker is not yet deployed.
-  var KINDS = { trial: 1, camp: 1, camp_enquiry: 1, one_to_one: 1 };
+  // 15 Oct 2026: "clinic", the Coaches Clinic seat form.
+  var KINDS = { trial: 1, camp: 1, camp_enquiry: 1, one_to_one: 1, clinic: 1 };
 
   function kindOf(out, data) {
     var k = out && out.kind;
     if (k && KINDS.hasOwnProperty(k)) return k;
     var label = String((data && (data.program || data.camp)) || '').toLowerCase();
     if (/1[:\s]?(on|to)?[:\s]?1|one.on.one|private/.test(label)) return 'one_to_one';
+    if (/coach(es)?\s*clinic/.test(label)) return 'clinic';
     // 16 Sep 2026: the camps are Academy U12, Academy U16 and International
     // Academy and College Pathway now. The old names still route.
     // 17 Sep 2026: Academy U16 Camp is Academy U15 Camp. U15 and U16 both read as a camp.
@@ -179,43 +183,55 @@
   // Svanemøllehallen, so the page answers for itself until the Worker is fixed.
   // No price and no Holdsport link: Stevnsgade holds the membership.
   var GIRLS_15 = {
-    group: 'Stevnsgade girls team, coached by Deng',
+    group: 'Stevnsgade girls team, coached by Jordan',
     when: 'Monday, Wednesday or Friday, 17:30 to 19:00',
     where: 'Nørrebrohallen, Nørrebrogade 208, 2200 København N'
   };
 
   function isGirl15(data) {
+    // A woman of 18 or 19 who picked Talata & Co. gets Talata & Co. (14 Oct 2026).
+    if (/talata\s*(&|and)\s*co/i.test((data && data.program) || '')) return false;
     var age = parseInt(data && data.age, 10);
     var girl = /girl|female|pige/i.test((data && data.gender) || '') ||
       /sparks|pige|\bgirls?\b/i.test((data && data.program) || '');
     return girl && age >= 15 && age <= 19;
   }
 
+  // 14 Oct 2026 (Deng): shorter, his voice, no shop button on this screen.
   var OTHER_KIND = {
     camp: {
-      title: 'Your camp registration is in.',
-      pending: 'Check your inbox to confirm your email, then we send the camp details.',
+      title: 'Got it. Your camp place is in.',
+      pending: 'One tap in the email we just sent and the camp details come straight after.',
       done: 'The camp details are on their way to your inbox.',
       steps: [
-        '<li><b>Read the camp email.</b> It has the dates, the hours, the hall and what to bring.</li>',
-        '<li><b>Payment details follow in a separate email.</b> There is nothing to pay today.</li>'
+        '<li><b>Read the camp email.</b> Dates, hours, the hall and what to bring.</li>',
+        '<li><b>Payment details come in a separate email.</b> Nothing to pay today.</li>'
+      ]
+    },
+    clinic: {
+      title: 'Got it. Your seat is in.',
+      pending: 'One tap in the email we just sent and the clinic details come straight after.',
+      done: 'The clinic details are on their way to your inbox.',
+      steps: [
+        '<li><b>Read the clinic email.</b> Days, hours, the hall and what to bring.</li>',
+        '<li><b>Payment details come in a separate email.</b> Your club can pay by invoice.</li>'
       ]
     },
     camp_enquiry: {
-      title: 'Thanks, your camp question is in.',
-      pending: 'Check your inbox to confirm your email, then we send you this season\'s camps.',
+      title: 'Got it. Thanks for asking about camps.',
+      pending: 'One tap in the email we just sent and this season\'s camps come straight after.',
       done: 'This season\'s camps are on their way to your inbox.',
       steps: [
-        '<li><b>Pick a camp from the email</b> and reply with the one you want. We hold a place and come back with how to pay.</li>'
+        '<li><b>Pick a camp from the email</b> and reply with the one you want. We hold a place.</li>'
       ],
       button: '<a class="tns-btn" href="/camps">See all camps</a>'
     },
     one_to_one: {
-      title: 'Thanks, your 1:1 request is in.',
-      pending: 'Check your inbox to confirm your email, then we get in touch about 1:1 training.',
-      done: 'We will be in touch about 1:1 training.',
+      title: 'Got it. Thanks for asking about 1:1.',
+      pending: 'One tap in the email we just sent and we get in touch about days.',
+      done: 'We get in touch about days for 1:1 training.',
       steps: [
-        '<li><b>We email you</b> to find days and times that suit.</li>'
+        '<li><b>Reply with the days that suit you</b> and what you want to work on.</li>'
       ]
     }
   };
@@ -228,105 +244,68 @@
       '<span>' + (pending ? k.pending : k.done) +
         ' Check spam if it is not there in five minutes.</span></div>',
       '<div class="tns-body">',
-      '<b style="display:block;margin-bottom:8px">What happens next</b>',
       '<ol>',
-      (pending
-        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
-        : ''),
       k.steps.join(''),
       '</ol>',
       k.button || '',
-
-      '<div class="tns-sec">',
-      '<b>Kit, jerseys and hoodies</b>',
-      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
-      '</div>',
-
-      '<p class="tns-foot">Any question at all, just reply to the email. It comes straight to us.</p>',
+      '<p class="tns-foot">Any question, just reply to the email. It comes straight to us.</p>',
       '</div></div>'
     ].join('');
   }
 
-  function girls15PanelHtml(pending) {
+  /* 14 Oct 2026 (Deng): the panel leads with the session and "just come", the
+     way he answers a walk-in: "The first time is free, no registration
+     necessary. See you out there." The tap in the confirm email is one line
+     under it, because the family can come either way. The Holdsport box and the
+     shop button are gone from this screen: the join link comes after the
+     session, and a parent who just booked a free session is not shopping. */
+  var TAP_LINE = '<p class="tns-p"><b>Tap the link in the email we just sent</b> so the coach knows you\'re coming. Check spam if it is not there in five minutes.</p>';
+
+  function girls15PanelHtml(route, pending) {
+    // The Worker routes a girl of 15 and up to the Stevnsgade team (14 Oct 2026
+    // check). An older Worker did not, so the page keeps its own fallback.
+    var r = route && route.when && /stevnsgade/i.test(route.group || '') ? route : GIRLS_15;
     return [
       '<div class="tns">',
-      pending
-        ? '<div class="tns-head"><b>One quick thing: check your email.</b>' +
-          '<span>We have sent you a link to confirm your address. Click it and you are in. ' +
-          'Check spam if it is not there in five minutes.</span></div>'
-        : '<div class="tns-head"><b>Got it. Come and play.</b>' +
-          '<span>Confirmation is in your inbox. Check spam if it is not there in five minutes.</span></div>',
+      '<div class="tns-head"><b>See you there.</b>',
+      '<span>First session is always free. No registration needed, just come.</span></div>',
       '<div class="tns-body">',
-
-      sessionBlock(GIRLS_15),
-
-      '<b style="display:block;margin-bottom:8px">What happens next</b>',
-      '<ol>',
-      (pending
-        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
-        : ''),
-      '<li><b>Just come.</b> Any of the three sessions. Ask for Coach Deng.</li>',
-      '<li><b>The first session is free.</b> She needs indoor shoes and a water bottle.</li>',
-      '<li><b>After that, enrolment goes through Stevnsgade.</b> We sort it out with you.</li>',
-      '</ol>',
-
-      '<div class="tns-sec">',
-      '<b>Kit, jerseys and hoodies</b>',
-      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
-      '</div>',
-
-      '<p class="tns-foot">Any question at all, just reply to the confirmation email. It comes straight to us.</p>',
+      sessionBlock(r),
+      '<p class="tns-p">The team trains Monday, Wednesday and Friday, 17:30 to 19:00, so any of them works. Bring indoor shoes and water and ask for Coach Jordan.</p>',
+      pending ? TAP_LINE : '<p class="tns-p">The details are in your inbox too.</p>',
+      '<p class="tns-p">After the first session, joining goes through Stevnsgade. We sort it out with you.</p>',
+      '<p class="tns-foot">Any question, just reply to the email. It comes straight to us.</p>',
       '</div></div>'
     ].join('');
   }
 
   function panelHtml(variant, route, pending, kind, data) {
     if (kind && kind !== 'trial' && OTHER_KIND[kind]) return otherPanelHtml(kind, pending);
-    if (isGirl15(data)) return girls15PanelHtml(pending);
-    var link = variant === 'mini' ? HOLDSPORT.mini : HOLDSPORT.intake;
-    var team = variant === 'mini' ? 'Talata Mini' : 'Talata Basketball';
+    if (isGirl15(data)) return girls15PanelHtml(route, pending);
+    if (!route || !route.when) {
+      return [
+        '<div class="tns">',
+        '<div class="tns-head"><b>Got it.</b>',
+        '<span>First session is always free. No registration needed.</span></div>',
+        '<div class="tns-body">',
+        pending
+          ? '<p class="tns-p"><b>Tap the link in the email we just sent.</b> Then we send you the right session. Check spam if it is not there in five minutes.</p>'
+          : '<p class="tns-p">We email you the right session.</p>',
+        '<p class="tns-foot">Any question, just reply to the email. It comes straight to us.</p>',
+        '</div></div>'
+      ].join('');
+    }
+    var coach = route.coach ? ' and ask for ' + esc(route.coach) : '';
     return [
       '<div class="tns">',
-      pending
-        ? '<div class="tns-head"><b>One quick thing: check your email.</b>' +
-          '<span>We have sent you a link to confirm your address. Click it and you are in. ' +
-          'Check spam if it is not there in five minutes.</span></div>'
-        : '<div class="tns-head"><b>Got it. Come and play.</b>' +
-          '<span>Confirmation is in your inbox. Check spam if it is not there in five minutes.</span></div>',
+      '<div class="tns-head"><b>See you there.</b>',
+      '<span>First session is always free. No registration needed, just come.</span></div>',
       '<div class="tns-body">',
-
       sessionBlock(route),
-
-      '<b style="display:block;margin-bottom:8px">What happens next</b>',
-      '<ol>',
-      (pending
-        ? '<li><b>Click the link in the email we just sent.</b> It takes one tap and it is how we know the address is yours.</li>'
-        : ''),
-      (route && route.when
-        ? '<li><b>Just turn up.</b> Ask for a coach at the door.</li>'
-        : '<li><b>We email you within a day</b> with your exact day, time and gym.</li>'),
-      '<li><b>The first session is free.</b> Bring indoor shoes and a water bottle.</li>',
-      '<li>If it is a fit, you join the club properly. That part is below when you are ready.</li>',
-      '</ol>',
-
-      '<div class="tns-sec">',
-      '<b>Joining for the season</b>',
-      '<div class="tns-warn">',
-      '<b>Come to your first session before you join.</b>',
-      '<ul>',
-      '<li>If it is a fit, we send you the Holdsport link afterwards and get your child on the right team.</li>',
-      '<li><b>Membership starts the moment you join a team on Holdsport</b>, so we hold that back until you have been in the gym.</li>',
-      '<li><b>Already decided?</b> Reply to your confirmation email and we will send the link today.</li>',
-      '</ul>',
-      '</div>',
-      '</div>',
-
-      '<div class="tns-sec">',
-      '<b>Kit, jerseys and hoodies</b>',
-      '<a class="tns-btn ghost" href="' + SHOP_URL + '">Visit the Talata Shop</a>',
-      '</div>',
-
-      '<p class="tns-foot">Any question at all, just reply to the confirmation email. It comes straight to us.</p>',
+      '<p class="tns-p">Bring indoor shoes and water' + coach + '.</p>',
+      pending ? TAP_LINE : '<p class="tns-p">The details are in your inbox too.</p>',
+      '<p class="tns-p">If it\'s a fit, we send you the link to join after the session.</p>',
+      '<p class="tns-foot">Any question, just reply to the email. It comes straight to us.</p>',
       '</div></div>'
     ].join('');
   }
@@ -358,7 +337,7 @@
   // share of trials that never convert to a paid member.
   var LEAD_VALUE = {
     'Talata Mini': 1800, 'Talata Junior': 1800, 'Talata Sparks': 1800,
-    'Talata Academy': 3300, 'Talata Men': 2000, 'Free trial': 2200
+    'Talata Academy': 3300, 'Talata Men': 2000, 'Talata & Co.': 2000, 'Free trial': 2200
   };
 
   // Club bands since 19 Aug 2026: Mini 5 to 9, Junior 10 to 12, Academy 13 to 17,
@@ -456,6 +435,27 @@
     update();
   }
 
+  function ageOnDay(dob, day) {
+    var b = new Date(dob), d = new Date(day);
+    if (isNaN(b.getTime()) || isNaN(d.getTime())) return null;
+    var a = d.getFullYear() - b.getFullYear();
+    var m = d.getMonth() - b.getMonth();
+    if (m < 0 || (m === 0 && d.getDate() < b.getDate())) a--;
+    return a;
+  }
+
+  function wireAgeOn(dobEl, rule) {
+    function check() {
+      var a = dobEl.value ? ageOnDay(dobEl.value, rule.date) : null;
+      dobEl.setCustomValidity(a !== null && (a < rule.min || a > rule.max)
+        ? 'The camp is for ages ' + rule.min + ' to ' + rule.max + ' on the first day.'
+        : '');
+    }
+    dobEl.addEventListener('change', check);
+    dobEl.addEventListener('input', check);
+    check();
+  }
+
   function wire(opts) {
     var form = document.getElementById(opts.formId);
     var btn = document.getElementById(opts.buttonId);
@@ -466,7 +466,12 @@
     // today on every load rather than hardcoding a date that goes stale.
     var dobEl = form.querySelector('input[name="dob"]');
     if (dobEl) dobEl.max = new Date().toISOString().slice(0, 10);
-    if (dobEl) wireExperience(form, dobEl);
+    // A camp page passes experience: false. The club question is for trials.
+    if (dobEl && opts.experience !== false) wireExperience(form, dobEl);
+    // opts.ageOn = { date: '2026-12-28', min: 13, max: 17 }: a camp takes the
+    // age the player is on the first camp day, the same age the invites use
+    // (15 Oct 2026). A 12-year-old who turns 13 before the camp gets in.
+    if (dobEl && opts.ageOn) wireAgeOn(dobEl, opts.ageOn);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -540,6 +545,7 @@
       // Aug 10 2026: parents were already writing it into the free-text box
       // unprompted, so it was a field cost for information we already had.
       var extra = [];
+      if (data.club) extra.push('Club: ' + data.club);
       if (data.wants_team) extra.push('Looking for: ' + data.wants_team);
       // v3.0 (Deng, 1 Oct 2026): the camp lunch add-on, paid with the camp in his follow-up.
       // The price comes from the tick box's own label, which tools/apply-facts.py

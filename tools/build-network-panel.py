@@ -20,14 +20,37 @@ END = "  <!-- TALATA:NETWORK:END -->"
 
 def esc(t): return html.escape(t, quote=False)
 
-def card(e, placed=False):
-    cls = ' class="placed"' if placed else ""
-    out = ["      <div%s>" % cls, '        <div class="n">%s</div>' % esc(e["name"])]
+def flag(code):
+    # Country flags (Deng, 23 Oct 2026), self-hosted from flag-icons in images/flags/
+    if not code:
+        return ""
+    return '<img class="flag" src="/images/flags/%s.svg" alt="" width="20" height="15">' % esc(code)
+
+def card(e, placed=False, who=False):
+    # A crest sits beside the name when images/network/<logo> exists (Deng,
+    # 23 Oct 2026: logos, not player photos). No file, no hole: name only.
+    # A school we sent a player to with no crest online gets its name on the
+    # tile instead, so the player cards line up.
+    logo = e.get("logo", "")
+    has = bool(logo) and (ROOT / "images" / "network" / logo).exists()
+    named = not has and (placed or who)
+    cls = " ".join(c for c in ("placed" if placed else "", "has-crest" if has or named else "") if c)
+    # Every card links to the team's own site when we have the URL (Deng, 23 Oct 2026)
+    url = e.get("url", "")
+    tag = "a" if url else "div"
+    attrs = (' class="%s"' % cls if cls else "") + (' href="%s" target="_blank" rel="noopener"' % esc(url) if url else "")
+    out = ["      <%s%s>" % (tag, attrs)]
+    if has:
+        # A white logo gets a navy copy in images/network/, never a dark tile
+        out.append('        <span class="crest"><img src="/images/network/%s" alt="" loading="lazy" decoding="async"></span>' % esc(logo))
+    elif named:
+        out.append('        <span class="crest tx">%s</span>' % esc(e["name"]))
+    out.append('        <div class="n">%s</div>' % esc(e["name"]))
     if e.get("where"):
-        out.append('        <div class="l">%s</div>' % esc(e["where"]))
-    if placed and e.get("who"):
+        out.append('        <div class="l">%s%s</div>' % (flag(e.get("flag")), esc(e["where"])))
+    if (placed or who) and e.get("who"):
         out.append('        <div class="who">%s</div>' % esc(e["who"]))
-    out.append("      </div>")
+    out.append("      </%s>" % tag)
     return "\n".join(out)
 
 def league(l):
@@ -45,26 +68,35 @@ groups = DATA.get("groups", [])
 placed = DATA.get("placed", [])
 leagues = DATA.get("leagues", [])
 
-parts = ['  <div class="band">', '  <section class="section section-wide">',
+parts = ['  <div class="band">', '  <section class="section section-wide" id="network">',
          '    <div class="kicker">The network</div>',
          '    <h2 class="section-title">%s</h2>' % esc(DATA["heading"]),
          "    <p>%s</p>" % esc(DATA["intro"]), '    <div class="tiers">']
 
 if placed:
-    parts.append('      <div class="tier-lbl">Players placed here</div>')
+    parts.append('      <div class="tier-lbl">We placed them</div>')
     parts.append('      <div class="dest">')
     parts += [card(e, True) for e in placed]
     parts.append("      </div>")
 
+# Developed here, family ran the move (Johan). Never under "placed": see
+# SecondBrain/Talata/_references/alumni-placements.md.
+developed = DATA.get("developed", [])
+if developed:
+    parts.append('      <div class="tier-lbl">%s</div>' % esc(DATA.get("developed_label", "Developed here")))
+    parts.append('      <div class="dest">')
+    parts += [card(e, who=True) for e in developed]
+    parts.append("      </div>")
+
 for g in groups:
-    parts.append('      <div class="tier-lbl">%s</div>' % esc(g["label"]))
+    parts.append('      <div class="tier-lbl">%s%s</div>' % (flag(g.get("flag")), esc(g["label"])))
     parts.append('      <div class="dest">')
     parts += [card(e) for e in g["entries"]]
     parts.append("      </div>")
 parts.append("    </div>")
 
 if leagues:
-    parts.append('    <div class="tier-lbl" style="margin-top:30px">Leagues our network competes in</div>')
+    parts.append('    <div class="tier-lbl" style="margin-top:30px">Leagues they play in</div>')
     parts.append('    <div class="leagues">')
     parts += [league(l) for l in leagues]
     parts.append("    </div>")

@@ -31,7 +31,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKIP_DIRS = ("tools/", "node_modules/", "dist/", ".git/", ".wrangler/", "posters/")
+SKIP_DIRS = ("tools/", "node_modules/", "dist/", ".git/", ".wrangler/", ".claude/", "posters/")
 SKIP = {"index-new.html", "home-classic.html", "hero-carousel-preview.html"}
 
 # Batches roll in per the v3 plan. Add a page here only after the contrast
@@ -60,6 +60,10 @@ LIGHT_OK = {
     "where-we-train.html", "english-speaking-basketball-copenhagen.html",
     # 11 Oct 2026: the phone walkthrough for joining a team, built on help/holdsport
     "how-to-holdsport.html",
+    # 14 Oct 2026: the Coaches Clinic, built on the college-pathway camp template
+    "camps/coaches-clinic-2026.html",
+    # 15 Oct 2026: coach profile pages, built on the coaches.html template
+    "coaches/deng-awak.html", "coaches/jordan-naughton.html",
 }
 # Every post shares one template, so a new post joins light mode on its own.
 # Run the contrast runner over blog/ when that template changes.

@@ -42,7 +42,7 @@ STAMP_RE = re.compile(r"(/assets/[a-z0-9-]+\.(?:js|css))\?v=([0-9a-z]+)")
 
 
 def page_files():
-    pats = ["*.html", "blog/*.html", "camps/*.html", "help/*.html",
+    pats = ["*.html", "blog/*.html", "camps/*.html", "coaches/*.html", "help/*.html",
             "philosophy/*.html", "reviews/*.html"]
     out = []
     for p in pats:

@@ -81,6 +81,9 @@ CVR = "CVR 43599453"
 # is the answer for international families who cannot get MobilePay, not the
 # pitch. The reference line is load-bearing, the club has no automated matching
 # and an unreferenced transfer cannot be reconciled at all.
+# The shop footer's one exception: merch is paid to 119874 (programs.md).
+MERCH_MOBILEPAY = "119874"
+
 PAY = {
     "mobilepay": "52697",
     "bank": "Danske Bank",
@@ -110,6 +113,7 @@ COLUMNS = [
         ("/academy", "Academy"),
         ("/sparks", "Sparks"),
         ("/men", "Talata Men"),
+        ("/talata-and-co", "Talata & Co."),
         ("/camps", "Camps"),
     ]),
     ("Watch", [
@@ -148,7 +152,9 @@ SOCIAL = [
     ("https://www.facebook.com/talatabasketball", "Facebook"),
 ]
 
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261012a">'
+# 15 Oct 2026 (Deng): the big camp popup shows on every page, so its script
+# rides in the footer block. It loads its own CSS only when it shows.
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261023b">'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -177,6 +183,7 @@ TRIAL = {
     "school-partnerships.html": "#contact",
     "camps/academy-u15-camp-2026.html": "#waitlist",
     "camps/college-pathway-camp-2026.html": "#waitlist",
+    "camps/coaches-clinic-2026.html": "#book",
     "camps/lithuania-camp-2026.html": "#register",
 }
 DEFAULT_TRIAL = "/join"
@@ -218,6 +225,13 @@ def build_footer(rel: str, year: int = 2026) -> str:
         '\n        <span>BIC %s</span>'
         '\n        <small>Always put the player&rsquo;s name as the reference.</small>'
     ) % (PAY["mobilepay"], PAY["bank"], PAY["reg"], PAY["konto"], PAY["iban"], PAY["bic"])
+    # /shop only (15 Oct 2026): the basket says pay 119874 with the order ref,
+    # and the footer under it said 52697 with the player's name. Merch is 119874.
+    if rel == "shop.html":
+        pay = (
+            '\n        <span class="tf-pay-hero">MobilePay %s</span>'
+            '\n        <small>Merch only. Write your order ref in the message.</small>'
+        ) % MERCH_MOBILEPAY
     cols.append(
         '      <div class="tf-col tf-col-pay">\n        <h4>Pay</h4>%s\n      </div>' % pay
     )
@@ -244,6 +258,7 @@ def build_footer(rel: str, year: int = 2026) -> str:
     </div>
   </div>
 </footer>
+<script src="/assets/talata-camp-pop.js?v=20261023b" defer></script>
 {end}""".format(
         start=START,
         end=END,
@@ -404,6 +419,7 @@ def main():
         p for p in ROOT.glob("**/*.html")
         if "node_modules" not in p.parts
         and ".wrangler" not in p.parts
+        and ".claude" not in p.relative_to(ROOT).parts   # session worktrees hold full copies of the site; relative, so it still runs inside one
         # dist/ is local build output (tools/build-dist.py, gitignored). Skipped
         # the way qa-check.py skips it: --check counted its 69 pages as drift.
         and "dist" not in p.relative_to(ROOT).parts

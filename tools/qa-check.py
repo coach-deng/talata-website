@@ -56,7 +56,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # "tools" added 27 Aug: contrast-runner.html lives there and is an internal
 # harness, not a page. It has no nav and no dark stylesheet on purpose, and
 # without this it fails three structural checks that do not apply to it.
-SKIP = {"node_modules", "images", "fonts", "downloads", "junk", "posters", "tools", "dist"}
+SKIP = {"node_modules", "images", "fonts", "downloads", "junk", "posters", "tools", "dist", ".claude"}
 
 RED, YEL, GRN, DIM, OFF = "\033[31m", "\033[33m", "\033[32m", "\033[2m", "\033[0m"
 
@@ -113,6 +113,15 @@ CHECKS_VOICE = [
     ("hype word", re.compile(r"\b(actually|real (coaching|competition|curriculum|talk))\b", re.I), False),
     ("triplet fragment", re.compile(r"(?:\b[A-Z][\w']*(?: [\w']+){0,2}\. ){2}[A-Z][\w']*(?: [\w']+){0,2}\."), False),
     ("arrow in copy", re.compile(r"[→⟶➜]"), True),
+    # From Wikipedia's "Signs of AI writing" (Deng, 23 Oct 2026: "talk like a human
+    # being"). Puffery and filler had no hits on the site, so they fail. The others
+    # turn up in real trip stories ("from Copenhagen to Lethbridge"), so they warn.
+    ("puffery word", re.compile(r"\b(boasts?|elevate[sd]?|unlock(s|ed)?|empower(s|ed|ing)?|vibrant|world.class|cutting.edge|renowned|seamless(ly)?|delve|testament|tapestry|game.changer)\b", re.I), True),
+    ("filler phrase", re.compile(r"\b(when it comes to|in order to|it'?s important to|plays a (key|vital|crucial) role|a wide range of)\b", re.I), True),
+    ("rather than", re.compile(r"\brather than\b", re.I), False),
+    ("-ing tail", re.compile(r",\s+(ensuring|fostering|highlighting|underscoring|allowing|enabling|providing)\b", re.I), False),
+    ("fake range, from X to every Y", re.compile(r"\bfrom [^.]{3,40} to (every|all|the whole)\b", re.I), False),
+    ("vague connect", re.compile(r"\bconnect (them|you|players|families|kids) with\b", re.I), False),
 ]
 
 # "Free" once per page, near the form (Deng, 11 Oct 2026). Blog posts are
@@ -128,7 +137,9 @@ META = re.compile(
 
 
 def pages():
-    return sorted(p for p in ROOT.glob("**/*.html") if not any(x in p.parts for x in SKIP))
+    # Relative parts (23 Oct 2026): a session copy lives under .claude/worktrees/,
+    # and the absolute path made every page look skipped, so QA passed on nothing.
+    return sorted(p for p in ROOT.glob("**/*.html") if not set(p.relative_to(ROOT).parts) & SKIP)
 
 
 def visible(src):
@@ -339,6 +350,14 @@ def check_structure(fails, warns):
         fails.append(("site-wide", "asset versions disagree", ", ".join(sorted(versions))))
     elif not versions:
         warns.append(("site-wide", "no asset version stamp", "cache will serve stale files"))
+    # One photo, once, on the homepage (Deng, 23 Oct 2026). The hero photo
+    # showed three times: the hero, a Latest card whose post used the same
+    # image, and a re-saved copy on the families card. Latest is generated, so
+    # a new post can bring it back without anyone touching index.html.
+    srcs = re.findall(r"<img[^>]*\ssrc=\"/?(images/[^\"]+)\"", (ROOT / "index.html").read_text(encoding="utf-8"))
+    # Country flags repeat by design (Deng, 23 Oct 2026), they are not photos.
+    for img in sorted({s for s in srcs if srcs.count(s) > 1 and not s.startswith("images/flags/")}):
+        fails.append(("index.html", "photo used twice on the homepage", img))
 
 
 # The plain look, 11 Oct 2026. Glows, gradients, glass, lifts and pill labels
@@ -382,7 +401,12 @@ def check_style(fails, warns):
     for css in sorted((ROOT / "assets").glob("*.css")):
         if css.name == "talata-tw.css":
             continue
-        _style_rules("assets/" + css.name, css.read_text(encoding="utf-8"), fails)
+        text = css.read_text(encoding="utf-8")
+        # Premium main buttons, Deng 16 Oct 2026: the one sanctioned sheen and
+        # glow, fenced in talata-nav.css. Everything outside the fence still
+        # holds the plain look.
+        text = re.sub(r"/\* premium-buttons:start.*?/\* premium-buttons:end \*/", "", text, flags=re.S)
+        _style_rules("assets/" + css.name, text, fails)
 
 
 def main():

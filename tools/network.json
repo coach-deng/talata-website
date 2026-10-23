@@ -1,49 +1,580 @@
 {
-  "heading": "Clubs and colleges we know",
-  "intro": "A placement is only as good as who answers on the other end. First the clubs we have sent a player to, then the ones we know.",
+  "heading": "Who we know",
+  "intro": "We placed Malthe and Valdemar. Johan trained with us, and his family set up his move. We know the coaches at the rest.",
   "placed": [
-    { "name": "Orangeville Prep", "where": "Mono, Ontario, Canada · OSBA", "who": "Malthe Mikkelsen, 2025/26" },
-    { "name": "Martins Ferry High School", "where": "Martins Ferry, Ohio, USA · OHSAA", "who": "Johan Lyager Joensen, 2026/27" }
+    {
+      "name": "Orangeville Prep",
+      "where": "Mono, Ontario, Canada · OSBA",
+      "who": "Malthe Mikkelsen, 2025/26",
+      "logo": "orangeville-prep.png",
+      "url": "https://www.orangevilleprep.com",
+      "flag": "ca"
+    },
+    {
+      "name": "The Patrick School",
+      "where": "New Jersey, USA · high school basketball program",
+      "who": "Valdemar Scharfe, fall 2026",
+      "url": "https://thepatrickschool.org",
+      "flag": "us"
+    }
+  ],
+  "developed_label": "We trained him. His family set up the move.",
+  "developed": [
+    {
+      "name": "Martins Ferry High School",
+      "where": "Martins Ferry, Ohio, USA · OHSAA",
+      "who": "Johan Lyager Joensen, 2026/27",
+      "logo": "martins-ferry-high-school.png",
+      "url": "https://hs.mfcsd.k12.oh.us",
+      "flag": "us"
+    }
   ],
   "groups": [
-    { "label": "Canada · university, U SPORTS", "entries": [
-      { "name": "MacEwan Griffins", "where": "Edmonton, Alberta · Canada West" },
-      { "name": "Mount Royal Cougars", "where": "Calgary, Alberta · Canada West" },
-      { "name": "Lethbridge Pronghorns", "where": "Lethbridge, Alberta · Canada West" }
-    ]},
-    { "label": "Canada · college, ACAC", "entries": [
-      { "name": "NAIT Ooks", "where": "Edmonton, Alberta" },
-      { "name": "Ambrose Lions", "where": "Calgary, Alberta" },
-      { "name": "St. Mary’s Lightning", "where": "Calgary, Alberta" },
-      { "name": "Lethbridge Polytechnic Kodiaks", "where": "Lethbridge, Alberta" }
-    ]},
-    { "label": "Canada · prep", "entries": [
-      { "name": "Canada Topflight Academy", "where": "Ottawa, Ontario · OSBA" },
-      { "name": "CTA West", "where": "Calgary, Alberta · post-graduate" },
-      { "name": "Edge School", "where": "Calgary, Alberta · NPA" },
-      { "name": "Fort Erie International Academy", "where": "Fort Erie, Ontario · OSBA" }
-    ]},
-    { "label": "USA", "entries": [
-      { "name": "University of Wyoming", "where": "Laramie, Wyoming · NCAA Division 1" }
-    ]},
-    { "label": "Europe", "entries": [
-      { "name": "Norrköping Dolphins", "where": "Norrköping, Sweden · Basketligan" },
-      { "name": "BC Copenhagen", "where": "Nørrebro, Denmark · Basketligaen" },
-      { "name": "KK Raseiniai", "where": "Raseiniai, Lithuania · RKL" }
-    ]},
-    { "label": "Asia", "entries": [
-      { "name": "RANS Simba Bogor", "where": "Bogor, Indonesia · IBL" }
-    ]}
+    {
+      "label": "NBA and G League",
+      "entries": [
+        {
+          "name": "Toronto Raptors",
+          "where": "Toronto, Canada · NBA",
+          "logo": "toronto-raptors.png",
+          "url": "https://www.nba.com/raptors",
+          "flag": "ca"
+        },
+        {
+          "name": "Memphis Grizzlies",
+          "where": "Memphis, USA · NBA",
+          "logo": "memphis-grizzlies.png",
+          "url": "https://www.nba.com/grizzlies",
+          "flag": "us"
+        },
+        {
+          "name": "Raptors 905",
+          "where": "Mississauga, Canada · G League",
+          "logo": "raptors-905.png",
+          "url": "https://raptors905.gleague.nba.com",
+          "flag": "ca"
+        }
+      ]
+    },
+    {
+      "label": "Canada · pro, CEBL",
+      "flag": "ca",
+      "entries": [
+        {
+          "name": "Calgary Surge",
+          "where": "Calgary, Alberta",
+          "logo": "calgary-surge.png",
+          "url": "https://www.calgarysurge.ca"
+        },
+        {
+          "name": "Edmonton Stingers",
+          "where": "Edmonton, Alberta",
+          "logo": "edmonton-stingers.png",
+          "url": "https://www.thestingers.ca"
+        },
+        {
+          "name": "Vancouver Bandits",
+          "where": "Langley, British Columbia",
+          "logo": "vancouver-bandits.png",
+          "url": "https://www.thebandits.ca"
+        }
+      ]
+    },
+    {
+      "label": "Canada · university, U SPORTS Canada West",
+      "entries": [
+        {
+          "name": "Alberta Golden Bears",
+          "where": "Edmonton, Alberta",
+          "logo": "alberta-golden-bears.png",
+          "url": "https://bearsandpandas.ca/sports/mens-basketball"
+        },
+        {
+          "name": "Calgary Dinos",
+          "where": "Calgary, Alberta",
+          "logo": "calgary-dinos.png",
+          "url": "https://godinos.com/sports/mens-basketball"
+        },
+        {
+          "name": "Mount Royal Cougars",
+          "where": "Calgary, Alberta",
+          "logo": "mount-royal-cougars.png",
+          "url": "https://mrucougars.com/sports/mens-basketball"
+        },
+        {
+          "name": "Lethbridge Pronghorns",
+          "where": "Lethbridge, Alberta",
+          "logo": "lethbridge-pronghorns.png",
+          "url": "https://gohorns.ca/sports/mens-basketball"
+        },
+        {
+          "name": "MacEwan Griffins",
+          "where": "Edmonton, Alberta",
+          "logo": "macewan-griffins.png",
+          "url": "https://macewangriffins.ca/sports/mbkb"
+        },
+        {
+          "name": "UBC Thunderbirds",
+          "where": "Vancouver, British Columbia",
+          "logo": "ubc-thunderbirds.png",
+          "url": "https://gothunderbirds.ca/sports/mens-basketball"
+        },
+        {
+          "name": "UBC Okanagan Heat",
+          "where": "Kelowna, British Columbia",
+          "logo": "ubc-okanagan-heat.png",
+          "url": "https://goheat.ca/sports/mbkb"
+        },
+        {
+          "name": "Victoria Vikes",
+          "where": "Victoria, British Columbia",
+          "logo": "victoria-vikes.png",
+          "url": "https://govikesgo.com/sports/mens-basketball"
+        },
+        {
+          "name": "UFV Cascades",
+          "where": "Abbotsford, British Columbia",
+          "logo": "ufv-cascades.png",
+          "url": "https://gocascades.ca/sports/mbkb"
+        },
+        {
+          "name": "Trinity Western Spartans",
+          "where": "Langley, British Columbia",
+          "logo": "trinity-western-spartans.png",
+          "url": "https://gospartans.ca/sports/mens-basketball"
+        },
+        {
+          "name": "Thompson Rivers WolfPack",
+          "where": "Kamloops, British Columbia",
+          "logo": "thompson-rivers-wolfpack.png",
+          "url": "https://gowolfpack.ca/sports/mens-basketball"
+        },
+        {
+          "name": "UNBC Timberwolves",
+          "where": "Prince George, British Columbia",
+          "logo": "unbc-timberwolves.png",
+          "url": "https://unbctimberwolves.com/sports/mens-basketball"
+        },
+        {
+          "name": "Saskatchewan Huskies",
+          "where": "Saskatoon, Saskatchewan",
+          "logo": "saskatchewan-huskies.png",
+          "url": "https://huskies.usask.ca/sports/mens-basketball"
+        },
+        {
+          "name": "Regina Cougars",
+          "where": "Regina, Saskatchewan",
+          "logo": "regina-cougars.png",
+          "url": "https://cougarsandrams.com/sports/mens-basketball"
+        },
+        {
+          "name": "Manitoba Bisons",
+          "where": "Winnipeg, Manitoba",
+          "logo": "manitoba-bisons.png",
+          "url": "https://gobisons.ca/sports/mens-basketball"
+        },
+        {
+          "name": "Winnipeg Wesmen",
+          "where": "Winnipeg, Manitoba",
+          "logo": "winnipeg-wesmen.png",
+          "url": "https://wesmen.ca/sports/mens-basketball"
+        },
+        {
+          "name": "Brandon Bobcats",
+          "where": "Brandon, Manitoba",
+          "logo": "brandon-bobcats.png",
+          "url": "https://gobobcats.ca/sports/mens-basketball"
+        }
+      ],
+      "flag": "ca"
+    },
+    {
+      "label": "Denmark · every Basketligaen club",
+      "entries": [
+        {
+          "name": "Bakken Bears",
+          "where": "Aarhus · Basketligaen",
+          "logo": "bakken-bears.png",
+          "url": "https://www.bakkenbears.com/"
+        },
+        {
+          "name": "Bears Academy",
+          "where": "Aarhus · Basketligaen",
+          "logo": "bears-academy.png",
+          "url": "https://www.bakkenbears.com/bears-academy/"
+        },
+        {
+          "name": "Horsens IC",
+          "where": "Horsens · Basketligaen",
+          "logo": "horsens-ic.png",
+          "url": "https://horsensic.dk"
+        },
+        {
+          "name": "Randers Cimbria",
+          "where": "Randers · Basketligaen",
+          "logo": "randers-cimbria.png",
+          "url": "https://randerscimbria.dk"
+        },
+        {
+          "name": "BC Copenhagen",
+          "where": "Copenhagen · Basketligaen",
+          "logo": "bc-copenhagen.png",
+          "url": "https://bccopenhagen.com"
+        },
+        {
+          "name": "BMS Herlev",
+          "where": "Herlev · Basketligaen",
+          "logo": "bms-herlev.png",
+          "url": "https://bmsherlev.dk"
+        },
+        {
+          "name": "Gladsaxe Basketball Klub",
+          "where": "Gladsaxe · Basketligaen",
+          "logo": "gladsaxe-basketball-klub.png",
+          "url": "https://www.gladsaxebasket.dk"
+        },
+        {
+          "name": "Vaerlose Blue Hawks",
+          "where": "Værløse · Basketligaen",
+          "logo": "vaerlose-blue-hawks.png",
+          "url": "https://www.vbbk.dk"
+        },
+        {
+          "name": "Holbaek-Stenhus",
+          "where": "Holbæk · Basketligaen",
+          "logo": "holbaek-stenhus.png",
+          "url": "https://holbaekbasket.dk"
+        },
+        {
+          "name": "Team FOG Naestved",
+          "where": "Næstved · Basketligaen",
+          "logo": "team-fog-naestved.png",
+          "url": "https://teamfog.dk"
+        },
+        {
+          "name": "Svendborg Rabbits",
+          "where": "Svendborg · Basketligaen",
+          "logo": "svendborg-rabbits.png",
+          "url": "https://www.rabbits.dk"
+        },
+        {
+          "name": "BK Vejen",
+          "where": "Vejen · Basketligaen",
+          "logo": "bk-vejen.png",
+          "url": "https://vejenbasket.dk"
+        }
+      ],
+      "flag": "dk"
+    },
+    {
+      "label": "Lithuania · LKL, NKL and RKL",
+      "entries": [
+        {
+          "name": "Rytas Vilnius",
+          "where": "Vilnius · LKL",
+          "logo": "rytas-vilnius.png",
+          "url": "https://rytasvilnius.lt"
+        },
+        {
+          "name": "Žalgiris Kaunas",
+          "where": "Kaunas · LKL and EuroLeague",
+          "logo": "zalgiris-kaunas.png",
+          "url": "https://zalgiris.lt/en"
+        },
+        {
+          "name": "Neptūnas Klaipėda",
+          "where": "Klaipėda · LKL",
+          "logo": "neptunas-klaipeda.png",
+          "url": "https://bcneptunas.lt"
+        },
+        {
+          "name": "Jonava",
+          "where": "Jonava · LKL",
+          "logo": "jonava.png",
+          "url": "https://bcjonava.lt"
+        },
+        {
+          "name": "Nevėžis Kėdainiai",
+          "where": "Kėdainiai · LKL",
+          "logo": "nevezis-kedainiai.png",
+          "url": "https://kknevezis.lt"
+        },
+        {
+          "name": "Mažeikiai",
+          "where": "Mažeikiai · NKL",
+          "logo": "mazeikiai.png",
+          "url": "https://www.mbasket.lt"
+        },
+        {
+          "name": "Jurbarkas",
+          "where": "Jurbarkas · NKL",
+          "logo": "jurbarkas.png",
+          "url": "https://bcjurbarkas.lt"
+        },
+        {
+          "name": "Alytus Patriotai",
+          "where": "Alytus · NKL",
+          "logo": "alytus-patriotai.png",
+          "url": "https://nkl.lt/komandos/alytaus-patriotai"
+        },
+        {
+          "name": "Prienai",
+          "where": "Prienai",
+          "logo": "prienai.png"
+        },
+        {
+          "name": "Raseiniai",
+          "where": "Raseiniai · RKL",
+          "logo": "raseiniai.png",
+          "url": "https://www.rkl.lt/komandos/raseiniu-raseiniai-178095/"
+        }
+      ],
+      "flag": "lt"
+    },
+    {
+      "label": "Agents and showcases",
+      "entries": [
+        {
+          "name": "Tre Sports Management",
+          "where": "Player representation, USA and Italy",
+          "logo": "tre-sports-management-navy.png",
+          "url": "https://tresportsmgmt.com"
+        },
+        {
+          "name": "Elite Euro Talent",
+          "where": "Showcase camp for European players",
+          "logo": "elite-euro-talent.png",
+          "url": "https://eliteurotalent.com"
+        },
+        {
+          "name": "NBA Basketball School",
+          "where": "NBA youth programme in Europe",
+          "logo": "nba-basketball-school.png",
+          "url": "https://nbabasketballschool.com"
+        }
+      ]
+    },
+    {
+      "label": "Canada · college, ACAC",
+      "entries": [
+        {
+          "name": "NAIT Ooks",
+          "where": "Edmonton, Alberta",
+          "url": "https://naitooks.com"
+        },
+        {
+          "name": "Ambrose Lions",
+          "where": "Calgary, Alberta",
+          "url": "https://ambrose.edu/campus-life/athletics/"
+        },
+        {
+          "name": "St. Mary’s Lightning",
+          "where": "Calgary, Alberta",
+          "url": "https://stmu.ca/campus-life/athletics/"
+        },
+        {
+          "name": "Lethbridge Polytechnic Kodiaks",
+          "where": "Lethbridge, Alberta",
+          "url": "https://gokodiaks.ca"
+        }
+      ],
+      "flag": "ca"
+    },
+    {
+      "label": "Canada · prep",
+      "entries": [
+        {
+          "name": "Fort Erie International Academy",
+          "where": "Fort Erie, Ontario, Canada · OSBA",
+          "logo": "fort-erie-international-academy.png",
+          "url": "https://www.feia.ca"
+        },
+        {
+          "name": "Canada Topflight Academy",
+          "where": "Ottawa, Ontario · OSBA",
+          "url": "https://canadatopflight.com/canadatopflightacademy/"
+        },
+        {
+          "name": "CTA West",
+          "where": "Calgary, Alberta · post-graduate",
+          "url": "https://canadatopflight.com/canadatopflightacademy/"
+        },
+        {
+          "name": "Edge School",
+          "where": "Calgary, Alberta · NPA",
+          "url": "https://www.edgeschool.ca"
+        }
+      ],
+      "flag": "ca"
+    },
+    {
+      "label": "USA",
+      "entries": [
+        {
+          "name": "University of Wyoming",
+          "where": "Laramie, Wyoming · NCAA Division 1",
+          "url": "https://gowyo.com/sports/mens-basketball"
+        }
+      ],
+      "flag": "us"
+    },
+    {
+      "label": "Sweden",
+      "entries": [
+        {
+          "name": "Norrköping Dolphins",
+          "where": "Norrköping, Sweden · Basketligan",
+          "url": "https://www.dolphins.se"
+        },
+        {
+          "name": "Malbas",
+          "where": "Malmö, Sweden",
+          "logo": "malbas-navy.png",
+          "url": "https://www.malbas.se"
+        },
+        {
+          "name": "Trelleborg Pirates",
+          "where": "Trelleborg, Sweden",
+          "logo": "trelleborg-pirates.png",
+          "url": "https://gopirates.se"
+        }
+      ],
+      "flag": "se"
+    },
+    {
+      "label": "Indonesia",
+      "entries": [
+        {
+          "name": "Bogor Hornbills",
+          "where": "Bogor, Indonesia · IBL, 2026 champions",
+          "logo": "bogor-hornbills.png"
+        },
+        {
+          "name": "RANS Simba Bogor",
+          "where": "Bogor, Indonesia · IBL",
+          "url": "https://ransentertainment.co.id",
+          "logo": "rans-simba-bogor.png"
+        }
+      ],
+      "flag": "id"
+    },
+    {
+      "label": "Japan",
+      "flag": "jp",
+      "entries": [
+        {
+          "name": "Kagoshima Rebnise",
+          "where": "Kagoshima, Japan · B2 League",
+          "logo": "kagoshima-rebnise.png",
+          "url": "https://www.rebnise.jp"
+        }
+      ]
+    }
   ],
   "leagues": [
-    { "name": "NCAA", "file": "ncaa.svg", "url": "https://www.ncaa.org" },
-    { "name": "U SPORTS", "file": "usports.png", "url": "https://usports.ca" },
-    { "name": "Alberta Colleges Athletic Conference", "short": "ACAC", "file": "acac.png", "url": "https://www.acac.ab.ca" },
-    { "name": "Canadian Collegiate Athletic Association", "short": "CCAA", "file": "ccaa.png", "url": "https://www.ccaa.ca" },
-    { "name": "Ontario Scholastic Basketball Association", "short": "OSBA", "file": "", "url": "https://www.osbahoops.ca" },
-    { "name": "Basketligan, Sweden", "file": "basketligan-se.svg", "url": "https://basketligan.se" },
-    { "name": "Basketligaen, Denmark", "file": "basketligaen-dk.png", "url": "https://basketligaen.dk" },
-    { "name": "Indonesian Basketball League", "short": "IBL", "file": "ibl.png", "url": "https://iblindonesia.com" }
+    {
+      "name": "NBA",
+      "file": "nba.svg",
+      "url": "https://www.nba.com"
+    },
+    {
+      "name": "NBA G League",
+      "short": "G League",
+      "file": "g-league.svg",
+      "url": "https://gleague.nba.com"
+    },
+    {
+      "name": "Canadian Elite Basketball League",
+      "short": "CEBL",
+      "file": "cebl.png",
+      "url": "https://www.cebl.ca"
+    },
+    {
+      "name": "NCAA",
+      "file": "ncaa.svg",
+      "url": "https://www.ncaa.org"
+    },
+    {
+      "name": "U SPORTS",
+      "file": "usports.png",
+      "url": "https://usports.ca"
+    },
+    {
+      "name": "Alberta Colleges Athletic Conference",
+      "short": "ACAC",
+      "file": "acac-navy.png",
+      "url": "https://acac.ab.ca"
+    },
+    {
+      "name": "Canadian Collegiate Athletic Association",
+      "short": "CCAA",
+      "file": "ccaa-navy.png",
+      "url": "https://ccaa.ca"
+    },
+    {
+      "name": "Ontario Scholastic Basketball Association",
+      "short": "OSBA",
+      "file": "",
+      "url": "https://basketball.on.ca"
+    },
+    {
+      "name": "Basketligan, Sweden",
+      "file": "basketligan-se.svg",
+      "url": "https://www.svenskabasketligan.se"
+    },
+    {
+      "name": "Basketligaen, Denmark",
+      "file": "basketligaen-dk.png",
+      "url": "https://www.basketligaen.dk"
+    },
+    {
+      "name": "Indonesian Basketball League",
+      "short": "IBL",
+      "file": "ibl.png",
+      "url": "https://iblindonesia.com"
+    },
+    {
+      "name": "Kvindebasketligaen, Denmark",
+      "short": "Kvindebasketligaen",
+      "file": "kvindebasketligaen.png",
+      "url": "https://kvindebasketligaen.dk"
+    },
+    {
+      "name": "LKL, Lithuania",
+      "short": "LKL",
+      "file": "",
+      "url": "https://lkl.lt"
+    },
+    {
+      "name": "NKL, Lithuania",
+      "short": "NKL",
+      "file": "nkl.png",
+      "url": "https://nkl.lt"
+    },
+    {
+      "name": "RKL, Lithuania",
+      "short": "RKL",
+      "file": "rkl.png",
+      "url": "https://www.rkl.lt"
+    },
+    {
+      "name": "Lega Basket Serie A, Italy",
+      "short": "Lega Basket Serie A",
+      "file": "lba-italy.png",
+      "url": "https://www.legabasket.it"
+    },
+    {
+      "name": "B.League, Japan",
+      "short": "B.League",
+      "file": "b-league.svg",
+      "url": "https://www.bleague.jp/en/"
+    },
+    {
+      "name": "Qatar Basketball League",
+      "short": "Qatar Basketball League",
+      "file": "qatar-basketball-league.png",
+      "url": "https://qatarbasketball.qa"
+    }
   ],
-  "note": "These are programmes and coaches we can reach, not sponsors and not endorsements. Our Canada camp runs in Lethbridge, Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming, which is where a lot of the Alberta side of this comes from."
+  "note": "Our Canada camp runs in Lethbridge. Coach Deng played at Mount Royal in Calgary and Coach Jordan played Division 1 at Wyoming, so a lot of these are in Alberta. None of them sponsor or endorse Talata."
 }

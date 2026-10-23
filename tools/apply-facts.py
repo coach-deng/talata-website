@@ -38,6 +38,10 @@ BLOCKS
                                               Heibergskolen), identifier (CVR) and
                                               openingHoursSpecification (standing training rows).
   <!-- TALATA:FACTS:place-ld:START --> ... END  the same, openingHoursSpecification only.
+  <!-- TALATA:FACTS:clinic-ld:START --> ... END  the Coaches Clinic Event: startDate, endDate,
+                                              maximumAttendeeCapacity and both offers from facts.clinic.
+  <!-- TALATA:FACTS:clinic-head:START --> ... END  wraps the clinic page's title and meta tags and
+                                              rewrites "28. og 29. december" and "30 pladser" (15 Oct 2026).
 
 MODES
     python3 tools/apply-facts.py            write every marker
@@ -57,7 +61,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 FACTS = ROOT / "data/facts.json"
 LOCK = ROOT / "tools/facts-orphans.lock"
-SKIP_DIRS = {"tools", "node_modules", ".git", "blog", "dist"}
+SKIP_DIRS = {"tools", "node_modules", ".git", ".claude", "blog", "dist"}
 EXTRA = [ROOT / "llms.txt"]
 DAY3 = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 DAY_FILTERS = {d.lower(): i for i, d in enumerate(DAY3)}
@@ -263,10 +267,11 @@ TEAM_WEEKS = {
                      ["U13", "U15", "U17", "U19"]),
     "week-sparks":  (["sparks", "girls_15"], []),
     "week-men":     (["men"], ["Men"]),
+    "week-talata-co": (["talata_co"], []),
 }
 
 DAYS_LD = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-NO_LD_VENUES = {"heibergskolen"}  # its address in the vault is "Sunday block", not a street
+NO_LD_VENUES = {"heibergskolen", "norrebrohallen"}  # Heibergskolen: its address in the vault is "Sunday block", not a street
 CVR = "43599453"
 
 
@@ -321,10 +326,68 @@ def _ld_block(name, doc, inner):
     return "\n%s\n%s\n%s\n" % (m.group(1), body, m.group(3))
 
 
+def _cph_offset(day, clock):
+    """'+01:00' or '+02:00' for a Copenhagen wall time on that day."""
+    import datetime as dt
+    try:
+        from zoneinfo import ZoneInfo
+        t = dt.datetime.fromisoformat("%sT%s" % (day, clock)).replace(tzinfo=ZoneInfo("Europe/Copenhagen"))
+        h = int(t.utcoffset().total_seconds() // 3600)
+        return "+%02d:00" % h
+    except Exception:  # noqa: BLE001
+        return "+01:00"
+
+
+def _clinic(doc):
+    c = doc.get("clinic")
+    if not c:
+        raise SystemExit("apply-facts: a clinic block, but data/facts.json has no clinic (programs.md § Coaches Clinic)")
+    return c
+
+
+def clinic_ld(doc, inner):
+    """The Coaches Clinic Event (15 Oct 2026): dates, places and both offers from facts."""
+    import datetime as dt
+    c = _clinic(doc)
+    m = LD_SCRIPT.search(inner or "")
+    if not m:
+        raise SystemExit("apply-facts: block clinic-ld needs an ld+json <script> inside it")
+    data = json.loads(m.group(2))
+    t = lambda d, clock: "%sT%s:00%s" % (d, clock, _cph_offset(d, clock))
+    data["startDate"] = t(c["start_date"], c["time_start"])
+    data["endDate"] = t(c["end_date"], c["time_end"])
+    data["maximumAttendeeCapacity"] = c["places"]
+    offers = data.get("offers") or []
+    if len(offers) != 2:
+        raise SystemExit("apply-facts: clinic-ld wants two offers, early bird then standard")
+    dl = c["eb_deadline"]
+    nxt = (dt.date.fromisoformat(dl) + dt.timedelta(days=1)).isoformat()
+    offers[0].update(price=str(c["price_early"]), validThrough=t(dl, "23:59"))
+    offers[1].update(price=str(c["price_standard"]), validFrom=t(nxt, "00:00"))
+    body = json.dumps(data, ensure_ascii=False, indent=2)
+    return "\n%s\n%s\n%s\n" % (m.group(1), body, m.group(3))
+
+
+DA_MONTH_RE = "(?:januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)"
+
+
+def clinic_head(doc, inner):
+    """The Danish title and descriptions in the clinic page head. A comment cannot
+    sit inside <title>, so the block wraps the tags and the days and places are
+    rewritten in place."""
+    c = _clinic(doc)
+    out, n = re.subn(r"\b\d{1,2}\.(?:(?:,| og) \d{1,2}\.)* " + DA_MONTH_RE + r"\b", c["days_da"], inner)
+    if not n:
+        raise SystemExit("apply-facts: clinic-head block names no Danish days like '28. og 29. december'")
+    return re.sub(r"\b\d+ pladser\b", "%d pladser" % c["places"], out)
+
+
 BLOCKS = {"week": block_week,
+          "clinic-ld": clinic_ld,
+          "clinic-head": clinic_head,
           "org-ld": lambda doc, inner: _ld_block("org-ld", doc, inner),
           "place-ld": lambda doc, inner: _ld_block("place-ld", doc, inner)}
-INNER_BLOCKS = {"org-ld", "place-ld"}
+INNER_BLOCKS = {"org-ld", "place-ld", "clinic-ld", "clinic-head"}
 for _name, (_teams, _games) in TEAM_WEEKS.items():
     BLOCKS[_name] = (lambda t, g: lambda doc: block_week(doc, t, g))(_teams, _games)
 
@@ -393,6 +456,10 @@ def refresh_prices(doc):
     the same choice on the day it ran)."""
     today = today_cph().isoformat()
     for c in (doc.get("camps") or {}).values():
+        until = c.get("price_early_until")
+        c["price_now"] = c["price_early"] if (c.get("price_early") and until and today <= until) else c.get("price_standard")
+    c = doc.get("clinic")
+    if c:
         until = c.get("price_early_until")
         c["price_now"] = c["price_early"] if (c.get("price_early") and until and today <= until) else c.get("price_standard")
 

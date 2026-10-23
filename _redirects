@@ -87,6 +87,10 @@
 /starter-camp    /camps/academy-u12-camp-2026    301
 /pathway-camp    /camps/college-pathway-camp-2026    301
 /nba-camp        /camps/college-pathway-camp-2026    301
+/euroleague-camp /camps/college-pathway-camp-2026    301
+# Coaches Clinic inside the December camp, 14 Oct 2026 (Deng)
+/clinic          /camps/coaches-clinic-2026    301
+/coaches-clinic  /camps/coaches-clinic-2026    301
 /autumn-camp    /camps/academy-u15-camp-2026    301
 
 # Holiday camps renamed 15 Sep 2026, pages moved 16 Sep. Starter is Academy U12,
@@ -114,6 +118,10 @@
 # Saturday sessions, live 23 Aug 2026
 /saturdays    /saturday    301
 /lordag       /saturday    301
+
+# Talata & Co., the co-ed adult team, 14 Oct 2026
+/talata-co    /talata-and-co    301
+/co           /talata-and-co    301
 
 # Old /klub/talata-basketball/ URLs, 6 Oct 2026. Search Console still shows one
 # (/klub/.../lithuania-camp-2026.html, Insights 15 Aug to 11 Sep). Known dead camp

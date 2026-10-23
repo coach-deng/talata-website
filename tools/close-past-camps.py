@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # (closes, href, label), in date order. Updated 7 Oct 2026.
 NEXT = [
     ("2026-10-16", "/camps", "October camps, Oct 12 to 15"),
-    ("2026-12-31", "/camps/college-pathway-camp-2026", "NBA and College Pathway Camp, Dec 28 to 30"),
+    ("2026-12-31", "/camps/college-pathway-camp-2026", "NBA and EuroLeague Pathway Camp, Dec 28 to 30"),
 ]
 FALLBACK = ("/camps", "All camps")
 
@@ -45,6 +45,10 @@ CLOSES = {
         "Academy U12 Camp ran Oct 12 to 15 2026 at Hafnia-Hallen. Registration is closed."),
     "camps/academy-u15-camp-2026.html": ("2026-10-16",
         "Academy U15 Camp ran Oct 12 to 15 2026 at Hafnia-Hallen. Registration is closed."),
+    # The Coaches Clinic runs Mon 28 and Tue 29 Dec 2026 inside the December camp.
+    # Its booking buttons sit inside the CLOSEDFORM markers, so they go too.
+    "camps/coaches-clinic-2026.html": ("2026-12-30",
+        "The Coaches Clinic ran Dec 28 to 29 2026 at Hafnia-Hallen. Booking is closed."),
 }
 
 # page -> the line under the banner headline
@@ -76,7 +80,7 @@ BANNER = """{s}
       <b>This camp has finished</b>
       <p>{note}</p>
     </div>
-    <a class="tn-past-cta" href="{href}">{label} <span aria-hidden="true">&rarr;</span></a>
+    <a class="tn-past-cta" href="{href}">{label}</a>
   </div>
 </div>
 {e}"""
@@ -85,7 +89,7 @@ CLOSED = """{s}
 <div class="tn-closed">
   <b>Registration closed</b>
   <p>This camp has already run. Our next camp is open now.</p>
-  <a href="{href}">{label} <span aria-hidden="true">&rarr;</span></a>
+  <a href="{href}">{label}</a>
 </div>
 {e}"""
 

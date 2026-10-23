@@ -1355,7 +1355,7 @@
           '</form>' +
           '<p class="tf-fine">Entry is free. This tells us how many to expect and puts you in ' +
             'the monthly draw. Anyone can enter, and under 13s should ask a parent to use ' +
-            'their email. Every mail we send has an unsubscribe link.</p>' +
+            'their email. Plans change? Reply to the ticket email and we take you off.</p>' +
           '<p class="tf-ok"></p>' +
         '</div>' +
       '</div>';

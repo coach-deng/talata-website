@@ -58,3 +58,10 @@ images/_unused/**
 
 # build output (tools/build-dist.py), deployed by CI, never committed
 dist/
+
+# Secrets and raw exports never go in the site repo (security check, 15 Oct 2026)
+.env
+.env.*
+.dev.vars
+*.csv
+*.xlsx
