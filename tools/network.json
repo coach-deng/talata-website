@@ -1,6 +1,6 @@
 {
   "heading": "Who we know",
-  "intro": "Our players went to the first three schools. We know the coaches at the rest.",
+  "intro": "We placed Malthe and Valdemar. Johan trained with us, and his family set up his move. We know the coaches at the rest.",
   "placed": [
     {
       "name": "Orangeville Prep",
@@ -18,7 +18,7 @@
       "flag": "us"
     }
   ],
-  "developed_label": "Trained with us. His family set up the move.",
+  "developed_label": "We trained him. His family set up the move.",
   "developed": [
     {
       "name": "Martins Ferry High School",
@@ -425,6 +425,18 @@
           "name": "Norrköping Dolphins",
           "where": "Norrköping, Sweden · Basketligan",
           "url": "https://www.dolphins.se"
+        },
+        {
+          "name": "Malbas",
+          "where": "Malmö, Sweden",
+          "logo": "malbas-navy.png",
+          "url": "https://www.malbas.se"
+        },
+        {
+          "name": "Trelleborg Pirates",
+          "where": "Trelleborg, Sweden",
+          "logo": "trelleborg-pirates.png",
+          "url": "https://gopirates.se"
         }
       ],
       "flag": "se"

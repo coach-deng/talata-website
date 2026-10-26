@@ -161,12 +161,14 @@
   // other "camp", else trial), so a camp page still gets camp wording while a
   // new Worker is not yet deployed.
   // 15 Oct 2026: "clinic", the Coaches Clinic seat form.
-  var KINDS = { trial: 1, camp: 1, camp_enquiry: 1, one_to_one: 1, clinic: 1 };
+  var KINDS = { trial: 1, camp: 1, camp_enquiry: 1, one_to_one: 1, clinic: 1, member: 1 };
 
   function kindOf(out, data) {
     var k = out && out.kind;
     if (k && KINDS.hasOwnProperty(k)) return k;
     var label = String((data && (data.program || data.camp)) || '').toLowerCase();
+    // 23 Oct 2026: the 300 kr a year member on /partners.
+    if (/\bmember(ship)?\b|\bmedlem/.test(label) && !/camp|clinic/.test(label)) return 'member';
     if (/1[:\s]?(on|to)?[:\s]?1|one.on.one|private/.test(label)) return 'one_to_one';
     if (/coach(es)?\s*clinic/.test(label)) return 'clinic';
     // 16 Sep 2026: the camps are Academy U12, Academy U16 and International
@@ -199,6 +201,17 @@
 
   // 14 Oct 2026 (Deng): shorter, his voice, no shop button on this screen.
   var OTHER_KIND = {
+    // 23 Oct 2026 (Deng): 300 kr a year is the floor. The pay box sits right
+    // under the form on /partners, so the panel points at it and names no number.
+    member: {
+      title: 'Welcome to Talata.',
+      pending: 'One tap in the email we just sent and your membership is in.',
+      done: 'Your welcome email is on its way.',
+      steps: [
+        '<li><b>Pay 300 kr with the MobilePay box just below.</b> Write "Member" and your name.</li>',
+        '<li><b>Your member number comes by email</b> once the payment lands.</li>'
+      ]
+    },
     camp: {
       title: 'Got it. Your camp place is in.',
       pending: 'One tap in the email we just sent and the camp details come straight after.',
@@ -372,6 +385,12 @@
   // bidding data, which is worse than having no data at all.
   function fireConversion(data, form) {
     if (typeof window.gtag !== 'function') return;
+    // A member is not a lead. sign_up keeps generate_lead, the event Google Ads
+    // bids on, for trials and camps only (23 Oct 2026).
+    if (data.form_id === 'member-300') {
+      try { window.gtag('event', 'sign_up', { method: 'member-300', currency: 'DKK', value: 300 }); } catch (e) {}
+      return;
+    }
     var isCamp = /camp/i.test(data.form_id || '');
     var value = isCamp ? (campValue(form, data) || leadValue(data)) : leadValue(data);
     try {
