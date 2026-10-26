@@ -213,7 +213,7 @@
     "source": "Talata Dash Score in, 1 Oct 2026"
   },
   "40104241": {
-    "source": "Holdsport, U13 cup draw. Not in the 30 Sep DBBF export yet (6 Oct 2026). No score yet.",
+    "source": "MVP club page mvpcompetition.com/klub/1028, read by Claude 26 Oct 2026 (BK Amager forfeit)",
     "team": "U13",
     "fixture": {
       "date": "2026-10-24",
@@ -224,7 +224,9 @@
       "competition": "U13 Cup East",
       "venue": "Amagerhallen",
       "court": "Stor bane"
-    }
+    },
+    "us": 20,
+    "them": 0
   },
   "40098755": {
     "us": 60,
@@ -237,5 +239,23 @@
     "them": 97,
     "team": "U19",
     "source": "MVP member section, read by Claude 22 Oct 2026"
+  },
+  "40099177": {
+    "us": 20,
+    "them": 0,
+    "team": "Men",
+    "source": "MVP club page mvpcompetition.com/klub/1028, read by Claude 26 Oct 2026 (agreed win, Stevnsgade 7 short of a game)"
+  },
+  "40097918": {
+    "us": 60,
+    "them": 55,
+    "team": "U13",
+    "source": "MVP club page mvpcompetition.com/klub/1028, read by Claude 26 Oct 2026"
+  },
+  "40098312": {
+    "us": 22,
+    "them": 112,
+    "team": "U19",
+    "source": "MVP club page mvpcompetition.com/klub/1028, read by Claude 26 Oct 2026"
   }
 }
