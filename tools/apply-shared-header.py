@@ -39,8 +39,6 @@ CTA = {
     "men.html": ("#join", "Come and train"),
     "talata-and-co.html": ("#join", "Book a trial"),
     "join.html": ("#register", "Book a trial"),
-    "ish-primary-school.html": ("#signup", "Sign up"),
-    "ish-high-school.html": ("#signup", "Sign up"),
     "school-partnerships.html": ("#contact", "Get in touch"),
     # "Join waitlist" rode the sticky bar on every camp page, so the one button
     # a parent could always see said the camp was full. Places are open.
@@ -82,12 +80,12 @@ WATCH_PLACEHOLDER = "__WATCH__"
 # Placement is deliberately NOT in this menu (Deng, 22 Aug): it is a commercial
 # service that will sit in its own company, not a club activity. A forening's
 # site should not run a commercial funnel with its own tab. /placement stays
-# live and indexed, reachable from /pathway and the footer.
+# live and indexed, reachable from /pathway.
 # Restructured 22 Aug 2026. Placement went live as a product, and a product
 # that sells does not belong four levels deep inside "Club". Pathway becomes its
 # own tab; Club absorbs the practical parent pages that used to sit in "Parents".
-# Still five tabs, longest dropdown still 6. Gallery and Contact were not
-# orphaned: the shared footer carries the full site map on every page.
+# Still five tabs, longest dropdown still 6. (The footer stopped being a full
+# site map on 29 Oct 2026; it now carries about a dozen links.)
 # Reduced 25 Aug 2026 (Deng: fewer clicks, less friction). 21 dropdown rows to 12.
 # The audit found the single worst gap: PRICES were three clicks deep and no nav
 # or footer row contained the word price. The fee table at /help/age-groups was
@@ -123,7 +121,7 @@ MENU = {
     "Club": [
         ("/help/age-groups", "Prices", "fees and age groups"),
         ("/help/first-session", "Your first session", "what to bring"),
-        ("/help/holdsport", "Holdsport", "signing up, in English"),
+        ("/how-to-holdsport", "Holdsport", "signing up, in English"),
         ("/coaches", "Coaches", "who is on the floor"),
         ("/pathway", "Player Pathway", "where players go next"),
         ("/reviews", "Reviews", "what parents say"),

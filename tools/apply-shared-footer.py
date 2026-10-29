@@ -8,7 +8,7 @@ footers across the site and, worse, twenty-plus pages with no <footer> element
 at all:
 
     academy · mini · sparks · join · camps · pathway · coaches
-    school-partnerships · ish-high-school · ish-primary-school
+    school-partnerships
     basketball-in-copenhagen · every page under camps/ · two blog posts
 
 Those are the pages Google actually lands people on. A parent who searched
@@ -105,38 +105,22 @@ PAY = {
 # is free and the shop is one page, so those become Play and Watch: the two
 # things a visitor is actually here to do.
 COLUMNS = [
+    # Cut to two short columns on 29 Oct 2026 (Deng: less writing, simpler).
+    # 29 links read as a site map again. The nav carries every program page and
+    # the Club rows; the footer keeps what a parent looks for last.
     ("Play", [
-        ("/mini", "Mini + Junior"),
-        # Saturday sessions have their own page, /saturday (live from 3 Oct
-        # 2026), and the nav already lists it. Added 7 Oct 2026.
-        ("/saturday", "Saturdays"),
-        ("/academy", "Academy"),
-        ("/sparks", "Sparks"),
-        ("/men", "Talata Men"),
-        ("/talata-and-co", "Talata & Co."),
-        ("/camps", "Camps"),
-    ]),
-    ("Watch", [
+        ("/#programs", "Programs"),
         ("/games", "Games"),
-        ("/games#season", "Fixtures"),
-        ("/gallery", "Gallery"),
-        ("/blog", "The Playbook"),
+        ("/camps", "Camps"),
+        ("/school-partnerships", "Schools"),
+        ("/shop", "Shop"),
     ]),
-    ("Club", [
-        ("/coaches", "Coaches"),
-        ("/pathway", "Player Pathway"),
+    ("Parents", [
         ("/help/age-groups", "Prices and times"),
-        ("/help", "Help &amp; guides"),
-        ("/basketball-in-copenhagen", "Basketball in Copenhagen"),
-        ("/where-we-train", "Where we train"),
-        ("/english-speaking-basketball-copenhagen", "English-speaking families"),
-        ("/partners#join", "Become a club member"),
-        ("/partners", "Partners"),
-    ]),
-    ("Shop", [
-        ("/shop", "Gear"),
-        ("/shop#bundles", "Bundles"),
-        ("/shop#jerseys", "Game jerseys"),
+        ("/help/first-session", "First session"),
+        ("/reviews", "Reviews"),
+        ("/coaches", "Coaches"),
+        ("/blog", "The Playbook"),
     ]),
 ]
 
@@ -188,8 +172,6 @@ TRIAL = {
     "mini.html": "#register",
     "sparks.html": "#register",
     "join.html": "#register",
-    "ish-primary-school.html": "#signup",
-    "ish-high-school.html": "#signup",
     "school-partnerships.html": "#contact",
     "camps/academy-u15-camp-2026.html": "#waitlist",
     "camps/college-pathway-camp-2026.html": "#waitlist",
@@ -230,8 +212,8 @@ def build_footer(rel: str, year: int = 2026) -> str:
     pay = (
         '\n        <span class="tf-pay-hero">MobilePay %s</span>'
         '\n        <span>%s</span>'
-        '\n        <span>Reg. %s</span>'
-        '\n        <span>Konto %s</span>'
+        '\n        <span>Reg. no. %s</span>'
+        '\n        <span>Account %s</span>'
         '\n        <span>IBAN %s</span>'
         '\n        <span>BIC %s</span>'
         '\n        <small>Always put the player&rsquo;s name as the reference.</small>'

@@ -41,11 +41,9 @@ TITLE_MAX = 65
 # Say why, so the next person does not "fix" it like I did.
 DELIBERATE_ORPHANS = {
     "camps/spring-camp-2026.html":   "past camp, kept for its URL, canonical points at /camps",
-    "ish-primary-school.html":       "HIDDEN since 6 Aug 2026, 302s to /school-partnerships while Ryparken is unconfirmed",
     "index.html":                    "the homepage is /, nothing links to /index",
     "404.html":                      "Cloudflare Pages serves it for unmatched routes. Linking to it, or listing it in the sitemap, would be the bug",
-    "program.html":                  "free 4-week home program, shared by direct link (Instagram, messages). Kept out of the nav on purpose (Deng, 27 Sep 2026)",
-    "free.html":                     "Instagram link in bio: free guides plus the key links. Shared by direct link, kept out of the nav (Deng, 29 Sep 2026)",
+    "program.html":                  "free 4-week home program and the two guides, shared by direct link (Instagram bio, the PROGRAM DM). /free and /guide 301 here since 29 Oct 2026. Kept out of the nav (Deng, 27 Sep 2026)",
 }
 
 SKIP_DIR_PARTS = ("/junk/", "/_unused/", "/Photos-", "/Basketball 2013",

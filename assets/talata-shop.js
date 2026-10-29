@@ -407,6 +407,8 @@
         return { id: it.id, qty: it.qty, size: it.size, kit: it.kit, name: it.name, number: it.number };
       }),
       note: buyer.note || '',
+      // Spam trap (29 Oct 2026): empty from a person, the API drops a filled one.
+      website: buyer.website || '',
       message:
         'SHOP ORDER ' + ref + ' | ' + (isMember ? 'MEMBER' : 'public') + ' | total ' +
         total() + ' kr | MobilePay ' + MOBILEPAY + '\n' + lines.join('\n') +

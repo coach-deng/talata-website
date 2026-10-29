@@ -481,6 +481,17 @@
     if (!form || !btn) return;
     injectStyles();
 
+    // Spam trap (29 Oct 2026). A field called `website` that a person never
+    // sees or reaches with Tab. A bot that fills every field fills it, and the
+    // API then drops the signup quietly (Talata-API honeypotFilled).
+    if (!form.querySelector('input[name="website"]')) {
+      var trap = document.createElement('input');
+      trap.type = 'text'; trap.name = 'website'; trap.tabIndex = -1;
+      trap.autocomplete = 'off'; trap.setAttribute('aria-hidden', 'true');
+      trap.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0';
+      form.appendChild(trap);
+    }
+
     // A date input with no max happily accepts a birth date in 2087. Pin it to
     // today on every load rather than hardcoding a date that goes stale.
     var dobEl = form.querySelector('input[name="dob"]');

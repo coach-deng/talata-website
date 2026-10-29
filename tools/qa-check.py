@@ -128,7 +128,7 @@ CHECKS_VOICE = [
 # history, /free is about free things, and reviews quote parents.
 FREE = re.compile(r"\bfree\b", re.I)
 FREE_MAX = 2
-FREE_OK = {"free.html", "reviews/index.html", "privacy.html"}
+FREE_OK = {"reviews/index.html", "privacy.html"}
 
 META = re.compile(
     r"(<title>[^<]*</title>|<meta[^>]*(?:name=\"(?:description|keywords)\"|property=\"og:(?:title|description)\")[^>]*>)",
@@ -182,7 +182,7 @@ def check_voice(fails, warns):
 # JSON-LD sits in the head: schema names and FAQ answers stay English.
 DANISH = re.compile(r"\b(sommercamp|træning(?:en|er)?|prøvetræning|tilmelding(?:en)?|tilmeld|forældre|"
                     r"efterårsferie(?:n)?|lørdag|kontingent)\b", re.I)
-DANISH_OK = {"help/holdsport.html", "how-to-holdsport.html"}  # both quote Holdsport's own Danish buttons (11 Oct 2026)
+DANISH_OK = {"how-to-holdsport.html"}  # quotes Holdsport's own Danish buttons (11 Oct 2026)
 
 
 def check_danish(fails, warns):

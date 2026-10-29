@@ -46,14 +46,14 @@ LIGHT_OK = {
     "camps/summer-camp.html",  # 6 Oct 2026: replaces both 2026 summer pages (301s in _redirects)
     "camps/nida-camp-2026.html",  # spring-camp-2026 is a redirect stub, never paints
     "camps/spring-camp-u13-u15-2026.html", "camps/spring-camp-u9-u11-2026.html",
-    "help.html", "help/age-groups.html", "help/first-session.html", "help/holdsport.html",
+    "help.html", "help/age-groups.html", "help/first-session.html",
     # batch 3
     "blog.html",
     # batch 4: Tailwind pages. talata-tw-dark.css stands down under html.light
     "reviews/index.html", "philosophy/index.html",
     # batch 5: the rest
-    "404.html", "basketball-in-copenhagen.html", "coaches.html", "free.html",
-    "gallery.html", "guide.html", "ish-high-school.html", "ish-primary-school.html",
+    "404.html", "basketball-in-copenhagen.html", "coaches.html",
+    "gallery.html",
     "partners.html", "pathway.html", "placement.html", "privacy.html", "program.html",
     "school-partnerships.html", "shop.html",
     # batch 9 SEO pages, 6 Oct 2026: built on the basketball-in-copenhagen template

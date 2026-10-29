@@ -1,10 +1,15 @@
-# HIDDEN Aug 6 2026: Ryparken is probably not ours on any day, so the Friday
-# slot on /ish-primary-school would confuse ISH parents. 302 (temporary) on
-# purpose — Google keeps the page indexed and we restore by deleting these two
-# lines, re-adding the nav entry in tools/apply-shared-header.py and the
-# sitemap block. The page file itself is untouched.
-/ish-primary-school    /school-partnerships    302
-/ish-primary-school.html    /school-partnerships    302
+# Repeat pages merged on 29 Oct 2026 (Deng: "also merge repeat pages").
+# /ish-primary-school had been hidden since 6 Aug and its file is now gone.
+/ish-primary-school    /school-partnerships    301
+/ish-primary-school.html    /school-partnerships    301
+/ish-high-school    /school-partnerships#ish    301
+/ish-high-school.html    /school-partnerships#ish    301
+/help/holdsport    /how-to-holdsport    301
+/help/holdsport.html    /how-to-holdsport    301
+/free    /program    301
+/free.html    /program    301
+/guide    /program#guide    301
+/guide.html    /program#guide    301
 
 # Retired 2 Oct 2026. The 19 Apr Mini post said "aged 6 to 11", a dead band;
 # the 29 Apr post tells the same story.
@@ -59,8 +64,6 @@
 /concept-one-page    /    301
 /concept-one-page.html    /    301
 /gallery.html    /gallery    301
-/ish-high-school.html    /ish-high-school    301
-/ish-primary-school.html    /ish-primary-school    301
 /school-partnerships.html    /school-partnerships    301
 # Friendly aliases
 /ish    /school-partnerships    301

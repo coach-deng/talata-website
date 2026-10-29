@@ -4,10 +4,13 @@
  * camp." It sells the December NBA and EuroLeague Pathway Camp on every page
  * until the camp starts.
  *
- *   - EVERY PAGE. The script rides in the shared footer block
- *     (tools/apply-shared-footer.py). It stays quiet on the camp page itself,
- *     the Coaches Clinic, /join and the shop, where it would block a form, and
- *     on Mini, Saturday and Talata & Co., where nobody is 13 to 17 (15 Oct 2026).
+ *   - CAMP PAGES ONLY (29 Oct 2026, was every page since 15 Oct). The script
+ *     rides in the shared footer block (tools/apply-shared-footer.py) but shows
+ *     only on the pages in SHOW: /camps, the old camp pages, Academy, Pathway
+ *     and the camp blog post. On a phone it covered the school and program
+ *     pages, and the homepage has its own December camp section. It stays
+ *     quiet on the camp page itself and the Coaches Clinic, where it would
+ *     block a form.
  *   - NEVER OVER A FORM. Once someone clicks into a form field, it stays shut
  *     for that page view, so it never lands on a half-typed trial form.
  *   - FIRST SCROLL. It shows once the page has scrolled SCROLL_PX, with no
@@ -36,8 +39,11 @@
   var SCROLL_PX = 120;
   var RETRY_MS = 1000;
   var CAMP_URL = '/camps/college-pathway-camp-2026';
-  var QUIET = ['/camps/college-pathway-camp-2026', '/camps/coaches-clinic-2026', '/join', '/shop', '/partners',
-               '/mini', '/saturday', '/talata-and-co'];
+  var QUIET = ['/camps/college-pathway-camp-2026', '/camps/coaches-clinic-2026'];
+  var SHOW = ['/camps', '/academy', '/pathway', '/blog/pathway-camp-december-2026'];
+  function showsHere(p) {
+    return SHOW.indexOf(p) !== -1 || p.indexOf('/camps/') === 0;
+  }
   var IMG = '/images/2026-10/site/pathway-camp-malmo-shot-hero.jpg';
 
   function path() {
@@ -62,7 +68,7 @@
 
   if (!force) {
     if (Date.now() > END) return;
-    if (QUIET.indexOf(path()) !== -1) return;
+    if (!showsHere(path()) || QUIET.indexOf(path()) !== -1) return;
     if (Date.now() - lastSeen() < DAY_MS) return;
   }
 
