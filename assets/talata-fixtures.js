@@ -391,8 +391,8 @@
     var src = crestFor(name);
     if (src) {
       return '<span class="tf-crest"><img src="' + esc(src) + '" alt="" loading="lazy"' +
-        ' onerror="this.parentNode.textContent=this.parentNode.dataset.m;' +
-        'this.parentNode.classList.add(\'is-mono\')" ></span>'
+        ' onerror="var p=this.parentNode;p.classList.add(\'is-mono\');' +
+        'p.textContent=p.dataset.m" ></span>'
         .replace('<span class="tf-crest">', '<span class="tf-crest" data-m="' + esc(monogram(name)) + '">');
     }
     return '<span class="tf-crest is-mono">' + esc(monogram(name)) + '</span>';

@@ -148,6 +148,15 @@ CONTACT = [
     ("mailto:coach@talatabasketball.dk", "coach@talatabasketball.dk"),
 ]
 
+# Pages with their own contact person (Deng, 29 Oct 2026): school partnerships go
+# to Nicoline, the shop to Wickiy. coach@ stays on copy so the club inbox sees it.
+PAGE_CONTACT = {
+    "shop.html": [("mailto:wickiy@talatabasketball.dk?cc=coach@talatabasketball.dk",
+                   "Shop: wickiy@talatabasketball.dk")],
+    "school-partnerships.html": [("mailto:nicoline@talatabasketball.dk?cc=coach@talatabasketball.dk",
+                                  "Schools: nicoline@talatabasketball.dk")],
+}
+
 SOCIAL = [
     ("https://www.instagram.com/talatabasketball/", "Instagram"),
     ("https://www.facebook.com/talatabasketball", "Facebook"),
@@ -155,7 +164,7 @@ SOCIAL = [
 
 # 15 Oct 2026 (Deng): the big camp popup shows on every page, so its script
 # rides in the footer block. It loads its own CSS only when it shows.
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261023d">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261029b">'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -205,7 +214,8 @@ def build_footer(rel: str, year: int = 2026) -> str:
         )
 
     contact = "".join(
-        '\n        <a href="%s">%s</a>' % (href, label) for href, label in CONTACT
+        '\n        <a href="%s">%s</a>' % (href, label)
+        for href, label in PAGE_CONTACT.get(rel, []) + CONTACT
     )
     contact += '\n        <a href="%s"><b>Book a trial</b></a>' % trial
     cols.append(
@@ -259,7 +269,7 @@ def build_footer(rel: str, year: int = 2026) -> str:
     </div>
   </div>
 </footer>
-<script src="/assets/talata-camp-pop.js?v=20261023d" defer></script>
+<script src="/assets/talata-camp-pop.js?v=20261029b" defer></script>
 {end}""".format(
         start=START,
         end=END,

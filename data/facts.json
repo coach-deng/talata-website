@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-23",
+  "built_for": "2026-10-29",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -231,13 +231,83 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "be9af2fd4d0dd0e1925030eb4317773bb3daacea2d4c323264ea09010529b11c",
+  "sha": "7a91a0dd4fdaf4448008a12034654307e5fb31b29fdbff87b1ddffc850b24505",
   "sources": {
-    "programs_sha": "60c7649e1d03957ee9cf9691b66452500ba0703555a7661986f95db81055705d",
+    "programs_sha": "cc04c7ad89549066ec6b027ed412d1828b7fab4bf19abad387c77cad76f4d926",
     "training_sha": "701d0fce650a6005622d997d026ea3e346d9e1b1fdd59547fd16536fbfb8c5ba",
     "training_updated": "2026-10-23"
   },
   "teams": {
+    "academy_u13": {
+      "label": "Academy U13",
+      "sessions": [
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "16:30",
+          "starts": "2026-10-19"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 1,
+          "day_name": "Tuesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [
+            "2026-10-13"
+          ],
+          "start": "16:00",
+          "starts": "2026-10-06"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 2,
+          "day_name": "Wednesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [
+            "2026-10-14"
+          ],
+          "start": "16:00",
+          "starts": "2026-10-07"
+        },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [
+            "2026-10-15"
+          ],
+          "start": "17:00",
+          "starts": "2026-10-08"
+        },
+        {
+          "address": "Bellahøjvej 1-3, 2700 Brønshøj",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Bellahøj Hallerne",
+          "off": [
+            "2026-10-16",
+            "2026-12-25",
+            "2027-01-01"
+          ],
+          "start": "16:00",
+          "starts": "2026-10-09"
+        }
+      ]
+    },
     "academy_u13_u15": {
       "label": "Academy U13 + U15",
       "sessions": [
@@ -252,6 +322,76 @@
           "start": "16:30",
           "starts": "2026-10-19"
         },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 0,
+          "day_name": "Monday",
+          "end": "18:45",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [],
+          "start": "16:45",
+          "starts": "2026-10-19"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 1,
+          "day_name": "Tuesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [
+            "2026-10-13"
+          ],
+          "start": "16:00",
+          "starts": "2026-10-06"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 2,
+          "day_name": "Wednesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [
+            "2026-10-14"
+          ],
+          "start": "16:00",
+          "starts": "2026-10-07"
+        },
+        {
+          "address": "Østerbrogade 240, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "19:00",
+          "ends": null,
+          "hall": "Svanemøllehallen",
+          "off": [
+            "2026-10-15"
+          ],
+          "start": "17:00",
+          "starts": "2026-10-08"
+        },
+        {
+          "address": "Bellahøjvej 1-3, 2700 Brønshøj",
+          "day": 4,
+          "day_name": "Friday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Bellahøj Hallerne",
+          "off": [
+            "2026-10-16",
+            "2026-12-25",
+            "2027-01-01"
+          ],
+          "start": "16:00",
+          "starts": "2026-10-09"
+        }
+      ]
+    },
+    "academy_u15": {
+      "label": "Academy U15",
+      "sessions": [
         {
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
@@ -869,7 +1009,8 @@
       "start": "16:30",
       "starts": "2026-10-19",
       "teams": [
-        "academy_u13_u15"
+        "academy_u13_u15",
+        "academy_u13"
       ],
       "who": "U13 Academy + Junior + U13"
     },
@@ -886,6 +1027,7 @@
       "teams": [
         "academy_u13_u15",
         "academy_u15_u17",
+        "academy_u15",
         "academy_u17_u19",
         "academy_u17"
       ],
@@ -958,7 +1100,9 @@
       "starts": "2026-10-06",
       "teams": [
         "academy_u13_u15",
+        "academy_u13",
         "academy_u15_u17",
+        "academy_u15",
         "academy_u17_u19",
         "academy_u17"
       ],
@@ -995,7 +1139,9 @@
       "starts": "2026-10-07",
       "teams": [
         "academy_u13_u15",
+        "academy_u13",
         "academy_u15_u17",
+        "academy_u15",
         "academy_u17_u19",
         "academy_u17"
       ],
@@ -1066,7 +1212,9 @@
       "starts": "2026-10-08",
       "teams": [
         "academy_u13_u15",
+        "academy_u13",
         "academy_u15_u17",
+        "academy_u15",
         "academy_u17_u19",
         "academy_u17"
       ],
@@ -1104,7 +1252,9 @@
       "starts": "2026-10-09",
       "teams": [
         "academy_u13_u15",
+        "academy_u13",
         "academy_u15_u17",
+        "academy_u15",
         "academy_u17_u19",
         "academy_u17"
       ],

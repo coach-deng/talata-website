@@ -60,8 +60,11 @@ WHO_MAP = {
     # 5 Oct 2026: the vault's Holdsport week trains U13 with Junior at Strandvejsskolen ("Junior + U13").
     # On the site that is the Junior session, so u13 alone maps to junior. "u13 academy" stays the Academy row.
     "u13": ["junior"],
-    "u13 academy": ["academy_u13_u15"],
-    "u15": ["academy_u13_u15", "academy_u15_u17"],
+    # 29 Oct 2026: U13 Academy and U15 share Tue to Fri but not Monday (Strandvejsskolen
+    # 16:30 vs Svanemøllehallen 16:45). One combined line read as two Mondays for everyone,
+    # so pages show each group on its own line. academy_u13_u15 stays for the week strip.
+    "u13 academy": ["academy_u13_u15", "academy_u13"],
+    "u15": ["academy_u13_u15", "academy_u15_u17", "academy_u15"],
     # academy_u17 / academy_u19 (5 Oct 2026): the trial email offers U17 and U19 different sessions
     # (Deng: U17 Wed or Fri, U19 Mon or Fri 18:45), so each needs a team of its own.
     "u17": ["academy_u15_u17", "academy_u17_u19", "academy_u17"],
@@ -80,6 +83,8 @@ TEAMS = {
     "mini": "Talata Mini",
     "junior": "Talata Junior",
     "academy_u13_u15": "Academy U13 + U15",
+    "academy_u13": "Academy U13",
+    "academy_u15": "Academy U15",
     "academy_u15_u17": "Academy U15 + U17",
     "academy_u17_u19": "Academy U17 + U19",
     "academy_u17": "Academy U17",

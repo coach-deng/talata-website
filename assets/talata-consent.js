@@ -37,10 +37,9 @@
   function gtag() { (window.dataLayer = window.dataLayer || []).push(arguments); }
 
   function grant() {
-    gtag('consent', 'update', {
-      analytics_storage: 'granted', ad_storage: 'granted',
-      ad_user_data: 'granted', ad_personalization: 'granted'
-    });
+    // Analytics only (29 Oct 2026). The banner and /privacy promise Google
+    // Analytics and nothing else, so the three ad signals stay denied.
+    gtag('consent', 'update', { analytics_storage: 'granted' });
     if (loaded) return;
     loaded = true;
     var s = document.createElement('script');
