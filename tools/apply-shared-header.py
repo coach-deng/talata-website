@@ -67,6 +67,14 @@ DEFAULT_CTA = ("/#trial", "Book a trial")
 # reversible: change the token, the exception disappears.
 MEMBER_CTA = ("/join#member", "Become a member")
 
+# A camp page with its own sign-up form swaps the pair (Deng, 29 Oct 2026). A
+# parent who lands there from a Google ad came for that camp, and on a phone the
+# bar shows one button. It said "Become a member" and left the page. On these
+# pages the page's own CTA takes the button, in the plain baby blue .tn-cta, and
+# membership drops to the quiet link beside it and the ghost row in the drawer.
+# Found by the form id, so a new camp page with a form picks it up on the next run.
+CAMP_FORM = 'id="camp-form"'
+
 # Resolved per page in build_header(): "#watch" on the homepage, "/#watch"
 # elsewhere. Watch is an on-page section, not a standalone URL.
 WATCH_PLACEHOLDER = "__WATCH__"
@@ -174,7 +182,8 @@ NAV_CSS_LINK = re.compile(r'<link[^>]+href="/assets/talata-nav\.css(?:\?[^"]*)?"
 NAV_JS_TAG = re.compile(r'<script[^>]+src="/assets/talata-nav\.js(?:\?[^"]*)?"')
 
 
-def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
+def build_header(is_home: bool, cta_href: str, cta_label: str,
+                 signup_first: bool = False) -> str:
     """Render the header markup for one page."""
     programs_href = "#programs" if is_home else "/#programs"
     watch_href = "#watch" if is_home else "/#watch"
@@ -216,6 +225,33 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
             )
         )
 
+    member_href, member_label = MEMBER_CTA
+    if signup_first:
+        # .tn-cta keeps its margin-left:auto, which the full desktop menu
+        # (flex:1) leaves at zero, so the quiet link carries the 14px gap the
+        # member button has elsewhere. It is display:none under 980px.
+        bar_pair = (
+            '    <a class="tn-cta-alt" href="%s" style="margin-right:14px">%s</a>\n'
+            '    <a class="tn-cta" href="%s">%s</a>'
+            % (member_href, member_label, cta_href, cta_label)
+        )
+        drawer_pair = (
+            '    <a class="tn-drawer-cta" href="%s">%s</a>\n'
+            '    <a class="tn-drawer-cta tn-drawer-cta--ghost" href="%s">%s</a>'
+            % (cta_href, cta_label, member_href, member_label)
+        )
+    else:
+        bar_pair = (
+            '    <a class="tn-cta-alt" href="%s">%s</a>\n'
+            '    <a class="tn-cta tn-cta--member" href="%s">%s</a>'
+            % (cta_href, cta_label, member_href, member_label)
+        )
+        drawer_pair = (
+            '    <a class="tn-drawer-cta tn-drawer-cta--member" href="%s">%s</a>\n'
+            '    <a class="tn-drawer-cta tn-drawer-cta--ghost" href="%s">%s</a>'
+            % (member_href, member_label, cta_href, cta_label)
+        )
+
     return """{start}
 <a class="tn-skip" href="#tn-content">Skip to content</a>
 
@@ -235,8 +271,7 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
         <li><a class="tn-top" href="/shop">Shop</a></li>
       </ul>
     </nav>
-    <a class="tn-cta-alt" href="{cta_href}">{cta_label}</a>
-    <a class="tn-cta tn-cta--member" href="{member_href}">{member_label}</a>
+{bar_pair}
     <button class="tn-burger" id="tn-burger" type="button" aria-expanded="false" aria-controls="tn-drawer" aria-label="Open menu"><i></i></button>
   </div>
 </div>
@@ -249,8 +284,7 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
     <button class="tn-drawer-close" id="tn-drawer-close" type="button" aria-label="Close menu">&#10005;</button>
   </div>
   <div class="tn-drawer-body">
-    <a class="tn-drawer-cta tn-drawer-cta--member" href="{member_href}">{member_label}</a>
-    <a class="tn-drawer-cta tn-drawer-cta--ghost" href="{cta_href}">{cta_label}</a>
+{drawer_pair}
 {drawer}
     <h3>More</h3>
     <ul class="tn-drawer-list">
@@ -270,10 +304,8 @@ def build_header(is_home: bool, cta_href: str, cta_label: str) -> str:
         desktop="\n".join(desktop),
         drawer="\n".join(drawer),
         watch=watch_href,
-        cta_href=cta_href,
-        member_href=MEMBER_CTA[0],
-        member_label=MEMBER_CTA[1],
-        cta_label=cta_label,
+        bar_pair=bar_pair,
+        drawer_pair=drawer_pair,
     )
 
 
@@ -321,7 +353,10 @@ def process(path: Path, check: bool):
 
     is_home = rel == "index.html"
     cta_href, cta_label = CTA.get(rel, DEFAULT_CTA)
-    header = build_header(is_home, cta_href, cta_label)
+    signup_first = rel.startswith("camps/") and CAMP_FORM in src
+    if signup_first and rel not in CTA:
+        cta_href, cta_label = "#camp-form", "Sign up"
+    header = build_header(is_home, cta_href, cta_label, signup_first)
 
     if INJECTED.search(src):
         src = INJECTED.sub(lambda _: header, src, count=1)
