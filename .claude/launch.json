@@ -4,8 +4,30 @@
     {
       "name": "talata-website",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", ".", "-l", "tcp://127.0.0.1:3000", "--no-clipboard"],
+      "runtimeArgs": [
+        "serve",
+        ".",
+        "-l",
+        "tcp://127.0.0.1:3000",
+        "--no-clipboard"
+      ],
       "port": 3000
+    },
+    {
+      "name": "talata-dist",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "wrangler@4",
+        "pages",
+        "dev",
+        "dist",
+        "--port",
+        "8788",
+        "--ip",
+        "127.0.0.1"
+      ],
+      "port": 8788
     }
   ]
 }

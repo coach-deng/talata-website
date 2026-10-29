@@ -132,6 +132,12 @@ def missing_image(p):
     return not (ROOT / p["image"].lstrip("/")).exists()
 
 
+def one_line(desc):
+    """The first sentence of the blurb (29 Oct 2026: title, date, one line)."""
+    m = re.match(r"(.+?[.!?])(\s|$)", desc)
+    return m.group(1) if m else desc
+
+
 # ---------------------------------------------------------------- blog.html
 
 def render_blog_list(posts):
@@ -143,15 +149,14 @@ def render_blog_list(posts):
       <a href="/blog/{slug}" class="post-card">
         <img src="{image}" alt="{alt}" class="thumb" loading="lazy" decoding="async" width="{w}" height="{h}" style="object-position:{focus}" />
         <div class="card-body">
-          <div class="card-tag">{kicker}</div>
+          <div class="meta">{date}</div>
           <h3>{title}</h3>
           <p>{desc}</p>
-          <div class="meta">{meta}</div>
         </div>
       </a>""".format(
                 slug=p["slug"], image=p["image"], alt=p["alt"], w=p["w"], h=p["h"],
                 focus=p["focus"],
-                kicker=kicker_line(p), title=p["title"], desc=p["desc"], meta=meta_line(p)
+                date=p["event"], title=p["title"], desc=one_line(p["desc"])
             )
         )
 
