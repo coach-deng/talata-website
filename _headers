@@ -29,7 +29,8 @@ https://:version.talata-website.pages.dev/*
 
 # Every page. Revalidate each time so a fee or a training time is never stale.
 # Content-Security-Policy added 29 Oct 2026 (website audit). Scripts only from
-# our own files and Google Analytics, fetches only to us, the signup API and GA.
+# our own files, Google Analytics and Cloudflare's visitor counter, fetches only
+# to us, the signup API, GA and that counter.
 # Inline scripts stay allowed: the theme bootstrap and JSON-LD sit in every page.
 # A new outside script, font or embed needs its address added here first.
 /*
@@ -39,4 +40,4 @@ https://:version.talata-website.pages.dev/*
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://talata-api.coach-258.workers.dev https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://talata-api.coach-258.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self'; frame-ancestors 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://talata-api.coach-258.workers.dev https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://talata-api.coach-258.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://cloudflareinsights.com; frame-src 'self'; frame-ancestors 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
