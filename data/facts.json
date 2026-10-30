@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-29",
+  "built_for": "2026-10-30",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -233,7 +233,7 @@
   },
   "sha": "7a91a0dd4fdaf4448008a12034654307e5fb31b29fdbff87b1ddffc850b24505",
   "sources": {
-    "programs_sha": "cc04c7ad89549066ec6b027ed412d1828b7fab4bf19abad387c77cad76f4d926",
+    "programs_sha": "820625e9f88e07a15004a5ff3476cc4791d4725daceb8b0c18ddfc320f3d3368",
     "training_sha": "701d0fce650a6005622d997d026ea3e346d9e1b1fdd59547fd16536fbfb8c5ba",
     "training_updated": "2026-10-23"
   },
