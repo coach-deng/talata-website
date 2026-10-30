@@ -60,6 +60,8 @@ LIGHT_OK = {
     "where-we-train.html", "english-speaking-basketball-copenhagen.html",
     # 11 Oct 2026: the phone walkthrough for joining a team, built on help/holdsport
     "how-to-holdsport.html",
+    # 30 Oct 2026: the scorer's table sign-up, an iframe to the club's Apps Script form
+    "table-officials.html",
     # 14 Oct 2026: the Coaches Clinic, built on the college-pathway camp template
     "camps/coaches-clinic-2026.html",
     # 15 Oct 2026: coach profile pages, built on the coaches.html template
