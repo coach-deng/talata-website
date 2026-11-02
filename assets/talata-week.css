@@ -57,3 +57,30 @@ html.light .wk-day.has-game{border-top-color:#1E40AF}
 .wk-team .wk-day{scroll-snap-align:start}
 @media (max-width:640px){.wk-team .wk-grid{grid-auto-columns:minmax(150px,46%)}}
 @media (prefers-reduced-motion:reduce){.wk-grid{scroll-behavior:auto}}
+/* What each fee buys (2 Nov 2026). Built by tools/apply-facts.py (blocks "fees",
+   "fees-academy" and the rest): group, days, sessions a week, half-season fee.
+   On a phone each row stacks: group and fee on top, the days under them. */
+.fee-wrap{margin:18px 0 14px}
+.fee-table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:0}
+.fee-table th{text-align:left;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--td-muted,#a9b4c4);background:none;padding:8px 10px;border-bottom:2px solid var(--td-line,rgba(248,250,252,.1))}
+.fee-table td{padding:11px 10px;border-bottom:1px solid var(--td-line,rgba(248,250,252,.1));vertical-align:top;
+  color:var(--td-muted,#a9b4c4);line-height:1.45}
+.fee-table td b{color:var(--td-text,#F8FAFC);font-weight:800}
+.fee-table td.who span{display:block;font-size:.8rem}
+.fee-table td.count{white-space:nowrap}
+.fee-table td.fee{white-space:nowrap;text-align:right}
+.fee-table th:last-child{text-align:right}
+.fee-table td.count .wk{display:none}
+@media (max-width:640px){
+  .fee-table,.fee-table tbody{display:block}
+  .fee-table tr.fee-head{display:none}
+  .fee-table tr{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:12px 0;
+    border-bottom:1px solid var(--td-line,rgba(248,250,252,.1))}
+  .fee-table td{border:0;padding:0}
+  .fee-table td.who{grid-column:1;grid-row:1}
+  .fee-table td.fee{grid-column:2;grid-row:1}
+  .fee-table td.when{grid-column:1 / -1;grid-row:2}
+  .fee-table td.count{grid-column:1 / -1;grid-row:3;font-size:.84rem}
+  .fee-table td.count .wk{display:inline}
+}

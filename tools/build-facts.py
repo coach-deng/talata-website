@@ -57,6 +57,11 @@ WHO_MAP = {
     "sparks": ["sparks"],
     "mini": ["mini"],
     "junior": ["junior"],
+    # 2 Nov 2026: Georg's two Junior groups (31 Oct). Group 1 stays the "junior" team the trial
+    # email offers (Tue + Thu, Saturday 11:00 on top). Group 2 (Wed + Sat 10:00) is its own team,
+    # so a new Junior is never sent to it and the Saturday trial stays at 11:00.
+    "junior group 1": ["junior", "junior_1"],
+    "junior group 2": ["junior_2"],
     # 5 Oct 2026: the vault's Holdsport week trains U13 with Junior at Strandvejsskolen ("Junior + U13").
     # On the site that is the Junior session, so u13 alone maps to junior. "u13 academy" stays the Academy row.
     "u13": ["junior"],
@@ -82,6 +87,8 @@ TEAMS = {
     "sparks": "Talata Sparks",
     "mini": "Talata Mini",
     "junior": "Talata Junior",
+    "junior_1": "Junior group 1",
+    "junior_2": "Junior group 2",
     "academy_u13_u15": "Academy U13 + U15",
     "academy_u13": "Academy U13",
     "academy_u15": "Academy U15",

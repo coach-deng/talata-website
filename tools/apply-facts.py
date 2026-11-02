@@ -158,6 +158,18 @@ def _group(rows, label):
     return [(" + ".join(DAY3[d] for d in sorted(set(g["days"]))),) + g["key"] for g in groups]
 
 
+def started(rows):
+    """Standing rows that run now or start within a week."""
+    import datetime as dt
+    soon = _today() + dt.timedelta(days=SOON_DAYS)
+    return [r for r in standing(rows) if not r.get("starts") or _date(r["starts"]) <= soon]
+
+
+def week_count(rows):
+    """Training days a week (2 Nov 2026), counted from the times so it cannot drift."""
+    return len({r["day"] for r in started(rows)})
+
+
 def sched(team):
     parts = ["%s %s to %s at %s%s" % g for g in _group(standing(team["sessions"]), lambda r: r["hall"])]
     if not parts:
@@ -180,6 +192,11 @@ def apply_filter(value, filt, doc=None):
         return num(value)
     if filt == "sched":
         return sched(value)
+    if filt == "count":
+        return str(week_count(value.get("sessions", [])))
+    if filt == "perweek":
+        n = week_count(value.get("sessions", []))
+        return "%d session%s a week" % (n, "" if n == 1 else "s")
     if filt == "hall":
         return hall_sched(value, doc or {})
     if filt in DAY_FILTERS:
@@ -262,13 +279,153 @@ def block_week(doc, teams=None, games=None):
 # Team pages (Website v3 phase 3): their own rows and their own games only.
 # Keys are team keys in data/facts.json; games are fixture team names.
 TEAM_WEEKS = {
-    "week-mini":    (["mini", "junior"], ["U9"]),
+    "week-mini":    (["mini", "junior", "junior_2"], ["U9"]),
     "week-academy": (["academy_u13_u15", "academy_u15_u17", "academy_u17_u19", "open_gym"],
                      ["U13", "U15", "U17", "U19"]),
     "week-sparks":  (["sparks", "girls_15"], []),
     "week-men":     (["men"], ["Men"]),
     "week-talata-co": (["talata_co"], []),
 }
+
+# What each fee buys (2 Nov 2026). Parents paying the Academy price saw other kids get
+# more days for less, and the pages said "up to five days" for every Academy team. Each
+# row prints its team's own days and count from the training rows, so the table follows
+# the times by itself. sat: the Saturday session sits on top of the two (Deng, 2 Nov).
+# plus: a session the team row does not hold (Sparks with a Mini weekday).
+# (group, name, ages, team key, fee fact, sat, plus)
+FEE_ROWS = [
+    ("kids", "Mini", "5 to 9", "mini", "program.mini.fee", True, None),
+    ("kids", "Junior group 1", "10 to 12", "junior_1", "program.junior.fee", True, None),
+    ("kids", "Junior group 2", "10 to 12", "junior_2", "program.junior.fee", False, None),
+    ("kids", "Saturday only", "5 to 12", "family_time", "program.saturday.fee", False, None),
+    ("sparks", "Sparks", "girls 6 to 14", "sparks", "program.sparks.fee", False, None),
+    ("sparks", "Sparks plus a weekday", "girls 6 to 14", "sparks", "program.sparks_plus.fee", False,
+     "Tue or Thu with Mini"),
+    ("academy", "Academy U13", "by invite", "academy_u13", "program.academy.fee", False, None),
+    ("academy", "Academy U15", "13 to 14", "academy_u15", "program.academy.fee", False, None),
+    ("academy", "Academy U17", "15 to 16", "academy_u17", "program.academy.fee", False, None),
+    ("academy", "Academy U19", "17 to 18", "academy_u19", "program.academy.fee", False, None),
+    ("adults", "Men", "18 and up", "men", "program.men_competitive.fee", False, None),
+    ("adults", "Talata &amp; Co.", "18 and up", "talata_co", "program.talata_co.fee", False, None),
+]
+SAT_KEY = "family_time"
+
+
+def fee_rows(doc, groups=None):
+    """One dict per FEE_ROWS line: name, ages, when, count, fee (kr text)."""
+    training = doc.get("training") or []
+    out = []
+    for group, name, ages, key, fee, sat, plus in FEE_ROWS:
+        if groups and group not in groups:
+            continue
+        rows = [r for r in training if key in (r.get("teams") or [])]
+        if sat:
+            rows = [r for r in rows if SAT_KEY not in (r.get("teams") or [])]
+        n = week_count(rows)
+        if not n:
+            raise SystemExit("apply-facts: the fee table row %s has no training rows" % name)
+        when = sched({"sessions": rows, "label": name})
+        count, extra_count = str(n), ""
+        if sat:
+            extra = sched({"sessions": [r for r in training if SAT_KEY in (r.get("teams") or [])],
+                           "label": "Saturday"})
+            when += ", plus %s" % extra
+            extra_count = ", plus Saturday"
+        if plus:
+            when += ", plus %s" % plus
+            count = str(n + 1)
+        out.append({"name": name, "ages": ages, "when": when, "count": count, "extra": extra_count,
+                     "fee": num(walk(doc, "facts." + fee)) + " kr"})
+    return out
+
+
+def block_fees(doc, groups=None):
+    """The fee table: who, when and where, how many a week, the half-season fee. On a
+    phone each row stacks (assets/talata-week.css)."""
+    out = ['\n<div class="fee-wrap"><table class="fee-table">',
+           '  <tr class="fee-head"><th>Group</th><th>When and where</th><th>A week</th><th>Per half-season</th></tr>']
+    for r in fee_rows(doc, groups):
+        out.append('  <tr><td class="who"><b>%s</b> <span>%s</span></td><td class="when">%s</td>'
+                   '<td class="count">%s<span class="wk"> a week</span>%s</td><td class="fee"><b>%s</b></td></tr>'
+                   % (r["name"], esc(r["ages"]), esc(r["when"]), esc(r["count"]), esc(r["extra"]), esc(r["fee"])))
+    out.append("</table></div>\n")
+    return "\n".join(out)
+
+
+FEE_BLOCKS = {"fees": None, "fees-kids": {"kids"}, "fees-sparks": {"sparks"},
+              "fees-academy": {"academy"}, "fees-adults": {"adults"}}
+
+
+# Google's copy of a page's questions (2 Nov 2026). The FAQPage data in the head was a
+# hand copy of the questions on the page, so a price changed on the page stayed old
+# there. Now it is copied from the page's <!-- FAQ:START --> block on every run.
+FAQ_LD = re.compile(r'(<script type="application/ld\+json" id="faq-ld">)(.*?)(</script>)', re.S)
+FAQ_BODY = re.compile(r"<!-- FAQ:START -->(.*?)<!-- FAQ:END -->", re.S)
+FAQ_ITEM = re.compile(r'<div class="faq-item">\s*<h3>(.*?)</h3>(.*?)</div>', re.S)
+
+
+def plain(fragment):
+    import html
+    t = re.sub(r"<!--.*?-->", "", fragment, flags=re.S)
+    t = re.sub(r"<[^>]+>", "", t)
+    return re.sub(r"\s+", " ", html.unescape(t)).strip()
+
+
+def faq_ld(src, where):
+    m = FAQ_LD.search(src)
+    if not m:
+        return src
+    body = FAQ_BODY.search(src)
+    if not body:
+        raise SystemExit("apply-facts: %s has a faq-ld but no <!-- FAQ:START --> block to copy it from" % where)
+    items = FAQ_ITEM.findall(body.group(1))
+    if not items:
+        raise SystemExit("apply-facts: %s FAQ block has no faq-item questions" % where)
+    data = json.loads(m.group(2))
+    data["mainEntity"] = [{"@type": "Question", "name": plain(q),
+                           "acceptedAnswer": {"@type": "Answer", "text": plain(a)}} for q, a in items]
+    new = "\n" + json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+    if json.loads(m.group(2)) == data:
+        return src
+    return src[:m.start(2)] + new + src[m.end(2):]
+
+
+# Offer prices in Google's data (2 Nov 2026): an Offer whose "sku" is a facts path
+# ("facts.program.academy.fee") gets its price, and its priceSpecification's, from facts.
+def offer_prices(src, doc, where):
+    def fix(m):
+        try:
+            data = json.loads(m.group(2))
+        except ValueError:
+            return m.group(0)
+        hits = []
+
+        def visit(node):
+            if isinstance(node, dict):
+                sku = node.get("sku")
+                if node.get("@type") == "Offer" and isinstance(sku, str) and sku.startswith("facts."):
+                    try:
+                        v = str(int(walk(doc, sku)))
+                    except KeyError:
+                        raise SystemExit("apply-facts: %s Offer sku %r is not in data/facts.json" % (where, sku))
+                    if node.get("price") != v:
+                        node["price"] = v
+                        hits.append(sku)
+                    spec = node.get("priceSpecification")
+                    if isinstance(spec, dict) and spec.get("price") != v:
+                        spec["price"] = v
+                        hits.append(sku)
+                for x in node.values():
+                    visit(x)
+            elif isinstance(node, list):
+                for x in node:
+                    visit(x)
+        visit(data)
+        if not hits:
+            return m.group(0)
+        return "%s\n%s\n%s" % (m.group(1), json.dumps(data, ensure_ascii=False, indent=2), m.group(3))
+    return LD_SCRIPT.sub(fix, src)
+
 
 DAYS_LD = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 NO_LD_VENUES = {"heibergskolen", "norrebrohallen"}  # Heibergskolen: its address in the vault is "Sunday block", not a street
@@ -390,6 +547,8 @@ BLOCKS = {"week": block_week,
 INNER_BLOCKS = {"org-ld", "place-ld", "clinic-ld", "clinic-head"}
 for _name, (_teams, _games) in TEAM_WEEKS.items():
     BLOCKS[_name] = (lambda t, g: lambda doc: block_week(doc, t, g))(_teams, _games)
+for _name, _groups in FEE_BLOCKS.items():
+    BLOCKS[_name] = (lambda g: lambda doc: block_fees(doc, g))(_groups)
 
 
 def render_text(src, doc, where):
@@ -412,7 +571,9 @@ def render_text(src, doc, where):
         if name in INNER_BLOCKS:
             return m.group(1) + BLOCKS[name](doc, m.group(3)) + m.group(4)
         return m.group(1) + BLOCKS[name](doc) + m.group(4)
-    return BLOCK.sub(bsub, out)
+    out = BLOCK.sub(bsub, out)
+    # after the markers, so Google's copy reads the page as it now stands
+    return faq_ld(offer_prices(out, doc, where), where)
 
 
 # Hand-typed facts that should live in a marker: a clock time or a kr price.
@@ -429,13 +590,37 @@ def visible(src):
     return s
 
 
+def loose_offers(src):
+    """Offers in Google's data with a price but no facts sku (2 Nov 2026): hand copies."""
+    n = 0
+
+    def visit(node):
+        nonlocal n
+        if isinstance(node, dict):
+            if (node.get("@type") == "Offer" and str(node.get("price", "0")) not in ("0", "0.00")
+                    and not str(node.get("sku", "")).startswith("facts.")):
+                n += 1
+            for x in node.values():
+                visit(x)
+        elif isinstance(node, list):
+            for x in node:
+                visit(x)
+    for m in LD_SCRIPT.finditer(src):
+        try:
+            visit(json.loads(m.group(2)))
+        except ValueError:
+            pass
+    return n
+
+
 def orphan_counts():
     counts = {}
     for p in pages():
         rel = str(p.relative_to(ROOT))
         if rel.startswith("blog/"):
             continue
-        n = len(ORPHAN.findall(visible(p.read_text(encoding="utf-8"))))
+        src = p.read_text(encoding="utf-8")
+        n = len(ORPHAN.findall(visible(src))) + loose_offers(src)
         if n:
             counts[rel] = n
     return counts
@@ -491,7 +676,7 @@ def main(argv):
     changed = []
     for p in pages():
         src = p.read_text(encoding="utf-8")
-        if "<!--fact:" not in src and "TALATA:FACTS:" not in src:
+        if not any(k in src for k in ("<!--fact:", "TALATA:FACTS:", 'id="faq-ld"', '"sku": "facts.')):
             continue
         out = render_text(src, doc, str(p.relative_to(ROOT)))
         if out != src:

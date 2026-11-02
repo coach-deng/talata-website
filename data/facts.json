@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-10-30",
+  "built_for": "2026-11-02",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -209,6 +209,9 @@
     "program.mini.name": "Talata Mini",
     "program.mini.time": "15:30-16:30",
     "program.mini.venue": "Strandvejsskolen",
+    "program.saturday.fee": 1200,
+    "program.sparks.fee": 1200,
+    "program.sparks_plus.fee": 1800,
     "program.talata_co.age_min": 18,
     "program.talata_co.fee": 2000,
     "program.talata_co.name": "🆕 Talata & Co.",
@@ -231,11 +234,11 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "7a91a0dd4fdaf4448008a12034654307e5fb31b29fdbff87b1ddffc850b24505",
+  "sha": "697900ab8dd7bfe6ee8f62561de1690a2d5faba1ab68d869d013292b162a095e",
   "sources": {
-    "programs_sha": "820625e9f88e07a15004a5ff3476cc4791d4725daceb8b0c18ddfc320f3d3368",
-    "training_sha": "701d0fce650a6005622d997d026ea3e346d9e1b1fdd59547fd16536fbfb8c5ba",
-    "training_updated": "2026-10-23"
+    "programs_sha": "8376bacb05c8d5e3da7f2030b8135cdb613f03e23e57f57d411d3c5e4db7a33d",
+    "training_sha": "3e11786734f892bc3b475634958c6124b44ba2aa241a92d63228d2ba2f16e4e8",
+    "training_updated": "2026-11-02"
   },
   "teams": {
     "academy_u13": {
@@ -250,7 +253,7 @@
           "hall": "Strandvejsskolen",
           "off": [],
           "start": "16:30",
-          "starts": "2026-10-19"
+          "starts": "2026-11-02"
         },
         {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -277,19 +280,6 @@
           ],
           "start": "16:00",
           "starts": "2026-10-07"
-        },
-        {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 3,
-          "day_name": "Thursday",
-          "end": "19:00",
-          "ends": null,
-          "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-15"
-          ],
-          "start": "17:00",
-          "starts": "2026-10-08"
         },
         {
           "address": "Bellahøjvej 1-3, 2700 Brønshøj",
@@ -320,7 +310,7 @@
           "hall": "Strandvejsskolen",
           "off": [],
           "start": "16:30",
-          "starts": "2026-10-19"
+          "starts": "2026-11-02"
         },
         {
           "address": "Østerbrogade 240, 2100 København Ø",
@@ -331,7 +321,7 @@
           "hall": "Svanemøllehallen",
           "off": [],
           "start": "16:45",
-          "starts": "2026-10-19"
+          "starts": "2026-11-02"
         },
         {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -366,11 +356,9 @@
           "end": "19:00",
           "ends": null,
           "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-15"
-          ],
+          "off": [],
           "start": "17:00",
-          "starts": "2026-10-08"
+          "starts": "2026-11-02"
         },
         {
           "address": "Bellahøjvej 1-3, 2700 Brønshøj",
@@ -401,7 +389,7 @@
           "hall": "Svanemøllehallen",
           "off": [],
           "start": "16:45",
-          "starts": "2026-10-19"
+          "starts": "2026-11-02"
         },
         {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -436,11 +424,9 @@
           "end": "19:00",
           "ends": null,
           "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-15"
-          ],
+          "off": [],
           "start": "17:00",
-          "starts": "2026-10-08"
+          "starts": "2026-11-02"
         },
         {
           "address": "Bellahøjvej 1-3, 2700 Brønshøj",
@@ -471,7 +457,7 @@
           "hall": "Svanemøllehallen",
           "off": [],
           "start": "16:45",
-          "starts": "2026-10-19"
+          "starts": "2026-11-02"
         },
         {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -506,11 +492,9 @@
           "end": "19:00",
           "ends": null,
           "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-15"
-          ],
+          "off": [],
           "start": "17:00",
-          "starts": "2026-10-08"
+          "starts": "2026-11-02"
         },
         {
           "address": "Bellahøjvej 1-3, 2700 Brønshøj",
@@ -541,7 +525,7 @@
           "hall": "Svanemøllehallen",
           "off": [],
           "start": "16:45",
-          "starts": "2026-10-19"
+          "starts": "2026-11-02"
         },
         {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -576,11 +560,9 @@
           "end": "19:00",
           "ends": null,
           "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-15"
-          ],
+          "off": [],
           "start": "17:00",
-          "starts": "2026-10-08"
+          "starts": "2026-11-02"
         },
         {
           "address": "Bellahøjvej 1-3, 2700 Brønshøj",
@@ -611,20 +593,7 @@
           "hall": "Svanemøllehallen",
           "off": [],
           "start": "16:45",
-          "starts": "2026-10-19"
-        },
-        {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 0,
-          "day_name": "Monday",
-          "end": "20:15",
-          "ends": null,
-          "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-12"
-          ],
-          "start": "18:45",
-          "starts": "2026-10-05"
+          "starts": "2026-11-02"
         },
         {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -659,22 +628,9 @@
           "end": "19:00",
           "ends": null,
           "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-15"
-          ],
-          "start": "17:00",
-          "starts": "2026-10-08"
-        },
-        {
-          "address": "Østerbrogade 240, 2100 København Ø",
-          "day": 3,
-          "day_name": "Thursday",
-          "end": "19:00",
-          "ends": null,
-          "hall": "Svanemøllehallen",
           "off": [],
-          "start": "18:00",
-          "starts": "2026-10-22"
+          "start": "17:00",
+          "starts": "2026-11-02"
         },
         {
           "address": "Bellahøjvej 1-3, 2700 Brønshøj",
@@ -715,14 +671,12 @@
           "address": "Østerbrogade 240, 2100 København Ø",
           "day": 0,
           "day_name": "Monday",
-          "end": "20:15",
+          "end": "18:45",
           "ends": null,
           "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-12"
-          ],
-          "start": "18:45",
-          "starts": "2026-10-05"
+          "off": [],
+          "start": "16:45",
+          "starts": "2026-11-02"
         },
         {
           "address": "Østerbrogade 240, 2100 København Ø",
@@ -732,8 +686,8 @@
           "ends": null,
           "hall": "Svanemøllehallen",
           "off": [],
-          "start": "18:00",
-          "starts": "2026-10-22"
+          "start": "17:00",
+          "starts": "2026-11-02"
         },
         {
           "address": "Biskop Krags Vænge 7, 2200 København N",
@@ -825,11 +779,9 @@
           "end": "18:00",
           "ends": null,
           "hall": "Strandvejsskolen",
-          "off": [
-            "2026-10-13"
-          ],
+          "off": [],
           "start": "16:30",
-          "starts": "2026-10-06"
+          "starts": "2026-11-02"
         },
         {
           "address": "Sionsgade 1, 2100 København Ø",
@@ -838,11 +790,9 @@
           "end": "18:00",
           "ends": null,
           "hall": "Strandvejsskolen",
-          "off": [
-            "2026-10-15"
-          ],
+          "off": [],
           "start": "16:30",
-          "starts": "2026-10-08"
+          "starts": "2026-11-02"
         },
         {
           "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -860,6 +810,63 @@
         }
       ]
     },
+    "junior_1": {
+      "label": "Junior group 1",
+      "sessions": [
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 1,
+          "day_name": "Tuesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "16:30",
+          "starts": "2026-11-02"
+        },
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 3,
+          "day_name": "Thursday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "16:30",
+          "starts": "2026-11-02"
+        }
+      ]
+    },
+    "junior_2": {
+      "label": "Junior group 2",
+      "sessions": [
+        {
+          "address": "Sionsgade 1, 2100 København Ø",
+          "day": 2,
+          "day_name": "Wednesday",
+          "end": "18:00",
+          "ends": null,
+          "hall": "Strandvejsskolen",
+          "off": [],
+          "start": "16:30",
+          "starts": "2026-11-02"
+        },
+        {
+          "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+          "day": 5,
+          "day_name": "Saturday",
+          "end": "11:30",
+          "ends": null,
+          "hall": "Kulturhuset Indre By",
+          "off": [
+            "2026-12-26",
+            "2027-01-02"
+          ],
+          "start": "10:00",
+          "starts": "2026-11-02"
+        }
+      ]
+    },
     "men": {
       "label": "Talata Men",
       "sessions": [
@@ -870,11 +877,9 @@
           "end": "20:15",
           "ends": null,
           "hall": "Svanemøllehallen",
-          "off": [
-            "2026-10-12"
-          ],
+          "off": [],
           "start": "18:45",
-          "starts": "2026-10-05"
+          "starts": "2026-11-02"
         },
         {
           "address": "Biskop Krags Vænge 7, 2200 København N",
@@ -1007,12 +1012,12 @@
       "hall": "Strandvejsskolen",
       "off": [],
       "start": "16:30",
-      "starts": "2026-10-19",
+      "starts": "2026-11-02",
       "teams": [
         "academy_u13_u15",
         "academy_u13"
       ],
-      "who": "U13 Academy + Junior + U13"
+      "who": "U13 Academy + U13"
     },
     {
       "address": "Østerbrogade 240, 2100 København Ø",
@@ -1023,15 +1028,16 @@
       "hall": "Svanemøllehallen",
       "off": [],
       "start": "16:45",
-      "starts": "2026-10-19",
+      "starts": "2026-11-02",
       "teams": [
         "academy_u13_u15",
         "academy_u15_u17",
         "academy_u15",
         "academy_u17_u19",
-        "academy_u17"
+        "academy_u17",
+        "academy_u19"
       ],
-      "who": "U15 + U17"
+      "who": "U15 + U17 + U19"
     },
     {
       "address": "Nørrebrogade 208, 2200 København N",
@@ -1057,17 +1063,13 @@
       "end": "20:15",
       "ends": null,
       "hall": "Svanemøllehallen",
-      "off": [
-        "2026-10-12"
-      ],
+      "off": [],
       "start": "18:45",
-      "starts": "2026-10-05",
+      "starts": "2026-11-02",
       "teams": [
-        "academy_u17_u19",
-        "academy_u19",
         "men"
       ],
-      "who": "U19 + Men"
+      "who": "Men"
     },
     {
       "address": "Sionsgade 1, 2100 København Ø",
@@ -1115,15 +1117,14 @@
       "end": "18:00",
       "ends": null,
       "hall": "Strandvejsskolen",
-      "off": [
-        "2026-10-13"
-      ],
+      "off": [],
       "start": "16:30",
-      "starts": "2026-10-06",
+      "starts": "2026-11-02",
       "teams": [
-        "junior"
+        "junior",
+        "junior_1"
       ],
-      "who": "Junior + U13"
+      "who": "Junior group 1 + U13"
     },
     {
       "address": "Charlotte Ammundsens Plads 3, 1359 København K",
@@ -1146,6 +1147,21 @@
         "academy_u17"
       ],
       "who": "U13 Academy + U15 + U17"
+    },
+    {
+      "address": "Sionsgade 1, 2100 København Ø",
+      "day": 2,
+      "day_name": "Wednesday",
+      "end": "18:00",
+      "ends": null,
+      "hall": "Strandvejsskolen",
+      "off": [],
+      "start": "16:30",
+      "starts": "2026-11-02",
+      "teams": [
+        "junior_2"
+      ],
+      "who": "Junior group 2"
     },
     {
       "address": "Nørrebrogade 208, 2200 København N",
@@ -1188,37 +1204,14 @@
       "end": "18:00",
       "ends": null,
       "hall": "Strandvejsskolen",
-      "off": [
-        "2026-10-15"
-      ],
+      "off": [],
       "start": "16:30",
-      "starts": "2026-10-08",
+      "starts": "2026-11-02",
       "teams": [
-        "junior"
+        "junior",
+        "junior_1"
       ],
-      "who": "Junior + U13"
-    },
-    {
-      "address": "Østerbrogade 240, 2100 København Ø",
-      "day": 3,
-      "day_name": "Thursday",
-      "end": "19:00",
-      "ends": null,
-      "hall": "Svanemøllehallen",
-      "off": [
-        "2026-10-15"
-      ],
-      "start": "17:00",
-      "starts": "2026-10-08",
-      "teams": [
-        "academy_u13_u15",
-        "academy_u13",
-        "academy_u15_u17",
-        "academy_u15",
-        "academy_u17_u19",
-        "academy_u17"
-      ],
-      "who": "U13 Academy + U15 + U17"
+      "who": "Junior group 1 + U13"
     },
     {
       "address": "Østerbrogade 240, 2100 København Ø",
@@ -1228,13 +1221,17 @@
       "ends": null,
       "hall": "Svanemøllehallen",
       "off": [],
-      "start": "18:00",
-      "starts": "2026-10-22",
+      "start": "17:00",
+      "starts": "2026-11-02",
       "teams": [
+        "academy_u13_u15",
+        "academy_u15_u17",
+        "academy_u15",
         "academy_u17_u19",
+        "academy_u17",
         "academy_u19"
       ],
-      "who": "U19"
+      "who": "U15 + U17 + U19"
     },
     {
       "address": "Bellahøjvej 1-3, 2700 Brønshøj",
@@ -1315,6 +1312,24 @@
         "men"
       ],
       "who": "U19 + Men"
+    },
+    {
+      "address": "Charlotte Ammundsens Plads 3, 1359 København K",
+      "day": 5,
+      "day_name": "Saturday",
+      "end": "11:30",
+      "ends": null,
+      "hall": "Kulturhuset Indre By",
+      "off": [
+        "2026-12-26",
+        "2027-01-02"
+      ],
+      "start": "10:00",
+      "starts": "2026-11-02",
+      "teams": [
+        "junior_2"
+      ],
+      "who": "Junior group 2"
     },
     {
       "address": "Charlotte Ammundsens Plads 3, 1359 København K",
