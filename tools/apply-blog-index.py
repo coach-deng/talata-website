@@ -57,6 +57,8 @@ A post missing any of these is reported and skipped rather than half-rendered.
     python3 tools/apply-blog-index.py --check    # report, change nothing
 """
 
+import html
+import json
 import re
 import sys
 from pathlib import Path
@@ -117,6 +119,70 @@ def load_posts():
     # newest first. Same-day ties keep filename order so the result is stable.
     good.sort(key=lambda p: p["date"], reverse=True)
     return good, bad
+
+
+# ------------------------------------------------------------------ club news
+
+# Club news (2 Nov 2026). A result, a new team, a sign-up: one or two lines and a
+# link, no full post to write. data/news.json, newest first:
+#   {"items": [{"id", "date": "YYYY-MM-DD", "title", "text", "link",
+#               "image"?, "alt"?, "w"?, "h"?, "source"?}]}
+# The dash's Website card adds items on Approve. An item with a photo can lead
+# the homepage Latest; every item shows in Club news at the top of /blog.
+NEWS = ROOT / "data/news.json"
+NEWS_ON_BLOG = 6
+NEWS_NEEDS = ("id", "date", "title", "text", "link")
+NEWS_ITEMS = []
+
+
+def load_news():
+    if not NEWS.exists():
+        return [], []
+    items = json.loads(NEWS.read_text(encoding="utf-8")).get("items") or []
+    good, bad = [], []
+    for it in items:
+        miss = [k for k in NEWS_NEEDS if not it.get(k)]
+        if it.get("image"):
+            miss += [k for k in ("alt", "w", "h") if not it.get(k)]
+            if not (ROOT / str(it["image"]).lstrip("/")).exists():
+                miss.append("image on disk")
+        (bad if miss else good).append(dict(it, missing=miss))
+    good.sort(key=lambda it: it["date"], reverse=True)
+    return good, bad
+
+
+def day_line(iso):
+    y, m, d = (int(x) for x in iso.split("-"))
+    return "%d %s %d" % (d, MONTHS[m - 1], y)
+
+
+def latest_cards(posts, news):
+    """Posts and news with a photo, as one list for the homepage, newest first."""
+    cards = [dict(p, href="/blog/%s" % p["slug"]) for p in posts]
+    for it in news:
+        if it.get("image"):
+            cards.append({"href": it["link"], "date": it["date"], "kicker": "Club news",
+                          "title": html.escape(it["title"]), "desc": html.escape(it["text"]),
+                          "image": it["image"], "alt": html.escape(it["alt"], quote=True),
+                          "w": it["w"], "h": it["h"], "focus": it.get("focus") or DEFAULT_FOCUS})
+    cards.sort(key=lambda c: c["date"], reverse=True)
+    return cards
+
+
+def render_blog_news(news):
+    if not news:
+        return "  <!-- no club news yet -->"
+    rows = []
+    for it in news[:NEWS_ON_BLOG]:
+        rows.append('      <a class="news-item" href="%s"><span class="news-date">%s</span><b>%s</b><span>%s</span></a>'
+                    % (html.escape(it["link"], quote=True), day_line(it["date"]),
+                       html.escape(it["title"]), html.escape(it["text"])))
+    return """  <div class="news-wrap">
+    <div class="grid-label">Club news</div>
+    <div class="news-list">
+%s
+    </div>
+  </div>""" % "\n".join(rows)
 
 
 def kicker_line(p):
@@ -201,12 +267,12 @@ def render_home_latest(posts):
     side_html = []
     for p in side:
         side_html.append(
-            """        <a class="story" href="/blog/{slug}">
+            """        <a class="story" href="{href}">
           <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}" style="object-position:{focus}">
           <div class="grad"></div>
           <div class="txt"><span class="tag">{kicker}</span><h3>{title}</h3></div>
         </a>""".format(
-                slug=p["slug"], image=p["image"].lstrip("/"), alt=p["alt"],
+                href=p["href"], image=p["image"].lstrip("/"), alt=p["alt"],
                 w=p["w"], h=p["h"], focus=p["focus"],
                 kicker=p["kicker"], title=p["title"]
             )
@@ -221,7 +287,7 @@ def render_home_latest(posts):
 
     return """    <div class="head"><h2>Latest</h2><a href="/blog">All stories</a></div>
     <div class="latest">
-      <a class="story" href="/blog/{slug}">
+      <a class="story" href="{href}">
         <img src="{image}" alt="{alt}" loading="lazy" decoding="async" width="{w}" height="{h}" style="object-position:{focus}">
         <div class="grad"></div>
         <div class="txt"><span class="tag">{kicker}</span><h3>{title}</h3><p>{desc}</p></div>
@@ -230,7 +296,7 @@ def render_home_latest(posts):
 {side}
       </div>
     </div>""".format(
-        slug=lead["slug"], image=lead["image"].lstrip("/"), alt=lead["alt"],
+        href=lead["href"], image=lead["image"].lstrip("/"), alt=lead["alt"],
         w=lead["w"], h=lead["h"], focus=lead["focus"],
         kicker=lead["kicker"], title=lead["title"],
         desc=lead["desc"], side="\n".join(side_html)
@@ -272,7 +338,8 @@ def render_sitemap_blog(posts):
 
 BLOCKS = [
     ("blog.html", "POSTS", render_blog_list),
-    ("index.html", "LATEST", render_home_latest),
+    ("blog.html", "NEWS", lambda posts: render_blog_news(NEWS_ITEMS)),
+    ("index.html", "LATEST", lambda posts: render_home_latest(latest_cards(posts, NEWS_ITEMS))),
     # The homepage's second "From The Playbook" row came out on 26 Aug when the
     # page was reordered to follow zalgiris.lt. With 14 posts, two rows showed
     # the same posts twice. render_home_playbook is kept below in case a
@@ -301,8 +368,12 @@ def apply_block(path: Path, name: str, body: str, check: bool):
 
 
 def main():
+    global NEWS_ITEMS
     check = "--check" in sys.argv
     posts, bad = load_posts()
+    NEWS_ITEMS, bad_news = load_news()
+    for it in bad_news:
+        print("SKIPPED news %-38s missing: %s" % (it.get("id") or it.get("title"), ", ".join(it["missing"])))
 
     for p in bad:
         print("SKIPPED %-44s missing: %s" % (p["slug"], ", ".join(p["missing"])))

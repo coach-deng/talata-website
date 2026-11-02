@@ -1,0 +1,54 @@
+{
+ "items": [
+  {
+   "id": "2026-11-01-u13-5-for-5",
+   "date": "2026-11-01",
+   "title": "U13 is 5 for 5",
+   "text": "Five games, five wins in Championship East. Sunday at home it was 97 to 35 against Hovedstadens BBF 3.",
+   "link": "/games",
+   "image": "/images/2026-10/site/u13-koge-bugt-team-facing.jpg",
+   "alt": "The Talata U13 team with Coach Deng under the hoop after a win",
+   "w": 1024,
+   "h": 768,
+   "focus": "50% 60%",
+   "source": "autopost:5 for 5 carousel, 2 Nov"
+  },
+  {
+   "id": "2026-10-30-men-beat-sisu-2",
+   "date": "2026-10-30",
+   "title": "Men beat SISU 2, 90 to 70",
+   "text": "A home win on Friday night at Nørre Fælled Skole. The photos are in the gallery.",
+   "link": "/gallery#men-sisu-2-2026",
+   "image": "/images/2026-11/site/men-sisu-2-team-wide.jpg",
+   "alt": "The Talata Men team under the hoop after beating SISU 2",
+   "w": 1600,
+   "h": 902,
+   "focus": "50% 55%",
+   "source": "results 2026-11-01"
+  },
+  {
+   "id": "2026-10-30-table-officials",
+   "date": "2026-10-30",
+   "title": "Help at the scorer's table",
+   "text": "Every home game needs three people at the table: the MVP app, the scoreboard and the shot clock. Pick a game and a seat.",
+   "link": "/table-officials",
+   "source": "site 30 Oct"
+  },
+  {
+   "id": "2026-11-01-december-camp-parent-pack",
+   "date": "2026-11-01",
+   "title": "December camp parent pack",
+   "text": "Day by day, what to bring, lunch, drop-off and pickup for the NBA and EuroLeague Pathway Camp, 28 to 30 December.",
+   "link": "/camps/college-pathway-camp-2026#parent-pack",
+   "source": "site 1 Nov"
+  },
+  {
+   "id": "2026-10-23-talata-and-co",
+   "date": "2026-10-23",
+   "title": "Talata & Co. is on",
+   "text": "Friday basketball for men and women, 18 and up, every level, then dinner together at the café in Svanemøllehallen.",
+   "link": "/talata-and-co",
+   "source": "programs.md, 14 Oct"
+  }
+ ]
+}
