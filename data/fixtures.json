@@ -1,10 +1,11 @@
 {
-  "generated": "2026-10-29T12:15:39Z",
-  "source": "kampe_2026-10-16.csv",
+  "generated": "2026-11-02T07:03:26Z",
+  "source": "kampe_2026-11-01.csv",
   "note": "League and cup fixtures from the DBBF/MVP export. This is the federation record and it is what the site publishes. Friendlies and tournaments are added live from Holdsport by talata-api /fixtures. Where the two disagree, DBBF wins.",
   "counts": {
-    "total": 58,
-    "confirmed": 58
+    "total": 59,
+    "confirmed": 58,
+    "tbc": 1
   },
   "games": [
     {
@@ -273,7 +274,7 @@
       "home": false,
       "competition": "U19 1st Division East",
       "venue": "Gentoftehallen",
-      "court": "Hal A Bane 3",
+      "court": "Hal B Bane 3",
       "homeCourt": false,
       "state": "confirmed",
       "played": true,
@@ -361,9 +362,9 @@
       "court": "Hallen",
       "homeCourt": true,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 90,
+      "them": 70,
       "source": "dbbf"
     },
     {
@@ -378,9 +379,9 @@
       "court": "Stor Bane",
       "homeCourt": false,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 19,
+      "them": 166,
       "source": "dbbf"
     },
     {
@@ -395,9 +396,9 @@
       "court": "Hallen",
       "homeCourt": false,
       "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
+      "played": true,
+      "us": 97,
+      "them": 35,
       "source": "dbbf"
     },
     {
@@ -605,6 +606,23 @@
       "source": "dbbf"
     },
     {
+      "id": "40104424",
+      "date": "2026-11-19",
+      "time": null,
+      "team": "U13",
+      "opponent": "Virum",
+      "home": false,
+      "competition": "U13 Cup East",
+      "venue": null,
+      "court": null,
+      "homeCourt": false,
+      "state": "tbc",
+      "played": false,
+      "us": null,
+      "them": null,
+      "source": "dbbf"
+    },
+    {
       "id": "40099189",
       "date": "2026-11-20",
       "time": "19:30",
@@ -656,23 +674,6 @@
       "source": "dbbf"
     },
     {
-      "id": "40098334",
-      "date": "2026-11-27",
-      "time": "19:30",
-      "team": "U19",
-      "opponent": "Hørsholm 1",
-      "home": true,
-      "competition": "U19 1st Division East",
-      "venue": "Nørre Fælled Skole",
-      "court": "Hallen",
-      "homeCourt": true,
-      "state": "confirmed",
-      "played": false,
-      "us": null,
-      "them": null,
-      "source": "dbbf"
-    },
-    {
       "id": "40098765",
       "date": "2026-11-27",
       "time": "19:30",
@@ -683,6 +684,23 @@
       "venue": "Gladsaxe Sportscenter",
       "court": "Hal 2",
       "homeCourt": false,
+      "state": "confirmed",
+      "played": false,
+      "us": null,
+      "them": null,
+      "source": "dbbf"
+    },
+    {
+      "id": "40098334",
+      "date": "2026-11-27",
+      "time": "19:30",
+      "team": "U19",
+      "opponent": "Hørsholm 1",
+      "home": true,
+      "competition": "U19 1st Division East",
+      "venue": "Nørre Fælled Skole",
+      "court": "Hallen",
+      "homeCourt": true,
       "state": "confirmed",
       "played": false,
       "us": null,
