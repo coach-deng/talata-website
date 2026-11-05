@@ -43,6 +43,10 @@
   //   'soon' = stock is ordered and on its way in
   //   'in'   = boxes are physically in the gym, any size, ready today
   //
+  // 5 Nov 2026 (Deng): nothing is on order from Glory Sportwear, so every line
+  // that said 'soon' is 'made'. Put 'soon' back on a line the day its order is
+  // placed. hero: true lifts the Game Pack to just under the in-gym lines.
+  //
   // ⚠️ 'in' IS A PROMISE. A card is a whole product line across every size in
   // its dropdown, so it only earns 'in' when we could fill any of those sizes
   // today. On 12 Aug 2026 the count was six loose pieces — one white tee in L,
@@ -74,15 +78,15 @@
     { id: 'socks',      name: 'Talata socks',            member: 75,  pub: 95,  sizes: SIZES_SOCK,    stock: 'made', cat: 'basics' },
     { id: 'socks3',     name: 'Talata socks, 3 pack',    member: 175, pub: 225, sizes: SIZES_SOCK,    stock: 'made', cat: 'basics' },
     { id: 'cap',        name: 'Talata cap',              member: 130, pub: 160, sizes: ['One size'],  stock: 'made', cat: 'basics' },
-    { id: 'tee',        name: 'Talata t-shirt',          member: 149, pub: 189, sizes: SIZES_KIDS,    stock: 'soon', cat: 'basics' },
+    { id: 'tee',        name: 'Talata t-shirt',          member: 149, pub: 189, sizes: SIZES_KIDS,    stock: 'made', cat: 'basics' },
     // Crewneck was not called out either way on Aug 10. Grouped with the other
     // apparel as incoming; move it to 'made' if that is wrong.
-    { id: 'crew',       name: 'Crewneck sweatshirt',     member: 279, pub: 349, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
-    { id: 'hoodie',     name: 'Hoodie',                  member: 379, pub: 469, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
-    { id: 'hoodieheavy',name: 'Heavy hoodie',            member: 479, pub: 589, sizes: SIZES_APPAREL, stock: 'soon', cat: 'apparel' },
-    { id: 'pants',      name: 'Sweatpants',              member: 349, pub: 429, sizes: SIZES_KIDS,    stock: 'soon', cat: 'apparel' },
-    { id: 'jersey',     name: 'Game jersey',             member: 299, pub: 369, sizes: SIZES_KIDS,    stock: 'soon', cat: 'jersey',  kit: true },
-    { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'soon', cat: 'jersey',  kit: true, personalise: true },
+    { id: 'crew',       name: 'Crewneck sweatshirt',     member: 279, pub: 349, sizes: SIZES_KIDS,    stock: 'made', cat: 'apparel' },
+    { id: 'hoodie',     name: 'Hoodie',                  member: 379, pub: 469, sizes: SIZES_KIDS,    stock: 'made', cat: 'apparel' },
+    { id: 'hoodieheavy',name: 'Heavy hoodie',            member: 479, pub: 589, sizes: SIZES_APPAREL, stock: 'made', cat: 'apparel' },
+    { id: 'pants',      name: 'Sweatpants',              member: 349, pub: 429, sizes: SIZES_KIDS,    stock: 'made', cat: 'apparel' },
+    { id: 'jersey',     name: 'Game jersey',             member: 299, pub: 369, sizes: SIZES_KIDS,    stock: 'made', cat: 'jersey',  kit: true },
+    { id: 'jerseyname', name: 'Game jersey, name + number', member: 379, pub: 449, sizes: SIZES_KIDS, stock: 'made', cat: 'jersey',  kit: true, personalise: true },
   ];
 
   // BUNDLE PRICING — REBUILT 11 Aug 2026 on Deng's instruction (Game Pack at 799).
@@ -163,19 +167,19 @@
   // will be while 799 buys six pieces. Its real audience is the parent or
   // sibling who wants club wear and no jersey. Priced for that, not for volume.
   var BUNDLES = [
-    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 189,  pub: 239,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_starter',  name: 'Starter bundle',   desc: 'Tee + socks',                     member: 189,  pub: 239,  stock: 'made', cat: 'bundle' },
     // personalise: a bundle containing a GAME jersey has to carry the name and
     // number, the same as the standalone printed jersey. Griffin Hazen's Game
     // Pack (TAL-0814-TUZ7, 14 Aug 2026) came through with a size and nothing
     // else — two jerseys that cannot be printed and an order that cannot be
     // filled without going back to the family. The fields existed all along;
     // they were simply never switched on for the bundles that need them.
-    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 319,  pub: 399,  stock: 'soon', cat: 'bundle', kit: true, personalise: true },
-    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479,  pub: 599,  stock: 'soon', cat: 'bundle' },
-    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee',            member: 699,  pub: 879,  stock: 'soon', cat: 'bundle' },
+    { id: 'b_gameday',  name: 'Game Day bundle',  desc: 'Jersey + socks',                  member: 319,  pub: 399,  stock: 'made', cat: 'bundle', kit: true, personalise: true },
+    { id: 'b_practice', name: 'Practice bundle',  desc: 'Tee + pants + socks',             member: 479,  pub: 599,  stock: 'made', cat: 'bundle' },
+    { id: 'b_full',     name: 'Full Talata',      desc: 'Hoodie + pants + tee',            member: 699,  pub: 879,  stock: 'made', cat: 'bundle' },
     // Shorts were missing from this description. The pack has always included
     // them — it is two complete kits — and leaving them out undersold it badly.
-    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away gear, hoodie + pants', member: 799, pub: 1099, stock: 'soon', cat: 'bundle', bothKits: true, personalise: true },
+    { id: 'b_gamepack', name: 'Game Pack',        desc: 'Home + away gear, hoodie + pants', member: 799, pub: 1099, hero: true, stock: 'made', cat: 'bundle', bothKits: true, personalise: true },
   ];
 
   // ─── READY NOW ───────────────────────────────────────────────────────────

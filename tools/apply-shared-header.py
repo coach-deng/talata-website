@@ -39,11 +39,10 @@ CTA = {
     "men.html": ("#join", "Come and train"),
     "talata-and-co.html": ("#join", "Book a trial"),
     "join.html": ("#register", "Book a trial"),
+    "saturday.html": ("#book", "Book a trial"),
     "school-partnerships.html": ("#contact", "Get in touch"),
     # "Join waitlist" rode the sticky bar on every camp page, so the one button
     # a parent could always see said the camp was full. Places are open.
-    "camps/academy-u15-camp-2026.html": ("#waitlist", "Sign up"),
-    "camps/academy-u12-camp-2026.html": ("#waitlist", "Sign up"),
     "camps/college-pathway-camp-2026.html": ("#waitlist", "Sign up"),
     # Coaches book with Deng by email or WhatsApp, no form (14 Oct 2026).
     "camps/coaches-clinic-2026.html": ("#book", "Book a seat"),
@@ -72,6 +71,7 @@ MEMBER_CTA = ("/join#member", "Become a member")
 # membership drops to the quiet link beside it and the ghost row in the drawer.
 # Found by the form id, so a new camp page with a form picks it up on the next run.
 CAMP_FORM = 'id="camp-form"'
+PAST_CAMP = "<!-- TALATA:PASTCAMP:START -->"
 
 # Resolved per page in build_header(): "#watch" on the homepage, "/#watch"
 # elsewhere. Watch is an on-page section, not a standalone URL.
@@ -98,7 +98,7 @@ MENU = {
     "Programs": [
         ("/mini", "Mini + Junior", "ages 5 to 12"),
         ("/saturday", "Saturdays", "ages 5 to 12, mornings"),
-        ("/academy", "Academy", "ages 13 to 19"),
+        ("/academy", "Academy", "ages 13 and up"),
         ("/sparks", "Sparks", "girls 6 to 14"),
         ("/men", "Talata Men", "3. Division, 18+"),
         ("/talata-and-co", "Talata & Co.", "Men and women, all levels"),
@@ -155,15 +155,15 @@ CARET = (
 FONT_PRELOAD = ('<link rel="preload" as="font" href="/fonts/montserrat-latin.woff2" '
                 'type="font/woff2" crossorigin>')
 
-HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261102b">
+HEAD_TAGS = """<link rel="stylesheet" href="/assets/talata-nav.css?v=20261105a">
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">"""
 # theme-color lives in the TALATA:HEAD block now (tools/apply-head.py).
 
-DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261102b">'
+DARK_TAG = '<link rel="stylesheet" href="/assets/talata-dark.css?v=20261105a">'
 
-SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261102b" defer></script>'
+SCRIPT_TAG = '<script src="/assets/talata-nav.js?v=20261105a" defer></script>'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -351,7 +351,10 @@ def process(path: Path, check: bool):
 
     is_home = rel == "index.html"
     cta_href, cta_label = CTA.get(rel, DEFAULT_CTA)
-    signup_first = rel.startswith("camps/") and CAMP_FORM in src
+    # A finished camp keeps its form markup inside the closed card, so the
+    # header used to keep shouting "Sign up" for a camp that had run (5 Nov 2026).
+    signup_first = (rel.startswith("camps/") and CAMP_FORM in src
+                    and PAST_CAMP not in src)
     if signup_first and rel not in CTA:
         cta_href, cta_label = "#camp-form", "Sign up"
     header = build_header(is_home, cta_href, cta_label, signup_first)

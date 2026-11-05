@@ -148,7 +148,7 @@ SOCIAL = [
 
 # 15 Oct 2026 (Deng): the big camp popup shows on every page, so its script
 # rides in the footer block. It loads its own CSS only when it shows.
-CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261102b">'
+CSS_TAG = '<link rel="stylesheet" href="/assets/talata-footer.css?v=20261105a">'
 
 # Presence is tested on the PATH, never on the exact ?v= URL. An exact-URL
 # test asks "is THIS stamp on the page", and answers no the moment a page's
@@ -172,10 +172,9 @@ TRIAL = {
     "mini.html": "#register",
     "sparks.html": "#register",
     "join.html": "#register",
-    "school-partnerships.html": "#contact",
-    "camps/academy-u15-camp-2026.html": "#waitlist",
-    "camps/college-pathway-camp-2026.html": "#waitlist",
-    "camps/coaches-clinic-2026.html": "#book",
+    "saturday.html": "#book",
+    # Camp and school pages used to send "Book a trial" to their own camp or
+    # contact form. A trial is a trial: those go to /join (5 Nov 2026).
     "camps/lithuania-camp-2026.html": "#register",
 }
 DEFAULT_TRIAL = "/join"
@@ -251,7 +250,7 @@ def build_footer(rel: str, year: int = 2026) -> str:
     </div>
   </div>
 </footer>
-<script src="/assets/talata-camp-pop.js?v=20261102b" defer></script>
+<script src="/assets/talata-camp-pop.js?v=20261105a" defer></script>
 {end}""".format(
         start=START,
         end=END,
