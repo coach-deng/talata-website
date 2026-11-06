@@ -43,6 +43,7 @@ DELIBERATE_ORPHANS = {
     "camps/spring-camp-2026.html":   "past camp, kept for its URL, canonical points at /camps",
     "index.html":                    "the homepage is /, nothing links to /index",
     "404.html":                      "Cloudflare Pages serves it for unmatched routes. Linking to it, or listing it in the sitemap, would be the bug",
+    "learn.html":                    "players' page: the court, the words and Dribble at, three levels with a quiz. noindex, shared by direct link in the team WhatsApp groups. Kept out of the nav and the sitemap until Deng makes it public (6 Nov 2026)",
     "program.html":                  "free 4-week home program and the two guides, shared by direct link (Instagram bio, the PROGRAM DM). /free and /guide 301 here since 29 Oct 2026. Kept out of the nav (Deng, 27 Sep 2026)",
 }
 

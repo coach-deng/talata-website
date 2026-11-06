@@ -66,6 +66,8 @@ LIGHT_OK = {
     "camps/coaches-clinic-2026.html",
     # 15 Oct 2026: coach profile pages, built on the coaches.html template
     "coaches/deng-awak.html", "coaches/jordan-naughton.html",
+    # 6 Nov 2026: /learn, the players' page (court, words, Dribble at). Measured clean in both themes.
+    "learn.html",
 }
 # Every post shares one template, so a new post joins light mode on its own.
 # Run the contrast runner over blog/ when that template changes.
