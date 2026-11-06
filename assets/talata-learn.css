@@ -1,7 +1,9 @@
 /* Learn the game, /learn (Deng, 6 Nov 2026).
    Plain look: flat fills, no shadows, no CSS animation (qa-check). Players move
    in assets/talata-learn.js. Dark is the site default; html.light swaps the
-   court tokens below, the same way talata-light.css swaps the --td-* ones. */
+   court tokens below, the same way talata-light.css swaps the --td-* ones.
+   v1.2 (6 Nov 2026): In a game box, ball watching line, and a desktop layout
+   (court left, caption and buttons right) at the bottom. Phone is unchanged. */
 :root {
   --lg-court: #1C2534;
   --lg-paint: #263148;
@@ -68,7 +70,8 @@ html.light {
 .lg-ring { stroke: var(--lg-hi); stroke-width: 4.5; }
 .lg-ring-edge { stroke: var(--lg-edge); stroke-width: 8; }
 .lg-ent.me .lg-ring, .lg-ent.you .lg-ring, .lg-ent.me .lg-ring-edge, .lg-ent.you .lg-ring-edge { display: inline; }
-.lg-svg.focus .lg-ent:not(.me) { opacity: 0.3; }
+.lg-svg.focus .lg-ent:not(.me):not(.mine) { opacity: 0.3; }
+.lg-look { stroke: var(--lg-def); stroke-width: 2.6; stroke-dasharray: 2 7; stroke-linecap: round; }
 .lg-ball { fill: #FACC15; stroke: #0A0A0A; stroke-width: 1.6; }
 .lg-trail { fill: none; stroke: var(--lg-ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .lg-trail.dribble { stroke-width: 2.4; }
@@ -93,8 +96,12 @@ html.light {
 .lg-cap-t { font-family: var(--tn-disp); font-weight: 900; font-size: 1.15rem; color: var(--td-text); line-height: 1.25; }
 .lg-cap-d { color: var(--td-text); font-size: 1rem; margin-top: 4px; }
 .lg-cap-w { color: var(--td-muted); font-size: 0.94rem; margin-top: 4px; }
+.lg-cap-game { margin-top: 8px; background: var(--td-surface); border: 1px solid var(--td-line); border-radius: 8px; padding: 7px 12px 8px; }
+.lg-game-h { font-size: 0.74rem; font-weight: 800; color: var(--td-muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 2px; }
+.lg-game-l { display: grid; grid-template-columns: 5.6rem 1fr; gap: 8px; color: var(--td-text); font-size: 0.95rem; line-height: 1.45; margin-top: 3px; }
+.lg-game-l b { font-size: 0.74rem; font-weight: 800; color: var(--td-muted); text-transform: uppercase; letter-spacing: 0.04em; padding-top: 2px; }
 .lg-cap-job { margin-top: 8px; border-left: 4px solid var(--lg-hi); padding: 6px 10px; color: var(--td-text); font-weight: 700; background: var(--td-surface); }
-.lg-cap [hidden] { display: none; }
+.lg-cap [hidden], .lg-cap-game[hidden] { display: none; }
 .lg-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; align-items: center; }
 .lg-row .lab { font-size: 0.82rem; font-weight: 800; color: var(--td-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-right: 2px; }
 .lg-btn { appearance: none; font: inherit; font-weight: 700; font-size: 0.95rem; line-height: 1.2; cursor: pointer; color: var(--td-text); background: var(--td-surface-2); border: 1px solid var(--td-line); border-radius: 6px; padding: 11px 14px; min-height: 44px; }
@@ -143,4 +150,50 @@ html.light {
   .lg-tab b { font-size: 0.9rem; }
   .lg-cards { grid-template-columns: 1fr; }
   .lg-btn { padding: 10px 12px; }
+  .lg-game-l { grid-template-columns: 4.9rem 1fr; gap: 6px; }
+}
+
+/* Desktop (v1.2, Deng: crammed, you scroll a lot). The court on the left at
+   the height of the screen, the title, caption, buttons and quiz on the right.
+   .lg-host and .lg-stage step aside (display: contents) so the court and the
+   side box sit in the level's own grid. Same query as WIDE in the JS. */
+@media (min-width: 1000px) and (min-height: 620px) {
+  .lg-hero-in { max-width: 1320px; padding: 22px 24px 20px; }
+  .lg-hero h1 { font-size: 2.1rem; }
+  .lg-hero .sub { margin-top: 6px; max-width: none; }
+  .lg-hero .small { margin-top: 2px; }
+  .lg { max-width: 1320px; padding: 16px 24px 56px; }
+  .lg-tabs { grid-template-columns: repeat(3, minmax(0, 300px)); margin: 0 0 12px; scroll-margin-top: calc(var(--tn-h, 74px) + 8px); }
+  /* One line per tab, so a best score never makes the tabs taller. */
+  .lg-tab { display: flex; align-items: baseline; gap: 8px; min-height: 0; padding: 8px 12px; white-space: nowrap; }
+  .lg-tab[aria-selected="true"] { padding: 7px 11px; }
+  .lg-tab small, .lg-tab b, .lg-tab .best { margin: 0; }
+  .lg-tab .best { margin-left: auto; }
+  .lv:not([hidden]) { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: 28px; align-items: start; }
+  .lv > .lg-host, .lv .lg-stage { display: contents; }
+  .lv .lg-court { grid-column: 1; grid-row: 1 / span 3; }
+  .lv > h2 { grid-column: 2; grid-row: 1; margin-top: 2px; }
+  .lv > .lead { grid-column: 2; grid-row: 2; margin-bottom: 10px; }
+  .lv .lg-side { grid-column: 2; grid-row: 3; min-width: 0; }
+  /* Height: the screen less the nav, the tabs and a little air. Width: what is
+     left after a 380px side box, so the side never gets squeezed. */
+  .lg-svg { width: auto; max-height: none; height: min(820px, calc(100vh - var(--tn-h, 74px) - 100px), calc((min(100vw, 1320px) - 456px) * 0.936));
+    height: min(820px, calc(100svh - var(--tn-h, 74px) - 100px), calc((min(100vw, 1320px) - 456px) * 0.936)); }
+  .lg-cap { margin: 0 0 10px; min-height: 0; }
+  .lg-quiz { margin-top: 0; }
+  .lg-qp { font-size: 1.2rem; }
+  .lg-cards { margin-top: 10px; }
+  .lg-wordlist { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 0 18px; align-items: start; }
+  .lg-films { grid-template-columns: repeat(3, 1fr); }
+  .lg-words, .lg-watch { margin-top: 28px; }
+}
+/* Short laptop screens: the lead goes (the Set up caption says the same) and
+   the buttons get a little tighter, so the fullest step still fits. */
+@media (min-width: 1000px) and (min-height: 620px) and (max-height: 820px) {
+  .lv > .lead { display: none; }
+  .lv > h2 { margin-bottom: 8px; }
+  .lg-btn { min-height: 40px; padding: 9px 12px; }
+  .lg-btn.sq { min-width: 40px; padding: 9px 0; }
+  .lg-row { margin-bottom: 8px; }
+  .lg-cap-game { margin-top: 6px; padding: 5px 12px 6px; }
 }

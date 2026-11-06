@@ -5,7 +5,10 @@
    then in CONTENT below.
    The court is a FIBA half court in SVG, 500 units wide (15 m), baseline at
    the top. Players move along their paths with requestAnimationFrame because
-   qa-check bans CSS @keyframes. With reduced motion they jump to the end. */
+   qa-check bans CSS @keyframes. With reduced motion they jump to the end.
+   v1.2 (Deng, 6 Nov 2026): five on five in Levels 2 and 3. Each defender xN
+   guards player N by one rule (guardSpot), a step can set a stance or give a
+   defender his own path. Every rule and step has an In a game box. */
 (function () {
   'use strict';
 
@@ -60,74 +63,84 @@
   // A ball move: to a player (pass, hand) or to a point (shot).
   function b(to, kind, at, dur) { return { ball: to, kind: kind, at: at, dur: dur }; }
 
-  // Level 2. Six rules, each with a short clip.
+  // Dribble at starts here: 4 out, the big in the dunker spot on the empty side.
+  var START = { ents: { 1: P.top, 2: P.wingR, 3: P.wingL, 4: P.cornerR, 5: P.dunkL }, ball: '1' };
+  // The cutter's defender after a back door: beaten, trailing high, away from the pass.
+  var TRAIL2 = m('x2', 'none', [[414, 206], [396, 174], [384, 148]], 650, 800);
+  var TRAIL3 = m('x3', 'none', [[86, 206], [104, 174], [116, 148]], 650, 800);
+
+  // Level 2. Six rules, each with a short clip, five on five. focus is the
+  // player the rule is about. g is In a game: what you see, what your defender
+  // does, what you do. A step's def sets a stance: deny, sag, show, look.
   var RULES = [
     { t: 'Spacing', d: 'Four out, one in. Two big steps apart, one player per spot.',
       w: 'Space makes every defender guard more floor.',
-      clip: { start: { ents: { 1: [250, 262], 2: [298, 236], 3: [202, 240], 4: [326, 168], 5: [238, 158] }, ball: '1' },
+      g: ['Two of you close together on one side.', 'One of them can guard you both and still help on the ball.', 'Move to the empty spot, two big steps apart.'],
+      clip: { start: { ents: { 1: [250, 278], 2: [326, 248], 3: [174, 250], 4: [356, 150], 5: [236, 150] }, ball: '1' },
         steps: [{ moves: [m('1', 'dribble', [P.top], 0, 800), m('2', 'cut', [P.wingR], 0, 900), m('3', 'cut', [P.wingL], 0, 900),
-          m('4', 'cut', [[420, 110], P.cornerR], 0, 1100), m('5', 'cut', [P.dunkL], 0, 1000)] }] } },
-    { t: 'Dribble at you means back door', d: 'Take one step up like you want the ball. Then cut behind your defender to the rim.',
+          m('4', 'cut', [[430, 100], P.cornerR], 0, 1100), m('5', 'cut', [P.dunkL], 0, 1000)] }] } },
+    { t: 'Dribble at you means back door', focus: '2', d: 'Take one step up like you want the ball. Then cut behind your defender to the rim.',
       w: 'Your defender is high and watching the ball. The space behind them is open.',
-      clip: { start: { ents: { 1: P.top, x1: [250, 280], 2: P.wingR, x2: [410, 240] }, ball: '1' },
+      g: ['1 dribbles right at you.', 'Steps into the passing lane and watches the ball. If they sag off instead, same answer.', 'One step up, then cut behind them to the rim.'],
+      clip: { start: START,
         steps: [
-          { moves: [m('1', 'dribble', [[320, 290], [382, 262]], 0, 1200), m('x1', 'none', [[312, 266], [358, 240]], 0, 1200)] },
-          { moves: [m('2', 'cut', [[440, 240]], 0, 300), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 300, 850),
-            m('x2', 'none', [[404, 190], [338, 132]], 650, 700)],
+          { def: { x2: 'deny' }, moves: [m('1', 'dribble', [[322, 288], [388, 256]], 0, 1200)] },
+          { moves: [m('2', 'cut', [[440, 240]], 0, 300), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 300, 850), TRAIL2],
             ball: [b('2', 'pass', 650, 450), b(P.rim, 'shot', 1250, 320)] }] } },
-    { t: 'Cut all the way through', d: 'If the pass does not come, keep running to the empty spot.',
+    { t: 'Cut all the way through', focus: '2', d: 'If the pass does not come, keep running to the empty spot.',
       w: 'A player standing in the paint blocks the next drive and the next cut.',
-      clip: { start: { ents: { 1: P.top, 2: P.wingR, x2: [410, 240], 3: P.wingL, 4: P.cornerR, 5: P.dunkL }, ball: '1' },
+      g: ['You cut and the pass does not come.', 'Still with you in the paint.', 'Keep running to the empty corner. They have to follow you out.'],
+      clip: { start: START,
         steps: [
-          { moves: [m('1', 'dribble', [[320, 290], [382, 262]], 0, 1100)] },
-          { moves: [m('2', 'cut', [[440, 240]], 0, 300), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 300, 850),
-            m('x2', 'none', [[400, 180], [318, 108], [290, 94]], 350, 850)] },
-          { moves: [m('2', 'cut', [[200, 76], [110, 76], P.cornerL], 0, 1100), m('x2', 'none', [[214, 100], [120, 98], [58, 76]], 100, 1100)] }] } },
-    { t: 'Lift', d: 'When the wing above you empties, come up out of the corner. Wait two counts first.',
+          { def: { x2: 'deny' }, moves: [m('1', 'dribble', [[322, 288], [388, 256]], 0, 1100)] },
+          { moves: [m('2', 'cut', [[440, 240]], 0, 300), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 300, 850), TRAIL2] },
+          { moves: [m('2', 'cut', [[200, 76], [110, 76], P.cornerL], 0, 1100)] }] } },
+    { t: 'Lift', focus: '4', d: 'When the wing above you empties, come up out of the corner. Wait two counts first.',
       w: 'The ball handler needs someone to hand off to. The wait keeps the cut open.',
-      clip: { start: { ents: { 1: [388, 256], 2: [262, 68], 4: P.cornerR, 3: P.wingL, 5: P.dunkL }, ball: '1' },
-        steps: [{ moves: [m('2', 'cut', [[200, 76], [110, 76], P.cornerL], 0, 1200), m('4', 'cut', [[458, 128], [412, 236]], 900, 1000)] }] } },
-    { t: 'Hand off, then roll', d: 'Hand it over. Then turn and run to the rim.',
+      g: ['The wing above you just emptied.', 'Sinks into the paint to help on the cutter.', 'Count two, then lift to the wing. You are open for the handoff.'],
+      clip: { start: { ents: { 1: [388, 256], 2: [262, 68], 4: P.cornerR, 3: P.wingL, 5: P.dunkL }, ball: '1', def: { x4: 'sag' } },
+        steps: [{ def: { x4: 'sag' }, moves: [m('2', 'cut', [[200, 76], [110, 76], P.cornerL], 0, 1200), m('4', 'cut', [[458, 128], [412, 236]], 900, 1000)] }] } },
+    { t: 'Hand off, then roll', focus: '1', d: 'Hand it over. Then turn and run to the rim.',
       w: 'Your defender often steps out to stop the ball. For a second you are open.',
-      clip: { start: { ents: { 1: [388, 256], x1: [364, 236], 4: [412, 236], 3: P.wingL, 5: P.dunkL, 2: P.cornerL }, ball: '1' },
-        steps: [{ moves: [m('4', 'dribble', [[414, 276], [384, 300]], 280, 700), m('x1', 'none', [[352, 284]], 300, 550),
-          m('1', 'cut', [[330, 170], [278, 92]], 300, 850)],
+      g: ['You just handed it over.', 'Stepped up to stop the ball, so they are behind you.', 'Turn and run to the rim. If 5\'s defender comes to stop you, 5 is open.'],
+      clip: { start: { ents: { 1: [388, 256], 4: [412, 236], 3: P.wingL, 5: P.dunkL, 2: P.cornerL }, ball: '1' },
+        steps: [{ def: { x1: 'show' }, moves: [m('4', 'dribble', [[414, 276], [384, 300]], 280, 700), m('1', 'cut', [[330, 170], [278, 92]], 300, 850)],
           ball: [b('4', 'hand', 0, 280), b('1', 'pass', 1150, 420), b(P.rim, 'shot', 1650, 320)] }] } },
-    { t: 'Fill behind', d: 'After a cut or a roll, go to the empty spot.',
+    { t: 'Fill behind', focus: '1', d: 'After a cut or a roll, go to the empty spot.',
       w: 'We get back to four out, one in, and go again on the other side.',
+      g: ['You rolled or cut and nothing came.', 'Waiting in the paint.', 'Go to the empty spot. We are four out, one in again.'],
       clip: { start: { ents: { 4: [384, 300], 1: [278, 92], 2: P.cornerL, 3: P.wingL, 5: P.dunkL }, ball: '4' },
         steps: [
           { moves: [m('1', 'cut', [[380, 62], P.cornerR], 0, 950)] },
           { moves: [m('4', 'dribble', [P.top], 0, 1000), m('1', 'cut', [[458, 128], P.wingR], 450, 950), m('5', 'cut', [[250, 26], P.dunkR], 250, 1100)] }] } }
   ];
 
-  // Level 3. Dribble at, 4 out with the big in the dunker spot on the empty side.
-  var START = { ents: { 1: P.top, 2: P.wingR, 3: P.wingL, 4: P.cornerR, 5: P.dunkL }, ball: '1' };
+  // Level 3. Dribble at, step by step.
   var SETUP = 'Four out, one in. 1 has the ball at the top. 2 and 4 are on the right, wing and corner. 3 is on the left wing. The left corner is empty. 5 sits in the dunker spot on the empty side.';
   var A_STEPS = [
-    { t: 'Dribble at', job: 'dribbleAt', say: '1 dribbles at 2. That is the call: Dribble at.',
+    { t: 'Dribble at', job: 'dribbleAt', say: '1 dribbles at 2. That is the call: Dribble at.', def: { x2: 'deny' },
       moves: [m('1', 'dribble', [[322, 288], [388, 256]], 0, 1300)] },
-    { t: 'Back door', job: 'backDoor', say: '2 takes one step up, then cuts back door hard to the rim.',
-      moves: [m('2', 'cut', [[440, 240]], 0, 350), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 350, 900)] },
-    { t: 'Through', job: 'through', say: 'The pass does not come, so 2 keeps running, all the way through to the empty corner.',
+    { t: 'Back door', job: 'backDoor', say: '2 takes one step up, then cuts back door hard to the rim.', def: { x4: 'sag' },
+      moves: [m('2', 'cut', [[440, 240]], 0, 350), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 350, 900), TRAIL2] },
+    { t: 'Through', job: 'through', say: 'The pass does not come, so 2 keeps running, all the way through to the empty corner.', def: { x4: 'sag' },
       moves: [m('2', 'cut', [[200, 76], [110, 76], P.cornerL], 0, 1200)] },
-    { t: 'Lift', job: 'lift', say: '4 lifts out of the corner to take the handoff.',
+    { t: 'Lift', job: 'lift', say: '4 lifts out of the corner to take the handoff.', def: { x4: 'sag' },
       moves: [m('4', 'cut', [[458, 128], [412, 236]], 0, 1000)] },
-    { t: 'Handoff and roll', job: 'handoff', say: '1 hands it to 4, rolls to the rim, then fills the corner 4 left.',
+    { t: 'Handoff and roll', job: 'handoff', say: '1 hands it to 4, rolls to the rim, then fills the corner 4 left.', def: { x1: 'show' },
       moves: [m('4', 'dribble', [[414, 276], [384, 300]], 280, 700), m('1', 'cut', [[330, 170], [284, 96]], 300, 850),
         m('1', 'cut', [[380, 62], P.cornerR], 1250, 950)],
       ball: [b('4', 'hand', 0, 280)] },
     { t: 'Reset', job: 'reset', say: '4 takes it to the top. 1 lifts to the wing. 5 slides to the new empty side.',
       moves: [m('4', 'dribble', [P.top], 0, 1000), m('1', 'cut', [[458, 128], P.wingR], 450, 950), m('5', 'cut', [[250, 26], P.dunkR], 250, 1100)] },
-    { t: 'Dribble at, other side', job: 'dribbleAt', say: 'Same thing on the other side. 4 dribbles at 3.',
+    { t: 'Dribble at, other side', job: 'dribbleAt', say: 'Same thing on the other side. 4 dribbles at 3.', def: { x3: 'deny' },
       moves: [m('4', 'dribble', [[178, 288], [112, 256]], 0, 1300)] },
-    { t: 'Back door', job: 'backDoor', say: '3 takes one step up, then cuts back door hard to the rim.',
-      moves: [m('3', 'cut', [[60, 240]], 0, 350), m('3', 'cut', [[82, 172], [170, 92], [238, 68]], 350, 900)] },
-    { t: 'Through', job: 'through', say: 'The pass does not come, so 3 runs through to the empty corner.',
+    { t: 'Back door', job: 'backDoor', say: '3 takes one step up, then cuts back door hard to the rim.', def: { x2: 'sag' },
+      moves: [m('3', 'cut', [[60, 240]], 0, 350), m('3', 'cut', [[82, 172], [170, 92], [238, 68]], 350, 900), TRAIL3] },
+    { t: 'Through', job: 'through', say: 'The pass does not come, so 3 runs through to the empty corner.', def: { x2: 'sag' },
       moves: [m('3', 'cut', [[300, 76], [390, 76], P.cornerR], 0, 1200)] },
-    { t: 'Lift', job: 'lift', say: '2 lifts out of the far corner to take the handoff.',
+    { t: 'Lift', job: 'lift', say: '2 lifts out of the far corner to take the handoff.', def: { x2: 'sag' },
       moves: [m('2', 'cut', [[42, 128], [88, 236]], 0, 1000)] },
-    { t: 'Handoff and roll', job: 'handoff', say: '4 hands it to 2, rolls to the rim, then fills the corner 2 left.',
+    { t: 'Handoff and roll', job: 'handoff', say: '4 hands it to 2, rolls to the rim, then fills the corner 2 left.', def: { x4: 'show' },
       moves: [m('2', 'dribble', [[86, 276], [116, 300]], 280, 700), m('4', 'cut', [[170, 170], [216, 96]], 300, 850),
         m('4', 'cut', [[120, 62], P.cornerL], 1250, 950)],
       ball: [b('2', 'hand', 0, 280)] },
@@ -153,44 +166,104 @@
     reset:     { D: 'Lift from the corner to the wing.', C: 'Hold the corner. You lift next.', L: 'Bring the ball to the top.',
                  W: 'Get ready. The ball is coming at you.', B: 'Slide across to the dunker spot on the new empty side.' }
   };
-  // Side reads. OPEN runs from before step 2, JAM from before step 4.
+  // In a game for each step: what you see, what your defender does, what you do.
+  // {D} {C} {L} {W} {B} become the numbers in ROLES, so one line serves both sides.
+  var GAME = {
+    setup:     ['The ball at the top. The far corner empty.', 'Each one on their player. The far side sinks to help.', 'Hold your spot, two big steps apart.'],
+    dribbleAt: ['{C} on the wing, {L} in the corner below.', '{C}\'s defender steps into the passing lane.', '{D}, dribble hard right at {C}. That is the call.'],
+    backDoor:  ['The ball coming right at you.', 'High in the lane, eyes on the ball.', '{C}, one step up, then cut behind them. Open? {D} hits you for the layup.'],
+    through:   ['No pass.', 'In the paint with you.', '{C}, keep running to the empty corner. They have to follow you out.'],
+    lift:      ['The wing above you is empty.', '{L}\'s defender sinks to help.', '{L}, count two, then lift. You are open for the handoff.'],
+    handoff:   ['{L} coming to you for the ball.', '{D}\'s defender steps up to stop {L}, so they are behind {D}.', '{D}, hand it off and roll. {L}, if your defender goes under, shoot. If they chase over, drive.'],
+    reset:     ['The ball back at the top, a corner empty.', 'Everyone back on their player.', '{B}, slide to the dunker spot on the empty side. {W}, the ball comes at you next.']
+  };
+  // Side reads, each from the moment before it: SAG and OPEN after step 1,
+  // JAM after step 3, UNDER, OVER and ROLL after step 4. start sets a stance first.
+  var SAG = { t: 'Defender sags', say: '2\'s defender sags off. Dribble at still means back door. 2 cuts anyway and runs through to the empty corner, and the side is clear for the lift.',
+    start: { x2: 'sag' }, def: { x4: 'sag' },
+    moves: [m('2', 'cut', [[440, 240]], 0, 350), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 350, 900),
+      m('2', 'cut', [[200, 76], [110, 76], P.cornerL], 1350, 1200)] };
   var OPEN = { t: 'Open on the cut', say: '2 is open. 1 passes and 2 lays it in. That is the reward for cutting hard.',
-    moves: A_STEPS[1].moves, ball: [b('2', 'pass', 700, 450), b(P.rim, 'shot', 1300, 320)] };
+    def: A_STEPS[1].def, moves: A_STEPS[1].moves, ball: [b('2', 'pass', 700, 450), b(P.rim, 'shot', 1300, 320)] };
   var JAM = { t: 'Handoff jammed', say: '4\'s defender jumps in front to stop the handoff. 4 plants and goes back door. Same rule: they take the ball away, you take the space behind them.',
-    add: { x4: [452, 74] },
-    moves: [m('4', 'cut', [[458, 128], [440, 200]], 0, 800), m('x4', 'none', [[430, 150], [414, 226]], 100, 750),
+    moves: [m('4', 'cut', [[458, 128], [440, 200]], 0, 800), m('x4', 'none', [[440, 120], [414, 226]], 100, 750),
       m('4', 'cut', [[404, 150], [310, 84], [262, 68]], 850, 850)],
     ball: [b('4', 'pass', 1250, 420), b(P.rim, 'shot', 1800, 320)] };
+  var UNDER = { t: 'Goes under', say: '4\'s defender goes under the handoff, behind 1. That leaves 4 room. Catch it, rise up and shoot.',
+    moves: [m('4', 'dribble', [[414, 276], [392, 296]], 280, 600), m('x4', 'none', [[366, 214], [346, 240]], 150, 650),
+      m('x4', 'none', [[366, 276]], 1150, 450)],
+    ball: [b('4', 'hand', 0, 280), b(P.rim, 'shot', 1000, 650)] };
+  var OVER = { t: 'Chases over', say: '4\'s defender chases over the top, on 4\'s back. 4 turns the corner and drives. 2\'s defender leaves the corner to help, so 4 kicks it to 2.',
+    moves: [m('4', 'dribble', [[414, 276], [376, 284], [334, 200], [306, 146]], 280, 1150), m('x4', 'none', [[436, 260], [406, 296], [360, 232], [334, 182]], 380, 1150),
+      m('1', 'cut', [[392, 170], [440, 90], P.cornerR], 300, 1000), m('x2', 'none', [[170, 110], [248, 166]], 950, 600)],
+    ball: [b('4', 'hand', 0, 280), b('2', 'pass', 1550, 600), b(P.rim, 'shot', 2250, 420)] };
+  var ROLL = { t: 'Help on the roll', say: '1 rolls. 5\'s defender steps over to stop 1, so 5 is open at the dunker spot. 4 finds 5 for the layup.',
+    def: { x1: 'show' },
+    moves: [m('4', 'dribble', [[414, 276], [392, 292]], 280, 600), m('1', 'cut', [[330, 170], [288, 112]], 300, 850),
+      m('x5', 'none', [[226, 64], [262, 84]], 650, 550)],
+    ball: [b('4', 'hand', 0, 280), b('5', 'pass', 1250, 650), b(P.rim, 'shot', 2000, 320)] };
 
-  // Level 2 quiz. A frame is the court frozen at one moment.
+  // Level 2 quiz. A frame is the court frozen at one moment, five on five.
+  // Each run asks 8 of the 10. play is the read, shown after the answer.
+  var DA = { 1: [382, 262], 2: P.wingR, 3: P.wingL, 4: P.cornerR, 5: P.dunkL };
+  var DA_TRAIL = [['dribble', [P.top, [320, 290], [382, 262]]]];
+  var BACK2 = [m('2', 'cut', [[440, 240]], 0, 300), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 300, 850), TRAIL2];
   var QUIZ2 = [
-    { frame: { ents: { 1: [382, 262], x1: [358, 240], 2: P.wingR, x2: [410, 240], 3: P.wingL, 4: P.cornerR, 5: P.dunkL }, ball: '1' },
-      trails: [['dribble', [P.top, [320, 290], [382, 262]]]], you: '2',
-      q: 'You are 2. The ball is dribbled at you. What do you do?',
+    { frame: { ents: DA, ball: '1', def: { x2: 'deny' } }, trails: DA_TRAIL, you: '2',
+      q: 'You are 2. 1 dribbles at you and your defender steps into the passing lane. What do you do?',
       opts: ['Cut back door to the rim', 'Stay and call for the ball', 'Go and set a screen'],
-      why: 'Dribble at you means back door. The dribbler is taking your spot.' },
-    { frame: { ents: { 1: [382, 262], 2: [262, 68], x2: [290, 94], 3: P.wingL, 4: P.cornerR, 5: P.dunkL }, ball: '1' },
-      trails: [['cut', [[440, 240], [418, 172], [330, 92], [262, 68]]]], you: '2',
-      q: 'You cut back door and the pass does not come. Where do you go?',
-      opts: ['Through to the empty corner', 'Stop in the paint and wait', 'Back out to the wing'],
-      why: 'Keep running to the empty spot. Standing in the paint blocks the next play.' },
-    { frame: { ents: { 1: [382, 262], 2: P.cornerL, 4: P.cornerR, 3: P.wingL, 5: P.dunkL }, ball: '1' },
-      trails: [['cut', [[262, 68], [200, 76], [110, 76], P.cornerL]]], you: '4',
-      q: 'You are in the corner. The wing above you just emptied. What do you do?',
-      opts: ['Lift up to the wing', 'Stay in the corner', 'Cut to the rim'],
-      why: 'Lift when the spot above you is empty. The ball handler needs you for the handoff.' },
-    { frame: { ents: { 1: [388, 256], 4: [412, 236], 2: P.cornerL, 3: P.wingL, 5: P.dunkL }, ball: '4' }, you: '1',
-      q: 'You are 1. You just handed the ball to 4. What now?',
-      opts: ['Roll hard to the rim', 'Stand and watch', 'Run back on defense'],
-      why: 'Roll. Your defender often steps out to stop the ball, so for a second you are open.' },
-    { frame: { ents: { 1: P.top, x1: [250, 280], 2: P.wingR, x2: [410, 240], 3: P.wingL, 4: P.cornerR, 5: P.dunkL }, ball: '1' }, you: '2',
+      why: 'They are high and watching the ball. The space behind them is open.',
+      play: { moves: BACK2, ball: [b('2', 'pass', 650, 450), b(P.rim, 'shot', 1250, 320)] } },
+    { frame: { ents: DA, ball: '1', def: { x2: 'sag' } }, trails: DA_TRAIL, you: '2',
+      q: 'You are 2. 1 dribbles at you and your defender sags off toward the paint. What do you do?',
+      opts: ['Cut back door anyway', 'Stay and wait for a pass', 'Come and take the ball from 1'],
+      why: 'Dribble at always means back door. You clear the side for the lift and the handoff.',
+      play: SAG },
+    { frame: { ents: START.ents, ball: '1', def: { x2: 'look' }, look: ['x2'] }, you: '2',
+      q: 'You are 2. Your defender turns their head to watch the ball. When do you cut?',
+      opts: ['Now, while they look at the ball', 'When they look back at you', 'When the coach calls it'],
+      why: 'They cannot see you. That is the moment to go behind them.',
+      play: { look: ['x2'], moves: [m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 0, 900), m('x2', 'none', [[372, 248]], 0, 600)],
+        ball: [b('2', 'pass', 350, 550), b(P.rim, 'shot', 1000, 320)] } },
+    { frame: { ents: START.ents, ball: '1', def: { x2: 'deny' } }, you: '2',
       q: 'You are 2. The ball is about to come at you. Before you cut back door, what do you do?',
       opts: ['Take one step up, like you want the ball', 'Clap and call for the ball', 'Turn your back to the ball'],
-      why: 'The fake step pulls your defender up. Then the space behind them opens.' },
-    { frame: { ents: { 1: P.top, 2: [458, 64], 4: [482, 30], 3: P.wingL, 5: P.dunkL }, ball: '1' },
+      why: 'The fake step pulls your defender up. Then the space behind them opens.',
+      play: { moves: [m('2', 'cut', [[440, 246]], 0, 350), m('2', 'cut', [[418, 172], [330, 92], [262, 68]], 350, 900), m('x2', 'none', [[414, 262], [380, 200]], 300, 800)] } },
+    { frame: { ents: { 1: [382, 262], 2: [262, 68], 3: P.wingL, 4: P.cornerR, 5: P.dunkL }, ball: '1' },
+      trails: [['cut', [[440, 240], [418, 172], [330, 92], [262, 68]]]], you: '2',
+      q: 'You cut back door, the pass does not come and your defender is in the paint with you. Where do you go?',
+      opts: ['Through to the empty corner', 'Stop in the paint and wait', 'Back out to the wing'],
+      why: 'Keep running to the empty spot. They have to follow you out, and the paint is clear for the next play.',
+      play: { moves: [m('2', 'cut', [[200, 76], [110, 76], P.cornerL], 0, 1200)] } },
+    { frame: { ents: { 1: [382, 262], 2: P.cornerL, 4: P.cornerR, 3: P.wingL, 5: P.dunkL }, ball: '1', def: { x4: 'sag' } },
+      trails: [['cut', [[262, 68], [200, 76], [110, 76], P.cornerL]]], you: '4',
+      q: 'You are 4 in the corner. The wing above you just emptied and your defender sinks to help. What do you do?',
+      opts: ['Count two, then lift to the wing', 'Stay in the corner', 'Cut to the rim'],
+      why: 'Lift when the spot above you is empty. Your defender is down in the paint, so you are open for the handoff.',
+      play: { def: { x4: 'sag' }, moves: [m('4', 'cut', [[458, 128], [412, 236]], 0, 1000)] } },
+    { frame: { ents: { 1: [388, 256], 4: [412, 236], 2: P.cornerL, 3: P.wingL, 5: P.dunkL, x1: [398, 288] }, ball: '4' }, you: '1',
+      q: 'You are 1. You just handed the ball to 4 and your defender steps up to stop 4. What now?',
+      opts: ['Roll hard to the rim', 'Stand and watch', 'Run back on defense'],
+      why: 'They are behind you now. Turn and run to the rim, and for a second you are open.',
+      play: { def: { x1: 'show' }, moves: [m('1', 'cut', [[330, 170], [278, 92]], 0, 850), m('4', 'dribble', [[420, 272], [400, 300]], 0, 700)],
+        ball: [b('1', 'pass', 850, 420), b(P.rim, 'shot', 1350, 320)] } },
+    { frame: { ents: { 1: [390, 252], 4: [378, 300], 2: P.cornerL, 3: P.wingL, 5: P.dunkL, x1: [372, 228], x4: [340, 248] }, ball: '4' }, you: '4',
+      q: 'You are 4. You come off the handoff and your defender goes under it. What do you do?',
+      opts: ['Shoot it', 'Drive to the rim', 'Pass it back to 1'],
+      why: 'Under gives you space. Rise up and shoot before they get back to you.',
+      play: { moves: [m('x4', 'none', [[358, 278]], 250, 450)], ball: [b(P.rim, 'shot', 0, 650)] } },
+    { frame: { ents: { 1: [390, 252], 4: [378, 300], 2: P.cornerL, 3: P.wingL, 5: P.dunkL, x1: [372, 228], x4: [414, 292] }, ball: '4' }, you: '4',
+      q: 'You are 4. You come off the handoff and your defender chases over the top, on your back. What do you do?',
+      opts: ['Drive to the rim', 'Pull up and shoot', 'Stop and wait for them'],
+      why: 'They are behind you. Turn the corner and attack the rim.',
+      play: { moves: [m('4', 'dribble', [[330, 200], [282, 104]], 0, 900), m('x4', 'none', [[362, 240], [316, 150]], 100, 900)],
+        ball: [b(P.rim, 'shot', 950, 320)] } },
+    { frame: { ents: { 1: P.top, 2: [458, 64], 4: [482, 30], 3: P.wingL, 5: P.dunkL, x2: [360, 176], x4: [432, 50] }, ball: '1' },
       q: 'What is wrong in this picture?',
       opts: ['Two players in one corner', 'The ball is at the top', '5 is in the dunker spot'],
-      why: 'One player per spot, two big steps apart. The right wing is empty, so one of them belongs there.' }
+      why: 'One defender guards both of you and the other one is free to help. One player per spot, so one of you lifts to the empty wing.',
+      play: { moves: [m('2', 'cut', [[466, 140], P.wingR], 0, 900)] } }
   ];
 
   // Words. Places come from KINDS. "kids" marks the Level 1 words.
@@ -215,7 +288,16 @@
     { w: 'Help side', d: 'The half without the ball. Also called the weak side.' },
     { w: 'Four out, one in', d: 'Four players outside the three-point line, one big inside.' },
     { w: 'Dribble at', d: 'Our call. A teammate dribbles at you, you cut back door.' },
-    { w: 'Read', d: 'What your defender does, and what you do about it.' },
+    { w: 'Read', d: 'What your defender does, and what you do about it.' }
+  ];
+  var DEFENSE = [
+    { w: 'Deny', d: 'Stand in the passing lane so your player cannot catch it.' },
+    { w: 'Sag', d: 'Play off your player, closer to the hoop.' },
+    { w: 'Help', d: 'Leave your player for a second to stop the ball.' },
+    { w: 'Ball watching', d: 'A defender turns their head to the ball and loses their player.' },
+    { w: 'Go under', d: 'On a handoff, the defender goes behind it. That gives up the shot.' },
+    { w: 'Go over', d: 'On a handoff, the defender chases over the top, on your back. That gives up the drive.' },
+    { w: 'Jump the handoff', d: 'Step in front of the player coming for the ball.' },
     { w: 'Closeout', d: 'A defender runs at a shooter with their hands up.' }
   ];
 
@@ -338,13 +420,88 @@
     return bs < 40 ? best : null;
   }
 
-  // Apply a step without drawing it: where everybody ends up.
-  function after(state, step) {
-    var s = clone(state);
-    if (step.add) Object.keys(step.add).forEach(function (id) { s.ents[id] = step.add[id]; });
-    (step.moves || []).slice().sort(byAt).forEach(function (mv) { s.ents[mv.id] = mv.to[mv.to.length - 1]; });
+  /* Defense. Defender xN guards player N. */
+  function unit(a, c) { var x = c[0] - a[0], y = c[1] - a[1], l = Math.sqrt(x * x + y * y) || 1; return [x / l, y / l]; }
+  function offs(p, u, k) { return [p[0] + u[0] * k, p[1] + u[1] * k]; }
+  // Where a defender stands: between their player and the rim, shaded toward
+  // the ball. One pass away they deny a little, on the help side they sink.
+  // A stance changes it for one step: deny, sag, look (ball watching) and
+  // show (step up in front of the ball, the handoff man's defender).
+  function guardSpot(man, ballAt, onBall, stance) {
+    var toR = unit(man, HOOP), toB = unit(man, ballAt), v, l;
+    if (onBall) return offs(man, toR, 30);
+    if (stance === 'show') return offs(ballAt, unit(ballAt, P.top), 34);
+    if (stance === 'deny') return offs(man, toB, 30);
+    if (stance === 'sag') return offs(man, toR, 58);
+    if (stance === 'look') return [man[0] + toB[0] * 40 + toR[0] * 12, man[1] + toB[1] * 40 + toR[1] * 12];
+    if (dist(man, HOOP) < 130) return offs(man, toR, 30);
+    if (dist(man, ballAt) < 250) {
+      v = [toR[0] * 14 + toB[0] * 20, toR[1] * 14 + toB[1] * 20];
+      l = Math.sqrt(v[0] * v[0] + v[1] * v[1]) || 1;
+      return offs(man, [v[0] / l, v[1] / l], Math.max(l, 30));
+    }
+    return [man[0] + (HOOP[0] - man[0]) * 0.22 + (ballAt[0] - man[0]) * 0.1, man[1] + (HOOP[1] - man[1]) * 0.22 + (ballAt[1] - man[1]) * 0.1];
+  }
+  // Push the moving defenders off players and off each other, inside the court.
+  function spread(pos, auto) {
+    var all = Object.keys(pos).sort();
+    auto.sort();
+    for (var it = 0; it < 4; it++) {
+      auto.forEach(function (a) {
+        var p = pos[a];
+        all.forEach(function (o) {
+          if (o === a) return;
+          var isX = o.charAt(0) === 'x', need = 30, d = dist(p, pos[o]);
+          if (d >= need) return;
+          var u = d > 0.01 ? unit(pos[o], p) : [0, 1], push = isX && auto.indexOf(o) >= 0 ? (need - d) / 2 : need - d;
+          p = offs(p, u, push);
+        });
+        pos[a] = [Math.max(10, Math.min(490, p[0])), Math.max(6, Math.min(460, p[1]))];
+      });
+    }
+  }
+  function ballAtOf(ents, ball) {
+    if (typeof ball === 'string') return ents[ball] ? [ents[ball][0] + BALL_OFF[0], ents[ball][1] + BALL_OFF[1]] : null;
+    return ball || null;
+  }
+  // A defender for every player who has none yet. guardAll places them.
+  function withDefs(ents) {
+    var e = {};
+    Object.keys(ents).forEach(function (id) { e[id] = ents[id]; });
+    Object.keys(ents).forEach(function (id) { if (id.charAt(0) !== 'x' && !e['x' + id]) e['x' + id] = ents[id]; });
+    return e;
+  }
+  // Everyone's spot with the defenders not in fixed put where the rule says.
+  function guardAll(pos, ballAt, holder, def, fixed) {
+    var out = {}, auto = [];
+    Object.keys(pos).forEach(function (id) { out[id] = pos[id]; });
+    Object.keys(pos).forEach(function (id) {
+      var man = pos[id.slice(1)];
+      if (id.charAt(0) !== 'x' || (fixed && fixed[id]) || !man) return;
+      out[id] = guardSpot(man, ballAt || man, holder === id.slice(1), def && def[id]);
+      auto.push(id);
+    });
+    spread(out, auto);
+    return out;
+  }
+
+  // Apply a step without drawing it: where everybody ends up. With d, the
+  // defenders who had no path of their own end where the rule puts them.
+  function after(state, step, d) {
+    var s = clone(state), fixed = {};
+    if (step.add) Object.keys(step.add).forEach(function (id) { s.ents[id] = step.add[id]; fixed[id] = true; });
+    (step.moves || []).slice().sort(byAt).forEach(function (mv) { s.ents[mv.id] = mv.to[mv.to.length - 1]; fixed[mv.id] = true; });
     var bl = (step.ball || []).slice().sort(byAt);
     if (bl.length) s.ball = bl[bl.length - 1].ball;
+    delete s.def; delete s.look;
+    if (d) s.ents = guardAll(withDefs(s.ents), ballAtOf(s.ents, s.ball), typeof s.ball === 'string' ? s.ball : null, step.def, fixed);
+    return s;
+  }
+  // A saved moment with some defenders put back on the rule, in a new stance.
+  function restance(state, def) {
+    var s = clone(state);
+    Object.keys(def).forEach(function (id) { delete s.ents[id]; });
+    s.def = def;
     return s;
   }
 
@@ -374,12 +531,12 @@
     var mk = el('marker', { id: uid + '-ar', viewBox: '0 0 10 10', refX: '6', refY: '5', markerWidth: '3.6', markerHeight: '3.6', orient: 'auto' }, defs);
     el('path', { d: 'M0 0 L10 5 L0 10 z', 'class': 'lg-arhead' }, mk);
     var gCourt = el('g', {}, svg), gDots = el('g', { 'class': 'lg-dots' }, svg), gMarks = el('g', {}, svg),
-        gTrails = el('g', {}, svg), gEnts = el('g', {}, svg), gFx = el('g', {}, svg);
+        gTrails = el('g', {}, svg), gLook = el('g', {}, svg), gEnts = el('g', {}, svg), gFx = el('g', {}, svg);
     drawCourt(gCourt);
     SPOTS.forEach(function (s) { if (s.pt && s.k !== 'rim') el('circle', { cx: s.pt[0], cy: s.pt[1], r: 4.5, 'class': 'lg-dot' }, gDots); });
     if (!opts.dots) gDots.style.display = 'none';
 
-    var ents = {}, ball = { g: null, x: 0, y: 0, holder: null }, raf = null, timer = null, me = null, you = null;
+    var ents = {}, ball = { g: null, x: 0, y: 0, holder: null }, raf = null, timer = null, me = null, you = null, looks = [];
     ball.g = el('circle', { r: 7, 'class': 'lg-ball' }, gFx);
     ball.g.style.display = 'none';
 
@@ -405,9 +562,31 @@
     function paintRoles() {
       Object.keys(ents).forEach(function (id) {
         ents[id].g.classList.toggle('me', id === me);
+        ents[id].g.classList.toggle('mine', !!me && id === 'x' + me);
         ents[id].g.classList.toggle('you', id === you);
       });
       svg.classList.toggle('focus', !!me);
+    }
+    function here() { var p = {}; Object.keys(ents).forEach(function (id) { p[id] = posOf(id); }); return p; }
+    // Move the guarding defenders k of the way to their spot (1 puts them there).
+    function guard(def, fixed, k) {
+      var tg = guardAll(here(), ball.g.style.display === 'none' ? null : [ball.x, ball.y], ball.holder, def, fixed);
+      Object.keys(tg).forEach(function (id) {
+        if (id.charAt(0) !== 'x' || fixed[id] || !ents[id.slice(1)]) return;
+        var p = posOf(id);
+        setPos(id, [p[0] + (tg[id][0] - p[0]) * k, p[1] + (tg[id][1] - p[1]) * k]);
+      });
+    }
+    // A dotted line from a ball watching defender to the ball.
+    function drawLooks() {
+      while (gLook.firstChild) gLook.removeChild(gLook.firstChild);
+      looks.forEach(function (id) {
+        if (!ents[id] || ball.g.style.display === 'none') return;
+        var p = posOf(id), q = [ball.x, ball.y], u = unit(p, q);
+        if (dist(p, q) < 40) return;
+        el('line', { x1: (p[0] + u[0] * 15).toFixed(1), y1: (p[1] + u[1] * 15).toFixed(1),
+          x2: (q[0] - u[0] * 12).toFixed(1), y2: (q[1] - u[1] * 12).toFixed(1), 'class': 'lg-look' }, gLook);
+      });
     }
 
     function stop() {
@@ -432,8 +611,14 @@
 
     function load(state) {
       stop(); clearTrails(); clearFx();
-      Object.keys(ents).forEach(function (id) { if (!state.ents[id]) { gEnts.removeChild(ents[id].g); delete ents[id]; } });
-      Object.keys(state.ents).forEach(function (id) { (ents[id] || makeEnt(id)); setPos(id, state.ents[id]); });
+      var pos = state.ents;
+      if (opts.d) {
+        var fixed = {};
+        Object.keys(pos).forEach(function (id) { if (id.charAt(0) === 'x') fixed[id] = true; });
+        pos = guardAll(withDefs(pos), ballAtOf(pos, state.ball), typeof state.ball === 'string' ? state.ball : null, state.def, fixed);
+      }
+      Object.keys(ents).forEach(function (id) { if (!pos[id]) { gEnts.removeChild(ents[id].g); delete ents[id]; } });
+      Object.keys(pos).forEach(function (id) { (ents[id] || makeEnt(id)); setPos(id, pos[id]); });
       if (state.ball == null) { ball.holder = null; ball.g.style.display = 'none'; }
       else {
         ball.g.style.display = '';
@@ -441,8 +626,10 @@
         else { ball.holder = null; ball.x = state.ball[0]; ball.y = state.ball[1]; }
         drawBall();
       }
+      looks = state.look || [];
       paintRoles();
       markEmpty();
+      drawLooks();
     }
 
     // Draw one step over time. Earlier trails fade, older ones go.
@@ -451,13 +638,16 @@
       Array.prototype.slice.call(gTrails.childNodes).forEach(function (n) {
         if (n.classList.contains('old')) gTrails.removeChild(n); else n.classList.add('old');
       });
-      if (step.add) Object.keys(step.add).forEach(function (id) { (ents[id] || makeEnt(id)); setPos(id, step.add[id]); });
+      var fixed = {};
+      if (step.add) Object.keys(step.add).forEach(function (id) { (ents[id] || makeEnt(id)); setPos(id, step.add[id]); fixed[id] = true; });
+      looks = step.look || [];
       paintRoles();
       var cur = {};
       Object.keys(ents).forEach(function (id) { cur[id] = posOf(id); });
       var tracks = (step.moves || []).slice().sort(byAt).map(function (mv) {
         var smp = samplePath([cur[mv.id]].concat(mv.to), mv.kind === 'dribble');
         cur[mv.id] = mv.to[mv.to.length - 1];
+        fixed[mv.id] = true;
         var line = mv.kind === 'none' ? null : el('polyline', { 'class': 'lg-trail ' + mv.kind, 'marker-end': 'url(#' + uid + '-ar)' }, gTrails);
         return { mv: mv, smp: smp, line: line };
       });
@@ -465,11 +655,15 @@
       var end = 0;
       tracks.forEach(function (t) { end = Math.max(end, t.mv.at + t.mv.dur); });
       balls.forEach(function (t) { end = Math.max(end, t.bm.at + t.bm.dur); });
-      var t0 = null, sp = speed || 1;
+      // Guarding defenders follow a beat behind, then settle on their spot.
+      var guards = opts.d && Object.keys(ents).some(function (id) { return id.charAt(0) === 'x' && !fixed[id] && ents[id.slice(1)]; });
+      var settle = guards ? 320 : 0;
+      var t0 = null, last = null, sp = speed || 1;
 
       function frame(ts) {
-        if (t0 === null) t0 = ts;
-        var t = reduce ? end : (ts - t0) * sp;
+        if (t0 === null) { t0 = ts; last = ts; }
+        var t = reduce ? end + settle : (ts - t0) * sp, dt = (ts - last) * sp;
+        last = ts;
         tracks.forEach(function (tr) {
           var u = clamp((t - tr.mv.at) / tr.mv.dur);
           if (u <= 0) return;
@@ -499,7 +693,9 @@
           if (u >= 1 && !bt.done) { bt.done = true; if (typeof bt.bm.ball === 'string') ball.holder = bt.bm.ball; }
         });
         drawBall();
-        if (t < end) raf = requestAnimationFrame(frame);
+        if (guards) guard(step.def, fixed, t >= end + settle ? 1 : 1 - Math.exp(-dt / 140));
+        drawLooks();
+        if (t < end + settle) raf = requestAnimationFrame(frame);
         else { raf = null; markEmpty(); if (done) done(); }
       }
       raf = requestAnimationFrame(frame);
@@ -559,7 +755,7 @@
 
   /* ============================== PAGE PARTS =============================== */
 
-  var KEY = 'talata-learn-v1';
+  var KEY = 'talata-learn-v2';
   function readBest() { try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { return {}; } }
   function saveBest(lv, score, total) {
     var s = readBest(), prev = s[lv];
@@ -578,21 +774,37 @@
     });
   }
 
-  // The shell each level draws into: court, caption, controls, quiz box.
+  // Desktop (v1.2): the court on the left, the side box on the right. Same
+  // query as the desktop block in talata-learn.css.
+  var WIDE = '(min-width: 1000px) and (min-height: 620px)';
+  function wide() { try { return matchMedia(WIDE).matches; } catch (e) { return false; } }
+  function bringUp(node) { if (node) node.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' }); }
+
+  // The shell each level draws into: the court, then a side box with the
+  // caption, the controls and the quiz.
   function stage(host) {
     var root = h('div', 'lg-stage', null, host);
     var court = h('div', 'lg-court', null, root);
-    var cap = h('div', 'lg-cap', null, root);
+    var side = h('div', 'lg-side', null, root);
+    var cap = h('div', 'lg-cap', null, side);
     cap.setAttribute('aria-live', 'polite');
-    var count = h('p', 'lg-count', null, cap), title = h('p', 'lg-cap-t', null, cap),
-        say = h('p', 'lg-cap-d', null, cap), why = h('p', 'lg-cap-w', null, cap), job = h('p', 'lg-cap-job', null, cap);
-    var ctl = h('div', 'lg-ctl', null, root);
-    var quiz = h('div', 'lg-quiz', null, root);
+    var count = h('p', 'lg-count', null, cap), title = h('p', 'lg-cap-t', null, cap), say = h('p', 'lg-cap-d', null, cap);
+    var game = h('div', 'lg-cap-game', null, cap);
+    h('p', 'lg-game-h', 'In a game', game);
+    var lines = ['See', 'Defender', 'Do'].map(function (lab) {
+      var p = h('p', 'lg-game-l', null, game);
+      h('b', '', lab, p);
+      return h('span', '', null, p);
+    });
+    var why = h('p', 'lg-cap-w', null, cap), job = h('p', 'lg-cap-job', null, cap);
+    var ctl = h('div', 'lg-ctl', null, side);
+    var quiz = h('div', 'lg-quiz', null, side);
     quiz.hidden = true;
     function set(o) {
       count.textContent = o.count || ''; title.textContent = o.t || ''; say.textContent = o.d || '';
       why.textContent = o.w || ''; job.textContent = o.job || '';
-      count.hidden = !o.count; why.hidden = !o.w; job.hidden = !o.job;
+      lines.forEach(function (s, i) { s.textContent = o.g ? o.g[i] : ''; });
+      count.hidden = !o.count; why.hidden = !o.w; job.hidden = !o.job; game.hidden = !o.g;
     }
     return { root: root, court: court, ctl: ctl, quiz: quiz, set: set };
   }
@@ -617,7 +829,7 @@
       box.hidden = false;
       court.focus(null);
       ask();
-      st.root.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+      bringUp(wide() ? document.querySelector('.lg-tabs') : st.root);
     }
     function ask() {
       var q = list[i];
@@ -742,18 +954,22 @@
   /* ---------------------------- Level 2: rules ---------------------------- */
   function levelRules(host) {
     var st = stage(host);
-    var c = Court(st.court, 'lc2');
+    var c = Court(st.court, 'lc2', { d: true });
     var cur = 0, picks = [];
     function show(i) {
       cur = i;
       picks.forEach(function (p, j) { p.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
       var R = RULES[i];
-      st.set({ count: 'Rule ' + (i + 1) + ' of ' + RULES.length, t: R.t, d: R.d, w: 'Why: ' + R.w });
+      st.set({ count: 'Rule ' + (i + 1) + ' of ' + RULES.length, t: R.t, d: R.d, g: R.g, w: 'Why: ' + R.w });
+      c.focus(R.focus || null);
       c.load(R.clip.start);
       c.run(R.clip.steps);
     }
     var quiz = Quiz(st, c, 'rules', function () {
-      return QUIZ2.map(function (q) { var o = clone(q); o.type = 'pick'; return o; });
+      return shuffle(QUIZ2.slice()).slice(0, 8).map(function (q) {
+        return { type: 'pick', frame: q.frame, trails: q.trails, you: q.you, q: q.q, opts: q.opts, why: q.why,
+          reveal: function (court) { court.later(function () { court.play(q.play); }, 400); } };
+      });
     }, function () { show(cur); });
     var r1 = row(st.ctl, 'Rule');
     RULES.forEach(function (R, i) {
@@ -773,9 +989,9 @@
   /* -------------------------- Level 3: Dribble at -------------------------- */
   function levelAction(host) {
     var st = stage(host);
-    var c = Court(st.court, 'lc3', { empty: true });
-    var snaps = [START];
-    A_STEPS.forEach(function (s, i) { snaps.push(after(snaps[i], s)); });
+    var c = Court(st.court, 'lc3', { empty: true, d: true });
+    var snaps = [after(START, {}, true)];
+    A_STEPS.forEach(function (s, i) { snaps.push(after(snaps[i], s, true)); });
     var k = -1, me = null, all = false, speed = 1;
 
     function half(i) { return i >= 6 ? 1 : 0; }
@@ -783,14 +999,22 @@
       if (!me) return '';
       return 'Your job as ' + me + ': ' + JOBS[job][ROLES[hf][me]];
     }
+    function gameLines(job, hf) {
+      var who = {};
+      Object.keys(ROLES[hf]).forEach(function (n) { who[ROLES[hf][n]] = n; });
+      return GAME[job].map(function (l) { return l.replace(/\{(\w)\}/g, function (x, r) { return who[r]; }); });
+    }
     function caption(extra) {
       if (extra) { st.set({ count: 'Read', t: extra.t, d: extra.say }); }
-      else if (k < 0) st.set({ count: 'Set up', t: 'Dribble at', d: SETUP, job: jobLine('setup', 0) });
-      else st.set({ count: 'Step ' + (k + 1) + ' of ' + A_STEPS.length, t: A_STEPS[k].t, d: A_STEPS[k].say, job: jobLine(A_STEPS[k].job, half(k)) });
+      else if (k < 0) st.set({ count: 'Set up', t: 'Dribble at', d: SETUP, g: gameLines('setup', 0), job: jobLine('setup', 0) });
+      else st.set({ count: 'Step ' + (k + 1) + ' of ' + A_STEPS.length, t: A_STEPS[k].t, d: A_STEPS[k].say,
+        g: gameLines(A_STEPS[k].job, half(k)), job: jobLine(A_STEPS[k].job, half(k)) });
       back.disabled = k < 0;
       fwd.disabled = k >= A_STEPS.length - 1;
+      sagB.hidden = k !== 0 && k !== 1;
       openB.hidden = k !== 1;
       jamB.hidden = k !== 3;
+      underB.hidden = overB.hidden = rollB.hidden = k !== 4;
       allB.textContent = all ? 'Stop' : 'Play all';
     }
     function show(i) {
@@ -812,7 +1036,7 @@
     }
     function side(read, at) {
       all = false;
-      c.load(snaps[at]);
+      c.load(read.start ? restance(snaps[at], read.start) : snaps[at]);
       caption(read);
       c.play(read, null, speed);
     }
@@ -837,8 +1061,12 @@
       who.push(w);
     });
     var r3 = row(st.ctl);
+    var sagB = btn('Defender sags? Cut anyway', '', r3, function () { side(SAG, 1); });
     var openB = btn('Open on the cut? See the layup', '', r3, function () { side(OPEN, 1); });
     var jamB = btn('Handoff jammed? See the read', '', r3, function () { side(JAM, 3); });
+    var underB = btn('Goes under? See the shot', '', r3, function () { side(UNDER, 4); });
+    var overB = btn('Chases over? See the drive', '', r3, function () { side(OVER, 4); });
+    var rollB = btn('Help on the roll? Find 5', '', r3, function () { side(ROLL, 4); });
     var r4 = row(st.ctl);
     btn('Take the quiz', 'main', r4, function () { quiz.start(); });
 
@@ -852,6 +1080,9 @@
     var jamFrame = clone(snaps[3]);
     jamFrame.ents['4'] = [440, 200];
     jamFrame.ents.x4 = [414, 226];
+    // Tap the open player: the help left someone.
+    var rollFrame = { ents: { 4: [392, 290], 1: [290, 118], 2: P.cornerL, 3: P.wingL, 5: P.dunkL, x1: [360, 284], x5: [262, 90], x2: [70, 64] }, ball: '4' };
+    var driveFrame = { ents: { 4: [318, 150], 1: P.cornerR, 2: P.cornerL, 3: P.wingL, 5: P.dunkL, x4: [354, 198], x2: [284, 86], x1: [446, 62] }, ball: '4' };
 
     var quiz = Quiz(st, c, 'dribble-at', function () {
       return [
@@ -865,11 +1096,17 @@
           'Hit the cutter. A layup beats any handoff.', function (court) { court.load(snaps[1]); court.play(OPEN); }),
         tapQ('You are 4. 2 has cut through to the far corner. Tap where you take the handoff.', '4', snaps[3], [412, 236], 62,
           'Lift up out of the corner, toward the ball.', function (court) { court.play(A_STEPS[3]); }),
-        tapQ('You are 1. You hand the ball to 4. Tap where you finish.', '1', snaps[4], P.cornerR, 62,
-          'Hand off, roll to the rim, then fill the corner 4 left.', function (court) { court.play(A_STEPS[4]); }),
         pickQ('You are 4. You lift for the handoff and your defender jumps in front of you. What do you do?', '4', jamFrame,
           ['Go back door', 'Take the handoff anyway', 'Stop and stand still'],
           'Same rule as the wing. They take the ball away, you take the space behind them.', function (court) { court.load(snaps[3]); court.play(JAM); }),
+        tapQ('You are 1. You hand the ball to 4. Tap where you finish.', '1', snaps[4], P.cornerR, 62,
+          'Hand off, roll to the rim, then fill the corner 4 left.', function (court) { court.play(A_STEPS[4]); }),
+        tapQ('You are 4. 1 rolls and 5\'s defender steps over to stop them. Tap the open player.', '4', rollFrame, P.dunkL, 45,
+          '5. Their defender left to stop the roll, so 5 is open for the layup.',
+          function (court) { court.play({ ball: [b('5', 'pass', 0, 650), b(P.rim, 'shot', 750, 320)] }); }),
+        tapQ('You are 4. You drive off the handoff and 2\'s defender leaves the corner to help. Tap the open player.', '4', driveFrame, P.cornerL, 45,
+          '2. Their defender left the corner to stop you, so kick it to 2 for the shot.',
+          function (court) { court.play({ ball: [b('2', 'pass', 0, 650), b(P.rim, 'shot', 750, 420)] }); }),
         tapQ('You are 5. 4 is taking the ball to the top and 1 will lift out of the right corner. Tap your next spot.', '5', snaps[5], P.dunkR, 55,
           'Slide to the dunker spot on the new empty side.', function (court) { court.play(A_STEPS[5]); }),
         pickQ('You are 5. Where do you stay while Dribble at runs?', '5', START,
@@ -886,7 +1123,7 @@
   /* -------------------------------- Words -------------------------------- */
   function words(host) {
     var places = Object.keys(KINDS).map(function (k) { return { w: KINDS[k].name, d: KINDS[k].line, kids: true }; });
-    var groups = [['Places', places], ['Moves', MOVES], ['Team words', TEAM]];
+    var groups = [['Places', places], ['Moves', MOVES], ['Team words', TEAM], ['Defense', DEFENSE]];
     var r = row(host, 'Show');
     var allW = btn('All words', '', r), kidW = btn('Kids words', '', r);
     var list = h('div', 'lg-wordlist', null, host);
@@ -897,8 +1134,9 @@
       groups.forEach(function (g) {
         var items = g[1].filter(function (x) { return !kids || x.kids; });
         if (!items.length) return;
-        h('h3', '', g[0], list);
-        var dl = h('dl', '', null, list);
+        var box = h('div', 'lg-wgroup', null, list);
+        h('h3', '', g[0], box);
+        var dl = h('dl', '', null, box);
         items.forEach(function (x) { h('dt', '', x.w, dl); h('dd', '', x.d, dl); });
       });
     }
@@ -935,6 +1173,8 @@
         var name = t.getAttribute('data-lv');
         try { history.replaceState(null, '', '#' + name); } catch (e) {}
         open(name);
+        // Desktop: bring the tabs up under the nav when the level would not fit.
+        if (wide() && document.getElementById(name).getBoundingClientRect().bottom > innerHeight) bringUp(document.querySelector('.lg-tabs'));
       });
       t.addEventListener('keydown', function (ev) {
         var d = ev.key === 'ArrowRight' ? 1 : ev.key === 'ArrowLeft' ? -1 : 0;
@@ -946,6 +1186,12 @@
     window.addEventListener('hashchange', function () { open(location.hash.slice(1), true); });
     var start = location.hash.slice(1);
     open(start, !!levels[start]);
+    // Desktop: the browser jumps to the level itself (:target) once the page
+    // has loaded, which hides the tabs. Land on the tabs after that jump.
+    if (levels[start] && wide()) {
+      var land = function () { setTimeout(function () { document.querySelector('.lg-tabs').scrollIntoView({ block: 'start' }); }, 0); };
+      if (document.readyState === 'complete') land(); else window.addEventListener('load', land);
+    }
     paintBest();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
