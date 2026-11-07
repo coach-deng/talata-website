@@ -80,10 +80,10 @@
 
 # Winter Camp was "Christmas Hoops Camp" until Aug 10 2026. Keep these:
 # the old slug is in Google's index and in every email sent before the rename.
-/camps/christmas-hoops-camp-2026        /camps/college-pathway-camp-2026    301
-/camps/christmas-hoops-camp-2026.html   /camps/college-pathway-camp-2026    301
-/camps/christmas-camp                   /camps/college-pathway-camp-2026    301
-/winter-camp                            /camps/college-pathway-camp-2026    301
+/camps/christmas-hoops-camp-2026        /camps/ncaa-and-prep-school-camp-2026    301
+/camps/christmas-hoops-camp-2026.html   /camps/ncaa-and-prep-school-camp-2026    301
+/camps/christmas-camp                   /camps/ncaa-and-prep-school-camp-2026    301
+/winter-camp                            /camps/ncaa-and-prep-school-camp-2026    301
 
 # Deyan post pulled 20 Aug 2026, hours after publish — Deng flagged it as wrong.
 # Redirect rather than 404 since it was live and may already be crawled.
@@ -92,9 +92,15 @@
 
 # Autumn week split into two camps, 22 Aug 2026
 /starter-camp    /camps/academy-u12-camp-2026    301
-/pathway-camp    /camps/college-pathway-camp-2026    301
-/nba-camp        /camps/college-pathway-camp-2026    301
-/euroleague-camp /camps/college-pathway-camp-2026    301
+# 7 Nov 2026 (Deng): the December camp is the NCAA and Prep School Camp. The old page address keeps working.
+/camps/college-pathway-camp-2026        /camps/ncaa-and-prep-school-camp-2026    301
+/camps/college-pathway-camp-2026.html   /camps/ncaa-and-prep-school-camp-2026    301
+/ncaa-camp       /camps/ncaa-and-prep-school-camp-2026    301
+/prep-camp       /camps/ncaa-and-prep-school-camp-2026    301
+/college-camp    /camps/ncaa-and-prep-school-camp-2026    301
+/pathway-camp    /camps/ncaa-and-prep-school-camp-2026    301
+/nba-camp        /camps/ncaa-and-prep-school-camp-2026    301
+/euroleague-camp /camps/ncaa-and-prep-school-camp-2026    301
 # Coaches Clinic inside the December camp, 14 Oct 2026 (Deng)
 /clinic          /camps/coaches-clinic-2026    301
 /coaches-clinic  /camps/coaches-clinic-2026    301
@@ -108,11 +114,11 @@
 /camps/starter-camp-2026.html    /camps/academy-u12-camp-2026         301
 /camps/autumn-camp-2026          /camps/academy-u15-camp-2026         301
 /camps/autumn-camp-2026.html     /camps/academy-u15-camp-2026         301
-/camps/winter-camp-2026          /camps/college-pathway-camp-2026     301
-/camps/winter-camp-2026.html     /camps/college-pathway-camp-2026     301
+/camps/winter-camp-2026          /camps/ncaa-and-prep-school-camp-2026     301
+/camps/winter-camp-2026.html     /camps/ncaa-and-prep-school-camp-2026     301
 /academy-u12-camp                /camps/academy-u12-camp-2026         301
 /academy-u16-camp                /camps/academy-u15-camp-2026         301
-/college-pathway-camp            /camps/college-pathway-camp-2026     301
+/college-pathway-camp            /camps/ncaa-and-prep-school-camp-2026     301
 
 # Academy U16 Camp renamed Academy U15 Camp 17 Sep 2026 (Deng), page moved the
 # same day. The u16 slug was live 16 to 17 Sep and is in camp emails, so every

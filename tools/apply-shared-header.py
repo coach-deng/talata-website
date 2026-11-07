@@ -43,7 +43,7 @@ CTA = {
     "school-partnerships.html": ("#contact", "Get in touch"),
     # "Join waitlist" rode the sticky bar on every camp page, so the one button
     # a parent could always see said the camp was full. Places are open.
-    "camps/college-pathway-camp-2026.html": ("#waitlist", "Sign up"),
+    "camps/ncaa-and-prep-school-camp-2026.html": ("#waitlist", "Sign up"),
     # Coaches book with Deng by email or WhatsApp, no form (14 Oct 2026).
     "camps/coaches-clinic-2026.html": ("#book", "Book a seat"),
     "camps/lithuania-camp-2026.html": ("#register", "Sign up"),

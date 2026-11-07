@@ -1,7 +1,7 @@
 /* Talata camp popup, the big one (Deng, 15 Oct 2026).
  *
  * "A really big pop-up, not a small one. As soon as you start scrolling, boom,
- * camp." It sells the December NBA and EuroLeague Pathway Camp on every page
+ * camp." It sells the December NCAA and Prep School Camp on every page
  * until the camp starts.
  *
  *   - CAMP PAGES ONLY (29 Oct 2026, was every page since 15 Oct). The script
@@ -38,8 +38,8 @@
   var END = Date.parse('2026-12-27T23:59:00+01:00');   /* the camp starts Mon 28 Dec */
   var SCROLL_PX = 120;
   var RETRY_MS = 1000;
-  var CAMP_URL = '/camps/college-pathway-camp-2026';
-  var QUIET = ['/camps/college-pathway-camp-2026', '/camps/coaches-clinic-2026'];
+  var CAMP_URL = '/camps/ncaa-and-prep-school-camp-2026';
+  var QUIET = ['/camps/ncaa-and-prep-school-camp-2026', '/camps/coaches-clinic-2026'];
   var SHOW = ['/camps', '/academy', '/pathway', '/blog/pathway-camp-december-2026'];
   function showsHere(p) {
     return SHOW.indexOf(p) !== -1 || p.indexOf('/camps/') === 0;

@@ -1,5 +1,5 @@
 {
-  "built_for": "2026-11-02",
+  "built_for": "2026-11-07",
   "camps": {
     "academy": {
       "age_max": 16,
@@ -32,12 +32,12 @@
         29,
         30
       ],
-      "eb_deadline": "2026-11-15",
+      "eb_deadline": "2026-11-30",
       "month": 12,
-      "name": "NBA and EuroLeague Pathway Camp",
+      "name": "NCAA and Prep School Camp",
       "places": 50,
       "price_early": 1595,
-      "price_early_until": "2026-11-15",
+      "price_early_until": "2026-11-30",
       "price_now": 1595,
       "price_standard": 1795,
       "time_end": "14:00",
@@ -77,12 +77,12 @@
     "days_da": "28. og 29. december",
     "days_long": "Monday 28 and Tuesday 29 December",
     "days_short": "28 and 29 December",
-    "eb_deadline": "2026-11-15",
+    "eb_deadline": "2026-11-30",
     "end_date": "2026-12-29",
     "month": 12,
     "places": 30,
     "price_early": 1300,
-    "price_early_until": "2026-11-15",
+    "price_early_until": "2026-11-30",
     "price_now": 1300,
     "price_standard": 1795,
     "start_date": "2026-12-28",
@@ -118,9 +118,9 @@
       29,
       30
     ],
-    "camp.pathway.eb_deadline": "2026-11-15",
+    "camp.pathway.eb_deadline": "2026-11-30",
     "camp.pathway.month": 12,
-    "camp.pathway.name": "NBA and EuroLeague Pathway Camp",
+    "camp.pathway.name": "NCAA and Prep School Camp",
     "camp.pathway.places": 50,
     "camp.pathway.price_early": 1595,
     "camp.pathway.price_standard": 1795,
@@ -150,7 +150,7 @@
       28,
       29
     ],
-    "clinic.eb_deadline": "2026-11-15",
+    "clinic.eb_deadline": "2026-11-30",
     "clinic.month": 12,
     "clinic.places": 30,
     "clinic.price_early": 1300,
@@ -234,9 +234,9 @@
     "venue.svanemollehallen.address": "Østerbrogade 240, 2100 København Ø",
     "venue.svanemollehallen.name": "Svanemøllehallen"
   },
-  "sha": "697900ab8dd7bfe6ee8f62561de1690a2d5faba1ab68d869d013292b162a095e",
+  "sha": "c9c9a6d795a06c05276559388bbb4ce9dac1fc25d59a2bf93223b66666c4dcfe",
   "sources": {
-    "programs_sha": "8376bacb05c8d5e3da7f2030b8135cdb613f03e23e57f57d411d3c5e4db7a33d",
+    "programs_sha": "320b3e87eda2684aa2f1f80bc3ac6ebeeef44dc2a69fd29b9e1fbed37d9172de",
     "training_sha": "3e11786734f892bc3b475634958c6124b44ba2aa241a92d63228d2ba2f16e4e8",
     "training_updated": "2026-11-02"
   },

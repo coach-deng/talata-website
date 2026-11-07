@@ -42,7 +42,7 @@ LIGHT_OK = {
     "men.html", "camps.html", "games.html", "saturday.html",
     # batch 2
     "camps/academy-u12-camp-2026.html", "camps/academy-u15-camp-2026.html",
-    "camps/canada-camp-2026.html", "camps/college-pathway-camp-2026.html",
+    "camps/canada-camp-2026.html", "camps/ncaa-and-prep-school-camp-2026.html",
     "camps/summer-camp.html",  # 6 Oct 2026: replaces both 2026 summer pages (301s in _redirects)
     "camps/nida-camp-2026.html",  # spring-camp-2026 is a redirect stub, never paints
     "camps/spring-camp-u13-u15-2026.html", "camps/spring-camp-u9-u11-2026.html",
